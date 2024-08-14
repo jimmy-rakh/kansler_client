@@ -1,0 +1,1 @@
+enum RegisterStep { inputInn, inputLogin }

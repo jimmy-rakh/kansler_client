@@ -1,0 +1,72 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kansler/core/extensions/context.dart';
+
+import '../../../app/router.dart';
+import '../../../core/style/colors.dart';
+import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/appbar.dart';
+import '../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
+
+
+@RoutePage()
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final authBloc = context.read<AuthBloc>();
+    return Scaffold(
+      appBar: const AppBarWidget(
+        preferredSize: Size.fromHeight(60),
+        centerTitle: true,
+        child: Text('Настройки'),
+      ),
+      body: Column(
+        children: [
+          AppButton(
+              text: 'Удалить аккаунт',
+              textStyle: context.theme.textTheme.bodyLarge!,
+              textColor: AppColors.red,
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+              borderRadius: 8,
+              onPressed: () => showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) => CupertinoAlertDialog(
+                        title: const Text('Удаление аккаунта'),
+                        content: const Text(
+                          'Вы действительно хотите удалить аккаунт?\nВыш аккаунт будет удален в течении 30 дней',
+                        ),
+                        actions: <CupertinoDialogAction>[
+                          CupertinoDialogAction(
+                            /// This parameter indicates this action is the default,
+                            /// and turns the action's text to bold text.
+                            isDestructiveAction: true,
+
+                            onPressed: () {
+                              authBloc.add(const AuthEvent.logout());
+                              Navigator.pop(context);
+                              router.popUntilRoot();
+                            },
+                            child: const Text('Удалить'),
+                          ),
+                          CupertinoDialogAction(
+                            /// This parameter indicates the action would perform
+                            /// a destructive action such as deletion, and turns
+                            /// the action's text color to red.
+                            isDefaultAction: true,
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text('Отмена'),
+                          ),
+                        ],
+                      )))
+        ],
+      ),
+    );
+  }
+}

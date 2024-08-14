@@ -1,0 +1,123 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
+import '../../../../../../app/router.dart';
+import '../../../../../../shared/services/logger/logger_service.dart';
+import '../../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
+import '../../../../../product/domain/entities/product.entity.dart';
+import '../../../../domain/entities/search.entity.dart';
+import '../../../../domain/usecases/search.usecase.dart';
+
+
+part 'search_state.dart';
+part 'search_event.dart';
+part 'search_bloc.freezed.dart';
+
+@injectable
+class SearchBloc extends Bloc<SearchEvent, SearchState> {
+  final SearchUseCase _useCase;
+
+  SearchBloc(this._useCase) : super(const SearchState.loadInProgress()) {
+    on<_Search>(_onSearch);
+    on<_ChangeListType>(_onChangeListType);
+    on<_ShowFilters>(_onShowFilters);
+    on<_ChangeCartState>(_onChangeCartState);
+
+    scrollController.addListener(() {
+      if (scrollController.position.pixels >=
+              scrollController.position.maxScrollExtent - 200 &&
+          hasNext &&
+          !(state as _Success).isMoreLoading) {
+        add(const SearchEvent.search(isMore: true));
+      }
+    });
+  }
+
+  final fieldController = TextEditingController();
+
+  int pageNumber = 1;
+  bool hasNext = true;
+  List<TextEditingController> quantityControllers = [];
+  final scrollController = ScrollController();
+
+  void _onSearch(_Search event, Emitter<SearchState> emit) async {
+    if (event.title != null) {
+      fieldController.text = event.title!;
+    }
+
+    final authBloc =
+        BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
+    SearchEntity? request = state is _Success
+        ? (state as _Success)
+            .filterData
+            ?.copyWith(title: event.title ?? fieldController.text)
+        : SearchEntity(title: event.title ?? fieldController.text);
+
+    if (request == null) return;
+
+    if (!event.isMore) {
+      emit(const SearchState.loadInProgress());
+      pageNumber = 1;
+      request = request.copyWith(pageNumber: 1);
+    } else {
+      emit((state as _Success).copyWith(isMoreLoading: true));
+    }
+    final result = await _useCase.call(request);
+
+    result.fold((l) => log.e(l), (r) {
+      request = request!.copyWith(pageNumber: request!.pageNumber + 1);
+
+      if (authBloc.state == const AuthState.authenticated()) {
+        quantityControllers.addAll(List.generate(
+          r.products.length,
+          (index) => TextEditingController(text: '1'),
+        ));
+      }
+
+      if (event.isMore) {
+        final currentState = (state as _Success);
+
+        emit(currentState.copyWith(
+          products: currentState.products + r.products,
+          filterData: request,
+          isMoreLoading: false,
+        ));
+        return;
+      }
+
+      emit(SearchState.success(products: r.products, filterData: request));
+    });
+  }
+
+  void _onChangeListType(event, Emitter<SearchState> emit) {
+    if (state is! _Success) return;
+
+    emit((state as _Success).copyWith(isList: !(state as _Success).isList));
+  }
+
+  void _onShowFilters(_ShowFilters event, Emitter<SearchState> emit) async {
+    final res = await router
+            .push(FilterRoute(searchData: (state as _Success).filterData!))
+        as SearchEntity?;
+
+    if (res != null) {
+      emit((state as _Success)
+          .copyWith(filterData: res.copyWith(pageNumber: 1)));
+      add(const SearchEvent.search());
+    }
+  }
+
+  void _onChangeCartState(_ChangeCartState event, Emitter<SearchState> emit) {
+    final currentState = state as _Success;
+
+    final products = currentState.products.map((e) {
+      if (e.id == event.product.id) {
+        return event.product.copyWith(inCart: !event.product.inCart!);
+      }
+      return e;
+    }).toList();
+
+    emit(currentState.copyWith(products: products));
+  }
+}

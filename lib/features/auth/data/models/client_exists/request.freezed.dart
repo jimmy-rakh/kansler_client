@@ -1,0 +1,166 @@
+// coverage:ignore-file
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
+
+part of 'request.dart';
+
+// **************************************************************************
+// FreezedGenerator
+// **************************************************************************
+
+T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+
+ClientExistsRequest _$ClientExistsRequestFromJson(Map<String, dynamic> json) {
+  return _ClientExistsRequest.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ClientExistsRequest {
+  String get inn => throw _privateConstructorUsedError;
+
+  /// Serializes this ClientExistsRequest to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ClientExistsRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ClientExistsRequestCopyWith<ClientExistsRequest> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ClientExistsRequestCopyWith<$Res> {
+  factory $ClientExistsRequestCopyWith(
+          ClientExistsRequest value, $Res Function(ClientExistsRequest) then) =
+      _$ClientExistsRequestCopyWithImpl<$Res, ClientExistsRequest>;
+  @useResult
+  $Res call({String inn});
+}
+
+/// @nodoc
+class _$ClientExistsRequestCopyWithImpl<$Res, $Val extends ClientExistsRequest>
+    implements $ClientExistsRequestCopyWith<$Res> {
+  _$ClientExistsRequestCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ClientExistsRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inn = null,
+  }) {
+    return _then(_value.copyWith(
+      inn: null == inn
+          ? _value.inn
+          : inn // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ClientExistsRequestImplCopyWith<$Res>
+    implements $ClientExistsRequestCopyWith<$Res> {
+  factory _$$ClientExistsRequestImplCopyWith(_$ClientExistsRequestImpl value,
+          $Res Function(_$ClientExistsRequestImpl) then) =
+      __$$ClientExistsRequestImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String inn});
+}
+
+/// @nodoc
+class __$$ClientExistsRequestImplCopyWithImpl<$Res>
+    extends _$ClientExistsRequestCopyWithImpl<$Res, _$ClientExistsRequestImpl>
+    implements _$$ClientExistsRequestImplCopyWith<$Res> {
+  __$$ClientExistsRequestImplCopyWithImpl(_$ClientExistsRequestImpl _value,
+      $Res Function(_$ClientExistsRequestImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ClientExistsRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? inn = null,
+  }) {
+    return _then(_$ClientExistsRequestImpl(
+      inn: null == inn
+          ? _value.inn
+          : inn // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ClientExistsRequestImpl implements _ClientExistsRequest {
+  _$ClientExistsRequestImpl({required this.inn});
+
+  factory _$ClientExistsRequestImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ClientExistsRequestImplFromJson(json);
+
+  @override
+  final String inn;
+
+  @override
+  String toString() {
+    return 'ClientExistsRequest(inn: $inn)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClientExistsRequestImpl &&
+            (identical(other.inn, inn) || other.inn == inn));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, inn);
+
+  /// Create a copy of ClientExistsRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ClientExistsRequestImplCopyWith<_$ClientExistsRequestImpl> get copyWith =>
+      __$$ClientExistsRequestImplCopyWithImpl<_$ClientExistsRequestImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ClientExistsRequestImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ClientExistsRequest implements ClientExistsRequest {
+  factory _ClientExistsRequest({required final String inn}) =
+      _$ClientExistsRequestImpl;
+
+  factory _ClientExistsRequest.fromJson(Map<String, dynamic> json) =
+      _$ClientExistsRequestImpl.fromJson;
+
+  @override
+  String get inn;
+
+  /// Create a copy of ClientExistsRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ClientExistsRequestImplCopyWith<_$ClientExistsRequestImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
