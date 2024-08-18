@@ -89,9 +89,6 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -108,9 +105,6 @@ class __$$UnknownImplCopyWithImpl<$Res>
   __$$UnknownImplCopyWithImpl(
       _$UnknownImpl _value, $Res Function(_$UnknownImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -231,9 +225,6 @@ class __$$AuthenticatedImplCopyWithImpl<$Res>
   __$$AuthenticatedImplCopyWithImpl(
       _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -354,9 +345,6 @@ class __$$GuestImplCopyWithImpl<$Res>
   __$$GuestImplCopyWithImpl(
       _$GuestImpl _value, $Res Function(_$GuestImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -477,9 +465,6 @@ class __$$FirstEntryImplCopyWithImpl<$Res>
   __$$FirstEntryImplCopyWithImpl(
       _$FirstEntryImpl _value, $Res Function(_$FirstEntryImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -600,9 +585,6 @@ class __$$ErrorImplCopyWithImpl<$Res>
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -766,9 +748,6 @@ class _$AuthEventCopyWithImpl<$Res, $Val extends AuthEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -785,9 +764,6 @@ class __$$CheckStatusImplCopyWithImpl<$Res>
   __$$CheckStatusImplCopyWithImpl(
       _$CheckStatusImpl _value, $Res Function(_$CheckStatusImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -890,9 +866,6 @@ class __$$LogOutImplCopyWithImpl<$Res>
   __$$LogOutImplCopyWithImpl(
       _$LogOutImpl _value, $Res Function(_$LogOutImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AuthEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

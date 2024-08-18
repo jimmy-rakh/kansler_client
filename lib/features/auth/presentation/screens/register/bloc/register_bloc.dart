@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/client_type.dart';
 
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
@@ -76,9 +77,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
 
     final loginParams = LoginParamsEntity(
-      username: innController.text,
-      password: passwordController.text,
-      fcmToken: 'fcmToken',
+      value: innController.text,
+      clientType: ClientType.company,
+      // fcmToken: 'fcmToken',
       device: deviceInfo,
     );
 

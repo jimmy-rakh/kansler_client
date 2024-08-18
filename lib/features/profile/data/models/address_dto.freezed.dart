@@ -31,12 +31,8 @@ mixin _$AddressDto {
   String? get region => throw _privateConstructorUsedError;
   bool? get active => throw _privateConstructorUsedError;
 
-  /// Serializes this AddressDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AddressDtoCopyWith<AddressDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,8 +70,6 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,8 +128,6 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
     ) as $Val);
   }
 
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res>? get organization {
@@ -148,8 +140,6 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
     });
   }
 
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerDtoCopyWith<$Res>? get manager {
@@ -162,8 +152,6 @@ class _$AddressDtoCopyWithImpl<$Res, $Val extends AddressDto>
     });
   }
 
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerDtoCopyWith<$Res>? get agent {
@@ -213,8 +201,6 @@ class __$$AddressDtoImplCopyWithImpl<$Res>
       _$AddressDtoImpl _value, $Res Function(_$AddressDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -338,7 +324,7 @@ class _$AddressDtoImpl extends _AddressDto {
             (identical(other.active, active) || other.active == active));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -353,9 +339,7 @@ class _$AddressDtoImpl extends _AddressDto {
       region,
       active);
 
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddressDtoImplCopyWith<_$AddressDtoImpl> get copyWith =>
@@ -406,11 +390,8 @@ abstract class _AddressDto extends AddressDto {
   String? get region;
   @override
   bool? get active;
-
-  /// Create a copy of AddressDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddressDtoImplCopyWith<_$AddressDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -424,12 +405,8 @@ mixin _$OrganizationDto {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
 
-  /// Serializes this OrganizationDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OrganizationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OrganizationDtoCopyWith<OrganizationDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -453,8 +430,6 @@ class _$OrganizationDtoCopyWithImpl<$Res, $Val extends OrganizationDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrganizationDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -493,8 +468,6 @@ class __$$OrganizationDtoImplCopyWithImpl<$Res>
       _$OrganizationDtoImpl _value, $Res Function(_$OrganizationDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrganizationDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -541,13 +514,11 @@ class _$OrganizationDtoImpl extends _OrganizationDto {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, name);
 
-  /// Create a copy of OrganizationDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OrganizationDtoImplCopyWith<_$OrganizationDtoImpl> get copyWith =>
@@ -574,11 +545,8 @@ abstract class _OrganizationDto extends OrganizationDto {
   int? get id;
   @override
   String? get name;
-
-  /// Create a copy of OrganizationDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OrganizationDtoImplCopyWith<_$OrganizationDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

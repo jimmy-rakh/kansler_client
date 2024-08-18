@@ -66,9 +66,7 @@ mixin _$RegisterState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -98,8 +96,6 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -164,8 +160,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -259,9 +253,7 @@ class _$ReadyImpl implements _Ready {
   int get hashCode => Object.hash(runtimeType, step, showPass, showRepeatedPass,
       isLoading, requestId, error);
 
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -358,11 +350,8 @@ abstract class _Ready implements RegisterState {
   String? get requestId;
   @override
   String? get error;
-
-  /// Create a copy of RegisterState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -456,9 +445,6 @@ class _$RegisterEventCopyWithImpl<$Res, $Val extends RegisterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -475,9 +461,6 @@ class __$$RegisterImplCopyWithImpl<$Res>
   __$$RegisterImplCopyWithImpl(
       _$RegisterImpl _value, $Res Function(_$RegisterImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -611,9 +594,6 @@ class __$$CheckInnImplCopyWithImpl<$Res>
   __$$CheckInnImplCopyWithImpl(
       _$CheckInnImpl _value, $Res Function(_$CheckInnImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -750,8 +730,6 @@ class __$$SendCodeImplCopyWithImpl<$Res>
       _$SendCodeImpl _value, $Res Function(_$SendCodeImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -799,9 +777,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   int get hashCode => Object.hash(runtimeType, phone, requestId);
 
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SendCodeImplCopyWith<_$SendCodeImpl> get copyWith =>
@@ -907,10 +883,7 @@ abstract class _SendCode implements RegisterEvent {
 
   String get phone;
   String get requestId;
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SendCodeImplCopyWith<_$SendCodeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -929,9 +902,6 @@ class __$$SetPasswordImplCopyWithImpl<$Res>
   __$$SetPasswordImplCopyWithImpl(
       _$SetPasswordImpl _value, $Res Function(_$SetPasswordImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1065,9 +1035,6 @@ class __$$ShowPassToggleImplCopyWithImpl<$Res>
   __$$ShowPassToggleImplCopyWithImpl(
       _$ShowPassToggleImpl _value, $Res Function(_$ShowPassToggleImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1203,9 +1170,6 @@ class __$$ShowRepeatedPassToggleImplCopyWithImpl<$Res>
       _$ShowRepeatedPassToggleImpl _value,
       $Res Function(_$ShowRepeatedPassToggleImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1343,8 +1307,6 @@ class __$$AddErrorImplCopyWithImpl<$Res>
       _$AddErrorImpl _value, $Res Function(_$AddErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1383,9 +1345,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   int get hashCode => Object.hash(runtimeType, error);
 
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddErrorImplCopyWith<_$AddErrorImpl> get copyWith =>
@@ -1489,10 +1449,7 @@ abstract class _AddError implements RegisterEvent {
   const factory _AddError(final String error) = _$AddErrorImpl;
 
   String get error;
-
-  /// Create a copy of RegisterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddErrorImplCopyWith<_$AddErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

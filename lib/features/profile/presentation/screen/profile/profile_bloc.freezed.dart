@@ -78,9 +78,6 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,9 +94,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -208,9 +202,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -324,8 +315,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -339,8 +328,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
     ));
   }
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyEntityCopyWith<$Res> get company {
@@ -374,9 +361,7 @@ class _$ReadyImpl implements _Ready {
   @override
   int get hashCode => Object.hash(runtimeType, company);
 
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -455,10 +440,7 @@ abstract class _Ready implements ProfileState {
   const factory _Ready(final CompanyEntity company) = _$ReadyImpl;
 
   CompanyEntity get company;
-
-  /// Create a copy of ProfileState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -521,9 +503,6 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -540,9 +519,6 @@ class __$$GetCompanyImplCopyWithImpl<$Res>
   __$$GetCompanyImplCopyWithImpl(
       _$GetCompanyImpl _value, $Res Function(_$GetCompanyImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -645,9 +621,6 @@ class __$$SetInitImplCopyWithImpl<$Res>
   __$$SetInitImplCopyWithImpl(
       _$SetInitImpl _value, $Res Function(_$SetInitImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ProfileEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

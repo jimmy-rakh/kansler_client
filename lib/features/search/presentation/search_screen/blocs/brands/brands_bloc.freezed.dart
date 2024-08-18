@@ -72,9 +72,6 @@ class _$BrandsStateCopyWithImpl<$Res, $Val extends BrandsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of BrandsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,9 +88,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of BrandsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -199,8 +193,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BrandsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -245,9 +237,7 @@ class _$SuccessImpl implements _Success {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_brands));
 
-  /// Create a copy of BrandsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -320,10 +310,7 @@ abstract class _Success implements BrandsState {
   const factory _Success(final List<ProductDataEntity> brands) = _$SuccessImpl;
 
   List<ProductDataEntity> get brands;
-
-  /// Create a copy of BrandsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -364,9 +351,7 @@ mixin _$BrandsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of BrandsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BrandsEventCopyWith<BrandsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -390,8 +375,6 @@ class _$BrandsEventCopyWithImpl<$Res, $Val extends BrandsEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BrandsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -425,8 +408,6 @@ class __$$FetchImplCopyWithImpl<$Res>
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BrandsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -466,9 +447,7 @@ class _$FetchImpl implements _Fetch {
   @override
   int get hashCode => Object.hash(runtimeType, organizationId);
 
-  /// Create a copy of BrandsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchImplCopyWith<_$FetchImpl> get copyWith =>
@@ -536,11 +515,8 @@ abstract class _Fetch implements BrandsEvent {
 
   @override
   int? get organizationId;
-
-  /// Create a copy of BrandsEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FetchImplCopyWith<_$FetchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

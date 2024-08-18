@@ -21,9 +21,7 @@ mixin _$ClientDataEntity {
   String? get name => throw _privateConstructorUsedError;
   List<String>? get phoneNumbers => throw _privateConstructorUsedError;
 
-  /// Create a copy of ClientDataEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ClientDataEntityCopyWith<ClientDataEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,8 +49,6 @@ class _$ClientDataEntityCopyWithImpl<$Res, $Val extends ClientDataEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ClientDataEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,8 +101,6 @@ class __$$ClientDataEntityImplCopyWithImpl<$Res>
       $Res Function(_$ClientDataEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientDataEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -184,9 +178,7 @@ class _$ClientDataEntityImpl implements _ClientDataEntity {
   int get hashCode => Object.hash(runtimeType, inn, fullName, name,
       const DeepCollectionEquality().hash(_phoneNumbers));
 
-  /// Create a copy of ClientDataEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientDataEntityImplCopyWith<_$ClientDataEntityImpl> get copyWith =>
@@ -209,11 +201,8 @@ abstract class _ClientDataEntity implements ClientDataEntity {
   String? get name;
   @override
   List<String>? get phoneNumbers;
-
-  /// Create a copy of ClientDataEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ClientDataEntityImplCopyWith<_$ClientDataEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

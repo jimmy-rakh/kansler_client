@@ -24,12 +24,8 @@ mixin _$StocksDto {
   int? get quantity => throw _privateConstructorUsedError;
   int? get quantityReserve => throw _privateConstructorUsedError;
 
-  /// Serializes this StocksDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of StocksDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $StocksDtoCopyWith<StocksDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +50,6 @@ class _$StocksDtoCopyWithImpl<$Res, $Val extends StocksDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StocksDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -79,8 +73,6 @@ class _$StocksDtoCopyWithImpl<$Res, $Val extends StocksDto>
     ) as $Val);
   }
 
-  /// Create a copy of StocksDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get stock {
@@ -116,8 +108,6 @@ class __$$ProductDataDtoImplCopyWithImpl<$Res>
       _$ProductDataDtoImpl _value, $Res Function(_$ProductDataDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StocksDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,14 +165,12 @@ class _$ProductDataDtoImpl extends _ProductDataDto {
                 other.quantityReserve == quantityReserve));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, stock, quantity, quantityReserve);
 
-  /// Create a copy of StocksDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductDataDtoImplCopyWith<_$ProductDataDtoImpl> get copyWith =>
@@ -213,11 +201,8 @@ abstract class _ProductDataDto extends StocksDto {
   int? get quantity;
   @override
   int? get quantityReserve;
-
-  /// Create a copy of StocksDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProductDataDtoImplCopyWith<_$ProductDataDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

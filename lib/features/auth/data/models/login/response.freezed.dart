@@ -22,9 +22,7 @@ LoginResponse _$LoginResponseFromJson(Map<String, dynamic> json) {
 mixin _$LoginResponse {
   String get authToken => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginResponseCopyWith<LoginResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,8 +46,6 @@ class _$LoginResponseCopyWithImpl<$Res, $Val extends LoginResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,8 +79,6 @@ class __$$LoginResponseImplCopyWithImpl<$Res>
       _$LoginResponseImpl _value, $Res Function(_$LoginResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,13 +118,11 @@ class _$LoginResponseImpl implements _LoginResponse {
                 other.authToken == authToken));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, authToken);
 
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginResponseImplCopyWith<_$LoginResponseImpl> get copyWith =>
@@ -146,11 +138,8 @@ abstract class _LoginResponse implements LoginResponse {
 
   @override
   String get authToken;
-
-  /// Create a copy of LoginResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginResponseImplCopyWith<_$LoginResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

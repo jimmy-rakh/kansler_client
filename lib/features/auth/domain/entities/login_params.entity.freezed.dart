@@ -16,14 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginParamsEntity {
-  String get username => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  String get fcmToken => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
+  ClientType get clientType =>
+      throw _privateConstructorUsedError; // required String fcmToken,
   DeviceInfo get device => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginParamsEntityCopyWith<LoginParamsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -34,8 +32,7 @@ abstract class $LoginParamsEntityCopyWith<$Res> {
           LoginParamsEntity value, $Res Function(LoginParamsEntity) then) =
       _$LoginParamsEntityCopyWithImpl<$Res, LoginParamsEntity>;
   @useResult
-  $Res call(
-      {String username, String password, String fcmToken, DeviceInfo device});
+  $Res call({String value, ClientType clientType, DeviceInfo device});
 
   $DeviceInfoCopyWith<$Res> get device;
 }
@@ -50,29 +47,22 @@ class _$LoginParamsEntityCopyWithImpl<$Res, $Val extends LoginParamsEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
-    Object? password = null,
-    Object? fcmToken = null,
+    Object? value = null,
+    Object? clientType = null,
     Object? device = null,
   }) {
     return _then(_value.copyWith(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      fcmToken: null == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String,
+      clientType: null == clientType
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as ClientType,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -80,8 +70,6 @@ class _$LoginParamsEntityCopyWithImpl<$Res, $Val extends LoginParamsEntity>
     ) as $Val);
   }
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeviceInfoCopyWith<$Res> get device {
@@ -99,8 +87,7 @@ abstract class _$$LoginParamsEntityImplCopyWith<$Res>
       __$$LoginParamsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String username, String password, String fcmToken, DeviceInfo device});
+  $Res call({String value, ClientType clientType, DeviceInfo device});
 
   @override
   $DeviceInfoCopyWith<$Res> get device;
@@ -114,29 +101,22 @@ class __$$LoginParamsEntityImplCopyWithImpl<$Res>
       $Res Function(_$LoginParamsEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
-    Object? password = null,
-    Object? fcmToken = null,
+    Object? value = null,
+    Object? clientType = null,
     Object? device = null,
   }) {
     return _then(_$LoginParamsEntityImpl(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      fcmToken: null == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String,
+      clientType: null == clientType
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as ClientType,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -149,23 +129,19 @@ class __$$LoginParamsEntityImplCopyWithImpl<$Res>
 
 class _$LoginParamsEntityImpl implements _LoginParamsEntity {
   const _$LoginParamsEntityImpl(
-      {required this.username,
-      required this.password,
-      required this.fcmToken,
-      required this.device});
+      {required this.value, required this.clientType, required this.device});
 
   @override
-  final String username;
+  final String value;
   @override
-  final String password;
-  @override
-  final String fcmToken;
+  final ClientType clientType;
+// required String fcmToken,
   @override
   final DeviceInfo device;
 
   @override
   String toString() {
-    return 'LoginParamsEntity(username: $username, password: $password, fcmToken: $fcmToken, device: $device)';
+    return 'LoginParamsEntity(value: $value, clientType: $clientType, device: $device)';
   }
 
   @override
@@ -173,22 +149,16 @@ class _$LoginParamsEntityImpl implements _LoginParamsEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginParamsEntityImpl &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.fcmToken, fcmToken) ||
-                other.fcmToken == fcmToken) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.clientType, clientType) ||
+                other.clientType == clientType) &&
             (identical(other.device, device) || other.device == device));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, username, password, fcmToken, device);
+  int get hashCode => Object.hash(runtimeType, value, clientType, device);
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginParamsEntityImplCopyWith<_$LoginParamsEntityImpl> get copyWith =>
@@ -198,24 +168,18 @@ class _$LoginParamsEntityImpl implements _LoginParamsEntity {
 
 abstract class _LoginParamsEntity implements LoginParamsEntity {
   const factory _LoginParamsEntity(
-      {required final String username,
-      required final String password,
-      required final String fcmToken,
+      {required final String value,
+      required final ClientType clientType,
       required final DeviceInfo device}) = _$LoginParamsEntityImpl;
 
   @override
-  String get username;
+  String get value;
   @override
-  String get password;
-  @override
-  String get fcmToken;
-  @override
+  ClientType get clientType;
+  @override // required String fcmToken,
   DeviceInfo get device;
-
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginParamsEntityImplCopyWith<_$LoginParamsEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

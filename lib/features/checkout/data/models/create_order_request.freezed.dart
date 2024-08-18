@@ -19,12 +19,8 @@ mixin _$CreateOrderRequest {
   int get companyId => throw _privateConstructorUsedError;
   List<int>? get cartProduct => throw _privateConstructorUsedError;
 
-  /// Serializes this CreateOrderRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CreateOrderRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CreateOrderRequestCopyWith<CreateOrderRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,8 +44,6 @@ class _$CreateOrderRequestCopyWithImpl<$Res, $Val extends CreateOrderRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateOrderRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -88,8 +82,6 @@ class __$$CreateOrderRequestImplCopyWithImpl<$Res>
       $Res Function(_$CreateOrderRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateOrderRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -144,14 +136,12 @@ class _$CreateOrderRequestImpl implements _CreateOrderRequest {
                 .equals(other._cartProduct, _cartProduct));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, companyId,
       const DeepCollectionEquality().hash(_cartProduct));
 
-  /// Create a copy of CreateOrderRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateOrderRequestImplCopyWith<_$CreateOrderRequestImpl> get copyWith =>
@@ -175,11 +165,8 @@ abstract class _CreateOrderRequest implements CreateOrderRequest {
   int get companyId;
   @override
   List<int>? get cartProduct;
-
-  /// Create a copy of CreateOrderRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CreateOrderRequestImplCopyWith<_$CreateOrderRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

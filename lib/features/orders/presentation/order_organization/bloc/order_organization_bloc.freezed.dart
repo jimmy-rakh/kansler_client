@@ -73,9 +73,6 @@ class _$OrderOrganizationStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -92,9 +89,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -200,8 +194,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,9 +238,7 @@ class _$ReadyImpl implements _Ready {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
 
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -321,10 +311,7 @@ abstract class _Ready implements OrderOrganizationState {
   const factory _Ready(final List<CartProduct> orders) = _$ReadyImpl;
 
   List<CartProduct> get orders;
-
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -365,9 +352,7 @@ mixin _$OrderOrganizationEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OrderOrganizationEventCopyWith<OrderOrganizationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -392,8 +377,6 @@ class _$OrderOrganizationEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -427,8 +410,6 @@ class __$$FetchDataImplCopyWithImpl<$Res>
       _$FetchDataImpl _value, $Res Function(_$FetchDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -467,9 +448,7 @@ class _$FetchDataImpl implements _FetchData {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchDataImplCopyWith<_$FetchDataImpl> get copyWith =>
@@ -537,11 +516,8 @@ abstract class _FetchData implements OrderOrganizationEvent {
 
   @override
   int get id;
-
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FetchDataImplCopyWith<_$FetchDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

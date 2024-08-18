@@ -24,12 +24,8 @@ mixin _$SearchRequest {
   int? get priceTo => throw _privateConstructorUsedError;
   List<String> get orderBy => throw _privateConstructorUsedError;
 
-  /// Serializes this SearchRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SearchRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SearchRequestCopyWith<SearchRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,8 +56,6 @@ class _$SearchRequestCopyWithImpl<$Res, $Val extends SearchRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SearchRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,8 +126,6 @@ class __$$SearchRequestImplCopyWithImpl<$Res>
       _$SearchRequestImpl _value, $Res Function(_$SearchRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SearchRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -250,7 +242,7 @@ class _$SearchRequestImpl extends _SearchRequest {
             const DeepCollectionEquality().equals(other._orderBy, _orderBy));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -262,9 +254,7 @@ class _$SearchRequestImpl extends _SearchRequest {
       priceTo,
       const DeepCollectionEquality().hash(_orderBy));
 
-  /// Create a copy of SearchRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SearchRequestImplCopyWith<_$SearchRequestImpl> get copyWith =>
@@ -303,11 +293,8 @@ abstract class _SearchRequest extends SearchRequest {
   int? get priceTo;
   @override
   List<String> get orderBy;
-
-  /// Create a copy of SearchRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SearchRequestImplCopyWith<_$SearchRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

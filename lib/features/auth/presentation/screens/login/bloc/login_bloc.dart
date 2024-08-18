@@ -1,9 +1,8 @@
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/client_type.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/error/failure.dart';
@@ -23,26 +22,29 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final SetAuthTokenUseCase _setAuthTokenUseCase;
 
   LoginBloc(this._loginUseCase, this._setAuthTokenUseCase)
-      : super(const LoginState.ready()) {
+      : super(const LoginState()) {
+    on<_Init>(_onInit);
     on<_Login>(_onLogIn);
     on<_ShowPassToggle>(_onShowPassToggle);
+    on<_ChangeTabIndex>(_onChangeTabIndex);
   }
 
-  TextEditingController innController = TextEditingController();
+  TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final loginFocus = FocusNode();
 
   final authBloc =
       BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
 
   void _onLogIn(_Login event, Emitter<LoginState> emit) async {
-    emit((state as _Ready).copyWith(isBusy: true));
+    emit(state.copyWith(isBusy: true));
 
     final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
 
     final loginParams = LoginParamsEntity(
-      username: innController.text,
-      password: passwordController.text,
-      fcmToken: 'fcmToken',
+      value: loginController.text,
+      clientType: ClientType.values[state.tabIndex],
+      // fcmToken: 'fcmToken',
       device: deviceInfo,
     );
 
@@ -67,8 +69,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
   }
 
-  FutureOr<void> _onShowPassToggle(
-      _ShowPassToggle event, Emitter<LoginState> emit) {
-    emit((state as _Ready).copyWith(showPass: !state.showPass));
+  void _onShowPassToggle(_ShowPassToggle event, Emitter<LoginState> emit) {
+    emit(state.copyWith(showPass: !state.showPass));
+  }
+
+  void _onInit(_Init event, Emitter<LoginState> emit) {
+    event.tabController.addListener(
+      () => add(LoginEvent.changeTabIndex(event.tabController.index)),
+    );
+  }
+
+  void _onChangeTabIndex(_ChangeTabIndex event, Emitter<LoginState> emit) {
+    if (loginController.text.isNotEmpty) {
+      loginController = TextEditingController();
+    }
+
+    loginFocus.unfocus();
+
+    emit(state.copyWith(tabIndex: event.index));
   }
 }

@@ -9,28 +9,30 @@ import '../../../../../app/di.dart';
 import '../../../../../core/constants/spaces.dart';
 import 'bloc/login_bloc.dart';
 
-
 @RoutePage()
 class LoginScreen extends StatelessWidget implements AutoRouteWrapper {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            LoginHeaderWidget(),
-            verticalSpace12,
-            LoginFormWidget(),
-            verticalSpace12,
-            LoginActionWidget(),
-          ],
+    return const Stack(
+      children: [
+        Positioned(top: 60, child: AutoLeadingButton()),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 32),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              LoginHeaderWidget(),
+              verticalSpace12,
+              LoginFormWidget(),
+              verticalSpace12,
+              LoginActionWidget(),
+            ],
+          ),
         ),
-      ),
+      ],
     );
   }
 

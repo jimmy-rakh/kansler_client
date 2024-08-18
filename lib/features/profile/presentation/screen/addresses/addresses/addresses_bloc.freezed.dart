@@ -78,9 +78,6 @@ class _$AddressesStateCopyWithImpl<$Res, $Val extends AddressesState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of AddressesState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,9 +94,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AddressesState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -211,8 +205,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddressesState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -257,9 +249,7 @@ class _$ReadyImpl implements _Ready {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_entities));
 
-  /// Create a copy of AddressesState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -338,10 +328,7 @@ abstract class _Ready implements AddressesState {
   const factory _Ready(final List<AddressDto> entities) = _$ReadyImpl;
 
   List<AddressDto> get entities;
-
-  /// Create a copy of AddressesState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -360,9 +347,6 @@ class __$$NotFoundImplCopyWithImpl<$Res>
   __$$NotFoundImplCopyWithImpl(
       _$NotFoundImpl _value, $Res Function(_$NotFoundImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of AddressesState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -493,9 +477,7 @@ mixin _$AddressesEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of AddressesEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AddressesEventCopyWith<AddressesEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -519,8 +501,6 @@ class _$AddressesEventCopyWithImpl<$Res, $Val extends AddressesEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AddressesEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -554,8 +534,6 @@ class __$$FetchImplCopyWithImpl<$Res>
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AddressesEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -595,9 +573,7 @@ class _$FetchImpl implements _Fetch {
   @override
   int get hashCode => Object.hash(runtimeType, companyId);
 
-  /// Create a copy of AddressesEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchImplCopyWith<_$FetchImpl> get copyWith =>
@@ -665,11 +641,8 @@ abstract class _Fetch implements AddressesEvent {
 
   @override
   int get companyId;
-
-  /// Create a copy of AddressesEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FetchImplCopyWith<_$FetchImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

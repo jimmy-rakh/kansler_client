@@ -16,17 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginRequest {
-  String get username => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-  String get fcmToken => throw _privateConstructorUsedError;
+  String get value => throw _privateConstructorUsedError;
+  ClientType get clientType =>
+      throw _privateConstructorUsedError; // required String fcmToken,
   DeviceInfo get device => throw _privateConstructorUsedError;
 
-  /// Serializes this LoginRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginRequestCopyWith<LoginRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -37,8 +33,7 @@ abstract class $LoginRequestCopyWith<$Res> {
           LoginRequest value, $Res Function(LoginRequest) then) =
       _$LoginRequestCopyWithImpl<$Res, LoginRequest>;
   @useResult
-  $Res call(
-      {String username, String password, String fcmToken, DeviceInfo device});
+  $Res call({String value, ClientType clientType, DeviceInfo device});
 
   $DeviceInfoCopyWith<$Res> get device;
 }
@@ -53,29 +48,22 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
-    Object? password = null,
-    Object? fcmToken = null,
+    Object? value = null,
+    Object? clientType = null,
     Object? device = null,
   }) {
     return _then(_value.copyWith(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      fcmToken: null == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String,
+      clientType: null == clientType
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as ClientType,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -83,8 +71,6 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
     ) as $Val);
   }
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeviceInfoCopyWith<$Res> get device {
@@ -102,8 +88,7 @@ abstract class _$$LoginRequestImplCopyWith<$Res>
       __$$LoginRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String username, String password, String fcmToken, DeviceInfo device});
+  $Res call({String value, ClientType clientType, DeviceInfo device});
 
   @override
   $DeviceInfoCopyWith<$Res> get device;
@@ -117,29 +102,22 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
       _$LoginRequestImpl _value, $Res Function(_$LoginRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? username = null,
-    Object? password = null,
-    Object? fcmToken = null,
+    Object? value = null,
+    Object? clientType = null,
     Object? device = null,
   }) {
     return _then(_$LoginRequestImpl(
-      username: null == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
               as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      fcmToken: null == fcmToken
-          ? _value.fcmToken
-          : fcmToken // ignore: cast_nullable_to_non_nullable
-              as String,
+      clientType: null == clientType
+          ? _value.clientType
+          : clientType // ignore: cast_nullable_to_non_nullable
+              as ClientType,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -152,23 +130,19 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
 @JsonSerializable(createFactory: false)
 class _$LoginRequestImpl implements _LoginRequest {
   _$LoginRequestImpl(
-      {required this.username,
-      required this.password,
-      required this.fcmToken,
-      required this.device});
+      {required this.value, required this.clientType, required this.device});
 
   @override
-  final String username;
+  final String value;
   @override
-  final String password;
-  @override
-  final String fcmToken;
+  final ClientType clientType;
+// required String fcmToken,
   @override
   final DeviceInfo device;
 
   @override
   String toString() {
-    return 'LoginRequest(username: $username, password: $password, fcmToken: $fcmToken, device: $device)';
+    return 'LoginRequest(value: $value, clientType: $clientType, device: $device)';
   }
 
   @override
@@ -176,23 +150,17 @@ class _$LoginRequestImpl implements _LoginRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoginRequestImpl &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.password, password) ||
-                other.password == password) &&
-            (identical(other.fcmToken, fcmToken) ||
-                other.fcmToken == fcmToken) &&
+            (identical(other.value, value) || other.value == value) &&
+            (identical(other.clientType, clientType) ||
+                other.clientType == clientType) &&
             (identical(other.device, device) || other.device == device));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, username, password, fcmToken, device);
+  int get hashCode => Object.hash(runtimeType, value, clientType, device);
 
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginRequestImplCopyWith<_$LoginRequestImpl> get copyWith =>
@@ -208,24 +176,18 @@ class _$LoginRequestImpl implements _LoginRequest {
 
 abstract class _LoginRequest implements LoginRequest {
   factory _LoginRequest(
-      {required final String username,
-      required final String password,
-      required final String fcmToken,
+      {required final String value,
+      required final ClientType clientType,
       required final DeviceInfo device}) = _$LoginRequestImpl;
 
   @override
-  String get username;
+  String get value;
   @override
-  String get password;
-  @override
-  String get fcmToken;
-  @override
+  ClientType get clientType;
+  @override // required String fcmToken,
   DeviceInfo get device;
-
-  /// Create a copy of LoginRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginRequestImplCopyWith<_$LoginRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

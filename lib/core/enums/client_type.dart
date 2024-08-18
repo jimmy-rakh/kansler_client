@@ -1,0 +1,1 @@
+enum ClientType { individual, company }

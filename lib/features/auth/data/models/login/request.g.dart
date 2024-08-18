@@ -8,8 +8,12 @@ part of 'request.dart';
 
 Map<String, dynamic> _$$LoginRequestImplToJson(_$LoginRequestImpl instance) =>
     <String, dynamic>{
-      'username': instance.username,
-      'password': instance.password,
-      'fcmToken': instance.fcmToken,
+      'value': instance.value,
+      'clientType': _$ClientTypeEnumMap[instance.clientType]!,
       'device': instance.device,
     };
+
+const _$ClientTypeEnumMap = {
+  ClientType.individual: 'individual',
+  ClientType.company: 'company',
+};

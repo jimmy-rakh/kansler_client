@@ -10,7 +10,6 @@ import '../../../../../../core/style/colors.dart';
 import '../../../../../../core/widgets/app_button.dart';
 import '../bloc/login_bloc.dart';
 
-
 class LoginActionWidget extends HookWidget {
   const LoginActionWidget({super.key});
 
@@ -32,10 +31,8 @@ class LoginActionWidget extends HookWidget {
         // ),
         // verticalSpace12,
         AppButton(
-          text: 'Войти',
-          isLoading:
-              state.when(ready: (isBusy, validated, showPass, error) => isBusy),
-          // isActive: state.when(ready: (isBusy, validated, error) => validated),
+          text: 'Продолжить',
+          isLoading: state.isBusy,
           loadingColor: AppColors.white,
           fillColor: context.primary,
           padding: const EdgeInsets.symmetric(vertical: 12),
@@ -45,11 +42,6 @@ class LoginActionWidget extends HookWidget {
           ),
           onPressed: () => bloc.add(const LoginEvent.login()),
         ),
-        verticalSpace12,
-        AppButton(
-          text: 'Зарегистрироваться',
-          onPressed: () => router.push(const RegisterRoute()),
-        )
       ],
     );
   }

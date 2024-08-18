@@ -23,12 +23,8 @@ mixin _$ConfirmCodeRequest {
   String get phoneNumber => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
 
-  /// Serializes this ConfirmCodeRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ConfirmCodeRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConfirmCodeRequestCopyWith<ConfirmCodeRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,8 +48,6 @@ class _$ConfirmCodeRequestCopyWithImpl<$Res, $Val extends ConfirmCodeRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ConfirmCodeRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,8 +86,6 @@ class __$$ConfirmCodeRequestImplCopyWithImpl<$Res>
       $Res Function(_$ConfirmCodeRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ConfirmCodeRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -141,13 +133,11 @@ class _$ConfirmCodeRequestImpl implements _ConfirmCodeRequest {
             (identical(other.code, code) || other.code == code));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, phoneNumber, code);
 
-  /// Create a copy of ConfirmCodeRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfirmCodeRequestImplCopyWith<_$ConfirmCodeRequestImpl> get copyWith =>
@@ -174,11 +164,8 @@ abstract class _ConfirmCodeRequest implements ConfirmCodeRequest {
   String get phoneNumber;
   @override
   String get code;
-
-  /// Create a copy of ConfirmCodeRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConfirmCodeRequestImplCopyWith<_$ConfirmCodeRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

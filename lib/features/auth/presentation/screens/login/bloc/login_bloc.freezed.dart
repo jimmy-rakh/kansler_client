@@ -16,52 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$LoginState {
+  LoginStatus get status => throw _privateConstructorUsedError;
   dynamic get isBusy => throw _privateConstructorUsedError;
   dynamic get validated => throw _privateConstructorUsedError;
   dynamic get showPass => throw _privateConstructorUsedError;
+  int get tabIndex => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            dynamic isBusy, dynamic validated, dynamic showPass, String? error)
-        ready,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            dynamic isBusy, dynamic validated, dynamic showPass, String? error)?
-        ready,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            dynamic isBusy, dynamic validated, dynamic showPass, String? error)?
-        ready,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Ready value) ready,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Ready value)? ready,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Ready value)? ready,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -73,7 +35,12 @@ abstract class $LoginStateCopyWith<$Res> {
       _$LoginStateCopyWithImpl<$Res, LoginState>;
   @useResult
   $Res call(
-      {dynamic isBusy, dynamic validated, dynamic showPass, String? error});
+      {LoginStatus status,
+      dynamic isBusy,
+      dynamic validated,
+      dynamic showPass,
+      int tabIndex,
+      String? error});
 }
 
 /// @nodoc
@@ -86,17 +53,21 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? isBusy = freezed,
     Object? validated = freezed,
     Object? showPass = freezed,
+    Object? tabIndex = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as LoginStatus,
       isBusy: freezed == isBusy
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
@@ -109,6 +80,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.showPass
           : showPass // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      tabIndex: null == tabIndex
+          ? _value.tabIndex
+          : tabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -118,38 +93,52 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
 }
 
 /// @nodoc
-abstract class _$$ReadyImplCopyWith<$Res> implements $LoginStateCopyWith<$Res> {
-  factory _$$ReadyImplCopyWith(
-          _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
-      __$$ReadyImplCopyWithImpl<$Res>;
+abstract class _$$LoginStateImplCopyWith<$Res>
+    implements $LoginStateCopyWith<$Res> {
+  factory _$$LoginStateImplCopyWith(
+          _$LoginStateImpl value, $Res Function(_$LoginStateImpl) then) =
+      __$$LoginStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {dynamic isBusy, dynamic validated, dynamic showPass, String? error});
+      {LoginStatus status,
+      dynamic isBusy,
+      dynamic validated,
+      dynamic showPass,
+      int tabIndex,
+      String? error});
 }
 
 /// @nodoc
-class __$$ReadyImplCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res, _$ReadyImpl>
-    implements _$$ReadyImplCopyWith<$Res> {
-  __$$ReadyImplCopyWithImpl(
-      _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
+class __$$LoginStateImplCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res, _$LoginStateImpl>
+    implements _$$LoginStateImplCopyWith<$Res> {
+  __$$LoginStateImplCopyWithImpl(
+      _$LoginStateImpl _value, $Res Function(_$LoginStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? isBusy = freezed,
     Object? validated = freezed,
     Object? showPass = freezed,
+    Object? tabIndex = null,
     Object? error = freezed,
   }) {
-    return _then(_$ReadyImpl(
+    return _then(_$LoginStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as LoginStatus,
       isBusy: freezed == isBusy ? _value.isBusy! : isBusy,
       validated: freezed == validated ? _value.validated! : validated,
       showPass: freezed == showPass ? _value.showPass! : showPass,
+      tabIndex: null == tabIndex
+          ? _value.tabIndex
+          : tabIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -160,13 +149,18 @@ class __$$ReadyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ReadyImpl implements _Ready {
-  const _$ReadyImpl(
-      {this.isBusy = false,
+class _$LoginStateImpl implements _LoginState {
+  const _$LoginStateImpl(
+      {this.status = LoginStatus.initial,
+      this.isBusy = false,
       this.validated = false,
       this.showPass = false,
+      this.tabIndex = 0,
       this.error});
 
+  @override
+  @JsonKey()
+  final LoginStatus status;
   @override
   @JsonKey()
   final dynamic isBusy;
@@ -177,110 +171,58 @@ class _$ReadyImpl implements _Ready {
   @JsonKey()
   final dynamic showPass;
   @override
+  @JsonKey()
+  final int tabIndex;
+  @override
   final String? error;
 
   @override
   String toString() {
-    return 'LoginState.ready(isBusy: $isBusy, validated: $validated, showPass: $showPass, error: $error)';
+    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, tabIndex: $tabIndex, error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ReadyImpl &&
+            other is _$LoginStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other.isBusy, isBusy) &&
             const DeepCollectionEquality().equals(other.validated, validated) &&
             const DeepCollectionEquality().equals(other.showPass, showPass) &&
+            (identical(other.tabIndex, tabIndex) ||
+                other.tabIndex == tabIndex) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      status,
       const DeepCollectionEquality().hash(isBusy),
       const DeepCollectionEquality().hash(validated),
       const DeepCollectionEquality().hash(showPass),
+      tabIndex,
       error);
 
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
-      __$$ReadyImplCopyWithImpl<_$ReadyImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            dynamic isBusy, dynamic validated, dynamic showPass, String? error)
-        ready,
-  }) {
-    return ready(isBusy, validated, showPass, error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            dynamic isBusy, dynamic validated, dynamic showPass, String? error)?
-        ready,
-  }) {
-    return ready?.call(isBusy, validated, showPass, error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            dynamic isBusy, dynamic validated, dynamic showPass, String? error)?
-        ready,
-    required TResult orElse(),
-  }) {
-    if (ready != null) {
-      return ready(isBusy, validated, showPass, error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Ready value) ready,
-  }) {
-    return ready(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Ready value)? ready,
-  }) {
-    return ready?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Ready value)? ready,
-    required TResult orElse(),
-  }) {
-    if (ready != null) {
-      return ready(this);
-    }
-    return orElse();
-  }
+  _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
+      __$$LoginStateImplCopyWithImpl<_$LoginStateImpl>(this, _$identity);
 }
 
-abstract class _Ready implements LoginState {
-  const factory _Ready(
-      {final dynamic isBusy,
+abstract class _LoginState implements LoginState {
+  const factory _LoginState(
+      {final LoginStatus status,
+      final dynamic isBusy,
       final dynamic validated,
       final dynamic showPass,
-      final String? error}) = _$ReadyImpl;
+      final int tabIndex,
+      final String? error}) = _$LoginStateImpl;
 
+  @override
+  LoginStatus get status;
   @override
   dynamic get isBusy;
   @override
@@ -288,13 +230,12 @@ abstract class _Ready implements LoginState {
   @override
   dynamic get showPass;
   @override
-  String? get error;
-
-  /// Create a copy of LoginState
-  /// with the given fields replaced by the non-null parameter values.
+  int get tabIndex;
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
+  String? get error;
+  @override
+  @JsonKey(ignore: true)
+  _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -304,18 +245,24 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() login,
     required TResult Function() showPassToggle,
+    required TResult Function(TabController tabController) init,
+    required TResult Function(int index) changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? login,
     TResult? Function()? showPassToggle,
+    TResult? Function(TabController tabController)? init,
+    TResult? Function(int index)? changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
     TResult Function()? showPassToggle,
+    TResult Function(TabController tabController)? init,
+    TResult Function(int index)? changeTabIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -323,18 +270,24 @@ mixin _$LoginEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Login value) login,
     required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Login value)? login,
     TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Login value)? login,
     TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -356,9 +309,6 @@ class _$LoginEventCopyWithImpl<$Res, $Val extends LoginEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -375,9 +325,6 @@ class __$$LoginImplCopyWithImpl<$Res>
   __$$LoginImplCopyWithImpl(
       _$LoginImpl _value, $Res Function(_$LoginImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -404,6 +351,8 @@ class _$LoginImpl implements _Login {
   TResult when<TResult extends Object?>({
     required TResult Function() login,
     required TResult Function() showPassToggle,
+    required TResult Function(TabController tabController) init,
+    required TResult Function(int index) changeTabIndex,
   }) {
     return login();
   }
@@ -413,6 +362,8 @@ class _$LoginImpl implements _Login {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? login,
     TResult? Function()? showPassToggle,
+    TResult? Function(TabController tabController)? init,
+    TResult? Function(int index)? changeTabIndex,
   }) {
     return login?.call();
   }
@@ -422,6 +373,8 @@ class _$LoginImpl implements _Login {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
     TResult Function()? showPassToggle,
+    TResult Function(TabController tabController)? init,
+    TResult Function(int index)? changeTabIndex,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -435,6 +388,8 @@ class _$LoginImpl implements _Login {
   TResult map<TResult extends Object?>({
     required TResult Function(_Login value) login,
     required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
   }) {
     return login(this);
   }
@@ -444,6 +399,8 @@ class _$LoginImpl implements _Login {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Login value)? login,
     TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
   }) {
     return login?.call(this);
   }
@@ -453,6 +410,8 @@ class _$LoginImpl implements _Login {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Login value)? login,
     TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -480,9 +439,6 @@ class __$$ShowPassToggleImplCopyWithImpl<$Res>
   __$$ShowPassToggleImplCopyWithImpl(
       _$ShowPassToggleImpl _value, $Res Function(_$ShowPassToggleImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of LoginEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -509,6 +465,8 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   TResult when<TResult extends Object?>({
     required TResult Function() login,
     required TResult Function() showPassToggle,
+    required TResult Function(TabController tabController) init,
+    required TResult Function(int index) changeTabIndex,
   }) {
     return showPassToggle();
   }
@@ -518,6 +476,8 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? login,
     TResult? Function()? showPassToggle,
+    TResult? Function(TabController tabController)? init,
+    TResult? Function(int index)? changeTabIndex,
   }) {
     return showPassToggle?.call();
   }
@@ -527,6 +487,8 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? login,
     TResult Function()? showPassToggle,
+    TResult Function(TabController tabController)? init,
+    TResult Function(int index)? changeTabIndex,
     required TResult orElse(),
   }) {
     if (showPassToggle != null) {
@@ -540,6 +502,8 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   TResult map<TResult extends Object?>({
     required TResult Function(_Login value) login,
     required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
   }) {
     return showPassToggle(this);
   }
@@ -549,6 +513,8 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Login value)? login,
     TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
   }) {
     return showPassToggle?.call(this);
   }
@@ -558,6 +524,8 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Login value)? login,
     TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
     required TResult orElse(),
   }) {
     if (showPassToggle != null) {
@@ -569,4 +537,295 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
 
 abstract class _ShowPassToggle implements LoginEvent {
   const factory _ShowPassToggle() = _$ShowPassToggleImpl;
+}
+
+/// @nodoc
+abstract class _$$InitImplCopyWith<$Res> {
+  factory _$$InitImplCopyWith(
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TabController tabController});
+}
+
+/// @nodoc
+class __$$InitImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$InitImpl>
+    implements _$$InitImplCopyWith<$Res> {
+  __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tabController = null,
+  }) {
+    return _then(_$InitImpl(
+      null == tabController
+          ? _value.tabController
+          : tabController // ignore: cast_nullable_to_non_nullable
+              as TabController,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitImpl implements _Init {
+  const _$InitImpl(this.tabController);
+
+  @override
+  final TabController tabController;
+
+  @override
+  String toString() {
+    return 'LoginEvent.init(tabController: $tabController)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.tabController, tabController) ||
+                other.tabController == tabController));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, tabController);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() login,
+    required TResult Function() showPassToggle,
+    required TResult Function(TabController tabController) init,
+    required TResult Function(int index) changeTabIndex,
+  }) {
+    return init(tabController);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? login,
+    TResult? Function()? showPassToggle,
+    TResult? Function(TabController tabController)? init,
+    TResult? Function(int index)? changeTabIndex,
+  }) {
+    return init?.call(tabController);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? login,
+    TResult Function()? showPassToggle,
+    TResult Function(TabController tabController)? init,
+    TResult Function(int index)? changeTabIndex,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(tabController);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements LoginEvent {
+  const factory _Init(final TabController tabController) = _$InitImpl;
+
+  TabController get tabController;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChangeTabIndexImplCopyWith<$Res> {
+  factory _$$ChangeTabIndexImplCopyWith(_$ChangeTabIndexImpl value,
+          $Res Function(_$ChangeTabIndexImpl) then) =
+      __$$ChangeTabIndexImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int index});
+}
+
+/// @nodoc
+class __$$ChangeTabIndexImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$ChangeTabIndexImpl>
+    implements _$$ChangeTabIndexImplCopyWith<$Res> {
+  __$$ChangeTabIndexImplCopyWithImpl(
+      _$ChangeTabIndexImpl _value, $Res Function(_$ChangeTabIndexImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = null,
+  }) {
+    return _then(_$ChangeTabIndexImpl(
+      null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChangeTabIndexImpl implements _ChangeTabIndex {
+  const _$ChangeTabIndexImpl(this.index);
+
+  @override
+  final int index;
+
+  @override
+  String toString() {
+    return 'LoginEvent.changeTabIndex(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChangeTabIndexImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChangeTabIndexImplCopyWith<_$ChangeTabIndexImpl> get copyWith =>
+      __$$ChangeTabIndexImplCopyWithImpl<_$ChangeTabIndexImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() login,
+    required TResult Function() showPassToggle,
+    required TResult Function(TabController tabController) init,
+    required TResult Function(int index) changeTabIndex,
+  }) {
+    return changeTabIndex(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? login,
+    TResult? Function()? showPassToggle,
+    TResult? Function(TabController tabController)? init,
+    TResult? Function(int index)? changeTabIndex,
+  }) {
+    return changeTabIndex?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? login,
+    TResult Function()? showPassToggle,
+    TResult Function(TabController tabController)? init,
+    TResult Function(int index)? changeTabIndex,
+    required TResult orElse(),
+  }) {
+    if (changeTabIndex != null) {
+      return changeTabIndex(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
+  }) {
+    return changeTabIndex(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+  }) {
+    return changeTabIndex?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    required TResult orElse(),
+  }) {
+    if (changeTabIndex != null) {
+      return changeTabIndex(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeTabIndex implements LoginEvent {
+  const factory _ChangeTabIndex(final int index) = _$ChangeTabIndexImpl;
+
+  int get index;
+  @JsonKey(ignore: true)
+  _$$ChangeTabIndexImplCopyWith<_$ChangeTabIndexImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

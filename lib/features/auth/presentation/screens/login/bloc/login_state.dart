@@ -1,11 +1,19 @@
 part of 'login_bloc.dart';
 
+enum LoginStatus {
+  initial,
+  register,
+  hasPassword,
+}
+
 @freezed
 class LoginState with _$LoginState {
-  const factory LoginState.ready({
+  const factory LoginState({
+    @Default(LoginStatus.initial) LoginStatus status,
     @Default(false) isBusy,
     @Default(false) validated,
     @Default(false) showPass,
+    @Default(0) int tabIndex,
     String? error,
-  }) = _Ready;
+  }) = _LoginState;
 }
