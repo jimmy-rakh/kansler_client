@@ -39,24 +39,24 @@ class CategoriesAppBar extends StatelessWidget {
             ),
           ),
         ),
-        horizontalSpace12,
-        GestureDetector(
-          onTap: () async {
-            final res = await router.push(const ScannerRoute()) as String?;
+        // horizontalSpace12,
+        // GestureDetector(
+        //   onTap: () async {
+        //     final res = await router.push(const ScannerRoute()) as String?;
 
-            if (res != null) {
-              router.push(SearchRoute(title: res));
-            }
-          },
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: context.cardColor,
-            ),
-            child: const Icon(Icons.barcode_reader),
-          ),
-        ),
+        //     if (res != null) {
+        //       router.push(SearchRoute(title: res));
+        //     }
+        //   },
+        //   child: Container(
+        //     padding: const EdgeInsets.all(8),
+        //     decoration: BoxDecoration(
+        //       borderRadius: BorderRadius.circular(8),
+        //       color: context.cardColor,
+        //     ),
+        //     child: const Icon(Icons.barcode_reader),
+        //   ),
+        // ),
       ],
     );
   }

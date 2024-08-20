@@ -104,22 +104,22 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 ),
                               ),
                             ),
-                            verticalSpace2,
-                            AppCard(
-                              fillColor: context.background,
+                            // verticalSpace2,
+                            // AppCard(
+                            //   fillColor: context.background,
 
-                              width: 100,
-                              child: Padding(
-                                padding: const EdgeInsets.all(6),
-                                child: Text(
-                                  textAlign: TextAlign.end,
-                                  "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
-                                  maxLines: 1,
-                                  style: const TextStyle(fontSize: 8),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ),
+                            //   width: 100,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.all(6),
+                            //     child: Text(
+                            //       textAlign: TextAlign.end,
+                            //       "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
+                            //       maxLines: 1,
+                            //       style: const TextStyle(fontSize: 8),
+                            //       overflow: TextOverflow.ellipsis,
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       )

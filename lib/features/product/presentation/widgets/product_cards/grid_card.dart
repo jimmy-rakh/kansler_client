@@ -99,20 +99,20 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             ),
                           ),
                         ),
-                        verticalSpace2,
-                        AppCard(
-                          padding: const EdgeInsets.all(6),
-                          fillColor: context.background,
+                        // verticalSpace2,
+                        // AppCard(
+                        //   padding: const EdgeInsets.all(6),
+                        //   fillColor: context.background,
 
-                          width: width,
-                          child: Text(
-                            textAlign: TextAlign.end,
-                            "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
-                            maxLines: 1,
-                            style: const TextStyle(fontSize: 8),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
+                        //   width: width,
+                        //   child: Text(
+                        //     textAlign: TextAlign.end,
+                        //     "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
+                        //     maxLines: 1,
+                        //     style: const TextStyle(fontSize: 8),
+                        //     overflow: TextOverflow.ellipsis,
+                        //   ),
+                        // ),
                       ],
                     ),
                   )

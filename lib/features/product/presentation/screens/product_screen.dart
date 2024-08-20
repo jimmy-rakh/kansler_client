@@ -125,11 +125,11 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         verticalSpace12,
-                        DetailsWidget(
-                          keyI: 'Поставщик',
-                          value: product.organization?.name ?? "",
-                        ),
-                        verticalSpace8,
+                        // DetailsWidget(
+                        //   keyI: 'Поставщик',
+                        //   value: product.organization?.name ?? "",
+                        // ),
+                        // verticalSpace8,
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: Row(

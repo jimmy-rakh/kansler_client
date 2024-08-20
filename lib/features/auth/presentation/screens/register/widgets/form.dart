@@ -31,10 +31,11 @@ class RegisterFormWidget extends HookWidget {
             child: Column(
               children: [
                 AppTextField(
-                  hint: 'Введите ФИО',
+                  hint: bloc.innController.text.isEmpty
+                      ? 'Введите ФИО'
+                      : 'Введите наименование компании',
                   fieldController: bloc.nameController,
                   prefix: const Icon(KazeIcons.profileBold),
-                  textInputType: TextInputType.number,
                   hintStyle: context.bodyLarge!.copyWith(
                     color: context.colorScheme.inverseSurface,
                   ),

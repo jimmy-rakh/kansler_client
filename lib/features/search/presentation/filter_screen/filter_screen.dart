@@ -61,8 +61,8 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                         CategoriesSection(),
                         verticalSpace12,
                         BrandsSection(),
-                        verticalSpace12,
-                        OrganizationSection(),
+                        // verticalSpace12,
+                        // OrganizationSection(),
                       ],
                     ),
                   );
