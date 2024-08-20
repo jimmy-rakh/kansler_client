@@ -12,13 +12,13 @@ _$LimitsDtoImpl _$$LimitsDtoImplFromJson(Map<String, dynamic> json) =>
       company: CompanyDto.fromJson(json['company'] as Map<String, dynamic>),
       organization: OrganizationDto.fromJson(
           json['organization'] as Map<String, dynamic>),
-      totalLimit: json['totalLimit'] as String?,
+      totalLimit: json['total_limit'] as String?,
     );
 
 Map<String, dynamic> _$$LimitsDtoImplToJson(_$LimitsDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'company': instance.company,
-      'organization': instance.organization,
-      'totalLimit': instance.totalLimit,
+      'company': instance.company.toJson(),
+      'organization': instance.organization.toJson(),
+      'total_limit': instance.totalLimit,
     };

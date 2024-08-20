@@ -17,8 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LoginParamsEntity {
   String get value => throw _privateConstructorUsedError;
-  ClientType get clientType =>
-      throw _privateConstructorUsedError; // required String fcmToken,
+  ClientType get clientType => throw _privateConstructorUsedError;
+  String get fcmToken => throw _privateConstructorUsedError;
   DeviceInfo get device => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -32,7 +32,11 @@ abstract class $LoginParamsEntityCopyWith<$Res> {
           LoginParamsEntity value, $Res Function(LoginParamsEntity) then) =
       _$LoginParamsEntityCopyWithImpl<$Res, LoginParamsEntity>;
   @useResult
-  $Res call({String value, ClientType clientType, DeviceInfo device});
+  $Res call(
+      {String value,
+      ClientType clientType,
+      String fcmToken,
+      DeviceInfo device});
 
   $DeviceInfoCopyWith<$Res> get device;
 }
@@ -52,6 +56,7 @@ class _$LoginParamsEntityCopyWithImpl<$Res, $Val extends LoginParamsEntity>
   $Res call({
     Object? value = null,
     Object? clientType = null,
+    Object? fcmToken = null,
     Object? device = null,
   }) {
     return _then(_value.copyWith(
@@ -63,6 +68,10 @@ class _$LoginParamsEntityCopyWithImpl<$Res, $Val extends LoginParamsEntity>
           ? _value.clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as ClientType,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -87,7 +96,11 @@ abstract class _$$LoginParamsEntityImplCopyWith<$Res>
       __$$LoginParamsEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, ClientType clientType, DeviceInfo device});
+  $Res call(
+      {String value,
+      ClientType clientType,
+      String fcmToken,
+      DeviceInfo device});
 
   @override
   $DeviceInfoCopyWith<$Res> get device;
@@ -106,6 +119,7 @@ class __$$LoginParamsEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
     Object? clientType = null,
+    Object? fcmToken = null,
     Object? device = null,
   }) {
     return _then(_$LoginParamsEntityImpl(
@@ -117,6 +131,10 @@ class __$$LoginParamsEntityImplCopyWithImpl<$Res>
           ? _value.clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as ClientType,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -129,19 +147,23 @@ class __$$LoginParamsEntityImplCopyWithImpl<$Res>
 
 class _$LoginParamsEntityImpl implements _LoginParamsEntity {
   const _$LoginParamsEntityImpl(
-      {required this.value, required this.clientType, required this.device});
+      {required this.value,
+      required this.clientType,
+      required this.fcmToken,
+      required this.device});
 
   @override
   final String value;
   @override
   final ClientType clientType;
-// required String fcmToken,
+  @override
+  final String fcmToken;
   @override
   final DeviceInfo device;
 
   @override
   String toString() {
-    return 'LoginParamsEntity(value: $value, clientType: $clientType, device: $device)';
+    return 'LoginParamsEntity(value: $value, clientType: $clientType, fcmToken: $fcmToken, device: $device)';
   }
 
   @override
@@ -152,11 +174,14 @@ class _$LoginParamsEntityImpl implements _LoginParamsEntity {
             (identical(other.value, value) || other.value == value) &&
             (identical(other.clientType, clientType) ||
                 other.clientType == clientType) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
             (identical(other.device, device) || other.device == device));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value, clientType, device);
+  int get hashCode =>
+      Object.hash(runtimeType, value, clientType, fcmToken, device);
 
   @JsonKey(ignore: true)
   @override
@@ -170,13 +195,16 @@ abstract class _LoginParamsEntity implements LoginParamsEntity {
   const factory _LoginParamsEntity(
       {required final String value,
       required final ClientType clientType,
+      required final String fcmToken,
       required final DeviceInfo device}) = _$LoginParamsEntityImpl;
 
   @override
   String get value;
   @override
   ClientType get clientType;
-  @override // required String fcmToken,
+  @override
+  String get fcmToken;
+  @override
   DeviceInfo get device;
   @override
   @JsonKey(ignore: true)

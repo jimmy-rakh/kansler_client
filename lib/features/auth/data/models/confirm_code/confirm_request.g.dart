@@ -1,12 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'response.dart';
+part of 'confirm_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$LoginResponseImpl _$$LoginResponseImplFromJson(Map<String, dynamic> json) =>
-    _$LoginResponseImpl(
-      authToken: json['authToken'] as String,
-    );
+Map<String, dynamic> _$$ConfirmRequestImplToJson(
+        _$ConfirmRequestImpl instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+      'use_password': instance.usePassword,
+    };

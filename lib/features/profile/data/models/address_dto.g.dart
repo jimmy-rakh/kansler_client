@@ -14,7 +14,7 @@ _$AddressDtoImpl _$$AddressDtoImplFromJson(Map<String, dynamic> json) =>
           : OrganizationDto.fromJson(
               json['organization'] as Map<String, dynamic>),
       name: json['name'] as String?,
-      phoneNumbers: json['phoneNumbers'] as String?,
+      phoneNumbers: json['phone_numbers'] as String?,
       manager: json['manager'] == null
           ? null
           : ManagerDto.fromJson(json['manager'] as Map<String, dynamic>),
@@ -30,11 +30,11 @@ _$AddressDtoImpl _$$AddressDtoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AddressDtoImplToJson(_$AddressDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'organization': instance.organization,
+      'organization': instance.organization?.toJson(),
       'name': instance.name,
-      'phoneNumbers': instance.phoneNumbers,
-      'manager': instance.manager,
-      'agent': instance.agent,
+      'phone_numbers': instance.phoneNumbers,
+      'manager': instance.manager?.toJson(),
+      'agent': instance.agent?.toJson(),
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'region': instance.region,

@@ -12,5 +12,5 @@ Map<String, dynamic> _$$DeviceInfoImplToJson(_$DeviceInfoImpl instance) =>
       'name': instance.name,
       'type': instance.type,
       'imei': instance.imei,
-      'appVersion': instance.appVersion,
+      'app_version': instance.appVersion,
     };

@@ -25,8 +25,8 @@ Map<String, dynamic> _$$ContractDtoImplToJson(_$ContractDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'company': instance.company,
-      'organization': instance.organization,
-      'manager': instance.manager,
-      'agent': instance.agent,
+      'company': instance.company.toJson(),
+      'organization': instance.organization.toJson(),
+      'manager': instance.manager?.toJson(),
+      'agent': instance.agent?.toJson(),
     };

@@ -9,10 +9,10 @@ part of 'orders_dto.dart';
 _$OrdersDtoImpl _$$OrdersDtoImplFromJson(Map<String, dynamic> json) =>
     _$OrdersDtoImpl(
       id: (json['id'] as num).toInt(),
-      createdAt: json['createdAt'] as String,
+      createdAt: json['created_at'] as String,
       status: json['status'] as String?,
       price: (json['price'] as num).toInt(),
-      organizationOrders: (json['organizationOrders'] as List<dynamic>?)
+      organizationOrders: (json['organization_orders'] as List<dynamic>?)
           ?.map((e) => OrganizationOrders.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
@@ -20,10 +20,11 @@ _$OrdersDtoImpl _$$OrdersDtoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$OrdersDtoImplToJson(_$OrdersDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt,
+      'created_at': instance.createdAt,
       'status': instance.status,
       'price': instance.price,
-      'organizationOrders': instance.organizationOrders,
+      'organization_orders':
+          instance.organizationOrders?.map((e) => e.toJson()).toList(),
     };
 
 _$OrganizationOrdersImpl _$$OrganizationOrdersImplFromJson(
@@ -43,8 +44,8 @@ Map<String, dynamic> _$$OrganizationOrdersImplToJson(
         _$OrganizationOrdersImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'address': instance.address,
+      'address': instance.address?.toJson(),
       'status': instance.status,
-      'organization': instance.organization,
+      'organization': instance.organization.toJson(),
       'price': instance.price,
     };

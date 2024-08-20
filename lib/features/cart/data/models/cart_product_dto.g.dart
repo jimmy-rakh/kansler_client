@@ -21,7 +21,7 @@ Map<String, dynamic> _$$CartProductDtoImplToJson(
         _$CartProductDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'product': instance.product,
+      'product': instance.product?.toJson(),
       'name': instance.name,
       'quantity': instance.quantity,
       'price': instance.price,

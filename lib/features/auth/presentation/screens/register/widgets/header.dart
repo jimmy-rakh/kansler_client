@@ -7,7 +7,7 @@ class RegisterHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Mirel',
+      'Kansler',
       style: context.titleLarge!.copyWith(
         color: context.primary,
       ),

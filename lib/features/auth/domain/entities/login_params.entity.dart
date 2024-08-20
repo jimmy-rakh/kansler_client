@@ -9,7 +9,7 @@ class LoginParamsEntity with _$LoginParamsEntity {
   const factory LoginParamsEntity({
     required String value,
     required ClientType clientType,
-    // required String fcmToken,
+    required String fcmToken,
     required DeviceInfo device,
   }) = _LoginParamsEntity;
 }

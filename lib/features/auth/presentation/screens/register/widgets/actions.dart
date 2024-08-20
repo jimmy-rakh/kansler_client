@@ -4,12 +4,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 
-import '../../../../../../app/router.dart';
-import '../../../../../../core/constants/spaces.dart';
 import '../../../../../../core/enums/register_step.dart';
 import '../../../../../../core/widgets/app_button.dart';
 import '../bloc/register_bloc.dart';
-
 
 class RegisterActionWidget extends HookWidget {
   const RegisterActionWidget({super.key});
@@ -42,18 +39,9 @@ class RegisterActionWidget extends HookWidget {
             textStyle: context.titleSmall!.copyWith(
               color: context.colorScheme.onPrimary,
             ),
-            onPressed: () => bloc.add(
-              step == RegisterStep.inputInn
-                  ? const RegisterEvent.checkInn()
-                  : const RegisterEvent.register(),
-            ),
+            onPressed: () => bloc.add(const RegisterEvent.register()),
           ),
         ),
-        verticalSpace12,
-        AppButton(
-          text: 'Авторизоваться',
-          onPressed: router.back,
-        )
       ],
     );
   }

@@ -57,7 +57,7 @@ class DioClient with MainBoxMixin {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
             if (_auth != null) ...{
-              'Device-Token': 'Mirel $_auth',
+              'Device-Token': 'Kansler $_auth',
             },
           },
           receiveTimeout: const Duration(minutes: 1),

@@ -21,9 +21,9 @@ _$PaymentDtoImpl _$$PaymentDtoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$PaymentDtoImplToJson(_$PaymentDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'organization': instance.organization,
-      'company': instance.company,
-      'contract': instance.contract,
+      'organization': instance.organization.toJson(),
+      'company': instance.company.toJson(),
+      'contract': instance.contract.toJson(),
       'number': instance.number,
       'date': instance.date,
       'amount': instance.amount,

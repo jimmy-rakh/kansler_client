@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/auth/domain/domain.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/auth_status.dart';
 import '../../../../../../core/usecase/usecase.dart';
@@ -12,8 +13,6 @@ import '../../../../../main/presentation/bloc/navbar_bloc.dart';
 import '../../../../../orders/presentation/screen/bloc/orders_bloc.dart';
 import '../../../../../profile/presentation/screen/profile/profile_bloc.dart';
 import '../../../../domain/usecases/get_user_status.usecase.dart';
-import '../../../../domain/usecases/logout.usecase.dart';
-
 
 part 'auth_state.dart';
 part 'auth_event.dart';
@@ -22,12 +21,12 @@ part 'auth_bloc.freezed.dart';
 @lazySingleton
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final GetAuthStatusUseCase _getAuthStatusUseCase;
-  final LogoutUseCase _logoutUseCase;
+  final AuthRepository _authRepository;
 
   final navbarBloc =
       BlocProvider.of<NavbarBloc>(router.navigatorKey.currentContext!);
 
-  AuthBloc(this._getAuthStatusUseCase, this._logoutUseCase)
+  AuthBloc(this._getAuthStatusUseCase, this._authRepository)
       : super(const AuthState.unknown()) {
     on<_CheckStatus>(_onCheckStatus);
     on<_LogOut>(_onLogOut);
@@ -80,7 +79,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final ordersBloc =
         BlocProvider.of<OrdersBloc>(router.navigatorKey.currentContext!);
 
-    await _logoutUseCase.call(NoParams());
+    await _authRepository.logout();
     add(const AuthEvent.checkStatus());
     ordersBloc.add(const OrdersEvent.fetchOrders());
     navbarBloc.add(const NavbarEvent.changeIndex(0));

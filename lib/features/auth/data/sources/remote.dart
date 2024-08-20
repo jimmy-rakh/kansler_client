@@ -1,31 +1,26 @@
 import 'package:dartz/dartz.dart';
+import 'package:kansler/features/auth/data/models/client_info/client_info_response.dart';
+import 'package:kansler/features/auth/data/models/confirm_code/confirm_response.dart';
+import 'package:kansler/features/auth/data/models/register/register_request.dart';
 
 import '../../../../core/error/failure.dart';
-import '../models/basic_response.dart';
-import '../models/client_data/response.dart';
-import '../models/client_exists/request.dart';
-import '../models/client_exists/response.dart';
-import '../models/confirm_code/request.dart';
-import '../models/login/request.dart';
-import '../models/login/response.dart';
+import '../models/auth/request.dart';
+import '../models/auth/response.dart';
+import '../models/confirm_code/confirm_request.dart';
 import '../models/send_code/request.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<Either<Failure, LoginResponse>> login(LoginRequest request);
+  Future<Either<Failure, AuthResponse>> authentification(AuthRequest request);
 
-  Future<Either<Failure, BasicResponse>> logout();
+  Future<Either<Failure, ConfirmResponse>> confirmCode(ConfirmRequest request);
 
-  Future<Either<Failure, ClientExistsResponse>> checkClientExists(
-      ClientExistsRequest request);
+  Future<Either<Failure, ClientInfoResponse>> clientInfo(String requestId);
 
-  Future<Either<Failure, ClientDataResponse>> clientPhoneNumbers(String requestId);
-
-  Future<Either<Failure, void>> confirmCode(
-      String requestId, ConfirmCodeRequest request);
+  Future<Either<Failure, ConfirmResponse>> register(RegisterRequest request);
 
   Future<Either<Failure, void>> sendCode(
       String requestId, SendCodeRequest request);
 
-  Future<Either<Failure, LoginResponse>> setUserName(
-      String requestId, LoginRequest request);
+  Future<Either<Failure, AuthResponse>> setUserName(
+      String requestId, AuthRequest request);
 }

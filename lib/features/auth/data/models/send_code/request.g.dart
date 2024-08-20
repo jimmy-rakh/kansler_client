@@ -9,11 +9,11 @@ part of 'request.dart';
 _$SendCodeRequestImpl _$$SendCodeRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$SendCodeRequestImpl(
-      phoneNumber: json['phoneNumber'] as String,
+      phoneNumber: json['phone_number'] as String,
     );
 
 Map<String, dynamic> _$$SendCodeRequestImplToJson(
         _$SendCodeRequestImpl instance) =>
     <String, dynamic>{
-      'phoneNumber': instance.phoneNumber,
+      'phone_number': instance.phoneNumber,
     };

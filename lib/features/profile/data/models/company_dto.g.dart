@@ -10,13 +10,13 @@ _$CompanyDtoImpl _$$CompanyDtoImplFromJson(Map<String, dynamic> json) =>
     _$CompanyDtoImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String?,
-      fullName: json['fullName'] as String?,
+      fullName: json['full_name'] as String?,
       inn: json['inn'] as String?,
-      phoneNumbers: (json['phoneNumbers'] as List<dynamic>?)
+      phoneNumbers: (json['phone_numbers'] as List<dynamic>?)
           ?.map((e) => e as String?)
           .toList(),
-      companyType: json['companyType'] as String?,
-      mainContacts: (json['mainContacts'] as List<dynamic>)
+      companyType: json['company_type'] as String?,
+      mainContacts: (json['main_contacts'] as List<dynamic>)
           .map((e) => MainContactDto.fromJson(e as Map<String, dynamic>))
           .toList(),
       region: json['region'] as String?,
@@ -30,13 +30,13 @@ Map<String, dynamic> _$$CompanyDtoImplToJson(_$CompanyDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'fullName': instance.fullName,
+      'full_name': instance.fullName,
       'inn': instance.inn,
-      'phoneNumbers': instance.phoneNumbers,
-      'companyType': instance.companyType,
-      'mainContacts': instance.mainContacts,
+      'phone_numbers': instance.phoneNumbers,
+      'company_type': instance.companyType,
+      'main_contacts': instance.mainContacts.map((e) => e.toJson()).toList(),
       'region': instance.region,
-      'manager': instance.manager,
+      'manager': instance.manager?.toJson(),
       'children': instance.children,
     };
 
@@ -58,13 +58,13 @@ Map<String, dynamic> _$$MainContactDtoImplToJson(
 _$ManagerDtoImpl _$$ManagerDtoImplFromJson(Map<String, dynamic> json) =>
     _$ManagerDtoImpl(
       name: json['name'] as String?,
-      fullName: json['fullName'] as String?,
+      fullName: json['full_name'] as String?,
       phone: json['phone'] as String?,
     );
 
 Map<String, dynamic> _$$ManagerDtoImplToJson(_$ManagerDtoImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'fullName': instance.fullName,
+      'full_name': instance.fullName,
       'phone': instance.phone,
     };

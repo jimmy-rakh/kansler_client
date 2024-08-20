@@ -10,7 +10,7 @@ _$ProductDataDtoImpl _$$ProductDataDtoImplFromJson(Map<String, dynamic> json) =>
     _$ProductDataDtoImpl(
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['image_url'] as String?,
     );
 
 Map<String, dynamic> _$$ProductDataDtoImplToJson(
@@ -18,5 +18,5 @@ Map<String, dynamic> _$$ProductDataDtoImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'imageUrl': instance.imageUrl,
+      'image_url': instance.imageUrl,
     };

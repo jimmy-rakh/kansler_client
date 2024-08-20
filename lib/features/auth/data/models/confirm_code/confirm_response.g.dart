@@ -1,19 +1,19 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'request.dart';
+part of 'confirm_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ClientExistsRequestImpl _$$ClientExistsRequestImplFromJson(
+_$ConfirmResponseImpl _$$ConfirmResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$ClientExistsRequestImpl(
-      inn: json['inn'] as String,
+    _$ConfirmResponseImpl(
+      deviceToken: json['device_token'] as String,
     );
 
-Map<String, dynamic> _$$ClientExistsRequestImplToJson(
-        _$ClientExistsRequestImpl instance) =>
+Map<String, dynamic> _$$ConfirmResponseImplToJson(
+        _$ConfirmResponseImpl instance) =>
     <String, dynamic>{
-      'inn': instance.inn,
+      'device_token': instance.deviceToken,
     };

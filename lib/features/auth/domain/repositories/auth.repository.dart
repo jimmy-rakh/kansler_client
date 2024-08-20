@@ -1,30 +1,34 @@
 import 'package:dartz/dartz.dart';
+import 'package:kansler/features/auth/data/models/auth/request.dart';
+import 'package:kansler/features/auth/data/models/auth/response.dart';
+import 'package:kansler/features/auth/data/models/client_info/client_info_response.dart';
+import 'package:kansler/features/auth/data/models/confirm_code/confirm_request.dart';
+import 'package:kansler/features/auth/data/models/confirm_code/confirm_response.dart';
+import 'package:kansler/features/auth/data/models/register/register_request.dart';
+import 'package:kansler/features/auth/data/models/send_code/request.dart';
 import '../../../../core/enums/auth_status.dart';
 import '../../../../core/error/failure.dart';
-import '../entities/client_data.entity.dart';
-import '../entities/login_params.entity.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, String>> login(LoginParamsEntity request);
+  Future<Either<Failure, AuthResponse>> authentification(AuthRequest request);
 
-  Future<Either<Failure, void>> logout();
+  Future<Either<Failure, ConfirmResponse>> confirmCode(ConfirmRequest request);
 
-  Future<Either<Failure, String?>> checkClientExists(String inn);
+  Future<Either<Failure, ClientInfoResponse>> clientInfo(String requestId);
 
-  Future<Either<Failure, ClientDataEntity>> clientPhoneNumbers(
-      String requestId);
+  Future<Either<Failure, ConfirmResponse>> register(RegisterRequest request);
 
-  Future<Either<Failure, void>> confirmCode(
-      String requestId, String phoneNumber, String code);
+  Future<Either<Failure, void>> sendCode(
+      String requestId, SendCodeRequest request);
 
-  Future<Either<Failure, void>> sendCode(String requestId, String phoneNumber);
-
-  Future<Either<Failure, String>> setUserName(
-      String requestId, LoginParamsEntity request);
+  Future<Either<Failure, AuthResponse>> setUserName(
+      String requestId, AuthRequest request);
 
   Future<void> setAuthToken(String token);
 
   String? getAuthToken();
 
   AuthStatus getAuthStatus();
+
+  Future<Either<Failure, void>> logout();
 }

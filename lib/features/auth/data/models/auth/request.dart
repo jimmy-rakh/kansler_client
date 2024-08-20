@@ -8,18 +8,18 @@ part 'request.freezed.dart';
 part 'request.g.dart';
 
 @Freezed(fromJson: false, toJson: true)
-class LoginRequest with _$LoginRequest {
-  factory LoginRequest({
+class AuthRequest with _$AuthRequest {
+  factory AuthRequest({
     required String value,
     required ClientType clientType,
-    // required String fcmToken,
+    required String fcmToken,
     required DeviceInfo device,
-  }) = _LoginRequest;
+  }) = _AuthRequest;
 
-  static LoginRequest fromEntity(LoginParamsEntity entity) => LoginRequest(
+  static AuthRequest fromEntity(LoginParamsEntity entity) => AuthRequest(
         value: entity.value,
         clientType: entity.clientType,
-        // fcmToken: entity.fcmToken,
+        fcmToken: entity.fcmToken,
         device: entity.device,
       );
 }

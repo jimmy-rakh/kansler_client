@@ -11,7 +11,7 @@ _$CategoryDtoImpl _$$CategoryDtoImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       name: json['name'] as String,
       children: json['children'] as bool,
-      imageUrl: json['imageUrl'] as String?,
+      imageUrl: json['image_url'] as String?,
     );
 
 Map<String, dynamic> _$$CategoryDtoImplToJson(_$CategoryDtoImpl instance) =>
@@ -19,5 +19,5 @@ Map<String, dynamic> _$$CategoryDtoImplToJson(_$CategoryDtoImpl instance) =>
       'id': instance.id,
       'name': instance.name,
       'children': instance.children,
-      'imageUrl': instance.imageUrl,
+      'image_url': instance.imageUrl,
     };

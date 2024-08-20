@@ -4,10 +4,10 @@ import '../../../../core/network/constants.dart';
 
 class AuthRemoteKeys {
   static const authApi = '${NetworkConstants.apiUrl}/auth';
-  static const checkClientExist = '$authApi/check-client-exists';
-  static const clientPhoneNumbers = '$authApi/client-phone-numbers/requestId';
-  static const confirmCode = '$authApi/confirm-code/requestId';
-  static const sendCode = '$authApi/send-code/requestId';
-  static const setUserName = '$authApi/set-username/requestId';
-  static const signIn = '$authApi/sign-in';
+  static const auth = '$authApi/client';
+  static const clientConfirmCode = '$authApi/client-confirm-code';
+  static const clientInfo = '$authApi/client-info';
+  static const clientRecovery = '$authApi/client-recovery';
+  static const clientRegister = '$authApi/client-register';
+  static const clientSendCode = '$authApi/client-send-code';
 }

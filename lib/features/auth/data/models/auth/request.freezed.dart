@@ -15,33 +15,37 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$LoginRequest {
+mixin _$AuthRequest {
   String get value => throw _privateConstructorUsedError;
-  ClientType get clientType =>
-      throw _privateConstructorUsedError; // required String fcmToken,
+  ClientType get clientType => throw _privateConstructorUsedError;
+  String get fcmToken => throw _privateConstructorUsedError;
   DeviceInfo get device => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoginRequestCopyWith<LoginRequest> get copyWith =>
+  $AuthRequestCopyWith<AuthRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LoginRequestCopyWith<$Res> {
-  factory $LoginRequestCopyWith(
-          LoginRequest value, $Res Function(LoginRequest) then) =
-      _$LoginRequestCopyWithImpl<$Res, LoginRequest>;
+abstract class $AuthRequestCopyWith<$Res> {
+  factory $AuthRequestCopyWith(
+          AuthRequest value, $Res Function(AuthRequest) then) =
+      _$AuthRequestCopyWithImpl<$Res, AuthRequest>;
   @useResult
-  $Res call({String value, ClientType clientType, DeviceInfo device});
+  $Res call(
+      {String value,
+      ClientType clientType,
+      String fcmToken,
+      DeviceInfo device});
 
   $DeviceInfoCopyWith<$Res> get device;
 }
 
 /// @nodoc
-class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
-    implements $LoginRequestCopyWith<$Res> {
-  _$LoginRequestCopyWithImpl(this._value, this._then);
+class _$AuthRequestCopyWithImpl<$Res, $Val extends AuthRequest>
+    implements $AuthRequestCopyWith<$Res> {
+  _$AuthRequestCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -53,6 +57,7 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
   $Res call({
     Object? value = null,
     Object? clientType = null,
+    Object? fcmToken = null,
     Object? device = null,
   }) {
     return _then(_value.copyWith(
@@ -64,6 +69,10 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
           ? _value.clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as ClientType,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -81,25 +90,29 @@ class _$LoginRequestCopyWithImpl<$Res, $Val extends LoginRequest>
 }
 
 /// @nodoc
-abstract class _$$LoginRequestImplCopyWith<$Res>
-    implements $LoginRequestCopyWith<$Res> {
-  factory _$$LoginRequestImplCopyWith(
-          _$LoginRequestImpl value, $Res Function(_$LoginRequestImpl) then) =
-      __$$LoginRequestImplCopyWithImpl<$Res>;
+abstract class _$$AuthRequestImplCopyWith<$Res>
+    implements $AuthRequestCopyWith<$Res> {
+  factory _$$AuthRequestImplCopyWith(
+          _$AuthRequestImpl value, $Res Function(_$AuthRequestImpl) then) =
+      __$$AuthRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, ClientType clientType, DeviceInfo device});
+  $Res call(
+      {String value,
+      ClientType clientType,
+      String fcmToken,
+      DeviceInfo device});
 
   @override
   $DeviceInfoCopyWith<$Res> get device;
 }
 
 /// @nodoc
-class __$$LoginRequestImplCopyWithImpl<$Res>
-    extends _$LoginRequestCopyWithImpl<$Res, _$LoginRequestImpl>
-    implements _$$LoginRequestImplCopyWith<$Res> {
-  __$$LoginRequestImplCopyWithImpl(
-      _$LoginRequestImpl _value, $Res Function(_$LoginRequestImpl) _then)
+class __$$AuthRequestImplCopyWithImpl<$Res>
+    extends _$AuthRequestCopyWithImpl<$Res, _$AuthRequestImpl>
+    implements _$$AuthRequestImplCopyWith<$Res> {
+  __$$AuthRequestImplCopyWithImpl(
+      _$AuthRequestImpl _value, $Res Function(_$AuthRequestImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -107,9 +120,10 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
     Object? clientType = null,
+    Object? fcmToken = null,
     Object? device = null,
   }) {
-    return _then(_$LoginRequestImpl(
+    return _then(_$AuthRequestImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -118,6 +132,10 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
           ? _value.clientType
           : clientType // ignore: cast_nullable_to_non_nullable
               as ClientType,
+      fcmToken: null == fcmToken
+          ? _value.fcmToken
+          : fcmToken // ignore: cast_nullable_to_non_nullable
+              as String,
       device: null == device
           ? _value.device
           : device // ignore: cast_nullable_to_non_nullable
@@ -128,66 +146,76 @@ class __$$LoginRequestImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createFactory: false)
-class _$LoginRequestImpl implements _LoginRequest {
-  _$LoginRequestImpl(
-      {required this.value, required this.clientType, required this.device});
+class _$AuthRequestImpl implements _AuthRequest {
+  _$AuthRequestImpl(
+      {required this.value,
+      required this.clientType,
+      required this.fcmToken,
+      required this.device});
 
   @override
   final String value;
   @override
   final ClientType clientType;
-// required String fcmToken,
+  @override
+  final String fcmToken;
   @override
   final DeviceInfo device;
 
   @override
   String toString() {
-    return 'LoginRequest(value: $value, clientType: $clientType, device: $device)';
+    return 'AuthRequest(value: $value, clientType: $clientType, fcmToken: $fcmToken, device: $device)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginRequestImpl &&
+            other is _$AuthRequestImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.clientType, clientType) ||
                 other.clientType == clientType) &&
+            (identical(other.fcmToken, fcmToken) ||
+                other.fcmToken == fcmToken) &&
             (identical(other.device, device) || other.device == device));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, value, clientType, device);
+  int get hashCode =>
+      Object.hash(runtimeType, value, clientType, fcmToken, device);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginRequestImplCopyWith<_$LoginRequestImpl> get copyWith =>
-      __$$LoginRequestImplCopyWithImpl<_$LoginRequestImpl>(this, _$identity);
+  _$$AuthRequestImplCopyWith<_$AuthRequestImpl> get copyWith =>
+      __$$AuthRequestImplCopyWithImpl<_$AuthRequestImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LoginRequestImplToJson(
+    return _$$AuthRequestImplToJson(
       this,
     );
   }
 }
 
-abstract class _LoginRequest implements LoginRequest {
-  factory _LoginRequest(
+abstract class _AuthRequest implements AuthRequest {
+  factory _AuthRequest(
       {required final String value,
       required final ClientType clientType,
-      required final DeviceInfo device}) = _$LoginRequestImpl;
+      required final String fcmToken,
+      required final DeviceInfo device}) = _$AuthRequestImpl;
 
   @override
   String get value;
   @override
   ClientType get clientType;
-  @override // required String fcmToken,
+  @override
+  String get fcmToken;
+  @override
   DeviceInfo get device;
   @override
   @JsonKey(ignore: true)
-  _$$LoginRequestImplCopyWith<_$LoginRequestImpl> get copyWith =>
+  _$$AuthRequestImplCopyWith<_$AuthRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -49,7 +49,6 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       width: width,
-      borderRadius: 8,
       onTap: () =>
           router.push(ProductRoute(product: product ?? cartProduct!.product!)),
       child: Column(
@@ -57,31 +56,25 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
         children: [
           Stack(children: [
             (product ?? cartProduct?.product)?.imageUrl == null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
-                      AppImages.noPhoto,
-                      height: height,
-                      width: width,
-                      fit: BoxFit.fill,
-                    ),
-                  )
-                : ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
-                    child: CachedNetworkImage(
-                      fit: BoxFit.fitHeight,
-                      height: height,
-                      width: width,
-                      memCacheHeight: 200,
-                      memCacheWidth: 200,
-                      errorListener: (value) => log.e(
-                          '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
-                      imageUrl: NetworkConstants.apiBaseUrl +
-                          (product ?? cartProduct?.product)!.imageUrl!,
-                      errorWidget: (context, url, error) =>
-                          Image.asset(AppImages.noPhoto),
-                    ),
-                  ),
+                ? Image.asset(
+                  AppImages.noPhoto,
+                  height: height,
+                  width: width,
+                  fit: BoxFit.fill,
+                )
+                : CachedNetworkImage(
+                  fit: BoxFit.fitHeight,
+                  height: height,
+                  width: width,
+                  memCacheHeight: 200,
+                  memCacheWidth: 200,
+                  errorListener: (value) => log.e(
+                      '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
+                  imageUrl: NetworkConstants.apiBaseUrl +
+                      (product ?? cartProduct?.product)!.imageUrl!,
+                  errorWidget: (context, url, error) =>
+                      Image.asset(AppImages.noPhoto),
+                ),
             (product ?? cartProduct?.product)?.brand?.name == null
                 ? const SizedBox()
                 : Positioned(
@@ -110,10 +103,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         AppCard(
                           padding: const EdgeInsets.all(6),
                           fillColor: context.background,
-                          borderRadius: const BorderRadius.only(
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
+
                           width: width,
                           child: Text(
                             textAlign: TextAlign.end,

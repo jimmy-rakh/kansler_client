@@ -9,10 +9,10 @@ part of 'request.dart';
 Map<String, dynamic> _$$SearchRequestImplToJson(_$SearchRequestImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
-      'organizationId': instance.organizationId,
+      'organization_id': instance.organizationId,
       'brands': instance.brands,
       'categories': instance.categories,
-      'priceFrom': instance.priceFrom,
-      'priceTo': instance.priceTo,
-      'orderBy': instance.orderBy,
+      'price_from': instance.priceFrom,
+      'price_to': instance.priceTo,
+      'order_by': instance.orderBy,
     };

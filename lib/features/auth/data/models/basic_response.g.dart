@@ -9,5 +9,5 @@ part of 'basic_response.dart';
 _$BasicResponseImpl _$$BasicResponseImplFromJson(Map<String, dynamic> json) =>
     _$BasicResponseImpl(
       success: json['success'] as bool,
-      errorMessage: json['errorMessage'] as String?,
+      errorMessage: json['error_message'] as String?,
     );

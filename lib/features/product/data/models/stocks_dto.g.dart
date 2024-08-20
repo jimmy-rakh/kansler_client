@@ -12,13 +12,13 @@ _$ProductDataDtoImpl _$$ProductDataDtoImplFromJson(Map<String, dynamic> json) =>
           ? null
           : ProductDataDto.fromJson(json['stock'] as Map<String, dynamic>),
       quantity: (json['quantity'] as num?)?.toInt(),
-      quantityReserve: (json['quantityReserve'] as num?)?.toInt(),
+      quantityReserve: (json['quantity_reserve'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$ProductDataDtoImplToJson(
         _$ProductDataDtoImpl instance) =>
     <String, dynamic>{
-      'stock': instance.stock,
+      'stock': instance.stock?.toJson(),
       'quantity': instance.quantity,
-      'quantityReserve': instance.quantityReserve,
+      'quantity_reserve': instance.quantityReserve,
     };

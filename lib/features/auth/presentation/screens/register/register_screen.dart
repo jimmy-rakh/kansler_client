@@ -9,34 +9,48 @@ import '../../../../../app/di.dart';
 import '../../../../../core/constants/spaces.dart';
 import 'bloc/register_bloc.dart';
 
-
 @RoutePage()
 class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
-  const RegisterScreen({super.key});
+  const RegisterScreen({
+    super.key,
+    required this.requestId,
+    required this.phone,
+    this.inn,
+  });
+
+  final String requestId;
+  final String phone;
+  final String? inn;
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 32),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RegisterHeaderWidget(),
-            verticalSpace12,
-            RegisterFormWidget(),
-            verticalSpace12,
-            RegisterActionWidget(),
-          ],
-        ),
+      body: Stack(
+        children: [
+          Positioned(top: 60, child: AutoLeadingButton()),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 32),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RegisterHeaderWidget(),
+                verticalSpace12,
+                RegisterFormWidget(),
+                verticalSpace12,
+                RegisterActionWidget(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (context) => getIt<RegisterBloc>(),
+        create: (context) => getIt<RegisterBloc>()
+          ..add(RegisterEvent.init(requestId, phone, inn)),
         child: this,
       );
 }

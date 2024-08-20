@@ -19,34 +19,21 @@ import 'package:kansler/features/auth/data/sources/local.dart' as _i12;
 import 'package:kansler/features/auth/data/sources/local.impl.dart' as _i13;
 import 'package:kansler/features/auth/data/sources/remote.dart' as _i60;
 import 'package:kansler/features/auth/data/sources/remote.impl.dart' as _i61;
+import 'package:kansler/features/auth/domain/domain.dart' as _i104;
 import 'package:kansler/features/auth/domain/repositories/auth.repository.dart'
     as _i90;
-import 'package:kansler/features/auth/domain/usecases/check_client_exist.usecase.dart'
-    as _i103;
-import 'package:kansler/features/auth/domain/usecases/client_phone_numbers.usecase.dart'
-    as _i102;
-import 'package:kansler/features/auth/domain/usecases/confirm_code.usecase.dart'
-    as _i101;
 import 'package:kansler/features/auth/domain/usecases/get_user_status.usecase.dart'
-    as _i100;
-import 'package:kansler/features/auth/domain/usecases/login.usecase.dart'
-    as _i99;
-import 'package:kansler/features/auth/domain/usecases/logout.usecase.dart'
-    as _i104;
-import 'package:kansler/features/auth/domain/usecases/send_code.usecase.dart'
-    as _i98;
+    as _i97;
 import 'package:kansler/features/auth/domain/usecases/set_auth_token.usecase.dart'
     as _i96;
-import 'package:kansler/features/auth/domain/usecases/set_username.usecase.dart'
-    as _i97;
 import 'package:kansler/features/auth/presentation/screens/auth/bloc/auth_bloc.dart'
-    as _i110;
+    as _i103;
 import 'package:kansler/features/auth/presentation/screens/login/bloc/login_bloc.dart'
-    as _i105;
+    as _i107;
 import 'package:kansler/features/auth/presentation/screens/register/bloc/register_bloc.dart'
-    as _i111;
+    as _i106;
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code/confirm_code_bloc.dart'
-    as _i113;
+    as _i105;
 import 'package:kansler/features/cart/data/repositories/cart.repository.dart'
     as _i31;
 import 'package:kansler/features/cart/data/sources/remote.dart' as _i20;
@@ -83,7 +70,7 @@ import 'package:kansler/features/categories/domain/usecases/get_category_product
 import 'package:kansler/features/categories/presentation/screens/category/bloc/categories_bloc.dart'
     as _i92;
 import 'package:kansler/features/categories/presentation/screens/subcategory/bloc/subcategory_bloc.dart'
-    as _i112;
+    as _i102;
 import 'package:kansler/features/checkout/data/repositories/checkout.repository.dart'
     as _i75;
 import 'package:kansler/features/checkout/data/sources/remote.dart' as _i52;
@@ -130,9 +117,9 @@ import 'package:kansler/features/limites/data/source/remote.impl.dart' as _i35;
 import 'package:kansler/features/limites/domain/repositories/limits.repository.dart'
     as _i83;
 import 'package:kansler/features/limites/presentation/debt/cubit/debt_cubit.dart'
-    as _i108;
+    as _i100;
 import 'package:kansler/features/limites/presentation/limits_screen/cubit/limits_cubit.dart'
-    as _i107;
+    as _i99;
 import 'package:kansler/features/main/presentation/bloc/navbar_bloc.dart'
     as _i7;
 import 'package:kansler/features/orders/data/repositories/order.repository.dart'
@@ -198,11 +185,11 @@ import 'package:kansler/features/search/domain/usecases/organizations.usecase.da
 import 'package:kansler/features/search/domain/usecases/search.usecase.dart'
     as _i72;
 import 'package:kansler/features/search/presentation/filter_screen/filter/filter_bloc.dart'
-    as _i109;
+    as _i101;
 import 'package:kansler/features/search/presentation/search_screen/blocs/brands/brands_bloc.dart'
     as _i94;
 import 'package:kansler/features/search/presentation/search_screen/blocs/search_bloc/search_bloc.dart'
-    as _i106;
+    as _i98;
 import 'package:kansler/features/splash/presentation/bloc/splash_bloc.dart'
     as _i8;
 import 'package:kansler/shared/services/device/device_info_service.dart'
@@ -357,51 +344,34 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i95.CheckoutBloc(gh<_i74.CheckoutRepository>()));
     gh.factory<_i96.SetAuthTokenUseCase>(
         () => _i96.SetAuthTokenUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i97.SetUserNameUseCase>(
-        () => _i97.SetUserNameUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i98.SendCodeUseCase>(
-        () => _i98.SendCodeUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i99.LoginUseCase>(
-        () => _i99.LoginUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i100.GetAuthStatusUseCase>(
-        () => _i100.GetAuthStatusUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i101.ConfirmCodeUseCase>(
-        () => _i101.ConfirmCodeUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i102.ClientPhoneNumbersUseCase>(
-        () => _i102.ClientPhoneNumbersUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i103.CheckClientExistUseCase>(
-        () => _i103.CheckClientExistUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i104.LogoutUseCase>(
-        () => _i104.LogoutUseCase(gh<_i90.AuthRepository>()));
-    gh.factory<_i105.LoginBloc>(() => _i105.LoginBloc(
-          gh<_i99.LoginUseCase>(),
-          gh<_i96.SetAuthTokenUseCase>(),
-        ));
-    gh.factory<_i106.SearchBloc>(
-        () => _i106.SearchBloc(gh<_i72.SearchUseCase>()));
-    gh.factory<_i107.LimitsCubit>(
-        () => _i107.LimitsCubit(gh<_i83.LimitsRepository>()));
-    gh.factory<_i108.DebtCubit>(
-        () => _i108.DebtCubit(gh<_i83.LimitsRepository>()));
-    gh.factory<_i109.FilterBloc>(
-        () => _i109.FilterBloc(gh<_i88.OrganizationsUseCase>()));
-    gh.lazySingleton<_i110.AuthBloc>(() => _i110.AuthBloc(
-          gh<_i100.GetAuthStatusUseCase>(),
-          gh<_i104.LogoutUseCase>(),
-        ));
-    gh.factory<_i111.RegisterBloc>(() => _i111.RegisterBloc(
-          gh<_i103.CheckClientExistUseCase>(),
-          gh<_i102.ClientPhoneNumbersUseCase>(),
-          gh<_i98.SendCodeUseCase>(),
-          gh<_i97.SetUserNameUseCase>(),
-          gh<_i96.SetAuthTokenUseCase>(),
-        ));
-    gh.lazySingleton<_i112.SubcategoryBloc>(() => _i112.SubcategoryBloc(
+    gh.factory<_i97.GetAuthStatusUseCase>(
+        () => _i97.GetAuthStatusUseCase(gh<_i90.AuthRepository>()));
+    gh.factory<_i98.SearchBloc>(
+        () => _i98.SearchBloc(gh<_i72.SearchUseCase>()));
+    gh.factory<_i99.LimitsCubit>(
+        () => _i99.LimitsCubit(gh<_i83.LimitsRepository>()));
+    gh.factory<_i100.DebtCubit>(
+        () => _i100.DebtCubit(gh<_i83.LimitsRepository>()));
+    gh.factory<_i101.FilterBloc>(
+        () => _i101.FilterBloc(gh<_i88.OrganizationsUseCase>()));
+    gh.lazySingleton<_i102.SubcategoryBloc>(() => _i102.SubcategoryBloc(
           gh<_i87.GetCategoryChildrenUseCase>(),
           gh<_i86.GetCategoryProducts>(),
         ));
-    gh.factory<_i113.ConfirmCodeBloc>(
-        () => _i113.ConfirmCodeBloc(gh<_i101.ConfirmCodeUseCase>()));
+    gh.lazySingleton<_i103.AuthBloc>(() => _i103.AuthBloc(
+          gh<_i97.GetAuthStatusUseCase>(),
+          gh<_i104.AuthRepository>(),
+        ));
+    gh.factory<_i105.ConfirmCodeBloc>(
+        () => _i105.ConfirmCodeBloc(gh<_i104.AuthRepository>()));
+    gh.factory<_i106.RegisterBloc>(() => _i106.RegisterBloc(
+          gh<_i104.AuthRepository>(),
+          gh<_i96.SetAuthTokenUseCase>(),
+        ));
+    gh.factory<_i107.LoginBloc>(() => _i107.LoginBloc(
+          gh<_i104.AuthRepository>(),
+          gh<_i96.SetAuthTokenUseCase>(),
+        ));
     return this;
   }
 }

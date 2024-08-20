@@ -360,6 +360,7 @@ abstract class _Ready implements RegisterState {
 mixin _$RegisterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -371,6 +372,7 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -382,6 +384,7 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -394,6 +397,7 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -406,6 +410,7 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -417,6 +422,7 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -445,6 +451,196 @@ class _$RegisterEventCopyWithImpl<$Res, $Val extends RegisterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$InitImplCopyWith<$Res> {
+  factory _$$InitImplCopyWith(
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String requestId, String phone, String? inn});
+}
+
+/// @nodoc
+class __$$InitImplCopyWithImpl<$Res>
+    extends _$RegisterEventCopyWithImpl<$Res, _$InitImpl>
+    implements _$$InitImplCopyWith<$Res> {
+  __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? requestId = null,
+    Object? phone = null,
+    Object? inn = freezed,
+  }) {
+    return _then(_$InitImpl(
+      null == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == phone
+          ? _value.phone
+          : phone // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == inn
+          ? _value.inn
+          : inn // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitImpl implements _Init {
+  const _$InitImpl(this.requestId, this.phone, this.inn);
+
+  @override
+  final String requestId;
+  @override
+  final String phone;
+  @override
+  final String? inn;
+
+  @override
+  String toString() {
+    return 'RegisterEvent.init(requestId: $requestId, phone: $phone, inn: $inn)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.requestId, requestId) ||
+                other.requestId == requestId) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.inn, inn) || other.inn == inn));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, requestId, phone, inn);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function() register,
+    required TResult Function() checkInn,
+    required TResult Function(String phone, String requestId) sendCode,
+    required TResult Function() setPassword,
+    required TResult Function() showPassToggle,
+    required TResult Function() showRepeatedPassToggle,
+    required TResult Function(String error) addError,
+  }) {
+    return init(requestId, phone, inn);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function()? register,
+    TResult? Function()? checkInn,
+    TResult? Function(String phone, String requestId)? sendCode,
+    TResult? Function()? setPassword,
+    TResult? Function()? showPassToggle,
+    TResult? Function()? showRepeatedPassToggle,
+    TResult? Function(String error)? addError,
+  }) {
+    return init?.call(requestId, phone, inn);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function()? register,
+    TResult Function()? checkInn,
+    TResult Function(String phone, String requestId)? sendCode,
+    TResult Function()? setPassword,
+    TResult Function()? showPassToggle,
+    TResult Function()? showRepeatedPassToggle,
+    TResult Function(String error)? addError,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(requestId, phone, inn);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_Register value) register,
+    required TResult Function(_CheckInn value) checkInn,
+    required TResult Function(_SendCode value) sendCode,
+    required TResult Function(_SetPassword value) setPassword,
+    required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_ShowRepeatedPassToggle value)
+        showRepeatedPassToggle,
+    required TResult Function(_AddError value) addError,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_Register value)? register,
+    TResult? Function(_CheckInn value)? checkInn,
+    TResult? Function(_SendCode value)? sendCode,
+    TResult? Function(_SetPassword value)? setPassword,
+    TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_ShowRepeatedPassToggle value)? showRepeatedPassToggle,
+    TResult? Function(_AddError value)? addError,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_Register value)? register,
+    TResult Function(_CheckInn value)? checkInn,
+    TResult Function(_SendCode value)? sendCode,
+    TResult Function(_SetPassword value)? setPassword,
+    TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_ShowRepeatedPassToggle value)? showRepeatedPassToggle,
+    TResult Function(_AddError value)? addError,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements RegisterEvent {
+  const factory _Init(
+          final String requestId, final String phone, final String? inn) =
+      _$InitImpl;
+
+  String get requestId;
+  String get phone;
+  String? get inn;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -485,6 +681,7 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -499,6 +696,7 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -513,6 +711,7 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -531,6 +730,7 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -546,6 +746,7 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -560,6 +761,7 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -618,6 +820,7 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -632,6 +835,7 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -646,6 +850,7 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -664,6 +869,7 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -679,6 +885,7 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -693,6 +900,7 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -786,6 +994,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -800,6 +1009,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -814,6 +1024,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -832,6 +1043,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -847,6 +1059,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -861,6 +1074,7 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -926,6 +1140,7 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -940,6 +1155,7 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -954,6 +1170,7 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -972,6 +1189,7 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -987,6 +1205,7 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -1001,6 +1220,7 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -1059,6 +1279,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1073,6 +1294,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1087,6 +1309,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1105,6 +1328,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -1120,6 +1344,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -1134,6 +1359,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -1195,6 +1421,7 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1209,6 +1436,7 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1223,6 +1451,7 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1241,6 +1470,7 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -1256,6 +1486,7 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -1270,6 +1501,7 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,
@@ -1354,6 +1586,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function(String requestId, String phone, String? inn) init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1368,6 +1601,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String requestId, String phone, String? inn)? init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1382,6 +1616,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String requestId, String phone, String? inn)? init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1400,6 +1635,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
     required TResult Function(_Register value) register,
     required TResult Function(_CheckInn value) checkInn,
     required TResult Function(_SendCode value) sendCode,
@@ -1415,6 +1651,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
     TResult? Function(_Register value)? register,
     TResult? Function(_CheckInn value)? checkInn,
     TResult? Function(_SendCode value)? sendCode,
@@ -1429,6 +1666,7 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
     TResult Function(_Register value)? register,
     TResult Function(_CheckInn value)? checkInn,
     TResult Function(_SendCode value)? sendCode,

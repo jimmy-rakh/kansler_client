@@ -6,11 +6,12 @@ part of 'request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Map<String, dynamic> _$$LoginRequestImplToJson(_$LoginRequestImpl instance) =>
+Map<String, dynamic> _$$AuthRequestImplToJson(_$AuthRequestImpl instance) =>
     <String, dynamic>{
       'value': instance.value,
-      'clientType': _$ClientTypeEnumMap[instance.clientType]!,
-      'device': instance.device,
+      'client_type': _$ClientTypeEnumMap[instance.clientType]!,
+      'fcm_token': instance.fcmToken,
+      'device': instance.device.toJson(),
     };
 
 const _$ClientTypeEnumMap = {

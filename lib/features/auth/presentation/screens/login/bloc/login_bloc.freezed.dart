@@ -20,7 +20,10 @@ mixin _$LoginState {
   dynamic get isBusy => throw _privateConstructorUsedError;
   dynamic get validated => throw _privateConstructorUsedError;
   dynamic get showPass => throw _privateConstructorUsedError;
+  dynamic get hasPass => throw _privateConstructorUsedError;
+  dynamic get isExist => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
+  String? get requestId => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -39,7 +42,10 @@ abstract class $LoginStateCopyWith<$Res> {
       dynamic isBusy,
       dynamic validated,
       dynamic showPass,
+      dynamic hasPass,
+      dynamic isExist,
       int tabIndex,
+      String? requestId,
       String? error});
 }
 
@@ -60,7 +66,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? isBusy = freezed,
     Object? validated = freezed,
     Object? showPass = freezed,
+    Object? hasPass = freezed,
+    Object? isExist = freezed,
     Object? tabIndex = null,
+    Object? requestId = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -80,10 +89,22 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.showPass
           : showPass // ignore: cast_nullable_to_non_nullable
               as dynamic,
+      hasPass: freezed == hasPass
+          ? _value.hasPass
+          : hasPass // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      isExist: freezed == isExist
+          ? _value.isExist
+          : isExist // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       tabIndex: null == tabIndex
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      requestId: freezed == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as String?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -105,7 +126,10 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       dynamic isBusy,
       dynamic validated,
       dynamic showPass,
+      dynamic hasPass,
+      dynamic isExist,
       int tabIndex,
+      String? requestId,
       String? error});
 }
 
@@ -124,7 +148,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? isBusy = freezed,
     Object? validated = freezed,
     Object? showPass = freezed,
+    Object? hasPass = freezed,
+    Object? isExist = freezed,
     Object? tabIndex = null,
+    Object? requestId = freezed,
     Object? error = freezed,
   }) {
     return _then(_$LoginStateImpl(
@@ -135,10 +162,16 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       isBusy: freezed == isBusy ? _value.isBusy! : isBusy,
       validated: freezed == validated ? _value.validated! : validated,
       showPass: freezed == showPass ? _value.showPass! : showPass,
+      hasPass: freezed == hasPass ? _value.hasPass! : hasPass,
+      isExist: freezed == isExist ? _value.isExist! : isExist,
       tabIndex: null == tabIndex
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      requestId: freezed == requestId
+          ? _value.requestId
+          : requestId // ignore: cast_nullable_to_non_nullable
+              as String?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -155,7 +188,10 @@ class _$LoginStateImpl implements _LoginState {
       this.isBusy = false,
       this.validated = false,
       this.showPass = false,
+      this.hasPass = false,
+      this.isExist = true,
       this.tabIndex = 0,
+      this.requestId,
       this.error});
 
   @override
@@ -172,13 +208,21 @@ class _$LoginStateImpl implements _LoginState {
   final dynamic showPass;
   @override
   @JsonKey()
+  final dynamic hasPass;
+  @override
+  @JsonKey()
+  final dynamic isExist;
+  @override
+  @JsonKey()
   final int tabIndex;
+  @override
+  final String? requestId;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, tabIndex: $tabIndex, error: $error)';
+    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, hasPass: $hasPass, isExist: $isExist, tabIndex: $tabIndex, requestId: $requestId, error: $error)';
   }
 
   @override
@@ -190,8 +234,12 @@ class _$LoginStateImpl implements _LoginState {
             const DeepCollectionEquality().equals(other.isBusy, isBusy) &&
             const DeepCollectionEquality().equals(other.validated, validated) &&
             const DeepCollectionEquality().equals(other.showPass, showPass) &&
+            const DeepCollectionEquality().equals(other.hasPass, hasPass) &&
+            const DeepCollectionEquality().equals(other.isExist, isExist) &&
             (identical(other.tabIndex, tabIndex) ||
                 other.tabIndex == tabIndex) &&
+            (identical(other.requestId, requestId) ||
+                other.requestId == requestId) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -202,7 +250,10 @@ class _$LoginStateImpl implements _LoginState {
       const DeepCollectionEquality().hash(isBusy),
       const DeepCollectionEquality().hash(validated),
       const DeepCollectionEquality().hash(showPass),
+      const DeepCollectionEquality().hash(hasPass),
+      const DeepCollectionEquality().hash(isExist),
       tabIndex,
+      requestId,
       error);
 
   @JsonKey(ignore: true)
@@ -218,7 +269,10 @@ abstract class _LoginState implements LoginState {
       final dynamic isBusy,
       final dynamic validated,
       final dynamic showPass,
+      final dynamic hasPass,
+      final dynamic isExist,
       final int tabIndex,
+      final String? requestId,
       final String? error}) = _$LoginStateImpl;
 
   @override
@@ -230,7 +284,13 @@ abstract class _LoginState implements LoginState {
   @override
   dynamic get showPass;
   @override
+  dynamic get hasPass;
+  @override
+  dynamic get isExist;
+  @override
   int get tabIndex;
+  @override
+  String? get requestId;
   @override
   String? get error;
   @override

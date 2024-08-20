@@ -50,7 +50,6 @@ class ProductListCard extends HookWidget implements ProductCard {
     final authState = useBlocBuilder(authBloc);
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
-      borderRadius: 8,
       height: 120,
       onTap: () {
         // competeEditing();
@@ -63,26 +62,22 @@ class ProductListCard extends HookWidget implements ProductCard {
           if (product != null || cartProduct?.product != null)
             Stack(
               children: [
-                ClipRRect(
-                  borderRadius:
-                      const BorderRadius.horizontal(left: Radius.circular(8)),
-                  child: ColoredBox(
-                    color: context.cardColor,
-                    child: CachedNetworkImage(
-                      fit: BoxFit.fitHeight,
-                      height: 120,
-                      width: 100,
-                      memCacheHeight: 180,
-                      memCacheWidth: 180,
-                      errorListener: (value) => log.e(
-                          '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
-                      imageUrl: NetworkConstants.apiBaseUrl +
-                          (product?.imageUrl ??
-                              cartProduct?.product!.imageUrl ??
-                              ''),
-                      errorWidget: (context, url, error) =>
-                          Image.asset(AppImages.noPhoto),
-                    ),
+                ColoredBox(
+                  color: context.cardColor,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.fitHeight,
+                    height: 120,
+                    width: 100,
+                    memCacheHeight: 180,
+                    memCacheWidth: 180,
+                    errorListener: (value) => log.e(
+                        '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
+                    imageUrl: NetworkConstants.apiBaseUrl +
+                        (product?.imageUrl ??
+                            cartProduct?.product!.imageUrl ??
+                            ''),
+                    errorWidget: (context, url, error) =>
+                        Image.asset(AppImages.noPhoto),
                   ),
                 ),
                 (product ?? cartProduct?.product)?.brand?.name == null
@@ -112,9 +107,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                             verticalSpace2,
                             AppCard(
                               fillColor: context.background,
-                              borderRadius: const BorderRadius.only(
-                                bottomLeft: Radius.circular(8),
-                              ),
+
                               width: 100,
                               child: Padding(
                                 padding: const EdgeInsets.all(6),

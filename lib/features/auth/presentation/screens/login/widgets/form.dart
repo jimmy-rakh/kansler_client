@@ -36,7 +36,7 @@ class LoginFormWidget extends HookWidget {
         verticalSpace16,
         AppTextField(
           hint: state.tabIndex == 0 ? 'Введите номер' : 'Введите инн',
-          fieldController: bloc.loginController,
+          fieldController: bloc.valueController,
           focusNode: bloc.loginFocus,
           prefix: const Icon(KazeIcons.profileBold),
           textInputType: TextInputType.number,
@@ -44,29 +44,40 @@ class LoginFormWidget extends HookWidget {
             color: context.colorScheme.inverseSurface,
           ),
         ),
-        // verticalSpace12,
-        // AppTextField(
-        //   hint: 'Введите пароль',
-        //   fieldController: bloc.passwordController,
-        //   prefix: const Icon(KazeIcons.lockBold),
-        //   obscureText: state.whenOrNull(
-        //           ready: (isBusy, validated, showPass, error) => !showPass) ??
-        //       false,
-        //   suffix: IconButton(
-        //     onPressed: () => bloc.add(const LoginEvent.showPassToggle()),
-        //     icon: Icon(
-        //       state.whenOrNull(
-        //                   ready: (isBusy, validated, showPass, error) =>
-        //                       showPass) ??
-        //               false
-        //           ? KazeIcons.eyeSlashOutline
-        //           : KazeIcons.eyeOutline,
-        //     ),
-        //   ),
-        //   hintStyle: context.bodyLarge!.copyWith(
-        //     color: context.colorScheme.inverseSurface,
-        //   ),
-        // ),
+        if (state.tabIndex == 1 &&
+            !state.hasPass &&
+            bloc.valueController.text.isNotEmpty) ...[
+          verticalSpace12,
+          AppTextField(
+            hint: 'Введите номер',
+            fieldController: bloc.phoneController,
+            prefix: const Icon(Icons.phone),
+            textInputType: TextInputType.number,
+            hintStyle: context.bodyLarge!.copyWith(
+              color: context.colorScheme.inverseSurface,
+            ),
+          ),
+        ],
+        if (state.hasPass) ...[
+          verticalSpace12,
+          AppTextField(
+            hint: 'Введите пароль',
+            fieldController: bloc.passController,
+            prefix: const Icon(KazeIcons.lockBold),
+            obscureText: state.showPass,
+            suffix: IconButton(
+              onPressed: () => bloc.add(const LoginEvent.showPassToggle()),
+              icon: Icon(
+                state.showPass
+                    ? KazeIcons.eyeSlashOutline
+                    : KazeIcons.eyeOutline,
+              ),
+            ),
+            hintStyle: context.bodyLarge!.copyWith(
+              color: context.colorScheme.inverseSurface,
+            ),
+          ),
+        ],
         if (state.status == LoginStatus.initial) ...[
           verticalSpace12,
           Visibility(

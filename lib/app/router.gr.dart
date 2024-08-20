@@ -160,9 +160,16 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     RegisterRoute.name: (routeData) {
+      final args = routeData.argsAs<RegisterRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const RegisterScreen()),
+        child: WrappedRoute(
+            child: RegisterScreen(
+          key: args.key,
+          requestId: args.requestId,
+          phone: args.phone,
+          inn: args.inn,
+        )),
       );
     },
     ScannerRoute.name: (routeData) {
@@ -632,16 +639,50 @@ class ProfileRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [RegisterScreen]
-class RegisterRoute extends PageRouteInfo<void> {
-  const RegisterRoute({List<PageRouteInfo>? children})
-      : super(
+class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
+  RegisterRoute({
+    Key? key,
+    required String requestId,
+    required String phone,
+    String? inn,
+    List<PageRouteInfo>? children,
+  }) : super(
           RegisterRoute.name,
+          args: RegisterRouteArgs(
+            key: key,
+            requestId: requestId,
+            phone: phone,
+            inn: inn,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'RegisterRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<RegisterRouteArgs> page =
+      PageInfo<RegisterRouteArgs>(name);
+}
+
+class RegisterRouteArgs {
+  const RegisterRouteArgs({
+    this.key,
+    required this.requestId,
+    required this.phone,
+    this.inn,
+  });
+
+  final Key? key;
+
+  final String requestId;
+
+  final String phone;
+
+  final String? inn;
+
+  @override
+  String toString() {
+    return 'RegisterRouteArgs{key: $key, requestId: $requestId, phone: $phone, inn: $inn}';
+  }
 }
 
 /// generated route for

@@ -9,13 +9,13 @@ part of 'create_cart_product_dto.dart';
 _$CreateCartProductDtoImpl _$$CreateCartProductDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$CreateCartProductDtoImpl(
-      productId: (json['productId'] as num).toInt(),
+      productId: (json['product_id'] as num).toInt(),
       quantity: (json['quantity'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CreateCartProductDtoImplToJson(
         _$CreateCartProductDtoImpl instance) =>
     <String, dynamic>{
-      'productId': instance.productId,
+      'product_id': instance.productId,
       'quantity': instance.quantity,
     };

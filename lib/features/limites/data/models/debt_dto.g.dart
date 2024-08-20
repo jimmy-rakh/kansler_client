@@ -13,7 +13,7 @@ _$DebtDtoImpl _$$DebtDtoImplFromJson(Map<String, dynamic> json) =>
           json['organization'] as Map<String, dynamic>),
       company: CompanyDto.fromJson(json['company'] as Map<String, dynamic>),
       contract: ContractDto.fromJson(json['contract'] as Map<String, dynamic>),
-      totalDebt: json['totalDebt'] as String,
+      totalDebt: json['total_debt'] as String,
       debt15Days: json['debt_15_days'] as String,
       debt1645Days: json['debt_16_45_days'] as String,
       debt4660Days: json['debt_46_60_days'] as String,
@@ -25,10 +25,10 @@ _$DebtDtoImpl _$$DebtDtoImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$DebtDtoImplToJson(_$DebtDtoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'organization': instance.organization,
-      'company': instance.company,
-      'contract': instance.contract,
-      'totalDebt': instance.totalDebt,
+      'organization': instance.organization.toJson(),
+      'company': instance.company.toJson(),
+      'contract': instance.contract.toJson(),
+      'total_debt': instance.totalDebt,
       'debt_15_days': instance.debt15Days,
       'debt_16_45_days': instance.debt1645Days,
       'debt_46_60_days': instance.debt4660Days,
