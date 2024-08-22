@@ -157,8 +157,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                         style: context.titleSmall,
                       ),
                 verticalSpace5,
-                ...authState.whenOrNull(
-                      authenticated: () => [
+
                         if (cartProduct != null && !showActions)
                           Text('${cartProduct?.quantity} штук'),
                         if (showActions)
@@ -277,35 +276,23 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   color: AppColors.white,
                                 ),
                                 textColor: AppColors.white,
-                                onPressed: () {
-                                  if ((product ?? cartProduct!.product)!
-                                          .leftQuantity >=
-                                      int.parse(fieldController.text)) {
-                                    if (product?.leftQuantity != 0) {
-                                      onCart();
-                                      if (!((product ?? cartProduct?.product)
-                                              ?.inCart ??
-                                          true)) {
-                                        cartBloc.add(CartEvent.addToCart(
-                                            (product ?? cartProduct!.product)!
-                                                .id,
-                                            int.parse(fieldController.text)));
-                                        return;
-                                      }
-                                    }
-                                    cartBloc.add(CartEvent.deleteProductInCart(
-                                        (product ?? cartProduct!.product)!.id));
-                                  } else {
-                                    router.navigatorKey.currentContext!
-                                        .showToast(
-                                            'Недостаточно кол-во в складе');
-                                    fieldController.text =
-                                        (product ?? cartProduct!.product)!
-                                            .leftQuantity
-                                            .toString();
-                                    FocusScope.of(context).unfocus();
+                                onPressed: authBloc.state == const AuthState.authenticated()
+                                    ? () {
+                                  onCart();
+                                  if (!((product ?? cartProduct?.product)?.inCart ??
+                                      true)) {
+                                    cartBloc.add(CartEvent.addToCart(
+                                        (product ?? cartProduct!.product)!.id,
+                                        fieldController?.text == null ||
+                                            fieldController?.text == ''
+                                            ? 1
+                                            : int.parse(fieldController!.text)));
+                                    return;
                                   }
-                                },
+                                  fieldController?.text = '1';
+                                  cartBloc.add(CartEvent.deleteProductInCart(
+                                      (product ?? cartProduct!.product)!.id));
+                                } :() => router.push(const AuthRoute()),
                                 size: MainAxisSize.min,
                                 margin: const EdgeInsets.only(
                                   right: 4,
@@ -316,9 +303,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                               ),
                             ],
                           ),
-                      ],
-                    ) ??
-                    [],
+
+
               ],
             ),
           )

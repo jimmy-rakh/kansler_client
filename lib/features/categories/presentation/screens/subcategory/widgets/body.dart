@@ -89,14 +89,9 @@ class SubcategoryBody extends HookWidget {
                                     : currentWidth < 600
                                         ? 2
                                         : crossCount,
-                        childAspectRatio:
-                            authBloc.state == const AuthState.authenticated()
-                                ? currentWidth < 400
+                        childAspectRatio: currentWidth < 400
                                     ? .5
-                                    : .6
-                                : currentWidth < 400
-                                    ? .6
-                                    : .7,
+                                    : .6,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 1),
                     itemCount: products.length,

@@ -16,6 +16,7 @@ import '../../../../../core/style/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_card.dart';
 import '../../../../../shared/services/logger/logger_service.dart';
+import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/presentation/screen/bloc/cart_bloc.dart';
 import '../product_card.dart';
 
@@ -45,6 +46,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
   @override
   Widget build(BuildContext context) {
     final cartBloc = context.read<CartBloc>();
+    final authBloc = context.read<AuthBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       width: width,
@@ -131,13 +133,10 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
             ),
           ),
           verticalSpace8,
-          if (product?.price != null)
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                product?.price == null
-                    ? const SizedBox.shrink()
-                    : SizedBox(
+                 SizedBox(
                         width: context.width * .3,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 5),
@@ -164,7 +163,8 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                           color: AppColors.white,
                         ),
                         textColor: AppColors.white,
-                        onPressed: () {
+                        onPressed: authBloc.state == const AuthState.authenticated()
+                            ? () {
                           onCart();
                           if (!((product ?? cartProduct?.product)?.inCart ??
                               true)) {
@@ -179,7 +179,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                           fieldController?.text = '1';
                           cartBloc.add(CartEvent.deleteProductInCart(
                               (product ?? cartProduct!.product)!.id));
-                        },
+                        } :() => router.push(const AuthRoute()),
                         size: MainAxisSize.min,
                         margin: const EdgeInsets.only(
                           right: 10,

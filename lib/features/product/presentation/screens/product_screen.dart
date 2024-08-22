@@ -114,8 +114,6 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                       ),
                     ),
                   ),
-                  authBloc.state == const AuthState.authenticated()
-                      ?
                   Padding(
                     padding: MediaQuery.of(context).viewInsets,
                     child:  ColoredBox(
@@ -237,7 +235,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                     product.leftQuantity != 0) ??
                                     false,
                                 textColor: AppColors.white,
-                                onPressed: () {
+                                onPressed:authBloc.state == const AuthState.authenticated()
+                                    ? () {
                                   if((product ).leftQuantity >=
                                       int.parse(bloc.fieldController.text)) {
                                     bloc.add(const DetailsEvent.addToCart());
@@ -247,7 +246,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                         .showToast('Недостаточно кол-во в складе');
                                     bloc.fieldController.text = (product).leftQuantity.toString();
                                     FocusScope.of(context).unfocus();
-                                  }} ,
+                                  }} :() => router.push(const AuthRoute()),
                                 size: MainAxisSize.min,
                                 padding: const EdgeInsets.symmetric(vertical: 12),
                                 margin: const EdgeInsets.fromLTRB(0, 5, 5, 5),
@@ -258,7 +257,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                         ),
                       ),
                     ),
-                  ) : const SizedBox(),
+                  ),
                   AppCard(
                     width: context.width,
                     fillColor: context.cardColor,
