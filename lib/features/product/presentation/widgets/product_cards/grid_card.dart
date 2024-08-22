@@ -8,7 +8,6 @@ import 'package:kansler/core/constants/kaze_icons.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/product/domain/entities/product.entity.dart';
-
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -88,7 +87,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         AppCard(
                           fillColor: context.background,
                           borderColor: AppColors.grey,
-                          borderRadius: 4,
+                          borderRadius: 0,
                           child: Padding(
                             padding: const EdgeInsets.all(4),
                             child: Text(
@@ -187,7 +186,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         ),
                         padding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 8),
-                        borderRadius: 6,
+                        borderRadius: 0,
                       ),
               ],
             ),

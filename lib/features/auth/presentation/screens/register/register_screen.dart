@@ -7,6 +7,7 @@ import 'package:kansler/features/auth/presentation/screens/register/widgets/head
 
 import '../../../../../app/di.dart';
 import '../../../../../core/constants/spaces.dart';
+import '../../../../../core/widgets/keyboard_escape.dart';
 import 'bloc/register_bloc.dart';
 
 @RoutePage()
@@ -24,25 +25,27 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Stack(
-        children: [
-          Positioned(top: 60, child: AutoLeadingButton()),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                RegisterHeaderWidget(),
-                verticalSpace12,
-                RegisterFormWidget(),
-                verticalSpace12,
-                RegisterActionWidget(),
-              ],
+    return KeyboardEscape(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            const Positioned(top: 60, child: AutoLeadingButton()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: ListView(
+                children: const[
+                  verticalSpace60,
+                  verticalSpace35,
+                  RegisterHeaderWidget(),
+                  verticalSpace35,
+                  RegisterFormWidget(),
+                  verticalSpace12,
+                  RegisterActionWidget(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

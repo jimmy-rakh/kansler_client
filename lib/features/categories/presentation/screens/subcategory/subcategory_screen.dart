@@ -34,8 +34,7 @@ class SubcategoryScreen extends HookWidget {
       child: Scaffold(
         appBar: AppBarWidget(
           preferredSize: Size.fromHeight(category.hasChildren ? 110 : 60),
-          bottomChild:
-              category.hasChildren ? const SubcategoryAppBarBottom() : null,
+          bottomChild: category.hasChildren ? const SubcategoryAppBarBottom() : null,
           bottomSize: const Size(double.maxFinite, 40),
           child: SubcategoryAppBar(category: category),
         ),

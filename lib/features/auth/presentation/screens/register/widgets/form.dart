@@ -31,17 +31,7 @@ class RegisterFormWidget extends HookWidget {
             child: Column(
               children: [
                 AppTextField(
-                  hint: bloc.innController.text.isEmpty
-                      ? 'Введите ФИО'
-                      : 'Введите наименование компании',
-                  fieldController: bloc.nameController,
-                  prefix: const Icon(KazeIcons.profileBold),
-                  hintStyle: context.bodyLarge!.copyWith(
-                    color: context.colorScheme.inverseSurface,
-                  ),
-                ),
-                verticalSpace12,
-                AppTextField(
+                  radius: 0,
                   hint: 'Номер телефона',
                   fieldController: bloc.phoneNumberController,
                   prefix: const Icon(Icons.phone),
@@ -51,9 +41,22 @@ class RegisterFormWidget extends HookWidget {
                   ),
                   readOnly: true,
                 ),
+                verticalSpace12,
+                AppTextField(
+                  radius: 0,
+                  hint: bloc.innController.text.isEmpty
+                      ? 'Введите ФИО'
+                      : 'Введите наименование компании',
+                  fieldController: bloc.nameController,
+                  prefix: const Icon(KazeIcons.profileBold),
+                  hintStyle: context.bodyLarge!.copyWith(
+                    color: context.colorScheme.inverseSurface,
+                  ),
+                ),
                 if (bloc.innController.text.isNotEmpty) ...[
                   verticalSpace12,
                   AppTextField(
+                    radius: 0,
                     hint: 'Ваш ИНН',
                     fieldController: bloc.innController,
                     prefix: const Icon(KazeIcons.profileBold),
@@ -66,6 +69,7 @@ class RegisterFormWidget extends HookWidget {
                 ],
                 verticalSpace12,
                 AppTextField(
+                  radius: 0,
                   hint: 'Введите пароль',
                   prefix: const Icon(KazeIcons.lockBold),
                   hintStyle: context.bodyLarge!.copyWith(
@@ -85,6 +89,7 @@ class RegisterFormWidget extends HookWidget {
                 ),
                 verticalSpace12,
                 AppTextField(
+                  radius: 0,
                   hint: 'Повторно введите пароль',
                   prefix: const Icon(KazeIcons.lockBold),
                   hintStyle: context.bodyLarge!.copyWith(

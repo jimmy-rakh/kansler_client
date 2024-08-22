@@ -90,7 +90,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                             ),
                           ),
                           fillColor: context.cardColor,
-                          borderRadius: 12,
+                          borderRadius: 0,
                         ),
                       ),
                       horizontalSpace16,
@@ -100,7 +100,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                           onPressed: () => router.popForced(search),
                           textColor: context.onPrimary,
                           fillColor: context.primary,
-                          borderRadius: 12,
+                          borderRadius: 0,
                         ),
                       )
                     ],
@@ -113,7 +113,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                   onPressed: () => bloc.add(const FilterEvent.setBaseView()),
                   textColor: context.onPrimary,
                   fillColor: context.primary,
-                  borderRadius: 12,
+                  borderRadius: 0,
                 );
               }
             },

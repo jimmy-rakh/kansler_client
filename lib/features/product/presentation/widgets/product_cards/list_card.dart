@@ -93,7 +93,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                             AppCard(
                               fillColor: context.background,
                               borderColor: AppColors.grey,
-                              borderRadius: 4,
+                              borderRadius: 0,
                               child: Padding(
                                 padding: const EdgeInsets.all(4),
                                 child: Text(
@@ -176,7 +176,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               height: 22,
                                               radius:
                                                   const BorderRadius.horizontal(
-                                                left: Radius.circular(6),
+                                                left: Radius.circular(0),
                                               ),
                                               onTap: decrement,
                                               borderColor: context.background,
@@ -249,7 +249,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               height: 22,
                                               radius:
                                                   const BorderRadius.horizontal(
-                                                right: Radius.circular(6),
+                                                right: Radius.circular(0),
                                               ),
                                               onTap: incremet,
                                               borderColor: context.background,
@@ -308,11 +308,11 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 },
                                 size: MainAxisSize.min,
                                 margin: const EdgeInsets.only(
-                                  right: 10,
+                                  right: 4,
                                 ),
                                 padding: const EdgeInsets.symmetric(
                                     vertical: 8, horizontal: 8),
-                                borderRadius: 6,
+                                borderRadius: 0,
                               ),
                             ],
                           ),

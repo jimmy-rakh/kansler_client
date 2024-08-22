@@ -35,7 +35,7 @@ class RegisterActionWidget extends HookWidget {
             loadingColor: context.onPrimary,
             fillColor: context.primary,
             padding: const EdgeInsets.symmetric(vertical: 12),
-            borderRadius: 8,
+            borderRadius: 0,
             textStyle: context.titleSmall!.copyWith(
               color: context.colorScheme.onPrimary,
             ),

@@ -6,11 +6,6 @@ class LoginHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Kansler',
-      style: context.titleLarge!.copyWith(
-        color: context.primary,
-      ),
-    );
+    return Image.asset("assets/images/logo.png");
   }
 }

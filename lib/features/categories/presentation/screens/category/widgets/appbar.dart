@@ -20,7 +20,7 @@ class CategoriesAppBar extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                 color: context.cardColor,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
               ),
               child: Row(
                 children: [

@@ -23,7 +23,7 @@ class LoginActionWidget extends HookWidget {
           loadingColor: AppColors.white,
           fillColor: context.primary,
           padding: const EdgeInsets.symmetric(vertical: 12),
-          borderRadius: 8,
+          borderRadius: 0,
           textStyle: context.titleSmall!.copyWith(
             color: context.colorScheme.onPrimary,
           ),

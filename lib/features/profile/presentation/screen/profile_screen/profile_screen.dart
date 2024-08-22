@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
-
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -42,7 +41,7 @@ class ProfileScreen extends HookWidget {
             margin: const EdgeInsets.symmetric(horizontal: 16),
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             width: double.maxFinite,
-            borderRadius: 8,
+            borderRadius: 0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -88,7 +87,7 @@ class ProfileScreen extends HookWidget {
                           vertical: 12,
                           horizontal: 24,
                         ),
-                        borderRadius: 8,
+                        borderRadius: 0,
                         onPressed: () => router.push(const AuthRoute()),
                       ),
                     ],
@@ -135,27 +134,7 @@ class ProfileScreen extends HookWidget {
                       padding: const EdgeInsets.symmetric(
                           vertical: 12, horizontal: 16),
                       width: double.maxFinite,
-                      borderRadius: 8,
-                      onTap: () => router.push(
-                        LimitsRoute(id: company.id),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text('Лимит / Бонус'),
-                          Transform.rotate(
-                              angle: 3.2,
-                              child: const Icon(KazeIcons.arrowLeftOutline))
-                        ],
-                      ),
-                    ),
-                    verticalSpace24,
-                    AppCard(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 16),
-                      width: double.maxFinite,
-                      borderRadius: 8,
+                      borderRadius: 0,
                       onTap: () => router.push(DebtRoute(id: company.id)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -168,13 +147,13 @@ class ProfileScreen extends HookWidget {
                       ),
                     )
                   ],
-                  verticalSpace24,
+                  verticalSpace12,
                   AppCard(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
                     padding: const EdgeInsets.symmetric(
                         vertical: 12, horizontal: 16),
                     width: double.maxFinite,
-                    borderRadius: 8,
+                    borderRadius: 0,
                     onTap: () => company.children == true
                         ? router.push(const CompaniesRoute())
                         : router.push(
@@ -185,7 +164,7 @@ class ProfileScreen extends HookWidget {
                       children: [
                         Text(company.children == true
                             ? 'Мои компании'
-                            : 'Адреса (Торговые точки)'),
+                            : 'Адрес'),
                         Transform.rotate(
                             angle: 3.2,
                             child: const Icon(KazeIcons.arrowLeftOutline))
@@ -195,15 +174,15 @@ class ProfileScreen extends HookWidget {
                 ],
               ) ??
               [],
-          verticalSpace16,
+          verticalSpace12,
           if (authBloc.state == const AuthState.authenticated()) ...[
             if (Platform.isIOS) ...[
               AppCard(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.maxFinite,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-                borderRadius: 4,
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                borderRadius: 0,
                 onTap: () => router.push(const SettingsRoute()),
                 fillColor: context.cardColor,
                 child: Row(
@@ -224,7 +203,7 @@ class ProfileScreen extends HookWidget {
               textColor: AppColors.white,
               margin: const EdgeInsets.symmetric(horizontal: 16),
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-              borderRadius: 8,
+              borderRadius: 0,
               onPressed: () => authBloc.add(const AuthEvent.logout()),
               fillColor: AppColors.red,
             ),

@@ -77,9 +77,9 @@ class _CategoryCardState extends State<CategoryCard>
             decoration: BoxDecoration(
                 color: context.cardColor,
                 border: const Border(
-                  bottom:  BorderSide.none,
+                  bottom: BorderSide.none,
                 ),
-                borderRadius: BorderRadius.circular(8)),
+                borderRadius: BorderRadius.circular(0)),
             padding: const EdgeInsets.symmetric(horizontal: 8),
             alignment: Alignment.centerLeft,
             child: Row(
@@ -88,26 +88,32 @@ class _CategoryCardState extends State<CategoryCard>
               children: [
                 Row(
                   children: [
-                    if (widget.showImage && widget.category.imageUrl != null)
+                    if (widget.showImage)
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: CachedNetworkImage(
-                              height: 40,
-                              width: 35,
-                              fit: BoxFit.cover,
-                              memCacheHeight: 100,
-                              memCacheWidth: 100,
-                              imageUrl: NetworkConstants.apiBaseUrl +
-                                  widget.category.imageUrl!),
+                          borderRadius: BorderRadius.circular(0),
+                          child: widget.category.imageUrl == null
+                              ? Image.asset("assets/images/nophoto.png",
+                            height: 40,
+                            width: 35,
+                            fit: BoxFit.cover,
+                          )
+                              : CachedNetworkImage(
+                                  height: 40,
+                                  width: 35,
+                                  fit: BoxFit.cover,
+                                  memCacheHeight: 100,
+                                  memCacheWidth: 100,
+                                  imageUrl: NetworkConstants.apiBaseUrl +
+                                      widget.category.imageUrl!),
                         ),
                       ),
                     SizedBox(
                       width: context.width * .64,
                       child: Text(
                         widget.category.name,
-                        style: const TextStyle(fontSize: 13),
+                        style: const TextStyle(fontSize: 15),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -121,15 +127,9 @@ class _CategoryCardState extends State<CategoryCard>
                     side: BorderSide.none,
                   ),
                 if (widget.isSelected == null)
-                  Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                        color: context.background,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: RotationTransition(
-                      turns: Tween(begin: 0.5, end: 1.0).animate(_controller),
-                      child: const Icon(KazeIcons.arrowLeftOutline),
-                    ),
+                  RotationTransition(
+                    turns: Tween(begin: 0.5, end: 1.0).animate(_controller),
+                    child: const Icon(KazeIcons.arrowLeftOutline),
                   )
               ],
             ),
@@ -156,17 +156,14 @@ class _CategoryCardState extends State<CategoryCard>
                           height: 40,
                           decoration: BoxDecoration(
                               color: context.cardColor,
-                              borderRadius: BorderRadius.circular(8)),
+                              borderRadius: BorderRadius.circular(0)),
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           alignment: Alignment.centerLeft,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                widget.category.children[index].name,
-                                style: context.theme.textTheme.titleSmall,
-                              ),
-                            ],
+                          child: Text(
+                            widget.category.children[index].name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.theme.textTheme.titleSmall,
                           ),
                         ),
                       ),

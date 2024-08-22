@@ -28,14 +28,15 @@ class LoginFormWidget extends HookWidget {
       children: [
         AppTabBar(
           tabController: tabController,
-          tabList: const ['Телефон', 'ИНН'],
+          tabList: const ['Физ. лицо', 'Юр. лицо'],
           indicatorPadding: EdgeInsets.zero,
           labelPadding: const EdgeInsets.symmetric(vertical: 10),
-          mainRadius: 12,
+          mainRadius: 0,
         ),
         verticalSpace16,
         AppTextField(
-          hint: state.tabIndex == 0 ? 'Введите номер' : 'Введите инн',
+          radius: 0,
+          hint: state.tabIndex == 0 ? 'Введите номер телефона' : 'Введите инн',
           fieldController: bloc.valueController,
           focusNode: bloc.loginFocus,
           prefix: const Icon(KazeIcons.profileBold),

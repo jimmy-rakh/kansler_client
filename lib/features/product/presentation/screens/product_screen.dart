@@ -7,7 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
-
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
 import '../../../../core/constants/app_images.dart';
@@ -56,7 +55,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
               padding: const EdgeInsets.all(8),
               child: IconButton.filled(
                 style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(context.cardColor),
+                  backgroundColor: WidgetStatePropertyAll(context.cardColor),
                 ),
                 onPressed: router.popForced,
                 icon: const Icon(KazeIcons.arrowLeftOutline),
@@ -92,14 +91,14 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
               ListView(
                 children: [
                   AppCard(
-                    borderRadius: 8,
+                    borderRadius: 0,
                     fillColor: context.background,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                       child: ClipRRect(
                         borderRadius: const BorderRadius.horizontal(
-                            left: Radius.circular(8),
-                            right: Radius.circular(8)),
+                            left: Radius.circular(0),
+                            right: Radius.circular(0)),
                         child: ColoredBox(
                           color: AppColors.white,
                           child: AspectRatio(
@@ -115,12 +114,157 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                       ),
                     ),
                   ),
+                  authBloc.state == const AuthState.authenticated()
+                      ?
+                  Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child:  ColoredBox(
+                      color: context.background,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(0),
+                            color: context.cardColor,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(20, 5, 0, 5),
+                                child: SizedBox(
+                                  height: 50,
+                                  width: context.width * .72,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ...state.whenOrNull(
+                                        success: (product) => [
+                                          Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
+                                        ],
+                                      ) ??
+                                          [Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')],
+                                      if (state.whenOrNull(
+                                        success: (product) =>
+                                        !product.inCart!,
+                                      ) ??
+                                          true)
+                                        SizedBox(
+                                          child:product.leftQuantity != 0 ? AppCard(
+                                            fillColor: context.background,
+                                            showShadow: false,
+                                            borderRadius: 0,
+                                            padding: const EdgeInsets.all(2),
+                                            child: Row(
+                                              children: [
+                                                AppIcon(
+                                                  KazeIcons.minusOutline,
+                                                  bgColor: context.cardColor,
+                                                  radius:
+                                                  const BorderRadius.horizontal(
+                                                    left: Radius.circular(0),
+                                                  ),
+                                                  onTap: bloc.decrement,
+                                                  borderColor: context.background,
+                                                  padding: const EdgeInsets.all(4),
+                                                ),
+                                                AppTextField(
+                                                  fillColor: context.background,
+                                                  height: 32,
+                                                  width: context.width * .2,
+                                                  radius: 0,
+                                                  contentPadding:
+                                                  const EdgeInsets.all(4),
+                                                  textAlign: TextAlign.center,
+                                                  fieldController:
+                                                  bloc.fieldController,
+                                                  onEditingComplete:
+                                                  bloc.completeEditing,
+                                                  onFieldSubmitted: (value) {
+                                                    if((product ).leftQuantity >=
+                                                        int.parse(bloc.fieldController.text)) {
+                                                      bloc.add(const DetailsEvent.addToCart());
+                                                      FocusScope.of(context).unfocus();
+                                                    }else{
+                                                      router.navigatorKey.currentContext!
+                                                          .showToast('Недостаточно кол-во в складе');
+                                                      bloc.fieldController.text = (product).leftQuantity.toString();
+                                                      FocusScope.of(context).unfocus();
+                                                    }},
+                                                  textInputType:
+                                                  TextInputType.number,
+                                                  textInputFormatter: [
+                                                    FilteringTextInputFormatter
+                                                        .digitsOnly
+                                                  ],
+                                                ),
+                                                AppIcon(
+                                                  KazeIcons.addOutline,
+                                                  bgColor: context.cardColor,
+                                                  radius:
+                                                  const BorderRadius.horizontal(
+                                                    right: Radius.circular(0),
+                                                  ),
+                                                  onTap: bloc.increment,
+                                                  borderColor: context.background,
+                                                  padding: const EdgeInsets.all(4),
+                                                ),
+                                              ],
+                                            ),
+                                          )  : const Text("Нет в наличии",style: TextStyle(color: AppColors.red),),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              AppButton(
+                                animate: true,
+                                width: 50,
+                                height: 50,
+                                fillColor: state.whenOrNull(
+                                  success: (product) => product.inCart!
+                                      ? AppColors.red
+                                      : context.primary,
+                                ),
+                                childAlignment: MainAxisAlignment.start,
+                                text: const Icon(
+                                  KazeIcons.cartOutline,
+                                  color: AppColors.white,
+                                ),
+                                isActive: state.whenOrNull(
+                                    success: (product) =>
+                                    product.leftQuantity != 0) ??
+                                    false,
+                                textColor: AppColors.white,
+                                onPressed: () {
+                                  if((product ).leftQuantity >=
+                                      int.parse(bloc.fieldController.text)) {
+                                    bloc.add(const DetailsEvent.addToCart());
+                                    FocusScope.of(context).unfocus();
+                                  }else{
+                                    router.navigatorKey.currentContext!
+                                        .showToast('Недостаточно кол-во в складе');
+                                    bloc.fieldController.text = (product).leftQuantity.toString();
+                                    FocusScope.of(context).unfocus();
+                                  }} ,
+                                size: MainAxisSize.min,
+                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                margin: const EdgeInsets.fromLTRB(0, 5, 5, 5),
+                                borderRadius: 0,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ) : const SizedBox(),
                   AppCard(
                     width: context.width,
                     fillColor: context.cardColor,
                     padding: const EdgeInsets.only(bottom: 24),
                     margin: const EdgeInsets.all(8),
-                    borderRadius: 8,
+                    borderRadius: 0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -149,7 +293,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                 child: AppCard(
                                   fillColor: context.background,
                                   borderColor: AppColors.grey,
-                                  borderRadius: 6,
+                                  borderRadius: 0,
                                   margin: const EdgeInsets.only(left: 5),
                                   child: Padding(
                                     padding: const EdgeInsets.all(4),
@@ -248,152 +392,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
               ),
             ],
           ),
-          bottomNavigationBar: authBloc.state == const AuthState.authenticated()
-              ?
-            Padding(
-              padding: MediaQuery.of(context).viewInsets,
-              child:  ColoredBox(
-                color: context.background,
-                child: Padding(
-                  padding: const EdgeInsets.all(5),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: context.cardColor,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 0, 20),
-                          child: SizedBox(
-                            height: 50,
-                            width: context.width * .72,
-                            child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                ...state.whenOrNull(
-                                  success: (product) => [
-                                    Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
-                                  ],
-                                ) ??
-                                    [Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')],
-                                if (state.whenOrNull(
-                                  success: (product) =>
-                                  !product.inCart!,
-                                ) ??
-                                    true)
-                                  SizedBox(
-                                    child:product.leftQuantity != 0 ? AppCard(
-                                      fillColor: context.background,
-                                      showShadow: false,
-                                      borderRadius: 8,
-                                      padding: const EdgeInsets.all(2),
-                                      child: Row(
-                                        children: [
-                                          AppIcon(
-                                            KazeIcons.minusOutline,
-                                            bgColor: context.cardColor,
-                                            radius:
-                                            const BorderRadius.horizontal(
-                                              left: Radius.circular(6),
-                                            ),
-                                            onTap: bloc.decrement,
-                                            borderColor: context.background,
-                                            padding: const EdgeInsets.all(4),
-                                          ),
-                                          AppTextField(
-                                            fillColor: context.background,
-                                            height: 32,
-                                            width: context.width * .2,
-                                            radius: 0,
-                                            contentPadding:
-                                            const EdgeInsets.all(4),
-                                            textAlign: TextAlign.center,
-                                            fieldController:
-                                            bloc.fieldController,
-                                            onEditingComplete:
-                                            bloc.completeEditing,
-                                            onFieldSubmitted: (value) {
-                                              if((product ).leftQuantity >=
-                                                  int.parse(bloc.fieldController.text)) {
-                                                bloc.add(const DetailsEvent.addToCart());
-                                                FocusScope.of(context).unfocus();
-                                              }else{
-                                                router.navigatorKey.currentContext!
-                                                    .showToast('Недостаточно кол-во в складе');
-                                                bloc.fieldController.text = (product).leftQuantity.toString();
-                                                FocusScope.of(context).unfocus();
-                                              }},
-                                            textInputType:
-                                            TextInputType.number,
-                                            textInputFormatter: [
-                                              FilteringTextInputFormatter
-                                                  .digitsOnly
-                                            ],
-                                          ),
-                                          AppIcon(
-                                            KazeIcons.addOutline,
-                                            bgColor: context.cardColor,
-                                            radius:
-                                            const BorderRadius.horizontal(
-                                              right: Radius.circular(6),
-                                            ),
-                                            onTap: bloc.increment,
-                                            borderColor: context.background,
-                                            padding: const EdgeInsets.all(4),
-                                          ),
-                                        ],
-                                      ),
-                                    )  : const Text("Нет в наличии",style: TextStyle(color: AppColors.red),),
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        AppButton(
-                          animate: true,
-                          width: 50,
-                          height: 50,
-                          fillColor: state.whenOrNull(
-                            success: (product) => product.inCart!
-                                ? AppColors.red
-                                : context.primary,
-                          ),
-                          childAlignment: MainAxisAlignment.start,
-                          text: const Icon(
-                            KazeIcons.cartOutline,
-                            color: AppColors.white,
-                          ),
-                          isActive: state.whenOrNull(
-                              success: (product) =>
-                              product.leftQuantity != 0) ??
-                              false,
-                          textColor: AppColors.white,
-                          onPressed: () {
-                            if((product ).leftQuantity >=
-                                int.parse(bloc.fieldController.text)) {
-                              bloc.add(const DetailsEvent.addToCart());
-                              FocusScope.of(context).unfocus();
-                            }else{
-                              router.navigatorKey.currentContext!
-                                  .showToast('Недостаточно кол-во в складе');
-                              bloc.fieldController.text = (product).leftQuantity.toString();
-                              FocusScope.of(context).unfocus();
-                            }} ,
-
-                          size: MainAxisSize.min,
-                          padding: const EdgeInsets.symmetric(vertical: 12),
-                          margin: const EdgeInsets.fromLTRB(0, 10, 10, 20),
-                          borderRadius: 8,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ) : const SizedBox(),)
+          )
     );
   }
 

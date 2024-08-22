@@ -38,7 +38,7 @@ class SubcategoryAppBar extends HookWidget {
                       onTap: () => router.push(SearchRoute()),
                       child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(0),
                             color: context.cardColor,
                           ),
                           child: const Padding(
@@ -51,7 +51,7 @@ class SubcategoryAppBar extends HookWidget {
                         bloc.add(const SubcategoryEvent.listTypeToggle()),
                     child: Container(
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(0),
                         color: context.cardColor,
                       ),
                       child: Padding(

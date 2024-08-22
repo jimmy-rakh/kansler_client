@@ -35,7 +35,7 @@ class SubcategoryAppBarBottom extends HookWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (_, index) => AppChip(
             label: categories[index].name,
-            radius: 6,
+            radius: 0,
             value: categories[index].id == selectedCategory?.id,
             disabledColor: context.cardColor,
             onTap: () =>

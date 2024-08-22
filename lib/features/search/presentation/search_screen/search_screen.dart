@@ -62,7 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Container(
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
                 color: context.cardColor,
               ),
               child: const Icon(
@@ -76,7 +76,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Container(
               padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(0),
                 color: context.cardColor,
               ),
               child: Icon(state.whenOrNull(
@@ -88,23 +88,20 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
           horizontalSpace12
         ],
-        child: Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: AppTextField(
-            fieldController: bloc.fieldController,
-            fillColor: context.cardColor,
-            radius: 8,
-            prefix: const Icon(KazeIcons.searchOutline),
-            prefixPadding: const EdgeInsets.symmetric(horizontal: 8),
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
-            hint: 'common.search'.tr(),
-            autoFocus: true,
-            hintStyle: context.theme.textTheme.bodyMedium,
-            style: context.theme.textTheme.bodyMedium,
-            textInputType: TextInputType.text,
-            onChange: (p0) => bloc.add(const SearchEvent.search()),
-          ),
+        child: AppTextField(
+          fieldController: bloc.fieldController,
+          fillColor: context.cardColor,
+          radius: 0,
+          prefix: const Icon(KazeIcons.searchOutline),
+          prefixPadding: const EdgeInsets.symmetric(horizontal: 8),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+          hint: 'common.search'.tr(),
+          autoFocus: true,
+          hintStyle: context.theme.textTheme.bodyMedium,
+          style: context.theme.textTheme.bodyMedium,
+          textInputType: TextInputType.text,
+          onChange: (p0) => bloc.add(const SearchEvent.search()),
         ),
       ),
       body: state.when(
