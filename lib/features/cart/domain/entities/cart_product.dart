@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../../product/domain/entities/product.entity.dart';
-
 part 'cart_product.freezed.dart';
 
 @freezed

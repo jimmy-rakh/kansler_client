@@ -54,7 +54,7 @@ class ProfileScreen extends HookWidget {
                                   style: context.titleSmall,
                                 ),
                                 verticalSpace5,
-                                Text(
+                                if (company.inn != null) Text(
                                   "Инн : ${company.inn}",
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
@@ -64,10 +64,6 @@ class ProfileScreen extends HookWidget {
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                                 verticalSpace5,
-                                Text(
-                                  "${company.region}",
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
                               ],
                             ) ??
                             []
@@ -129,23 +125,24 @@ class ProfileScreen extends HookWidget {
                     ),
                   if (company.children == false) ...[
                     verticalSpace24,
-                    AppCard(
-                      margin: const EdgeInsets.symmetric(horizontal: 16),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 12, horizontal: 16),
-                      width: double.maxFinite,
-                      borderRadius: 0,
-                      onTap: () => router.push(DebtRoute(id: company.id)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text('Долг / История оплат'),
-                          Transform.rotate(
-                              angle: 3.2,
-                              child: const Icon(KazeIcons.arrowLeftOutline))
-                        ],
-                      ),
-                    )
+                    if (company.inn != null)
+                      AppCard(
+                        margin: const EdgeInsets.symmetric(horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 16),
+                        width: double.maxFinite,
+                        borderRadius: 0,
+                        onTap: () => router.push(DebtRoute(id: company.id)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text('Долг / История оплат'),
+                            Transform.rotate(
+                                angle: 3.2,
+                                child: const Icon(KazeIcons.arrowLeftOutline))
+                          ],
+                        ),
+                      )
                   ],
                   verticalSpace12,
                   AppCard(
