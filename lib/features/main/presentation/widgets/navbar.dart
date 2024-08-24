@@ -32,7 +32,7 @@ class BottomBar extends HookWidget {
         ),
         child: Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(0),
               color: Colors.transparent,
               boxShadow: [
                 BoxShadow(
@@ -43,8 +43,8 @@ class BottomBar extends HookWidget {
             ),
             child: ClipRRect(
               borderRadius: const BorderRadius.only(
-                topRight: Radius.circular(16),
-                topLeft: Radius.circular(16),
+                topRight: Radius.circular(0),
+                topLeft: Radius.circular(0),
               ),
               child: BottomNavigationBar(
                 backgroundColor: context.theme.cardColor,

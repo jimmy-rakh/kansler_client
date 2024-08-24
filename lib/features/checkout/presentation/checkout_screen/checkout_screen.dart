@@ -51,7 +51,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
         children: [
           AppCard(
             width: double.maxFinite,
-            borderRadius: 12,
+            borderRadius: 0,
             padding: const EdgeInsets.symmetric(vertical: 12),
             alignment: Alignment.center,
             onTap: () => companyState.whenOrNull(
@@ -63,11 +63,12 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                   ready: (chosedCompanies) => Column(
                     children: [
                       Text(
-                        'Выбранная компания',
+                        'Данные клиента',
                         style: context.titleSmall,
                       ),
                       Text(chosedCompanies.fullName ?? chosedCompanies.name!),
                       verticalSpace5,
+                      if(chosedCompanies.inn !=null)
                       Text(chosedCompanies.inn!)
                     ],
                   ),
@@ -78,13 +79,16 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
         ],
       ),
       bottomNavigationBar: AppCard(
-        padding: const EdgeInsets.fromLTRB(5, 5, 5, 32),
+        fillColor: Colors.transparent,
+        height: 60,
+        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: AppButton(
-          padding: const EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           fillColor: context.primary,
           text: 'Оформить',
+          textStyle: const TextStyle(fontSize: 19),
           textColor: Colors.white,
-          borderRadius: 12,
+          borderRadius: 0,
           isActive: true,
           onPressed: () => bloc.add(const CheckoutEvent.checkOut()),
         ),

@@ -7,7 +7,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
-
 import '../../../../core/constants/app_illustrations.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/app_button.dart';
@@ -92,12 +91,12 @@ class CartScreen extends HookWidget {
             return products.isEmpty
                 ? const SizedBox()
                 : Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.fromLTRB(0,5,0,5),
                     child: ColoredBox(
                       color: context.background,
                       child: AppCard(
-                        padding: const EdgeInsets.all(16),
-                        borderRadius: BorderRadius.circular(12),
+                        padding: const EdgeInsets.all(10),
+                        borderRadius: BorderRadius.circular(0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -114,7 +113,7 @@ class CartScreen extends HookWidget {
                               textColor: context.onPrimary,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),
-                              borderRadius: 8,
+                              borderRadius: 0,
                               fillColor: context.primary,
                               onPressed: () =>
                                   bloc.add(const CartEvent.toCheckout()),
