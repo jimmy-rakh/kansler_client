@@ -140,7 +140,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         width: context.width * .3,
                         child: Padding(
                           padding: const EdgeInsets.only(left: 5),
-                          child: Text(
+                          child: product?.price == null ? const SizedBox() : Text(
                             '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,

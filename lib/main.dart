@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/shared/services/logger/logger_service.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:path_provider/path_provider.dart';
 import 'app/app.dart';
 import 'app/di.dart';
@@ -87,7 +90,7 @@ void main() async {
             injector: () => getIt.get,
             builderCondition: (state) => state != null,
             listenerCondition: (state) => state != null,
-            child: const MirelApp(),
+            child: const KanslerApp(),
             //
           ),
         ),
@@ -97,7 +100,16 @@ void main() async {
 }
 
 Future<void> _setUpHive() async {
-  Hive.init((await getApplicationDocumentsDirectory()).path);
+
+//here
+    if (kIsWeb) {
+      String path = "/assets/db";
+      Hive.init(path);
+    } else {
+      Directory directory = await getApplicationDocumentsDirectory();
+      Hive.init(directory.path);
+    }
+
 
   Hive.registerAdapter(AuthStatusAdapter());
 

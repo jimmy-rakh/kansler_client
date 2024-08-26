@@ -28,7 +28,7 @@ class LatestWidget extends HookWidget {
     return Column(
       children: [
         TitleSectionWidget(
-          name: 'common.day_hits'.tr(),
+          name: 'common.latest'.tr(),
           onTap: () {},
         ),
         SizedBox(

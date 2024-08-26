@@ -5,7 +5,6 @@ import 'package:kansler/features/home/presentation/screen/widgets/discounts.dart
 import 'package:kansler/features/home/presentation/screen/widgets/hits.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/latest.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/popular.dart';
-
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../../core/widgets/keyboard_escape.dart';
