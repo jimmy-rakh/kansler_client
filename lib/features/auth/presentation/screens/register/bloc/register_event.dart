@@ -6,6 +6,8 @@ class RegisterEvent with _$RegisterEvent {
     String requestId,
     String phone,
     String? inn,
+    AddressRequest? address,
+    int? addressId,
   ) = _Init;
   const factory RegisterEvent.register() = _Register;
   const factory RegisterEvent.checkInn() = _CheckInn;

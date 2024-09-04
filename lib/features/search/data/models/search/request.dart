@@ -16,7 +16,7 @@ class SearchRequest with _$SearchRequest {
     @Default([]) List<int> categories,
     int? priceFrom,
     int? priceTo,
-    required List<String> orderBy,
+    required String orderBy,
   }) = _SearchRequest;
 
   factory SearchRequest.fromEntity(SearchEntity entity) {

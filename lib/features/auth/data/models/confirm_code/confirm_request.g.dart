@@ -7,8 +7,17 @@ part of 'confirm_request.dart';
 // **************************************************************************
 
 Map<String, dynamic> _$$ConfirmRequestImplToJson(
-        _$ConfirmRequestImpl instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-      'use_password': instance.usePassword,
-    };
+    _$ConfirmRequestImpl instance) {
+  final val = <String, dynamic>{
+    'value': instance.value,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('username', instance.username);
+  return val;
+}

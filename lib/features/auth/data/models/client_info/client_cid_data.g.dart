@@ -8,7 +8,7 @@ part of 'client_cid_data.dart';
 
 _$ClientCidDataImpl _$$ClientCidDataImplFromJson(Map<String, dynamic> json) =>
     _$ClientCidDataImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       cid: json['cid'] as String,
     );
 

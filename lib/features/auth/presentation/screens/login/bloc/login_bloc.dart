@@ -4,11 +4,16 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/enums/client_type.dart';
 import 'package:kansler/features/auth/data/models/auth/request.dart';
+import 'package:kansler/features/auth/data/models/client_info/client_adress_dto.dart';
+import 'package:kansler/features/auth/data/models/client_info/client_info_response.dart';
 import 'package:kansler/features/auth/data/models/confirm_code/confirm_request.dart';
+import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/auth/data/models/send_code/request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
+import 'package:kansler/features/auth/presentation/sheets/company_info/company_info_sheet.dart';
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code/confirm_code_bloc.dart';
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code_sheet.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/error/failure.dart';
@@ -35,6 +40,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   TextEditingController valueController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
   late TextEditingController passController;
   final loginFocus = FocusNode();
 
@@ -43,11 +49,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _onLogIn(_Login event, Emitter<LoginState> emit) async {
     emit(state.copyWith(isBusy: true));
+    ClientAdressDto? address;
 
     if (state.hasPass) {
       final request = ConfirmRequest(
         value: passController.text,
-        usePassword: true,
+        username: usernameController.text,
         requestId: state.requestId!,
       );
 
@@ -58,53 +65,76 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await _setAuthTokenUseCase.call(r.deviceToken);
           authBloc.add(const AuthEvent.checkStatus());
           router.popUntilRoot();
+          return;
         } catch (e) {
           emit(state.copyWith(isBusy: false));
         }
       });
     }
 
-    final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
+    if (state.tabIndex == 1 && state.addressCid == null) {
+      final info = await getInfo();
 
-    final request = AuthRequest(
-      value: valueController.text,
-      clientType: ClientType.values[state.tabIndex],
-      fcmToken: 'fcmTokåen',
-      device: deviceInfo,
-    );
+      if (info?.deliveryaddressSet?.isNotEmpty ?? false) {
+        address = await router.showSheet(CompanyInfoSheet(clientData: info!))
+            as ClientAdressDto?;
+        emit(state.copyWith(addressCid: address?.cid,addressId: address?.id,isBusy: false));
+      }
+    }
 
-    final res = await _authRepository.authentification(request);
+    if (state.requestId == null) {
+      final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
 
-    res.fold(
-      (l) => emit(state.copyWith(
-        isBusy: false,
-        error: (l as ServerFailure).message,
-      )),
-      (r) async {
-        try {
-          emit(state.copyWith(
-            isBusy: false,
-            requestId: r.requestId,
-            hasPass: r.hasPass,
-            isExist: r.isExists,
-          ));
+      final request = AuthRequest(
+        value: address?.cid.toString() ?? valueController.text,
+        clientType: ClientType.values[state.tabIndex],
+        fcmToken: 'fcmTokåen',
+        device: deviceInfo,
+      );
+      final res = await _authRepository.authentification(request);
 
-          if (!r.hasPass &&
-              state.tabIndex == 1 &&
-              phoneController.text.isEmpty) {
-            return;
+      res.fold(
+        (l) => emit(state.copyWith(
+          isBusy: false,
+          error: (l as ServerFailure).message,
+        )),
+        (r) async {
+          try {
+            emit(state.copyWith(
+              isBusy: false,
+              requestId: r.requestId,
+              hasPass: r.hasPass,
+              isExist: r.isExists,
+            ));
+
+            if (!r.hasPass &&
+                state.tabIndex == 1 &&
+                phoneController.text.isEmpty) {
+              return;
+            }
+
+            if (r.hasPass) {
+              passController = TextEditingController();
+              return;
+            }
+          } catch (e) {
+            emit(state.copyWith(error: e.toString()));
           }
+        },
+      );
+    }
 
-          if (r.hasPass) {
-            passController = TextEditingController();
-            return;
-          }
+    if (phoneController.text.isNotEmpty) _sendCode();
 
-          _sendCode();
-        } catch (e) {
-          emit(state.copyWith(error: e.toString()));
-        }
-      },
+    emit(state.copyWith(isBusy: false));
+  }
+
+  Future<ClientInfoResponse?> getInfo() async {
+    final res = await _authRepository.clientInfo(valueController.text);
+
+    return res.fold(
+      (l) => null,
+      (r) => r,
     );
   }
 
@@ -122,13 +152,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (valueController.text.isNotEmpty) {
       valueController = TextEditingController();
     }
+    phoneController = TextEditingController();
+    usernameController = TextEditingController();
 
     loginFocus.unfocus();
 
-    emit(state.copyWith(tabIndex: event.index, isExist: true, hasPass: false));
+    emit(state.copyWith(
+      tabIndex: event.index,
+      requestId: null,
+      isExist: true,
+      hasPass: false,
+    ));
   }
 
   void _sendCode() async {
+    AddressRequest? address;
+
     final request = SendCodeRequest(
       phoneNumber: phoneController.text.isEmpty
           ? valueController.text
@@ -155,6 +194,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           false;
 
       if (confirmed) {
+        if (state.addressCid == null) {
+          address = await _showMap();
+
+          if (address == null) {
+            return;
+          }
+        }
         router.push(
           RegisterRoute(
             phone: state.tabIndex == 0
@@ -162,9 +208,27 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                 : phoneController.text,
             requestId: state.requestId!,
             inn: state.tabIndex == 0 ? null : valueController.text,
+            address: address,
+            addressId: state.addressId,
           ),
         );
       }
     });
+  }
+
+  Future<AddressRequest?> _showMap() async {
+    final granted = await Permission.location.isGranted;
+
+    print(granted);
+
+    if (!granted) {
+      final res = await Permission.locationWhenInUse.request();
+
+      if (res != PermissionStatus.granted) return null;
+    }
+
+    final res = await router.push(MapRoute()) as AddressRequest?;
+
+    return res;
   }
 }

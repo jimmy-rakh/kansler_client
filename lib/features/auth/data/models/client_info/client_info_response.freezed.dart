@@ -20,11 +20,12 @@ ClientInfoResponse _$ClientInfoResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClientInfoResponse {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   List<String>? get phoneNumbers => throw _privateConstructorUsedError;
-  ClientCidData get parent => throw _privateConstructorUsedError;
-  ClientAdressDto? get deliveryaddressSet => throw _privateConstructorUsedError;
+  ClientCidData? get parent => throw _privateConstructorUsedError;
+  List<ClientAdressDto>? get deliveryaddressSet =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,14 +40,13 @@ abstract class $ClientInfoResponseCopyWith<$Res> {
       _$ClientInfoResponseCopyWithImpl<$Res, ClientInfoResponse>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String name,
       List<String>? phoneNumbers,
-      ClientCidData parent,
-      ClientAdressDto? deliveryaddressSet});
+      ClientCidData? parent,
+      List<ClientAdressDto>? deliveryaddressSet});
 
-  $ClientCidDataCopyWith<$Res> get parent;
-  $ClientAdressDtoCopyWith<$Res>? get deliveryaddressSet;
+  $ClientCidDataCopyWith<$Res>? get parent;
 }
 
 /// @nodoc
@@ -62,17 +62,17 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? phoneNumbers = freezed,
-    Object? parent = null,
+    Object? parent = freezed,
     Object? deliveryaddressSet = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -81,34 +81,26 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
           ? _value.phoneNumbers
           : phoneNumbers // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      parent: null == parent
+      parent: freezed == parent
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
-              as ClientCidData,
+              as ClientCidData?,
       deliveryaddressSet: freezed == deliveryaddressSet
           ? _value.deliveryaddressSet
           : deliveryaddressSet // ignore: cast_nullable_to_non_nullable
-              as ClientAdressDto?,
+              as List<ClientAdressDto>?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $ClientCidDataCopyWith<$Res> get parent {
-    return $ClientCidDataCopyWith<$Res>(_value.parent, (value) {
-      return _then(_value.copyWith(parent: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ClientAdressDtoCopyWith<$Res>? get deliveryaddressSet {
-    if (_value.deliveryaddressSet == null) {
+  $ClientCidDataCopyWith<$Res>? get parent {
+    if (_value.parent == null) {
       return null;
     }
 
-    return $ClientAdressDtoCopyWith<$Res>(_value.deliveryaddressSet!, (value) {
-      return _then(_value.copyWith(deliveryaddressSet: value) as $Val);
+    return $ClientCidDataCopyWith<$Res>(_value.parent!, (value) {
+      return _then(_value.copyWith(parent: value) as $Val);
     });
   }
 }
@@ -122,16 +114,14 @@ abstract class _$$ClientInfoResponseImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String name,
       List<String>? phoneNumbers,
-      ClientCidData parent,
-      ClientAdressDto? deliveryaddressSet});
+      ClientCidData? parent,
+      List<ClientAdressDto>? deliveryaddressSet});
 
   @override
-  $ClientCidDataCopyWith<$Res> get parent;
-  @override
-  $ClientAdressDtoCopyWith<$Res>? get deliveryaddressSet;
+  $ClientCidDataCopyWith<$Res>? get parent;
 }
 
 /// @nodoc
@@ -145,17 +135,17 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = null,
     Object? phoneNumbers = freezed,
-    Object? parent = null,
+    Object? parent = freezed,
     Object? deliveryaddressSet = freezed,
   }) {
     return _then(_$ClientInfoResponseImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -164,14 +154,14 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
           ? _value._phoneNumbers
           : phoneNumbers // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      parent: null == parent
+      parent: freezed == parent
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
-              as ClientCidData,
+              as ClientCidData?,
       deliveryaddressSet: freezed == deliveryaddressSet
-          ? _value.deliveryaddressSet
+          ? _value._deliveryaddressSet
           : deliveryaddressSet // ignore: cast_nullable_to_non_nullable
-              as ClientAdressDto?,
+              as List<ClientAdressDto>?,
     ));
   }
 }
@@ -180,18 +170,19 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientInfoResponseImpl implements _ClientInfoResponse {
   _$ClientInfoResponseImpl(
-      {required this.id,
+      {this.id,
       required this.name,
       final List<String>? phoneNumbers,
-      required this.parent,
-      this.deliveryaddressSet})
-      : _phoneNumbers = phoneNumbers;
+      this.parent,
+      final List<ClientAdressDto>? deliveryaddressSet})
+      : _phoneNumbers = phoneNumbers,
+        _deliveryaddressSet = deliveryaddressSet;
 
   factory _$ClientInfoResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientInfoResponseImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String name;
   final List<String>? _phoneNumbers;
@@ -205,9 +196,17 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
   }
 
   @override
-  final ClientCidData parent;
+  final ClientCidData? parent;
+  final List<ClientAdressDto>? _deliveryaddressSet;
   @override
-  final ClientAdressDto? deliveryaddressSet;
+  List<ClientAdressDto>? get deliveryaddressSet {
+    final value = _deliveryaddressSet;
+    if (value == null) return null;
+    if (_deliveryaddressSet is EqualUnmodifiableListView)
+      return _deliveryaddressSet;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
@@ -224,8 +223,8 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
             const DeepCollectionEquality()
                 .equals(other._phoneNumbers, _phoneNumbers) &&
             (identical(other.parent, parent) || other.parent == parent) &&
-            (identical(other.deliveryaddressSet, deliveryaddressSet) ||
-                other.deliveryaddressSet == deliveryaddressSet));
+            const DeepCollectionEquality()
+                .equals(other._deliveryaddressSet, _deliveryaddressSet));
   }
 
   @JsonKey(ignore: true)
@@ -236,7 +235,7 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
       name,
       const DeepCollectionEquality().hash(_phoneNumbers),
       parent,
-      deliveryaddressSet);
+      const DeepCollectionEquality().hash(_deliveryaddressSet));
 
   @JsonKey(ignore: true)
   @override
@@ -255,25 +254,26 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
 
 abstract class _ClientInfoResponse implements ClientInfoResponse {
   factory _ClientInfoResponse(
-      {required final int id,
-      required final String name,
-      final List<String>? phoneNumbers,
-      required final ClientCidData parent,
-      final ClientAdressDto? deliveryaddressSet}) = _$ClientInfoResponseImpl;
+          {final int? id,
+          required final String name,
+          final List<String>? phoneNumbers,
+          final ClientCidData? parent,
+          final List<ClientAdressDto>? deliveryaddressSet}) =
+      _$ClientInfoResponseImpl;
 
   factory _ClientInfoResponse.fromJson(Map<String, dynamic> json) =
       _$ClientInfoResponseImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get name;
   @override
   List<String>? get phoneNumbers;
   @override
-  ClientCidData get parent;
+  ClientCidData? get parent;
   @override
-  ClientAdressDto? get deliveryaddressSet;
+  List<ClientAdressDto>? get deliveryaddressSet;
   @override
   @JsonKey(ignore: true)
   _$$ClientInfoResponseImplCopyWith<_$ClientInfoResponseImpl> get copyWith =>

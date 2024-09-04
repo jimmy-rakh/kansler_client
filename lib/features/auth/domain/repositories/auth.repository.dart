@@ -14,7 +14,7 @@ abstract class AuthRepository {
 
   Future<Either<Failure, ConfirmResponse>> confirmCode(ConfirmRequest request);
 
-  Future<Either<Failure, ClientInfoResponse>> clientInfo(String requestId);
+  Future<Either<Failure, ClientInfoResponse>> clientInfo(String inn);
 
   Future<Either<Failure, ConfirmResponse>> register(RegisterRequest request);
 

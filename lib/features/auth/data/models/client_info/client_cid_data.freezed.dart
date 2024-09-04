@@ -20,7 +20,7 @@ ClientCidData _$ClientCidDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClientCidData {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get cid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $ClientCidDataCopyWith<$Res> {
           ClientCidData value, $Res Function(ClientCidData) then) =
       _$ClientCidDataCopyWithImpl<$Res, ClientCidData>;
   @useResult
-  $Res call({int id, String cid});
+  $Res call({int? id, String cid});
 }
 
 /// @nodoc
@@ -51,14 +51,14 @@ class _$ClientCidDataCopyWithImpl<$Res, $Val extends ClientCidData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? cid = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       cid: null == cid
           ? _value.cid
           : cid // ignore: cast_nullable_to_non_nullable
@@ -75,7 +75,7 @@ abstract class _$$ClientCidDataImplCopyWith<$Res>
       __$$ClientCidDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String cid});
+  $Res call({int? id, String cid});
 }
 
 /// @nodoc
@@ -89,14 +89,14 @@ class __$$ClientCidDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? cid = null,
   }) {
     return _then(_$ClientCidDataImpl(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       cid: null == cid
           ? _value.cid
           : cid // ignore: cast_nullable_to_non_nullable
@@ -108,13 +108,13 @@ class __$$ClientCidDataImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClientCidDataImpl implements _ClientCidData {
-  _$ClientCidDataImpl({required this.id, required this.cid});
+  _$ClientCidDataImpl({this.id, required this.cid});
 
   factory _$ClientCidDataImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientCidDataImplFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String cid;
 
@@ -151,14 +151,14 @@ class _$ClientCidDataImpl implements _ClientCidData {
 }
 
 abstract class _ClientCidData implements ClientCidData {
-  factory _ClientCidData({required final int id, required final String cid}) =
+  factory _ClientCidData({final int? id, required final String cid}) =
       _$ClientCidDataImpl;
 
   factory _ClientCidData.fromJson(Map<String, dynamic> json) =
       _$ClientCidDataImpl.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String get cid;
   @override

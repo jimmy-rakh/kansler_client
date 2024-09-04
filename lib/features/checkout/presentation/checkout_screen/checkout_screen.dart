@@ -4,15 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/product/presentation/widgets/product_card.dart';
 import '../../../../app/di.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../cart/presentation/screen/bloc/cart_bloc.dart';
-import '../../../profile/presentation/screen/profile/profile_bloc.dart';
 import 'bloc/checkout_bloc.dart';
-import 'widgets/products.dart';
 
 @RoutePage()
 class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
@@ -22,22 +21,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     final bloc = context.read<CheckoutBloc>();
     final cartBloc = context.read<CartBloc>();
-    final state = useBlocBuilder(bloc);
-
-    final companyBloc = context.read<ProfileBloc>();
-    final companyState = useBlocBuilder(companyBloc);
-
-    useEffect(() {
-      if (companyState.whenOrNull(
-            ready: (company) => !company.children!,
-          ) ??
-          false) {
-        bloc.add(CheckoutEvent.chooseCompany(
-            company: companyState.whenOrNull(ready: (company) => company)));
-      }
-
-      return;
-    }, const []);
+    final cartState = useBlocBuilder(cartBloc);
 
     return Scaffold(
       appBar: const AppBarWidget(
@@ -45,38 +29,22 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
         centerTitle: true,
         child: Text('Оформление'),
       ),
-      body: ListView(
+      body: ListView.separated(
+        padding: const EdgeInsets.all(16),
         controller: cartBloc.checkoutController,
-        padding: const EdgeInsets.fromLTRB(16, 25, 16, 64),
-        children: [
-          AppCard(
-            width: double.maxFinite,
-            borderRadius: 0,
-            padding: const EdgeInsets.symmetric(vertical: 12),
-            alignment: Alignment.center,
-            onTap: () => companyState.whenOrNull(
-              ready: (company) => company.children ?? false
-                  ? bloc.add(const CheckoutEvent.chooseCompany())
-                  : null,
-            ),
-            child: state.whenOrNull(
-                  ready: (chosedCompanies) => Column(
-                    children: [
-                      Text(
-                        'Данные клиента',
-                        style: context.titleSmall,
-                      ),
-                      Text(chosedCompanies.fullName ?? chosedCompanies.name!),
-                      verticalSpace5,
-                      if(chosedCompanies.inn !=null)
-                      Text(chosedCompanies.inn!)
-                    ],
-                  ),
-                ) ??
-                const Text('Выберите компанию'),
+        itemBuilder: (context, index) => ProductCard.list(
+          cartProduct: cartState.whenOrNull(
+            ready: (products, price, isMoreLoading) => products[index],
           ),
-          const CheckoutProducts()
-        ],
+          fieldController: TextEditingController(),
+          showActions: false,
+          onPressed: () {},
+          onCart: () {},
+        ),
+        separatorBuilder: (context, index) => verticalSpace12,
+        itemCount: cartState.whenOrNull(
+                ready: (products, price, isMoreLoading) => products.length) ??
+            0,
       ),
       bottomNavigationBar: AppCard(
         fillColor: Colors.transparent,

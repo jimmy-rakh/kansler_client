@@ -5,7 +5,7 @@ class SearchEntity {
   final List<int> categories;
   final int? priceFrom;
   final int? priceTo;
-  final List<String> orderBy;
+  final String orderBy;
   final int pageNumber;
 
   SearchEntity({
@@ -15,7 +15,7 @@ class SearchEntity {
     this.categories = const [],
     this.priceFrom,
     this.priceTo,
-    this.orderBy = const ['created_at'],
+    this.orderBy = 'created_at',
     this.pageNumber = 1,
   });
 
@@ -26,7 +26,7 @@ class SearchEntity {
     List<int>? categories,
     int? priceFrom,
     int? priceTo,
-    List<String>? orderBy,
+    String? orderBy,
     int? pageNumber,
   }) =>
       SearchEntity(

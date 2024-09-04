@@ -62,6 +62,16 @@ class LoginFormWidget extends HookWidget {
         if (state.hasPass) ...[
           verticalSpace12,
           AppTextField(
+            radius: 0,
+            hint: 'Введите логин',
+            fieldController: bloc.usernameController,
+            prefix: const Icon(KazeIcons.profileBold),
+            hintStyle: context.bodyLarge!.copyWith(
+              color: context.colorScheme.inverseSurface,
+            ),
+          ),
+          verticalSpace12,
+          AppTextField(
             hint: 'Введите пароль',
             fieldController: bloc.passController,
             prefix: const Icon(KazeIcons.lockBold),

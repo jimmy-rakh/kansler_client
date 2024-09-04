@@ -6,7 +6,7 @@ part 'client_cid_data.g.dart';
 @freezed
 class ClientCidData with _$ClientCidData {
   factory ClientCidData({
-    required int id,
+    int? id,
     required String cid,
   }) = _ClientCidData;
 

@@ -23,6 +23,8 @@ mixin _$LoginState {
   dynamic get hasPass => throw _privateConstructorUsedError;
   dynamic get isExist => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
+  String? get addressCid => throw _privateConstructorUsedError;
+  int? get addressId => throw _privateConstructorUsedError;
   String? get requestId => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
@@ -45,6 +47,8 @@ abstract class $LoginStateCopyWith<$Res> {
       dynamic hasPass,
       dynamic isExist,
       int tabIndex,
+      String? addressCid,
+      int? addressId,
       String? requestId,
       String? error});
 }
@@ -69,6 +73,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? hasPass = freezed,
     Object? isExist = freezed,
     Object? tabIndex = null,
+    Object? addressCid = freezed,
+    Object? addressId = freezed,
     Object? requestId = freezed,
     Object? error = freezed,
   }) {
@@ -101,6 +107,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      addressCid: freezed == addressCid
+          ? _value.addressCid
+          : addressCid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressId: freezed == addressId
+          ? _value.addressId
+          : addressId // ignore: cast_nullable_to_non_nullable
+              as int?,
       requestId: freezed == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
@@ -129,6 +143,8 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       dynamic hasPass,
       dynamic isExist,
       int tabIndex,
+      String? addressCid,
+      int? addressId,
       String? requestId,
       String? error});
 }
@@ -151,6 +167,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? hasPass = freezed,
     Object? isExist = freezed,
     Object? tabIndex = null,
+    Object? addressCid = freezed,
+    Object? addressId = freezed,
     Object? requestId = freezed,
     Object? error = freezed,
   }) {
@@ -168,6 +186,14 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      addressCid: freezed == addressCid
+          ? _value.addressCid
+          : addressCid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      addressId: freezed == addressId
+          ? _value.addressId
+          : addressId // ignore: cast_nullable_to_non_nullable
+              as int?,
       requestId: freezed == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
@@ -191,6 +217,8 @@ class _$LoginStateImpl implements _LoginState {
       this.hasPass = false,
       this.isExist = true,
       this.tabIndex = 0,
+      this.addressCid,
+      this.addressId,
       this.requestId,
       this.error});
 
@@ -216,13 +244,17 @@ class _$LoginStateImpl implements _LoginState {
   @JsonKey()
   final int tabIndex;
   @override
+  final String? addressCid;
+  @override
+  final int? addressId;
+  @override
   final String? requestId;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, hasPass: $hasPass, isExist: $isExist, tabIndex: $tabIndex, requestId: $requestId, error: $error)';
+    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, hasPass: $hasPass, isExist: $isExist, tabIndex: $tabIndex, addressCid: $addressCid, addressId: $addressId, requestId: $requestId, error: $error)';
   }
 
   @override
@@ -238,6 +270,10 @@ class _$LoginStateImpl implements _LoginState {
             const DeepCollectionEquality().equals(other.isExist, isExist) &&
             (identical(other.tabIndex, tabIndex) ||
                 other.tabIndex == tabIndex) &&
+            (identical(other.addressCid, addressCid) ||
+                other.addressCid == addressCid) &&
+            (identical(other.addressId, addressId) ||
+                other.addressId == addressId) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
             (identical(other.error, error) || other.error == error));
@@ -253,6 +289,8 @@ class _$LoginStateImpl implements _LoginState {
       const DeepCollectionEquality().hash(hasPass),
       const DeepCollectionEquality().hash(isExist),
       tabIndex,
+      addressCid,
+      addressId,
       requestId,
       error);
 
@@ -272,6 +310,8 @@ abstract class _LoginState implements LoginState {
       final dynamic hasPass,
       final dynamic isExist,
       final int tabIndex,
+      final String? addressCid,
+      final int? addressId,
       final String? requestId,
       final String? error}) = _$LoginStateImpl;
 
@@ -289,6 +329,10 @@ abstract class _LoginState implements LoginState {
   dynamic get isExist;
   @override
   int get tabIndex;
+  @override
+  String? get addressCid;
+  @override
+  int? get addressId;
   @override
   String? get requestId;
   @override

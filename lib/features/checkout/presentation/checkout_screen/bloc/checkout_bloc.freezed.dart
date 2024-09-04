@@ -324,44 +324,32 @@ abstract class _Ready implements CheckoutState {
 mixin _$CheckoutEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getOrderProducts,
-    required TResult Function(CompanyEntity? company) chooseCompany,
     required TResult Function() checkOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrderProducts,
-    TResult? Function(CompanyEntity? company)? chooseCompany,
     TResult? Function()? checkOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrderProducts,
-    TResult Function(CompanyEntity? company)? chooseCompany,
     TResult Function()? checkOut,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrderProducts value) getOrderProducts,
-    required TResult Function(_ChooseCompany value) chooseCompany,
     required TResult Function(_Checkout value) checkOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrderProducts value)? getOrderProducts,
-    TResult? Function(_ChooseCompany value)? chooseCompany,
     TResult? Function(_Checkout value)? checkOut,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrderProducts value)? getOrderProducts,
-    TResult Function(_ChooseCompany value)? chooseCompany,
     TResult Function(_Checkout value)? checkOut,
     required TResult orElse(),
   }) =>
@@ -384,268 +372,6 @@ class _$CheckoutEventCopyWithImpl<$Res, $Val extends CheckoutEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$GetOrderProductsImplCopyWith<$Res> {
-  factory _$$GetOrderProductsImplCopyWith(_$GetOrderProductsImpl value,
-          $Res Function(_$GetOrderProductsImpl) then) =
-      __$$GetOrderProductsImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$GetOrderProductsImplCopyWithImpl<$Res>
-    extends _$CheckoutEventCopyWithImpl<$Res, _$GetOrderProductsImpl>
-    implements _$$GetOrderProductsImplCopyWith<$Res> {
-  __$$GetOrderProductsImplCopyWithImpl(_$GetOrderProductsImpl _value,
-      $Res Function(_$GetOrderProductsImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$GetOrderProductsImpl implements _GetOrderProducts {
-  const _$GetOrderProductsImpl();
-
-  @override
-  String toString() {
-    return 'CheckoutEvent.getOrderProducts()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GetOrderProductsImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getOrderProducts,
-    required TResult Function(CompanyEntity? company) chooseCompany,
-    required TResult Function() checkOut,
-  }) {
-    return getOrderProducts();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrderProducts,
-    TResult? Function(CompanyEntity? company)? chooseCompany,
-    TResult? Function()? checkOut,
-  }) {
-    return getOrderProducts?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrderProducts,
-    TResult Function(CompanyEntity? company)? chooseCompany,
-    TResult Function()? checkOut,
-    required TResult orElse(),
-  }) {
-    if (getOrderProducts != null) {
-      return getOrderProducts();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrderProducts value) getOrderProducts,
-    required TResult Function(_ChooseCompany value) chooseCompany,
-    required TResult Function(_Checkout value) checkOut,
-  }) {
-    return getOrderProducts(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrderProducts value)? getOrderProducts,
-    TResult? Function(_ChooseCompany value)? chooseCompany,
-    TResult? Function(_Checkout value)? checkOut,
-  }) {
-    return getOrderProducts?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrderProducts value)? getOrderProducts,
-    TResult Function(_ChooseCompany value)? chooseCompany,
-    TResult Function(_Checkout value)? checkOut,
-    required TResult orElse(),
-  }) {
-    if (getOrderProducts != null) {
-      return getOrderProducts(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GetOrderProducts implements CheckoutEvent {
-  const factory _GetOrderProducts() = _$GetOrderProductsImpl;
-}
-
-/// @nodoc
-abstract class _$$ChooseCompanyImplCopyWith<$Res> {
-  factory _$$ChooseCompanyImplCopyWith(
-          _$ChooseCompanyImpl value, $Res Function(_$ChooseCompanyImpl) then) =
-      __$$ChooseCompanyImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({CompanyEntity? company});
-
-  $CompanyEntityCopyWith<$Res>? get company;
-}
-
-/// @nodoc
-class __$$ChooseCompanyImplCopyWithImpl<$Res>
-    extends _$CheckoutEventCopyWithImpl<$Res, _$ChooseCompanyImpl>
-    implements _$$ChooseCompanyImplCopyWith<$Res> {
-  __$$ChooseCompanyImplCopyWithImpl(
-      _$ChooseCompanyImpl _value, $Res Function(_$ChooseCompanyImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? company = freezed,
-  }) {
-    return _then(_$ChooseCompanyImpl(
-      company: freezed == company
-          ? _value.company
-          : company // ignore: cast_nullable_to_non_nullable
-              as CompanyEntity?,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CompanyEntityCopyWith<$Res>? get company {
-    if (_value.company == null) {
-      return null;
-    }
-
-    return $CompanyEntityCopyWith<$Res>(_value.company!, (value) {
-      return _then(_value.copyWith(company: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$ChooseCompanyImpl implements _ChooseCompany {
-  const _$ChooseCompanyImpl({this.company});
-
-  @override
-  final CompanyEntity? company;
-
-  @override
-  String toString() {
-    return 'CheckoutEvent.chooseCompany(company: $company)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChooseCompanyImpl &&
-            (identical(other.company, company) || other.company == company));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, company);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChooseCompanyImplCopyWith<_$ChooseCompanyImpl> get copyWith =>
-      __$$ChooseCompanyImplCopyWithImpl<_$ChooseCompanyImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() getOrderProducts,
-    required TResult Function(CompanyEntity? company) chooseCompany,
-    required TResult Function() checkOut,
-  }) {
-    return chooseCompany(company);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrderProducts,
-    TResult? Function(CompanyEntity? company)? chooseCompany,
-    TResult? Function()? checkOut,
-  }) {
-    return chooseCompany?.call(company);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrderProducts,
-    TResult Function(CompanyEntity? company)? chooseCompany,
-    TResult Function()? checkOut,
-    required TResult orElse(),
-  }) {
-    if (chooseCompany != null) {
-      return chooseCompany(company);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrderProducts value) getOrderProducts,
-    required TResult Function(_ChooseCompany value) chooseCompany,
-    required TResult Function(_Checkout value) checkOut,
-  }) {
-    return chooseCompany(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrderProducts value)? getOrderProducts,
-    TResult? Function(_ChooseCompany value)? chooseCompany,
-    TResult? Function(_Checkout value)? checkOut,
-  }) {
-    return chooseCompany?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrderProducts value)? getOrderProducts,
-    TResult Function(_ChooseCompany value)? chooseCompany,
-    TResult Function(_Checkout value)? checkOut,
-    required TResult orElse(),
-  }) {
-    if (chooseCompany != null) {
-      return chooseCompany(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ChooseCompany implements CheckoutEvent {
-  const factory _ChooseCompany({final CompanyEntity? company}) =
-      _$ChooseCompanyImpl;
-
-  CompanyEntity? get company;
-  @JsonKey(ignore: true)
-  _$$ChooseCompanyImplCopyWith<_$ChooseCompanyImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -686,8 +412,6 @@ class _$CheckoutImpl implements _Checkout {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getOrderProducts,
-    required TResult Function(CompanyEntity? company) chooseCompany,
     required TResult Function() checkOut,
   }) {
     return checkOut();
@@ -696,8 +420,6 @@ class _$CheckoutImpl implements _Checkout {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getOrderProducts,
-    TResult? Function(CompanyEntity? company)? chooseCompany,
     TResult? Function()? checkOut,
   }) {
     return checkOut?.call();
@@ -706,8 +428,6 @@ class _$CheckoutImpl implements _Checkout {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getOrderProducts,
-    TResult Function(CompanyEntity? company)? chooseCompany,
     TResult Function()? checkOut,
     required TResult orElse(),
   }) {
@@ -720,8 +440,6 @@ class _$CheckoutImpl implements _Checkout {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_GetOrderProducts value) getOrderProducts,
-    required TResult Function(_ChooseCompany value) chooseCompany,
     required TResult Function(_Checkout value) checkOut,
   }) {
     return checkOut(this);
@@ -730,8 +448,6 @@ class _$CheckoutImpl implements _Checkout {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_GetOrderProducts value)? getOrderProducts,
-    TResult? Function(_ChooseCompany value)? chooseCompany,
     TResult? Function(_Checkout value)? checkOut,
   }) {
     return checkOut?.call(this);
@@ -740,8 +456,6 @@ class _$CheckoutImpl implements _Checkout {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_GetOrderProducts value)? getOrderProducts,
-    TResult Function(_ChooseCompany value)? chooseCompany,
     TResult Function(_Checkout value)? checkOut,
     required TResult orElse(),
   }) {

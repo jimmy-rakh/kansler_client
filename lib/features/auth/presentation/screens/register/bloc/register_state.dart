@@ -7,6 +7,8 @@ class RegisterState with _$RegisterState {
     @Default(true) bool showPass,
     @Default(true) bool showRepeatedPass,
     @Default(false) bool isLoading,
+    AddressRequest? address,
+    int? addressId,
     String? requestId,
     String? error,
   }) = _Ready;

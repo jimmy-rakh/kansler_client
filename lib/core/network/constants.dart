@@ -2,7 +2,7 @@ class NetworkConstants {
   static const connectionDuration = Duration(milliseconds: 30000);
   static const receiveTimeout = Duration(milliseconds: 30000);
 
-  static const apiBaseUrl = 'http://185.228.88.15:8080';
+  static const apiBaseUrl = 'https://dev.kansler.uz';
   static const devApiBaseUrl = 'https://api.mirel.uz';
 
   static const apiVersion = 'v1';

@@ -45,7 +45,8 @@ class LatestWidget extends HookWidget {
                 separatorBuilder: (context, index) => horizontalSpace12,
                 itemBuilder: (context, index) => ProductCard.grid(
                   height: context.height * .15,
-                  product: ProductEntity(id: 0, title: '', barcode: []),
+                  product:
+                      ProductEntity(id: 0, title: '', barcode: [], price: 0),
                   onCart: () {},
                 ),
               ),

@@ -16,7 +16,6 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CreateOrderRequest {
-  int get companyId => throw _privateConstructorUsedError;
   List<int>? get cartProduct => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -31,7 +30,7 @@ abstract class $CreateOrderRequestCopyWith<$Res> {
           CreateOrderRequest value, $Res Function(CreateOrderRequest) then) =
       _$CreateOrderRequestCopyWithImpl<$Res, CreateOrderRequest>;
   @useResult
-  $Res call({int companyId, List<int>? cartProduct});
+  $Res call({List<int>? cartProduct});
 }
 
 /// @nodoc
@@ -47,14 +46,9 @@ class _$CreateOrderRequestCopyWithImpl<$Res, $Val extends CreateOrderRequest>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? companyId = null,
     Object? cartProduct = freezed,
   }) {
     return _then(_value.copyWith(
-      companyId: null == companyId
-          ? _value.companyId
-          : companyId // ignore: cast_nullable_to_non_nullable
-              as int,
       cartProduct: freezed == cartProduct
           ? _value.cartProduct
           : cartProduct // ignore: cast_nullable_to_non_nullable
@@ -71,7 +65,7 @@ abstract class _$$CreateOrderRequestImplCopyWith<$Res>
       __$$CreateOrderRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int companyId, List<int>? cartProduct});
+  $Res call({List<int>? cartProduct});
 }
 
 /// @nodoc
@@ -85,14 +79,9 @@ class __$$CreateOrderRequestImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? companyId = null,
     Object? cartProduct = freezed,
   }) {
     return _then(_$CreateOrderRequestImpl(
-      companyId: null == companyId
-          ? _value.companyId
-          : companyId // ignore: cast_nullable_to_non_nullable
-              as int,
       cartProduct: freezed == cartProduct
           ? _value._cartProduct
           : cartProduct // ignore: cast_nullable_to_non_nullable
@@ -104,12 +93,9 @@ class __$$CreateOrderRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable(createFactory: false)
 class _$CreateOrderRequestImpl implements _CreateOrderRequest {
-  _$CreateOrderRequestImpl(
-      {required this.companyId, final List<int>? cartProduct})
+  _$CreateOrderRequestImpl({final List<int>? cartProduct})
       : _cartProduct = cartProduct;
 
-  @override
-  final int companyId;
   final List<int>? _cartProduct;
   @override
   List<int>? get cartProduct {
@@ -122,7 +108,7 @@ class _$CreateOrderRequestImpl implements _CreateOrderRequest {
 
   @override
   String toString() {
-    return 'CreateOrderRequest(companyId: $companyId, cartProduct: $cartProduct)';
+    return 'CreateOrderRequest(cartProduct: $cartProduct)';
   }
 
   @override
@@ -130,16 +116,14 @@ class _$CreateOrderRequestImpl implements _CreateOrderRequest {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreateOrderRequestImpl &&
-            (identical(other.companyId, companyId) ||
-                other.companyId == companyId) &&
             const DeepCollectionEquality()
                 .equals(other._cartProduct, _cartProduct));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, companyId,
-      const DeepCollectionEquality().hash(_cartProduct));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_cartProduct));
 
   @JsonKey(ignore: true)
   @override
@@ -157,12 +141,9 @@ class _$CreateOrderRequestImpl implements _CreateOrderRequest {
 }
 
 abstract class _CreateOrderRequest implements CreateOrderRequest {
-  factory _CreateOrderRequest(
-      {required final int companyId,
-      final List<int>? cartProduct}) = _$CreateOrderRequestImpl;
+  factory _CreateOrderRequest({final List<int>? cartProduct}) =
+      _$CreateOrderRequestImpl;
 
-  @override
-  int get companyId;
   @override
   List<int>? get cartProduct;
   @override

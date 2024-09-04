@@ -21,12 +21,14 @@ RegisterRequest _$RegisterRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$RegisterRequest {
   String get name => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
   @JsonKey(includeIfNull: false)
-  String? get addressesCid => throw _privateConstructorUsedError;
+  int? get addressesId => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   String get requestId => throw _privateConstructorUsedError;
+  AddressRequest? get addresses => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,10 +44,14 @@ abstract class $RegisterRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String name,
+      String username,
       String password,
       String phoneNumber,
-      @JsonKey(includeIfNull: false) String? addressesCid,
-      @JsonKey(includeToJson: false) String requestId});
+      @JsonKey(includeIfNull: false) int? addressesId,
+      @JsonKey(includeToJson: false) String requestId,
+      AddressRequest? addresses});
+
+  $AddressRequestCopyWith<$Res>? get addresses;
 }
 
 /// @nodoc
@@ -62,15 +68,21 @@ class _$RegisterRequestCopyWithImpl<$Res, $Val extends RegisterRequest>
   @override
   $Res call({
     Object? name = null,
+    Object? username = null,
     Object? password = null,
     Object? phoneNumber = null,
-    Object? addressesCid = freezed,
+    Object? addressesId = freezed,
     Object? requestId = null,
+    Object? addresses = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -80,15 +92,31 @@ class _$RegisterRequestCopyWithImpl<$Res, $Val extends RegisterRequest>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      addressesCid: freezed == addressesCid
-          ? _value.addressesCid
-          : addressesCid // ignore: cast_nullable_to_non_nullable
-              as String?,
+      addressesId: freezed == addressesId
+          ? _value.addressesId
+          : addressesId // ignore: cast_nullable_to_non_nullable
+              as int?,
       requestId: null == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as String,
+      addresses: freezed == addresses
+          ? _value.addresses
+          : addresses // ignore: cast_nullable_to_non_nullable
+              as AddressRequest?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressRequestCopyWith<$Res>? get addresses {
+    if (_value.addresses == null) {
+      return null;
+    }
+
+    return $AddressRequestCopyWith<$Res>(_value.addresses!, (value) {
+      return _then(_value.copyWith(addresses: value) as $Val);
+    });
   }
 }
 
@@ -102,10 +130,15 @@ abstract class _$$RegisterRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String name,
+      String username,
       String password,
       String phoneNumber,
-      @JsonKey(includeIfNull: false) String? addressesCid,
-      @JsonKey(includeToJson: false) String requestId});
+      @JsonKey(includeIfNull: false) int? addressesId,
+      @JsonKey(includeToJson: false) String requestId,
+      AddressRequest? addresses});
+
+  @override
+  $AddressRequestCopyWith<$Res>? get addresses;
 }
 
 /// @nodoc
@@ -120,15 +153,21 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? username = null,
     Object? password = null,
     Object? phoneNumber = null,
-    Object? addressesCid = freezed,
+    Object? addressesId = freezed,
     Object? requestId = null,
+    Object? addresses = freezed,
   }) {
     return _then(_$RegisterRequestImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
       password: null == password
           ? _value.password
@@ -138,14 +177,18 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
-      addressesCid: freezed == addressesCid
-          ? _value.addressesCid
-          : addressesCid // ignore: cast_nullable_to_non_nullable
-              as String?,
+      addressesId: freezed == addressesId
+          ? _value.addressesId
+          : addressesId // ignore: cast_nullable_to_non_nullable
+              as int?,
       requestId: null == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
               as String,
+      addresses: freezed == addresses
+          ? _value.addresses
+          : addresses // ignore: cast_nullable_to_non_nullable
+              as AddressRequest?,
     ));
   }
 }
@@ -155,10 +198,12 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
 class _$RegisterRequestImpl implements _RegisterRequest {
   _$RegisterRequestImpl(
       {required this.name,
+      required this.username,
       required this.password,
       required this.phoneNumber,
-      @JsonKey(includeIfNull: false) this.addressesCid,
-      @JsonKey(includeToJson: false) required this.requestId});
+      @JsonKey(includeIfNull: false) this.addressesId,
+      @JsonKey(includeToJson: false) required this.requestId,
+      this.addresses});
 
   factory _$RegisterRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$RegisterRequestImplFromJson(json);
@@ -166,19 +211,23 @@ class _$RegisterRequestImpl implements _RegisterRequest {
   @override
   final String name;
   @override
+  final String username;
+  @override
   final String password;
   @override
   final String phoneNumber;
   @override
   @JsonKey(includeIfNull: false)
-  final String? addressesCid;
+  final int? addressesId;
   @override
   @JsonKey(includeToJson: false)
   final String requestId;
+  @override
+  final AddressRequest? addresses;
 
   @override
   String toString() {
-    return 'RegisterRequest(name: $name, password: $password, phoneNumber: $phoneNumber, addressesCid: $addressesCid, requestId: $requestId)';
+    return 'RegisterRequest(name: $name, username: $username, password: $password, phoneNumber: $phoneNumber, addressesId: $addressesId, requestId: $requestId, addresses: $addresses)';
   }
 
   @override
@@ -187,20 +236,24 @@ class _$RegisterRequestImpl implements _RegisterRequest {
         (other.runtimeType == runtimeType &&
             other is _$RegisterRequestImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
-            (identical(other.addressesCid, addressesCid) ||
-                other.addressesCid == addressesCid) &&
+            (identical(other.addressesId, addressesId) ||
+                other.addressesId == addressesId) &&
             (identical(other.requestId, requestId) ||
-                other.requestId == requestId));
+                other.requestId == requestId) &&
+            (identical(other.addresses, addresses) ||
+                other.addresses == addresses));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, name, password, phoneNumber, addressesCid, requestId);
+  int get hashCode => Object.hash(runtimeType, name, username, password,
+      phoneNumber, addressesId, requestId, addresses);
 
   @JsonKey(ignore: true)
   @override
@@ -219,12 +272,13 @@ class _$RegisterRequestImpl implements _RegisterRequest {
 
 abstract class _RegisterRequest implements RegisterRequest {
   factory _RegisterRequest(
-          {required final String name,
-          required final String password,
-          required final String phoneNumber,
-          @JsonKey(includeIfNull: false) final String? addressesCid,
-          @JsonKey(includeToJson: false) required final String requestId}) =
-      _$RegisterRequestImpl;
+      {required final String name,
+      required final String username,
+      required final String password,
+      required final String phoneNumber,
+      @JsonKey(includeIfNull: false) final int? addressesId,
+      @JsonKey(includeToJson: false) required final String requestId,
+      final AddressRequest? addresses}) = _$RegisterRequestImpl;
 
   factory _RegisterRequest.fromJson(Map<String, dynamic> json) =
       _$RegisterRequestImpl.fromJson;
@@ -232,15 +286,19 @@ abstract class _RegisterRequest implements RegisterRequest {
   @override
   String get name;
   @override
+  String get username;
+  @override
   String get password;
   @override
   String get phoneNumber;
   @override
   @JsonKey(includeIfNull: false)
-  String? get addressesCid;
+  int? get addressesId;
   @override
   @JsonKey(includeToJson: false)
   String get requestId;
+  @override
+  AddressRequest? get addresses;
   @override
   @JsonKey(ignore: true)
   _$$RegisterRequestImplCopyWith<_$RegisterRequestImpl> get copyWith =>

@@ -8,11 +8,11 @@ part 'client_info_response.g.dart';
 @freezed
 class ClientInfoResponse with _$ClientInfoResponse {
   factory ClientInfoResponse({
-    required int id,
+    int? id,
     required String name,
     List<String>? phoneNumbers,
-    required ClientCidData parent,
-    ClientAdressDto? deliveryaddressSet,
+    ClientCidData? parent,
+    List<ClientAdressDto>? deliveryaddressSet,
   }) = _ClientInfoResponse;
 
   factory ClientInfoResponse.fromJson(Map<String, dynamic> json) =>

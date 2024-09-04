@@ -9,7 +9,7 @@ part 'confirm_request.g.dart';
 class ConfirmRequest with _$ConfirmRequest {
   factory ConfirmRequest({
     required String value,
-    required bool usePassword,
+    @JsonKey(includeIfNull: false) String? username,
     @JsonKey(includeToJson: false) required String requestId,
   }) = _ConfirmRequest;
 }

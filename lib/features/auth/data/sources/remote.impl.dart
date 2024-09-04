@@ -33,9 +33,13 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   }
 
   @override
-  Future<Either<Failure, ClientInfoResponse>> clientInfo(String requestId) {
-    // TODO: implement clientInfo
-    throw UnimplementedError();
+  Future<Either<Failure, ClientInfoResponse>> clientInfo(String inn) async {
+    final res = await _dio.getRequest(
+      '${AuthRemoteKeys.clientInfo}/$inn',
+      converter: (r) => ClientInfoResponse.fromJson(r as Map<String, dynamic>),
+    );
+
+    return res;
   }
 
   @override

@@ -14,8 +14,8 @@ class CheckoutRepositoryImpl implements CheckoutRepository {
 
   CheckoutRepositoryImpl(this._checkoutRemoteSource);
   @override
-  Future<Either<Failure, OrdersDto>> createOrder(int company) async {
-    final request = CreateOrderRequest(companyId: company);
+  Future<Either<Failure, OrdersDto>> createOrder() async {
+    final request = CreateOrderRequest();
 
     final res = await _checkoutRemoteSource.createOrder(request);
 

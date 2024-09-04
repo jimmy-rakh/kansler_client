@@ -2,6 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/auth/data/models/register/address_request.dart';
+import 'package:kansler/features/map/presentation/map_screen.dart';
 import '../features/auth/auth.dart';
 import '../features/cart/presentation/screen/cart_screen.dart';
 import '../features/categories/domain/entities/category.entitity.dart';
@@ -86,7 +88,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(page: SettingsRoute.page),
         AutoRoute(page: LimitsRoute.page),
         AutoRoute(page: DebtRoute.page),
-        AutoRoute(page: ScannerRoute.page)
+        AutoRoute(page: ScannerRoute.page),
+        AutoRoute(page: MapRoute.page),
       ];
 
   Future<dynamic> showSheet(Widget child) async =>
