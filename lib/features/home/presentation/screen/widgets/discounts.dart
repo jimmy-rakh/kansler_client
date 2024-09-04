@@ -30,9 +30,7 @@ class DiscountsWidget extends HookWidget {
           onTap: () {},
         ),
         SizedBox(
-          height: authBloc.state == const AuthState.authenticated()
-              ? context.height * .28
-              : context.height * .24,
+          height:  context.height * .25,
           child: state.when(
             loadInProgress: () => Skeletonizer(
               enabled: true,
