@@ -20,7 +20,6 @@ import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/presentation/screen/bloc/cart_bloc.dart';
 import '../product_card.dart';
 
-
 class ProductGridCard extends StatelessWidget implements ProductCard {
   const ProductGridCard({
     super.key,
@@ -58,24 +57,24 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
           Stack(children: [
             (product ?? cartProduct?.product)?.imageUrl == null
                 ? Image.asset(
-                  AppImages.noPhoto,
-                  height: height,
-                  width: width,
-                  fit: BoxFit.fill,
-                )
+                    AppImages.noPhoto,
+                    height: height,
+                    width: width,
+                    fit: BoxFit.fill,
+                  )
                 : CachedNetworkImage(
-                  fit: BoxFit.fitHeight,
-                  height: height,
-                  width: width,
-                  memCacheHeight: 200,
-                  memCacheWidth: 200,
-                  errorListener: (value) => log.e(
-                      '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
-                  imageUrl: NetworkConstants.apiBaseUrl +
-                      (product ?? cartProduct?.product)!.imageUrl!,
-                  errorWidget: (context, url, error) =>
-                      Image.asset(AppImages.noPhoto),
-                ),
+                    fit: BoxFit.fitHeight,
+                    height: height,
+                    width: width,
+                    memCacheHeight: 200,
+                    memCacheWidth: 200,
+                    errorListener: (value) => log.e(
+                        '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
+                    imageUrl: NetworkConstants.apiBaseUrl +
+                        (product ?? cartProduct?.product)!.imageUrl!,
+                    errorWidget: (context, url, error) =>
+                        Image.asset(AppImages.noPhoto),
+                  ),
             (product ?? cartProduct?.product)?.brand?.name == null
                 ? const SizedBox()
                 : Positioned(
@@ -133,63 +132,65 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
             ),
           ),
           verticalSpace8,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                 SizedBox(
-                        width: context.width * .3,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5),
-                          child: product?.price == null ? const SizedBox() : Text(
-                            '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.titleSmall,
-                          ),
-                        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              if (product?.price != null)
+                SizedBox(
+                  width: context.width * .3,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Text(
+                      '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: context.titleSmall,
+                    ),
+                  ),
+                ),
+              (product ?? cartProduct!.product)!.inCart == null || width <= 130
+                  ? const SizedBox()
+                  : AppButton(
+                      width: context.width * .115,
+                      isActive: product?.leftQuantity != 0,
+                      fillColor:
+                          (product ?? cartProduct!.product)!.inCart ?? false
+                              ? AppColors.red
+                              : context.primary,
+                      text: const Icon(
+                        KazeIcons.cartOutline,
+                        color: AppColors.white,
                       ),
-                (product ?? cartProduct!.product)!.inCart == null ||
-                        width <= 130
-                    ? const SizedBox()
-                    : AppButton(
-                        width: context.width * .115,
-                        isActive: product?.leftQuantity != 0,
-                        fillColor:
-                            (product ?? cartProduct!.product)!.inCart ?? false
-                                ? AppColors.red
-                                : context.primary,
-                        text: const Icon(
-                          KazeIcons.cartOutline,
-                          color: AppColors.white,
-                        ),
-                        textColor: AppColors.white,
-                        onPressed: authBloc.state == const AuthState.authenticated()
-                            ? () {
-                          onCart();
-                          if (!((product ?? cartProduct?.product)?.inCart ??
-                              true)) {
-                            cartBloc.add(CartEvent.addToCart(
-                                (product ?? cartProduct!.product)!.id,
-                                fieldController?.text == null ||
-                                        fieldController?.text == ''
-                                    ? 1
-                                    : int.parse(fieldController!.text)));
-                            return;
-                          }
-                          fieldController?.text = '1';
-                          cartBloc.add(CartEvent.deleteProductInCart(
-                              (product ?? cartProduct!.product)!.id));
-                        } :() => router.push(const AuthRoute()),
-                        size: MainAxisSize.min,
-                        margin: const EdgeInsets.only(
-                          right: 10,
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8, horizontal: 8),
-                        borderRadius: 0,
+                      textColor: AppColors.white,
+                      onPressed: authBloc.state ==
+                              const AuthState.authenticated()
+                          ? () {
+                              onCart();
+                              if (!((product ?? cartProduct?.product)?.inCart ??
+                                  true)) {
+                                cartBloc.add(CartEvent.addToCart(
+                                    (product ?? cartProduct!.product)!.id,
+                                    fieldController?.text == null ||
+                                            fieldController?.text == ''
+                                        ? 1
+                                        : int.parse(fieldController!.text)));
+                                return;
+                              }
+                              fieldController?.text = '1';
+                              cartBloc.add(CartEvent.deleteProductInCart(
+                                  (product ?? cartProduct!.product)!.id));
+                            }
+                          : () => router.push(const AuthRoute()),
+                      size: MainAxisSize.min,
+                      margin: const EdgeInsets.only(
+                        right: 10,
                       ),
-              ],
-            ),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 8),
+                      borderRadius: 0,
+                    ),
+            ],
+          ),
           verticalSpace8,
         ],
       ),

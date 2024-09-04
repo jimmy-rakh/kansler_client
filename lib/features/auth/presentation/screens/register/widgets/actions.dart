@@ -26,6 +26,8 @@ class RegisterActionWidget extends HookWidget {
             isLoading,
             requestId,
             error,
+            address,
+            addressId,
           ) =>
               AppButton(
             text: step == RegisterStep.inputInn

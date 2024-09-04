@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/auth/data/models/register/register_request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
 
@@ -41,6 +42,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<_AddError>(_onAddError);
   }
 
+  TextEditingController usernameController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController innController = TextEditingController();
@@ -68,6 +70,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       password: passwordController.text,
       phoneNumber: phoneNumberController.text,
       requestId: state.requestId!,
+      username: usernameController.text,
+      addresses: state.address,
+      addressesId: state.addressId,
     );
 
     final res = await _authRepository.register(request);
@@ -189,6 +194,10 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   void _onInit(_Init event, Emitter<RegisterState> emit) {
     phoneNumberController.text = event.phone;
     innController.text = event.inn ?? '';
-    emit(state.copyWith(requestId: event.requestId));
+    emit(state.copyWith(
+      requestId: event.requestId,
+      address: event.address,
+      addressId: event.addressId,
+    ));
   }
 }

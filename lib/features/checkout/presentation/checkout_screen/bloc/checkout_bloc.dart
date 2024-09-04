@@ -11,7 +11,6 @@ import '../../../../orders/presentation/screen/bloc/orders_bloc.dart';
 import '../../../../orders/presentation/screen/dialogs/success_order_view.dart';
 import '../../../../profile/domain/entities/company.entity.dart';
 import '../../../domain/repositories/checkout.repository.dart';
-import '../../sheets/company/choose_company_sheet.dart';
 
 part 'checkout_state.dart';
 part 'checkout_event.dart';
@@ -23,31 +22,13 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
   CheckoutBloc(this._checkoutRepository)
       : super(const CheckoutState.initial()) {
-    on<_GetOrderProducts>(_onGetOrderProducts);
-    on<_ChooseCompany>(_onChooseCompany);
     on<_Checkout>(_onCheckout);
   }
 
-  _onGetOrderProducts(_GetOrderProducts event, Emitter<CheckoutState> emit) {}
-
-  _onChooseCompany(_ChooseCompany event, Emitter<CheckoutState> emit) async {
-    if (event.company != null) {
-      emit(CheckoutState.ready(event.company!));
-      return;
-    }
-
-    final res =
-        await router.showSheet(const ChooseCompanySheet()) as CompanyEntity?;
-
-    if (res != null) {
-      emit(CheckoutState.ready(res));
-    }
-  }
 
   void _onCheckout(_Checkout event, Emitter<CheckoutState> emit) async {
-    final company = (state as _Ready).chosedCompanies;
 
-    final res = await _checkoutRepository.createOrder(company.id);
+    final res = await _checkoutRepository.createOrder();
 
     final cartBloc =
         BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);

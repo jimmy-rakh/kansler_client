@@ -22,7 +22,7 @@ mixin _$SearchRequest {
   List<int> get categories => throw _privateConstructorUsedError;
   int? get priceFrom => throw _privateConstructorUsedError;
   int? get priceTo => throw _privateConstructorUsedError;
-  List<String> get orderBy => throw _privateConstructorUsedError;
+  String get orderBy => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $SearchRequestCopyWith<$Res> {
       List<int> categories,
       int? priceFrom,
       int? priceTo,
-      List<String> orderBy});
+      String orderBy});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class _$SearchRequestCopyWithImpl<$Res, $Val extends SearchRequest>
       orderBy: null == orderBy
           ? _value.orderBy
           : orderBy // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
     ) as $Val);
   }
 }
@@ -115,7 +115,7 @@ abstract class _$$SearchRequestImplCopyWith<$Res>
       List<int> categories,
       int? priceFrom,
       int? priceTo,
-      List<String> orderBy});
+      String orderBy});
 }
 
 /// @nodoc
@@ -163,9 +163,9 @@ class __$$SearchRequestImplCopyWithImpl<$Res>
           : priceTo // ignore: cast_nullable_to_non_nullable
               as int?,
       orderBy: null == orderBy
-          ? _value._orderBy
+          ? _value.orderBy
           : orderBy // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as String,
     ));
   }
 }
@@ -180,10 +180,9 @@ class _$SearchRequestImpl extends _SearchRequest {
       final List<int> categories = const [],
       this.priceFrom,
       this.priceTo,
-      required final List<String> orderBy})
+      required this.orderBy})
       : _brands = brands,
         _categories = categories,
-        _orderBy = orderBy,
         super._();
 
   @override
@@ -212,13 +211,8 @@ class _$SearchRequestImpl extends _SearchRequest {
   final int? priceFrom;
   @override
   final int? priceTo;
-  final List<String> _orderBy;
   @override
-  List<String> get orderBy {
-    if (_orderBy is EqualUnmodifiableListView) return _orderBy;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_orderBy);
-  }
+  final String orderBy;
 
   @override
   String toString() {
@@ -239,7 +233,7 @@ class _$SearchRequestImpl extends _SearchRequest {
             (identical(other.priceFrom, priceFrom) ||
                 other.priceFrom == priceFrom) &&
             (identical(other.priceTo, priceTo) || other.priceTo == priceTo) &&
-            const DeepCollectionEquality().equals(other._orderBy, _orderBy));
+            (identical(other.orderBy, orderBy) || other.orderBy == orderBy));
   }
 
   @JsonKey(ignore: true)
@@ -252,7 +246,7 @@ class _$SearchRequestImpl extends _SearchRequest {
       const DeepCollectionEquality().hash(_categories),
       priceFrom,
       priceTo,
-      const DeepCollectionEquality().hash(_orderBy));
+      orderBy);
 
   @JsonKey(ignore: true)
   @override
@@ -276,7 +270,7 @@ abstract class _SearchRequest extends SearchRequest {
       final List<int> categories,
       final int? priceFrom,
       final int? priceTo,
-      required final List<String> orderBy}) = _$SearchRequestImpl;
+      required final String orderBy}) = _$SearchRequestImpl;
   _SearchRequest._() : super._();
 
   @override
@@ -292,7 +286,7 @@ abstract class _SearchRequest extends SearchRequest {
   @override
   int? get priceTo;
   @override
-  List<String> get orderBy;
+  String get orderBy;
   @override
   @JsonKey(ignore: true)
   _$$SearchRequestImplCopyWith<_$SearchRequestImpl> get copyWith =>

@@ -9,16 +9,17 @@ part of 'client_info_response.dart';
 _$ClientInfoResponseImpl _$$ClientInfoResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$ClientInfoResponseImpl(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       name: json['name'] as String,
       phoneNumbers: (json['phone_numbers'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      parent: ClientCidData.fromJson(json['parent'] as Map<String, dynamic>),
-      deliveryaddressSet: json['deliveryaddress_set'] == null
+      parent: json['parent'] == null
           ? null
-          : ClientAdressDto.fromJson(
-              json['deliveryaddress_set'] as Map<String, dynamic>),
+          : ClientCidData.fromJson(json['parent'] as Map<String, dynamic>),
+      deliveryaddressSet: (json['deliveryaddress_set'] as List<dynamic>?)
+          ?.map((e) => ClientAdressDto.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$ClientInfoResponseImplToJson(
@@ -27,6 +28,7 @@ Map<String, dynamic> _$$ClientInfoResponseImplToJson(
       'id': instance.id,
       'name': instance.name,
       'phone_numbers': instance.phoneNumbers,
-      'parent': instance.parent.toJson(),
-      'deliveryaddress_set': instance.deliveryaddressSet?.toJson(),
+      'parent': instance.parent?.toJson(),
+      'deliveryaddress_set':
+          instance.deliveryaddressSet?.map((e) => e.toJson()).toList(),
     };

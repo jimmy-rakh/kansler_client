@@ -16,6 +16,8 @@ class LoginState with _$LoginState {
     @Default(false) hasPass,
     @Default(true) isExist,
     @Default(0) int tabIndex,
+    String? addressCid,
+    int? addressId,
     String? requestId,
     String? error,
   }) = _LoginState;

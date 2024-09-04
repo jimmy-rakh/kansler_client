@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/auth/presentation/screens/register/widgets/actions.dart';
 import 'package:kansler/features/auth/presentation/screens/register/widgets/form.dart';
 import 'package:kansler/features/auth/presentation/screens/register/widgets/header.dart';
@@ -17,11 +18,15 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
     required this.requestId,
     required this.phone,
     this.inn,
+    this.address,
+    this.addressId,
   });
 
   final String requestId;
   final String phone;
   final String? inn;
+  final AddressRequest? address;
+  final int? addressId;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +38,7 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: ListView(
-                children: const[
+                children: const [
                   verticalSpace60,
                   verticalSpace35,
                   RegisterHeaderWidget(),
@@ -53,7 +58,13 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
         create: (context) => getIt<RegisterBloc>()
-          ..add(RegisterEvent.init(requestId, phone, inn)),
+          ..add(RegisterEvent.init(
+            requestId,
+            phone,
+            inn,
+            address,
+            addressId,
+          )),
         child: this,
       );
 }

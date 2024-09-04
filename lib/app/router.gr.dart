@@ -113,6 +113,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MainScreen(),
       );
     },
+    MapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MapScreen(),
+      );
+    },
     OrderDetailsRoute.name: (routeData) {
       final args = routeData.argsAs<OrderDetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
@@ -169,6 +175,8 @@ abstract class _$AppRouter extends RootStackRouter {
           requestId: args.requestId,
           phone: args.phone,
           inn: args.inn,
+          address: args.address,
+          addressId: args.addressId,
         )),
       );
     },
@@ -491,6 +499,20 @@ class MainRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MapScreen]
+class MapRoute extends PageRouteInfo<void> {
+  const MapRoute({List<PageRouteInfo>? children})
+      : super(
+          MapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MapRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [OrderDetailsScreen]
 class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
@@ -645,6 +667,8 @@ class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
     required String requestId,
     required String phone,
     String? inn,
+    AddressRequest? address,
+    int? addressId,
     List<PageRouteInfo>? children,
   }) : super(
           RegisterRoute.name,
@@ -653,6 +677,8 @@ class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
             requestId: requestId,
             phone: phone,
             inn: inn,
+            address: address,
+            addressId: addressId,
           ),
           initialChildren: children,
         );
@@ -669,6 +695,8 @@ class RegisterRouteArgs {
     required this.requestId,
     required this.phone,
     this.inn,
+    this.address,
+    this.addressId,
   });
 
   final Key? key;
@@ -679,9 +707,13 @@ class RegisterRouteArgs {
 
   final String? inn;
 
+  final AddressRequest? address;
+
+  final int? addressId;
+
   @override
   String toString() {
-    return 'RegisterRouteArgs{key: $key, requestId: $requestId, phone: $phone, inn: $inn}';
+    return 'RegisterRouteArgs{key: $key, requestId: $requestId, phone: $phone, inn: $inn, address: $address, addressId: $addressId}';
   }
 }
 

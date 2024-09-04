@@ -52,8 +52,8 @@ class AuthRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, ClientInfoResponse>> clientInfo(
-      String requestId) async {
-    final res = await _authRemoteDataSource.clientInfo(requestId);
+      String inn) async {
+    final res = await _authRemoteDataSource.clientInfo(inn);
 
     return res;
   }

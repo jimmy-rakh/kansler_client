@@ -3,7 +3,7 @@ class NetworkConstants {
   static const receiveTimeout = Duration(milliseconds: 30000);
 
   static const apiBaseUrl = 'https://dev.kansler.uz';
-  static const devApiBaseUrl = 'https://dev.kansler.uz/';
+  static const devApiBaseUrl = 'https://api.mirel.uz';
 
   static const apiVersion = 'v1';
   static const clients = 'clients';

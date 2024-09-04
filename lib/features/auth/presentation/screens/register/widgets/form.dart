@@ -5,7 +5,6 @@ import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../../../../core/constants/kaze_icons.dart';
 import '../../../../../../core/constants/spaces.dart';
-import '../../../../../../core/style/colors.dart';
 import '../../../../../../core/widgets/app_text_field.dart';
 import '../bloc/register_bloc.dart';
 
@@ -25,6 +24,8 @@ class RegisterFormWidget extends HookWidget {
             isLoading,
             requestId,
             error,
+            address,
+            addressId,
           ) =>
               Form(
             key: bloc.formKey,
@@ -32,7 +33,8 @@ class RegisterFormWidget extends HookWidget {
               children: [
                 AppTextField(
                   radius: 0,
-                  hint: 'Номер телефона',
+                  label: 'Номер телефона',
+                  floatingLabelStyle: context.bodyLarge,
                   fieldController: bloc.phoneNumberController,
                   prefix: const Icon(Icons.phone),
                   textInputType: TextInputType.number,
@@ -44,10 +46,22 @@ class RegisterFormWidget extends HookWidget {
                 verticalSpace12,
                 AppTextField(
                   radius: 0,
-                  hint: bloc.innController.text.isEmpty
-                      ? 'Введите ФИО'
-                      : 'Введите наименование компании',
+                  floatingLabelStyle: context.bodyLarge,
+                  label: bloc.innController.text.isEmpty
+                      ? 'ФИО'
+                      : 'Наименование компании',
                   fieldController: bloc.nameController,
+                  prefix: const Icon(KazeIcons.profileBold),
+                  hintStyle: context.bodyLarge!.copyWith(
+                    color: context.colorScheme.inverseSurface,
+                  ),
+                ),
+                verticalSpace12,
+                AppTextField(
+                  radius: 0,
+                  floatingLabelStyle: context.bodyLarge,
+                  label: 'Логин',
+                  fieldController: bloc.usernameController,
                   prefix: const Icon(KazeIcons.profileBold),
                   hintStyle: context.bodyLarge!.copyWith(
                     color: context.colorScheme.inverseSurface,
@@ -57,24 +71,20 @@ class RegisterFormWidget extends HookWidget {
                   verticalSpace12,
                   AppTextField(
                     radius: 0,
-                    hint: 'Ваш ИНН',
+                    label: 'Ваш ИНН',
+                    floatingLabelStyle: context.bodyLarge,
                     fieldController: bloc.innController,
                     prefix: const Icon(KazeIcons.profileBold),
                     textInputType: TextInputType.number,
-                    hintStyle: context.bodyLarge!.copyWith(
-                      color: context.colorScheme.inverseSurface,
-                    ),
                     readOnly: true,
                   ),
                 ],
                 verticalSpace12,
                 AppTextField(
                   radius: 0,
-                  hint: 'Введите пароль',
+                  label: 'Пароль',
+                  floatingLabelStyle: context.bodyLarge,
                   prefix: const Icon(KazeIcons.lockBold),
-                  hintStyle: context.bodyLarge!.copyWith(
-                    color: context.colorScheme.inverseSurface,
-                  ),
                   obscureText: showPass,
                   fieldController: bloc.passwordController,
                   suffix: IconButton(
@@ -90,11 +100,9 @@ class RegisterFormWidget extends HookWidget {
                 verticalSpace12,
                 AppTextField(
                   radius: 0,
-                  hint: 'Повторно введите пароль',
+                  label: 'Повторните пароль',
                   prefix: const Icon(KazeIcons.lockBold),
-                  hintStyle: context.bodyLarge!.copyWith(
-                    color: context.colorScheme.inverseSurface,
-                  ),
+                  floatingLabelStyle: context.bodyLarge,
                   validator: bloc.secondPasswordValidator,
                   obscureText: showRepetedPass,
                   fieldController: bloc.secondPasswordController,
@@ -109,41 +117,41 @@ class RegisterFormWidget extends HookWidget {
                     ),
                   ),
                 ),
-                if (error != null) ...[
-                  verticalSpace12,
-                  Column(
-                    children: [
-                      const Text(
-                        'Ошибка',
-                        style: TextStyle(color: AppColors.red, fontSize: 16),
-                        textAlign: TextAlign.center,
-                      ),
-                      verticalSpace16,
-                      Text(
-                        'Для получения доступа на сайт, свяжитесь с сотрудником компании:',
-                        style: context.theme.textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      verticalSpace16,
-                      Text(
-                        '+998 78 129 00 44 СГ',
-                        style: context.theme.textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        '+998 78 129 00 88 ДТ',
-                        style: context.theme.textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      Text(
-                        '+998 78 148 00 44 ГТ',
-                        style: context.theme.textTheme.bodyLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                  verticalSpace12,
-                ],
+                // if (error != null) ...[
+                //   verticalSpace12,
+                //   Column(
+                //     children: [
+                //       const Text(
+                //         'Ошибка',
+                //         style: TextStyle(color: AppColors.red, fontSize: 16),
+                //         textAlign: TextAlign.center,
+                //       ),
+                //       verticalSpace16,
+                //       Text(
+                //         'Для получения доступа на сайт, свяжитесь с сотрудником компании:',
+                //         style: context.theme.textTheme.bodyLarge,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //       verticalSpace16,
+                //       Text(
+                //         '+998 78 129 00 44 СГ',
+                //         style: context.theme.textTheme.bodyLarge,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //       Text(
+                //         '+998 78 129 00 88 ДТ',
+                //         style: context.theme.textTheme.bodyLarge,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //       Text(
+                //         '+998 78 148 00 44 ГТ',
+                //         style: context.theme.textTheme.bodyLarge,
+                //         textAlign: TextAlign.center,
+                //       ),
+                //     ],
+                //   ),
+                //   verticalSpace12,
+                // ],
               ],
             ),
           ),

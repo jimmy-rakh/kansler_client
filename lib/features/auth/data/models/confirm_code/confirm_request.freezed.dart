@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ConfirmRequest {
   String get value => throw _privateConstructorUsedError;
-  bool get usePassword => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  String? get username => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
   String get requestId => throw _privateConstructorUsedError;
 
@@ -35,7 +36,7 @@ abstract class $ConfirmRequestCopyWith<$Res> {
   @useResult
   $Res call(
       {String value,
-      bool usePassword,
+      @JsonKey(includeIfNull: false) String? username,
       @JsonKey(includeToJson: false) String requestId});
 }
 
@@ -53,7 +54,7 @@ class _$ConfirmRequestCopyWithImpl<$Res, $Val extends ConfirmRequest>
   @override
   $Res call({
     Object? value = null,
-    Object? usePassword = null,
+    Object? username = freezed,
     Object? requestId = null,
   }) {
     return _then(_value.copyWith(
@@ -61,10 +62,10 @@ class _$ConfirmRequestCopyWithImpl<$Res, $Val extends ConfirmRequest>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      usePassword: null == usePassword
-          ? _value.usePassword
-          : usePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
       requestId: null == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
@@ -83,7 +84,7 @@ abstract class _$$ConfirmRequestImplCopyWith<$Res>
   @useResult
   $Res call(
       {String value,
-      bool usePassword,
+      @JsonKey(includeIfNull: false) String? username,
       @JsonKey(includeToJson: false) String requestId});
 }
 
@@ -99,7 +100,7 @@ class __$$ConfirmRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? value = null,
-    Object? usePassword = null,
+    Object? username = freezed,
     Object? requestId = null,
   }) {
     return _then(_$ConfirmRequestImpl(
@@ -107,10 +108,10 @@ class __$$ConfirmRequestImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
-      usePassword: null == usePassword
-          ? _value.usePassword
-          : usePassword // ignore: cast_nullable_to_non_nullable
-              as bool,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
       requestId: null == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
@@ -124,20 +125,21 @@ class __$$ConfirmRequestImplCopyWithImpl<$Res>
 class _$ConfirmRequestImpl implements _ConfirmRequest {
   _$ConfirmRequestImpl(
       {required this.value,
-      required this.usePassword,
+      @JsonKey(includeIfNull: false) this.username,
       @JsonKey(includeToJson: false) required this.requestId});
 
   @override
   final String value;
   @override
-  final bool usePassword;
+  @JsonKey(includeIfNull: false)
+  final String? username;
   @override
   @JsonKey(includeToJson: false)
   final String requestId;
 
   @override
   String toString() {
-    return 'ConfirmRequest(value: $value, usePassword: $usePassword, requestId: $requestId)';
+    return 'ConfirmRequest(value: $value, username: $username, requestId: $requestId)';
   }
 
   @override
@@ -146,15 +148,15 @@ class _$ConfirmRequestImpl implements _ConfirmRequest {
         (other.runtimeType == runtimeType &&
             other is _$ConfirmRequestImpl &&
             (identical(other.value, value) || other.value == value) &&
-            (identical(other.usePassword, usePassword) ||
-                other.usePassword == usePassword) &&
+            (identical(other.username, username) ||
+                other.username == username) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, value, usePassword, requestId);
+  int get hashCode => Object.hash(runtimeType, value, username, requestId);
 
   @JsonKey(ignore: true)
   @override
@@ -174,14 +176,15 @@ class _$ConfirmRequestImpl implements _ConfirmRequest {
 abstract class _ConfirmRequest implements ConfirmRequest {
   factory _ConfirmRequest(
           {required final String value,
-          required final bool usePassword,
+          @JsonKey(includeIfNull: false) final String? username,
           @JsonKey(includeToJson: false) required final String requestId}) =
       _$ConfirmRequestImpl;
 
   @override
   String get value;
   @override
-  bool get usePassword;
+  @JsonKey(includeIfNull: false)
+  String? get username;
   @override
   @JsonKey(includeToJson: false)
   String get requestId;

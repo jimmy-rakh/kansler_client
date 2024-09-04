@@ -25,7 +25,6 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
   void _onConfirm(_Confirm event, Emitter<ConfirmCodeState> emit) async {
     final request = ConfirmRequest(
       value: pinController.text,
-      usePassword: false,
       requestId: event.requestId,
     );
 

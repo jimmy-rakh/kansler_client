@@ -20,6 +20,8 @@ mixin _$RegisterState {
   bool get showPass => throw _privateConstructorUsedError;
   bool get showRepeatedPass => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
+  AddressRequest? get address => throw _privateConstructorUsedError;
+  int? get addressId => throw _privateConstructorUsedError;
   String? get requestId => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -29,6 +31,8 @@ mixin _$RegisterState {
             bool showPass,
             bool showRepeatedPass,
             bool isLoading,
+            AddressRequest? address,
+            int? addressId,
             String? requestId,
             String? error)
         ready,
@@ -36,15 +40,29 @@ mixin _$RegisterState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RegisterStep step, bool showPass, bool showRepeatedPass,
-            bool isLoading, String? requestId, String? error)?
+    TResult? Function(
+            RegisterStep step,
+            bool showPass,
+            bool showRepeatedPass,
+            bool isLoading,
+            AddressRequest? address,
+            int? addressId,
+            String? requestId,
+            String? error)?
         ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RegisterStep step, bool showPass, bool showRepeatedPass,
-            bool isLoading, String? requestId, String? error)?
+    TResult Function(
+            RegisterStep step,
+            bool showPass,
+            bool showRepeatedPass,
+            bool isLoading,
+            AddressRequest? address,
+            int? addressId,
+            String? requestId,
+            String? error)?
         ready,
     required TResult orElse(),
   }) =>
@@ -82,8 +100,12 @@ abstract class $RegisterStateCopyWith<$Res> {
       bool showPass,
       bool showRepeatedPass,
       bool isLoading,
+      AddressRequest? address,
+      int? addressId,
       String? requestId,
       String? error});
+
+  $AddressRequestCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -103,6 +125,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? showPass = null,
     Object? showRepeatedPass = null,
     Object? isLoading = null,
+    Object? address = freezed,
+    Object? addressId = freezed,
     Object? requestId = freezed,
     Object? error = freezed,
   }) {
@@ -123,6 +147,14 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressRequest?,
+      addressId: freezed == addressId
+          ? _value.addressId
+          : addressId // ignore: cast_nullable_to_non_nullable
+              as int?,
       requestId: freezed == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
@@ -132,6 +164,18 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressRequestCopyWith<$Res>? get address {
+    if (_value.address == null) {
+      return null;
+    }
+
+    return $AddressRequestCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value) as $Val);
+    });
   }
 }
 
@@ -148,8 +192,13 @@ abstract class _$$ReadyImplCopyWith<$Res>
       bool showPass,
       bool showRepeatedPass,
       bool isLoading,
+      AddressRequest? address,
+      int? addressId,
       String? requestId,
       String? error});
+
+  @override
+  $AddressRequestCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -167,6 +216,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
     Object? showPass = null,
     Object? showRepeatedPass = null,
     Object? isLoading = null,
+    Object? address = freezed,
+    Object? addressId = freezed,
     Object? requestId = freezed,
     Object? error = freezed,
   }) {
@@ -187,6 +238,14 @@ class __$$ReadyImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressRequest?,
+      addressId: freezed == addressId
+          ? _value.addressId
+          : addressId // ignore: cast_nullable_to_non_nullable
+              as int?,
       requestId: freezed == requestId
           ? _value.requestId
           : requestId // ignore: cast_nullable_to_non_nullable
@@ -207,6 +266,8 @@ class _$ReadyImpl implements _Ready {
       this.showPass = true,
       this.showRepeatedPass = true,
       this.isLoading = false,
+      this.address,
+      this.addressId,
       this.requestId,
       this.error});
 
@@ -223,13 +284,17 @@ class _$ReadyImpl implements _Ready {
   @JsonKey()
   final bool isLoading;
   @override
+  final AddressRequest? address;
+  @override
+  final int? addressId;
+  @override
   final String? requestId;
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'RegisterState.ready(step: $step, showPass: $showPass, showRepeatedPass: $showRepeatedPass, isLoading: $isLoading, requestId: $requestId, error: $error)';
+    return 'RegisterState.ready(step: $step, showPass: $showPass, showRepeatedPass: $showRepeatedPass, isLoading: $isLoading, address: $address, addressId: $addressId, requestId: $requestId, error: $error)';
   }
 
   @override
@@ -244,6 +309,9 @@ class _$ReadyImpl implements _Ready {
                 other.showRepeatedPass == showRepeatedPass) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.addressId, addressId) ||
+                other.addressId == addressId) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
             (identical(other.error, error) || other.error == error));
@@ -251,7 +319,7 @@ class _$ReadyImpl implements _Ready {
 
   @override
   int get hashCode => Object.hash(runtimeType, step, showPass, showRepeatedPass,
-      isLoading, requestId, error);
+      isLoading, address, addressId, requestId, error);
 
   @JsonKey(ignore: true)
   @override
@@ -267,35 +335,52 @@ class _$ReadyImpl implements _Ready {
             bool showPass,
             bool showRepeatedPass,
             bool isLoading,
+            AddressRequest? address,
+            int? addressId,
             String? requestId,
             String? error)
         ready,
   }) {
-    return ready(step, showPass, showRepeatedPass, isLoading, requestId, error);
+    return ready(step, showPass, showRepeatedPass, isLoading, address,
+        addressId, requestId, error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(RegisterStep step, bool showPass, bool showRepeatedPass,
-            bool isLoading, String? requestId, String? error)?
+    TResult? Function(
+            RegisterStep step,
+            bool showPass,
+            bool showRepeatedPass,
+            bool isLoading,
+            AddressRequest? address,
+            int? addressId,
+            String? requestId,
+            String? error)?
         ready,
   }) {
-    return ready?.call(
-        step, showPass, showRepeatedPass, isLoading, requestId, error);
+    return ready?.call(step, showPass, showRepeatedPass, isLoading, address,
+        addressId, requestId, error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(RegisterStep step, bool showPass, bool showRepeatedPass,
-            bool isLoading, String? requestId, String? error)?
+    TResult Function(
+            RegisterStep step,
+            bool showPass,
+            bool showRepeatedPass,
+            bool isLoading,
+            AddressRequest? address,
+            int? addressId,
+            String? requestId,
+            String? error)?
         ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(
-          step, showPass, showRepeatedPass, isLoading, requestId, error);
+      return ready(step, showPass, showRepeatedPass, isLoading, address,
+          addressId, requestId, error);
     }
     return orElse();
   }
@@ -335,6 +420,8 @@ abstract class _Ready implements RegisterState {
       final bool showPass,
       final bool showRepeatedPass,
       final bool isLoading,
+      final AddressRequest? address,
+      final int? addressId,
       final String? requestId,
       final String? error}) = _$ReadyImpl;
 
@@ -346,6 +433,10 @@ abstract class _Ready implements RegisterState {
   bool get showRepeatedPass;
   @override
   bool get isLoading;
+  @override
+  AddressRequest? get address;
+  @override
+  int? get addressId;
   @override
   String? get requestId;
   @override
@@ -360,7 +451,9 @@ abstract class _Ready implements RegisterState {
 mixin _$RegisterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -372,7 +465,9 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -384,7 +479,9 @@ mixin _$RegisterEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -459,7 +556,14 @@ abstract class _$$InitImplCopyWith<$Res> {
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String requestId, String phone, String? inn});
+  $Res call(
+      {String requestId,
+      String phone,
+      String? inn,
+      AddressRequest? address,
+      int? addressId});
+
+  $AddressRequestCopyWith<$Res>? get address;
 }
 
 /// @nodoc
@@ -475,6 +579,8 @@ class __$$InitImplCopyWithImpl<$Res>
     Object? requestId = null,
     Object? phone = null,
     Object? inn = freezed,
+    Object? address = freezed,
+    Object? addressId = freezed,
   }) {
     return _then(_$InitImpl(
       null == requestId
@@ -489,14 +595,35 @@ class __$$InitImplCopyWithImpl<$Res>
           ? _value.inn
           : inn // ignore: cast_nullable_to_non_nullable
               as String?,
+      freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressRequest?,
+      freezed == addressId
+          ? _value.addressId
+          : addressId // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressRequestCopyWith<$Res>? get address {
+    if (_value.address == null) {
+      return null;
+    }
+
+    return $AddressRequestCopyWith<$Res>(_value.address!, (value) {
+      return _then(_value.copyWith(address: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$InitImpl implements _Init {
-  const _$InitImpl(this.requestId, this.phone, this.inn);
+  const _$InitImpl(
+      this.requestId, this.phone, this.inn, this.address, this.addressId);
 
   @override
   final String requestId;
@@ -504,10 +631,14 @@ class _$InitImpl implements _Init {
   final String phone;
   @override
   final String? inn;
+  @override
+  final AddressRequest? address;
+  @override
+  final int? addressId;
 
   @override
   String toString() {
-    return 'RegisterEvent.init(requestId: $requestId, phone: $phone, inn: $inn)';
+    return 'RegisterEvent.init(requestId: $requestId, phone: $phone, inn: $inn, address: $address, addressId: $addressId)';
   }
 
   @override
@@ -518,11 +649,15 @@ class _$InitImpl implements _Init {
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
             (identical(other.phone, phone) || other.phone == phone) &&
-            (identical(other.inn, inn) || other.inn == inn));
+            (identical(other.inn, inn) || other.inn == inn) &&
+            (identical(other.address, address) || other.address == address) &&
+            (identical(other.addressId, addressId) ||
+                other.addressId == addressId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, requestId, phone, inn);
+  int get hashCode =>
+      Object.hash(runtimeType, requestId, phone, inn, address, addressId);
 
   @JsonKey(ignore: true)
   @override
@@ -533,7 +668,9 @@ class _$InitImpl implements _Init {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -542,13 +679,15 @@ class _$InitImpl implements _Init {
     required TResult Function() showRepeatedPassToggle,
     required TResult Function(String error) addError,
   }) {
-    return init(requestId, phone, inn);
+    return init(requestId, phone, inn, address, addressId);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -557,13 +696,15 @@ class _$InitImpl implements _Init {
     TResult? Function()? showRepeatedPassToggle,
     TResult? Function(String error)? addError,
   }) {
-    return init?.call(requestId, phone, inn);
+    return init?.call(requestId, phone, inn, address, addressId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -574,7 +715,7 @@ class _$InitImpl implements _Init {
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(requestId, phone, inn);
+      return init(requestId, phone, inn, address, addressId);
     }
     return orElse();
   }
@@ -632,12 +773,17 @@ class _$InitImpl implements _Init {
 
 abstract class _Init implements RegisterEvent {
   const factory _Init(
-          final String requestId, final String phone, final String? inn) =
-      _$InitImpl;
+      final String requestId,
+      final String phone,
+      final String? inn,
+      final AddressRequest? address,
+      final int? addressId) = _$InitImpl;
 
   String get requestId;
   String get phone;
   String? get inn;
+  AddressRequest? get address;
+  int? get addressId;
   @JsonKey(ignore: true)
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -681,7 +827,9 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -696,7 +844,9 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -711,7 +861,9 @@ class _$RegisterImpl implements _Register {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -820,7 +972,9 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -835,7 +989,9 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -850,7 +1006,9 @@ class _$CheckInnImpl implements _CheckInn {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -994,7 +1152,9 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1009,7 +1169,9 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1024,7 +1186,9 @@ class _$SendCodeImpl implements _SendCode {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1140,7 +1304,9 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1155,7 +1321,9 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1170,7 +1338,9 @@ class _$SetPasswordImpl implements _SetPassword {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1279,7 +1449,9 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1294,7 +1466,9 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1309,7 +1483,9 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1421,7 +1597,9 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1436,7 +1614,9 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1451,7 +1631,9 @@ class _$ShowRepeatedPassToggleImpl implements _ShowRepeatedPassToggle {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,
@@ -1586,7 +1768,9 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, String phone, String? inn) init,
+    required TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)
+        init,
     required TResult Function() register,
     required TResult Function() checkInn,
     required TResult Function(String phone, String requestId) sendCode,
@@ -1601,7 +1785,9 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, String phone, String? inn)? init,
+    TResult? Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult? Function()? register,
     TResult? Function()? checkInn,
     TResult? Function(String phone, String requestId)? sendCode,
@@ -1616,7 +1802,9 @@ class _$AddErrorImpl implements _AddError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, String phone, String? inn)? init,
+    TResult Function(String requestId, String phone, String? inn,
+            AddressRequest? address, int? addressId)?
+        init,
     TResult Function()? register,
     TResult Function()? checkInn,
     TResult Function(String phone, String requestId)? sendCode,

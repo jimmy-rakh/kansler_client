@@ -33,6 +33,7 @@ class AppTextField extends StatelessWidget {
   final bool obscureText;
   final TextStyle? style;
   final TextStyle? labelStyle;
+  final TextStyle? floatingLabelStyle;
   final double enabledBorderWith;
   final Color? enabledBorderColor;
   final double focusedBorderWith;
@@ -78,6 +79,7 @@ class AppTextField extends StatelessWidget {
     this.focusedBorderColor,
     this.textAlign = TextAlign.start,
     this.onEditingComplete,
+    this.floatingLabelStyle,
   });
 
   @override
@@ -129,8 +131,7 @@ class AppTextField extends StatelessWidget {
           alignLabelWithHint: alignLabelWithHint,
           fillColor: bgColor,
           floatingLabelAlignment: FloatingLabelAlignment.start,
-          floatingLabelStyle:
-              context.labelLarge!.copyWith(color: context.primary),
+          floatingLabelStyle: floatingLabelStyle,
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               width: focusedBorderWith,
