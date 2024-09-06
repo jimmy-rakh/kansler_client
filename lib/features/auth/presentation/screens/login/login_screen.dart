@@ -16,18 +16,15 @@ class LoginScreen extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return const KeyboardEscape(
+    return KeyboardEscape(
       child: Scaffold(
         body: Stack(
           children: [
-            Positioned(top: 60, child: AutoLeadingButton()),
+            const Positioned(top: 60, child: AutoLeadingButton()),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  verticalSpace60,
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: ListView(
+                children: const [
                   verticalSpace60,
                   verticalSpace35,
                   LoginHeaderWidget(),

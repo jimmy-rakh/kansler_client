@@ -5,8 +5,8 @@ import 'package:kansler/app/router.dart';
 
 import '../core/style/theme.dart';
 
-class MirelApp extends StatelessWidget {
-  const MirelApp({super.key});
+class KanslerApp extends StatelessWidget {
+  const KanslerApp({super.key});
 
   ThemeData _getTheme(ThemeMode themeMode) {
     switch (themeMode) {
