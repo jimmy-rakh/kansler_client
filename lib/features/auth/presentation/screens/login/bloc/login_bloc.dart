@@ -117,6 +117,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               passController = TextEditingController();
               return;
             }
+
+
           } catch (e) {
             emit(state.copyWith(error: e.toString()));
           }
@@ -124,7 +126,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     }
 
-    if (phoneController.text.isNotEmpty) _sendCode();
+    if ((phoneController.text.isNotEmpty || state.tabIndex == 0) && !state.hasPass) _sendCode();
 
     emit(state.copyWith(isBusy: false));
   }
