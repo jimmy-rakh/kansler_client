@@ -29,12 +29,8 @@ mixin _$CurrentDto {
   String? get longitude => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
 
-  /// Serializes this CurrentDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CurrentDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CurrentDtoCopyWith<CurrentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -68,8 +64,6 @@ class _$CurrentDtoCopyWithImpl<$Res, $Val extends CurrentDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CurrentDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -118,8 +112,6 @@ class _$CurrentDtoCopyWithImpl<$Res, $Val extends CurrentDto>
     ) as $Val);
   }
 
-  /// Create a copy of CurrentDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyDtoCopyWith<$Res>? get company {
@@ -163,8 +155,6 @@ class __$$CurrentDtoImplCopyWithImpl<$Res>
       _$CurrentDtoImpl _value, $Res Function(_$CurrentDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CurrentDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -271,14 +261,12 @@ class _$CurrentDtoImpl implements _CurrentDto {
                 other.phoneNumber == phoneNumber));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, cid, username, company, name,
       latitude, longitude, phoneNumber);
 
-  /// Create a copy of CurrentDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CurrentDtoImplCopyWith<_$CurrentDtoImpl> get copyWith =>
@@ -322,11 +310,8 @@ abstract class _CurrentDto implements CurrentDto {
   String? get longitude;
   @override
   String? get phoneNumber;
-
-  /// Create a copy of CurrentDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CurrentDtoImplCopyWith<_$CurrentDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

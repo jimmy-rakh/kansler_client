@@ -78,9 +78,6 @@ class _$DiscountsStateCopyWithImpl<$Res, $Val extends DiscountsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of DiscountsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,9 +94,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DiscountsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -211,8 +205,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DiscountsState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -258,9 +250,7 @@ class _$SuccessImpl implements _Success {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
-  /// Create a copy of DiscountsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -339,10 +329,7 @@ abstract class _Success implements DiscountsState {
   const factory _Success(final List<ProductEntity> products) = _$SuccessImpl;
 
   List<ProductEntity> get products;
-
-  /// Create a copy of DiscountsState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -361,9 +348,6 @@ class __$$FailureImplCopyWithImpl<$Res>
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DiscountsState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -510,9 +494,6 @@ class _$DiscountsEventCopyWithImpl<$Res, $Val extends DiscountsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of DiscountsEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -529,9 +510,6 @@ class __$$FetchImplCopyWithImpl<$Res>
   __$$FetchImplCopyWithImpl(
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of DiscountsEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

@@ -37,7 +37,8 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
         ),
       ),
       body: state.whenOrNull(
-            ready: (orders) => ListView.separated(
+            ready: (orders, isMoring, id) => ListView.separated(
+              controller: bloc.scrollController,
               padding: const EdgeInsets.all(16),
               itemBuilder: (context, index) => ProductCard.list(
                   cartProduct: orders[index],
@@ -58,7 +59,7 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
         create: (context) => getIt<OrderOrganizationBloc>()
-          ..add(OrderOrganizationEvent.fetch(id)),
+          ..add(OrderOrganizationEvent.fetch(id: id)),
         child: this,
       );
 }

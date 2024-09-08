@@ -21,9 +21,7 @@ mixin _$LoginParamsEntity {
   String get fcmToken => throw _privateConstructorUsedError;
   DeviceInfo get device => throw _privateConstructorUsedError;
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $LoginParamsEntityCopyWith<LoginParamsEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$LoginParamsEntityCopyWithImpl<$Res, $Val extends LoginParamsEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,8 +79,6 @@ class _$LoginParamsEntityCopyWithImpl<$Res, $Val extends LoginParamsEntity>
     ) as $Val);
   }
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeviceInfoCopyWith<$Res> get device {
@@ -120,8 +114,6 @@ class __$$LoginParamsEntityImplCopyWithImpl<$Res>
       $Res Function(_$LoginParamsEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -191,9 +183,7 @@ class _$LoginParamsEntityImpl implements _LoginParamsEntity {
   int get hashCode =>
       Object.hash(runtimeType, value, clientType, fcmToken, device);
 
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginParamsEntityImplCopyWith<_$LoginParamsEntityImpl> get copyWith =>
@@ -216,11 +206,8 @@ abstract class _LoginParamsEntity implements LoginParamsEntity {
   String get fcmToken;
   @override
   DeviceInfo get device;
-
-  /// Create a copy of LoginParamsEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginParamsEntityImplCopyWith<_$LoginParamsEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

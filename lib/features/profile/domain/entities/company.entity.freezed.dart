@@ -24,9 +24,7 @@ mixin _$CompanyEntity {
   String? get companyType => throw _privateConstructorUsedError;
   ManagerEntity? get manager => throw _privateConstructorUsedError;
 
-  /// Create a copy of CompanyEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CompanyEntityCopyWith<CompanyEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -59,8 +57,6 @@ class _$CompanyEntityCopyWithImpl<$Res, $Val extends CompanyEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CompanyEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -104,8 +100,6 @@ class _$CompanyEntityCopyWithImpl<$Res, $Val extends CompanyEntity>
     ) as $Val);
   }
 
-  /// Create a copy of CompanyEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerEntityCopyWith<$Res>? get manager {
@@ -148,8 +142,6 @@ class __$$CompanyEntityImplCopyWithImpl<$Res>
       _$CompanyEntityImpl _value, $Res Function(_$CompanyEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CompanyEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -256,9 +248,7 @@ class _$CompanyEntityImpl implements _CompanyEntity {
   int get hashCode => Object.hash(runtimeType, id, name, fullName, inn,
       const DeepCollectionEquality().hash(_phoneNumbers), companyType, manager);
 
-  /// Create a copy of CompanyEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CompanyEntityImplCopyWith<_$CompanyEntityImpl> get copyWith =>
@@ -289,11 +279,8 @@ abstract class _CompanyEntity implements CompanyEntity {
   String? get companyType;
   @override
   ManagerEntity? get manager;
-
-  /// Create a copy of CompanyEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CompanyEntityImplCopyWith<_$CompanyEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -305,9 +292,7 @@ mixin _$ManagerEntity {
   String? get phone => throw _privateConstructorUsedError;
   String? get image => throw _privateConstructorUsedError;
 
-  /// Create a copy of ManagerEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ManagerEntityCopyWith<ManagerEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -331,8 +316,6 @@ class _$ManagerEntityCopyWithImpl<$Res, $Val extends ManagerEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ManagerEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -381,8 +364,6 @@ class __$$ManagerEntityImplCopyWithImpl<$Res>
       _$ManagerEntityImpl _value, $Res Function(_$ManagerEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ManagerEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -446,9 +427,7 @@ class _$ManagerEntityImpl implements _ManagerEntity {
   @override
   int get hashCode => Object.hash(runtimeType, name, fullName, phone, image);
 
-  /// Create a copy of ManagerEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ManagerEntityImplCopyWith<_$ManagerEntityImpl> get copyWith =>
@@ -470,11 +449,8 @@ abstract class _ManagerEntity implements ManagerEntity {
   String? get phone;
   @override
   String? get image;
-
-  /// Create a copy of ManagerEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ManagerEntityImplCopyWith<_$ManagerEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

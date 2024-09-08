@@ -23,9 +23,7 @@ mixin _$BasicResponse {
   bool get success => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
-  /// Create a copy of BasicResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $BasicResponseCopyWith<BasicResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,8 +47,6 @@ class _$BasicResponseCopyWithImpl<$Res, $Val extends BasicResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of BasicResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,8 +85,6 @@ class __$$BasicResponseImplCopyWithImpl<$Res>
       _$BasicResponseImpl _value, $Res Function(_$BasicResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of BasicResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,13 +132,11 @@ class _$BasicResponseImpl implements _BasicResponse {
                 other.errorMessage == errorMessage));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, success, errorMessage);
 
-  /// Create a copy of BasicResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$BasicResponseImplCopyWith<_$BasicResponseImpl> get copyWith =>
@@ -163,11 +155,8 @@ abstract class _BasicResponse implements BasicResponse {
   bool get success;
   @override
   String? get errorMessage;
-
-  /// Create a copy of BasicResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$BasicResponseImplCopyWith<_$BasicResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

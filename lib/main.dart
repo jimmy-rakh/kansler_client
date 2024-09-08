@@ -43,7 +43,6 @@ void main() async {
     );
     await NotificationService.init();
 
-    log.d(await NotificationService.getToken());
   } catch (e) {
     log.e(e.toString());
   } finally {

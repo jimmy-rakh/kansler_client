@@ -31,12 +31,8 @@ mixin _$RegisterRequest {
   String get requestId => throw _privateConstructorUsedError;
   AddressRequest? get addresses => throw _privateConstructorUsedError;
 
-  /// Serializes this RegisterRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of RegisterRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $RegisterRequestCopyWith<RegisterRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -69,8 +65,6 @@ class _$RegisterRequestCopyWithImpl<$Res, $Val extends RegisterRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of RegisterRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -114,8 +108,6 @@ class _$RegisterRequestCopyWithImpl<$Res, $Val extends RegisterRequest>
     ) as $Val);
   }
 
-  /// Create a copy of RegisterRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AddressRequestCopyWith<$Res>? get addresses {
@@ -158,8 +150,6 @@ class __$$RegisterRequestImplCopyWithImpl<$Res>
       _$RegisterRequestImpl _value, $Res Function(_$RegisterRequestImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of RegisterRequest
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -262,14 +252,12 @@ class _$RegisterRequestImpl implements _RegisterRequest {
                 other.addresses == addresses));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, name, username, password,
       phoneNumber, addressesId, requestId, addresses);
 
-  /// Create a copy of RegisterRequest
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RegisterRequestImplCopyWith<_$RegisterRequestImpl> get copyWith =>
@@ -314,11 +302,8 @@ abstract class _RegisterRequest implements RegisterRequest {
   String get requestId;
   @override
   AddressRequest? get addresses;
-
-  /// Create a copy of RegisterRequest
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RegisterRequestImplCopyWith<_$RegisterRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

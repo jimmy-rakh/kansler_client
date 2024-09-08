@@ -22,9 +22,7 @@ mixin _$CategoryEntitity {
   String? get imageUrl => throw _privateConstructorUsedError;
   List<CategoryEntitity> get children => throw _privateConstructorUsedError;
 
-  /// Create a copy of CategoryEntitity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CategoryEntitityCopyWith<CategoryEntitity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,8 +51,6 @@ class _$CategoryEntitityCopyWithImpl<$Res, $Val extends CategoryEntitity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CategoryEntitity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -113,8 +109,6 @@ class __$$CategoryEntitityImplCopyWithImpl<$Res>
       $Res Function(_$CategoryEntitityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CategoryEntitity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -200,9 +194,7 @@ class _$CategoryEntitityImpl implements _CategoryEntitity {
   int get hashCode => Object.hash(runtimeType, id, name, hasChildren, imageUrl,
       const DeepCollectionEquality().hash(_children));
 
-  /// Create a copy of CategoryEntitity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CategoryEntitityImplCopyWith<_$CategoryEntitityImpl> get copyWith =>
@@ -228,11 +220,8 @@ abstract class _CategoryEntitity implements CategoryEntitity {
   String? get imageUrl;
   @override
   List<CategoryEntitity> get children;
-
-  /// Create a copy of CategoryEntitity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CategoryEntitityImplCopyWith<_$CategoryEntitityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

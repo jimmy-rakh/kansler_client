@@ -24,9 +24,7 @@ mixin _$AuthResponse {
   bool get isExists => throw _privateConstructorUsedError;
   bool get hasPass => throw _privateConstructorUsedError;
 
-  /// Create a copy of AuthResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $AuthResponseCopyWith<AuthResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,8 +48,6 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of AuthResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -95,8 +91,6 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
       _$AuthResponseImpl _value, $Res Function(_$AuthResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of AuthResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,13 +148,11 @@ class _$AuthResponseImpl implements _AuthResponse {
             (identical(other.hasPass, hasPass) || other.hasPass == hasPass));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, requestId, isExists, hasPass);
 
-  /// Create a copy of AuthResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>
@@ -182,11 +174,8 @@ abstract class _AuthResponse implements AuthResponse {
   bool get isExists;
   @override
   bool get hasPass;
-
-  /// Create a copy of AuthResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AuthResponseImplCopyWith<_$AuthResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

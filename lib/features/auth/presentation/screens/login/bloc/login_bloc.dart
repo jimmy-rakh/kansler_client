@@ -13,6 +13,7 @@ import 'package:kansler/features/auth/domain/domain.dart';
 import 'package:kansler/features/auth/presentation/sheets/company_info/company_info_sheet.dart';
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code/confirm_code_bloc.dart';
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code_sheet.dart';
+import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
@@ -95,11 +96,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     if (state.requestId == null) {
       final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
+      final token = await NotificationService.getToken();
 
       final request = AuthRequest(
         value: address?.cid.toString() ?? valueController.text,
         clientType: ClientType.values[state.tabIndex],
-        fcmToken: 'fcmTokåen',
+        fcmToken: token ?? '',
         device: deviceInfo,
       );
       final res = await _authRepository.authentification(request);

@@ -19,19 +19,23 @@ mixin _$OrderOrganizationState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<CartProduct> orders) ready,
+    required TResult Function(
+            List<CartProduct> orders, bool? isMoreLoading, int? id)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<CartProduct> orders)? ready,
+    TResult? Function(List<CartProduct> orders, bool? isMoreLoading, int? id)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<CartProduct> orders)? ready,
+    TResult Function(List<CartProduct> orders, bool? isMoreLoading, int? id)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -73,9 +77,6 @@ class _$OrderOrganizationStateCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -92,9 +93,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -120,7 +118,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<CartProduct> orders) ready,
+    required TResult Function(
+            List<CartProduct> orders, bool? isMoreLoading, int? id)
+        ready,
   }) {
     return loadInProgress();
   }
@@ -129,7 +129,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<CartProduct> orders)? ready,
+    TResult? Function(List<CartProduct> orders, bool? isMoreLoading, int? id)?
+        ready,
   }) {
     return loadInProgress?.call();
   }
@@ -138,7 +139,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<CartProduct> orders)? ready,
+    TResult Function(List<CartProduct> orders, bool? isMoreLoading, int? id)?
+        ready,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -189,7 +191,7 @@ abstract class _$$ReadyImplCopyWith<$Res> {
           _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
       __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CartProduct> orders});
+  $Res call({List<CartProduct> orders, bool? isMoreLoading, int? id});
 }
 
 /// @nodoc
@@ -200,18 +202,26 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? orders = null,
+    Object? isMoreLoading = freezed,
+    Object? id = freezed,
   }) {
     return _then(_$ReadyImpl(
       null == orders
           ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
               as List<CartProduct>,
+      isMoreLoading: freezed == isMoreLoading
+          ? _value.isMoreLoading
+          : isMoreLoading // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -219,7 +229,9 @@ class __$$ReadyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ReadyImpl implements _Ready {
-  const _$ReadyImpl(final List<CartProduct> orders) : _orders = orders;
+  const _$ReadyImpl(final List<CartProduct> orders,
+      {this.isMoreLoading, this.id})
+      : _orders = orders;
 
   final List<CartProduct> _orders;
   @override
@@ -230,8 +242,13 @@ class _$ReadyImpl implements _Ready {
   }
 
   @override
+  final bool? isMoreLoading;
+  @override
+  final int? id;
+
+  @override
   String toString() {
-    return 'OrderOrganizationState.ready(orders: $orders)';
+    return 'OrderOrganizationState.ready(orders: $orders, isMoreLoading: $isMoreLoading, id: $id)';
   }
 
   @override
@@ -239,16 +256,17 @@ class _$ReadyImpl implements _Ready {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
-            const DeepCollectionEquality().equals(other._orders, _orders));
+            const DeepCollectionEquality().equals(other._orders, _orders) &&
+            (identical(other.isMoreLoading, isMoreLoading) ||
+                other.isMoreLoading == isMoreLoading) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_orders), isMoreLoading, id);
 
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -258,29 +276,33 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<CartProduct> orders) ready,
+    required TResult Function(
+            List<CartProduct> orders, bool? isMoreLoading, int? id)
+        ready,
   }) {
-    return ready(orders);
+    return ready(orders, isMoreLoading, id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<CartProduct> orders)? ready,
+    TResult? Function(List<CartProduct> orders, bool? isMoreLoading, int? id)?
+        ready,
   }) {
-    return ready?.call(orders);
+    return ready?.call(orders, isMoreLoading, id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<CartProduct> orders)? ready,
+    TResult Function(List<CartProduct> orders, bool? isMoreLoading, int? id)?
+        ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(orders);
+      return ready(orders, isMoreLoading, id);
     }
     return orElse();
   }
@@ -318,33 +340,34 @@ class _$ReadyImpl implements _Ready {
 }
 
 abstract class _Ready implements OrderOrganizationState {
-  const factory _Ready(final List<CartProduct> orders) = _$ReadyImpl;
+  const factory _Ready(final List<CartProduct> orders,
+      {final bool? isMoreLoading, final int? id}) = _$ReadyImpl;
 
   List<CartProduct> get orders;
-
-  /// Create a copy of OrderOrganizationState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool? get isMoreLoading;
+  int? get id;
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$OrderOrganizationEvent {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  bool get isMore => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) fetch,
+    required TResult Function(int? id, bool isMore) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? fetch,
+    TResult? Function(int? id, bool isMore)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? fetch,
+    TResult Function(int? id, bool isMore)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -365,9 +388,7 @@ mixin _$OrderOrganizationEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OrderOrganizationEventCopyWith<OrderOrganizationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -378,7 +399,7 @@ abstract class $OrderOrganizationEventCopyWith<$Res> {
           $Res Function(OrderOrganizationEvent) then) =
       _$OrderOrganizationEventCopyWithImpl<$Res, OrderOrganizationEvent>;
   @useResult
-  $Res call({int id});
+  $Res call({int? id, bool isMore});
 }
 
 /// @nodoc
@@ -392,18 +413,21 @@ class _$OrderOrganizationEventCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? isMore = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      isMore: null == isMore
+          ? _value.isMore
+          : isMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -416,7 +440,7 @@ abstract class _$$FetchDataImplCopyWith<$Res>
       __$$FetchDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id});
+  $Res call({int? id, bool isMore});
 }
 
 /// @nodoc
@@ -427,18 +451,21 @@ class __$$FetchDataImplCopyWithImpl<$Res>
       _$FetchDataImpl _value, $Res Function(_$FetchDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
+    Object? isMore = null,
   }) {
     return _then(_$FetchDataImpl(
-      null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
+      isMore: null == isMore
+          ? _value.isMore
+          : isMore // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -446,14 +473,17 @@ class __$$FetchDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FetchDataImpl implements _FetchData {
-  const _$FetchDataImpl(this.id);
+  const _$FetchDataImpl({this.id, this.isMore = false});
 
   @override
-  final int id;
+  final int? id;
+  @override
+  @JsonKey()
+  final bool isMore;
 
   @override
   String toString() {
-    return 'OrderOrganizationEvent.fetch(id: $id)';
+    return 'OrderOrganizationEvent.fetch(id: $id, isMore: $isMore)';
   }
 
   @override
@@ -461,15 +491,14 @@ class _$FetchDataImpl implements _FetchData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchDataImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.isMore, isMore) || other.isMore == isMore));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, id, isMore);
 
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchDataImplCopyWith<_$FetchDataImpl> get copyWith =>
@@ -478,27 +507,27 @@ class _$FetchDataImpl implements _FetchData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) fetch,
+    required TResult Function(int? id, bool isMore) fetch,
   }) {
-    return fetch(id);
+    return fetch(id, isMore);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? fetch,
+    TResult? Function(int? id, bool isMore)? fetch,
   }) {
-    return fetch?.call(id);
+    return fetch?.call(id, isMore);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? fetch,
+    TResult Function(int? id, bool isMore)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch(id);
+      return fetch(id, isMore);
     }
     return orElse();
   }
@@ -533,15 +562,15 @@ class _$FetchDataImpl implements _FetchData {
 }
 
 abstract class _FetchData implements OrderOrganizationEvent {
-  const factory _FetchData(final int id) = _$FetchDataImpl;
+  const factory _FetchData({final int? id, final bool isMore}) =
+      _$FetchDataImpl;
 
   @override
-  int get id;
-
-  /// Create a copy of OrderOrganizationEvent
-  /// with the given fields replaced by the non-null parameter values.
+  int? get id;
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  bool get isMore;
+  @override
+  @JsonKey(ignore: true)
   _$$FetchDataImplCopyWith<_$FetchDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

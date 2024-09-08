@@ -21,9 +21,7 @@ mixin _$PreordersState {
   int? get price => throw _privateConstructorUsedError;
   bool get isMoreLoading => throw _privateConstructorUsedError;
 
-  /// Create a copy of PreordersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $PreordersStateCopyWith<PreordersState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,8 +49,6 @@ class _$PreordersStateCopyWithImpl<$Res, $Val extends PreordersState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PreordersState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,8 +101,6 @@ class __$$LoginStateImplCopyWithImpl<$Res>
       _$LoginStateImpl _value, $Res Function(_$LoginStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PreordersState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -185,9 +179,7 @@ class _$LoginStateImpl implements _LoginState {
   int get hashCode => Object.hash(runtimeType, status,
       const DeepCollectionEquality().hash(_products), price, isMoreLoading);
 
-  /// Create a copy of PreordersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
@@ -209,11 +201,8 @@ abstract class _LoginState implements PreordersState {
   int? get price;
   @override
   bool get isMoreLoading;
-
-  /// Create a copy of PreordersState
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -322,9 +311,6 @@ class _$PreordersEventCopyWithImpl<$Res, $Val extends PreordersEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -341,9 +327,6 @@ class __$$RetryImplCopyWithImpl<$Res>
   __$$RetryImplCopyWithImpl(
       _$RetryImpl _value, $Res Function(_$RetryImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -495,8 +478,6 @@ class __$$AddToPreordersImplCopyWithImpl<$Res>
       _$AddToPreordersImpl _value, $Res Function(_$AddToPreordersImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -556,9 +537,7 @@ class _$AddToPreordersImpl implements _AddToPreorders {
   int get hashCode =>
       Object.hash(runtimeType, id, quantity, updateDependencies);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddToPreordersImplCopyWith<_$AddToPreordersImpl> get copyWith =>
@@ -681,10 +660,7 @@ abstract class _AddToPreorders implements PreordersEvent {
   int get id;
   int get quantity;
   bool get updateDependencies;
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddToPreordersImplCopyWith<_$AddToPreordersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -708,8 +684,6 @@ class __$$UpdateProductInPreordersImplCopyWithImpl<$Res>
       $Res Function(_$UpdateProductInPreordersImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -757,9 +731,7 @@ class _$UpdateProductInPreordersImpl implements _UpdateProductInPreorders {
   @override
   int get hashCode => Object.hash(runtimeType, id, quantity);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdateProductInPreordersImplCopyWith<_$UpdateProductInPreordersImpl>
@@ -881,10 +853,7 @@ abstract class _UpdateProductInPreorders implements PreordersEvent {
 
   int get id;
   int get quantity;
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UpdateProductInPreordersImplCopyWith<_$UpdateProductInPreordersImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -908,8 +877,6 @@ class __$$DeleteProductInPreordersImplCopyWithImpl<$Res>
       $Res Function(_$DeleteProductInPreordersImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -948,9 +915,7 @@ class _$DeleteProductInPreordersImpl implements _DeleteProductInPreorders {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteProductInPreordersImplCopyWith<_$DeleteProductInPreordersImpl>
@@ -1071,10 +1036,7 @@ abstract class _DeleteProductInPreorders implements PreordersEvent {
       _$DeleteProductInPreordersImpl;
 
   int get id;
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeleteProductInPreordersImplCopyWith<_$DeleteProductInPreordersImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1098,8 +1060,6 @@ class __$$DeleteProductsInPreordersImplCopyWithImpl<$Res>
       $Res Function(_$DeleteProductsInPreordersImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1144,9 +1104,7 @@ class _$DeleteProductsInPreordersImpl implements _DeleteProductsInPreorders {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_ids));
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DeleteProductsInPreordersImplCopyWith<_$DeleteProductsInPreordersImpl>
@@ -1267,10 +1225,7 @@ abstract class _DeleteProductsInPreorders implements PreordersEvent {
       _$DeleteProductsInPreordersImpl;
 
   List<int> get ids;
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DeleteProductsInPreordersImplCopyWith<_$DeleteProductsInPreordersImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1289,9 +1244,6 @@ class __$$GetPreordersPriceImplCopyWithImpl<$Res>
   __$$GetPreordersPriceImplCopyWithImpl(_$GetPreordersPriceImpl _value,
       $Res Function(_$GetPreordersPriceImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1443,8 +1395,6 @@ class __$$GetPreordersProductsImplCopyWithImpl<$Res>
       $Res Function(_$GetPreordersProductsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1484,9 +1434,7 @@ class _$GetPreordersProductsImpl implements _GetPreordersProducts {
   @override
   int get hashCode => Object.hash(runtimeType, isMore);
 
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GetPreordersProductsImplCopyWith<_$GetPreordersProductsImpl>
@@ -1608,10 +1556,7 @@ abstract class _GetPreordersProducts implements PreordersEvent {
       _$GetPreordersProductsImpl;
 
   bool get isMore;
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GetPreordersProductsImplCopyWith<_$GetPreordersProductsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1630,9 +1575,6 @@ class __$$ToCheckoutImplCopyWithImpl<$Res>
   __$$ToCheckoutImplCopyWithImpl(
       _$ToCheckoutImpl _value, $Res Function(_$ToCheckoutImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of PreordersEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

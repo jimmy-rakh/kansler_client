@@ -72,9 +72,6 @@ class _$NavbarStateCopyWithImpl<$Res, $Val extends NavbarState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of NavbarState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,9 +88,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of NavbarState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -199,8 +193,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NavbarState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -240,9 +232,7 @@ class _$ReadyImpl implements _Ready {
   @override
   int get hashCode => Object.hash(runtimeType, tabsRouter);
 
-  /// Create a copy of NavbarState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -315,10 +305,7 @@ abstract class _Ready implements NavbarState {
   const factory _Ready(final TabsRouter tabsRouter) = _$ReadyImpl;
 
   TabsRouter get tabsRouter;
-
-  /// Create a copy of NavbarState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -381,9 +368,6 @@ class _$NavbarEventCopyWithImpl<$Res, $Val extends NavbarEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -402,8 +386,6 @@ class __$$InitImplCopyWithImpl<$Res>
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -443,9 +425,7 @@ class _$InitImpl implements _Init {
   @override
   int get hashCode => Object.hash(runtimeType, tabsRouter);
 
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
@@ -518,10 +498,7 @@ abstract class _Init implements NavbarEvent {
   const factory _Init(final TabsRouter tabsRouter) = _$InitImpl;
 
   TabsRouter get tabsRouter;
-
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -543,8 +520,6 @@ class __$$ChangeIndexImplCopyWithImpl<$Res>
       _$ChangeIndexImpl _value, $Res Function(_$ChangeIndexImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -583,9 +558,7 @@ class _$ChangeIndexImpl implements _ChangeIndex {
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeIndexImplCopyWith<_$ChangeIndexImpl> get copyWith =>
@@ -658,10 +631,7 @@ abstract class _ChangeIndex implements NavbarEvent {
   const factory _ChangeIndex(final int value) = _$ChangeIndexImpl;
 
   int get value;
-
-  /// Create a copy of NavbarEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ChangeIndexImplCopyWith<_$ChangeIndexImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -28,12 +28,8 @@ mixin _$ClientInfoResponse {
   List<ClientAdressDto>? get deliveryaddressSet =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this ClientInfoResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ClientInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ClientInfoResponseCopyWith<ClientInfoResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -65,8 +61,6 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ClientInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -105,8 +99,6 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
     ) as $Val);
   }
 
-  /// Create a copy of ClientInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ClientCidDataCopyWith<$Res>? get parent {
@@ -148,8 +140,6 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
       $Res Function(_$ClientInfoResponseImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -254,7 +244,7 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
                 .equals(other._deliveryaddressSet, _deliveryaddressSet));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -265,9 +255,7 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
       region,
       const DeepCollectionEquality().hash(_deliveryaddressSet));
 
-  /// Create a copy of ClientInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientInfoResponseImplCopyWith<_$ClientInfoResponseImpl> get copyWith =>
@@ -307,11 +295,8 @@ abstract class _ClientInfoResponse implements ClientInfoResponse {
   String? get region;
   @override
   List<ClientAdressDto>? get deliveryaddressSet;
-
-  /// Create a copy of ClientInfoResponse
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ClientInfoResponseImplCopyWith<_$ClientInfoResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

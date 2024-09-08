@@ -23,12 +23,8 @@ mixin _$ClientCidData {
   int? get id => throw _privateConstructorUsedError;
   String get cid => throw _privateConstructorUsedError;
 
-  /// Serializes this ClientCidData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ClientCidData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ClientCidDataCopyWith<ClientCidData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,8 +48,6 @@ class _$ClientCidDataCopyWithImpl<$Res, $Val extends ClientCidData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ClientCidData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,8 +86,6 @@ class __$$ClientCidDataImplCopyWithImpl<$Res>
       _$ClientCidDataImpl _value, $Res Function(_$ClientCidDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientCidData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -140,13 +132,11 @@ class _$ClientCidDataImpl implements _ClientCidData {
             (identical(other.cid, cid) || other.cid == cid));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, cid);
 
-  /// Create a copy of ClientCidData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientCidDataImplCopyWith<_$ClientCidDataImpl> get copyWith =>
@@ -171,11 +161,8 @@ abstract class _ClientCidData implements ClientCidData {
   int? get id;
   @override
   String get cid;
-
-  /// Create a copy of ClientCidData
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ClientCidDataImplCopyWith<_$ClientCidDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

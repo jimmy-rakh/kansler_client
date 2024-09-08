@@ -72,9 +72,6 @@ class _$ConfirmCodeStateCopyWithImpl<$Res, $Val extends ConfirmCodeState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of ConfirmCodeState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,9 +88,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
   __$$ReadyImplCopyWithImpl(
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ConfirmCodeState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -196,9 +190,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of ConfirmCodeState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -324,9 +315,7 @@ mixin _$ConfirmCodeEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ConfirmCodeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ConfirmCodeEventCopyWith<ConfirmCodeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -350,8 +339,6 @@ class _$ConfirmCodeEventCopyWithImpl<$Res, $Val extends ConfirmCodeEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ConfirmCodeEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -390,8 +377,6 @@ class __$$ConfirmImplCopyWithImpl<$Res>
       _$ConfirmImpl _value, $Res Function(_$ConfirmImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ConfirmCodeEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -439,9 +424,7 @@ class _$ConfirmImpl implements _Confirm {
   @override
   int get hashCode => Object.hash(runtimeType, phone, requestId);
 
-  /// Create a copy of ConfirmCodeEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfirmImplCopyWith<_$ConfirmImpl> get copyWith =>
@@ -512,11 +495,8 @@ abstract class _Confirm implements ConfirmCodeEvent {
   String get phone;
   @override
   String get requestId;
-
-  /// Create a copy of ConfirmCodeEvent
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ConfirmImplCopyWith<_$ConfirmImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

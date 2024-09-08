@@ -38,12 +38,8 @@ mixin _$DebtDto {
   @JsonKey(name: 'debt_over_120_days')
   String get debtOver120Days => throw _privateConstructorUsedError;
 
-  /// Serializes this DebtDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $DebtDtoCopyWith<DebtDto> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -80,8 +76,6 @@ class _$DebtDtoCopyWithImpl<$Res, $Val extends DebtDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -145,8 +139,6 @@ class _$DebtDtoCopyWithImpl<$Res, $Val extends DebtDto>
     ) as $Val);
   }
 
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -155,8 +147,6 @@ class _$DebtDtoCopyWithImpl<$Res, $Val extends DebtDto>
     });
   }
 
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyDtoCopyWith<$Res> get company {
@@ -165,8 +155,6 @@ class _$DebtDtoCopyWithImpl<$Res, $Val extends DebtDto>
     });
   }
 
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ContractDtoCopyWith<$Res> get contract {
@@ -212,8 +200,6 @@ class __$$DebtDtoImplCopyWithImpl<$Res>
       _$DebtDtoImpl _value, $Res Function(_$DebtDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -358,7 +344,7 @@ class _$DebtDtoImpl implements _DebtDto {
                 other.debtOver120Days == debtOver120Days));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -374,9 +360,7 @@ class _$DebtDtoImpl implements _DebtDto {
       debt91120Days,
       debtOver120Days);
 
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DebtDtoImplCopyWith<_$DebtDtoImpl> get copyWith =>
@@ -435,11 +419,8 @@ abstract class _DebtDto implements DebtDto {
   @override
   @JsonKey(name: 'debt_over_120_days')
   String get debtOver120Days;
-
-  /// Create a copy of DebtDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DebtDtoImplCopyWith<_$DebtDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

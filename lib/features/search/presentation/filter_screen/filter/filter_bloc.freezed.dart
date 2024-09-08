@@ -78,9 +78,6 @@ class _$FilterStateCopyWithImpl<$Res, $Val extends FilterState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of FilterState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -97,9 +94,6 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FilterState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -214,8 +208,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -285,9 +277,7 @@ class _$ReadyImpl implements _Ready {
   int get hashCode => Object.hash(runtimeType, activePage,
       const DeepCollectionEquality().hash(_organizations), search);
 
-  /// Create a copy of FilterState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -371,10 +361,7 @@ abstract class _Ready implements FilterState {
   int get activePage;
   List<ProductDataEntity> get organizations;
   SearchEntity get search;
-
-  /// Create a copy of FilterState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -461,9 +448,6 @@ class _$FilterEventCopyWithImpl<$Res, $Val extends FilterEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -482,8 +466,6 @@ class __$$InitImplCopyWithImpl<$Res>
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -523,9 +505,7 @@ class _$InitImpl implements _Init {
   @override
   int get hashCode => Object.hash(runtimeType, searchData);
 
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
@@ -622,10 +602,7 @@ abstract class _Init implements FilterEvent {
   const factory _Init(final SearchEntity searchData) = _$InitImpl;
 
   SearchEntity get searchData;
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -644,9 +621,6 @@ class __$$ChooseCategoriesImplCopyWithImpl<$Res>
   __$$ChooseCategoriesImplCopyWithImpl(_$ChooseCategoriesImpl _value,
       $Res Function(_$ChooseCategoriesImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -776,8 +750,6 @@ class __$$ChooseOrganizationsImplCopyWithImpl<$Res>
       $Res Function(_$ChooseOrganizationsImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -816,9 +788,7 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ChooseOrganizationsImplCopyWith<_$ChooseOrganizationsImpl> get copyWith =>
@@ -916,10 +886,7 @@ abstract class _ChooseOrganizations implements FilterEvent {
   const factory _ChooseOrganizations(final int id) = _$ChooseOrganizationsImpl;
 
   int get id;
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ChooseOrganizationsImplCopyWith<_$ChooseOrganizationsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -938,9 +905,6 @@ class __$$ChooseBrandsImplCopyWithImpl<$Res>
   __$$ChooseBrandsImplCopyWithImpl(
       _$ChooseBrandsImpl _value, $Res Function(_$ChooseBrandsImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1067,9 +1031,6 @@ class __$$SetBaseViewImplCopyWithImpl<$Res>
   __$$SetBaseViewImplCopyWithImpl(
       _$SetBaseViewImpl _value, $Res Function(_$SetBaseViewImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1199,8 +1160,6 @@ class __$$AddFilterImplCopyWithImpl<$Res>
       _$AddFilterImpl _value, $Res Function(_$AddFilterImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1240,9 +1199,7 @@ class _$AddFilterImpl implements _AddFilter {
   @override
   int get hashCode => Object.hash(runtimeType, searchData);
 
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AddFilterImplCopyWith<_$AddFilterImpl> get copyWith =>
@@ -1339,10 +1296,7 @@ abstract class _AddFilter implements FilterEvent {
   const factory _AddFilter(final SearchEntity searchData) = _$AddFilterImpl;
 
   SearchEntity get searchData;
-
-  /// Create a copy of FilterEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AddFilterImplCopyWith<_$AddFilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -27,12 +27,8 @@ mixin _$OrdersDto {
   List<OrganizationOrders>? get organizationOrders =>
       throw _privateConstructorUsedError;
 
-  /// Serializes this OrdersDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OrdersDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OrdersDtoCopyWith<OrdersDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,8 +56,6 @@ class _$OrdersDtoCopyWithImpl<$Res, $Val extends OrdersDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrdersDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,8 +114,6 @@ class __$$OrdersDtoImplCopyWithImpl<$Res>
       _$OrdersDtoImpl _value, $Res Function(_$OrdersDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrdersDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -208,14 +200,12 @@ class _$OrdersDtoImpl implements _OrdersDto {
                 .equals(other._organizationOrders, _organizationOrders));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, createdAt, status, price,
       const DeepCollectionEquality().hash(_organizationOrders));
 
-  /// Create a copy of OrdersDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OrdersDtoImplCopyWith<_$OrdersDtoImpl> get copyWith =>
@@ -250,11 +240,8 @@ abstract class _OrdersDto implements OrdersDto {
   int get price;
   @override
   List<OrganizationOrders>? get organizationOrders;
-
-  /// Create a copy of OrdersDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OrdersDtoImplCopyWith<_$OrdersDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -271,12 +258,8 @@ mixin _$OrganizationOrders {
   OrganizationDto get organization => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
 
-  /// Serializes this OrganizationOrders to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OrganizationOrdersCopyWith<OrganizationOrders> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -308,8 +291,6 @@ class _$OrganizationOrdersCopyWithImpl<$Res, $Val extends OrganizationOrders>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -343,8 +324,6 @@ class _$OrganizationOrdersCopyWithImpl<$Res, $Val extends OrganizationOrders>
     ) as $Val);
   }
 
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $AddressDtoCopyWith<$Res>? get address {
@@ -357,8 +336,6 @@ class _$OrganizationOrdersCopyWithImpl<$Res, $Val extends OrganizationOrders>
     });
   }
 
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -397,8 +374,6 @@ class __$$OrganizationOrdersImplCopyWithImpl<$Res>
       $Res Function(_$OrganizationOrdersImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -475,14 +450,12 @@ class _$OrganizationOrdersImpl implements _OrganizationOrders {
             (identical(other.price, price) || other.price == price));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, address, status, organization, price);
 
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OrganizationOrdersImplCopyWith<_$OrganizationOrdersImpl> get copyWith =>
@@ -518,11 +491,8 @@ abstract class _OrganizationOrders implements OrganizationOrders {
   OrganizationDto get organization;
   @override
   int? get price;
-
-  /// Create a copy of OrganizationOrders
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OrganizationOrdersImplCopyWith<_$OrganizationOrdersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

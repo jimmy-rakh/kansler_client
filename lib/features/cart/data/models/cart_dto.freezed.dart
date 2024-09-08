@@ -22,12 +22,8 @@ CartDto _$CartDtoFromJson(Map<String, dynamic> json) {
 mixin _$CartDto {
   int get price => throw _privateConstructorUsedError;
 
-  /// Serializes this CartDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of CartDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $CartDtoCopyWith<CartDto> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -49,8 +45,6 @@ class _$CartDtoCopyWithImpl<$Res, $Val extends CartDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CartDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -83,8 +77,6 @@ class __$$CartDtoImplCopyWithImpl<$Res>
       _$CartDtoImpl _value, $Res Function(_$CartDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CartDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,13 +115,11 @@ class _$CartDtoImpl implements _CartDto {
             (identical(other.price, price) || other.price == price));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, price);
 
-  /// Create a copy of CartDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CartDtoImplCopyWith<_$CartDtoImpl> get copyWith =>
@@ -150,11 +140,8 @@ abstract class _CartDto implements CartDto {
 
   @override
   int get price;
-
-  /// Create a copy of CartDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CartDtoImplCopyWith<_$CartDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

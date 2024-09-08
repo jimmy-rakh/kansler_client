@@ -72,9 +72,6 @@ class _$SplashStateCopyWithImpl<$Res, $Val extends SplashState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SplashState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -91,9 +88,6 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -196,9 +190,6 @@ class __$$ReadyImplCopyWithImpl<$Res>
   __$$ReadyImplCopyWithImpl(
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashState
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -345,9 +336,6 @@ class _$SplashEventCopyWithImpl<$Res, $Val extends SplashEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  /// Create a copy of SplashEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -363,9 +351,6 @@ class __$$InitImplCopyWithImpl<$Res>
     implements _$$InitImplCopyWith<$Res> {
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -468,9 +453,6 @@ class __$$StartAppImplCopyWithImpl<$Res>
   __$$StartAppImplCopyWithImpl(
       _$StartAppImpl _value, $Res Function(_$StartAppImpl) _then)
       : super(_value, _then);
-
-  /// Create a copy of SplashEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

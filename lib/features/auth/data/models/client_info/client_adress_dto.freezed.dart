@@ -25,12 +25,8 @@ mixin _$ClientAdressDto {
   String? get name => throw _privateConstructorUsedError;
   String? get region => throw _privateConstructorUsedError;
 
-  /// Serializes this ClientAdressDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ClientAdressDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ClientAdressDtoCopyWith<ClientAdressDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +50,6 @@ class _$ClientAdressDtoCopyWithImpl<$Res, $Val extends ClientAdressDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ClientAdressDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -104,8 +98,6 @@ class __$$ClientAdressDtoImplCopyWithImpl<$Res>
       _$ClientAdressDtoImpl _value, $Res Function(_$ClientAdressDtoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ClientAdressDto
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,13 +160,11 @@ class _$ClientAdressDtoImpl implements _ClientAdressDto {
             (identical(other.region, region) || other.region == region));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, cid, name, region);
 
-  /// Create a copy of ClientAdressDto
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientAdressDtoImplCopyWith<_$ClientAdressDtoImpl> get copyWith =>
@@ -207,11 +197,8 @@ abstract class _ClientAdressDto implements ClientAdressDto {
   String? get name;
   @override
   String? get region;
-
-  /// Create a copy of ClientAdressDto
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ClientAdressDtoImplCopyWith<_$ClientAdressDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

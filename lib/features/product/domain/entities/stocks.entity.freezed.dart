@@ -20,9 +20,7 @@ mixin _$StocksDtoEntity {
   int get quantity => throw _privateConstructorUsedError;
   int get quantityReserve => throw _privateConstructorUsedError;
 
-  /// Create a copy of StocksDtoEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $StocksDtoEntityCopyWith<StocksDtoEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -48,8 +46,6 @@ class _$StocksDtoEntityCopyWithImpl<$Res, $Val extends StocksDtoEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of StocksDtoEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -73,8 +69,6 @@ class _$StocksDtoEntityCopyWithImpl<$Res, $Val extends StocksDtoEntity>
     ) as $Val);
   }
 
-  /// Create a copy of StocksDtoEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res> get stock {
@@ -106,8 +100,6 @@ class __$$StocksDtoEntityImplCopyWithImpl<$Res>
       _$StocksDtoEntityImpl _value, $Res Function(_$StocksDtoEntityImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of StocksDtoEntity
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,9 +160,7 @@ class _$StocksDtoEntityImpl implements _StocksDtoEntity {
   int get hashCode =>
       Object.hash(runtimeType, stock, quantity, quantityReserve);
 
-  /// Create a copy of StocksDtoEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$StocksDtoEntityImplCopyWith<_$StocksDtoEntityImpl> get copyWith =>
@@ -190,11 +180,8 @@ abstract class _StocksDtoEntity implements StocksDtoEntity {
   int get quantity;
   @override
   int get quantityReserve;
-
-  /// Create a copy of StocksDtoEntity
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$StocksDtoEntityImplCopyWith<_$StocksDtoEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
