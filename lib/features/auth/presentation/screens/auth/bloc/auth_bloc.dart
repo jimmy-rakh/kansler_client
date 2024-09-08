@@ -5,7 +5,7 @@ import 'package:kansler/features/auth/domain/domain.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/auth_status.dart';
 import '../../../../../../core/usecase/usecase.dart';
-import '../../../../../cart/presentation/screen/bloc/cart_bloc.dart';
+import '../../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../../../home/presentation/blocs/hit/hit_bloc.dart';
 import '../../../../../home/presentation/blocs/latest/latest_bloc.dart';
 import '../../../../../home/presentation/blocs/popular/popular_bloc.dart';

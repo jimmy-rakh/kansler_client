@@ -22,8 +22,12 @@ ConfirmResponse _$ConfirmResponseFromJson(Map<String, dynamic> json) {
 mixin _$ConfirmResponse {
   String get deviceToken => throw _privateConstructorUsedError;
 
+  /// Serializes this ConfirmResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConfirmResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConfirmResponseCopyWith<ConfirmResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$ConfirmResponseCopyWithImpl<$Res, $Val extends ConfirmResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConfirmResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$ConfirmResponseImplCopyWithImpl<$Res>
       _$ConfirmResponseImpl _value, $Res Function(_$ConfirmResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConfirmResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,11 +127,13 @@ class _$ConfirmResponseImpl implements _ConfirmResponse {
                 other.deviceToken == deviceToken));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, deviceToken);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConfirmResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfirmResponseImplCopyWith<_$ConfirmResponseImpl> get copyWith =>
@@ -147,8 +157,11 @@ abstract class _ConfirmResponse implements ConfirmResponse {
 
   @override
   String get deviceToken;
+
+  /// Create a copy of ConfirmResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConfirmResponseImplCopyWith<_$ConfirmResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

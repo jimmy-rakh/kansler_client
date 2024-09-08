@@ -47,6 +47,7 @@ class LoginFormWidget extends HookWidget {
         ),
         if (state.tabIndex == 1 &&
             !state.hasPass &&
+            state.requestId != null &&
             bloc.valueController.text.isNotEmpty) ...[
           verticalSpace12,
           AppTextField(

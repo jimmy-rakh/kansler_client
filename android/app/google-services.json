@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "565484475257",
+    "project_id": "kansler-2c29d",
+    "storage_bucket": "kansler-2c29d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565484475257:android:ef2be1f623e859389c15a8",
+        "android_client_info": {
+          "package_name": "uz.kansler.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE5ogSFeNJ3jvhJYzVr02Ozv1d9p41Zdk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

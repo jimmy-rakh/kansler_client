@@ -18,4 +18,19 @@ abstract class CartRepository {
       ({int productId, int quantity}) data);
 
   Future<Either<Failure, void>> deleteProductInCart(int productId);
+
+  Future<Either<Failure, int>> getPreorderPrice();
+
+  Future<Either<Failure, ({bool hasNext, List<CartProduct> products})>>
+      getPreorderProducts(int pageNumber);
+
+  Future<Either<Failure, void>> addProductToPreorder(
+      ({int productId, int quantity}) data);
+
+  Future<Either<Failure, void>> deleteProductsInPreorder(List<int> ids);
+
+  Future<Either<Failure, void>> updateProductInPreorder(
+      ({int productId, int quantity}) data);
+
+  Future<Either<Failure, void>> deleteProductInPreorder(int productId);
 }

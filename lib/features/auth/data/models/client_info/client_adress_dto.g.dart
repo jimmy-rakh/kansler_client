@@ -10,8 +10,9 @@ _$ClientAdressDtoImpl _$$ClientAdressDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$ClientAdressDtoImpl(
       id: (json['id'] as num).toInt(),
-      cid: json['cid'] as String,
+      cid: json['cid'] as String?,
       name: json['name'] as String?,
+      region: json['region'] as String?,
     );
 
 Map<String, dynamic> _$$ClientAdressDtoImplToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$ClientAdressDtoImplToJson(
       'id': instance.id,
       'cid': instance.cid,
       'name': instance.name,
+      'region': instance.region,
     };

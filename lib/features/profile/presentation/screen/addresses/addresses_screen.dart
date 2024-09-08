@@ -43,7 +43,7 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
                       Text('Регион:\n${entities[index].region}'),
                       verticalSpace8,
                       Text(
-                          'Телефон для связи:\n${entities[index].phoneNumbers}'),
+                          'Телефон для связи:\n${entities[index].phoneNumber}'),
                       verticalSpace8,
                       Text(
                           'Организация:\n${entities[index].organization?.name}'),

@@ -1,9 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/profile/data/models/current_dto.dart';
 import '../../../../../app/router.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
-import '../../../domain/entities/company.entity.dart';
 import '../../../domain/repositories/profile.repository.dart';
 
 part 'profile_state.dart';

@@ -25,7 +25,7 @@ mixin _$ProductEntity {
   String? get classifierTitle => throw _privateConstructorUsedError;
   String? get packagename => throw _privateConstructorUsedError;
   String? get packagecode => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get vendorCode => throw _privateConstructorUsedError;
   String? get nds => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
@@ -38,17 +38,20 @@ mixin _$ProductEntity {
   bool? get stopList => throw _privateConstructorUsedError;
   String? get quantityInBox => throw _privateConstructorUsedError;
   dynamic get preOrder => throw _privateConstructorUsedError;
-  List<String> get barcode => throw _privateConstructorUsedError;
+  List<String>? get barcode => throw _privateConstructorUsedError;
   String? get arrivalDate => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
   String? get size => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   bool? get inFav => throw _privateConstructorUsedError;
   bool? get inCart => throw _privateConstructorUsedError;
+  bool? get inPreorder => throw _privateConstructorUsedError;
   bool? get hasComment => throw _privateConstructorUsedError;
   List<StocksDto>? get stocks => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductEntityCopyWith<ProductEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -69,7 +72,7 @@ abstract class $ProductEntityCopyWith<$Res> {
       String? classifierTitle,
       String? packagename,
       String? packagecode,
-      String title,
+      String? title,
       String? vendorCode,
       String? nds,
       int? price,
@@ -82,13 +85,14 @@ abstract class $ProductEntityCopyWith<$Res> {
       bool? stopList,
       String? quantityInBox,
       dynamic preOrder,
-      List<String> barcode,
+      List<String>? barcode,
       String? arrivalDate,
       double? weight,
       String? size,
       String? imageUrl,
       bool? inFav,
       bool? inCart,
+      bool? inPreorder,
       bool? hasComment,
       List<StocksDto>? stocks});
 
@@ -108,6 +112,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,7 +126,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     Object? classifierTitle = freezed,
     Object? packagename = freezed,
     Object? packagecode = freezed,
-    Object? title = null,
+    Object? title = freezed,
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
@@ -133,13 +139,14 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     Object? stopList = freezed,
     Object? quantityInBox = freezed,
     Object? preOrder = freezed,
-    Object? barcode = null,
+    Object? barcode = freezed,
     Object? arrivalDate = freezed,
     Object? weight = freezed,
     Object? size = freezed,
     Object? imageUrl = freezed,
     Object? inFav = freezed,
     Object? inCart = freezed,
+    Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
   }) {
@@ -180,10 +187,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
           ? _value.packagecode
           : packagecode // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       vendorCode: freezed == vendorCode
           ? _value.vendorCode
           : vendorCode // ignore: cast_nullable_to_non_nullable
@@ -232,10 +239,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
           ? _value.preOrder
           : preOrder // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      barcode: null == barcode
+      barcode: freezed == barcode
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       arrivalDate: freezed == arrivalDate
           ? _value.arrivalDate
           : arrivalDate // ignore: cast_nullable_to_non_nullable
@@ -260,6 +267,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
           ? _value.inCart
           : inCart // ignore: cast_nullable_to_non_nullable
               as bool?,
+      inPreorder: freezed == inPreorder
+          ? _value.inPreorder
+          : inPreorder // ignore: cast_nullable_to_non_nullable
+              as bool?,
       hasComment: freezed == hasComment
           ? _value.hasComment
           : hasComment // ignore: cast_nullable_to_non_nullable
@@ -271,6 +282,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     ) as $Val);
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get organization {
@@ -283,6 +296,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     });
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get category {
@@ -295,6 +310,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     });
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get brand {
@@ -307,6 +324,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     });
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get madeIn {
@@ -338,7 +357,7 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       String? classifierTitle,
       String? packagename,
       String? packagecode,
-      String title,
+      String? title,
       String? vendorCode,
       String? nds,
       int? price,
@@ -351,13 +370,14 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       bool? stopList,
       String? quantityInBox,
       dynamic preOrder,
-      List<String> barcode,
+      List<String>? barcode,
       String? arrivalDate,
       double? weight,
       String? size,
       String? imageUrl,
       bool? inFav,
       bool? inCart,
+      bool? inPreorder,
       bool? hasComment,
       List<StocksDto>? stocks});
 
@@ -379,6 +399,8 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
       _$ProductEntityImpl _value, $Res Function(_$ProductEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -391,7 +413,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
     Object? classifierTitle = freezed,
     Object? packagename = freezed,
     Object? packagecode = freezed,
-    Object? title = null,
+    Object? title = freezed,
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
@@ -404,13 +426,14 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
     Object? stopList = freezed,
     Object? quantityInBox = freezed,
     Object? preOrder = freezed,
-    Object? barcode = null,
+    Object? barcode = freezed,
     Object? arrivalDate = freezed,
     Object? weight = freezed,
     Object? size = freezed,
     Object? imageUrl = freezed,
     Object? inFav = freezed,
     Object? inCart = freezed,
+    Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
   }) {
@@ -451,10 +474,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
           ? _value.packagecode
           : packagecode // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       vendorCode: freezed == vendorCode
           ? _value.vendorCode
           : vendorCode // ignore: cast_nullable_to_non_nullable
@@ -503,10 +526,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
           ? _value.preOrder
           : preOrder // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      barcode: null == barcode
+      barcode: freezed == barcode
           ? _value._barcode
           : barcode // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       arrivalDate: freezed == arrivalDate
           ? _value.arrivalDate
           : arrivalDate // ignore: cast_nullable_to_non_nullable
@@ -530,6 +553,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
       inCart: freezed == inCart
           ? _value.inCart
           : inCart // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      inPreorder: freezed == inPreorder
+          ? _value.inPreorder
+          : inPreorder // ignore: cast_nullable_to_non_nullable
               as bool?,
       hasComment: freezed == hasComment
           ? _value.hasComment
@@ -556,7 +583,7 @@ class _$ProductEntityImpl extends _ProductEntity {
       this.classifierTitle,
       this.packagename,
       this.packagecode,
-      required this.title,
+      this.title,
       this.vendorCode,
       this.nds,
       this.price,
@@ -569,13 +596,14 @@ class _$ProductEntityImpl extends _ProductEntity {
       this.stopList,
       this.quantityInBox,
       this.preOrder,
-      required final List<String> barcode,
+      final List<String>? barcode,
       this.arrivalDate,
       this.weight,
       this.size,
       this.imageUrl,
       this.inFav,
       this.inCart,
+      this.inPreorder,
       this.hasComment,
       final List<StocksDto>? stocks})
       : _barcode = barcode,
@@ -601,7 +629,7 @@ class _$ProductEntityImpl extends _ProductEntity {
   @override
   final String? packagecode;
   @override
-  final String title;
+  final String? title;
   @override
   final String? vendorCode;
   @override
@@ -626,12 +654,14 @@ class _$ProductEntityImpl extends _ProductEntity {
   final String? quantityInBox;
   @override
   final dynamic preOrder;
-  final List<String> _barcode;
+  final List<String>? _barcode;
   @override
-  List<String> get barcode {
+  List<String>? get barcode {
+    final value = _barcode;
+    if (value == null) return null;
     if (_barcode is EqualUnmodifiableListView) return _barcode;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_barcode);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -647,6 +677,8 @@ class _$ProductEntityImpl extends _ProductEntity {
   @override
   final bool? inCart;
   @override
+  final bool? inPreorder;
+  @override
   final bool? hasComment;
   final List<StocksDto>? _stocks;
   @override
@@ -660,7 +692,7 @@ class _$ProductEntityImpl extends _ProductEntity {
 
   @override
   String toString() {
-    return 'ProductEntity(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, hasComment: $hasComment, stocks: $stocks)';
+    return 'ProductEntity(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, inPreorder: $inPreorder, hasComment: $hasComment, stocks: $stocks)';
   }
 
   @override
@@ -712,6 +744,8 @@ class _$ProductEntityImpl extends _ProductEntity {
                 other.imageUrl == imageUrl) &&
             (identical(other.inFav, inFav) || other.inFav == inFav) &&
             (identical(other.inCart, inCart) || other.inCart == inCart) &&
+            (identical(other.inPreorder, inPreorder) ||
+                other.inPreorder == inPreorder) &&
             (identical(other.hasComment, hasComment) ||
                 other.hasComment == hasComment) &&
             const DeepCollectionEquality().equals(other._stocks, _stocks));
@@ -749,11 +783,14 @@ class _$ProductEntityImpl extends _ProductEntity {
         imageUrl,
         inFav,
         inCart,
+        inPreorder,
         hasComment,
         const DeepCollectionEquality().hash(_stocks)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
@@ -771,7 +808,7 @@ abstract class _ProductEntity extends ProductEntity {
       final String? classifierTitle,
       final String? packagename,
       final String? packagecode,
-      required final String title,
+      final String? title,
       final String? vendorCode,
       final String? nds,
       final int? price,
@@ -784,13 +821,14 @@ abstract class _ProductEntity extends ProductEntity {
       final bool? stopList,
       final String? quantityInBox,
       final dynamic preOrder,
-      required final List<String> barcode,
+      final List<String>? barcode,
       final String? arrivalDate,
       final double? weight,
       final String? size,
       final String? imageUrl,
       final bool? inFav,
       final bool? inCart,
+      final bool? inPreorder,
       final bool? hasComment,
       final List<StocksDto>? stocks}) = _$ProductEntityImpl;
   _ProductEntity._() : super._();
@@ -814,7 +852,7 @@ abstract class _ProductEntity extends ProductEntity {
   @override
   String? get packagecode;
   @override
-  String get title;
+  String? get title;
   @override
   String? get vendorCode;
   @override
@@ -840,7 +878,7 @@ abstract class _ProductEntity extends ProductEntity {
   @override
   dynamic get preOrder;
   @override
-  List<String> get barcode;
+  List<String>? get barcode;
   @override
   String? get arrivalDate;
   @override
@@ -854,11 +892,16 @@ abstract class _ProductEntity extends ProductEntity {
   @override
   bool? get inCart;
   @override
+  bool? get inPreorder;
+  @override
   bool? get hasComment;
   @override
   List<StocksDto>? get stocks;
+
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

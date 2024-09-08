@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/profile/data/models/current_dto.dart';
 import 'package:kansler/features/profile/data/sources/remote.dart';
 import 'package:kansler/features/profile/data/sources/remote.keys.dart';
 
@@ -17,11 +18,11 @@ class ProductRemoteSourceImpl implements ProfileRemoteSource {
   ProductRemoteSourceImpl(this._dio);
 
   @override
-  Future<Either<Failure, CompanyDto>> fetchCompany() async {
+  Future<Either<Failure, CurrentDto>> fetchCompany() async {
     final res = await _dio.getRequest(
-      ProfileRemoteKeys.mainCompany,
+      ProfileRemoteKeys.clientsApi,
       converter: (response) {
-        final res = CompanyDto.fromJson(response as Map<String, dynamic>);
+        final res = CurrentDto.fromJson(response as Map<String, dynamic>);
 
         return res;
       },

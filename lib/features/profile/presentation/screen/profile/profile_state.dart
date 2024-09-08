@@ -4,5 +4,5 @@ part of 'profile_bloc.dart';
 class ProfileState with _$ProfileState {
   const factory ProfileState.initial() = _Initial;
   const factory ProfileState.loadInProgress() = _LoadInProgress;
-  const factory ProfileState.ready(CompanyEntity company) = _Ready;
+  const factory ProfileState.ready(CurrentDto company) = _Ready;
 }

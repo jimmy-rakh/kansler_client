@@ -12,7 +12,7 @@ class AddressDto with _$AddressDto {
     int? id,
     OrganizationDto? organization,
     String? name,
-    String? phoneNumbers,
+    String? phoneNumber,
     ManagerDto? manager,
     ManagerDto? agent,
     dynamic latitude,

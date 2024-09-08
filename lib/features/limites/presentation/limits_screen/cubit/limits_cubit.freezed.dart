@@ -20,7 +20,9 @@ mixin _$LimitsState {
   List<LimitsDto> get limits => throw _privateConstructorUsedError;
   List<BonusDto> get bonuses => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LimitsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LimitsStateCopyWith<LimitsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$LimitsStateCopyWithImpl<$Res, $Val extends LimitsState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LimitsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class __$$LimitsStateImplCopyWithImpl<$Res>
       _$LimitsStateImpl _value, $Res Function(_$LimitsStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LimitsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -166,7 +172,9 @@ class _$LimitsStateImpl implements _LimitsState {
       const DeepCollectionEquality().hash(_limits),
       const DeepCollectionEquality().hash(_bonuses));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LimitsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LimitsStateImplCopyWith<_$LimitsStateImpl> get copyWith =>
@@ -185,8 +193,11 @@ abstract class _LimitsState implements LimitsState {
   List<LimitsDto> get limits;
   @override
   List<BonusDto> get bonuses;
+
+  /// Create a copy of LimitsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LimitsStateImplCopyWith<_$LimitsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

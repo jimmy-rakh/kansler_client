@@ -1,4 +1,4 @@
-package com.example.kansler
+package uz.kansler.app
 
 import io.flutter.embedding.android.FlutterActivity
 

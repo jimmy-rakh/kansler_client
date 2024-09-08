@@ -17,6 +17,7 @@ _$ClientInfoResponseImpl _$$ClientInfoResponseImplFromJson(
       parent: json['parent'] == null
           ? null
           : ClientCidData.fromJson(json['parent'] as Map<String, dynamic>),
+      region: json['region'] as String?,
       deliveryaddressSet: (json['deliveryaddress_set'] as List<dynamic>?)
           ?.map((e) => ClientAdressDto.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -29,6 +30,7 @@ Map<String, dynamic> _$$ClientInfoResponseImplToJson(
       'name': instance.name,
       'phone_numbers': instance.phoneNumbers,
       'parent': instance.parent?.toJson(),
+      'region': instance.region,
       'deliveryaddress_set':
           instance.deliveryaddressSet?.map((e) => e.toJson()).toList(),
     };

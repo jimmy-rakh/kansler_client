@@ -72,6 +72,9 @@ class _$CompaniesStateCopyWithImpl<$Res, $Val extends CompaniesState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CompaniesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CompaniesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompaniesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -237,7 +245,9 @@ class _$ReadyImpl implements _Ready {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_entities));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompaniesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -310,7 +320,10 @@ abstract class _Ready implements CompaniesState {
   const factory _Ready(final List<CompanyEntity> entities) = _$ReadyImpl;
 
   List<CompanyEntity> get entities;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CompaniesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -367,6 +380,9 @@ class _$CompaniesEventCopyWithImpl<$Res, $Val extends CompaniesEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CompaniesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -383,6 +399,9 @@ class __$$FetchCompaniesImplCopyWithImpl<$Res>
   __$$FetchCompaniesImplCopyWithImpl(
       _$FetchCompaniesImpl _value, $Res Function(_$FetchCompaniesImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CompaniesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

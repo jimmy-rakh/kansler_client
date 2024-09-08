@@ -44,18 +44,20 @@ class RegisterFormWidget extends HookWidget {
                   readOnly: true,
                 ),
                 verticalSpace12,
-                AppTextField(
-                  radius: 0,
-                  floatingLabelStyle: context.bodyLarge,
-                  label: bloc.innController.text.isEmpty
-                      ? 'ФИО'
-                      : 'Наименование компании',
-                  fieldController: bloc.nameController,
-                  prefix: const Icon(KazeIcons.profileBold),
-                  hintStyle: context.bodyLarge!.copyWith(
-                    color: context.colorScheme.inverseSurface,
+                if (state.addressId == null) ...[
+                  AppTextField(
+                    radius: 0,
+                    floatingLabelStyle: context.bodyLarge,
+                    label: bloc.innController.text.isEmpty
+                        ? 'ФИО'
+                        : 'Наименование компании',
+                    fieldController: bloc.nameController,
+                    prefix: const Icon(KazeIcons.profileBold),
+                    hintStyle: context.bodyLarge!.copyWith(
+                      color: context.colorScheme.inverseSurface,
+                    ),
                   ),
-                ),
+                ],
                 verticalSpace12,
                 AppTextField(
                   radius: 0,

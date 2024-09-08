@@ -66,7 +66,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     // final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
 
     final request = RegisterRequest(
-      name: nameController.text,
+      name: nameController.text.isEmpty ? null : nameController.text,
       password: passwordController.text,
       phoneNumber: phoneNumberController.text,
       requestId: state.requestId!,

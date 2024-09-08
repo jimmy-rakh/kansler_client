@@ -22,12 +22,11 @@ mixin _$CompanyEntity {
   String? get inn => throw _privateConstructorUsedError;
   List<String?>? get phoneNumbers => throw _privateConstructorUsedError;
   String? get companyType => throw _privateConstructorUsedError;
-  List<MainContactEntity> get mainContact => throw _privateConstructorUsedError;
-  String? get region => throw _privateConstructorUsedError;
   ManagerEntity? get manager => throw _privateConstructorUsedError;
-  bool? get children => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompanyEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompanyEntityCopyWith<CompanyEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,10 +44,7 @@ abstract class $CompanyEntityCopyWith<$Res> {
       String? inn,
       List<String?>? phoneNumbers,
       String? companyType,
-      List<MainContactEntity> mainContact,
-      String? region,
-      ManagerEntity? manager,
-      bool? children});
+      ManagerEntity? manager});
 
   $ManagerEntityCopyWith<$Res>? get manager;
 }
@@ -63,6 +59,8 @@ class _$CompanyEntityCopyWithImpl<$Res, $Val extends CompanyEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CompanyEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -72,10 +70,7 @@ class _$CompanyEntityCopyWithImpl<$Res, $Val extends CompanyEntity>
     Object? inn = freezed,
     Object? phoneNumbers = freezed,
     Object? companyType = freezed,
-    Object? mainContact = null,
-    Object? region = freezed,
     Object? manager = freezed,
-    Object? children = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -102,25 +97,15 @@ class _$CompanyEntityCopyWithImpl<$Res, $Val extends CompanyEntity>
           ? _value.companyType
           : companyType // ignore: cast_nullable_to_non_nullable
               as String?,
-      mainContact: null == mainContact
-          ? _value.mainContact
-          : mainContact // ignore: cast_nullable_to_non_nullable
-              as List<MainContactEntity>,
-      region: freezed == region
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
-              as String?,
       manager: freezed == manager
           ? _value.manager
           : manager // ignore: cast_nullable_to_non_nullable
               as ManagerEntity?,
-      children: freezed == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 
+  /// Create a copy of CompanyEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerEntityCopyWith<$Res>? get manager {
@@ -149,10 +134,7 @@ abstract class _$$CompanyEntityImplCopyWith<$Res>
       String? inn,
       List<String?>? phoneNumbers,
       String? companyType,
-      List<MainContactEntity> mainContact,
-      String? region,
-      ManagerEntity? manager,
-      bool? children});
+      ManagerEntity? manager});
 
   @override
   $ManagerEntityCopyWith<$Res>? get manager;
@@ -166,6 +148,8 @@ class __$$CompanyEntityImplCopyWithImpl<$Res>
       _$CompanyEntityImpl _value, $Res Function(_$CompanyEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompanyEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -175,10 +159,7 @@ class __$$CompanyEntityImplCopyWithImpl<$Res>
     Object? inn = freezed,
     Object? phoneNumbers = freezed,
     Object? companyType = freezed,
-    Object? mainContact = null,
-    Object? region = freezed,
     Object? manager = freezed,
-    Object? children = freezed,
   }) {
     return _then(_$CompanyEntityImpl(
       id: null == id
@@ -205,22 +186,10 @@ class __$$CompanyEntityImplCopyWithImpl<$Res>
           ? _value.companyType
           : companyType // ignore: cast_nullable_to_non_nullable
               as String?,
-      mainContact: null == mainContact
-          ? _value._mainContact
-          : mainContact // ignore: cast_nullable_to_non_nullable
-              as List<MainContactEntity>,
-      region: freezed == region
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
-              as String?,
       manager: freezed == manager
           ? _value.manager
           : manager // ignore: cast_nullable_to_non_nullable
               as ManagerEntity?,
-      children: freezed == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -235,12 +204,8 @@ class _$CompanyEntityImpl implements _CompanyEntity {
       this.inn,
       final List<String?>? phoneNumbers,
       this.companyType,
-      required final List<MainContactEntity> mainContact,
-      this.region,
-      this.manager,
-      this.children})
-      : _phoneNumbers = phoneNumbers,
-        _mainContact = mainContact;
+      this.manager})
+      : _phoneNumbers = phoneNumbers;
 
   @override
   final int id;
@@ -262,24 +227,12 @@ class _$CompanyEntityImpl implements _CompanyEntity {
 
   @override
   final String? companyType;
-  final List<MainContactEntity> _mainContact;
-  @override
-  List<MainContactEntity> get mainContact {
-    if (_mainContact is EqualUnmodifiableListView) return _mainContact;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_mainContact);
-  }
-
-  @override
-  final String? region;
   @override
   final ManagerEntity? manager;
-  @override
-  final bool? children;
 
   @override
   String toString() {
-    return 'CompanyEntity(id: $id, name: $name, fullName: $fullName, inn: $inn, phoneNumbers: $phoneNumbers, companyType: $companyType, mainContact: $mainContact, region: $region, manager: $manager, children: $children)';
+    return 'CompanyEntity(id: $id, name: $name, fullName: $fullName, inn: $inn, phoneNumbers: $phoneNumbers, companyType: $companyType, manager: $manager)';
   }
 
   @override
@@ -296,29 +249,16 @@ class _$CompanyEntityImpl implements _CompanyEntity {
                 .equals(other._phoneNumbers, _phoneNumbers) &&
             (identical(other.companyType, companyType) ||
                 other.companyType == companyType) &&
-            const DeepCollectionEquality()
-                .equals(other._mainContact, _mainContact) &&
-            (identical(other.region, region) || other.region == region) &&
-            (identical(other.manager, manager) || other.manager == manager) &&
-            (identical(other.children, children) ||
-                other.children == children));
+            (identical(other.manager, manager) || other.manager == manager));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      fullName,
-      inn,
-      const DeepCollectionEquality().hash(_phoneNumbers),
-      companyType,
-      const DeepCollectionEquality().hash(_mainContact),
-      region,
-      manager,
-      children);
+  int get hashCode => Object.hash(runtimeType, id, name, fullName, inn,
+      const DeepCollectionEquality().hash(_phoneNumbers), companyType, manager);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompanyEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompanyEntityImplCopyWith<_$CompanyEntityImpl> get copyWith =>
@@ -333,10 +273,7 @@ abstract class _CompanyEntity implements CompanyEntity {
       final String? inn,
       final List<String?>? phoneNumbers,
       final String? companyType,
-      required final List<MainContactEntity> mainContact,
-      final String? region,
-      final ManagerEntity? manager,
-      final bool? children}) = _$CompanyEntityImpl;
+      final ManagerEntity? manager}) = _$CompanyEntityImpl;
 
   @override
   int get id;
@@ -351,169 +288,13 @@ abstract class _CompanyEntity implements CompanyEntity {
   @override
   String? get companyType;
   @override
-  List<MainContactEntity> get mainContact;
-  @override
-  String? get region;
-  @override
   ManagerEntity? get manager;
+
+  /// Create a copy of CompanyEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  bool? get children;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompanyEntityImplCopyWith<_$CompanyEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$MainContactEntity {
-  String? get name => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $MainContactEntityCopyWith<MainContactEntity> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MainContactEntityCopyWith<$Res> {
-  factory $MainContactEntityCopyWith(
-          MainContactEntity value, $Res Function(MainContactEntity) then) =
-      _$MainContactEntityCopyWithImpl<$Res, MainContactEntity>;
-  @useResult
-  $Res call({String? name, String? type, String? phone});
-}
-
-/// @nodoc
-class _$MainContactEntityCopyWithImpl<$Res, $Val extends MainContactEntity>
-    implements $MainContactEntityCopyWith<$Res> {
-  _$MainContactEntityCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? type = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$MainContactEntityImplCopyWith<$Res>
-    implements $MainContactEntityCopyWith<$Res> {
-  factory _$$MainContactEntityImplCopyWith(_$MainContactEntityImpl value,
-          $Res Function(_$MainContactEntityImpl) then) =
-      __$$MainContactEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? name, String? type, String? phone});
-}
-
-/// @nodoc
-class __$$MainContactEntityImplCopyWithImpl<$Res>
-    extends _$MainContactEntityCopyWithImpl<$Res, _$MainContactEntityImpl>
-    implements _$$MainContactEntityImplCopyWith<$Res> {
-  __$$MainContactEntityImplCopyWithImpl(_$MainContactEntityImpl _value,
-      $Res Function(_$MainContactEntityImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? type = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_$MainContactEntityImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$MainContactEntityImpl implements _MainContactEntity {
-  const _$MainContactEntityImpl({this.name, this.type, this.phone});
-
-  @override
-  final String? name;
-  @override
-  final String? type;
-  @override
-  final String? phone;
-
-  @override
-  String toString() {
-    return 'MainContactEntity(name: $name, type: $type, phone: $phone)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MainContactEntityImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, name, type, phone);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MainContactEntityImplCopyWith<_$MainContactEntityImpl> get copyWith =>
-      __$$MainContactEntityImplCopyWithImpl<_$MainContactEntityImpl>(
-          this, _$identity);
-}
-
-abstract class _MainContactEntity implements MainContactEntity {
-  const factory _MainContactEntity(
-      {final String? name,
-      final String? type,
-      final String? phone}) = _$MainContactEntityImpl;
-
-  @override
-  String? get name;
-  @override
-  String? get type;
-  @override
-  String? get phone;
-  @override
-  @JsonKey(ignore: true)
-  _$$MainContactEntityImplCopyWith<_$MainContactEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -522,8 +303,11 @@ mixin _$ManagerEntity {
   String? get name => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ManagerEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ManagerEntityCopyWith<ManagerEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -534,7 +318,7 @@ abstract class $ManagerEntityCopyWith<$Res> {
           ManagerEntity value, $Res Function(ManagerEntity) then) =
       _$ManagerEntityCopyWithImpl<$Res, ManagerEntity>;
   @useResult
-  $Res call({String? name, String? fullName, String? phone});
+  $Res call({String? name, String? fullName, String? phone, String? image});
 }
 
 /// @nodoc
@@ -547,12 +331,15 @@ class _$ManagerEntityCopyWithImpl<$Res, $Val extends ManagerEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ManagerEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = freezed,
     Object? fullName = freezed,
     Object? phone = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -567,6 +354,10 @@ class _$ManagerEntityCopyWithImpl<$Res, $Val extends ManagerEntity>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -579,7 +370,7 @@ abstract class _$$ManagerEntityImplCopyWith<$Res>
       __$$ManagerEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, String? fullName, String? phone});
+  $Res call({String? name, String? fullName, String? phone, String? image});
 }
 
 /// @nodoc
@@ -590,12 +381,15 @@ class __$$ManagerEntityImplCopyWithImpl<$Res>
       _$ManagerEntityImpl _value, $Res Function(_$ManagerEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ManagerEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = freezed,
     Object? fullName = freezed,
     Object? phone = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$ManagerEntityImpl(
       name: freezed == name
@@ -610,6 +404,10 @@ class __$$ManagerEntityImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -617,7 +415,7 @@ class __$$ManagerEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ManagerEntityImpl implements _ManagerEntity {
-  const _$ManagerEntityImpl({this.name, this.fullName, this.phone});
+  const _$ManagerEntityImpl({this.name, this.fullName, this.phone, this.image});
 
   @override
   final String? name;
@@ -625,10 +423,12 @@ class _$ManagerEntityImpl implements _ManagerEntity {
   final String? fullName;
   @override
   final String? phone;
+  @override
+  final String? image;
 
   @override
   String toString() {
-    return 'ManagerEntity(name: $name, fullName: $fullName, phone: $phone)';
+    return 'ManagerEntity(name: $name, fullName: $fullName, phone: $phone, image: $image)';
   }
 
   @override
@@ -639,13 +439,16 @@ class _$ManagerEntityImpl implements _ManagerEntity {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.image, image) || other.image == image));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, fullName, phone);
+  int get hashCode => Object.hash(runtimeType, name, fullName, phone, image);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ManagerEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ManagerEntityImplCopyWith<_$ManagerEntityImpl> get copyWith =>
@@ -656,7 +459,8 @@ abstract class _ManagerEntity implements ManagerEntity {
   const factory _ManagerEntity(
       {final String? name,
       final String? fullName,
-      final String? phone}) = _$ManagerEntityImpl;
+      final String? phone,
+      final String? image}) = _$ManagerEntityImpl;
 
   @override
   String? get name;
@@ -665,7 +469,12 @@ abstract class _ManagerEntity implements ManagerEntity {
   @override
   String? get phone;
   @override
-  @JsonKey(ignore: true)
+  String? get image;
+
+  /// Create a copy of ManagerEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ManagerEntityImplCopyWith<_$ManagerEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

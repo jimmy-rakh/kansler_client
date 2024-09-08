@@ -10,7 +10,7 @@ import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/appbar.dart';
-import '../../../cart/presentation/screen/bloc/cart_bloc.dart';
+import '../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import 'bloc/checkout_bloc.dart';
 
 @RoutePage()

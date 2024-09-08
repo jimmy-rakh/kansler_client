@@ -4,7 +4,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kansler/core/extensions/context.dart';
 
 import '../../../../../app/router.dart';
-import '../../../../cart/presentation/screen/bloc/cart_bloc.dart';
+import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../../home/presentation/blocs/latest/latest_bloc.dart';
 import '../../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../../../orders/presentation/screen/bloc/orders_bloc.dart';

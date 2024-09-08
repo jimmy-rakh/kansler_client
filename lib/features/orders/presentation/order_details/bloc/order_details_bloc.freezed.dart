@@ -72,6 +72,9 @@ class _$OrderDetailsStateCopyWithImpl<$Res, $Val extends OrderDetailsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of OrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of OrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -195,6 +201,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -208,6 +216,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of OrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrdersDtoCopyWith<$Res> get order {
@@ -241,7 +251,9 @@ class _$ReadyImpl implements _Ready {
   @override
   int get hashCode => Object.hash(runtimeType, order);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -314,7 +326,10 @@ abstract class _Ready implements OrderDetailsState {
   const factory _Ready(final OrdersDto order) = _$ReadyImpl;
 
   OrdersDto get order;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of OrderDetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -361,7 +376,9 @@ mixin _$OrderDetailsEvent {
   }) =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $OrderDetailsEventCopyWith<OrderDetailsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -385,6 +402,8 @@ class _$OrderDetailsEventCopyWithImpl<$Res, $Val extends OrderDetailsEvent>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -418,6 +437,8 @@ class __$$FetchOrderImplCopyWithImpl<$Res>
       _$FetchOrderImpl _value, $Res Function(_$FetchOrderImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -456,7 +477,9 @@ class _$FetchOrderImpl implements _FetchOrder {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchOrderImplCopyWith<_$FetchOrderImpl> get copyWith =>
@@ -530,8 +553,11 @@ abstract class _FetchOrder implements OrderDetailsEvent {
 
   @override
   int get id;
+
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FetchOrderImplCopyWith<_$FetchOrderImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -557,6 +583,8 @@ class __$$ToDetailsImplCopyWithImpl<$Res>
       _$ToDetailsImpl _value, $Res Function(_$ToDetailsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -575,6 +603,8 @@ class __$$ToDetailsImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -612,7 +642,9 @@ class _$ToDetailsImpl implements _ToDetails {
   @override
   int get hashCode => Object.hash(runtimeType, id, organization);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ToDetailsImplCopyWith<_$ToDetailsImpl> get copyWith =>
@@ -688,8 +720,11 @@ abstract class _ToDetails implements OrderDetailsEvent {
   @override
   int get id;
   OrganizationDto get organization;
+
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToDetailsImplCopyWith<_$ToDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

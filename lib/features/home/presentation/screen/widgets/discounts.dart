@@ -9,7 +9,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../../core/widgets/title_section.dart';
-import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../product/domain/entities/product.entity.dart';
 import '../../../../product/presentation/widgets/product_card.dart';
 import '../../blocs/discounts/discounts_bloc.dart';
@@ -21,7 +20,6 @@ class DiscountsWidget extends HookWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<DiscountsBloc>();
     final state = useBlocBuilder(bloc);
-    final authBloc = context.read<AuthBloc>();
 
     return Column(
       children: [

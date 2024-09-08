@@ -46,7 +46,7 @@ post_install do |installer|
         '$(inherited)',
 
         ## Add this line
-         'PERMISSION_LOCATION=1'
+        'PERMISSION_LOCATION=1'
       ]
     end
   end

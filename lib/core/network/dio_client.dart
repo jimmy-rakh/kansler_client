@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../features/auth/auth.dart';
@@ -84,7 +85,7 @@ class DioClient with MainBoxMixin {
         );
       }
 
-      if (!isIsolate) {
+      if (!isIsolate || kIsWeb) {
         return Right(converter(response.data));
       }
       final isolateParse = IsolateParser<T>(
@@ -124,7 +125,7 @@ class DioClient with MainBoxMixin {
 
       if (converter == null) return Right(response.data);
 
-      if (!isIsolate) {
+      if (!isIsolate || kIsWeb) {
         return Right(converter(response.data));
       }
       final isolateParse = IsolateParser<T>(
@@ -165,7 +166,7 @@ class DioClient with MainBoxMixin {
 
       if (converter == null) return Right(response.data);
 
-      if (!isIsolate) {
+      if (!isIsolate || kIsWeb) {
         return Right(converter(response.data));
       }
       final isolateParse = IsolateParser<T>(
@@ -205,7 +206,7 @@ class DioClient with MainBoxMixin {
 
       if (converter == null) return Right(response.data);
 
-      if (!isIsolate) {
+      if (!isIsolate || kIsWeb) {
         return Right(converter(response.data));
       }
       final isolateParse = IsolateParser<T>(

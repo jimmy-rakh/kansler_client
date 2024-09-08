@@ -20,21 +20,21 @@ mixin _$ProfileState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(CompanyEntity company) ready,
+    required TResult Function(CurrentDto company) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(CompanyEntity company)? ready,
+    TResult? Function(CurrentDto company)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(CompanyEntity company)? ready,
+    TResult Function(CurrentDto company)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -78,6 +78,9 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,6 +97,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -120,7 +126,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(CompanyEntity company) ready,
+    required TResult Function(CurrentDto company) ready,
   }) {
     return initial();
   }
@@ -130,7 +136,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(CompanyEntity company)? ready,
+    TResult? Function(CurrentDto company)? ready,
   }) {
     return initial?.call();
   }
@@ -140,7 +146,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(CompanyEntity company)? ready,
+    TResult Function(CurrentDto company)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -202,6 +208,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -228,7 +237,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(CompanyEntity company) ready,
+    required TResult Function(CurrentDto company) ready,
   }) {
     return loadInProgress();
   }
@@ -238,7 +247,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(CompanyEntity company)? ready,
+    TResult? Function(CurrentDto company)? ready,
   }) {
     return loadInProgress?.call();
   }
@@ -248,7 +257,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(CompanyEntity company)? ready,
+    TResult Function(CurrentDto company)? ready,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -302,9 +311,9 @@ abstract class _$$ReadyImplCopyWith<$Res> {
           _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
       __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({CompanyEntity company});
+  $Res call({CurrentDto company});
 
-  $CompanyEntityCopyWith<$Res> get company;
+  $CurrentDtoCopyWith<$Res> get company;
 }
 
 /// @nodoc
@@ -315,6 +324,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -324,14 +335,16 @@ class __$$ReadyImplCopyWithImpl<$Res>
       null == company
           ? _value.company
           : company // ignore: cast_nullable_to_non_nullable
-              as CompanyEntity,
+              as CurrentDto,
     ));
   }
 
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $CompanyEntityCopyWith<$Res> get company {
-    return $CompanyEntityCopyWith<$Res>(_value.company, (value) {
+  $CurrentDtoCopyWith<$Res> get company {
+    return $CurrentDtoCopyWith<$Res>(_value.company, (value) {
       return _then(_value.copyWith(company: value));
     });
   }
@@ -343,7 +356,7 @@ class _$ReadyImpl implements _Ready {
   const _$ReadyImpl(this.company);
 
   @override
-  final CompanyEntity company;
+  final CurrentDto company;
 
   @override
   String toString() {
@@ -361,7 +374,9 @@ class _$ReadyImpl implements _Ready {
   @override
   int get hashCode => Object.hash(runtimeType, company);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -372,7 +387,7 @@ class _$ReadyImpl implements _Ready {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadInProgress,
-    required TResult Function(CompanyEntity company) ready,
+    required TResult Function(CurrentDto company) ready,
   }) {
     return ready(company);
   }
@@ -382,7 +397,7 @@ class _$ReadyImpl implements _Ready {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loadInProgress,
-    TResult? Function(CompanyEntity company)? ready,
+    TResult? Function(CurrentDto company)? ready,
   }) {
     return ready?.call(company);
   }
@@ -392,7 +407,7 @@ class _$ReadyImpl implements _Ready {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadInProgress,
-    TResult Function(CompanyEntity company)? ready,
+    TResult Function(CurrentDto company)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
@@ -437,10 +452,13 @@ class _$ReadyImpl implements _Ready {
 }
 
 abstract class _Ready implements ProfileState {
-  const factory _Ready(final CompanyEntity company) = _$ReadyImpl;
+  const factory _Ready(final CurrentDto company) = _$ReadyImpl;
 
-  CompanyEntity get company;
-  @JsonKey(ignore: true)
+  CurrentDto get company;
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -503,6 +521,9 @@ class _$ProfileEventCopyWithImpl<$Res, $Val extends ProfileEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -519,6 +540,9 @@ class __$$GetCompanyImplCopyWithImpl<$Res>
   __$$GetCompanyImplCopyWithImpl(
       _$GetCompanyImpl _value, $Res Function(_$GetCompanyImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -621,6 +645,9 @@ class __$$SetInitImplCopyWithImpl<$Res>
   __$$SetInitImplCopyWithImpl(
       _$SetInitImpl _value, $Res Function(_$SetInitImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of ProfileEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

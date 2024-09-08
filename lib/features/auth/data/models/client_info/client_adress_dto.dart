@@ -7,8 +7,9 @@ part 'client_adress_dto.g.dart';
 class ClientAdressDto with _$ClientAdressDto {
   factory ClientAdressDto({
     required int id,
-    required String cid,
+    String? cid,
     String? name,
+    String? region,
   }) = _ClientAdressDto;
 
   factory ClientAdressDto.fromJson(Map<String, dynamic> json) =>

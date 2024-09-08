@@ -63,8 +63,19 @@ class _CompanyInfoSheetState extends State<CompanyInfoSheet> {
                     widget.clientData.deliveryaddressSet?[index]),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 alignment: Alignment.center,
-                child: Text(
-                    widget.clientData.deliveryaddressSet?[index].name ?? ''),
+                child: Column(
+                  children: [
+                    Text(
+                      widget.clientData.deliveryaddressSet?[index].name ?? '',
+                      textAlign: TextAlign.center,
+                      style: context.bodyLarge,
+                    ),
+                    verticalSpace8,
+                    Text(
+                      'Регион: ${widget.clientData.deliveryaddressSet?[index].region ?? ''}',
+                    ),
+                  ],
+                ),
               ),
               separatorBuilder: (context, index) => verticalSpace12,
               itemCount: widget.clientData.deliveryaddressSet?.length ?? 0,

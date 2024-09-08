@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/profile/data/models/current_dto.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/company.entity.dart';
@@ -13,10 +14,10 @@ class ProfileRepositoryImpl implements ProfileRepository {
 
   ProfileRepositoryImpl(this._profileRemoteSource);
   @override
-  Future<Either<Failure, CompanyEntity>> getCompany() async {
+  Future<Either<Failure, CurrentDto>> getCompany() async {
     final res = await _profileRemoteSource.fetchCompany();
 
-    return res.fold((l) => Left(l), (r) => Right(r.toEntity));
+    return res.fold((l) => Left(l), (r) => Right(r));
   }
 
   @override

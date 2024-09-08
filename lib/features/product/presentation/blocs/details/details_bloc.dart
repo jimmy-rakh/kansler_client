@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kansler/core/extensions/context.dart';
 
 import '../../../../../app/router.dart';
-import '../../../../cart/presentation/screen/bloc/cart_bloc.dart';
+import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch.product.usecase.dart';
 

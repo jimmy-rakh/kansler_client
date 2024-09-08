@@ -26,7 +26,7 @@ _$ProductDtoImpl _$$ProductDtoImplFromJson(Map<String, dynamic> json) =>
       classifierTitle: json['classifier_title'] as String?,
       packagename: json['packagename'] as String?,
       packagecode: json['packagecode'] as String?,
-      title: json['title'] as String,
+      title: json['title'] as String?,
       vendorCode: json['vendor_code'] as String?,
       nds: json['nds'] as String?,
       price: (json['price'] as num?)?.toInt(),
@@ -40,13 +40,14 @@ _$ProductDtoImpl _$$ProductDtoImplFromJson(Map<String, dynamic> json) =>
       quantityInBox: json['quantity_in_box'] as String?,
       preOrder: json['pre_order'],
       barcode:
-          (json['barcode'] as List<dynamic>).map((e) => e as String).toList(),
+          (json['barcode'] as List<dynamic>?)?.map((e) => e as String).toList(),
       arrivalDate: json['arrival_date'] as String?,
       weight: (json['weight'] as num?)?.toDouble(),
       size: json['size'] as String?,
       imageUrl: json['image_url'] as String?,
       inFav: json['in_fav'] as bool?,
       inCart: json['in_cart'] as bool?,
+      inPreorder: json['in_preorder'] as bool?,
       hasComment: json['has_comment'] as bool?,
       stocks: (json['stocks'] as List<dynamic>?)
           ?.map((e) => StocksDto.fromJson(e as Map<String, dynamic>))
@@ -84,6 +85,7 @@ Map<String, dynamic> _$$ProductDtoImplToJson(_$ProductDtoImpl instance) =>
       'image_url': instance.imageUrl,
       'in_fav': instance.inFav,
       'in_cart': instance.inCart,
+      'in_preorder': instance.inPreorder,
       'has_comment': instance.hasComment,
       'stocks': instance.stocks?.map((e) => e.toJson()).toList(),
     };

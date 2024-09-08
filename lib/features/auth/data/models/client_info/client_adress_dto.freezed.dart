@@ -21,11 +21,16 @@ ClientAdressDto _$ClientAdressDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ClientAdressDto {
   int get id => throw _privateConstructorUsedError;
-  String get cid => throw _privateConstructorUsedError;
+  String? get cid => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get region => throw _privateConstructorUsedError;
 
+  /// Serializes this ClientAdressDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClientAdressDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClientAdressDtoCopyWith<ClientAdressDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36,7 +41,7 @@ abstract class $ClientAdressDtoCopyWith<$Res> {
           ClientAdressDto value, $Res Function(ClientAdressDto) then) =
       _$ClientAdressDtoCopyWithImpl<$Res, ClientAdressDto>;
   @useResult
-  $Res call({int id, String cid, String? name});
+  $Res call({int id, String? cid, String? name, String? region});
 }
 
 /// @nodoc
@@ -49,25 +54,32 @@ class _$ClientAdressDtoCopyWithImpl<$Res, $Val extends ClientAdressDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClientAdressDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? cid = null,
+    Object? cid = freezed,
     Object? name = freezed,
+    Object? region = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      cid: null == cid
+      cid: freezed == cid
           ? _value.cid
           : cid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      region: freezed == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -81,7 +93,7 @@ abstract class _$$ClientAdressDtoImplCopyWith<$Res>
       __$$ClientAdressDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String cid, String? name});
+  $Res call({int id, String? cid, String? name, String? region});
 }
 
 /// @nodoc
@@ -92,25 +104,32 @@ class __$$ClientAdressDtoImplCopyWithImpl<$Res>
       _$ClientAdressDtoImpl _value, $Res Function(_$ClientAdressDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClientAdressDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? cid = null,
+    Object? cid = freezed,
     Object? name = freezed,
+    Object? region = freezed,
   }) {
     return _then(_$ClientAdressDtoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      cid: null == cid
+      cid: freezed == cid
           ? _value.cid
           : cid // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      region: freezed == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -119,7 +138,7 @@ class __$$ClientAdressDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ClientAdressDtoImpl implements _ClientAdressDto {
-  _$ClientAdressDtoImpl({required this.id, required this.cid, this.name});
+  _$ClientAdressDtoImpl({required this.id, this.cid, this.name, this.region});
 
   factory _$ClientAdressDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientAdressDtoImplFromJson(json);
@@ -127,13 +146,15 @@ class _$ClientAdressDtoImpl implements _ClientAdressDto {
   @override
   final int id;
   @override
-  final String cid;
+  final String? cid;
   @override
   final String? name;
+  @override
+  final String? region;
 
   @override
   String toString() {
-    return 'ClientAdressDto(id: $id, cid: $cid, name: $name)';
+    return 'ClientAdressDto(id: $id, cid: $cid, name: $name, region: $region)';
   }
 
   @override
@@ -143,14 +164,17 @@ class _$ClientAdressDtoImpl implements _ClientAdressDto {
             other is _$ClientAdressDtoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.cid, cid) || other.cid == cid) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.region, region) || other.region == region));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, cid, name);
+  int get hashCode => Object.hash(runtimeType, id, cid, name, region);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClientAdressDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientAdressDtoImplCopyWith<_$ClientAdressDtoImpl> get copyWith =>
@@ -168,8 +192,9 @@ class _$ClientAdressDtoImpl implements _ClientAdressDto {
 abstract class _ClientAdressDto implements ClientAdressDto {
   factory _ClientAdressDto(
       {required final int id,
-      required final String cid,
-      final String? name}) = _$ClientAdressDtoImpl;
+      final String? cid,
+      final String? name,
+      final String? region}) = _$ClientAdressDtoImpl;
 
   factory _ClientAdressDto.fromJson(Map<String, dynamic> json) =
       _$ClientAdressDtoImpl.fromJson;
@@ -177,11 +202,16 @@ abstract class _ClientAdressDto implements ClientAdressDto {
   @override
   int get id;
   @override
-  String get cid;
+  String? get cid;
   @override
   String? get name;
   @override
-  @JsonKey(ignore: true)
+  String? get region;
+
+  /// Create a copy of ClientAdressDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClientAdressDtoImplCopyWith<_$ClientAdressDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

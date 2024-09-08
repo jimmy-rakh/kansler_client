@@ -24,8 +24,12 @@ mixin _$AddressRequest {
   String get latitude => throw _privateConstructorUsedError;
   String get longitude => throw _privateConstructorUsedError;
 
+  /// Serializes this AddressRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AddressRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AddressRequestCopyWith<AddressRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$AddressRequestCopyWithImpl<$Res, $Val extends AddressRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AddressRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$AddressRequestImplCopyWithImpl<$Res>
       _$AddressRequestImpl _value, $Res Function(_$AddressRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AddressRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -149,11 +157,13 @@ class _$AddressRequestImpl implements _AddressRequest {
                 other.longitude == longitude));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name, latitude, longitude);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AddressRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddressRequestImplCopyWith<_$AddressRequestImpl> get copyWith =>
@@ -183,8 +193,11 @@ abstract class _AddressRequest implements AddressRequest {
   String get latitude;
   @override
   String get longitude;
+
+  /// Create a copy of AddressRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddressRequestImplCopyWith<_$AddressRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

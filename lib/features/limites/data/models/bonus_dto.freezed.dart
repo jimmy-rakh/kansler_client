@@ -25,8 +25,12 @@ mixin _$BonusDto {
   OrganizationDto get organization => throw _privateConstructorUsedError;
   String? get totalBonus => throw _privateConstructorUsedError;
 
+  /// Serializes this BonusDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BonusDtoCopyWith<BonusDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$BonusDtoCopyWithImpl<$Res, $Val extends BonusDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +90,8 @@ class _$BonusDtoCopyWithImpl<$Res, $Val extends BonusDto>
     ) as $Val);
   }
 
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyDtoCopyWith<$Res> get company {
@@ -92,6 +100,8 @@ class _$BonusDtoCopyWithImpl<$Res, $Val extends BonusDto>
     });
   }
 
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -129,6 +139,8 @@ class __$$BonusDtoImplCopyWithImpl<$Res>
       _$BonusDtoImpl _value, $Res Function(_$BonusDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,12 +209,14 @@ class _$BonusDtoImpl implements _BonusDto {
                 other.totalBonus == totalBonus));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, company, organization, totalBonus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BonusDtoImplCopyWith<_$BonusDtoImpl> get copyWith =>
@@ -234,8 +248,11 @@ abstract class _BonusDto implements BonusDto {
   OrganizationDto get organization;
   @override
   String? get totalBonus;
+
+  /// Create a copy of BonusDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BonusDtoImplCopyWith<_$BonusDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

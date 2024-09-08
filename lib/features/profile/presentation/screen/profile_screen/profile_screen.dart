@@ -48,19 +48,22 @@ class ProfileScreen extends HookWidget {
                 ...authState.whenOrNull(
                       authenticated: () => [
                         ...profileState.whenOrNull(
-                              ready: (company) => [
+                              ready: (current) => [
                                 Text(
-                                  company.fullName ?? company.name!,
+                                  current.company?.fullName ??
+                                      current.company!.name!,
                                   style: context.titleSmall,
                                 ),
                                 verticalSpace5,
-                                if (company.inn != null) Text(
-                                  "Инн : ${company.inn}",
-                                  style: Theme.of(context).textTheme.bodySmall,
-                                ),
+                                if (current.company?.inn != null)
+                                  Text(
+                                    "Инн : ${current.company!.inn}",
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  ),
                                 verticalSpace5,
                                 Text(
-                                  "Телефон : ${company.phoneNumbers!.map((e) => e)}",
+                                  "Телефон : ${current.company?.phoneNumbers?.map((e) => e)}",
                                   style: Theme.of(context).textTheme.bodySmall,
                                 ),
                                 verticalSpace5,
@@ -91,9 +94,9 @@ class ProfileScreen extends HookWidget {
             ),
           ),
           ...profileState.whenOrNull(
-                ready: (company) => [
+                ready: (current) => [
                   verticalSpace24,
-                  if (company.manager != null)
+                  if (current.company?.manager != null)
                     AppCard(
                       margin: const EdgeInsets.symmetric(horizontal: 16),
                       padding: const EdgeInsets.symmetric(
@@ -105,9 +108,9 @@ class ProfileScreen extends HookWidget {
                         children: [
                           const Text('Ваш менеджер:'),
                           Text(
-                            company.manager!.fullName!.isEmpty
-                                ? company.manager!.name!
-                                : company.manager!.fullName!,
+                            current.company!.manager!.fullName!.isEmpty
+                                ? current.company!.manager!.name!
+                                : current.company!.manager!.fullName!,
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           verticalSpace12,
@@ -115,35 +118,33 @@ class ProfileScreen extends HookWidget {
                             'Телефон для связи:',
                           ),
                           Text(
-                            company.manager!.phone == null
+                            current.company!.manager!.phone == null
                                 ? ""
-                                : company.manager!.phone!,
+                                : current.company!.manager!.phone!,
                             style: Theme.of(context).textTheme.bodySmall,
                           )
                         ],
                       ),
                     ),
-                  if (company.children == false) ...[
-                    verticalSpace24,
-                    if (company.inn != null)
-                      AppCard(
-                        margin: const EdgeInsets.symmetric(horizontal: 16),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 12, horizontal: 16),
-                        width: double.maxFinite,
-                        borderRadius: 0,
-                        onTap: () => router.push(DebtRoute(id: company.id)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Долг / История оплат'),
-                            Transform.rotate(
-                                angle: 3.2,
-                                child: const Icon(KazeIcons.arrowLeftOutline))
-                          ],
-                        ),
-                      )
-                  ],
+                  verticalSpace24,
+                  if (current.company?.inn != null)
+                    AppCard(
+                      margin: const EdgeInsets.symmetric(horizontal: 16),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 16),
+                      width: double.maxFinite,
+                      borderRadius: 0,
+                      onTap: () => router.push(DebtRoute(id: current.company!.id)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text('Долг / История оплат'),
+                          Transform.rotate(
+                              angle: 3.2,
+                              child: const Icon(KazeIcons.arrowLeftOutline))
+                        ],
+                      ),
+                    ),
                   verticalSpace12,
                   AppCard(
                     margin: const EdgeInsets.symmetric(horizontal: 16),
@@ -151,17 +152,12 @@ class ProfileScreen extends HookWidget {
                         vertical: 12, horizontal: 16),
                     width: double.maxFinite,
                     borderRadius: 0,
-                    onTap: () => company.children == true
-                        ? router.push(const CompaniesRoute())
-                        : router.push(
-                            AddressesRoute(companyId: company.id),
-                          ),
+                    onTap: () =>
+                        router.push(AddressesRoute(companyId: current.company!.id)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(company.children == true
-                            ? 'Мои компании'
-                            : 'Адрес'),
+                        const Text('Адрес'),
                         Transform.rotate(
                             angle: 3.2,
                             child: const Icon(KazeIcons.arrowLeftOutline))

@@ -24,8 +24,12 @@ mixin _$ProductDataDto {
   String get name => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
 
+  /// Serializes this ProductDataDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductDataDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductDataDtoCopyWith<ProductDataDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$ProductDataDtoCopyWithImpl<$Res, $Val extends ProductDataDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductDataDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -92,6 +98,8 @@ class __$$ProductDataDtoImplCopyWithImpl<$Res>
       _$ProductDataDtoImpl _value, $Res Function(_$ProductDataDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductDataDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -148,11 +156,13 @@ class _$ProductDataDtoImpl extends _ProductDataDto {
                 other.imageUrl == imageUrl));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, name, imageUrl);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductDataDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductDataDtoImplCopyWith<_$ProductDataDtoImpl> get copyWith =>
@@ -183,8 +193,11 @@ abstract class _ProductDataDto extends ProductDataDto {
   String get name;
   @override
   String? get imageUrl;
+
+  /// Create a copy of ProductDataDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductDataDtoImplCopyWith<_$ProductDataDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -11,20 +11,8 @@ class CompanyEntity with _$CompanyEntity {
     String? inn,
     List<String?>? phoneNumbers,
     String? companyType,
-    required List<MainContactEntity> mainContact,
-    String? region,
     ManagerEntity? manager,
-    bool? children,
   }) = _CompanyEntity;
-}
-
-@freezed
-class MainContactEntity with _$MainContactEntity {
-  const factory MainContactEntity({
-    String? name,
-    String? type,
-    String? phone,
-  }) = _MainContactEntity;
 }
 
 @freezed
@@ -33,5 +21,6 @@ class ManagerEntity with _$ManagerEntity {
     String? name,
     String? fullName,
     String? phone,
+    String? image,
   }) = _ManagerEntity;
 }

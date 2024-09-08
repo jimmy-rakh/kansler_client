@@ -8,7 +8,6 @@ import 'package:kansler/features/search/presentation/filter_screen/widgets/brand
 import 'package:kansler/features/search/presentation/filter_screen/widgets/brands_view.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/categories_section.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/categories_view.dart';
-import 'package:kansler/features/search/presentation/filter_screen/widgets/organization_section.dart';
 
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';

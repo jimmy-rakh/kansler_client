@@ -25,8 +25,12 @@ mixin _$LimitsDto {
   OrganizationDto get organization => throw _privateConstructorUsedError;
   String? get totalLimit => throw _privateConstructorUsedError;
 
+  /// Serializes this LimitsDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LimitsDtoCopyWith<LimitsDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +60,8 @@ class _$LimitsDtoCopyWithImpl<$Res, $Val extends LimitsDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -84,6 +90,8 @@ class _$LimitsDtoCopyWithImpl<$Res, $Val extends LimitsDto>
     ) as $Val);
   }
 
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyDtoCopyWith<$Res> get company {
@@ -92,6 +100,8 @@ class _$LimitsDtoCopyWithImpl<$Res, $Val extends LimitsDto>
     });
   }
 
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -129,6 +139,8 @@ class __$$LimitsDtoImplCopyWithImpl<$Res>
       _$LimitsDtoImpl _value, $Res Function(_$LimitsDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -197,12 +209,14 @@ class _$LimitsDtoImpl implements _LimitsDto {
                 other.totalLimit == totalLimit));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, company, organization, totalLimit);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LimitsDtoImplCopyWith<_$LimitsDtoImpl> get copyWith =>
@@ -234,8 +248,11 @@ abstract class _LimitsDto implements LimitsDto {
   OrganizationDto get organization;
   @override
   String? get totalLimit;
+
+  /// Create a copy of LimitsDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LimitsDtoImplCopyWith<_$LimitsDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

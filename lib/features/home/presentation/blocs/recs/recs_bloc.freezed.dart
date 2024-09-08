@@ -77,6 +77,9 @@ class _$RecsStateCopyWithImpl<$Res, $Val extends RecsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RecsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -93,6 +96,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RecsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -201,6 +207,9 @@ class __$$SuccessImplCopyWithImpl<$Res>
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RecsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -309,6 +318,9 @@ class __$$FailureImplCopyWithImpl<$Res>
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RecsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -454,6 +466,9 @@ class _$RecsEventCopyWithImpl<$Res, $Val extends RecsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of RecsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -470,6 +485,9 @@ class __$$FetchImplCopyWithImpl<$Res>
   __$$FetchImplCopyWithImpl(
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of RecsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

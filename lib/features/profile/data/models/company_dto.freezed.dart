@@ -26,13 +26,14 @@ mixin _$CompanyDto {
   String? get inn => throw _privateConstructorUsedError;
   List<String?>? get phoneNumbers => throw _privateConstructorUsedError;
   String? get companyType => throw _privateConstructorUsedError;
-  List<MainContactDto> get mainContacts => throw _privateConstructorUsedError;
-  String? get region => throw _privateConstructorUsedError;
   ManagerDto? get manager => throw _privateConstructorUsedError;
-  bool? get children => throw _privateConstructorUsedError;
 
+  /// Serializes this CompanyDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CompanyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CompanyDtoCopyWith<CompanyDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,10 +51,7 @@ abstract class $CompanyDtoCopyWith<$Res> {
       String? inn,
       List<String?>? phoneNumbers,
       String? companyType,
-      List<MainContactDto> mainContacts,
-      String? region,
-      ManagerDto? manager,
-      bool? children});
+      ManagerDto? manager});
 
   $ManagerDtoCopyWith<$Res>? get manager;
 }
@@ -68,6 +66,8 @@ class _$CompanyDtoCopyWithImpl<$Res, $Val extends CompanyDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CompanyDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -77,10 +77,7 @@ class _$CompanyDtoCopyWithImpl<$Res, $Val extends CompanyDto>
     Object? inn = freezed,
     Object? phoneNumbers = freezed,
     Object? companyType = freezed,
-    Object? mainContacts = null,
-    Object? region = freezed,
     Object? manager = freezed,
-    Object? children = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,25 +104,15 @@ class _$CompanyDtoCopyWithImpl<$Res, $Val extends CompanyDto>
           ? _value.companyType
           : companyType // ignore: cast_nullable_to_non_nullable
               as String?,
-      mainContacts: null == mainContacts
-          ? _value.mainContacts
-          : mainContacts // ignore: cast_nullable_to_non_nullable
-              as List<MainContactDto>,
-      region: freezed == region
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
-              as String?,
       manager: freezed == manager
           ? _value.manager
           : manager // ignore: cast_nullable_to_non_nullable
               as ManagerDto?,
-      children: freezed == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ) as $Val);
   }
 
+  /// Create a copy of CompanyDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerDtoCopyWith<$Res>? get manager {
@@ -154,10 +141,7 @@ abstract class _$$CompanyDtoImplCopyWith<$Res>
       String? inn,
       List<String?>? phoneNumbers,
       String? companyType,
-      List<MainContactDto> mainContacts,
-      String? region,
-      ManagerDto? manager,
-      bool? children});
+      ManagerDto? manager});
 
   @override
   $ManagerDtoCopyWith<$Res>? get manager;
@@ -171,6 +155,8 @@ class __$$CompanyDtoImplCopyWithImpl<$Res>
       _$CompanyDtoImpl _value, $Res Function(_$CompanyDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CompanyDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -180,10 +166,7 @@ class __$$CompanyDtoImplCopyWithImpl<$Res>
     Object? inn = freezed,
     Object? phoneNumbers = freezed,
     Object? companyType = freezed,
-    Object? mainContacts = null,
-    Object? region = freezed,
     Object? manager = freezed,
-    Object? children = freezed,
   }) {
     return _then(_$CompanyDtoImpl(
       id: null == id
@@ -210,22 +193,10 @@ class __$$CompanyDtoImplCopyWithImpl<$Res>
           ? _value.companyType
           : companyType // ignore: cast_nullable_to_non_nullable
               as String?,
-      mainContacts: null == mainContacts
-          ? _value._mainContacts
-          : mainContacts // ignore: cast_nullable_to_non_nullable
-              as List<MainContactDto>,
-      region: freezed == region
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
-              as String?,
       manager: freezed == manager
           ? _value.manager
           : manager // ignore: cast_nullable_to_non_nullable
               as ManagerDto?,
-      children: freezed == children
-          ? _value.children
-          : children // ignore: cast_nullable_to_non_nullable
-              as bool?,
     ));
   }
 }
@@ -240,12 +211,8 @@ class _$CompanyDtoImpl extends _CompanyDto {
       this.inn,
       final List<String?>? phoneNumbers,
       this.companyType,
-      required final List<MainContactDto> mainContacts,
-      this.region,
-      this.manager,
-      this.children})
+      this.manager})
       : _phoneNumbers = phoneNumbers,
-        _mainContacts = mainContacts,
         super._();
 
   factory _$CompanyDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -271,24 +238,12 @@ class _$CompanyDtoImpl extends _CompanyDto {
 
   @override
   final String? companyType;
-  final List<MainContactDto> _mainContacts;
-  @override
-  List<MainContactDto> get mainContacts {
-    if (_mainContacts is EqualUnmodifiableListView) return _mainContacts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_mainContacts);
-  }
-
-  @override
-  final String? region;
   @override
   final ManagerDto? manager;
-  @override
-  final bool? children;
 
   @override
   String toString() {
-    return 'CompanyDto(id: $id, name: $name, fullName: $fullName, inn: $inn, phoneNumbers: $phoneNumbers, companyType: $companyType, mainContacts: $mainContacts, region: $region, manager: $manager, children: $children)';
+    return 'CompanyDto(id: $id, name: $name, fullName: $fullName, inn: $inn, phoneNumbers: $phoneNumbers, companyType: $companyType, manager: $manager)';
   }
 
   @override
@@ -305,30 +260,17 @@ class _$CompanyDtoImpl extends _CompanyDto {
                 .equals(other._phoneNumbers, _phoneNumbers) &&
             (identical(other.companyType, companyType) ||
                 other.companyType == companyType) &&
-            const DeepCollectionEquality()
-                .equals(other._mainContacts, _mainContacts) &&
-            (identical(other.region, region) || other.region == region) &&
-            (identical(other.manager, manager) || other.manager == manager) &&
-            (identical(other.children, children) ||
-                other.children == children));
+            (identical(other.manager, manager) || other.manager == manager));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      fullName,
-      inn,
-      const DeepCollectionEquality().hash(_phoneNumbers),
-      companyType,
-      const DeepCollectionEquality().hash(_mainContacts),
-      region,
-      manager,
-      children);
+  int get hashCode => Object.hash(runtimeType, id, name, fullName, inn,
+      const DeepCollectionEquality().hash(_phoneNumbers), companyType, manager);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CompanyDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CompanyDtoImplCopyWith<_$CompanyDtoImpl> get copyWith =>
@@ -350,10 +292,7 @@ abstract class _CompanyDto extends CompanyDto {
       final String? inn,
       final List<String?>? phoneNumbers,
       final String? companyType,
-      required final List<MainContactDto> mainContacts,
-      final String? region,
-      final ManagerDto? manager,
-      final bool? children}) = _$CompanyDtoImpl;
+      final ManagerDto? manager}) = _$CompanyDtoImpl;
   const _CompanyDto._() : super._();
 
   factory _CompanyDto.fromJson(Map<String, dynamic> json) =
@@ -372,189 +311,13 @@ abstract class _CompanyDto extends CompanyDto {
   @override
   String? get companyType;
   @override
-  List<MainContactDto> get mainContacts;
-  @override
-  String? get region;
-  @override
   ManagerDto? get manager;
+
+  /// Create a copy of CompanyDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  bool? get children;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CompanyDtoImplCopyWith<_$CompanyDtoImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-MainContactDto _$MainContactDtoFromJson(Map<String, dynamic> json) {
-  return _MainContactDto.fromJson(json);
-}
-
-/// @nodoc
-mixin _$MainContactDto {
-  String? get name => throw _privateConstructorUsedError;
-  String? get type => throw _privateConstructorUsedError;
-  String? get phone => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $MainContactDtoCopyWith<MainContactDto> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MainContactDtoCopyWith<$Res> {
-  factory $MainContactDtoCopyWith(
-          MainContactDto value, $Res Function(MainContactDto) then) =
-      _$MainContactDtoCopyWithImpl<$Res, MainContactDto>;
-  @useResult
-  $Res call({String? name, String? type, String? phone});
-}
-
-/// @nodoc
-class _$MainContactDtoCopyWithImpl<$Res, $Val extends MainContactDto>
-    implements $MainContactDtoCopyWith<$Res> {
-  _$MainContactDtoCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? type = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_value.copyWith(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$MainContactDtoImplCopyWith<$Res>
-    implements $MainContactDtoCopyWith<$Res> {
-  factory _$$MainContactDtoImplCopyWith(_$MainContactDtoImpl value,
-          $Res Function(_$MainContactDtoImpl) then) =
-      __$$MainContactDtoImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String? name, String? type, String? phone});
-}
-
-/// @nodoc
-class __$$MainContactDtoImplCopyWithImpl<$Res>
-    extends _$MainContactDtoCopyWithImpl<$Res, _$MainContactDtoImpl>
-    implements _$$MainContactDtoImplCopyWith<$Res> {
-  __$$MainContactDtoImplCopyWithImpl(
-      _$MainContactDtoImpl _value, $Res Function(_$MainContactDtoImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? name = freezed,
-    Object? type = freezed,
-    Object? phone = freezed,
-  }) {
-    return _then(_$MainContactDtoImpl(
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String?,
-      type: freezed == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String?,
-      phone: freezed == phone
-          ? _value.phone
-          : phone // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$MainContactDtoImpl extends _MainContactDto {
-  const _$MainContactDtoImpl({this.name, this.type, this.phone}) : super._();
-
-  factory _$MainContactDtoImpl.fromJson(Map<String, dynamic> json) =>
-      _$$MainContactDtoImplFromJson(json);
-
-  @override
-  final String? name;
-  @override
-  final String? type;
-  @override
-  final String? phone;
-
-  @override
-  String toString() {
-    return 'MainContactDto(name: $name, type: $type, phone: $phone)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MainContactDtoImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.type, type) || other.type == type) &&
-            (identical(other.phone, phone) || other.phone == phone));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, name, type, phone);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MainContactDtoImplCopyWith<_$MainContactDtoImpl> get copyWith =>
-      __$$MainContactDtoImplCopyWithImpl<_$MainContactDtoImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$MainContactDtoImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _MainContactDto extends MainContactDto {
-  const factory _MainContactDto(
-      {final String? name,
-      final String? type,
-      final String? phone}) = _$MainContactDtoImpl;
-  const _MainContactDto._() : super._();
-
-  factory _MainContactDto.fromJson(Map<String, dynamic> json) =
-      _$MainContactDtoImpl.fromJson;
-
-  @override
-  String? get name;
-  @override
-  String? get type;
-  @override
-  String? get phone;
-  @override
-  @JsonKey(ignore: true)
-  _$$MainContactDtoImplCopyWith<_$MainContactDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -567,9 +330,14 @@ mixin _$ManagerDto {
   String? get name => throw _privateConstructorUsedError;
   String? get fullName => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
 
+  /// Serializes this ManagerDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ManagerDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ManagerDtoCopyWith<ManagerDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -580,7 +348,7 @@ abstract class $ManagerDtoCopyWith<$Res> {
           ManagerDto value, $Res Function(ManagerDto) then) =
       _$ManagerDtoCopyWithImpl<$Res, ManagerDto>;
   @useResult
-  $Res call({String? name, String? fullName, String? phone});
+  $Res call({String? name, String? fullName, String? phone, String? image});
 }
 
 /// @nodoc
@@ -593,12 +361,15 @@ class _$ManagerDtoCopyWithImpl<$Res, $Val extends ManagerDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ManagerDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = freezed,
     Object? fullName = freezed,
     Object? phone = freezed,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       name: freezed == name
@@ -613,6 +384,10 @@ class _$ManagerDtoCopyWithImpl<$Res, $Val extends ManagerDto>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -625,7 +400,7 @@ abstract class _$$ManagerDtoImplCopyWith<$Res>
       __$$ManagerDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? name, String? fullName, String? phone});
+  $Res call({String? name, String? fullName, String? phone, String? image});
 }
 
 /// @nodoc
@@ -636,12 +411,15 @@ class __$$ManagerDtoImplCopyWithImpl<$Res>
       _$ManagerDtoImpl _value, $Res Function(_$ManagerDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ManagerDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = freezed,
     Object? fullName = freezed,
     Object? phone = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$ManagerDtoImpl(
       name: freezed == name
@@ -656,6 +434,10 @@ class __$$ManagerDtoImplCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -663,7 +445,8 @@ class __$$ManagerDtoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ManagerDtoImpl extends _ManagerDto {
-  const _$ManagerDtoImpl({this.name, this.fullName, this.phone}) : super._();
+  const _$ManagerDtoImpl({this.name, this.fullName, this.phone, this.image})
+      : super._();
 
   factory _$ManagerDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ManagerDtoImplFromJson(json);
@@ -674,10 +457,12 @@ class _$ManagerDtoImpl extends _ManagerDto {
   final String? fullName;
   @override
   final String? phone;
+  @override
+  final String? image;
 
   @override
   String toString() {
-    return 'ManagerDto(name: $name, fullName: $fullName, phone: $phone)';
+    return 'ManagerDto(name: $name, fullName: $fullName, phone: $phone, image: $image)';
   }
 
   @override
@@ -688,14 +473,17 @@ class _$ManagerDtoImpl extends _ManagerDto {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fullName, fullName) ||
                 other.fullName == fullName) &&
-            (identical(other.phone, phone) || other.phone == phone));
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.image, image) || other.image == image));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, name, fullName, phone);
+  int get hashCode => Object.hash(runtimeType, name, fullName, phone, image);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ManagerDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ManagerDtoImplCopyWith<_$ManagerDtoImpl> get copyWith =>
@@ -713,7 +501,8 @@ abstract class _ManagerDto extends ManagerDto {
   const factory _ManagerDto(
       {final String? name,
       final String? fullName,
-      final String? phone}) = _$ManagerDtoImpl;
+      final String? phone,
+      final String? image}) = _$ManagerDtoImpl;
   const _ManagerDto._() : super._();
 
   factory _ManagerDto.fromJson(Map<String, dynamic> json) =
@@ -726,7 +515,12 @@ abstract class _ManagerDto extends ManagerDto {
   @override
   String? get phone;
   @override
-  @JsonKey(ignore: true)
+  String? get image;
+
+  /// Create a copy of ManagerDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ManagerDtoImplCopyWith<_$ManagerDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

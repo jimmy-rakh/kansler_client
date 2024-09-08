@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
@@ -19,7 +18,7 @@ import '../../../../../core/widgets/app_text_field.dart';
 import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/domain/entities/cart_product.dart';
-import '../../../../cart/presentation/screen/bloc/cart_bloc.dart';
+import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../domain/entities/product.entity.dart';
 import '../product_card.dart';
 
@@ -47,7 +46,6 @@ class ProductListCard extends HookWidget implements ProductCard {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
     final cartBloc = context.read<CartBloc>();
-    final authState = useBlocBuilder(authBloc);
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       height: 120,
@@ -283,13 +281,12 @@ class ProductListCard extends HookWidget implements ProductCard {
                                       true)) {
                                     cartBloc.add(CartEvent.addToCart(
                                         (product ?? cartProduct!.product)!.id,
-                                        fieldController?.text == null ||
-                                            fieldController?.text == ''
+                                        fieldController.text == ''
                                             ? 1
-                                            : int.parse(fieldController!.text)));
+                                            : int.parse(fieldController.text)));
                                     return;
                                   }
-                                  fieldController?.text = '1';
+                                  fieldController.text = '1';
                                   cartBloc.add(CartEvent.deleteProductInCart(
                                       (product ?? cartProduct!.product)!.id));
                                 } :() => router.push(const AuthRoute()),

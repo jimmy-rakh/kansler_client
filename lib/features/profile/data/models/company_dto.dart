@@ -16,10 +16,7 @@ class CompanyDto with _$CompanyDto {
     String? inn,
     List<String?>? phoneNumbers,
     String? companyType,
-    required List<MainContactDto> mainContacts,
-    String? region,
     ManagerDto? manager,
-    bool? children,
   }) = _CompanyDto;
 
   factory CompanyDto.fromJson(Map<String, dynamic> json) =>
@@ -32,30 +29,7 @@ class CompanyDto with _$CompanyDto {
         inn: inn,
         phoneNumbers: phoneNumbers,
         companyType: companyType,
-        mainContact: mainContacts.map((e) => e.toEntity).toList(),
-        region: region,
         manager: manager?.toEntity,
-        children: children,
-      );
-}
-
-@freezed
-class MainContactDto with _$MainContactDto {
-  const MainContactDto._();
-
-  const factory MainContactDto({
-    String? name,
-    String? type,
-    String? phone,
-  }) = _MainContactDto;
-
-  factory MainContactDto.fromJson(Map<String, dynamic> json) =>
-      _$MainContactDtoFromJson(json);
-
-  MainContactEntity get toEntity => MainContactEntity(
-        name: name,
-        type: type,
-        phone: phone,
       );
 }
 
@@ -67,6 +41,7 @@ class ManagerDto with _$ManagerDto {
     String? name,
     String? fullName,
     String? phone,
+    String? image,
   }) = _ManagerDto;
 
   factory ManagerDto.fromJson(Map<String, dynamic> json) =>

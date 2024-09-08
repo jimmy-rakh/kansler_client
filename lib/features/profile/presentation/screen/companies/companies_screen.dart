@@ -43,7 +43,7 @@ class CompaniesScreen extends HookWidget {
                     if (index == 0) ...[
                       CompanyCard(
                           company: profileState.whenOrNull(
-                        ready: (company) => company,
+                        ready: (current) => current.company!.toEntity,
                       )),
                       verticalSpace16,
                     ],
@@ -90,8 +90,6 @@ class CompanyCard extends StatelessWidget {
           Text('Телефон для связи:\n${company!.phoneNumbers}'),
           verticalSpace12,
           Text('Тип компании:\n${company!.companyType}'),
-          verticalSpace12,
-          Text('Регион:\n${company!.region}'),
           verticalSpace12,
           AppCard(
             fillColor: context.background,

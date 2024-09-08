@@ -22,8 +22,12 @@ SendCodeRequest _$SendCodeRequestFromJson(Map<String, dynamic> json) {
 mixin _$SendCodeRequest {
   String get phoneNumber => throw _privateConstructorUsedError;
 
+  /// Serializes this SendCodeRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SendCodeRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SendCodeRequestCopyWith<SendCodeRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$SendCodeRequestCopyWithImpl<$Res, $Val extends SendCodeRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SendCodeRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$SendCodeRequestImplCopyWithImpl<$Res>
       _$SendCodeRequestImpl _value, $Res Function(_$SendCodeRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SendCodeRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -119,11 +127,13 @@ class _$SendCodeRequestImpl implements _SendCodeRequest {
                 other.phoneNumber == phoneNumber));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, phoneNumber);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SendCodeRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SendCodeRequestImplCopyWith<_$SendCodeRequestImpl> get copyWith =>
@@ -147,8 +157,11 @@ abstract class _SendCodeRequest implements SendCodeRequest {
 
   @override
   String get phoneNumber;
+
+  /// Create a copy of SendCodeRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SendCodeRequestImplCopyWith<_$SendCodeRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

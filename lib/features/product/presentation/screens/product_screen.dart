@@ -24,7 +24,6 @@ import '../../domain/entities/product.entity.dart';
 import '../blocs/details/details_bloc.dart';
 import '../widgets/details_widget.dart';
 
-
 @RoutePage()
 class ProductScreen extends HookWidget implements AutoRouteWrapper {
   const ProductScreen({
@@ -47,8 +46,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
 
     return KeyboardEscape(
-      onUnFocus: bloc.completeEditing,
-      child: Scaffold(
+        onUnFocus: bloc.completeEditing,
+        child: Scaffold(
           appBar: AppBar(
             centerTitle: false,
             leading: Padding(
@@ -69,7 +68,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Text(
-                      product.title,
+                      product.title ?? '',
                       maxLines: 2,
                       style: context.theme.textTheme.titleSmall,
                     ),
@@ -116,7 +115,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                   ),
                   Padding(
                     padding: MediaQuery.of(context).viewInsets,
-                    child:  ColoredBox(
+                    child: ColoredBox(
                       color: context.background,
                       child: Padding(
                         padding: const EdgeInsets.all(8),
@@ -135,21 +134,25 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                   width: context.width * .72,
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       ...state.whenOrNull(
-                                        success: (product) => [
-                                          Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
-                                        ],
-                                      ) ??
-                                          [Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')],
+                                            success: (product) => [
+                                              Text(
+                                                  '${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
+                                            ],
+                                          ) ??
+                                          [
+                                            Text(
+                                                '${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
+                                          ],
                                       if (state.whenOrNull(
-                                        success: (product) =>
-                                        !product.inCart!,
-                                      ) ??
+                                            success: (product) =>
+                                                !product.inCart!,
+                                          ) ??
                                           true)
                                         SizedBox(
-                                          child:product.leftQuantity != 0 ? AppCard(
+                                          child: AppCard(
                                             fillColor: context.background,
                                             showShadow: false,
                                             borderRadius: 0,
@@ -159,13 +162,15 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                 AppIcon(
                                                   KazeIcons.minusOutline,
                                                   bgColor: context.cardColor,
-                                                  radius:
-                                                  const BorderRadius.horizontal(
+                                                  radius: const BorderRadius
+                                                      .horizontal(
                                                     left: Radius.circular(0),
                                                   ),
                                                   onTap: bloc.decrement,
-                                                  borderColor: context.background,
-                                                  padding: const EdgeInsets.all(4),
+                                                  borderColor:
+                                                      context.background,
+                                                  padding:
+                                                      const EdgeInsets.all(4),
                                                 ),
                                                 AppTextField(
                                                   fillColor: context.background,
@@ -173,25 +178,39 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                   width: context.width * .2,
                                                   radius: 0,
                                                   contentPadding:
-                                                  const EdgeInsets.all(4),
+                                                      const EdgeInsets.all(4),
                                                   textAlign: TextAlign.center,
                                                   fieldController:
-                                                  bloc.fieldController,
+                                                      bloc.fieldController,
                                                   onEditingComplete:
-                                                  bloc.completeEditing,
+                                                      bloc.completeEditing,
                                                   onFieldSubmitted: (value) {
-                                                    if((product ).leftQuantity >=
-                                                        int.parse(bloc.fieldController.text)) {
-                                                      bloc.add(const DetailsEvent.addToCart());
-                                                      FocusScope.of(context).unfocus();
-                                                    }else{
-                                                      router.navigatorKey.currentContext!
-                                                          .showToast('Недостаточно кол-во в складе');
-                                                      bloc.fieldController.text = (product).leftQuantity.toString();
-                                                      FocusScope.of(context).unfocus();
-                                                    }},
+                                                    if ((product)
+                                                            .leftQuantity >=
+                                                        int.parse(bloc
+                                                            .fieldController
+                                                            .text)) {
+                                                      bloc.add(
+                                                          const DetailsEvent
+                                                              .addToCart());
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                    } else {
+                                                      router.navigatorKey
+                                                          .currentContext!
+                                                          .showToast(
+                                                              'Недостаточно кол-во в складе');
+                                                      bloc.fieldController
+                                                              .text =
+                                                          (product)
+                                                              .leftQuantity
+                                                              .toString();
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                    }
+                                                  },
                                                   textInputType:
-                                                  TextInputType.number,
+                                                      TextInputType.number,
                                                   textInputFormatter: [
                                                     FilteringTextInputFormatter
                                                         .digitsOnly
@@ -200,17 +219,19 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                 AppIcon(
                                                   KazeIcons.addOutline,
                                                   bgColor: context.cardColor,
-                                                  radius:
-                                                  const BorderRadius.horizontal(
+                                                  radius: const BorderRadius
+                                                      .horizontal(
                                                     right: Radius.circular(0),
                                                   ),
                                                   onTap: bloc.increment,
-                                                  borderColor: context.background,
-                                                  padding: const EdgeInsets.all(4),
+                                                  borderColor:
+                                                      context.background,
+                                                  padding:
+                                                      const EdgeInsets.all(4),
                                                 ),
                                               ],
                                             ),
-                                          )  : const Text("Нет в наличии",style: TextStyle(color: AppColors.red),),
+                                          ),
                                         ),
                                     ],
                                   ),
@@ -221,34 +242,41 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                 width: 50,
                                 height: 50,
                                 fillColor: state.whenOrNull(
-                                  success: (product) => product.inCart!
-                                      ? AppColors.red
-                                      : context.primary,
+                                  success: (product) =>
+                                      product.leftQuantity == 0
+                                          ? const Color.fromARGB(255, 0, 73, 208)
+                                          : product.inCart!
+                                              ? AppColors.red
+                                              : context.primary,
                                 ),
                                 childAlignment: MainAxisAlignment.start,
                                 text: const Icon(
                                   KazeIcons.cartOutline,
                                   color: AppColors.white,
                                 ),
-                                isActive: state.whenOrNull(
-                                    success: (product) =>
-                                    product.leftQuantity != 0) ??
-                                    false,
                                 textColor: AppColors.white,
-                                onPressed:authBloc.state == const AuthState.authenticated()
+                                onPressed: authBloc.state ==
+                                        const AuthState.authenticated()
                                     ? () {
-                                  if((product ).leftQuantity >=
-                                      int.parse(bloc.fieldController.text)) {
-                                    bloc.add(const DetailsEvent.addToCart());
-                                    FocusScope.of(context).unfocus();
-                                  }else{
-                                    router.navigatorKey.currentContext!
-                                        .showToast('Недостаточно кол-во в складе');
-                                    bloc.fieldController.text = (product).leftQuantity.toString();
-                                    FocusScope.of(context).unfocus();
-                                  }} :() => router.push(const AuthRoute()),
+                                        if ((product).leftQuantity >=
+                                            int.parse(
+                                                bloc.fieldController.text)) {
+                                          bloc.add(
+                                              const DetailsEvent.addToCart());
+                                          FocusScope.of(context).unfocus();
+                                        } else {
+                                          router.navigatorKey.currentContext!
+                                              .showToast(
+                                                  'Недостаточно кол-во в складе');
+                                          bloc.fieldController.text =
+                                              (product).leftQuantity.toString();
+                                          FocusScope.of(context).unfocus();
+                                        }
+                                      }
+                                    : () => router.push(const AuthRoute()),
                                 size: MainAxisSize.min,
-                                padding: const EdgeInsets.symmetric(vertical: 12),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 12),
                                 margin: const EdgeInsets.fromLTRB(0, 5, 5, 5),
                                 borderRadius: 0,
                               ),
@@ -391,8 +419,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
               ),
             ],
           ),
-          )
-    );
+        ));
   }
 
   @override

@@ -75,4 +75,64 @@ class CartRepositoryImpl implements CartRepository {
 
     return res;
   }
+
+  @override
+  Future<Either<Failure, void>> addProductToPreorder(
+      ({int productId, int quantity}) data) async {
+    final request = CreateCartProductDto(
+      productId: data.productId,
+      quantity: data.quantity,
+    );
+
+    final res = await remoteSource.addProductToPreorder(request);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteProductInPreorder(int productId) async {
+    final res = await remoteSource.deleteProductInPreorder(productId);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteProductsInPreorder(List<int> ids) async {
+    final request = DeteleCartProducts(ids: ids);
+
+    final res = await remoteSource.deleteProductsInPreorder(request);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, int>> getPreorderPrice() async {
+    final res = await remoteSource.getPreorderPrice();
+
+    return res.fold((l) => Left(l), (r) => Right(r.price));
+  }
+
+  @override
+  Future<Either<Failure, ({bool hasNext, List<CartProduct> products})>>
+      getPreorderProducts(int pageNumber) async {
+    final res = await remoteSource.getPreorderProducts(pageNumber);
+
+    return res.fold(
+      (l) => Left(l),
+      (r) => Right((
+        hasNext: r.hasNext,
+        products: r.products.map((e) => e.toEntity()).toList(),
+      )),
+    );
+  }
+
+  @override
+  Future<Either<Failure, void>> updateProductInPreorder(
+      ({int productId, int quantity}) data) async {
+    final request = UpdateCartProduct(quantity: data.quantity);
+
+    final res = await remoteSource.updateProductInPreorder(request, data.productId);
+
+    return res;
+  }
 }

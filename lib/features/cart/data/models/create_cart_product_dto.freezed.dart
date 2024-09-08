@@ -23,8 +23,12 @@ mixin _$CreateCartProductDto {
   int get productId => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
 
+  /// Serializes this CreateCartProductDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CreateCartProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CreateCartProductDtoCopyWith<CreateCartProductDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +53,8 @@ class _$CreateCartProductDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CreateCartProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +93,8 @@ class __$$CreateCartProductDtoImplCopyWithImpl<$Res>
       $Res Function(_$CreateCartProductDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CreateCartProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,11 +143,13 @@ class _$CreateCartProductDtoImpl implements _CreateCartProductDto {
                 other.quantity == quantity));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, productId, quantity);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CreateCartProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreateCartProductDtoImplCopyWith<_$CreateCartProductDtoImpl>
@@ -167,8 +177,11 @@ abstract class _CreateCartProductDto implements CreateCartProductDto {
   int get productId;
   @override
   int get quantity;
+
+  /// Create a copy of CreateCartProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreateCartProductDtoImplCopyWith<_$CreateCartProductDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

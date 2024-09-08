@@ -78,6 +78,9 @@ class _$PopularStateCopyWithImpl<$Res, $Val extends PopularState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PopularState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,6 +97,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PopularState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -205,6 +211,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PopularState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -250,7 +258,9 @@ class _$SuccessImpl implements _Success {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PopularState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -329,7 +339,10 @@ abstract class _Success implements PopularState {
   const factory _Success(final List<ProductEntity> products) = _$SuccessImpl;
 
   List<ProductEntity> get products;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PopularState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -348,6 +361,9 @@ class __$$FailureImplCopyWithImpl<$Res>
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PopularState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -500,6 +516,9 @@ class _$PopularEventCopyWithImpl<$Res, $Val extends PopularEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -516,6 +535,9 @@ class __$$FetchImplCopyWithImpl<$Res>
   __$$FetchImplCopyWithImpl(
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -623,6 +645,8 @@ class __$$ChangeCartStateImplCopyWithImpl<$Res>
       _$ChangeCartStateImpl _value, $Res Function(_$ChangeCartStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -636,6 +660,8 @@ class __$$ChangeCartStateImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductEntityCopyWith<$Res> get product {
@@ -669,7 +695,9 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
   @override
   int get hashCode => Object.hash(runtimeType, product);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeCartStateImplCopyWith<_$ChangeCartStateImpl> get copyWith =>
@@ -744,7 +772,10 @@ abstract class _ChangeCartState implements PopularEvent {
       _$ChangeCartStateImpl;
 
   ProductEntity get product;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeCartStateImplCopyWith<_$ChangeCartStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

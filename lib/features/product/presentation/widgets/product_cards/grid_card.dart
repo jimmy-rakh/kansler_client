@@ -17,7 +17,7 @@ import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_card.dart';
 import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
-import '../../../../cart/presentation/screen/bloc/cart_bloc.dart';
+import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../product_card.dart';
 
 class ProductGridCard extends StatelessWidget implements ProductCard {
@@ -123,7 +123,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
             child: SizedBox(
               height: 35,
               child: Text(
-                (product ?? cartProduct?.product)!.title,
+                (product ?? cartProduct?.product)?.title ?? '',
                 maxLines: 2,
                 style:
                     const TextStyle(fontWeight: FontWeight.w500, fontSize: 12),

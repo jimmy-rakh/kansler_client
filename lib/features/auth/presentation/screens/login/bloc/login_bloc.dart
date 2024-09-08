@@ -16,7 +16,6 @@ import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_c
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
-import '../../../../../../core/error/failure.dart';
 import '../../../../../../shared/services/device/device_info_service.dart';
 import '../../../../domain/usecases/set_auth_token.usecase.dart';
 import '../../auth/bloc/auth_bloc.dart';
@@ -48,7 +47,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
 
   void _onLogIn(_Login event, Emitter<LoginState> emit) async {
-    emit(state.copyWith(isBusy: true));
+    emit(state.copyWith(isBusy: true, error: null));
     ClientAdressDto? address;
 
     if (state.hasPass) {
@@ -78,7 +77,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (info?.deliveryaddressSet?.isNotEmpty ?? false) {
         address = await router.showSheet(CompanyInfoSheet(clientData: info!))
             as ClientAdressDto?;
-        emit(state.copyWith(addressCid: address?.cid,addressId: address?.id,isBusy: false));
+
+        if (address == null) {
+          emit(state.copyWith(
+            isBusy: false,
+          ));
+          return;
+        }
+
+        emit(state.copyWith(
+          addressCid: address.cid,
+          addressId: address.id,
+          isBusy: false,
+        ));
       }
     }
 
@@ -96,7 +107,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       res.fold(
         (l) => emit(state.copyWith(
           isBusy: false,
-          error: (l as ServerFailure).message,
+          error: 'По вашему запросу ничего не найдено',
         )),
         (r) async {
           try {
@@ -117,8 +128,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               passController = TextEditingController();
               return;
             }
-
-
           } catch (e) {
             emit(state.copyWith(error: e.toString()));
           }
@@ -126,7 +135,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       );
     }
 
-    if ((phoneController.text.isNotEmpty || state.tabIndex == 0) && !state.hasPass) _sendCode();
+    if ((phoneController.text.isNotEmpty || state.tabIndex == 0) &&
+        !state.hasPass) _sendCode();
 
     emit(state.copyWith(isBusy: false));
   }
@@ -229,7 +239,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (res != PermissionStatus.granted) return null;
     }
 
-    final res = await router.push(MapRoute()) as AddressRequest?;
+    final res = await router.push(const MapRoute()) as AddressRequest?;
 
     return res;
   }

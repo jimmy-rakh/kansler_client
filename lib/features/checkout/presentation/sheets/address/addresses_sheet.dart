@@ -40,7 +40,7 @@ class AddressesSheet extends HookWidget {
           children: [
             Text("Полное наименование:\n${addresses[index].name ?? ""}"),
             verticalSpace12,
-            Text('Номер:\n${addresses[index].phoneNumbers}'),
+            Text('Номер:\n${addresses[index].phoneNumber}'),
             verticalSpace12,
             Text('Регион:\n${addresses[index].region}'),
             verticalSpace12,

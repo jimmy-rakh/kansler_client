@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../../../app/di.dart';
-import '../../../../core/constants/app_env.dart';
 import '../bloc/splash_bloc.dart';
 
 @RoutePage()

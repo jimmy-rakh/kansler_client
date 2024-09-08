@@ -24,11 +24,16 @@ mixin _$ClientInfoResponse {
   String get name => throw _privateConstructorUsedError;
   List<String>? get phoneNumbers => throw _privateConstructorUsedError;
   ClientCidData? get parent => throw _privateConstructorUsedError;
+  String? get region => throw _privateConstructorUsedError;
   List<ClientAdressDto>? get deliveryaddressSet =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this ClientInfoResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ClientInfoResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ClientInfoResponseCopyWith<ClientInfoResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +49,7 @@ abstract class $ClientInfoResponseCopyWith<$Res> {
       String name,
       List<String>? phoneNumbers,
       ClientCidData? parent,
+      String? region,
       List<ClientAdressDto>? deliveryaddressSet});
 
   $ClientCidDataCopyWith<$Res>? get parent;
@@ -59,6 +65,8 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ClientInfoResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -66,6 +74,7 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
     Object? name = null,
     Object? phoneNumbers = freezed,
     Object? parent = freezed,
+    Object? region = freezed,
     Object? deliveryaddressSet = freezed,
   }) {
     return _then(_value.copyWith(
@@ -85,6 +94,10 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
               as ClientCidData?,
+      region: freezed == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String?,
       deliveryaddressSet: freezed == deliveryaddressSet
           ? _value.deliveryaddressSet
           : deliveryaddressSet // ignore: cast_nullable_to_non_nullable
@@ -92,6 +105,8 @@ class _$ClientInfoResponseCopyWithImpl<$Res, $Val extends ClientInfoResponse>
     ) as $Val);
   }
 
+  /// Create a copy of ClientInfoResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ClientCidDataCopyWith<$Res>? get parent {
@@ -118,6 +133,7 @@ abstract class _$$ClientInfoResponseImplCopyWith<$Res>
       String name,
       List<String>? phoneNumbers,
       ClientCidData? parent,
+      String? region,
       List<ClientAdressDto>? deliveryaddressSet});
 
   @override
@@ -132,6 +148,8 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
       $Res Function(_$ClientInfoResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ClientInfoResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -139,6 +157,7 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
     Object? name = null,
     Object? phoneNumbers = freezed,
     Object? parent = freezed,
+    Object? region = freezed,
     Object? deliveryaddressSet = freezed,
   }) {
     return _then(_$ClientInfoResponseImpl(
@@ -158,6 +177,10 @@ class __$$ClientInfoResponseImplCopyWithImpl<$Res>
           ? _value.parent
           : parent // ignore: cast_nullable_to_non_nullable
               as ClientCidData?,
+      region: freezed == region
+          ? _value.region
+          : region // ignore: cast_nullable_to_non_nullable
+              as String?,
       deliveryaddressSet: freezed == deliveryaddressSet
           ? _value._deliveryaddressSet
           : deliveryaddressSet // ignore: cast_nullable_to_non_nullable
@@ -174,6 +197,7 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
       required this.name,
       final List<String>? phoneNumbers,
       this.parent,
+      this.region,
       final List<ClientAdressDto>? deliveryaddressSet})
       : _phoneNumbers = phoneNumbers,
         _deliveryaddressSet = deliveryaddressSet;
@@ -197,6 +221,8 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
 
   @override
   final ClientCidData? parent;
+  @override
+  final String? region;
   final List<ClientAdressDto>? _deliveryaddressSet;
   @override
   List<ClientAdressDto>? get deliveryaddressSet {
@@ -210,7 +236,7 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
 
   @override
   String toString() {
-    return 'ClientInfoResponse(id: $id, name: $name, phoneNumbers: $phoneNumbers, parent: $parent, deliveryaddressSet: $deliveryaddressSet)';
+    return 'ClientInfoResponse(id: $id, name: $name, phoneNumbers: $phoneNumbers, parent: $parent, region: $region, deliveryaddressSet: $deliveryaddressSet)';
   }
 
   @override
@@ -223,11 +249,12 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
             const DeepCollectionEquality()
                 .equals(other._phoneNumbers, _phoneNumbers) &&
             (identical(other.parent, parent) || other.parent == parent) &&
+            (identical(other.region, region) || other.region == region) &&
             const DeepCollectionEquality()
                 .equals(other._deliveryaddressSet, _deliveryaddressSet));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -235,9 +262,12 @@ class _$ClientInfoResponseImpl implements _ClientInfoResponse {
       name,
       const DeepCollectionEquality().hash(_phoneNumbers),
       parent,
+      region,
       const DeepCollectionEquality().hash(_deliveryaddressSet));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ClientInfoResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ClientInfoResponseImplCopyWith<_$ClientInfoResponseImpl> get copyWith =>
@@ -258,6 +288,7 @@ abstract class _ClientInfoResponse implements ClientInfoResponse {
           required final String name,
           final List<String>? phoneNumbers,
           final ClientCidData? parent,
+          final String? region,
           final List<ClientAdressDto>? deliveryaddressSet}) =
       _$ClientInfoResponseImpl;
 
@@ -273,9 +304,14 @@ abstract class _ClientInfoResponse implements ClientInfoResponse {
   @override
   ClientCidData? get parent;
   @override
-  List<ClientAdressDto>? get deliveryaddressSet;
+  String? get region;
   @override
-  @JsonKey(ignore: true)
+  List<ClientAdressDto>? get deliveryaddressSet;
+
+  /// Create a copy of ClientInfoResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClientInfoResponseImplCopyWith<_$ClientInfoResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

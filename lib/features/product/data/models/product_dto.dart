@@ -3,7 +3,6 @@ import 'package:kansler/features/product/data/models/product_data_dto.dart';
 import 'package:kansler/features/product/data/models/stocks_dto.dart';
 import '../../domain/entities/product.entity.dart';
 
-
 part 'product_dto.freezed.dart';
 part 'product_dto.g.dart';
 
@@ -13,35 +12,36 @@ class ProductDto with _$ProductDto {
 
   factory ProductDto({
     required int id,
-    required ProductDataDto? organization,
-    required ProductDataDto? category,
-    required ProductDataDto? brand,
-    required ProductDataDto? madeIn,
-    required String? classifierCode,
-    required String? classifierTitle,
-    required String? packagename,
-    required String? packagecode,
-    required String title,
-    required String? vendorCode,
-    required String? nds,
-    required int? price,
-    required String? measure,
-    required String? description,
-    required bool? actual,
-    required bool? bestseller,
-    required bool? discount,
-    required bool? promotion,
-    required bool? stopList,
-    required String? quantityInBox,
-    required dynamic preOrder,
-    required List<String> barcode,
-    required String? arrivalDate,
-    required double? weight,
-    required String? size,
-    required String? imageUrl,
-    required bool? inFav,
-    required bool? inCart,
-    required bool? hasComment,
+    ProductDataDto? organization,
+    ProductDataDto? category,
+    ProductDataDto? brand,
+    ProductDataDto? madeIn,
+    String? classifierCode,
+    String? classifierTitle,
+    String? packagename,
+    String? packagecode,
+    String? title,
+    String? vendorCode,
+    String? nds,
+    int? price,
+    String? measure,
+    String? description,
+    bool? actual,
+    bool? bestseller,
+    bool? discount,
+    bool? promotion,
+    bool? stopList,
+    String? quantityInBox,
+    dynamic preOrder,
+    List<String>? barcode,
+    String? arrivalDate,
+    double? weight,
+    String? size,
+    String? imageUrl,
+    bool? inFav,
+    bool? inCart,
+    bool? inPreorder,
+    bool? hasComment,
     List<StocksDto>? stocks,
   }) = _ProductDto;
 
@@ -78,6 +78,7 @@ class ProductDto with _$ProductDto {
       imageUrl: imageUrl,
       inFav: inFav,
       inCart: inCart,
+      inPreorder: inPreorder,
       hasComment: hasComment,
       stocks: stocks);
 }

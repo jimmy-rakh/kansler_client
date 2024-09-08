@@ -6,6 +6,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:kansler/shared/services/logger/logger_service.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:path_provider/path_provider.dart';
@@ -14,7 +16,7 @@ import 'app/di.dart';
 import 'core/enums/auth_status.dart';
 import 'features/auth/data/sources/local.keys.dart';
 import 'features/auth/presentation/screens/auth/bloc/auth_bloc.dart';
-import 'features/cart/presentation/screen/bloc/cart_bloc.dart';
+import 'features/cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import 'features/categories/presentation/screens/category/bloc/categories_bloc.dart';
 import 'features/categories/presentation/screens/subcategory/bloc/subcategory_bloc.dart';
 import 'features/home/presentation/blocs/discounts/discounts_bloc.dart';
@@ -26,6 +28,8 @@ import 'features/orders/presentation/screen/bloc/orders_bloc.dart';
 import 'features/profile/presentation/screen/companies/companies/companies_bloc.dart';
 import 'features/profile/presentation/screen/profile/profile_bloc.dart';
 import 'features/search/presentation/search_screen/blocs/brands/brands_bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +38,12 @@ void main() async {
   try {
     await EasyLocalization.ensureInitialized();
     await _setUpHive();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await NotificationService.init();
+
+    log.d(await NotificationService.getToken());
   } catch (e) {
     log.e(e.toString());
   } finally {
@@ -85,6 +95,9 @@ void main() async {
             BlocProvider(
               create: (context) => getIt<DiscountsBloc>(),
             ),
+            BlocProvider(
+              create: (context) => getIt<PreordersBloc>(),
+            ),
           ],
           child: HookedBlocConfigProvider(
             injector: () => getIt.get,
@@ -100,16 +113,14 @@ void main() async {
 }
 
 Future<void> _setUpHive() async {
-
 //here
-    if (kIsWeb) {
-      String path = "/assets/db";
-      Hive.init(path);
-    } else {
-      Directory directory = await getApplicationDocumentsDirectory();
-      Hive.init(directory.path);
-    }
-
+  if (kIsWeb) {
+    String path = "/assets/db";
+    Hive.init(path);
+  } else {
+    Directory directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
+  }
 
   Hive.registerAdapter(AuthStatusAdapter());
 

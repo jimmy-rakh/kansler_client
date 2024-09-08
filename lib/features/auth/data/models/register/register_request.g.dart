@@ -9,7 +9,7 @@ part of 'register_request.dart';
 _$RegisterRequestImpl _$$RegisterRequestImplFromJson(
         Map<String, dynamic> json) =>
     _$RegisterRequestImpl(
-      name: json['name'] as String,
+      name: json['name'] as String?,
       username: json['username'] as String,
       password: json['password'] as String,
       phoneNumber: json['phone_number'] as String,
@@ -22,12 +22,7 @@ _$RegisterRequestImpl _$$RegisterRequestImplFromJson(
 
 Map<String, dynamic> _$$RegisterRequestImplToJson(
     _$RegisterRequestImpl instance) {
-  final val = <String, dynamic>{
-    'name': instance.name,
-    'username': instance.username,
-    'password': instance.password,
-    'phone_number': instance.phoneNumber,
-  };
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -35,6 +30,10 @@ Map<String, dynamic> _$$RegisterRequestImplToJson(
     }
   }
 
+  writeNotNull('name', instance.name);
+  val['username'] = instance.username;
+  val['password'] = instance.password;
+  val['phone_number'] = instance.phoneNumber;
   writeNotNull('addresses_id', instance.addressesId);
   val['addresses'] = instance.addresses?.toJson();
   return val;

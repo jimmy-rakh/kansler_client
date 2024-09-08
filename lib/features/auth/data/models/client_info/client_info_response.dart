@@ -12,6 +12,7 @@ class ClientInfoResponse with _$ClientInfoResponse {
     required String name,
     List<String>? phoneNumbers,
     ClientCidData? parent,
+    String? region,
     List<ClientAdressDto>? deliveryaddressSet,
   }) = _ClientInfoResponse;
 

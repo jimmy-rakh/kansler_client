@@ -29,7 +29,7 @@ mixin _$ProductDto {
   String? get classifierTitle => throw _privateConstructorUsedError;
   String? get packagename => throw _privateConstructorUsedError;
   String? get packagecode => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
   String? get vendorCode => throw _privateConstructorUsedError;
   String? get nds => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
@@ -42,18 +42,23 @@ mixin _$ProductDto {
   bool? get stopList => throw _privateConstructorUsedError;
   String? get quantityInBox => throw _privateConstructorUsedError;
   dynamic get preOrder => throw _privateConstructorUsedError;
-  List<String> get barcode => throw _privateConstructorUsedError;
+  List<String>? get barcode => throw _privateConstructorUsedError;
   String? get arrivalDate => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
   String? get size => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   bool? get inFav => throw _privateConstructorUsedError;
   bool? get inCart => throw _privateConstructorUsedError;
+  bool? get inPreorder => throw _privateConstructorUsedError;
   bool? get hasComment => throw _privateConstructorUsedError;
   List<StocksDto>? get stocks => throw _privateConstructorUsedError;
 
+  /// Serializes this ProductDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductDtoCopyWith<ProductDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -74,7 +79,7 @@ abstract class $ProductDtoCopyWith<$Res> {
       String? classifierTitle,
       String? packagename,
       String? packagecode,
-      String title,
+      String? title,
       String? vendorCode,
       String? nds,
       int? price,
@@ -87,13 +92,14 @@ abstract class $ProductDtoCopyWith<$Res> {
       bool? stopList,
       String? quantityInBox,
       dynamic preOrder,
-      List<String> barcode,
+      List<String>? barcode,
       String? arrivalDate,
       double? weight,
       String? size,
       String? imageUrl,
       bool? inFav,
       bool? inCart,
+      bool? inPreorder,
       bool? hasComment,
       List<StocksDto>? stocks});
 
@@ -113,6 +119,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -125,7 +133,7 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     Object? classifierTitle = freezed,
     Object? packagename = freezed,
     Object? packagecode = freezed,
-    Object? title = null,
+    Object? title = freezed,
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
@@ -138,13 +146,14 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     Object? stopList = freezed,
     Object? quantityInBox = freezed,
     Object? preOrder = freezed,
-    Object? barcode = null,
+    Object? barcode = freezed,
     Object? arrivalDate = freezed,
     Object? weight = freezed,
     Object? size = freezed,
     Object? imageUrl = freezed,
     Object? inFav = freezed,
     Object? inCart = freezed,
+    Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
   }) {
@@ -185,10 +194,10 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
           ? _value.packagecode
           : packagecode // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       vendorCode: freezed == vendorCode
           ? _value.vendorCode
           : vendorCode // ignore: cast_nullable_to_non_nullable
@@ -237,10 +246,10 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
           ? _value.preOrder
           : preOrder // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      barcode: null == barcode
+      barcode: freezed == barcode
           ? _value.barcode
           : barcode // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       arrivalDate: freezed == arrivalDate
           ? _value.arrivalDate
           : arrivalDate // ignore: cast_nullable_to_non_nullable
@@ -265,6 +274,10 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
           ? _value.inCart
           : inCart // ignore: cast_nullable_to_non_nullable
               as bool?,
+      inPreorder: freezed == inPreorder
+          ? _value.inPreorder
+          : inPreorder // ignore: cast_nullable_to_non_nullable
+              as bool?,
       hasComment: freezed == hasComment
           ? _value.hasComment
           : hasComment // ignore: cast_nullable_to_non_nullable
@@ -276,6 +289,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     ) as $Val);
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get organization {
@@ -288,6 +303,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     });
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get category {
@@ -300,6 +317,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     });
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get brand {
@@ -312,6 +331,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     });
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get madeIn {
@@ -343,7 +364,7 @@ abstract class _$$ProductDtoImplCopyWith<$Res>
       String? classifierTitle,
       String? packagename,
       String? packagecode,
-      String title,
+      String? title,
       String? vendorCode,
       String? nds,
       int? price,
@@ -356,13 +377,14 @@ abstract class _$$ProductDtoImplCopyWith<$Res>
       bool? stopList,
       String? quantityInBox,
       dynamic preOrder,
-      List<String> barcode,
+      List<String>? barcode,
       String? arrivalDate,
       double? weight,
       String? size,
       String? imageUrl,
       bool? inFav,
       bool? inCart,
+      bool? inPreorder,
       bool? hasComment,
       List<StocksDto>? stocks});
 
@@ -384,6 +406,8 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
       _$ProductDtoImpl _value, $Res Function(_$ProductDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -396,7 +420,7 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
     Object? classifierTitle = freezed,
     Object? packagename = freezed,
     Object? packagecode = freezed,
-    Object? title = null,
+    Object? title = freezed,
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
@@ -409,13 +433,14 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
     Object? stopList = freezed,
     Object? quantityInBox = freezed,
     Object? preOrder = freezed,
-    Object? barcode = null,
+    Object? barcode = freezed,
     Object? arrivalDate = freezed,
     Object? weight = freezed,
     Object? size = freezed,
     Object? imageUrl = freezed,
     Object? inFav = freezed,
     Object? inCart = freezed,
+    Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
   }) {
@@ -456,10 +481,10 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
           ? _value.packagecode
           : packagecode // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: null == title
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       vendorCode: freezed == vendorCode
           ? _value.vendorCode
           : vendorCode // ignore: cast_nullable_to_non_nullable
@@ -508,10 +533,10 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
           ? _value.preOrder
           : preOrder // ignore: cast_nullable_to_non_nullable
               as dynamic,
-      barcode: null == barcode
+      barcode: freezed == barcode
           ? _value._barcode
           : barcode // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       arrivalDate: freezed == arrivalDate
           ? _value.arrivalDate
           : arrivalDate // ignore: cast_nullable_to_non_nullable
@@ -536,6 +561,10 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
           ? _value.inCart
           : inCart // ignore: cast_nullable_to_non_nullable
               as bool?,
+      inPreorder: freezed == inPreorder
+          ? _value.inPreorder
+          : inPreorder // ignore: cast_nullable_to_non_nullable
+              as bool?,
       hasComment: freezed == hasComment
           ? _value.hasComment
           : hasComment // ignore: cast_nullable_to_non_nullable
@@ -553,35 +582,36 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
 class _$ProductDtoImpl extends _ProductDto {
   _$ProductDtoImpl(
       {required this.id,
-      required this.organization,
-      required this.category,
-      required this.brand,
-      required this.madeIn,
-      required this.classifierCode,
-      required this.classifierTitle,
-      required this.packagename,
-      required this.packagecode,
-      required this.title,
-      required this.vendorCode,
-      required this.nds,
-      required this.price,
-      required this.measure,
-      required this.description,
-      required this.actual,
-      required this.bestseller,
-      required this.discount,
-      required this.promotion,
-      required this.stopList,
-      required this.quantityInBox,
-      required this.preOrder,
-      required final List<String> barcode,
-      required this.arrivalDate,
-      required this.weight,
-      required this.size,
-      required this.imageUrl,
-      required this.inFav,
-      required this.inCart,
-      required this.hasComment,
+      this.organization,
+      this.category,
+      this.brand,
+      this.madeIn,
+      this.classifierCode,
+      this.classifierTitle,
+      this.packagename,
+      this.packagecode,
+      this.title,
+      this.vendorCode,
+      this.nds,
+      this.price,
+      this.measure,
+      this.description,
+      this.actual,
+      this.bestseller,
+      this.discount,
+      this.promotion,
+      this.stopList,
+      this.quantityInBox,
+      this.preOrder,
+      final List<String>? barcode,
+      this.arrivalDate,
+      this.weight,
+      this.size,
+      this.imageUrl,
+      this.inFav,
+      this.inCart,
+      this.inPreorder,
+      this.hasComment,
       final List<StocksDto>? stocks})
       : _barcode = barcode,
         _stocks = stocks,
@@ -609,7 +639,7 @@ class _$ProductDtoImpl extends _ProductDto {
   @override
   final String? packagecode;
   @override
-  final String title;
+  final String? title;
   @override
   final String? vendorCode;
   @override
@@ -634,12 +664,14 @@ class _$ProductDtoImpl extends _ProductDto {
   final String? quantityInBox;
   @override
   final dynamic preOrder;
-  final List<String> _barcode;
+  final List<String>? _barcode;
   @override
-  List<String> get barcode {
+  List<String>? get barcode {
+    final value = _barcode;
+    if (value == null) return null;
     if (_barcode is EqualUnmodifiableListView) return _barcode;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_barcode);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -655,6 +687,8 @@ class _$ProductDtoImpl extends _ProductDto {
   @override
   final bool? inCart;
   @override
+  final bool? inPreorder;
+  @override
   final bool? hasComment;
   final List<StocksDto>? _stocks;
   @override
@@ -668,7 +702,7 @@ class _$ProductDtoImpl extends _ProductDto {
 
   @override
   String toString() {
-    return 'ProductDto(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, hasComment: $hasComment, stocks: $stocks)';
+    return 'ProductDto(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, inPreorder: $inPreorder, hasComment: $hasComment, stocks: $stocks)';
   }
 
   @override
@@ -720,12 +754,14 @@ class _$ProductDtoImpl extends _ProductDto {
                 other.imageUrl == imageUrl) &&
             (identical(other.inFav, inFav) || other.inFav == inFav) &&
             (identical(other.inCart, inCart) || other.inCart == inCart) &&
+            (identical(other.inPreorder, inPreorder) ||
+                other.inPreorder == inPreorder) &&
             (identical(other.hasComment, hasComment) ||
                 other.hasComment == hasComment) &&
             const DeepCollectionEquality().equals(other._stocks, _stocks));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -758,11 +794,14 @@ class _$ProductDtoImpl extends _ProductDto {
         imageUrl,
         inFav,
         inCart,
+        inPreorder,
         hasComment,
         const DeepCollectionEquality().hash(_stocks)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductDtoImplCopyWith<_$ProductDtoImpl> get copyWith =>
@@ -779,35 +818,36 @@ class _$ProductDtoImpl extends _ProductDto {
 abstract class _ProductDto extends ProductDto {
   factory _ProductDto(
       {required final int id,
-      required final ProductDataDto? organization,
-      required final ProductDataDto? category,
-      required final ProductDataDto? brand,
-      required final ProductDataDto? madeIn,
-      required final String? classifierCode,
-      required final String? classifierTitle,
-      required final String? packagename,
-      required final String? packagecode,
-      required final String title,
-      required final String? vendorCode,
-      required final String? nds,
-      required final int? price,
-      required final String? measure,
-      required final String? description,
-      required final bool? actual,
-      required final bool? bestseller,
-      required final bool? discount,
-      required final bool? promotion,
-      required final bool? stopList,
-      required final String? quantityInBox,
-      required final dynamic preOrder,
-      required final List<String> barcode,
-      required final String? arrivalDate,
-      required final double? weight,
-      required final String? size,
-      required final String? imageUrl,
-      required final bool? inFav,
-      required final bool? inCart,
-      required final bool? hasComment,
+      final ProductDataDto? organization,
+      final ProductDataDto? category,
+      final ProductDataDto? brand,
+      final ProductDataDto? madeIn,
+      final String? classifierCode,
+      final String? classifierTitle,
+      final String? packagename,
+      final String? packagecode,
+      final String? title,
+      final String? vendorCode,
+      final String? nds,
+      final int? price,
+      final String? measure,
+      final String? description,
+      final bool? actual,
+      final bool? bestseller,
+      final bool? discount,
+      final bool? promotion,
+      final bool? stopList,
+      final String? quantityInBox,
+      final dynamic preOrder,
+      final List<String>? barcode,
+      final String? arrivalDate,
+      final double? weight,
+      final String? size,
+      final String? imageUrl,
+      final bool? inFav,
+      final bool? inCart,
+      final bool? inPreorder,
+      final bool? hasComment,
       final List<StocksDto>? stocks}) = _$ProductDtoImpl;
   _ProductDto._() : super._();
 
@@ -833,7 +873,7 @@ abstract class _ProductDto extends ProductDto {
   @override
   String? get packagecode;
   @override
-  String get title;
+  String? get title;
   @override
   String? get vendorCode;
   @override
@@ -859,7 +899,7 @@ abstract class _ProductDto extends ProductDto {
   @override
   dynamic get preOrder;
   @override
-  List<String> get barcode;
+  List<String>? get barcode;
   @override
   String? get arrivalDate;
   @override
@@ -873,11 +913,16 @@ abstract class _ProductDto extends ProductDto {
   @override
   bool? get inCart;
   @override
+  bool? get inPreorder;
+  @override
   bool? get hasComment;
   @override
   List<StocksDto>? get stocks;
+
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductDtoImplCopyWith<_$ProductDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -22,8 +22,12 @@ mixin _$ConfirmRequest {
   @JsonKey(includeToJson: false)
   String get requestId => throw _privateConstructorUsedError;
 
+  /// Serializes this ConfirmRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ConfirmRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ConfirmRequestCopyWith<ConfirmRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$ConfirmRequestCopyWithImpl<$Res, $Val extends ConfirmRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ConfirmRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -96,6 +102,8 @@ class __$$ConfirmRequestImplCopyWithImpl<$Res>
       _$ConfirmRequestImpl _value, $Res Function(_$ConfirmRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ConfirmRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -154,11 +162,13 @@ class _$ConfirmRequestImpl implements _ConfirmRequest {
                 other.requestId == requestId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, value, username, requestId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ConfirmRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ConfirmRequestImplCopyWith<_$ConfirmRequestImpl> get copyWith =>
@@ -188,8 +198,11 @@ abstract class _ConfirmRequest implements ConfirmRequest {
   @override
   @JsonKey(includeToJson: false)
   String get requestId;
+
+  /// Create a copy of ConfirmRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ConfirmRequestImplCopyWith<_$ConfirmRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
