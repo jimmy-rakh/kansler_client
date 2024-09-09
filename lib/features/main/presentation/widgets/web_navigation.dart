@@ -39,6 +39,7 @@ class WebNavigation extends HookWidget {
               AppCard(
                   fillColor: context.background,
                   width: context.width * .38,
+                  borderRadius: 4,
                   child: const Padding(
                     padding: EdgeInsets.all(2),
                     child: HomeAppBar(),

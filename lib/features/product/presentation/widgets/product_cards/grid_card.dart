@@ -47,6 +47,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
     final authBloc = context.read<AuthBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
+      borderRadius: 4,
       width: width,
       onTap: () =>
           router.push(ProductRoute(product: product ?? cartProduct!.product!)),
@@ -54,34 +55,41 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppCard(
+            borderRadius: 4,
             fillColor: AppColors.white,
             child: Stack(children: [
               (product ?? cartProduct?.product)?.imageUrl == null
                   ? GestureDetector(
                 onTap: () =>
                     router.push(ProductRoute(product: product ?? cartProduct!.product!)),
-                    child: Image.asset(
-                        AppImages.noPhoto,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(3),
+                      child: Image.asset(
+                          AppImages.noPhoto,
+                          height: height,
+                          width: width,
+                          fit:  BoxFit.fill,
+                        ),
+                    ),
+                  )
+                  : ClipRRect(
+                borderRadius: BorderRadius.circular(3),
+                    child: ImageNetwork(
+                    onTap: () =>
+                        router.push(ProductRoute(product: product ?? cartProduct!.product!)),
+                        fitWeb:  BoxFitWeb.fill,
+                        fitAndroidIos:  BoxFit.fill,
+                        onLoading: const SizedBox(),
+                        duration: 0,
+                        image: NetworkConstants.apiBaseUrl +
+                            (product ?? cartProduct?.product)!.imageUrl!,
                         height: height,
                         width: width,
-                        fit:  BoxFit.fill,
-                      ),
-                  )
-                  : ImageNetwork(
-                  onTap: () =>
-                      router.push(ProductRoute(product: product ?? cartProduct!.product!)),
-                      fitWeb:  BoxFitWeb.fill,
-                      fitAndroidIos:  BoxFit.fill,
-                      onLoading: const SizedBox(),
-                      duration: 0,
-                      image: NetworkConstants.apiBaseUrl +
-                          (product ?? cartProduct?.product)!.imageUrl!,
-                      height: height,
-                      width: width,
-                      onError: Image.asset(
-                        AppImages.noPhoto,
-                        height: 50,
-                      )),
+                        onError: Image.asset(
+                          AppImages.noPhoto,
+                          height: 50,
+                        )),
+                  ),
               (product ?? cartProduct?.product)?.brand?.name == null
                   ? const SizedBox()
                   : Positioned(
@@ -191,7 +199,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                       ),
                       padding: const EdgeInsets.symmetric(
                           vertical: 8, horizontal: 8),
-                      borderRadius: 0,
+                      borderRadius: 4,
                     ),
             ],
           ),
