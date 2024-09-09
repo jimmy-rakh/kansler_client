@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kansler/core/extensions/context.dart';
 
@@ -20,7 +21,7 @@ class HomeAppBar extends StatelessWidget {
             child: Container(
               height: 40,
               decoration: BoxDecoration(
-                color: context.cardColor,
+                color: context.isSmall ? context.cardColor : context.background,
                 borderRadius: BorderRadius.circular(0),
               ),
               child: Row(

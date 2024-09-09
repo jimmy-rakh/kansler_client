@@ -14,7 +14,10 @@ class SplashScreen extends HookWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Center(
-        child: Image.asset("assets/images/logo.png"),
+        child: Padding(
+          padding: const EdgeInsets.all(40),
+          child: Image.asset("assets/images/logo.png"),
+        ),
       ),
     );
   }

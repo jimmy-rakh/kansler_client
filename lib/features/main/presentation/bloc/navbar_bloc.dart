@@ -21,22 +21,27 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
 
   List<NavBarItemEntity> navbarItems = [
     NavBarItemEntity(
+      label: "Главная",
       icon: KazeIcons.homeOutline,
       activeIcon: KazeIcons.homeBold,
     ),
     NavBarItemEntity(
+      label: "Категории",
       icon: KazeIcons.categoryOutline,
       activeIcon: KazeIcons.categoryBold,
     ),
     NavBarItemEntity(
+      label: "Корзина",
       icon: KazeIcons.cartOutline,
       activeIcon: KazeIcons.cartBold,
     ),
     NavBarItemEntity(
+      label: "Заказы",
       icon: KazeIcons.bagOutline,
       activeIcon: KazeIcons.bagBold,
     ),
     NavBarItemEntity(
+      label: "Профиль",
       icon: KazeIcons.profileOutline,
       activeIcon: KazeIcons.profileBold,
     )

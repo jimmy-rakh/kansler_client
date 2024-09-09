@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/actions.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/form.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/header.dart';
@@ -21,18 +22,20 @@ class LoginScreen extends StatelessWidget implements AutoRouteWrapper {
         body: Stack(
           children: [
             const Positioned(top: 60, child: AutoLeadingButton()),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: ListView(
-                children: const [
-                  verticalSpace60,
-                  verticalSpace35,
-                  LoginHeaderWidget(),
-                  verticalSpace60,
-                  LoginFormWidget(),
-                  verticalSpace12,
-                  LoginActionWidget(),
-                ],
+            Center(
+              child: SizedBox(
+                width: context.isMobile ? context.width * .9 : context.width * .33,
+                child: ListView(
+                  children: const [
+                    verticalSpace60,
+                    verticalSpace35,
+                    LoginHeaderWidget(),
+                    verticalSpace60,
+                    LoginFormWidget(),
+                    verticalSpace12,
+                    LoginActionWidget(),
+                  ],
+                ),
               ),
             ),
           ],

@@ -28,7 +28,7 @@ class DiscountsWidget extends HookWidget {
           onTap: () {},
         ),
         SizedBox(
-          height:  context.height * .25,
+          height: 310,
           child: state.when(
             loadInProgress: () => Skeletonizer(
               enabled: true,
@@ -38,7 +38,8 @@ class DiscountsWidget extends HookWidget {
                 itemCount: 10,
                 separatorBuilder: (context, index) => horizontalSpace12,
                 itemBuilder: (context, index) => ProductCard.grid(
-                  height: context.height * .15,
+                  height: context.isMobile ? context.height * .2 : 200,
+                  width: context.isMobile ? context.width * .44 : 200,
                   product: ProductEntity(id: 0, title: '', barcode: []),
                   onCart: () {},
                 ),
@@ -55,7 +56,8 @@ class DiscountsWidget extends HookWidget {
                 itemCount: products.length,
                 separatorBuilder: (context, index) => horizontalSpace12,
                 itemBuilder: (context, index) => ProductCard.grid(
-                  height: context.height * .15,
+                  height: context.isMobile ? context.height * .2 : 200,
+                  width: context.isMobile ? context.width * .44 : 200,
                   product: products[index],
                   onCart: () {},
                 ),

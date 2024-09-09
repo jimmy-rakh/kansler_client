@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/widgets.dart';
+import 'package:kansler/features/main/presentation/widgets/web_navigation.dart';
 
 import 'navbar.dart';
 
@@ -16,12 +17,10 @@ class ScaffoldWithNavbar extends StatelessWidget {
     return Scaffold(
       extendBody: tabsRouter.activeIndex != 2,
       appBar: context.isSmall
-          ? PreferredSize(preferredSize: Size.zero, child: const SizedBox())
-          : AppBarWidget(
+          ? const PreferredSize(preferredSize: Size.zero, child: SizedBox())
+          : PreferredSize(
               preferredSize: Size.fromHeight(context.height * .2),
-              child: Row(
-                children: [],
-              )),
+              child: WebNavigation(tabsRouter: tabsRouter)),
       body: IndexedStack(
         index: tabsRouter.activeIndex,
         children: children,

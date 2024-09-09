@@ -1,9 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_network/image_network.dart';
 import 'package:kansler/core/constants/kaze_icons.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
@@ -15,7 +15,6 @@ import '../../../../../core/network/constants.dart';
 import '../../../../../core/style/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_card.dart';
-import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../product_card.dart';
@@ -54,70 +53,78 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(children: [
-            (product ?? cartProduct?.product)?.imageUrl == null
-                ? Image.asset(
-                    AppImages.noPhoto,
-                    height: height,
-                    width: width,
-                    fit: BoxFit.fill,
+          AppCard(
+            fillColor: AppColors.white,
+            child: Stack(children: [
+              (product ?? cartProduct?.product)?.imageUrl == null
+                  ? GestureDetector(
+                onTap: () =>
+                    router.push(ProductRoute(product: product ?? cartProduct!.product!)),
+                    child: Image.asset(
+                        AppImages.noPhoto,
+                        height: height,
+                        width: width,
+                        fit:  BoxFit.fill,
+                      ),
                   )
-                : CachedNetworkImage(
-                    fit: BoxFit.fitHeight,
-                    height: height,
-                    width: width,
-                    memCacheHeight: 200,
-                    memCacheWidth: 200,
-                    errorListener: (value) => log.e(
-                        '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
-                    imageUrl: NetworkConstants.apiBaseUrl +
-                        (product ?? cartProduct?.product)!.imageUrl!,
-                    errorWidget: (context, url, error) =>
-                        Image.asset(AppImages.noPhoto),
-                  ),
-            (product ?? cartProduct?.product)?.brand?.name == null
-                ? const SizedBox()
-                : Positioned(
-                    bottom: 0.5,
-                    right: 0.5,
-                    left: 0.5,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        AppCard(
-                          fillColor: context.background,
-                          borderColor: AppColors.grey,
-                          borderRadius: 0,
-                          child: Padding(
-                            padding: const EdgeInsets.all(4),
-                            child: Text(
-                              "${(product ?? cartProduct?.product)?.brand?.name} ",
-                              maxLines: 1,
-                              style: const TextStyle(fontSize: 10),
-                              overflow: TextOverflow.ellipsis,
+                  : ImageNetwork(
+                  onTap: () =>
+                      router.push(ProductRoute(product: product ?? cartProduct!.product!)),
+                      fitWeb:  BoxFitWeb.fill,
+                      fitAndroidIos:  BoxFit.fill,
+                      onLoading: const SizedBox(),
+                      duration: 0,
+                      image: NetworkConstants.apiBaseUrl +
+                          (product ?? cartProduct?.product)!.imageUrl!,
+                      height: height,
+                      width: width,
+                      onError: Image.asset(
+                        AppImages.noPhoto,
+                        height: 50,
+                      )),
+              (product ?? cartProduct?.product)?.brand?.name == null
+                  ? const SizedBox()
+                  : Positioned(
+                      bottom: 5,
+                      right: 0.5,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          AppCard(
+                            fillColor: context.background,
+                            borderColor: AppColors.grey,
+                            borderRadius: 0,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4),
+                              child: Text(
+                                "${(product ?? cartProduct?.product)?.brand?.name} ",
+                                maxLines: 1,
+                                style: const TextStyle(fontSize: 10),
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
                           ),
-                        ),
-                        // verticalSpace2,
-                        // AppCard(
-                        //   padding: const EdgeInsets.all(6),
-                        //   fillColor: context.background,
+                          // verticalSpace2,
+                          // AppCard(
+                          //   padding: const EdgeInsets.all(6),
+                          //   fillColor: context.background,
 
-                        //   width: width,
-                        //   child: Text(
-                        //     textAlign: TextAlign.end,
-                        //     "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
-                        //     maxLines: 1,
-                        //     style: const TextStyle(fontSize: 8),
-                        //     overflow: TextOverflow.ellipsis,
-                        //   ),
-                        // ),
-                      ],
+                          //   width: width,
+                          //   child: Text(
+                          //     textAlign: TextAlign.end,
+                          //     "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
+                          //     maxLines: 1,
+                          //     style: const TextStyle(fontSize: 8),
+                          //     overflow: TextOverflow.ellipsis,
+                          //   ),
+                          // ),
+                        ],
+                      ),
                     ),
-                  )
-          ]),
-          verticalSpace5,
+            ]),
+          ),
+          Divider(color: AppColors.grey.withOpacity(0.2)),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SizedBox(
@@ -136,22 +143,19 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               if (product?.price != null)
-                SizedBox(
-                  width: context.width * .3,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Text(
-                      '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.titleSmall,
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 5),
+                  child: Text(
+                    '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: context.titleSmall,
                   ),
                 ),
-              (product ?? cartProduct!.product)!.inCart == null || width <= 130
+              (product ?? cartProduct!.product)!.inCart == null
                   ? const SizedBox()
                   : AppButton(
-                      width: context.width * .115,
+                      width: context.isMobile ? context.width * .12 : 50,
                       isActive: product?.leftQuantity != 0,
                       fillColor:
                           (product ?? cartProduct!.product)!.inCart ?? false
