@@ -11,4 +11,5 @@ class SubcategoryEvent with _$SubcategoryEvent {
   const factory SubcategoryEvent.listTypeToggle() = _ListTypeToggle;
   const factory SubcategoryEvent.changeCartState(ProductEntity product) =
       _ChangeCartState;
+  const factory SubcategoryEvent.showFilters() = _ShowFilters;
 }

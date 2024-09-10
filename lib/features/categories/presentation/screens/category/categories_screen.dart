@@ -61,6 +61,7 @@ class CategoriesScreen extends HookWidget {
                                     isPaginationLoading,
                                     filterData) =>
                                 AppBarWidget(
+                              leadingWidth: 0,
                               preferredSize: Size.fromHeight(
                                   category.hasChildren ? 110 : 60),
                               bottomChild: category.hasChildren
@@ -72,7 +73,7 @@ class CategoriesScreen extends HookWidget {
                           ) ??
                           const SizedBox(),
                       SizedBox(
-                          height: context.height * .9,
+                          height: context.height * .8,
                           child: const SubcategoryBody()),
                     ],
                   )),

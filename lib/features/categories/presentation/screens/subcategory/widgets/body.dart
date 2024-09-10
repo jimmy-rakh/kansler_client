@@ -93,12 +93,18 @@ class SubcategoryBody extends HookWidget {
                             currentWidth < 1400 && currentWidth > 1200
                                 ? 4
                                 : currentWidth < 1300 && currentWidth > 700
-                                    ? 3
+                                    ? context.isTablet
+                                        ? 2
+                                        : 3
                                     : currentWidth < 600
                                         ? 2
                                         : crossCount,
-                        childAspectRatio: currentWidth < 400 ? .5 : .6,
-                        crossAxisSpacing: 10,
+                        childAspectRatio: currentWidth < 400
+                            ? .5
+                            : context.isTablet
+                                ? .7
+                                : .6,
+                        crossAxisSpacing: 5,
                         mainAxisSpacing: 1),
                     itemCount: products.length,
                     itemBuilder: (context, index) => ProductCard.grid(

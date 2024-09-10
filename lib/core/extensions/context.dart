@@ -38,6 +38,8 @@ extension BuildContextEntension<T> on BuildContext {
 
   bool get isDesktop => mq.size.width >= 1024.0;
 
+  bool get isDesktopFull => mq.size.width >= 1324.0;
+
   bool get isSmall => mq.size.width < 850.0;
 
   double get width => mq.size.width;

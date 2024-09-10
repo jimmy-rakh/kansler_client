@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/search/presentation/search_screen/blocs/search_bloc/search_bloc.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/constants/kaze_icons.dart';
 import '../../../../../../core/constants/spaces.dart';
@@ -34,17 +35,31 @@ class SubcategoryAppBar extends HookWidget {
               padding: const EdgeInsets.all(12),
               child: Row(
                 children: [
-                  GestureDetector(
-                      onTap: () => router.push(SearchRoute()),
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(0),
-                            color: context.cardColor,
+                  context.isSmall
+                      ? GestureDetector(
+                          onTap: () => router.push(SearchRoute()),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(0),
+                                color: context.cardColor,
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Icon(KazeIcons.searchOutline),
+                              )))
+                      : GestureDetector(
+                          onTap: () {},
+                          child: Container(
+                            padding: const EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0),
+                              color: context.cardColor,
+                            ),
+                            child: const Icon(
+                              KazeIcons.setting4outline,
+                            ),
                           ),
-                          child: const Padding(
-                            padding: EdgeInsets.all(5),
-                            child: Icon(KazeIcons.searchOutline),
-                          ))),
+                        ),
                   horizontalSpace8,
                   GestureDetector(
                     onTap: () =>

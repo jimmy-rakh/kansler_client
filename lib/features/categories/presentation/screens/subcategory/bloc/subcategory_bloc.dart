@@ -26,6 +26,7 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
     on<_ChooseSubcategory>(_onChooseSubcategory);
     on<_ListTypeToggle>(_onListTypeToggle);
     on<_ChangeCartState>(_onChangeCartState);
+    on<_ShowFilters>(_onShowFilters);
   }
 
   int pageNumber = 1;
@@ -174,5 +175,17 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
     }).toList();
 
     emit(currentState.copyWith(products: products));
+  }
+
+  void _onShowFilters(_ShowFilters event, Emitter<SearchState> emit) async {
+    final res = await router
+            .push(FilterRoute(searchData: (state as _Success).filterData!))
+        as SearchEntity?;
+
+    if (res != null) {
+      emit((state as _Success)
+          .copyWith(filterData: res.copyWith(pageNumber: 1)));
+      add(const SearchEvent.search());
+    }
   }
 }

@@ -53,8 +53,8 @@ class ProductListCard extends HookWidget implements ProductCard {
       width: context.isSmall
           ? context.width
           : context.isTablet
-              ? context.width * .6
-              : context.width * .67,
+              ? context.width * .57
+              : context.width * .65,
       onTap: () {
         // competeEditing();
         // onPressed();
@@ -168,8 +168,10 @@ class ProductListCard extends HookWidget implements ProductCard {
             width: context.isSmall
                 ? context.width - 144
                 : context.isTablet
-                    ? context.width * .5
-                    : context.width * .55,
+                    ? context.width * .43
+                    : context.isDesktopFull
+                        ? context.width * .55
+                        : context.width * .51,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -499,7 +501,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                               ),
                           const Spacer(),
                           AppButton(
-                            width: context.isMobile ? context.width * .12 : 50,
+                            width: context.isMobile || context.isTablet
+                                ? context.width * .12
+                                : 50,
                             isActive: product?.leftQuantity != 0,
                             fillColor:
                                 (product ?? cartProduct!.product)!.inCart ??
