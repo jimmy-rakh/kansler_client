@@ -595,6 +595,7 @@ mixin _$SubcategoryEvent {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -605,6 +606,7 @@ mixin _$SubcategoryEvent {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -615,6 +617,7 @@ mixin _$SubcategoryEvent {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -626,6 +629,7 @@ mixin _$SubcategoryEvent {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -636,6 +640,7 @@ mixin _$SubcategoryEvent {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -646,6 +651,7 @@ mixin _$SubcategoryEvent {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -749,6 +755,7 @@ class _$InitImpl implements _Init {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) {
     return init(category);
   }
@@ -762,6 +769,7 @@ class _$InitImpl implements _Init {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) {
     return init?.call(category);
   }
@@ -775,6 +783,7 @@ class _$InitImpl implements _Init {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -792,6 +801,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) {
     return init(this);
   }
@@ -805,6 +815,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) {
     return init?.call(this);
   }
@@ -818,6 +829,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -908,6 +920,7 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) {
     return loadSubcategories(categoryId);
   }
@@ -921,6 +934,7 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) {
     return loadSubcategories?.call(categoryId);
   }
@@ -934,6 +948,7 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) {
     if (loadSubcategories != null) {
@@ -951,6 +966,7 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) {
     return loadSubcategories(this);
   }
@@ -964,6 +980,7 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) {
     return loadSubcategories?.call(this);
   }
@@ -977,6 +994,7 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) {
     if (loadSubcategories != null) {
@@ -1067,6 +1085,7 @@ class _$LoadProductsImpl implements _LoadProducts {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) {
     return loadProducts(categoryId);
   }
@@ -1080,6 +1099,7 @@ class _$LoadProductsImpl implements _LoadProducts {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) {
     return loadProducts?.call(categoryId);
   }
@@ -1093,6 +1113,7 @@ class _$LoadProductsImpl implements _LoadProducts {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) {
     if (loadProducts != null) {
@@ -1110,6 +1131,7 @@ class _$LoadProductsImpl implements _LoadProducts {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) {
     return loadProducts(this);
   }
@@ -1123,6 +1145,7 @@ class _$LoadProductsImpl implements _LoadProducts {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) {
     return loadProducts?.call(this);
   }
@@ -1136,6 +1159,7 @@ class _$LoadProductsImpl implements _LoadProducts {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) {
     if (loadProducts != null) {
@@ -1236,6 +1260,7 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) {
     return chooseSubcategory(category);
   }
@@ -1249,6 +1274,7 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) {
     return chooseSubcategory?.call(category);
   }
@@ -1262,6 +1288,7 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) {
     if (chooseSubcategory != null) {
@@ -1279,6 +1306,7 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) {
     return chooseSubcategory(this);
   }
@@ -1292,6 +1320,7 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) {
     return chooseSubcategory?.call(this);
   }
@@ -1305,6 +1334,7 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) {
     if (chooseSubcategory != null) {
@@ -1368,6 +1398,7 @@ class _$ListTypeToggleImpl implements _ListTypeToggle {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) {
     return listTypeToggle();
   }
@@ -1381,6 +1412,7 @@ class _$ListTypeToggleImpl implements _ListTypeToggle {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) {
     return listTypeToggle?.call();
   }
@@ -1394,6 +1426,7 @@ class _$ListTypeToggleImpl implements _ListTypeToggle {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) {
     if (listTypeToggle != null) {
@@ -1411,6 +1444,7 @@ class _$ListTypeToggleImpl implements _ListTypeToggle {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) {
     return listTypeToggle(this);
   }
@@ -1424,6 +1458,7 @@ class _$ListTypeToggleImpl implements _ListTypeToggle {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) {
     return listTypeToggle?.call(this);
   }
@@ -1437,6 +1472,7 @@ class _$ListTypeToggleImpl implements _ListTypeToggle {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) {
     if (listTypeToggle != null) {
@@ -1531,6 +1567,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     required TResult Function(CategoryEntitity category) chooseSubcategory,
     required TResult Function() listTypeToggle,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
   }) {
     return changeCartState(product);
   }
@@ -1544,6 +1581,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult? Function(CategoryEntitity category)? chooseSubcategory,
     TResult? Function()? listTypeToggle,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
   }) {
     return changeCartState?.call(product);
   }
@@ -1557,6 +1595,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult Function(CategoryEntitity category)? chooseSubcategory,
     TResult Function()? listTypeToggle,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
     required TResult orElse(),
   }) {
     if (changeCartState != null) {
@@ -1574,6 +1613,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     required TResult Function(_ChooseSubcategory value) chooseSubcategory,
     required TResult Function(_ListTypeToggle value) listTypeToggle,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
   }) {
     return changeCartState(this);
   }
@@ -1587,6 +1627,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult? Function(_ListTypeToggle value)? listTypeToggle,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
   }) {
     return changeCartState?.call(this);
   }
@@ -1600,6 +1641,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult Function(_ChooseSubcategory value)? chooseSubcategory,
     TResult Function(_ListTypeToggle value)? listTypeToggle,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
     required TResult orElse(),
   }) {
     if (changeCartState != null) {
@@ -1617,4 +1659,136 @@ abstract class _ChangeCartState implements SubcategoryEvent {
   @JsonKey(ignore: true)
   _$$ChangeCartStateImplCopyWith<_$ChangeCartStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ShowFiltersImplCopyWith<$Res> {
+  factory _$$ShowFiltersImplCopyWith(
+          _$ShowFiltersImpl value, $Res Function(_$ShowFiltersImpl) then) =
+      __$$ShowFiltersImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ShowFiltersImplCopyWithImpl<$Res>
+    extends _$SubcategoryEventCopyWithImpl<$Res, _$ShowFiltersImpl>
+    implements _$$ShowFiltersImplCopyWith<$Res> {
+  __$$ShowFiltersImplCopyWithImpl(
+      _$ShowFiltersImpl _value, $Res Function(_$ShowFiltersImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ShowFiltersImpl implements _ShowFilters {
+  const _$ShowFiltersImpl();
+
+  @override
+  String toString() {
+    return 'SubcategoryEvent.showFilters()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ShowFiltersImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(CategoryEntitity category) init,
+    required TResult Function(int categoryId) loadSubcategories,
+    required TResult Function(int? categoryId) loadProducts,
+    required TResult Function(CategoryEntitity category) chooseSubcategory,
+    required TResult Function() listTypeToggle,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() showFilters,
+  }) {
+    return showFilters();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(CategoryEntitity category)? init,
+    TResult? Function(int categoryId)? loadSubcategories,
+    TResult? Function(int? categoryId)? loadProducts,
+    TResult? Function(CategoryEntitity category)? chooseSubcategory,
+    TResult? Function()? listTypeToggle,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? showFilters,
+  }) {
+    return showFilters?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(CategoryEntitity category)? init,
+    TResult Function(int categoryId)? loadSubcategories,
+    TResult Function(int? categoryId)? loadProducts,
+    TResult Function(CategoryEntitity category)? chooseSubcategory,
+    TResult Function()? listTypeToggle,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? showFilters,
+    required TResult orElse(),
+  }) {
+    if (showFilters != null) {
+      return showFilters();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_LoadSubcategories value) loadSubcategories,
+    required TResult Function(_LoadProducts value) loadProducts,
+    required TResult Function(_ChooseSubcategory value) chooseSubcategory,
+    required TResult Function(_ListTypeToggle value) listTypeToggle,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_ShowFilters value) showFilters,
+  }) {
+    return showFilters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_LoadSubcategories value)? loadSubcategories,
+    TResult? Function(_LoadProducts value)? loadProducts,
+    TResult? Function(_ChooseSubcategory value)? chooseSubcategory,
+    TResult? Function(_ListTypeToggle value)? listTypeToggle,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_ShowFilters value)? showFilters,
+  }) {
+    return showFilters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_LoadSubcategories value)? loadSubcategories,
+    TResult Function(_LoadProducts value)? loadProducts,
+    TResult Function(_ChooseSubcategory value)? chooseSubcategory,
+    TResult Function(_ListTypeToggle value)? listTypeToggle,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_ShowFilters value)? showFilters,
+    required TResult orElse(),
+  }) {
+    if (showFilters != null) {
+      return showFilters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowFilters implements SubcategoryEvent {
+  const factory _ShowFilters() = _$ShowFiltersImpl;
 }
