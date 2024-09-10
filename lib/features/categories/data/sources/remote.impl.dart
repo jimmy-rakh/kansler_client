@@ -67,11 +67,12 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
     int? pageNumber,
     int? pageSize,
   ) async {
-    final result = await _dio.getRequest(
+    final result = await _dio.postRequest(
       '${CategoriesRemoteKeys.categoriesProducts.replaceAll(
         'id',
         '$categoryId',
       )}?${pageNumber == null ? '' : '${NetworkConstants.pageNumber.replaceAll('num', '$pageNumber')}&'}${NetworkConstants.pageSize.replaceAll('num', '${pageSize ?? 1}')}',
+
       converter: (response) {
         final res =
             PaginationResponse.fromJson(response as Map<String, dynamic>);

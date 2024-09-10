@@ -21,7 +21,13 @@ class SubcategoryBody extends HookWidget {
     final state = useBlocBuilder(bloc);
 
     return state.when(
-      loadInProgress: () => const CupertinoActivityIndicator(),
+      loadInProgress: () => context.isSmall
+          ? const CupertinoActivityIndicator()
+          : const SizedBox(
+              child: Center(
+                child: Text("Выберите категорию для отоброжение продуктов ..."),
+              ),
+            ),
       ready: (
         category,
         categories,
@@ -87,9 +93,7 @@ class SubcategoryBody extends HookWidget {
                                     : currentWidth < 600
                                         ? 2
                                         : crossCount,
-                        childAspectRatio: currentWidth < 400
-                                    ? .5
-                                    : .6,
+                        childAspectRatio: currentWidth < 400 ? .5 : .6,
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 1),
                     itemCount: products.length,

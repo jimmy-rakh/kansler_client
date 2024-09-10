@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_network/image_network.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -8,6 +10,7 @@ import '../../../../../../core/constants/kaze_icons.dart';
 import '../../../../../../core/constants/spaces.dart';
 import '../../../../../../core/network/constants.dart';
 import '../../../../domain/entities/category.entitity.dart';
+import '../../subcategory/bloc/subcategory_bloc.dart';
 
 class CategoryCard extends StatefulWidget {
   const CategoryCard({
@@ -66,8 +69,11 @@ class _CategoryCardState extends State<CategoryCard>
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<SubcategoryBloc>();
     return Padding(
-      padding: const EdgeInsets.only(left: 8, right: 8),
+      padding: context.isSmall
+          ? const EdgeInsets.only(left: 8, right: 8)
+          : const EdgeInsets.only(left: 20, right: 20),
       child: StickyHeader(
         header: GestureDetector(
           behavior: HitTestBehavior.opaque,
@@ -79,7 +85,7 @@ class _CategoryCardState extends State<CategoryCard>
                 border: const Border(
                   bottom: BorderSide.none,
                 ),
-                borderRadius: BorderRadius.circular(0)),
+                borderRadius: BorderRadius.circular(4)),
             padding: const EdgeInsets.symmetric(horizontal: 8),
             alignment: Alignment.centerLeft,
             child: Row(
@@ -94,23 +100,26 @@ class _CategoryCardState extends State<CategoryCard>
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(0),
                           child: widget.category.imageUrl == null
-                              ? Image.asset("assets/images/nophoto.png",
-                            height: 40,
-                            width: 35,
-                            fit: BoxFit.cover,
-                          )
-                              : CachedNetworkImage(
+                              ? Image.asset(
+                                  "assets/images/nophoto.png",
                                   height: 40,
                                   width: 35,
                                   fit: BoxFit.cover,
-                                  memCacheHeight: 100,
-                                  memCacheWidth: 100,
-                                  imageUrl: NetworkConstants.apiBaseUrl +
+                                )
+                              : ImageNetwork(
+                                  height: 40,
+                                  width: 35,
+                                  onLoading: const SizedBox(),
+                                  fitWeb: BoxFitWeb.cover,
+                                  fitAndroidIos: BoxFit.cover,
+                                  image: NetworkConstants.apiBaseUrl +
                                       widget.category.imageUrl!),
                         ),
                       ),
                     SizedBox(
-                      width: context.width * .64,
+                      width: context.isSmall
+                          ? context.width * .64
+                          : context.width * .2,
                       child: Text(
                         widget.category.name,
                         style: const TextStyle(fontSize: 15),
@@ -146,17 +155,18 @@ class _CategoryCardState extends State<CategoryCard>
                     itemCount: widget.category.children.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) => GestureDetector(
-                      onTap: () => router.navigate(
-                        SubcategoryRoute(
-                            category: widget.category.children[index]),
-                      ),
+                      onTap: () {
+                        context.isSmall
+                            ? router.navigate(SubcategoryRoute(category: widget.category.children[index]),)
+                            : bloc.add(SubcategoryEvent.init(widget.category.children[index]));
+                      },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8, right: 8),
                         child: Container(
                           height: 40,
                           decoration: BoxDecoration(
                               color: context.cardColor,
-                              borderRadius: BorderRadius.circular(0)),
+                              borderRadius: BorderRadius.circular(4)),
                           padding: const EdgeInsets.symmetric(horizontal: 16.0),
                           alignment: Alignment.centerLeft,
                           child: Text(
