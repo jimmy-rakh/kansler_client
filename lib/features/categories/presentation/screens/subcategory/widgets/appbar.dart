@@ -48,7 +48,8 @@ class SubcategoryAppBar extends HookWidget {
                                 child: Icon(KazeIcons.searchOutline),
                               )))
                       : GestureDetector(
-                          onTap: () {},
+                          onTap: () =>
+                              bloc.add(const SubcategoryEvent.showFilters()),
                           child: Container(
                             padding: const EdgeInsets.all(5),
                             decoration: BoxDecoration(
