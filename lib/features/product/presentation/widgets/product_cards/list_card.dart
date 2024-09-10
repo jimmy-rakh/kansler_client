@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:image_network/image_network.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
@@ -48,7 +49,12 @@ class ProductListCard extends HookWidget implements ProductCard {
     final cartBloc = context.read<CartBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
-      height: 120,
+      height: context.isSmall ? 130 : 100,
+      width: context.isSmall
+          ? context.width
+          : context.isTablet
+              ? context.width * .6
+              : context.width * .67,
       onTap: () {
         // competeEditing();
         // onPressed();
@@ -60,24 +66,58 @@ class ProductListCard extends HookWidget implements ProductCard {
           if (product != null || cartProduct?.product != null)
             Stack(
               children: [
-                ColoredBox(
-                  color: context.cardColor,
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fitHeight,
-                    height: 120,
-                    width: 100,
-                    memCacheHeight: 180,
-                    memCacheWidth: 180,
-                    errorListener: (value) => log.e(
-                        '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
-                    imageUrl: NetworkConstants.apiBaseUrl +
-                        (product?.imageUrl ??
-                            cartProduct?.product!.imageUrl ??
-                            ''),
-                    errorWidget: (context, url, error) =>
-                        Image.asset(AppImages.noPhoto),
-                  ),
-                ),
+                //  context.isSmall
+                //      ? ColoredBox(
+                //   color: context.cardColor,
+                //   child: CachedNetworkImage(
+                //     fit: BoxFit.fitHeight,
+                //     height: 120,
+                //     width: 100,
+                //     memCacheHeight: 180,
+                //     memCacheWidth: 180,
+                //     errorListener: (value) => log.e(
+                //         '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
+                //     imageUrl: NetworkConstants.apiBaseUrl +
+                //         (product?.imageUrl ??
+                //             cartProduct?.product!.imageUrl ??
+                //             ''),
+                //     errorWidget: (context, url, error) =>
+                //         Image.asset(AppImages.noPhoto),
+                //   ),
+                // )
+                //      :
+                (product ?? cartProduct?.product)?.imageUrl == null
+                    ? GestureDetector(
+                        onTap: () => router.push(ProductRoute(
+                            product: product ?? cartProduct!.product!)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(3),
+                          child: Image.asset(
+                            AppImages.noPhoto,
+                            height: context.isSmall ? 120 : 100,
+                            width: 100,
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      )
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: ImageNetwork(
+                            onTap: () => router.push(ProductRoute(
+                                product: product ?? cartProduct!.product!)),
+                            fitWeb: BoxFitWeb.fill,
+                            fitAndroidIos: BoxFit.fill,
+                            onLoading: const SizedBox(),
+                            duration: 0,
+                            image: NetworkConstants.apiBaseUrl +
+                                (product ?? cartProduct?.product)!.imageUrl!,
+                            height: context.isSmall ? 120 : 100,
+                            width: 100,
+                            onError: Image.asset(
+                              AppImages.noPhoto,
+                              height: 120,
+                            )),
+                      ),
                 (product ?? cartProduct?.product)?.brand?.name == null
                     ? const SizedBox()
                     : Positioned(
@@ -125,7 +165,11 @@ class ProductListCard extends HookWidget implements ProductCard {
             ),
           horizontalSpace12,
           SizedBox(
-            width: context.width - 144,
+            width: context.isSmall
+                ? context.width - 144
+                : context.isTablet
+                    ? context.width * .5
+                    : context.width * .55,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -146,26 +190,217 @@ class ProductListCard extends HookWidget implements ProductCard {
                   maxLines: 1,
                 ),
                 verticalSpace5,
-                product?.price == null && cartProduct?.price == null
-                    ? const SizedBox.shrink()
-                    : Text(
-                        '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: context.titleSmall,
-                      ),
-                verticalSpace5,
-
-                        if (cartProduct != null && !showActions)
-                          Text('${cartProduct?.quantity} штук'),
-                        if (showActions)
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              if (!(product?.inCart ?? false))
-                                SizedBox(
-                                  child: product?.leftQuantity != 0
-                                      ? Row(
+                context.isSmall
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          verticalSpace5,
+                          product?.price == null && cartProduct?.price == null
+                              ? const SizedBox.shrink()
+                              : Text(
+                                  '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.titleSmall,
+                                ),
+                          verticalSpace5,
+                          if (cartProduct != null && !showActions)
+                            Text('${cartProduct?.quantity} штук'),
+                          if (showActions)
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                if (!(product?.inCart ?? false))
+                                  SizedBox(
+                                    child: product?.leftQuantity != 0
+                                        ? AppCard(
+                                            fillColor: context.background,
+                                            showShadow: false,
+                                            borderRadius: 0,
+                                            padding: const EdgeInsets.all(2),
+                                            child: Row(
+                                              children: [
+                                                AppIcon(
+                                                  KazeIcons.minusOutline,
+                                                  bgColor: context.cardColor,
+                                                  height: 22,
+                                                  radius: const BorderRadius
+                                                      .horizontal(
+                                                    left: Radius.circular(0),
+                                                  ),
+                                                  onTap: decrement,
+                                                  borderColor:
+                                                      context.background,
+                                                  padding:
+                                                      const EdgeInsets.all(4),
+                                                ),
+                                                AppTextField(
+                                                  fillColor: context.background,
+                                                  width: 60,
+                                                  radius: 0,
+                                                  contentPadding:
+                                                      const EdgeInsets.all(4),
+                                                  textAlign: TextAlign.center,
+                                                  fieldController:
+                                                      fieldController,
+                                                  onChange: submit,
+                                                  onEditingComplete:
+                                                      competeEditing,
+                                                  onFieldSubmitted: (value) {
+                                                    if ((product ??
+                                                                cartProduct!
+                                                                    .product)!
+                                                            .leftQuantity >=
+                                                        int.parse(
+                                                            fieldController
+                                                                .text)) {
+                                                      if ((product ??
+                                                                  cartProduct
+                                                                      ?.product)
+                                                              ?.leftQuantity !=
+                                                          0) {
+                                                        onCart();
+                                                        if (!((product ??
+                                                                    cartProduct
+                                                                        ?.product)
+                                                                ?.inCart ??
+                                                            true)) {
+                                                          cartBloc.add(CartEvent.addToCart(
+                                                              (product ??
+                                                                      cartProduct!
+                                                                          .product)!
+                                                                  .id,
+                                                              int.parse(
+                                                                  fieldController
+                                                                      .text)));
+                                                          return;
+                                                        }
+                                                      }
+                                                    } else {
+                                                      router.navigatorKey
+                                                          .currentContext!
+                                                          .showToast(
+                                                              'Недостаточно кол-во в складе');
+                                                      fieldController.text =
+                                                          (product ??
+                                                                  cartProduct!
+                                                                      .product)!
+                                                              .leftQuantity
+                                                              .toString();
+                                                      FocusScope.of(context)
+                                                          .unfocus();
+                                                    }
+                                                  },
+                                                  textInputType:
+                                                      TextInputType.number,
+                                                  textInputFormatter: [
+                                                    FilteringTextInputFormatter
+                                                        .digitsOnly
+                                                  ],
+                                                ),
+                                                AppIcon(
+                                                  KazeIcons.addOutline,
+                                                  bgColor: context.cardColor,
+                                                  height: 22,
+                                                  radius: const BorderRadius
+                                                      .horizontal(
+                                                    right: Radius.circular(0),
+                                                  ),
+                                                  onTap: incremet,
+                                                  borderColor:
+                                                      context.background,
+                                                  padding:
+                                                      const EdgeInsets.all(4),
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        : const Center(
+                                            child: Text(
+                                              "Нет в наличии",
+                                              style: TextStyle(
+                                                  color: AppColors.red),
+                                            ),
+                                          ),
+                                  ),
+                                const Spacer(),
+                                AppButton(
+                                  width: context.isMobile
+                                      ? context.width * .12
+                                      : 50,
+                                  isActive: product?.leftQuantity != 0,
+                                  fillColor: (product ?? cartProduct!.product)!
+                                              .inCart ??
+                                          false
+                                      ? AppColors.red
+                                      : context.primary,
+                                  text: const Icon(
+                                    KazeIcons.cartOutline,
+                                    color: AppColors.white,
+                                  ),
+                                  textColor: AppColors.white,
+                                  onPressed: authBloc.state ==
+                                          const AuthState.authenticated()
+                                      ? () {
+                                          onCart();
+                                          if (!((product ??
+                                                      cartProduct?.product)
+                                                  ?.inCart ??
+                                              true)) {
+                                            cartBloc.add(CartEvent.addToCart(
+                                                (product ??
+                                                        cartProduct!.product)!
+                                                    .id,
+                                                fieldController.text == ''
+                                                    ? 1
+                                                    : int.parse(
+                                                        fieldController.text)));
+                                            return;
+                                          }
+                                          fieldController.text = '1';
+                                          cartBloc.add(
+                                              CartEvent.deleteProductInCart(
+                                                  (product ??
+                                                          cartProduct!.product)!
+                                                      .id));
+                                        }
+                                      : () => router.push(const AuthRoute()),
+                                  size: MainAxisSize.min,
+                                  margin: const EdgeInsets.only(
+                                    right: 4,
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 8),
+                                  borderRadius: 4,
+                                ),
+                              ],
+                            ),
+                        ],
+                      )
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          product?.price == null && cartProduct?.price == null
+                              ? const SizedBox()
+                              : Text(
+                                  '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.titleSmall,
+                                ),
+                          if (cartProduct != null && !showActions)
+                            Text('${cartProduct?.quantity} штук'),
+                          horizontalSpace15,
+                          if (showActions)
+                            if (!(product?.inCart ?? false))
+                              SizedBox(
+                                child: product?.leftQuantity != 0
+                                    ? AppCard(
+                                        fillColor: context.background,
+                                        showShadow: false,
+                                        borderRadius: 0,
+                                        padding: const EdgeInsets.all(2),
+                                        child: Row(
                                           children: [
                                             AppIcon(
                                               KazeIcons.minusOutline,
@@ -181,7 +416,6 @@ class ProductListCard extends HookWidget implements ProductCard {
                                             ),
                                             AppTextField(
                                               fillColor: context.background,
-                                              height: 32,
                                               width: 60,
                                               radius: 0,
                                               contentPadding:
@@ -253,55 +487,60 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               padding: const EdgeInsets.all(4),
                                             ),
                                           ],
-                                        )
-                                      : const Text(
+                                        ),
+                                      )
+                                    : const Center(
+                                        child: Text(
                                           "Нет в наличии",
                                           style:
                                               TextStyle(color: AppColors.red),
                                         ),
-                                ),
-                              const Spacer(),
-                              AppButton(
-                                width: context.width * .12,
-                                isActive: product?.leftQuantity != 0,
-                                fillColor:
-                                    (product ?? cartProduct!.product)!.inCart ??
-                                            false
-                                        ? AppColors.red
-                                        : context.primary,
-                                text: const Icon(
-                                  KazeIcons.cartOutline,
-                                  color: AppColors.white,
-                                ),
-                                textColor: AppColors.white,
-                                onPressed: authBloc.state == const AuthState.authenticated()
-                                    ? () {
-                                  onCart();
-                                  if (!((product ?? cartProduct?.product)?.inCart ??
-                                      true)) {
-                                    cartBloc.add(CartEvent.addToCart(
-                                        (product ?? cartProduct!.product)!.id,
-                                        fieldController.text == ''
-                                            ? 1
-                                            : int.parse(fieldController.text)));
-                                    return;
-                                  }
-                                  fieldController.text = '1';
-                                  cartBloc.add(CartEvent.deleteProductInCart(
-                                      (product ?? cartProduct!.product)!.id));
-                                } :() => router.push(const AuthRoute()),
-                                size: MainAxisSize.min,
-                                margin: const EdgeInsets.only(
-                                  right: 4,
-                                ),
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 8),
-                                borderRadius: 0,
+                                      ),
                               ),
-                            ],
+                          const Spacer(),
+                          AppButton(
+                            width: context.isMobile ? context.width * .12 : 50,
+                            isActive: product?.leftQuantity != 0,
+                            fillColor:
+                                (product ?? cartProduct!.product)!.inCart ??
+                                        false
+                                    ? AppColors.red
+                                    : context.primary,
+                            text: const Icon(
+                              KazeIcons.cartOutline,
+                              color: AppColors.white,
+                            ),
+                            textColor: AppColors.white,
+                            onPressed: authBloc.state ==
+                                    const AuthState.authenticated()
+                                ? () {
+                                    onCart();
+                                    if (!((product ?? cartProduct?.product)
+                                            ?.inCart ??
+                                        true)) {
+                                      cartBloc.add(CartEvent.addToCart(
+                                          (product ?? cartProduct!.product)!.id,
+                                          fieldController.text == ''
+                                              ? 1
+                                              : int.parse(
+                                                  fieldController.text)));
+                                      return;
+                                    }
+                                    fieldController.text = '1';
+                                    cartBloc.add(CartEvent.deleteProductInCart(
+                                        (product ?? cartProduct!.product)!.id));
+                                  }
+                                : () => router.push(const AuthRoute()),
+                            size: MainAxisSize.min,
+                            margin: const EdgeInsets.only(
+                              right: 4,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 8),
+                            borderRadius: 4,
                           ),
-
-
+                        ],
+                      )
               ],
             ),
           )

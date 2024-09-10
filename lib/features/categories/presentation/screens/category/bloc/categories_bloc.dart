@@ -7,7 +7,6 @@ import '../../../../domain/entities/category.entitity.dart';
 import '../../../../domain/usecases/get_categories.usecase.dart';
 import '../../../../domain/usecases/get_category_children.usecase.dart';
 
-
 part 'categories_state.dart';
 part 'categories_event.dart';
 part 'categories_bloc.freezed.dart';

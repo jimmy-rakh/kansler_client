@@ -66,20 +66,23 @@ class SubcategoryBody extends HookWidget {
         return Stack(
           children: [
             isList
-                ? ListView.separated(
-                    controller: bloc.scrollController,
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
-                    itemBuilder: (context, index) => ProductCard.list(
-                      product: products[index],
-                      onPressed: () {
-                        log.e(products[index]);
-                      },
-                      onCart: () => bloc.add(
-                          SubcategoryEvent.changeCartState(products[index])),
-                      fieldController: bloc.quantityControllers[index],
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
+                    child: ListView.separated(
+                      controller: bloc.scrollController,
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 120),
+                      itemBuilder: (context, index) => ProductCard.list(
+                        product: products[index],
+                        onPressed: () {
+                          log.e(products[index]);
+                        },
+                        onCart: () => bloc.add(
+                            SubcategoryEvent.changeCartState(products[index])),
+                        fieldController: bloc.quantityControllers[index],
+                      ),
+                      separatorBuilder: (context, index) => verticalSpace10,
+                      itemCount: products.length,
                     ),
-                    separatorBuilder: (context, index) => verticalSpace10,
-                    itemCount: products.length,
                   )
                 : GridView.builder(
                     controller: bloc.scrollController,

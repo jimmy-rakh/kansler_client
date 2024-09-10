@@ -18,13 +18,13 @@ class CategoriesBody extends HookWidget {
     final state = useBlocBuilder(bloc);
     return state.when(
       loadInProgress: () => const CupertinoActivityIndicator(),
-      ready: (categories) {
+      ready: (categories, selected) {
         if (categories.isEmpty) {
           return Center(child: SvgPicture.asset(AppIllustrations.empty));
         }
 
         return Padding(
-          padding: const EdgeInsets.only(top: 10,bottom: 40),
+          padding: const EdgeInsets.only(top: 10, bottom: 10),
           child: ListView.separated(
             itemBuilder: (context, index) => CategoryCard(
               category: categories[index],

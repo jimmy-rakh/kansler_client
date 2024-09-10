@@ -148,7 +148,9 @@ class _CategoryCardState extends State<CategoryCard>
           duration: Durations.medium1,
           child: _expanded
               ? Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 6),
+                  padding: const EdgeInsets.only(
+                    top: 10,
+                  ),
                   child: ListView.separated(
                     padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
@@ -157,8 +159,12 @@ class _CategoryCardState extends State<CategoryCard>
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
                         context.isSmall
-                            ? router.navigate(SubcategoryRoute(category: widget.category.children[index]),)
-                            : bloc.add(SubcategoryEvent.init(widget.category.children[index]));
+                            ? router.navigate(
+                                SubcategoryRoute(
+                                    category: widget.category.children[index]),
+                              )
+                            : bloc.add(SubcategoryEvent.init(
+                                widget.category.children[index]));
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8, right: 8),
