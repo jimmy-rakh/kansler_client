@@ -18,7 +18,7 @@ class CategoriesBody extends HookWidget {
     final state = useBlocBuilder(bloc);
     return state.when(
       loadInProgress: () => const CupertinoActivityIndicator(),
-      ready: (categories, selected) {
+      ready: (categories) {
         if (categories.isEmpty) {
           return Center(child: SvgPicture.asset(AppIllustrations.empty));
         }

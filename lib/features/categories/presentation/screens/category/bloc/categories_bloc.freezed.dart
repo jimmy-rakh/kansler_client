@@ -19,25 +19,19 @@ mixin _$CategoriesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)
-        ready,
+    required TResult Function(List<CategoryEntitity> categories) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)?
-        ready,
+    TResult? Function(List<CategoryEntitity> categories)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)?
-        ready,
+    TResult Function(List<CategoryEntitity> categories)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,9 +113,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)
-        ready,
+    required TResult Function(List<CategoryEntitity> categories) ready,
   }) {
     return loadInProgress();
   }
@@ -130,9 +122,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)?
-        ready,
+    TResult? Function(List<CategoryEntitity> categories)? ready,
   }) {
     return loadInProgress?.call();
   }
@@ -141,9 +131,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)?
-        ready,
+    TResult Function(List<CategoryEntitity> categories)? ready,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -194,9 +182,7 @@ abstract class _$$ReadyImplCopyWith<$Res> {
           _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
       __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<CategoryEntitity> categories, CategoryEntitity? selected});
-
-  $CategoryEntitityCopyWith<$Res>? get selected;
+  $Res call({List<CategoryEntitity> categories});
 }
 
 /// @nodoc
@@ -211,37 +197,20 @@ class __$$ReadyImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? categories = null,
-    Object? selected = freezed,
   }) {
     return _then(_$ReadyImpl(
       null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<CategoryEntitity>,
-      selected: freezed == selected
-          ? _value.selected
-          : selected // ignore: cast_nullable_to_non_nullable
-              as CategoryEntitity?,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryEntitityCopyWith<$Res>? get selected {
-    if (_value.selected == null) {
-      return null;
-    }
-
-    return $CategoryEntitityCopyWith<$Res>(_value.selected!, (value) {
-      return _then(_value.copyWith(selected: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$ReadyImpl implements _Ready {
-  const _$ReadyImpl(final List<CategoryEntitity> categories, {this.selected})
+  const _$ReadyImpl(final List<CategoryEntitity> categories)
       : _categories = categories;
 
   final List<CategoryEntitity> _categories;
@@ -253,11 +222,8 @@ class _$ReadyImpl implements _Ready {
   }
 
   @override
-  final CategoryEntitity? selected;
-
-  @override
   String toString() {
-    return 'CategoriesState.ready(categories: $categories, selected: $selected)';
+    return 'CategoriesState.ready(categories: $categories)';
   }
 
   @override
@@ -266,14 +232,12 @@ class _$ReadyImpl implements _Ready {
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
-            (identical(other.selected, selected) ||
-                other.selected == selected));
+                .equals(other._categories, _categories));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_categories), selected);
+      runtimeType, const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -285,35 +249,29 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)
-        ready,
+    required TResult Function(List<CategoryEntitity> categories) ready,
   }) {
-    return ready(categories, selected);
+    return ready(categories);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)?
-        ready,
+    TResult? Function(List<CategoryEntitity> categories)? ready,
   }) {
-    return ready?.call(categories, selected);
+    return ready?.call(categories);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(
-            List<CategoryEntitity> categories, CategoryEntitity? selected)?
-        ready,
+    TResult Function(List<CategoryEntitity> categories)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(categories, selected);
+      return ready(categories);
     }
     return orElse();
   }
@@ -351,11 +309,9 @@ class _$ReadyImpl implements _Ready {
 }
 
 abstract class _Ready implements CategoriesState {
-  const factory _Ready(final List<CategoryEntitity> categories,
-      {final CategoryEntitity? selected}) = _$ReadyImpl;
+  const factory _Ready(final List<CategoryEntitity> categories) = _$ReadyImpl;
 
   List<CategoryEntitity> get categories;
-  CategoryEntitity? get selected;
   @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;

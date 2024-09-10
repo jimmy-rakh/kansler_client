@@ -61,4 +61,5 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
       emit(crState.copyWith(categories: categories));
     });
   }
+
 }
