@@ -57,14 +57,17 @@ class SubcategoryAppBar extends HookWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: Icon(state.whenOrNull(
-                          ready: (category,
-                                  categories,
-                                  products,
-                                  selectedCategory,
-                                  isCategoriesLoading,
-                                  isProductsLoading,
-                                  isList,
-                                  isPaginationLoading) =>
+                          ready: (
+                            category,
+                            categories,
+                            products,
+                            selectedCategory,
+                            isCategoriesLoading,
+                            isProductsLoading,
+                            isList,
+                            isPaginationLoading,
+                            filter,
+                          ) =>
                               isList
                                   ? KazeIcons.grid2Outline
                                   : KazeIcons.sliderVerticalOutline,

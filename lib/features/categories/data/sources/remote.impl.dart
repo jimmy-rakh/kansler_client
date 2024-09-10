@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/categories/data/sources/remote.dart';
 import 'package:kansler/features/categories/data/sources/remote.keys.dart';
+import 'package:kansler/features/search/data/models/search/request.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/network/constants.dart';
@@ -9,7 +10,6 @@ import '../../../../core/network/dio_client.dart';
 import '../../../../core/network/models/pagination.dart';
 import '../../../product/data/models/product_dto.dart';
 import '../models/category_dto.dart';
-
 
 @Injectable(as: CategoriesRemoteDataSource)
 class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
@@ -63,6 +63,7 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
   @override
   Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>>
       getCategoryProducts(
+    SearchRequest data,
     int? categoryId,
     int? pageNumber,
     int? pageSize,
@@ -72,7 +73,7 @@ class CategoriesRemoteDataSourceImpl implements CategoriesRemoteDataSource {
         'id',
         '$categoryId',
       )}?${pageNumber == null ? '' : '${NetworkConstants.pageNumber.replaceAll('num', '$pageNumber')}&'}${NetworkConstants.pageSize.replaceAll('num', '${pageSize ?? 1}')}',
-
+      data: data.toJson(),
       converter: (response) {
         final res =
             PaginationResponse.fromJson(response as Map<String, dynamic>);

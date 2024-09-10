@@ -26,7 +26,8 @@ class SubcategoryAppBarBottom extends HookWidget {
         isCategoriesLoading,
         isProductsLoading,
         isList,
-        isPaginationLoading
+        isPaginationLoading,
+        filter,
       ) =>
           SizedBox(
         height: 50,

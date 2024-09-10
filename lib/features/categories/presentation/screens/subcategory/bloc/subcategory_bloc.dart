@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/search/domain/entities/search.entity.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
 import '../../../../../product/domain/entities/product.entity.dart';
 import '../../../../domain/entities/category.entitity.dart';
@@ -46,7 +47,10 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
 
     List<ProductEntity> products = [];
 
+    final request = currState.filterData ?? SearchEntity(title: '');
+
     final res = await _getCategoryProducts.call((
+      request: request,
       categoryId: event.categoryId ?? currState.category.id,
       pageNumber: pageNumber,
       pageSize: pageSize,
@@ -70,6 +74,7 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
           (index) => quantityControllers.add(TextEditingController(text: '1')));
       emit(
         (state as _Ready).copyWith(
+          filterData: request,
           products: products,
           isProductsLoading: false,
           isPaginationLoading: false,

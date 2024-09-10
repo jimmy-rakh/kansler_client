@@ -12,5 +12,6 @@ class SubcategoryState with _$SubcategoryState {
     @Default(true) bool isProductsLoading,
     @Default(true) bool isList,
     @Default(false) bool isPaginationLoading,
+    SearchEntity? filterData,
   }) = _Ready;
 }

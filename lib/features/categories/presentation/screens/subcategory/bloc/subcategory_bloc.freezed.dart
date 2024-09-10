@@ -27,7 +27,8 @@ mixin _$SubcategoryState {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)
+            bool isPaginationLoading,
+            SearchEntity? filterData)
         ready,
   }) =>
       throw _privateConstructorUsedError;
@@ -42,7 +43,8 @@ mixin _$SubcategoryState {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)?
+            bool isPaginationLoading,
+            SearchEntity? filterData)?
         ready,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,7 +59,8 @@ mixin _$SubcategoryState {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)?
+            bool isPaginationLoading,
+            SearchEntity? filterData)?
         ready,
     required TResult orElse(),
   }) =>
@@ -148,7 +151,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)
+            bool isPaginationLoading,
+            SearchEntity? filterData)
         ready,
   }) {
     return loadInProgress();
@@ -166,7 +170,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)?
+            bool isPaginationLoading,
+            SearchEntity? filterData)?
         ready,
   }) {
     return loadInProgress?.call();
@@ -184,7 +189,8 @@ class _$LoadInProgressImpl implements _LoadInProgress {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)?
+            bool isPaginationLoading,
+            SearchEntity? filterData)?
         ready,
     required TResult orElse(),
   }) {
@@ -244,7 +250,8 @@ abstract class _$$ReadyImplCopyWith<$Res> {
       bool isCategoriesLoading,
       bool isProductsLoading,
       bool isList,
-      bool isPaginationLoading});
+      bool isPaginationLoading,
+      SearchEntity? filterData});
 
   $CategoryEntitityCopyWith<$Res> get category;
   $CategoryEntitityCopyWith<$Res>? get selectedCategory;
@@ -269,6 +276,7 @@ class __$$ReadyImplCopyWithImpl<$Res>
     Object? isProductsLoading = null,
     Object? isList = null,
     Object? isPaginationLoading = null,
+    Object? filterData = freezed,
   }) {
     return _then(_$ReadyImpl(
       category: null == category
@@ -303,6 +311,10 @@ class __$$ReadyImplCopyWithImpl<$Res>
           ? _value.isPaginationLoading
           : isPaginationLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      filterData: freezed == filterData
+          ? _value.filterData
+          : filterData // ignore: cast_nullable_to_non_nullable
+              as SearchEntity?,
     ));
   }
 
@@ -338,7 +350,8 @@ class _$ReadyImpl implements _Ready {
       this.isCategoriesLoading = true,
       this.isProductsLoading = true,
       this.isList = true,
-      this.isPaginationLoading = false})
+      this.isPaginationLoading = false,
+      this.filterData})
       : _categories = categories,
         _products = products;
 
@@ -376,10 +389,12 @@ class _$ReadyImpl implements _Ready {
   @override
   @JsonKey()
   final bool isPaginationLoading;
+  @override
+  final SearchEntity? filterData;
 
   @override
   String toString() {
-    return 'SubcategoryState.ready(category: $category, categories: $categories, products: $products, selectedCategory: $selectedCategory, isCategoriesLoading: $isCategoriesLoading, isProductsLoading: $isProductsLoading, isList: $isList, isPaginationLoading: $isPaginationLoading)';
+    return 'SubcategoryState.ready(category: $category, categories: $categories, products: $products, selectedCategory: $selectedCategory, isCategoriesLoading: $isCategoriesLoading, isProductsLoading: $isProductsLoading, isList: $isList, isPaginationLoading: $isPaginationLoading, filterData: $filterData)';
   }
 
   @override
@@ -400,7 +415,9 @@ class _$ReadyImpl implements _Ready {
                 other.isProductsLoading == isProductsLoading) &&
             (identical(other.isList, isList) || other.isList == isList) &&
             (identical(other.isPaginationLoading, isPaginationLoading) ||
-                other.isPaginationLoading == isPaginationLoading));
+                other.isPaginationLoading == isPaginationLoading) &&
+            (identical(other.filterData, filterData) ||
+                other.filterData == filterData));
   }
 
   @override
@@ -413,7 +430,8 @@ class _$ReadyImpl implements _Ready {
       isCategoriesLoading,
       isProductsLoading,
       isList,
-      isPaginationLoading);
+      isPaginationLoading,
+      filterData);
 
   @JsonKey(ignore: true)
   @override
@@ -433,11 +451,20 @@ class _$ReadyImpl implements _Ready {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)
+            bool isPaginationLoading,
+            SearchEntity? filterData)
         ready,
   }) {
-    return ready(category, categories, products, selectedCategory,
-        isCategoriesLoading, isProductsLoading, isList, isPaginationLoading);
+    return ready(
+        category,
+        categories,
+        products,
+        selectedCategory,
+        isCategoriesLoading,
+        isProductsLoading,
+        isList,
+        isPaginationLoading,
+        filterData);
   }
 
   @override
@@ -452,11 +479,20 @@ class _$ReadyImpl implements _Ready {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)?
+            bool isPaginationLoading,
+            SearchEntity? filterData)?
         ready,
   }) {
-    return ready?.call(category, categories, products, selectedCategory,
-        isCategoriesLoading, isProductsLoading, isList, isPaginationLoading);
+    return ready?.call(
+        category,
+        categories,
+        products,
+        selectedCategory,
+        isCategoriesLoading,
+        isProductsLoading,
+        isList,
+        isPaginationLoading,
+        filterData);
   }
 
   @override
@@ -471,13 +507,22 @@ class _$ReadyImpl implements _Ready {
             bool isCategoriesLoading,
             bool isProductsLoading,
             bool isList,
-            bool isPaginationLoading)?
+            bool isPaginationLoading,
+            SearchEntity? filterData)?
         ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(category, categories, products, selectedCategory,
-          isCategoriesLoading, isProductsLoading, isList, isPaginationLoading);
+      return ready(
+          category,
+          categories,
+          products,
+          selectedCategory,
+          isCategoriesLoading,
+          isProductsLoading,
+          isList,
+          isPaginationLoading,
+          filterData);
     }
     return orElse();
   }
@@ -523,7 +568,8 @@ abstract class _Ready implements SubcategoryState {
       final bool isCategoriesLoading,
       final bool isProductsLoading,
       final bool isList,
-      final bool isPaginationLoading}) = _$ReadyImpl;
+      final bool isPaginationLoading,
+      final SearchEntity? filterData}) = _$ReadyImpl;
 
   CategoryEntitity get category;
   List<CategoryEntitity> get categories;
@@ -533,6 +579,7 @@ abstract class _Ready implements SubcategoryState {
   bool get isProductsLoading;
   bool get isList;
   bool get isPaginationLoading;
+  SearchEntity? get filterData;
   @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
