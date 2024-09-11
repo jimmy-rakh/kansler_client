@@ -20,6 +20,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<CheckoutBloc>();
+    final state = useBlocBuilder(bloc);
     final cartBloc = context.read<CartBloc>();
     final cartState = useBlocBuilder(cartBloc);
 
@@ -29,22 +30,56 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
         centerTitle: true,
         child: Text('Оформление'),
       ),
-      body: ListView.separated(
-        padding: const EdgeInsets.all(16),
-        controller: cartBloc.checkoutController,
-        itemBuilder: (context, index) => ProductCard.list(
-          cartProduct: cartState.whenOrNull(
-            ready: (products, price, isMoreLoading) => products[index],
+      body: ListView(
+        children: [
+          state.whenOrNull(
+            ready: (chosedCompanies,paymentType,deliveryType) => Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: DropdownButton<String>(
+                hint: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Выберите тип оплаты"),
+                ),
+                value: paymentType,
+                items: <String>[ "byTransfer", "buCash", "byCard" ].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(value,style: const TextStyle(color: Colors.black),),
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  bloc.add(CheckoutEvent.paymentType(value!));
+                },
+              ),
+            ),
+          )??
+              const SizedBox(child: Text("data"),),
+
+          SizedBox(
+            height: context.height * .9,
+            child: ListView.separated(
+              physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.all(16),
+              controller: cartBloc.checkoutController,
+              itemBuilder: (context, index) => ProductCard.list(
+                cartProduct: cartState.whenOrNull(
+                  ready: (products, price, isMoreLoading) => products[index],
+                ),
+                fieldController: TextEditingController(),
+                showActions: false,
+                onPressed: () {},
+                onCart: () {},
+              ),
+              separatorBuilder: (context, index) => verticalSpace12,
+              itemCount: cartState.whenOrNull(
+                      ready: (products, price, isMoreLoading) => products.length) ??
+                  0,
+            ),
           ),
-          fieldController: TextEditingController(),
-          showActions: false,
-          onPressed: () {},
-          onCart: () {},
-        ),
-        separatorBuilder: (context, index) => verticalSpace12,
-        itemCount: cartState.whenOrNull(
-                ready: (products, price, isMoreLoading) => products.length) ??
-            0,
+        ],
       ),
       bottomNavigationBar: AppCard(
         fillColor: Colors.transparent,

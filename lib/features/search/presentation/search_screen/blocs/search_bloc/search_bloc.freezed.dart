@@ -19,8 +19,14 @@ mixin _$SearchState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<ProductEntity> products,
-            SearchEntity? filterData, bool isList, bool isMoreLoading)
+    required TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -29,8 +35,14 @@ mixin _$SearchState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult? Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -39,8 +51,14 @@ mixin _$SearchState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -131,8 +149,14 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<ProductEntity> products,
-            SearchEntity? filterData, bool isList, bool isMoreLoading)
+    required TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -144,8 +168,14 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult? Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -157,8 +187,14 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -219,10 +255,13 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<ProductEntity> products,
+      {List<ProductEntity>? products,
       SearchEntity? filterData,
       bool isList,
-      bool isMoreLoading});
+      bool isMoreLoading,
+      int activePage,
+      List<ProductDataEntity> organizations,
+      SearchEntity? search});
 }
 
 /// @nodoc
@@ -236,16 +275,19 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? products = null,
+    Object? products = freezed,
     Object? filterData = freezed,
     Object? isList = null,
     Object? isMoreLoading = null,
+    Object? activePage = null,
+    Object? organizations = null,
+    Object? search = freezed,
   }) {
     return _then(_$SuccessImpl(
-      products: null == products
+      products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>,
+              as List<ProductEntity>?,
       filterData: freezed == filterData
           ? _value.filterData
           : filterData // ignore: cast_nullable_to_non_nullable
@@ -258,6 +300,18 @@ class __$$SuccessImplCopyWithImpl<$Res>
           ? _value.isMoreLoading
           : isMoreLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      activePage: null == activePage
+          ? _value.activePage
+          : activePage // ignore: cast_nullable_to_non_nullable
+              as int,
+      organizations: null == organizations
+          ? _value._organizations
+          : organizations // ignore: cast_nullable_to_non_nullable
+              as List<ProductDataEntity>,
+      search: freezed == search
+          ? _value.search
+          : search // ignore: cast_nullable_to_non_nullable
+              as SearchEntity?,
     ));
   }
 }
@@ -266,18 +320,24 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 class _$SuccessImpl implements _Success {
   const _$SuccessImpl(
-      {required final List<ProductEntity> products,
+      {final List<ProductEntity>? products,
       this.filterData,
       this.isList = true,
-      this.isMoreLoading = false})
-      : _products = products;
+      this.isMoreLoading = false,
+      this.activePage = 0,
+      final List<ProductDataEntity> organizations = const [],
+      this.search})
+      : _products = products,
+        _organizations = organizations;
 
-  final List<ProductEntity> _products;
+  final List<ProductEntity>? _products;
   @override
-  List<ProductEntity> get products {
+  List<ProductEntity>? get products {
+    final value = _products;
+    if (value == null) return null;
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_products);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -288,10 +348,24 @@ class _$SuccessImpl implements _Success {
   @override
   @JsonKey()
   final bool isMoreLoading;
+  @override
+  @JsonKey()
+  final int activePage;
+  final List<ProductDataEntity> _organizations;
+  @override
+  @JsonKey()
+  List<ProductDataEntity> get organizations {
+    if (_organizations is EqualUnmodifiableListView) return _organizations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_organizations);
+  }
+
+  @override
+  final SearchEntity? search;
 
   @override
   String toString() {
-    return 'SearchState.success(products: $products, filterData: $filterData, isList: $isList, isMoreLoading: $isMoreLoading)';
+    return 'SearchState.success(products: $products, filterData: $filterData, isList: $isList, isMoreLoading: $isMoreLoading, activePage: $activePage, organizations: $organizations, search: $search)';
   }
 
   @override
@@ -304,7 +378,12 @@ class _$SuccessImpl implements _Success {
                 other.filterData == filterData) &&
             (identical(other.isList, isList) || other.isList == isList) &&
             (identical(other.isMoreLoading, isMoreLoading) ||
-                other.isMoreLoading == isMoreLoading));
+                other.isMoreLoading == isMoreLoading) &&
+            (identical(other.activePage, activePage) ||
+                other.activePage == activePage) &&
+            const DeepCollectionEquality()
+                .equals(other._organizations, _organizations) &&
+            (identical(other.search, search) || other.search == search));
   }
 
   @override
@@ -313,7 +392,10 @@ class _$SuccessImpl implements _Success {
       const DeepCollectionEquality().hash(_products),
       filterData,
       isList,
-      isMoreLoading);
+      isMoreLoading,
+      activePage,
+      const DeepCollectionEquality().hash(_organizations),
+      search);
 
   @JsonKey(ignore: true)
   @override
@@ -325,41 +407,62 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<ProductEntity> products,
-            SearchEntity? filterData, bool isList, bool isMoreLoading)
+    required TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
   }) {
-    return success(products, filterData, isList, isMoreLoading);
+    return success(products, filterData, isList, isMoreLoading, activePage,
+        organizations, search);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult? Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
   }) {
-    return success?.call(products, filterData, isList, isMoreLoading);
+    return success?.call(products, filterData, isList, isMoreLoading,
+        activePage, organizations, search);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(products, filterData, isList, isMoreLoading);
+      return success(products, filterData, isList, isMoreLoading, activePage,
+          organizations, search);
     }
     return orElse();
   }
@@ -404,15 +507,21 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements SearchState {
   const factory _Success(
-      {required final List<ProductEntity> products,
+      {final List<ProductEntity>? products,
       final SearchEntity? filterData,
       final bool isList,
-      final bool isMoreLoading}) = _$SuccessImpl;
+      final bool isMoreLoading,
+      final int activePage,
+      final List<ProductDataEntity> organizations,
+      final SearchEntity? search}) = _$SuccessImpl;
 
-  List<ProductEntity> get products;
+  List<ProductEntity>? get products;
   SearchEntity? get filterData;
   bool get isList;
   bool get isMoreLoading;
+  int get activePage;
+  List<ProductDataEntity> get organizations;
+  SearchEntity? get search;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -457,8 +566,14 @@ class _$NotFoundImpl implements _NotFound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<ProductEntity> products,
-            SearchEntity? filterData, bool isList, bool isMoreLoading)
+    required TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -470,8 +585,14 @@ class _$NotFoundImpl implements _NotFound {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult? Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -483,8 +604,14 @@ class _$NotFoundImpl implements _NotFound {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -577,8 +704,14 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<ProductEntity> products,
-            SearchEntity? filterData, bool isList, bool isMoreLoading)
+    required TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -590,8 +723,14 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult? Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -603,8 +742,14 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<ProductEntity> products, SearchEntity? filterData,
-            bool isList, bool isMoreLoading)?
+    TResult Function(
+            List<ProductEntity>? products,
+            SearchEntity? filterData,
+            bool isList,
+            bool isMoreLoading,
+            int activePage,
+            List<ProductDataEntity> organizations,
+            SearchEntity? search)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -666,6 +811,12 @@ mixin _$SearchEvent {
     required TResult Function() showFilters,
     required TResult Function() changeListType,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -674,6 +825,12 @@ mixin _$SearchEvent {
     TResult? Function()? showFilters,
     TResult? Function()? changeListType,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -682,6 +839,12 @@ mixin _$SearchEvent {
     TResult Function()? showFilters,
     TResult Function()? changeListType,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -691,6 +854,12 @@ mixin _$SearchEvent {
     required TResult Function(_ShowFilters value) showFilters,
     required TResult Function(_ChangeListType value) changeListType,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -699,6 +868,12 @@ mixin _$SearchEvent {
     TResult? Function(_ShowFilters value)? showFilters,
     TResult? Function(_ChangeListType value)? changeListType,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -707,6 +882,12 @@ mixin _$SearchEvent {
     TResult Function(_ShowFilters value)? showFilters,
     TResult Function(_ChangeListType value)? changeListType,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -807,6 +988,12 @@ class _$SearchImpl implements _Search {
     required TResult Function() showFilters,
     required TResult Function() changeListType,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
   }) {
     return search(isMore, title);
   }
@@ -818,6 +1005,12 @@ class _$SearchImpl implements _Search {
     TResult? Function()? showFilters,
     TResult? Function()? changeListType,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
   }) {
     return search?.call(isMore, title);
   }
@@ -829,6 +1022,12 @@ class _$SearchImpl implements _Search {
     TResult Function()? showFilters,
     TResult Function()? changeListType,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -844,6 +1043,12 @@ class _$SearchImpl implements _Search {
     required TResult Function(_ShowFilters value) showFilters,
     required TResult Function(_ChangeListType value) changeListType,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
   }) {
     return search(this);
   }
@@ -855,6 +1060,12 @@ class _$SearchImpl implements _Search {
     TResult? Function(_ShowFilters value)? showFilters,
     TResult? Function(_ChangeListType value)? changeListType,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
   }) {
     return search?.call(this);
   }
@@ -866,6 +1077,12 @@ class _$SearchImpl implements _Search {
     TResult Function(_ShowFilters value)? showFilters,
     TResult Function(_ChangeListType value)? changeListType,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
     required TResult orElse(),
   }) {
     if (search != null) {
@@ -928,6 +1145,12 @@ class _$ShowFiltersImpl implements _ShowFilters {
     required TResult Function() showFilters,
     required TResult Function() changeListType,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
   }) {
     return showFilters();
   }
@@ -939,6 +1162,12 @@ class _$ShowFiltersImpl implements _ShowFilters {
     TResult? Function()? showFilters,
     TResult? Function()? changeListType,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
   }) {
     return showFilters?.call();
   }
@@ -950,6 +1179,12 @@ class _$ShowFiltersImpl implements _ShowFilters {
     TResult Function()? showFilters,
     TResult Function()? changeListType,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
     required TResult orElse(),
   }) {
     if (showFilters != null) {
@@ -965,6 +1200,12 @@ class _$ShowFiltersImpl implements _ShowFilters {
     required TResult Function(_ShowFilters value) showFilters,
     required TResult Function(_ChangeListType value) changeListType,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
   }) {
     return showFilters(this);
   }
@@ -976,6 +1217,12 @@ class _$ShowFiltersImpl implements _ShowFilters {
     TResult? Function(_ShowFilters value)? showFilters,
     TResult? Function(_ChangeListType value)? changeListType,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
   }) {
     return showFilters?.call(this);
   }
@@ -987,6 +1234,12 @@ class _$ShowFiltersImpl implements _ShowFilters {
     TResult Function(_ShowFilters value)? showFilters,
     TResult Function(_ChangeListType value)? changeListType,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
     required TResult orElse(),
   }) {
     if (showFilters != null) {
@@ -1042,6 +1295,12 @@ class _$ChangeListTypeImpl implements _ChangeListType {
     required TResult Function() showFilters,
     required TResult Function() changeListType,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
   }) {
     return changeListType();
   }
@@ -1053,6 +1312,12 @@ class _$ChangeListTypeImpl implements _ChangeListType {
     TResult? Function()? showFilters,
     TResult? Function()? changeListType,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
   }) {
     return changeListType?.call();
   }
@@ -1064,6 +1329,12 @@ class _$ChangeListTypeImpl implements _ChangeListType {
     TResult Function()? showFilters,
     TResult Function()? changeListType,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
     required TResult orElse(),
   }) {
     if (changeListType != null) {
@@ -1079,6 +1350,12 @@ class _$ChangeListTypeImpl implements _ChangeListType {
     required TResult Function(_ShowFilters value) showFilters,
     required TResult Function(_ChangeListType value) changeListType,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
   }) {
     return changeListType(this);
   }
@@ -1090,6 +1367,12 @@ class _$ChangeListTypeImpl implements _ChangeListType {
     TResult? Function(_ShowFilters value)? showFilters,
     TResult? Function(_ChangeListType value)? changeListType,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
   }) {
     return changeListType?.call(this);
   }
@@ -1101,6 +1384,12 @@ class _$ChangeListTypeImpl implements _ChangeListType {
     TResult Function(_ShowFilters value)? showFilters,
     TResult Function(_ChangeListType value)? changeListType,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
     required TResult orElse(),
   }) {
     if (changeListType != null) {
@@ -1193,6 +1482,12 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     required TResult Function() showFilters,
     required TResult Function() changeListType,
     required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
   }) {
     return changeCartState(product);
   }
@@ -1204,6 +1499,12 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult? Function()? showFilters,
     TResult? Function()? changeListType,
     TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
   }) {
     return changeCartState?.call(product);
   }
@@ -1215,6 +1516,12 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult Function()? showFilters,
     TResult Function()? changeListType,
     TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
     required TResult orElse(),
   }) {
     if (changeCartState != null) {
@@ -1230,6 +1537,12 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     required TResult Function(_ShowFilters value) showFilters,
     required TResult Function(_ChangeListType value) changeListType,
     required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
   }) {
     return changeCartState(this);
   }
@@ -1241,6 +1554,12 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult? Function(_ShowFilters value)? showFilters,
     TResult? Function(_ChangeListType value)? changeListType,
     TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
   }) {
     return changeCartState?.call(this);
   }
@@ -1252,6 +1571,12 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult Function(_ShowFilters value)? showFilters,
     TResult Function(_ChangeListType value)? changeListType,
     TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
     required TResult orElse(),
   }) {
     if (changeCartState != null) {
@@ -1268,5 +1593,1000 @@ abstract class _ChangeCartState implements SearchEvent {
   ProductEntity get product;
   @JsonKey(ignore: true)
   _$$ChangeCartStateImplCopyWith<_$ChangeCartStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitImplCopyWith<$Res> {
+  factory _$$InitImplCopyWith(
+          _$InitImpl value, $Res Function(_$InitImpl) then) =
+      __$$InitImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SearchEntity searchData});
+}
+
+/// @nodoc
+class __$$InitImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$InitImpl>
+    implements _$$InitImplCopyWith<$Res> {
+  __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchData = null,
+  }) {
+    return _then(_$InitImpl(
+      null == searchData
+          ? _value.searchData
+          : searchData // ignore: cast_nullable_to_non_nullable
+              as SearchEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$InitImpl implements _Init {
+  const _$InitImpl(this.searchData);
+
+  @override
+  final SearchEntity searchData;
+
+  @override
+  String toString() {
+    return 'SearchEvent.init(searchData: $searchData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitImpl &&
+            (identical(other.searchData, searchData) ||
+                other.searchData == searchData));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, searchData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      __$$InitImplCopyWithImpl<_$InitImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore, String? title) search,
+    required TResult Function() showFilters,
+    required TResult Function() changeListType,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+  }) {
+    return init(searchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore, String? title)? search,
+    TResult? Function()? showFilters,
+    TResult? Function()? changeListType,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+  }) {
+    return init?.call(searchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore, String? title)? search,
+    TResult Function()? showFilters,
+    TResult Function()? changeListType,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(searchData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ShowFilters value) showFilters,
+    required TResult Function(_ChangeListType value) changeListType,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ShowFilters value)? showFilters,
+    TResult? Function(_ChangeListType value)? changeListType,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ShowFilters value)? showFilters,
+    TResult Function(_ChangeListType value)? changeListType,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Init implements SearchEvent {
+  const factory _Init(final SearchEntity searchData) = _$InitImpl;
+
+  SearchEntity get searchData;
+  @JsonKey(ignore: true)
+  _$$InitImplCopyWith<_$InitImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChooseCategoriesImplCopyWith<$Res> {
+  factory _$$ChooseCategoriesImplCopyWith(_$ChooseCategoriesImpl value,
+          $Res Function(_$ChooseCategoriesImpl) then) =
+      __$$ChooseCategoriesImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChooseCategoriesImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$ChooseCategoriesImpl>
+    implements _$$ChooseCategoriesImplCopyWith<$Res> {
+  __$$ChooseCategoriesImplCopyWithImpl(_$ChooseCategoriesImpl _value,
+      $Res Function(_$ChooseCategoriesImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChooseCategoriesImpl implements _ChooseCategories {
+  const _$ChooseCategoriesImpl();
+
+  @override
+  String toString() {
+    return 'SearchEvent.chooseCategories()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ChooseCategoriesImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore, String? title) search,
+    required TResult Function() showFilters,
+    required TResult Function() changeListType,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+  }) {
+    return chooseCategories();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore, String? title)? search,
+    TResult? Function()? showFilters,
+    TResult? Function()? changeListType,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+  }) {
+    return chooseCategories?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore, String? title)? search,
+    TResult Function()? showFilters,
+    TResult Function()? changeListType,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (chooseCategories != null) {
+      return chooseCategories();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ShowFilters value) showFilters,
+    required TResult Function(_ChangeListType value) changeListType,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+  }) {
+    return chooseCategories(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ShowFilters value)? showFilters,
+    TResult? Function(_ChangeListType value)? changeListType,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+  }) {
+    return chooseCategories?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ShowFilters value)? showFilters,
+    TResult Function(_ChangeListType value)? changeListType,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (chooseCategories != null) {
+      return chooseCategories(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChooseCategories implements SearchEvent {
+  const factory _ChooseCategories() = _$ChooseCategoriesImpl;
+}
+
+/// @nodoc
+abstract class _$$ChooseOrganizationsImplCopyWith<$Res> {
+  factory _$$ChooseOrganizationsImplCopyWith(_$ChooseOrganizationsImpl value,
+          $Res Function(_$ChooseOrganizationsImpl) then) =
+      __$$ChooseOrganizationsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id});
+}
+
+/// @nodoc
+class __$$ChooseOrganizationsImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$ChooseOrganizationsImpl>
+    implements _$$ChooseOrganizationsImplCopyWith<$Res> {
+  __$$ChooseOrganizationsImplCopyWithImpl(_$ChooseOrganizationsImpl _value,
+      $Res Function(_$ChooseOrganizationsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$ChooseOrganizationsImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
+  const _$ChooseOrganizationsImpl(this.id);
+
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'SearchEvent.chooseOrganizations(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ChooseOrganizationsImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChooseOrganizationsImplCopyWith<_$ChooseOrganizationsImpl> get copyWith =>
+      __$$ChooseOrganizationsImplCopyWithImpl<_$ChooseOrganizationsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore, String? title) search,
+    required TResult Function() showFilters,
+    required TResult Function() changeListType,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+  }) {
+    return chooseOrganizations(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore, String? title)? search,
+    TResult? Function()? showFilters,
+    TResult? Function()? changeListType,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+  }) {
+    return chooseOrganizations?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore, String? title)? search,
+    TResult Function()? showFilters,
+    TResult Function()? changeListType,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (chooseOrganizations != null) {
+      return chooseOrganizations(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ShowFilters value) showFilters,
+    required TResult Function(_ChangeListType value) changeListType,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+  }) {
+    return chooseOrganizations(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ShowFilters value)? showFilters,
+    TResult? Function(_ChangeListType value)? changeListType,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+  }) {
+    return chooseOrganizations?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ShowFilters value)? showFilters,
+    TResult Function(_ChangeListType value)? changeListType,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (chooseOrganizations != null) {
+      return chooseOrganizations(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChooseOrganizations implements SearchEvent {
+  const factory _ChooseOrganizations(final int id) = _$ChooseOrganizationsImpl;
+
+  int get id;
+  @JsonKey(ignore: true)
+  _$$ChooseOrganizationsImplCopyWith<_$ChooseOrganizationsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ChooseBrandsImplCopyWith<$Res> {
+  factory _$$ChooseBrandsImplCopyWith(
+          _$ChooseBrandsImpl value, $Res Function(_$ChooseBrandsImpl) then) =
+      __$$ChooseBrandsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ChooseBrandsImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$ChooseBrandsImpl>
+    implements _$$ChooseBrandsImplCopyWith<$Res> {
+  __$$ChooseBrandsImplCopyWithImpl(
+      _$ChooseBrandsImpl _value, $Res Function(_$ChooseBrandsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ChooseBrandsImpl implements _ChooseBrands {
+  const _$ChooseBrandsImpl();
+
+  @override
+  String toString() {
+    return 'SearchEvent.chooseBrands()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ChooseBrandsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore, String? title) search,
+    required TResult Function() showFilters,
+    required TResult Function() changeListType,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+  }) {
+    return chooseBrands();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore, String? title)? search,
+    TResult? Function()? showFilters,
+    TResult? Function()? changeListType,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+  }) {
+    return chooseBrands?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore, String? title)? search,
+    TResult Function()? showFilters,
+    TResult Function()? changeListType,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (chooseBrands != null) {
+      return chooseBrands();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ShowFilters value) showFilters,
+    required TResult Function(_ChangeListType value) changeListType,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+  }) {
+    return chooseBrands(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ShowFilters value)? showFilters,
+    TResult? Function(_ChangeListType value)? changeListType,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+  }) {
+    return chooseBrands?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ShowFilters value)? showFilters,
+    TResult Function(_ChangeListType value)? changeListType,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (chooseBrands != null) {
+      return chooseBrands(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChooseBrands implements SearchEvent {
+  const factory _ChooseBrands() = _$ChooseBrandsImpl;
+}
+
+/// @nodoc
+abstract class _$$SetBaseViewImplCopyWith<$Res> {
+  factory _$$SetBaseViewImplCopyWith(
+          _$SetBaseViewImpl value, $Res Function(_$SetBaseViewImpl) then) =
+      __$$SetBaseViewImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SetBaseViewImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$SetBaseViewImpl>
+    implements _$$SetBaseViewImplCopyWith<$Res> {
+  __$$SetBaseViewImplCopyWithImpl(
+      _$SetBaseViewImpl _value, $Res Function(_$SetBaseViewImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SetBaseViewImpl implements _SetBaseView {
+  const _$SetBaseViewImpl();
+
+  @override
+  String toString() {
+    return 'SearchEvent.setBaseView()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SetBaseViewImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore, String? title) search,
+    required TResult Function() showFilters,
+    required TResult Function() changeListType,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+  }) {
+    return setBaseView();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore, String? title)? search,
+    TResult? Function()? showFilters,
+    TResult? Function()? changeListType,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+  }) {
+    return setBaseView?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore, String? title)? search,
+    TResult Function()? showFilters,
+    TResult Function()? changeListType,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (setBaseView != null) {
+      return setBaseView();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ShowFilters value) showFilters,
+    required TResult Function(_ChangeListType value) changeListType,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+  }) {
+    return setBaseView(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ShowFilters value)? showFilters,
+    TResult? Function(_ChangeListType value)? changeListType,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+  }) {
+    return setBaseView?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ShowFilters value)? showFilters,
+    TResult Function(_ChangeListType value)? changeListType,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (setBaseView != null) {
+      return setBaseView(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetBaseView implements SearchEvent {
+  const factory _SetBaseView() = _$SetBaseViewImpl;
+}
+
+/// @nodoc
+abstract class _$$AddFilterImplCopyWith<$Res> {
+  factory _$$AddFilterImplCopyWith(
+          _$AddFilterImpl value, $Res Function(_$AddFilterImpl) then) =
+      __$$AddFilterImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SearchEntity searchData});
+}
+
+/// @nodoc
+class __$$AddFilterImplCopyWithImpl<$Res>
+    extends _$SearchEventCopyWithImpl<$Res, _$AddFilterImpl>
+    implements _$$AddFilterImplCopyWith<$Res> {
+  __$$AddFilterImplCopyWithImpl(
+      _$AddFilterImpl _value, $Res Function(_$AddFilterImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? searchData = null,
+  }) {
+    return _then(_$AddFilterImpl(
+      null == searchData
+          ? _value.searchData
+          : searchData // ignore: cast_nullable_to_non_nullable
+              as SearchEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddFilterImpl implements _AddFilter {
+  const _$AddFilterImpl(this.searchData);
+
+  @override
+  final SearchEntity searchData;
+
+  @override
+  String toString() {
+    return 'SearchEvent.addFilter(searchData: $searchData)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddFilterImpl &&
+            (identical(other.searchData, searchData) ||
+                other.searchData == searchData));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, searchData);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddFilterImplCopyWith<_$AddFilterImpl> get copyWith =>
+      __$$AddFilterImplCopyWithImpl<_$AddFilterImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore, String? title) search,
+    required TResult Function() showFilters,
+    required TResult Function() changeListType,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+  }) {
+    return addFilter(searchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore, String? title)? search,
+    TResult? Function()? showFilters,
+    TResult? Function()? changeListType,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+  }) {
+    return addFilter?.call(searchData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore, String? title)? search,
+    TResult Function()? showFilters,
+    TResult Function()? changeListType,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (addFilter != null) {
+      return addFilter(searchData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Search value) search,
+    required TResult Function(_ShowFilters value) showFilters,
+    required TResult Function(_ChangeListType value) changeListType,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+  }) {
+    return addFilter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Search value)? search,
+    TResult? Function(_ShowFilters value)? showFilters,
+    TResult? Function(_ChangeListType value)? changeListType,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+  }) {
+    return addFilter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Search value)? search,
+    TResult Function(_ShowFilters value)? showFilters,
+    TResult Function(_ChangeListType value)? changeListType,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    required TResult orElse(),
+  }) {
+    if (addFilter != null) {
+      return addFilter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddFilter implements SearchEvent {
+  const factory _AddFilter(final SearchEntity searchData) = _$AddFilterImpl;
+
+  SearchEntity get searchData;
+  @JsonKey(ignore: true)
+  _$$AddFilterImplCopyWith<_$AddFilterImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -10,4 +10,6 @@ Map<String, dynamic> _$$CreateOrderRequestImplToJson(
         _$CreateOrderRequestImpl instance) =>
     <String, dynamic>{
       'cart_product': instance.cartProduct,
+      'payment_type': instance.paymentType,
+      'delivery_type': instance.deliveryType,
     };

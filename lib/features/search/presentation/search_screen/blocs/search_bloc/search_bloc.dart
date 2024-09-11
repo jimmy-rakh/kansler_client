@@ -6,8 +6,11 @@ import '../../../../../../app/router.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
 import '../../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../../product/domain/entities/product.entity.dart';
+import '../../../../../product/domain/entities/product_data.entity.dart';
 import '../../../../domain/entities/search.entity.dart';
+import '../../../../domain/usecases/organizations.usecase.dart';
 import '../../../../domain/usecases/search.usecase.dart';
+import '../brands/brands_bloc.dart';
 
 
 part 'search_state.dart';
@@ -17,12 +20,20 @@ part 'search_bloc.freezed.dart';
 @injectable
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchUseCase _useCase;
+  final OrganizationsUseCase _organizationsUseCase;
 
-  SearchBloc(this._useCase) : super(const SearchState.loadInProgress()) {
+  SearchBloc(this._useCase, this._organizationsUseCase) : super(
+      const SearchState.loadInProgress(),) {
     on<_Search>(_onSearch);
     on<_ChangeListType>(_onChangeListType);
     on<_ShowFilters>(_onShowFilters);
     on<_ChangeCartState>(_onChangeCartState);
+    on<_Init>(_onInit);
+    on<_ChooseCategories>(_onChooseCategories);
+    on<_ChooseOrganizations>(_onChooseOrganizations);
+    on<_ChooseBrands>(_onChooseBrands);
+    on<_SetBaseView>(_onSetBaseView);
+    on<_AddFilter>(_onAddFilter);
 
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
@@ -33,6 +44,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       }
     });
   }
+
 
   final fieldController = TextEditingController();
 
@@ -79,7 +91,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         final currentState = (state as _Success);
 
         emit(currentState.copyWith(
-          products: currentState.products + r.products,
+          products: currentState.products! + r.products,
           filterData: request,
           isMoreLoading: false,
         ));
@@ -111,7 +123,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   void _onChangeCartState(_ChangeCartState event, Emitter<SearchState> emit) {
     final currentState = state as _Success;
 
-    final products = currentState.products.map((e) {
+    final products = currentState.products!.map((e) {
       if (e.id == event.product.id) {
         return event.product.copyWith(inCart: !event.product.inCart!);
       }
@@ -119,5 +131,36 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }).toList();
 
     emit(currentState.copyWith(products: products));
+  }
+
+  void _onInit(_Init event, Emitter<SearchState> emit) async {
+    router.navigatorKey.currentContext!.read<BrandsBloc>();
+    final res = await _organizationsUseCase.call(1);
+
+    res.fold((l) => log.e(l), (r) {
+      emit(SearchState.success(
+        search: event.searchData,
+        organizations: r.products, products: [],
+      ));
+    });
+  }
+
+  void _onChooseCategories(_ChooseCategories event, Emitter<SearchState> emit) {
+    emit((state as _Success).copyWith(activePage: 1));
+  }
+
+  void _onChooseOrganizations(
+      _ChooseOrganizations event, Emitter<SearchState> emit) {}
+
+  void _onChooseBrands(_ChooseBrands event, Emitter<SearchState> emit) {
+    emit((state as _Success).copyWith(activePage: 2));
+  }
+
+  void _onSetBaseView(_SetBaseView event, Emitter<SearchState> emit) {
+    emit((state as _Success).copyWith(activePage: 0));
+  }
+
+  void _onAddFilter(_AddFilter event, Emitter<SearchState> emit) {
+    emit((state as _Success).copyWith(search: event.searchData));
   }
 }

@@ -353,14 +353,16 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1018.SetAuthTokenUseCase(gh<_i892.AuthRepository>()));
     gh.factory<_i1070.GetAuthStatusUseCase>(
         () => _i1070.GetAuthStatusUseCase(gh<_i892.AuthRepository>()));
-    gh.factory<_i685.SearchBloc>(
-        () => _i685.SearchBloc(gh<_i1045.SearchUseCase>()));
     gh.factory<_i881.LimitsCubit>(
         () => _i881.LimitsCubit(gh<_i945.LimitsRepository>()));
     gh.factory<_i0.DebtCubit>(
         () => _i0.DebtCubit(gh<_i945.LimitsRepository>()));
     gh.factory<_i330.FilterBloc>(
         () => _i330.FilterBloc(gh<_i835.OrganizationsUseCase>()));
+    gh.factory<_i685.SearchBloc>(() => _i685.SearchBloc(
+          gh<_i1045.SearchUseCase>(),
+          gh<_i835.OrganizationsUseCase>(),
+        ));
     gh.lazySingleton<_i230.SubcategoryBloc>(() => _i230.SubcategoryBloc(
           gh<_i756.GetCategoryChildrenUseCase>(),
           gh<_i92.GetCategoryProducts>(),

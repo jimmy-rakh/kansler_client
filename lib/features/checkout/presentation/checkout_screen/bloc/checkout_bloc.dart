@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/extensions/context.dart';
-
 import '../../../../../app/router.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../../home/presentation/blocs/latest/latest_bloc.dart';
@@ -23,6 +22,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   CheckoutBloc(this._checkoutRepository)
       : super(const CheckoutState.initial()) {
     on<_Checkout>(_onCheckout);
+    on<_PaymentType>(_paymentType);
+    on<_DeliveryType>(_deliveryType);
   }
 
 
@@ -50,4 +51,21 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       router.replaceAll([const MainRoute()]);
     });
   }
+
+  void _paymentType(
+      _PaymentType event, Emitter<CheckoutState> emit) async {
+    final paymentType = (state as _Ready).paymentType;
+
+
+      emit((state as _Ready).copyWith(paymentType:paymentType));
+  }
+
+  void _deliveryType(
+      _DeliveryType event, Emitter<CheckoutState> emit) async {
+    final deliveryType = (state as _Ready).deliveryType;
+
+
+    emit((state as _Ready).copyWith(deliveryType:deliveryType));
+  }
+
 }

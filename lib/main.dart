@@ -18,6 +18,7 @@ import 'features/auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import 'features/cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import 'features/categories/presentation/screens/category/bloc/categories_bloc.dart';
 import 'features/categories/presentation/screens/subcategory/bloc/subcategory_bloc.dart';
+import 'features/checkout/presentation/checkout_screen/bloc/checkout_bloc.dart';
 import 'features/home/presentation/blocs/discounts/discounts_bloc.dart';
 import 'features/home/presentation/blocs/hit/hit_bloc.dart';
 import 'features/home/presentation/blocs/latest/latest_bloc.dart';
@@ -95,6 +96,9 @@ void main() async {
             ),
             BlocProvider(
               create: (context) => getIt<PreordersBloc>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<CheckoutBloc>(),
             ),
           ],
           child: HookedBlocConfigProvider(
