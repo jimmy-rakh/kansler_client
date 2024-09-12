@@ -420,25 +420,18 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               fillColor: context.background,
                                               width: 60,
                                               radius: 0,
-                                              contentPadding:
-                                                  const EdgeInsets.all(4),
+                                              contentPadding: const EdgeInsets.all(4),
                                               textAlign: TextAlign.center,
                                               fieldController: fieldController,
                                               onChange: submit,
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
-                                                if ((product ??
-                                                            cartProduct!
-                                                                .product)!
-                                                        .leftQuantity >=
-                                                    int.parse(
-                                                        fieldController.text)) {
-                                                  if ((product ??
-                                                              cartProduct
-                                                                  ?.product)
-                                                          ?.leftQuantity !=
-                                                      0) {
+                                                if ((product ?? cartProduct!.product)!.leftQuantity >=
+                                                    int.parse(fieldController.text)) {
+                                                  if ((product ?? cartProduct?.product)?.leftQuantity != 0) {
                                                     onCart();
+                                                    FocusScope.of(context)
+                                                        .unfocus();
                                                     if (!((product ??
                                                                 cartProduct
                                                                     ?.product)
@@ -452,6 +445,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                           int.parse(
                                                               fieldController
                                                                   .text)));
+                                                      FocusScope.of(context)
+                                                          .unfocus();
                                                       return;
                                                     }
                                                   }
@@ -469,8 +464,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                       .unfocus();
                                                 }
                                               },
-                                              textInputType:
-                                                  TextInputType.number,
+                                              textInputType: TextInputType.number,
                                               textInputFormatter: [
                                                 FilteringTextInputFormatter
                                                     .digitsOnly

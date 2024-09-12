@@ -19,25 +19,19 @@ mixin _$CheckoutState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(CompanyEntity chosedCompanies,
-            String? paymentType, String? deliveryType)
-        ready,
+    required TResult Function(String? paymentType, String? deliveryType) ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(CompanyEntity chosedCompanies, String? paymentType,
-            String? deliveryType)?
-        ready,
+    TResult? Function(String? paymentType, String? deliveryType)? ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(CompanyEntity chosedCompanies, String? paymentType,
-            String? deliveryType)?
-        ready,
+    TResult Function(String? paymentType, String? deliveryType)? ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,9 +113,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(CompanyEntity chosedCompanies,
-            String? paymentType, String? deliveryType)
-        ready,
+    required TResult Function(String? paymentType, String? deliveryType) ready,
   }) {
     return initial();
   }
@@ -130,9 +122,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(CompanyEntity chosedCompanies, String? paymentType,
-            String? deliveryType)?
-        ready,
+    TResult? Function(String? paymentType, String? deliveryType)? ready,
   }) {
     return initial?.call();
   }
@@ -141,9 +131,7 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(CompanyEntity chosedCompanies, String? paymentType,
-            String? deliveryType)?
-        ready,
+    TResult Function(String? paymentType, String? deliveryType)? ready,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -194,12 +182,7 @@ abstract class _$$ReadyImplCopyWith<$Res> {
           _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
       __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {CompanyEntity chosedCompanies,
-      String? paymentType,
-      String? deliveryType});
-
-  $CompanyEntityCopyWith<$Res> get chosedCompanies;
+  $Res call({String? paymentType, String? deliveryType});
 }
 
 /// @nodoc
@@ -213,42 +196,27 @@ class __$$ReadyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? chosedCompanies = null,
     Object? paymentType = freezed,
     Object? deliveryType = freezed,
   }) {
     return _then(_$ReadyImpl(
-      null == chosedCompanies
-          ? _value.chosedCompanies
-          : chosedCompanies // ignore: cast_nullable_to_non_nullable
-              as CompanyEntity,
-      freezed == paymentType
+      paymentType: freezed == paymentType
           ? _value.paymentType
           : paymentType // ignore: cast_nullable_to_non_nullable
               as String?,
-      freezed == deliveryType
+      deliveryType: freezed == deliveryType
           ? _value.deliveryType
           : deliveryType // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CompanyEntityCopyWith<$Res> get chosedCompanies {
-    return $CompanyEntityCopyWith<$Res>(_value.chosedCompanies, (value) {
-      return _then(_value.copyWith(chosedCompanies: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$ReadyImpl implements _Ready {
-  const _$ReadyImpl(this.chosedCompanies, this.paymentType, this.deliveryType);
+  const _$ReadyImpl({this.paymentType, this.deliveryType});
 
-  @override
-  final CompanyEntity chosedCompanies;
   @override
   final String? paymentType;
   @override
@@ -256,7 +224,7 @@ class _$ReadyImpl implements _Ready {
 
   @override
   String toString() {
-    return 'CheckoutState.ready(chosedCompanies: $chosedCompanies, paymentType: $paymentType, deliveryType: $deliveryType)';
+    return 'CheckoutState.ready(paymentType: $paymentType, deliveryType: $deliveryType)';
   }
 
   @override
@@ -264,8 +232,6 @@ class _$ReadyImpl implements _Ready {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
-            (identical(other.chosedCompanies, chosedCompanies) ||
-                other.chosedCompanies == chosedCompanies) &&
             (identical(other.paymentType, paymentType) ||
                 other.paymentType == paymentType) &&
             (identical(other.deliveryType, deliveryType) ||
@@ -273,8 +239,7 @@ class _$ReadyImpl implements _Ready {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, chosedCompanies, paymentType, deliveryType);
+  int get hashCode => Object.hash(runtimeType, paymentType, deliveryType);
 
   @JsonKey(ignore: true)
   @override
@@ -286,35 +251,29 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function(CompanyEntity chosedCompanies,
-            String? paymentType, String? deliveryType)
-        ready,
+    required TResult Function(String? paymentType, String? deliveryType) ready,
   }) {
-    return ready(chosedCompanies, paymentType, deliveryType);
+    return ready(paymentType, deliveryType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function(CompanyEntity chosedCompanies, String? paymentType,
-            String? deliveryType)?
-        ready,
+    TResult? Function(String? paymentType, String? deliveryType)? ready,
   }) {
-    return ready?.call(chosedCompanies, paymentType, deliveryType);
+    return ready?.call(paymentType, deliveryType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function(CompanyEntity chosedCompanies, String? paymentType,
-            String? deliveryType)?
-        ready,
+    TResult Function(String? paymentType, String? deliveryType)? ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(chosedCompanies, paymentType, deliveryType);
+      return ready(paymentType, deliveryType);
     }
     return orElse();
   }
@@ -352,10 +311,9 @@ class _$ReadyImpl implements _Ready {
 }
 
 abstract class _Ready implements CheckoutState {
-  const factory _Ready(final CompanyEntity chosedCompanies,
-      final String? paymentType, final String? deliveryType) = _$ReadyImpl;
+  const factory _Ready(
+      {final String? paymentType, final String? deliveryType}) = _$ReadyImpl;
 
-  CompanyEntity get chosedCompanies;
   String? get paymentType;
   String? get deliveryType;
   @JsonKey(ignore: true)
@@ -368,22 +326,22 @@ mixin _$CheckoutEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOut,
-    required TResult Function(String value) paymentType,
-    required TResult Function(String value) deliveryType,
+    required TResult Function(String paymentType) paymentType,
+    required TResult Function(String deliveryType) deliveryType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOut,
-    TResult? Function(String value)? paymentType,
-    TResult? Function(String value)? deliveryType,
+    TResult? Function(String paymentType)? paymentType,
+    TResult? Function(String deliveryType)? deliveryType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOut,
-    TResult Function(String value)? paymentType,
-    TResult Function(String value)? deliveryType,
+    TResult Function(String paymentType)? paymentType,
+    TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -468,8 +426,8 @@ class _$CheckoutImpl implements _Checkout {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOut,
-    required TResult Function(String value) paymentType,
-    required TResult Function(String value) deliveryType,
+    required TResult Function(String paymentType) paymentType,
+    required TResult Function(String deliveryType) deliveryType,
   }) {
     return checkOut();
   }
@@ -478,8 +436,8 @@ class _$CheckoutImpl implements _Checkout {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOut,
-    TResult? Function(String value)? paymentType,
-    TResult? Function(String value)? deliveryType,
+    TResult? Function(String paymentType)? paymentType,
+    TResult? Function(String deliveryType)? deliveryType,
   }) {
     return checkOut?.call();
   }
@@ -488,8 +446,8 @@ class _$CheckoutImpl implements _Checkout {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOut,
-    TResult Function(String value)? paymentType,
-    TResult Function(String value)? deliveryType,
+    TResult Function(String paymentType)? paymentType,
+    TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
   }) {
     if (checkOut != null) {
@@ -543,7 +501,7 @@ abstract class _$$PaymentTypeImplCopyWith<$Res> {
           _$PaymentTypeImpl value, $Res Function(_$PaymentTypeImpl) then) =
       __$$PaymentTypeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String value});
+  $Res call({String paymentType});
 }
 
 /// @nodoc
@@ -557,12 +515,12 @@ class __$$PaymentTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = null,
+    Object? paymentType = null,
   }) {
     return _then(_$PaymentTypeImpl(
-      null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      null == paymentType
+          ? _value.paymentType
+          : paymentType // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -571,14 +529,14 @@ class __$$PaymentTypeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$PaymentTypeImpl implements _PaymentType {
-  const _$PaymentTypeImpl(this.value);
+  const _$PaymentTypeImpl(this.paymentType);
 
   @override
-  final String value;
+  final String paymentType;
 
   @override
   String toString() {
-    return 'CheckoutEvent.paymentType(value: $value)';
+    return 'CheckoutEvent.paymentType(paymentType: $paymentType)';
   }
 
   @override
@@ -586,11 +544,12 @@ class _$PaymentTypeImpl implements _PaymentType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PaymentTypeImpl &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.paymentType, paymentType) ||
+                other.paymentType == paymentType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, paymentType);
 
   @JsonKey(ignore: true)
   @override
@@ -602,32 +561,32 @@ class _$PaymentTypeImpl implements _PaymentType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOut,
-    required TResult Function(String value) paymentType,
-    required TResult Function(String value) deliveryType,
+    required TResult Function(String paymentType) paymentType,
+    required TResult Function(String deliveryType) deliveryType,
   }) {
-    return paymentType(value);
+    return paymentType(this.paymentType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOut,
-    TResult? Function(String value)? paymentType,
-    TResult? Function(String value)? deliveryType,
+    TResult? Function(String paymentType)? paymentType,
+    TResult? Function(String deliveryType)? deliveryType,
   }) {
-    return paymentType?.call(value);
+    return paymentType?.call(this.paymentType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOut,
-    TResult Function(String value)? paymentType,
-    TResult Function(String value)? deliveryType,
+    TResult Function(String paymentType)? paymentType,
+    TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
   }) {
     if (paymentType != null) {
-      return paymentType(value);
+      return paymentType(this.paymentType);
     }
     return orElse();
   }
@@ -668,9 +627,9 @@ class _$PaymentTypeImpl implements _PaymentType {
 }
 
 abstract class _PaymentType implements CheckoutEvent {
-  const factory _PaymentType(final String value) = _$PaymentTypeImpl;
+  const factory _PaymentType(final String paymentType) = _$PaymentTypeImpl;
 
-  String get value;
+  String get paymentType;
   @JsonKey(ignore: true)
   _$$PaymentTypeImplCopyWith<_$PaymentTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -682,7 +641,7 @@ abstract class _$$DeliveryTypeImplCopyWith<$Res> {
           _$DeliveryTypeImpl value, $Res Function(_$DeliveryTypeImpl) then) =
       __$$DeliveryTypeImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String value});
+  $Res call({String deliveryType});
 }
 
 /// @nodoc
@@ -696,12 +655,12 @@ class __$$DeliveryTypeImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = null,
+    Object? deliveryType = null,
   }) {
     return _then(_$DeliveryTypeImpl(
-      null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      null == deliveryType
+          ? _value.deliveryType
+          : deliveryType // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -710,14 +669,14 @@ class __$$DeliveryTypeImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DeliveryTypeImpl implements _DeliveryType {
-  const _$DeliveryTypeImpl(this.value);
+  const _$DeliveryTypeImpl(this.deliveryType);
 
   @override
-  final String value;
+  final String deliveryType;
 
   @override
   String toString() {
-    return 'CheckoutEvent.deliveryType(value: $value)';
+    return 'CheckoutEvent.deliveryType(deliveryType: $deliveryType)';
   }
 
   @override
@@ -725,11 +684,12 @@ class _$DeliveryTypeImpl implements _DeliveryType {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeliveryTypeImpl &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.deliveryType, deliveryType) ||
+                other.deliveryType == deliveryType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, deliveryType);
 
   @JsonKey(ignore: true)
   @override
@@ -741,32 +701,32 @@ class _$DeliveryTypeImpl implements _DeliveryType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() checkOut,
-    required TResult Function(String value) paymentType,
-    required TResult Function(String value) deliveryType,
+    required TResult Function(String paymentType) paymentType,
+    required TResult Function(String deliveryType) deliveryType,
   }) {
-    return deliveryType(value);
+    return deliveryType(this.deliveryType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? checkOut,
-    TResult? Function(String value)? paymentType,
-    TResult? Function(String value)? deliveryType,
+    TResult? Function(String paymentType)? paymentType,
+    TResult? Function(String deliveryType)? deliveryType,
   }) {
-    return deliveryType?.call(value);
+    return deliveryType?.call(this.deliveryType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkOut,
-    TResult Function(String value)? paymentType,
-    TResult Function(String value)? deliveryType,
+    TResult Function(String paymentType)? paymentType,
+    TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
   }) {
     if (deliveryType != null) {
-      return deliveryType(value);
+      return deliveryType(this.deliveryType);
     }
     return orElse();
   }
@@ -807,9 +767,9 @@ class _$DeliveryTypeImpl implements _DeliveryType {
 }
 
 abstract class _DeliveryType implements CheckoutEvent {
-  const factory _DeliveryType(final String value) = _$DeliveryTypeImpl;
+  const factory _DeliveryType(final String deliveryType) = _$DeliveryTypeImpl;
 
-  String get value;
+  String get deliveryType;
   @JsonKey(ignore: true)
   _$$DeliveryTypeImplCopyWith<_$DeliveryTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;

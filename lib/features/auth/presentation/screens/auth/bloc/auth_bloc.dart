@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
+import 'package:kansler/features/home/presentation/blocs/discounts/discounts_bloc.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/auth_status.dart';
 import '../../../../../../core/usecase/usecase.dart';
@@ -36,6 +37,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _onCheckStatus(_CheckStatus event, Emitter<AuthState> emit) async {
     final status = _getAuthStatusUseCase.call(NoParams());
+    final discountBloc =
+    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
     final popularBloc =
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final hitBloc =
@@ -53,6 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       case AuthStatus.authenticated:
         emit(const AuthState.authenticated());
         await Future.delayed(const Duration(seconds: 1));
+        discountBloc.add(const DiscountsEvent.fetch());
         popularBloc.add(const PopularEvent.fetch());
         hitBloc.add(const HitEvent.fetch());
         latestBloc.add(const LatestEvent.fetch());

@@ -9,7 +9,7 @@ part of 'create_order_request.dart';
 Map<String, dynamic> _$$CreateOrderRequestImplToJson(
         _$CreateOrderRequestImpl instance) =>
     <String, dynamic>{
-      'cart_product': instance.cartProduct,
       'payment_type': instance.paymentType,
       'delivery_type': instance.deliveryType,
+      'cart_product': instance.cartProduct,
     };

@@ -51,45 +51,48 @@ class AppRouter extends _$AppRouter {
           transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         AutoRoute(
-          page: MainRoute.page,
+          path:"/", page: MainRoute.page,
           children: [
-            AutoRoute(page: HomeRoute.page, initial: true),
-            AutoRoute(page: CategoriesWrapperRoute.page, children: [
-              AutoRoute(page: CategoriesRoute.page, initial: true),
-              AutoRoute(page: SubcategoryRoute.page),
+            AutoRoute(path:"main/", page: HomeRoute.page, initial: true),
+            AutoRoute(path:"categories/",page: CategoriesWrapperRoute.page, children: [
+              AutoRoute(path:"",page: CategoriesRoute.page, initial: true),
+              AutoRoute(path:"subcategories/",page: SubcategoryRoute.page),
             ]),
-            AutoRoute(page: CartRoute.page, guards: [AuthGuard()]),
-            AutoRoute(page: OrdersRoute.page, guards: [AuthGuard()]),
-            AutoRoute(page: ProfileRoute.page, guards: [AuthGuard()]),
+            AutoRoute(path:"cart/",page: CartRoute.page, guards: [AuthGuard()]),
+            AutoRoute(path:"orders/",page: OrdersRoute.page, guards: [AuthGuard()]),
+            AutoRoute(path:"profile/",page: ProfileRoute.page, guards: [AuthGuard()]),
           ],
         ),
         AutoRoute(
+          path:"/",
           page: AuthRoute.page,
           fullscreenDialog: true,
           children: [
-            AutoRoute(page: LoginRoute.page, initial: true),
-            AutoRoute(page: RegisterRoute.page)
+            AutoRoute(path:"login/",page: LoginRoute.page, initial: true),
+            AutoRoute(path:"register/",page: RegisterRoute.page)
           ],
         ),
-        AutoRoute(page: ProductRoute.page),
+        AutoRoute(path:"/",page: ProductRoute.page),
         CustomRoute(
+            path:"/",
             page: SearchRoute.page,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             durationInMilliseconds: 100),
         AutoRoute(
+          path:"/",
           page: FilterRoute.page,
           fullscreenDialog: true,
         ),
-        AutoRoute(page: CompaniesRoute.page),
-        AutoRoute(page: AddressesRoute.page),
-        AutoRoute(page: CheckoutRoute.page),
+        AutoRoute(path:"/companies/",page: CompaniesRoute.page),
+        AutoRoute(path:"/addresses/",page: AddressesRoute.page),
+        AutoRoute(path:"/checkout/",page: CheckoutRoute.page),
         AutoRoute(page: OrderDetailsRoute.page),
         AutoRoute(page: OrderOrganizationRoute.page),
-        AutoRoute(page: SettingsRoute.page),
+        AutoRoute(path:"/settings/",page: SettingsRoute.page),
         AutoRoute(page: LimitsRoute.page),
         AutoRoute(page: DebtRoute.page),
         AutoRoute(page: ScannerRoute.page),
-        AutoRoute(page: MapRoute.page),
+        AutoRoute(path:"/map/",page: MapRoute.page),
       ];
 
   Future<dynamic> showSheet(Widget child) async =>

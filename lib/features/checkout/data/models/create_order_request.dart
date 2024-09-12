@@ -10,8 +10,8 @@ enum DeliveryType { pickup, delivery }
 @Freezed(toJson: true, fromJson: false)
 class CreateOrderRequest with _$CreateOrderRequest {
   factory CreateOrderRequest({
-    List<int>? cartProduct,
     String? paymentType,
     String? deliveryType,
+    List<int>? cartProduct,
   }) = _CreateOrderRequest;
 }

@@ -24,6 +24,7 @@ class PreordersSumWidget extends HookWidget {
             child: ColoredBox(
               color: context.background,
               child: AppCard(
+                width: context.isSmall ? context.width : context.width * .33,
                 padding: const EdgeInsets.all(10),
                 borderRadius: BorderRadius.circular(0),
                 child: Row(

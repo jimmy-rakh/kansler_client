@@ -33,31 +33,122 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
       body: ListView(
         children: [
           state.whenOrNull(
-            ready: (chosedCompanies,paymentType,deliveryType) => Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: DropdownButton<String>(
-                hint: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text("Выберите тип оплаты"),
+                ready: (paymentType, deliveryType) => SizedBox(
+                  width: context.width * .8,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20,bottom: 12),
+                        child: Text("Выберите тип оплаты"),
+                      ),
+                      Container(
+                        width: context.width * .8,
+                        decoration: BoxDecoration(
+                            color: context.background,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: const BorderRadius.all(Radius.circular(4))),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Theme(
+                              data: Theme.of(context).copyWith(
+                                focusColor: context.background,
+                              ),
+                              child: DropdownButton<String>(
+                                dropdownColor: context.cardColor,
+                                underline: const SizedBox(),
+                                autofocus: true,
+                                focusColor: context.background,
+                                elevation: 0,
+                                hint: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Выберите тип оплаты"),
+                                ),
+                                value: paymentType,
+                                items: <String>["byTransfer", "byCash", "byCard"]
+                                    .map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SizedBox(
+                                        width: context.width * .7,
+                                        child: Text(
+                                          value,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  bloc.add(CheckoutEvent.paymentType(value!));
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      verticalSpace12,
+                      const Padding(
+                        padding: EdgeInsets.only(left: 20,bottom: 12),
+                        child: Text("Выберите способ получение"),
+                      ),
+                      Container(
+                        width: context.width * .8,
+                        decoration: BoxDecoration(
+                            color: context.background,
+                            border: Border.all(color: Colors.grey),
+                            borderRadius: const BorderRadius.all(Radius.circular(4))),
+                        child: Center(
+                          child: Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Theme(
+                              data: Theme.of(context).copyWith(
+                                focusColor: context.background,
+                              ),
+                              child: DropdownButton<String>(
+                                dropdownColor: context.cardColor,
+                                underline: const SizedBox(),
+                                autofocus: true,
+                                focusColor: context.background,
+                                elevation: 0,
+                                hint: const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Text("Выберите способ получение"),
+                                ),
+                                value: deliveryType,
+                                items: <String>["pickup", "delivery",]
+                                    .map((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: SizedBox(
+                                        width: context.width * .7,
+                                        child: Text(
+                                          value,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  bloc.add(CheckoutEvent.deliveryType(value!));
+                                },
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                value: paymentType,
-                items: <String>[ "byTransfer", "buCash", "byCard" ].map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(value,style: const TextStyle(color: Colors.black),),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  bloc.add(CheckoutEvent.paymentType(value!));
-                },
+              ) ??
+              const SizedBox(
+                child: Text("data"),
               ),
-            ),
-          )??
-              const SizedBox(child: Text("data"),),
-
           SizedBox(
             height: context.height * .9,
             child: ListView.separated(
@@ -75,7 +166,8 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
               ),
               separatorBuilder: (context, index) => verticalSpace12,
               itemCount: cartState.whenOrNull(
-                      ready: (products, price, isMoreLoading) => products.length) ??
+                      ready: (products, price, isMoreLoading) =>
+                          products.length) ??
                   0,
             ),
           ),

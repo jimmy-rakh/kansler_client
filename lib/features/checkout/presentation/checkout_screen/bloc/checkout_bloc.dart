@@ -9,27 +9,31 @@ import '../../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../../../orders/presentation/screen/bloc/orders_bloc.dart';
 import '../../../../orders/presentation/screen/dialogs/success_order_view.dart';
 import '../../../../profile/domain/entities/company.entity.dart';
+import '../../../data/models/create_order_request.dart';
 import '../../../domain/repositories/checkout.repository.dart';
 
 part 'checkout_state.dart';
+
 part 'checkout_event.dart';
+
 part 'checkout_bloc.freezed.dart';
 
 @injectable
 class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   final CheckoutRepository _checkoutRepository;
 
-  CheckoutBloc(this._checkoutRepository)
-      : super(const CheckoutState.initial()) {
+  CheckoutBloc(this._checkoutRepository) : super(const CheckoutState.ready()) {
     on<_Checkout>(_onCheckout);
     on<_PaymentType>(_paymentType);
     on<_DeliveryType>(_deliveryType);
   }
 
-
   void _onCheckout(_Checkout event, Emitter<CheckoutState> emit) async {
-
-    final res = await _checkoutRepository.createOrder();
+    final currentState = (state as _Ready);
+    final request = CreateOrderRequest(
+        paymentType: currentState.paymentType,
+        deliveryType: currentState.deliveryType);
+    final res = await _checkoutRepository.createOrder(request);
 
     final cartBloc =
         BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);
@@ -52,20 +56,11 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     });
   }
 
-  void _paymentType(
-      _PaymentType event, Emitter<CheckoutState> emit) async {
-    final paymentType = (state as _Ready).paymentType;
-
-
-      emit((state as _Ready).copyWith(paymentType:paymentType));
+  void _paymentType(_PaymentType event, Emitter<CheckoutState> emit) async {
+    emit((state as _Ready).copyWith(paymentType: event.paymentType));
   }
 
-  void _deliveryType(
-      _DeliveryType event, Emitter<CheckoutState> emit) async {
-    final deliveryType = (state as _Ready).deliveryType;
-
-
-    emit((state as _Ready).copyWith(deliveryType:deliveryType));
+  void _deliveryType(_DeliveryType event, Emitter<CheckoutState> emit) async {
+    emit((state as _Ready).copyWith(deliveryType: event.deliveryType));
   }
-
 }

@@ -62,7 +62,7 @@ class AppTabBar extends StatelessWidget {
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: CustomTabIndicator(
             radius: BorderRadius.all(Radius.circular(mainRadius)),
-            color: context.cardColor,
+            color: borderColor ?? context.cardColor,
           ),
           labelPadding: labelPadding,
           // labelStyle: context.textTheme.bodyMedium,

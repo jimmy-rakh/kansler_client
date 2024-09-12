@@ -1,3 +1,5 @@
+import 'package:device_info_plus/device_info_plus.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,12 +19,15 @@ import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
+import '../../../../../../shared/services/device/device_info.dart';
 import '../../../../../../shared/services/device/device_info_service.dart';
 import '../../../../domain/usecases/set_auth_token.usecase.dart';
 import '../../auth/bloc/auth_bloc.dart';
 
 part 'login_state.dart';
+
 part 'login_event.dart';
+
 part 'login_bloc.freezed.dart';
 
 @injectable
@@ -95,8 +100,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
 
     if (state.requestId == null) {
-      final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
-      final token = await NotificationService.getToken();
+      DeviceInfoPlugin infoPlugin = DeviceInfoPlugin();
+      WebBrowserInfo webBrowserInfo = await infoPlugin.webBrowserInfo;
+      final deviceInfo = kIsWeb
+          ? DeviceInfo(
+              info: webBrowserInfo.userAgent.toString(),
+              imei: 'appId',
+              name: webBrowserInfo.browserName.name,
+              appVersion: webBrowserInfo.appVersion.toString(),
+              type: 3)
+          : await getIt<DeviceInfoService>().getDeviceData();
+      final token = kIsWeb ? 'web' : await NotificationService.getToken();
 
       final request = AuthRequest(
         value: address?.cid.toString() ?? valueController.text,
