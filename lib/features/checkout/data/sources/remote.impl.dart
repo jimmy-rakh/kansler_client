@@ -26,4 +26,16 @@ class CheckoutRemoteSourceImpl implements CheckoutRemoteSource {
 
     return res;
   }
+
+  @override
+  Future<Either<Failure, OrdersDto>> createPreorder(CreateOrderRequest request) async {
+     final res = await _client.postRequest(
+      CheckoutRemoteKeys.precheckoutApi,
+      data: request.toJson(),
+      converter: (response) =>
+          OrdersDto.fromJson(response as Map<String, dynamic>),
+    );
+
+    return res;
+  }
 }

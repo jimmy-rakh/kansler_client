@@ -325,21 +325,21 @@ abstract class _Ready implements CheckoutState {
 mixin _$CheckoutEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkOut,
+    required TResult Function(CheckoutType type) checkOut,
     required TResult Function(String paymentType) paymentType,
     required TResult Function(String deliveryType) deliveryType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkOut,
+    TResult? Function(CheckoutType type)? checkOut,
     TResult? Function(String paymentType)? paymentType,
     TResult? Function(String deliveryType)? deliveryType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkOut,
+    TResult Function(CheckoutType type)? checkOut,
     TResult Function(String paymentType)? paymentType,
     TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
@@ -392,6 +392,8 @@ abstract class _$$CheckoutImplCopyWith<$Res> {
   factory _$$CheckoutImplCopyWith(
           _$CheckoutImpl value, $Res Function(_$CheckoutImpl) then) =
       __$$CheckoutImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CheckoutType type});
 }
 
 /// @nodoc
@@ -401,57 +403,81 @@ class __$$CheckoutImplCopyWithImpl<$Res>
   __$$CheckoutImplCopyWithImpl(
       _$CheckoutImpl _value, $Res Function(_$CheckoutImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$CheckoutImpl(
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CheckoutType,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$CheckoutImpl implements _Checkout {
-  const _$CheckoutImpl();
+  const _$CheckoutImpl(this.type);
+
+  @override
+  final CheckoutType type;
 
   @override
   String toString() {
-    return 'CheckoutEvent.checkOut()';
+    return 'CheckoutEvent.checkOut(type: $type)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CheckoutImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$CheckoutImpl &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CheckoutImplCopyWith<_$CheckoutImpl> get copyWith =>
+      __$$CheckoutImplCopyWithImpl<_$CheckoutImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkOut,
+    required TResult Function(CheckoutType type) checkOut,
     required TResult Function(String paymentType) paymentType,
     required TResult Function(String deliveryType) deliveryType,
   }) {
-    return checkOut();
+    return checkOut(type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkOut,
+    TResult? Function(CheckoutType type)? checkOut,
     TResult? Function(String paymentType)? paymentType,
     TResult? Function(String deliveryType)? deliveryType,
   }) {
-    return checkOut?.call();
+    return checkOut?.call(type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkOut,
+    TResult Function(CheckoutType type)? checkOut,
     TResult Function(String paymentType)? paymentType,
     TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
   }) {
     if (checkOut != null) {
-      return checkOut();
+      return checkOut(type);
     }
     return orElse();
   }
@@ -492,7 +518,12 @@ class _$CheckoutImpl implements _Checkout {
 }
 
 abstract class _Checkout implements CheckoutEvent {
-  const factory _Checkout() = _$CheckoutImpl;
+  const factory _Checkout(final CheckoutType type) = _$CheckoutImpl;
+
+  CheckoutType get type;
+  @JsonKey(ignore: true)
+  _$$CheckoutImplCopyWith<_$CheckoutImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -560,7 +591,7 @@ class _$PaymentTypeImpl implements _PaymentType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkOut,
+    required TResult Function(CheckoutType type) checkOut,
     required TResult Function(String paymentType) paymentType,
     required TResult Function(String deliveryType) deliveryType,
   }) {
@@ -570,7 +601,7 @@ class _$PaymentTypeImpl implements _PaymentType {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkOut,
+    TResult? Function(CheckoutType type)? checkOut,
     TResult? Function(String paymentType)? paymentType,
     TResult? Function(String deliveryType)? deliveryType,
   }) {
@@ -580,7 +611,7 @@ class _$PaymentTypeImpl implements _PaymentType {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkOut,
+    TResult Function(CheckoutType type)? checkOut,
     TResult Function(String paymentType)? paymentType,
     TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),
@@ -700,7 +731,7 @@ class _$DeliveryTypeImpl implements _DeliveryType {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() checkOut,
+    required TResult Function(CheckoutType type) checkOut,
     required TResult Function(String paymentType) paymentType,
     required TResult Function(String deliveryType) deliveryType,
   }) {
@@ -710,7 +741,7 @@ class _$DeliveryTypeImpl implements _DeliveryType {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? checkOut,
+    TResult? Function(CheckoutType type)? checkOut,
     TResult? Function(String paymentType)? paymentType,
     TResult? Function(String deliveryType)? deliveryType,
   }) {
@@ -720,7 +751,7 @@ class _$DeliveryTypeImpl implements _DeliveryType {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? checkOut,
+    TResult Function(CheckoutType type)? checkOut,
     TResult Function(String paymentType)? paymentType,
     TResult Function(String deliveryType)? deliveryType,
     required TResult orElse(),

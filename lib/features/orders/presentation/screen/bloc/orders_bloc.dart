@@ -58,7 +58,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
         emit((state as _Ready).copyWith(orders: orders, isMoreLoading: false));
         return;
       }
-      emit(OrdersState.ready(r.orders));
+      emit(OrdersState.ready(orders: r.orders));
     });
   }
 

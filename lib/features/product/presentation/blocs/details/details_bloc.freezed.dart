@@ -452,6 +452,7 @@ mixin _$DetailsEvent {
     required TResult Function(ProductEntity product) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
+    required TResult Function() addToPreorder,
     required TResult Function() updateView,
   }) =>
       throw _privateConstructorUsedError;
@@ -460,6 +461,7 @@ mixin _$DetailsEvent {
     TResult? Function(ProductEntity product)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
+    TResult? Function()? addToPreorder,
     TResult? Function()? updateView,
   }) =>
       throw _privateConstructorUsedError;
@@ -468,6 +470,7 @@ mixin _$DetailsEvent {
     TResult Function(ProductEntity product)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
+    TResult Function()? addToPreorder,
     TResult Function()? updateView,
     required TResult orElse(),
   }) =>
@@ -477,6 +480,7 @@ mixin _$DetailsEvent {
     required TResult Function(_SetData value) setData,
     required TResult Function(_FetchProduct value) fetchProduct,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_AddToPreorder value) addToPreorder,
     required TResult Function(_UpdateView value) updateView,
   }) =>
       throw _privateConstructorUsedError;
@@ -485,6 +489,7 @@ mixin _$DetailsEvent {
     TResult? Function(_SetData value)? setData,
     TResult? Function(_FetchProduct value)? fetchProduct,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_AddToPreorder value)? addToPreorder,
     TResult? Function(_UpdateView value)? updateView,
   }) =>
       throw _privateConstructorUsedError;
@@ -493,6 +498,7 @@ mixin _$DetailsEvent {
     TResult Function(_SetData value)? setData,
     TResult Function(_FetchProduct value)? fetchProduct,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_AddToPreorder value)? addToPreorder,
     TResult Function(_UpdateView value)? updateView,
     required TResult orElse(),
   }) =>
@@ -594,6 +600,7 @@ class _$SetDataImpl implements _SetData {
     required TResult Function(ProductEntity product) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
+    required TResult Function() addToPreorder,
     required TResult Function() updateView,
   }) {
     return setData(product);
@@ -605,6 +612,7 @@ class _$SetDataImpl implements _SetData {
     TResult? Function(ProductEntity product)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
+    TResult? Function()? addToPreorder,
     TResult? Function()? updateView,
   }) {
     return setData?.call(product);
@@ -616,6 +624,7 @@ class _$SetDataImpl implements _SetData {
     TResult Function(ProductEntity product)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
+    TResult Function()? addToPreorder,
     TResult Function()? updateView,
     required TResult orElse(),
   }) {
@@ -631,6 +640,7 @@ class _$SetDataImpl implements _SetData {
     required TResult Function(_SetData value) setData,
     required TResult Function(_FetchProduct value) fetchProduct,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_AddToPreorder value) addToPreorder,
     required TResult Function(_UpdateView value) updateView,
   }) {
     return setData(this);
@@ -642,6 +652,7 @@ class _$SetDataImpl implements _SetData {
     TResult? Function(_SetData value)? setData,
     TResult? Function(_FetchProduct value)? fetchProduct,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_AddToPreorder value)? addToPreorder,
     TResult? Function(_UpdateView value)? updateView,
   }) {
     return setData?.call(this);
@@ -653,6 +664,7 @@ class _$SetDataImpl implements _SetData {
     TResult Function(_SetData value)? setData,
     TResult Function(_FetchProduct value)? fetchProduct,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_AddToPreorder value)? addToPreorder,
     TResult Function(_UpdateView value)? updateView,
     required TResult orElse(),
   }) {
@@ -739,6 +751,7 @@ class _$FetchProductImpl implements _FetchProduct {
     required TResult Function(ProductEntity product) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
+    required TResult Function() addToPreorder,
     required TResult Function() updateView,
   }) {
     return fetchProduct(id);
@@ -750,6 +763,7 @@ class _$FetchProductImpl implements _FetchProduct {
     TResult? Function(ProductEntity product)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
+    TResult? Function()? addToPreorder,
     TResult? Function()? updateView,
   }) {
     return fetchProduct?.call(id);
@@ -761,6 +775,7 @@ class _$FetchProductImpl implements _FetchProduct {
     TResult Function(ProductEntity product)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
+    TResult Function()? addToPreorder,
     TResult Function()? updateView,
     required TResult orElse(),
   }) {
@@ -776,6 +791,7 @@ class _$FetchProductImpl implements _FetchProduct {
     required TResult Function(_SetData value) setData,
     required TResult Function(_FetchProduct value) fetchProduct,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_AddToPreorder value) addToPreorder,
     required TResult Function(_UpdateView value) updateView,
   }) {
     return fetchProduct(this);
@@ -787,6 +803,7 @@ class _$FetchProductImpl implements _FetchProduct {
     TResult? Function(_SetData value)? setData,
     TResult? Function(_FetchProduct value)? fetchProduct,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_AddToPreorder value)? addToPreorder,
     TResult? Function(_UpdateView value)? updateView,
   }) {
     return fetchProduct?.call(this);
@@ -798,6 +815,7 @@ class _$FetchProductImpl implements _FetchProduct {
     TResult Function(_SetData value)? setData,
     TResult Function(_FetchProduct value)? fetchProduct,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_AddToPreorder value)? addToPreorder,
     TResult Function(_UpdateView value)? updateView,
     required TResult orElse(),
   }) {
@@ -858,6 +876,7 @@ class _$AddToCartImpl implements _AddToCart {
     required TResult Function(ProductEntity product) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
+    required TResult Function() addToPreorder,
     required TResult Function() updateView,
   }) {
     return addToCart();
@@ -869,6 +888,7 @@ class _$AddToCartImpl implements _AddToCart {
     TResult? Function(ProductEntity product)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
+    TResult? Function()? addToPreorder,
     TResult? Function()? updateView,
   }) {
     return addToCart?.call();
@@ -880,6 +900,7 @@ class _$AddToCartImpl implements _AddToCart {
     TResult Function(ProductEntity product)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
+    TResult Function()? addToPreorder,
     TResult Function()? updateView,
     required TResult orElse(),
   }) {
@@ -895,6 +916,7 @@ class _$AddToCartImpl implements _AddToCart {
     required TResult Function(_SetData value) setData,
     required TResult Function(_FetchProduct value) fetchProduct,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_AddToPreorder value) addToPreorder,
     required TResult Function(_UpdateView value) updateView,
   }) {
     return addToCart(this);
@@ -906,6 +928,7 @@ class _$AddToCartImpl implements _AddToCart {
     TResult? Function(_SetData value)? setData,
     TResult? Function(_FetchProduct value)? fetchProduct,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_AddToPreorder value)? addToPreorder,
     TResult? Function(_UpdateView value)? updateView,
   }) {
     return addToCart?.call(this);
@@ -917,6 +940,7 @@ class _$AddToCartImpl implements _AddToCart {
     TResult Function(_SetData value)? setData,
     TResult Function(_FetchProduct value)? fetchProduct,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_AddToPreorder value)? addToPreorder,
     TResult Function(_UpdateView value)? updateView,
     required TResult orElse(),
   }) {
@@ -929,6 +953,126 @@ class _$AddToCartImpl implements _AddToCart {
 
 abstract class _AddToCart implements DetailsEvent {
   const factory _AddToCart() = _$AddToCartImpl;
+}
+
+/// @nodoc
+abstract class _$$AddToPreorderImplCopyWith<$Res> {
+  factory _$$AddToPreorderImplCopyWith(
+          _$AddToPreorderImpl value, $Res Function(_$AddToPreorderImpl) then) =
+      __$$AddToPreorderImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$AddToPreorderImplCopyWithImpl<$Res>
+    extends _$DetailsEventCopyWithImpl<$Res, _$AddToPreorderImpl>
+    implements _$$AddToPreorderImplCopyWith<$Res> {
+  __$$AddToPreorderImplCopyWithImpl(
+      _$AddToPreorderImpl _value, $Res Function(_$AddToPreorderImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$AddToPreorderImpl implements _AddToPreorder {
+  const _$AddToPreorderImpl();
+
+  @override
+  String toString() {
+    return 'DetailsEvent.addToPreorder()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$AddToPreorderImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) fetchProduct,
+    required TResult Function() addToCart,
+    required TResult Function() addToPreorder,
+    required TResult Function() updateView,
+  }) {
+    return addToPreorder();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? fetchProduct,
+    TResult? Function()? addToCart,
+    TResult? Function()? addToPreorder,
+    TResult? Function()? updateView,
+  }) {
+    return addToPreorder?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? fetchProduct,
+    TResult Function()? addToCart,
+    TResult Function()? addToPreorder,
+    TResult Function()? updateView,
+    required TResult orElse(),
+  }) {
+    if (addToPreorder != null) {
+      return addToPreorder();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SetData value) setData,
+    required TResult Function(_FetchProduct value) fetchProduct,
+    required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_AddToPreorder value) addToPreorder,
+    required TResult Function(_UpdateView value) updateView,
+  }) {
+    return addToPreorder(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SetData value)? setData,
+    TResult? Function(_FetchProduct value)? fetchProduct,
+    TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_AddToPreorder value)? addToPreorder,
+    TResult? Function(_UpdateView value)? updateView,
+  }) {
+    return addToPreorder?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SetData value)? setData,
+    TResult Function(_FetchProduct value)? fetchProduct,
+    TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_AddToPreorder value)? addToPreorder,
+    TResult Function(_UpdateView value)? updateView,
+    required TResult orElse(),
+  }) {
+    if (addToPreorder != null) {
+      return addToPreorder(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddToPreorder implements DetailsEvent {
+  const factory _AddToPreorder() = _$AddToPreorderImpl;
 }
 
 /// @nodoc
@@ -972,6 +1116,7 @@ class _$UpdateViewImpl implements _UpdateView {
     required TResult Function(ProductEntity product) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
+    required TResult Function() addToPreorder,
     required TResult Function() updateView,
   }) {
     return updateView();
@@ -983,6 +1128,7 @@ class _$UpdateViewImpl implements _UpdateView {
     TResult? Function(ProductEntity product)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
+    TResult? Function()? addToPreorder,
     TResult? Function()? updateView,
   }) {
     return updateView?.call();
@@ -994,6 +1140,7 @@ class _$UpdateViewImpl implements _UpdateView {
     TResult Function(ProductEntity product)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
+    TResult Function()? addToPreorder,
     TResult Function()? updateView,
     required TResult orElse(),
   }) {
@@ -1009,6 +1156,7 @@ class _$UpdateViewImpl implements _UpdateView {
     required TResult Function(_SetData value) setData,
     required TResult Function(_FetchProduct value) fetchProduct,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_AddToPreorder value) addToPreorder,
     required TResult Function(_UpdateView value) updateView,
   }) {
     return updateView(this);
@@ -1020,6 +1168,7 @@ class _$UpdateViewImpl implements _UpdateView {
     TResult? Function(_SetData value)? setData,
     TResult? Function(_FetchProduct value)? fetchProduct,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_AddToPreorder value)? addToPreorder,
     TResult? Function(_UpdateView value)? updateView,
   }) {
     return updateView?.call(this);
@@ -1031,6 +1180,7 @@ class _$UpdateViewImpl implements _UpdateView {
     TResult Function(_SetData value)? setData,
     TResult Function(_FetchProduct value)? fetchProduct,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_AddToPreorder value)? addToPreorder,
     TResult Function(_UpdateView value)? updateView,
     required TResult orElse(),
   }) {

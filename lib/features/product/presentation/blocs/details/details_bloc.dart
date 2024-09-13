@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 
 import '../../../../../app/router.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch.product.usecase.dart';
-
 
 part 'details_state.dart';
 part 'details_event.dart';
@@ -25,6 +25,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     on<_FetchProduct>(_onFetchProduct);
     on<_AddToCart>(_onAddToCart);
     on<_UpdateView>(_onUpdateView);
+    on<_AddToPreorder>(_onAddToPreorder);
   }
 
   TextEditingController fieldController = TextEditingController(text: '1');
@@ -79,6 +80,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     if (product.leftQuantity < int.parse(fieldController.text)) {
       router.navigatorKey.currentContext!
           .showToast('Недостаточно кол-во в складе');
+      fieldController.text = '1';
 
       return;
     }
@@ -96,5 +98,23 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     emit((state as _Success).copyWith(
         product: (state as _Success).product.copyWith(
             price: productPrice * (int.tryParse(fieldController.text) ?? 0))));
+  }
+
+  void _onAddToPreorder(_AddToPreorder event, Emitter<DetailsState> emit) {
+    if (state is! _Success) return;
+    final preordersBloc =
+        BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!);
+
+    final product = (state as _Success).product;
+
+    !product.inPreorder!
+        ? preordersBloc.add(PreordersEvent.addToPreorders(
+            product.id, int.parse(fieldController.text),
+            updateDependencies: true))
+        : preordersBloc
+            .add(PreordersEvent.deleteProductInPreorders(product.id));
+
+    emit((state as _Success)
+        .copyWith(product: product.copyWith(inPreorder: !product.inPreorder!)));
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_network/image_network.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../../../../app/router.dart';
 import '../../../../../../core/constants/kaze_icons.dart';

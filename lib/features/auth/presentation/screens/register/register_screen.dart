@@ -34,7 +34,7 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
     return KeyboardEscape(
       child: Scaffold(
         body: SizedBox(
-          width: context.isMobile ? context.width * .9 : context.width * .33,
+          width: context.isMobile ? context.width : context.width * .33,
           child: Stack(
             children: [
               const Positioned(top: 60, child: AutoLeadingButton()),

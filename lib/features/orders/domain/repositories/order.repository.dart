@@ -11,4 +11,12 @@ abstract class OrdersRepository {
 
   Future<Either<Failure, ({bool hasNext, List<CartProduct> cartProducts})>>
       getOrderProducts(int id, int page);
+
+  Future<Either<Failure, ({bool hasNext, List<OrdersDto> orders})>> getPreorder(
+      int page);
+
+  Future<Either<Failure, OrdersDto>> getPreorderById(int id);
+
+  Future<Either<Failure, ({bool hasNext, List<CartProduct> cartProducts})>>
+      getPreorderProducts(int id, int page);
 }

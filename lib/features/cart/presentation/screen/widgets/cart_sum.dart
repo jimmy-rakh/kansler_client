@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_button.dart';
 import 'package:kansler/core/widgets/app_card.dart';
@@ -16,7 +17,6 @@ class CartSumWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<CheckoutBloc>();
-    final state = useBlocBuilder(bloc);
     final cartBloc = context.read<CartBloc>();
     final cartState = useBlocBuilder(cartBloc);
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
@@ -52,7 +52,7 @@ class CartSumWidget extends HookWidget {
                               borderRadius: 0,
                               fillColor: context.primary,
                               onPressed: () => context.isSmall ?
-                                  cartBloc.add(const CartEvent.toCheckout()) : bloc.add(const CheckoutEvent.checkOut()),
+                                  cartBloc.add(const CartEvent.toCheckout()) : bloc.add( CheckoutEvent.checkOut(CheckoutType.cart)),
                             )
                           ],
                         ),

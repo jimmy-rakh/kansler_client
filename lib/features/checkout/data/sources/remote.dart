@@ -6,4 +6,6 @@ import '../models/create_order_request.dart';
 
 abstract class CheckoutRemoteSource {
   Future<Either<Failure, OrdersDto>> createOrder(CreateOrderRequest request);
+
+  Future<Either<Failure, OrdersDto>> createPreorder(CreateOrderRequest request);
 }

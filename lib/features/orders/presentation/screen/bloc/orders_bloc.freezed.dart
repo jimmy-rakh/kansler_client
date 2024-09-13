@@ -19,19 +19,25 @@ mixin _$OrdersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<OrdersDto> orders, bool isMoreLoading) ready,
+    required TResult Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<OrdersDto> orders, bool isMoreLoading)? ready,
+    TResult? Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)?
+        ready,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<OrdersDto> orders, bool isMoreLoading)? ready,
+    TResult Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)?
+        ready,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,7 +119,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<OrdersDto> orders, bool isMoreLoading) ready,
+    required TResult Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)
+        ready,
   }) {
     return loadInProgress();
   }
@@ -122,7 +130,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<OrdersDto> orders, bool isMoreLoading)? ready,
+    TResult? Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)?
+        ready,
   }) {
     return loadInProgress?.call();
   }
@@ -131,7 +141,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<OrdersDto> orders, bool isMoreLoading)? ready,
+    TResult Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)?
+        ready,
     required TResult orElse(),
   }) {
     if (loadInProgress != null) {
@@ -182,7 +194,8 @@ abstract class _$$ReadyImplCopyWith<$Res> {
           _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
       __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<OrdersDto> orders, bool isMoreLoading});
+  $Res call(
+      {bool isMoreLoading, List<OrdersDto> orders, List<OrdersDto> preorders});
 }
 
 /// @nodoc
@@ -196,18 +209,23 @@ class __$$ReadyImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? orders = null,
     Object? isMoreLoading = null,
+    Object? orders = null,
+    Object? preorders = null,
   }) {
     return _then(_$ReadyImpl(
-      null == orders
-          ? _value._orders
-          : orders // ignore: cast_nullable_to_non_nullable
-              as List<OrdersDto>,
       isMoreLoading: null == isMoreLoading
           ? _value.isMoreLoading
           : isMoreLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      orders: null == orders
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<OrdersDto>,
+      preorders: null == preorders
+          ? _value._preorders
+          : preorders // ignore: cast_nullable_to_non_nullable
+              as List<OrdersDto>,
     ));
   }
 }
@@ -215,24 +233,37 @@ class __$$ReadyImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ReadyImpl implements _Ready {
-  const _$ReadyImpl(final List<OrdersDto> orders, {this.isMoreLoading = false})
-      : _orders = orders;
+  const _$ReadyImpl(
+      {this.isMoreLoading = false,
+      final List<OrdersDto> orders = const [],
+      final List<OrdersDto> preorders = const []})
+      : _orders = orders,
+        _preorders = preorders;
 
+  @override
+  @JsonKey()
+  final bool isMoreLoading;
   final List<OrdersDto> _orders;
   @override
+  @JsonKey()
   List<OrdersDto> get orders {
     if (_orders is EqualUnmodifiableListView) return _orders;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_orders);
   }
 
+  final List<OrdersDto> _preorders;
   @override
   @JsonKey()
-  final bool isMoreLoading;
+  List<OrdersDto> get preorders {
+    if (_preorders is EqualUnmodifiableListView) return _preorders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_preorders);
+  }
 
   @override
   String toString() {
-    return 'OrdersState.ready(orders: $orders, isMoreLoading: $isMoreLoading)';
+    return 'OrdersState.ready(isMoreLoading: $isMoreLoading, orders: $orders, preorders: $preorders)';
   }
 
   @override
@@ -240,14 +271,19 @@ class _$ReadyImpl implements _Ready {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
-            const DeepCollectionEquality().equals(other._orders, _orders) &&
             (identical(other.isMoreLoading, isMoreLoading) ||
-                other.isMoreLoading == isMoreLoading));
+                other.isMoreLoading == isMoreLoading) &&
+            const DeepCollectionEquality().equals(other._orders, _orders) &&
+            const DeepCollectionEquality()
+                .equals(other._preorders, _preorders));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_orders), isMoreLoading);
+      runtimeType,
+      isMoreLoading,
+      const DeepCollectionEquality().hash(_orders),
+      const DeepCollectionEquality().hash(_preorders));
 
   @JsonKey(ignore: true)
   @override
@@ -259,29 +295,35 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<OrdersDto> orders, bool isMoreLoading) ready,
+    required TResult Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)
+        ready,
   }) {
-    return ready(orders, isMoreLoading);
+    return ready(isMoreLoading, orders, preorders);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<OrdersDto> orders, bool isMoreLoading)? ready,
+    TResult? Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)?
+        ready,
   }) {
-    return ready?.call(orders, isMoreLoading);
+    return ready?.call(isMoreLoading, orders, preorders);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<OrdersDto> orders, bool isMoreLoading)? ready,
+    TResult Function(bool isMoreLoading, List<OrdersDto> orders,
+            List<OrdersDto> preorders)?
+        ready,
     required TResult orElse(),
   }) {
     if (ready != null) {
-      return ready(orders, isMoreLoading);
+      return ready(isMoreLoading, orders, preorders);
     }
     return orElse();
   }
@@ -319,11 +361,14 @@ class _$ReadyImpl implements _Ready {
 }
 
 abstract class _Ready implements OrdersState {
-  const factory _Ready(final List<OrdersDto> orders,
-      {final bool isMoreLoading}) = _$ReadyImpl;
+  const factory _Ready(
+      {final bool isMoreLoading,
+      final List<OrdersDto> orders,
+      final List<OrdersDto> preorders}) = _$ReadyImpl;
 
-  List<OrdersDto> get orders;
   bool get isMoreLoading;
+  List<OrdersDto> get orders;
+  List<OrdersDto> get preorders;
   @JsonKey(ignore: true)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -334,18 +379,21 @@ mixin _$OrdersEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMore) fetchOrders,
+    required TResult Function(bool isMore) fetchPreorders,
     required TResult Function(int id) toOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMore)? fetchOrders,
+    TResult? Function(bool isMore)? fetchPreorders,
     TResult? Function(int id)? toOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMore)? fetchOrders,
+    TResult Function(bool isMore)? fetchPreorders,
     TResult Function(int id)? toOrder,
     required TResult orElse(),
   }) =>
@@ -353,18 +401,21 @@ mixin _$OrdersEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchOrders value) fetchOrders,
+    required TResult Function(_FetchPreorders value) fetchPreorders,
     required TResult Function(_ToOrder value) toOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchOrders value)? fetchOrders,
+    TResult? Function(_FetchPreorders value)? fetchPreorders,
     TResult? Function(_ToOrder value)? toOrder,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchOrders value)? fetchOrders,
+    TResult Function(_FetchPreorders value)? fetchPreorders,
     TResult Function(_ToOrder value)? toOrder,
     required TResult orElse(),
   }) =>
@@ -455,6 +506,7 @@ class _$FetchOrdersImpl implements _FetchOrders {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMore) fetchOrders,
+    required TResult Function(bool isMore) fetchPreorders,
     required TResult Function(int id) toOrder,
   }) {
     return fetchOrders(isMore);
@@ -464,6 +516,7 @@ class _$FetchOrdersImpl implements _FetchOrders {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMore)? fetchOrders,
+    TResult? Function(bool isMore)? fetchPreorders,
     TResult? Function(int id)? toOrder,
   }) {
     return fetchOrders?.call(isMore);
@@ -473,6 +526,7 @@ class _$FetchOrdersImpl implements _FetchOrders {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMore)? fetchOrders,
+    TResult Function(bool isMore)? fetchPreorders,
     TResult Function(int id)? toOrder,
     required TResult orElse(),
   }) {
@@ -486,6 +540,7 @@ class _$FetchOrdersImpl implements _FetchOrders {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchOrders value) fetchOrders,
+    required TResult Function(_FetchPreorders value) fetchPreorders,
     required TResult Function(_ToOrder value) toOrder,
   }) {
     return fetchOrders(this);
@@ -495,6 +550,7 @@ class _$FetchOrdersImpl implements _FetchOrders {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchOrders value)? fetchOrders,
+    TResult? Function(_FetchPreorders value)? fetchPreorders,
     TResult? Function(_ToOrder value)? toOrder,
   }) {
     return fetchOrders?.call(this);
@@ -504,6 +560,7 @@ class _$FetchOrdersImpl implements _FetchOrders {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchOrders value)? fetchOrders,
+    TResult Function(_FetchPreorders value)? fetchPreorders,
     TResult Function(_ToOrder value)? toOrder,
     required TResult orElse(),
   }) {
@@ -520,6 +577,147 @@ abstract class _FetchOrders implements OrdersEvent {
   bool get isMore;
   @JsonKey(ignore: true)
   _$$FetchOrdersImplCopyWith<_$FetchOrdersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchPreordersImplCopyWith<$Res> {
+  factory _$$FetchPreordersImplCopyWith(_$FetchPreordersImpl value,
+          $Res Function(_$FetchPreordersImpl) then) =
+      __$$FetchPreordersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({bool isMore});
+}
+
+/// @nodoc
+class __$$FetchPreordersImplCopyWithImpl<$Res>
+    extends _$OrdersEventCopyWithImpl<$Res, _$FetchPreordersImpl>
+    implements _$$FetchPreordersImplCopyWith<$Res> {
+  __$$FetchPreordersImplCopyWithImpl(
+      _$FetchPreordersImpl _value, $Res Function(_$FetchPreordersImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isMore = null,
+  }) {
+    return _then(_$FetchPreordersImpl(
+      isMore: null == isMore
+          ? _value.isMore
+          : isMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchPreordersImpl implements _FetchPreorders {
+  const _$FetchPreordersImpl({this.isMore = false});
+
+  @override
+  @JsonKey()
+  final bool isMore;
+
+  @override
+  String toString() {
+    return 'OrdersEvent.fetchPreorders(isMore: $isMore)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchPreordersImpl &&
+            (identical(other.isMore, isMore) || other.isMore == isMore));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isMore);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchPreordersImplCopyWith<_$FetchPreordersImpl> get copyWith =>
+      __$$FetchPreordersImplCopyWithImpl<_$FetchPreordersImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(bool isMore) fetchOrders,
+    required TResult Function(bool isMore) fetchPreorders,
+    required TResult Function(int id) toOrder,
+  }) {
+    return fetchPreorders(isMore);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(bool isMore)? fetchOrders,
+    TResult? Function(bool isMore)? fetchPreorders,
+    TResult? Function(int id)? toOrder,
+  }) {
+    return fetchPreorders?.call(isMore);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(bool isMore)? fetchOrders,
+    TResult Function(bool isMore)? fetchPreorders,
+    TResult Function(int id)? toOrder,
+    required TResult orElse(),
+  }) {
+    if (fetchPreorders != null) {
+      return fetchPreorders(isMore);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchOrders value) fetchOrders,
+    required TResult Function(_FetchPreorders value) fetchPreorders,
+    required TResult Function(_ToOrder value) toOrder,
+  }) {
+    return fetchPreorders(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchOrders value)? fetchOrders,
+    TResult? Function(_FetchPreorders value)? fetchPreorders,
+    TResult? Function(_ToOrder value)? toOrder,
+  }) {
+    return fetchPreorders?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchOrders value)? fetchOrders,
+    TResult Function(_FetchPreorders value)? fetchPreorders,
+    TResult Function(_ToOrder value)? toOrder,
+    required TResult orElse(),
+  }) {
+    if (fetchPreorders != null) {
+      return fetchPreorders(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchPreorders implements OrdersEvent {
+  const factory _FetchPreorders({final bool isMore}) = _$FetchPreordersImpl;
+
+  bool get isMore;
+  @JsonKey(ignore: true)
+  _$$FetchPreordersImplCopyWith<_$FetchPreordersImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -588,6 +786,7 @@ class _$ToOrderImpl implements _ToOrder {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(bool isMore) fetchOrders,
+    required TResult Function(bool isMore) fetchPreorders,
     required TResult Function(int id) toOrder,
   }) {
     return toOrder(id);
@@ -597,6 +796,7 @@ class _$ToOrderImpl implements _ToOrder {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(bool isMore)? fetchOrders,
+    TResult? Function(bool isMore)? fetchPreorders,
     TResult? Function(int id)? toOrder,
   }) {
     return toOrder?.call(id);
@@ -606,6 +806,7 @@ class _$ToOrderImpl implements _ToOrder {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(bool isMore)? fetchOrders,
+    TResult Function(bool isMore)? fetchPreorders,
     TResult Function(int id)? toOrder,
     required TResult orElse(),
   }) {
@@ -619,6 +820,7 @@ class _$ToOrderImpl implements _ToOrder {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_FetchOrders value) fetchOrders,
+    required TResult Function(_FetchPreorders value) fetchPreorders,
     required TResult Function(_ToOrder value) toOrder,
   }) {
     return toOrder(this);
@@ -628,6 +830,7 @@ class _$ToOrderImpl implements _ToOrder {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_FetchOrders value)? fetchOrders,
+    TResult? Function(_FetchPreorders value)? fetchPreorders,
     TResult? Function(_ToOrder value)? toOrder,
   }) {
     return toOrder?.call(this);
@@ -637,6 +840,7 @@ class _$ToOrderImpl implements _ToOrder {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_FetchOrders value)? fetchOrders,
+    TResult Function(_FetchPreorders value)? fetchPreorders,
     TResult Function(_ToOrder value)? toOrder,
     required TResult orElse(),
   }) {

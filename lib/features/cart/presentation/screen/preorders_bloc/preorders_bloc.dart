@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/app/router.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/features/auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/cart/domain/repositories/cart.repository.dart';
@@ -213,6 +214,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
   }
 
   void _onToCheckout(_ToCheckout event, Emitter<PreordersState> emit) {
-    router.push(const CheckoutRoute());
+    router.push( CheckoutRoute(type: CheckoutType.preorder));
   }
 }

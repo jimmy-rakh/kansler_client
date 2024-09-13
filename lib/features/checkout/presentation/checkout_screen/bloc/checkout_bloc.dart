@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../../../app/router.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
@@ -8,7 +9,6 @@ import '../../../../home/presentation/blocs/latest/latest_bloc.dart';
 import '../../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../../../orders/presentation/screen/bloc/orders_bloc.dart';
 import '../../../../orders/presentation/screen/dialogs/success_order_view.dart';
-import '../../../../profile/domain/entities/company.entity.dart';
 import '../../../data/models/create_order_request.dart';
 import '../../../domain/repositories/checkout.repository.dart';
 
@@ -33,7 +33,9 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     final request = CreateOrderRequest(
         paymentType: currentState.paymentType,
         deliveryType: currentState.deliveryType);
-    final res = await _checkoutRepository.createOrder(request);
+    final res = event.type == CheckoutType.cart
+        ? await _checkoutRepository.createOrder(request)
+        : await _checkoutRepository.createPreorder(request);
 
     final cartBloc =
         BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);

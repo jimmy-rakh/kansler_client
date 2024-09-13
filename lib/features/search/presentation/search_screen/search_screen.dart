@@ -17,13 +17,9 @@ import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
-import '../../../categories/presentation/screens/category/bloc/categories_bloc.dart';
 import '../../../product/presentation/widgets/product_card.dart';
 import '../../domain/entities/search.entity.dart';
-import '../filter_screen/filter_screen.dart';
-import '../filter_screen/widgets/brands_section.dart';
 import '../filter_screen/widgets/brands_view.dart';
-import '../filter_screen/widgets/categories_section.dart';
 import '../filter_screen/widgets/categories_view.dart';
 import 'blocs/search_bloc/search_bloc.dart';
 
@@ -59,9 +55,6 @@ class _SearchScreenState extends State<SearchScreen> {
     final bloc = context.read<SearchBloc>();
     final state = useBlocBuilder(bloc);
     final authBloc = context.read<AuthBloc>();
-    final categoryBloc = context.read<CategoriesBloc>();
-    final categoryState = useBlocBuilder(categoryBloc);
-
     final currentWidth = MediaQuery.of(context).size.width;
     final crossCount = (currentWidth / 300).floor();
 

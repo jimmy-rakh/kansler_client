@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/map/presentation/map_screen.dart';

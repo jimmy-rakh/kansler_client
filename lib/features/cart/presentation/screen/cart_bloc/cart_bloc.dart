@@ -17,7 +17,6 @@ import '../../../domain/usecases/get_cart_price.usecase.dart';
 import '../../../domain/usecases/get_cart_products.usecase.dart';
 import '../../../domain/usecases/update_product_in_cart.usecase.dart';
 
-
 part 'cart_state.dart';
 part 'cart_event.dart';
 part 'cart_bloc.freezed.dart';
@@ -228,6 +227,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   void _onToCheckout(_ToCheckout event, Emitter<CartState> emit) {
-    router.push(const CheckoutRoute());
+    router.push(CheckoutRoute());
   }
 }

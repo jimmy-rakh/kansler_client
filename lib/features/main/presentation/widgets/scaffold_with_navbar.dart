@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:kansler/core/extensions/context.dart';
-import 'package:kansler/core/widgets/widgets.dart';
 import 'package:kansler/features/main/presentation/widgets/web_navigation.dart';
 
 import 'navbar.dart';

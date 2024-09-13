@@ -11,4 +11,12 @@ abstract class OrdersRemoteSource {
 
   Future<Either<Failure, ({bool hasNext, List<CartProductDto> cartProducts})>>
       getOrderProducts(int id, int page);
+
+  Future<Either<Failure, ({bool hasNext, List<OrdersDto> orders})>> getPreorder(
+      int page);
+
+  Future<Either<Failure, OrdersDto>> getPreorderById(int id);
+
+  Future<Either<Failure, ({bool hasNext, List<CartProductDto> cartProducts})>>
+      getPreorderProducts(int id, int page);
 }

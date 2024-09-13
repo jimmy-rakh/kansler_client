@@ -40,4 +40,34 @@ class OrderRepositoryImpl implements OrdersRepository {
       },
     );
   }
+
+  @override
+  Future<Either<Failure, ({bool hasNext, List<OrdersDto> orders})>> getPreorder(
+      int page) async {
+    final res = await _ordersRemoteSource.getPreorder(page);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, OrdersDto>> getPreorderById(int id) async {
+    final res = await _ordersRemoteSource.getOrderById(id);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, ({List<CartProduct> cartProducts, bool hasNext})>>
+      getPreorderProducts(int id, int page) async {
+    final res = await _ordersRemoteSource.getPreorderProducts(id, page);
+
+    return res.fold(
+      (l) => Left(l),
+      (r) {
+        final result = r.cartProducts.map((e) => e.toEntity()).toList();
+
+        return Right((hasNext: r.hasNext, cartProducts: result));
+      },
+    );
+  }
 }

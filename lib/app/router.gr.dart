@@ -51,9 +51,15 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     CheckoutRoute.name: (routeData) {
+      final args = routeData.argsAs<CheckoutRouteArgs>(
+          orElse: () => const CheckoutRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const CheckoutScreen()),
+        child: WrappedRoute(
+            child: CheckoutScreen(
+          key: args.key,
+          type: args.type,
+        )),
       );
     },
     CompaniesRoute.name: (routeData) {
@@ -319,16 +325,40 @@ class CategoriesWrapperRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [CheckoutScreen]
-class CheckoutRoute extends PageRouteInfo<void> {
-  const CheckoutRoute({List<PageRouteInfo>? children})
-      : super(
+class CheckoutRoute extends PageRouteInfo<CheckoutRouteArgs> {
+  CheckoutRoute({
+    Key? key,
+    CheckoutType type = CheckoutType.cart,
+    List<PageRouteInfo>? children,
+  }) : super(
           CheckoutRoute.name,
+          args: CheckoutRouteArgs(
+            key: key,
+            type: type,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'CheckoutRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<CheckoutRouteArgs> page =
+      PageInfo<CheckoutRouteArgs>(name);
+}
+
+class CheckoutRouteArgs {
+  const CheckoutRouteArgs({
+    this.key,
+    this.type = CheckoutType.cart,
+  });
+
+  final Key? key;
+
+  final CheckoutType type;
+
+  @override
+  String toString() {
+    return 'CheckoutRouteArgs{key: $key, type: $type}';
+  }
 }
 
 /// generated route for

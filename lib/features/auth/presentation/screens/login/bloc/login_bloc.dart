@@ -100,16 +100,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
 
     if (state.requestId == null) {
+      late DeviceInfo deviceInfo;
       DeviceInfoPlugin infoPlugin = DeviceInfoPlugin();
-      WebBrowserInfo webBrowserInfo = await infoPlugin.webBrowserInfo;
-      final deviceInfo = kIsWeb
-          ? DeviceInfo(
-              info: webBrowserInfo.userAgent.toString(),
-              imei: 'appId',
-              name: webBrowserInfo.browserName.name,
-              appVersion: webBrowserInfo.appVersion.toString(),
-              type: 3)
-          : await getIt<DeviceInfoService>().getDeviceData();
+      if (kIsWeb) {
+        WebBrowserInfo webBrowserInfo = await infoPlugin.webBrowserInfo;
+        deviceInfo = DeviceInfo(
+          info: webBrowserInfo.userAgent.toString(),
+          imei: 'appId',
+          name: webBrowserInfo.browserName.name,
+          appVersion: webBrowserInfo.appVersion.toString(),
+          type: 3,
+        );
+      } else {
+        deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
+      }
+
       final token = kIsWeb ? 'web' : await NotificationService.getToken();
 
       final request = AuthRequest(

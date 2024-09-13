@@ -7,16 +7,23 @@ import '../../domain/repositories/checkout.repository.dart';
 import '../models/create_order_request.dart';
 import '../sources/remote.dart';
 
-
 @Injectable(as: CheckoutRepository)
 class CheckoutRepositoryImpl implements CheckoutRepository {
   final CheckoutRemoteSource _checkoutRemoteSource;
 
   CheckoutRepositoryImpl(this._checkoutRemoteSource);
   @override
-  Future<Either<Failure, OrdersDto>> createOrder(CreateOrderRequest request) async {
-
+  Future<Either<Failure, OrdersDto>> createOrder(
+      CreateOrderRequest request) async {
     final res = await _checkoutRemoteSource.createOrder(request);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, OrdersDto>> createPreorder(
+      CreateOrderRequest request) async {
+    final res = await _checkoutRemoteSource.createPreorder(request);
 
     return res;
   }
