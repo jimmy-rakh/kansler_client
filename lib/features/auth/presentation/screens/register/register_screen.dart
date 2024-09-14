@@ -51,17 +51,19 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
                   icon: const Icon(KazeIcons.arrowLeftOutline),
                 ),
               ),),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                child: ListView(
-                  children: const [
-                    verticalSpace60,
-                    RegisterHeaderWidget(),
-                    verticalSpace35,
-                    RegisterFormWidget(),
-                    verticalSpace12,
-                    RegisterActionWidget(),
-                  ],
+              Center(
+                child: SizedBox(
+                  width: context.isMobile ? context.width * .9 : context.width * .33,
+                  child: ListView(
+                    children: const [
+                      verticalSpace60,
+                      RegisterHeaderWidget(),
+                      verticalSpace35,
+                      RegisterFormWidget(),
+                      verticalSpace12,
+                      RegisterActionWidget(),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -16,7 +16,7 @@ import 'bloc/order_organization_bloc.dart';
 class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
   const OrderOrganizationScreen({
     super.key,
-    required this.id,
+    @PathParam('id') required this.id,
     required this.organization,
   });
 

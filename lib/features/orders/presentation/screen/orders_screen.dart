@@ -68,7 +68,7 @@ class OrdersScreen extends HookWidget implements AutoRouteWrapper {
                           labelPadding: const EdgeInsets.symmetric(vertical: 12),
                           fillColor: context.background,
                           tabController: tabController,
-                          tabList: const ['Корзина', 'Предзаказы'],
+                          tabList: const ['Заказы', 'Предзаказы'],
                         ),
                       ),
                     ),
