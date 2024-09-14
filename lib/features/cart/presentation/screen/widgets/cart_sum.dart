@@ -45,7 +45,7 @@ class CartSumWidget extends HookWidget {
                                 ) ??
                                 const SizedBox(),
                             AppButton(
-                              text: 'Оформить',
+                              text: 'Оформить Заказ',
                               textColor: context.onPrimary,
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 24, vertical: 12),

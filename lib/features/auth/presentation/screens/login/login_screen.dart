@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/core/widgets/appbar.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/actions.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/form.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/header.dart';
@@ -21,23 +22,31 @@ class LoginScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return KeyboardEscape(
       child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton.filled(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(context.cardColor),
+        appBar: AppBarWidget(
+          showLeading: true,
+          leading: Padding(
+            padding: const EdgeInsets.all(8),
+            child: IconButton.filled(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(context.cardColor),
+              ),
+              onPressed: router.popForced,
+              icon: const Icon(KazeIcons.arrowLeftOutline),
             ),
-            onPressed: router.maybePop,
-            icon: const Icon(KazeIcons.arrowLeftOutline),
           ),
+          leadingWidth: 58,
+          preferredSize: const Size.fromHeight(60), child: const SizedBox(),
         ),
         body: Center(
           child: SizedBox(
-            width:
-                context.isMobile ? context.width * .9 : context.width * .33,
+            width: context.isSmall ? context.width * .9 : context.width * .35,
             child: ListView(
-              children: const [
-                LoginHeaderWidget(),
-                verticalSpace60,
+              children:  [
+                verticalSpace35,
+                SizedBox(
+                    width: context.isSmall ? context.width * .5 : context.width * .35,
+                    child: LoginHeaderWidget()),
+                verticalSpace12,
                 LoginFormWidget(),
                 verticalSpace12,
                 LoginActionWidget(),

@@ -8,4 +8,6 @@ class FilterEvent with _$FilterEvent {
   const factory FilterEvent.chooseBrands() = _ChooseBrands;
   const factory FilterEvent.setBaseView() = _SetBaseView;
   const factory FilterEvent.addFilter(SearchEntity searchData) = _AddFilter;
+  const factory FilterEvent.orderBy(String orderBy) =
+  _OrderBy;
 }

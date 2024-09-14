@@ -126,9 +126,17 @@ class CartScreen extends HookWidget {
                                                 padding: EdgeInsets.all(8.0),
                                                 child: Text("Выберите тип оплаты"),
                                               ),
-                                              value: paymentType,
-                                              items: <String>["byTransfer", "byCash", "byCard"]
-                                                  .map((String value) {
+                                              value: paymentType == "byTransfer"
+                                                  ? "Перечислением" :
+                                              paymentType == "byCash"
+                                                  ? "Наличными" :
+                                              paymentType == "byCard"
+                                                  ? "Картой" : paymentType,
+                                              items: <String>[
+                                                "Перечислением",
+                                                "Наличными",
+                                                "Картой"
+                                              ].map((String value) {
                                                 return DropdownMenuItem<String>(
                                                   value: value,
                                                   child: Padding(
@@ -178,8 +186,11 @@ class CartScreen extends HookWidget {
                                                 padding: EdgeInsets.all(8.0),
                                                 child: Text("Выберите способ получение"),
                                               ),
-                                              value: deliveryType,
-                                              items: <String>["pickup", "delivery",]
+                                              value: deliveryType == "pickup"
+                                                  ? "Самовывоз" :
+                                              deliveryType == "delivery"
+                                                  ? "Доставка" : deliveryType,
+                                              items: <String>["Самовывоз", "Доставка",]
                                                   .map((String value) {
                                                 return DropdownMenuItem<String>(
                                                   value: value,

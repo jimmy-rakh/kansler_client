@@ -35,7 +35,7 @@ class PreordersSumWidget extends HookWidget {
                       style: context.titleMedium,
                     ),
                     AppButton(
-                      text: 'Оформить',
+                      text: 'Оформить Предзаказ',
                       textColor: context.onPrimary,
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24, vertical: 12),

@@ -12,9 +12,10 @@ import '../../../../domain/usecases/organizations.usecase.dart';
 import '../../../../domain/usecases/search.usecase.dart';
 import '../brands/brands_bloc.dart';
 
-
 part 'search_state.dart';
+
 part 'search_event.dart';
+
 part 'search_bloc.freezed.dart';
 
 @injectable
@@ -22,8 +23,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final SearchUseCase _useCase;
   final OrganizationsUseCase _organizationsUseCase;
 
-  SearchBloc(this._useCase, this._organizationsUseCase) : super(
-      const SearchState.loadInProgress(),) {
+  SearchBloc(this._useCase, this._organizationsUseCase)
+      : super(
+          const SearchState.loadInProgress(),
+        ) {
     on<_Search>(_onSearch);
     on<_ChangeListType>(_onChangeListType);
     on<_ShowFilters>(_onShowFilters);
@@ -34,6 +37,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     on<_ChooseBrands>(_onChooseBrands);
     on<_SetBaseView>(_onSetBaseView);
     on<_AddFilter>(_onAddFilter);
+    on<_OrderBy>(_orderBy);
 
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
@@ -44,7 +48,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       }
     });
   }
-
 
   final fieldController = TextEditingController();
 
@@ -140,7 +143,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     res.fold((l) => log.e(l), (r) {
       emit(SearchState.success(
         search: event.searchData,
-        organizations: r.products, products: [],
+        organizations: r.products,
+        products: [],
       ));
     });
   }
@@ -162,5 +166,20 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   void _onAddFilter(_AddFilter event, Emitter<SearchState> emit) {
     emit((state as _Success).copyWith(search: event.searchData));
+  }
+
+  void _orderBy(_OrderBy event, Emitter<SearchState> emit) async {
+    final curr = (state as _Success);
+    emit(curr.copyWith(
+        filterData: curr.filterData?.copyWith(
+            orderBy: event.orderBy == "Новинки"
+                ? "created_at"
+                : event.orderBy == "По Алфавиту"
+                    ? "alfabetic"
+                    : event.orderBy == "Подороже"
+                        ? "price"
+                        : event.orderBy == "Подешевле"
+                            ? "-price"
+                            : event.orderBy)));
   }
 }

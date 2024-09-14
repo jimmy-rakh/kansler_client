@@ -40,17 +40,8 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
   final scrollController = ScrollController();
 
   _onFetchData(_FetchData event, Emitter<OrderDetailsState> emit) async {
-    Either<Failure, ({List<CartProduct> cartProducts, bool hasNext})> res;
-
-    switch (event.type) {
-      case CheckoutType.order:
-        res = await _ordersRepository.getOrderProducts(
-            event.id ?? (state as _Ready).id!, page);
-        break;
-      case CheckoutType.preorder:
-        res = await _ordersRepository.getPreorderProducts(
-            event.id ?? (state as _Ready).id!, page);
-    }
+    final res = await _ordersRepository.getOrderProducts(
+        event.id ?? (state as _Ready).id!, page);
 
     res.fold((l) => null, (r) {
       if (state is! _Ready) {

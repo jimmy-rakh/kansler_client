@@ -59,10 +59,21 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
   }
 
   void _paymentType(_PaymentType event, Emitter<CheckoutState> emit) async {
-    emit((state as _Ready).copyWith(paymentType: event.paymentType));
+    emit((state as _Ready).copyWith(paymentType:
+    event.paymentType == "Перечислением"
+        ? "byTransfer" :
+    event.paymentType == "Наличными"
+        ? "byCash" :
+    event.paymentType == "Картой"
+        ? "byCard" : event.paymentType));
+    print(event.paymentType);
   }
 
   void _deliveryType(_DeliveryType event, Emitter<CheckoutState> emit) async {
-    emit((state as _Ready).copyWith(deliveryType: event.deliveryType));
+    emit((state as _Ready).copyWith(deliveryType:
+    event.deliveryType == "Самовывоз"
+        ? "pickup" :
+    event.deliveryType == "Доставка"
+        ? "delivery" : event.deliveryType));
   }
 }
