@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +10,7 @@ import 'package:kansler/core/constants/kaze_icons.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/product/domain/entities/product.entity.dart';
+import 'package:kansler/shared/services/logger/logger_service.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -49,8 +52,9 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
     return AppCard(
       borderRadius: 4,
       width: width,
-      onTap: () =>
-          router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
+      onTap: () => router.push(ProductRoute(
+          product: product ?? cartProduct!.product!,
+          id: product?.id ?? cartProduct!.product!.id)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -60,37 +64,50 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
             child: Stack(children: [
               (product ?? cartProduct?.product)?.imageUrl == null
                   ? GestureDetector(
-                onTap: () =>
-                    router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(3),
-                      child: Image.asset(
+                      onTap: () => router.push(ProductRoute(
+                          product: product ?? cartProduct!.product!,
+                          id: product?.id ?? cartProduct!.product!.id)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: Image.asset(
                           AppImages.noPhoto,
                           height: height,
                           width: width,
-                          fit:  BoxFit.fill,
+                          fit: BoxFit.fill,
                         ),
-                    ),
-                  )
+                      ),
+                    )
                   : ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                    child: ImageNetwork(
-                    onTap: () =>
-                        router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
-                        fitWeb:  BoxFitWeb.fill,
-                        fitAndroidIos:  BoxFit.fill,
-                        onLoading: const SizedBox(),
-                        duration: 0,
-                        image: NetworkConstants.apiBaseUrl +
-                            (product ?? cartProduct?.product)!.imageUrl!,
-                        height: height,
-                        width: width,
-
-                        onError: Image.asset(
-                          AppImages.noPhoto,
-                          height: 50,
-                        )),
-                  ),
+                      borderRadius: BorderRadius.circular(3),
+                      child: kIsWeb
+                          ? ImageNetwork(
+                              onTap: () => router.push(ProductRoute(
+                                  product: product ?? cartProduct!.product!,
+                                  id: product?.id ?? cartProduct!.product!.id)),
+                              fitWeb: BoxFitWeb.fill,
+                              fitAndroidIos: BoxFit.fill,
+                              onLoading: const SizedBox(),
+                              duration: 0,
+                              image: NetworkConstants.apiBaseUrl +
+                                  (product ?? cartProduct?.product)!.imageUrl!,
+                              height: height,
+                              width: width,
+                              onError: Image.asset(
+                                AppImages.noPhoto,
+                                height: 50,
+                              ))
+                          : CachedNetworkImage(
+                              fit: BoxFit.fitHeight,
+                              height: height,
+                              width: width,
+                              memCacheHeight: 200,
+                              memCacheWidth: 200,
+                              imageUrl: NetworkConstants.apiBaseUrl +
+                                  (product ?? cartProduct?.product)!.imageUrl!,
+                              errorWidget: (context, url, error) =>
+                                  Image.asset(AppImages.noPhoto),
+                            ),
+                    ),
               (product ?? cartProduct?.product)?.brand?.name == null
                   ? const SizedBox()
                   : Positioned(

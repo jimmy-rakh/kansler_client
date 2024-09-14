@@ -60,7 +60,7 @@ class DiscountsWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: products[index],
-                  onCart: () {},
+                  onCart: () => bloc.add(DiscountsEvent.addToCart(products[index].id)),
                 ),
               );
             },

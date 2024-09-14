@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -28,7 +29,7 @@ import 'features/orders/presentation/screen/bloc/orders_bloc.dart';
 import 'features/profile/presentation/screen/companies/companies/companies_bloc.dart';
 import 'features/profile/presentation/screen/profile/profile_bloc.dart';
 import 'features/search/presentation/search_screen/blocs/brands/brands_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
