@@ -60,6 +60,18 @@ class _SearchScreenState extends State<SearchScreen> {
 
     return Scaffold(
       appBar: AppBarWidget(
+        showLeading: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: IconButton.filled(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(context.cardColor),
+            ),
+            onPressed: router.popForced,
+            icon: const Icon(KazeIcons.arrowLeftOutline),
+          ),
+        ),
+        leadingWidth: 58,
         preferredSize: const Size.fromHeight(60),
         actions: [
           context.isSmall

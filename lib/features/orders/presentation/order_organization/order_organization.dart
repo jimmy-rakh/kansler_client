@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
+import 'package:kansler/core/extensions/context.dart';
 
 import '../../../../app/di.dart';
+import '../../../../app/router.dart';
+import '../../../../core/constants/kaze_icons.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../product/presentation/widgets/product_card.dart';
@@ -29,9 +32,20 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
     final state = useBlocBuilder(bloc);
 
     return Scaffold(
-      appBar: const AppBarWidget(
+      appBar:  AppBarWidget(
         preferredSize: Size.fromHeight(60),
-        centerTitle: true,
+        showLeading: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: IconButton.filled(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(context.cardColor),
+            ),
+            onPressed: router.popForced,
+            icon: const Icon(KazeIcons.arrowLeftOutline),
+          ),
+        ),
+        leadingWidth: 58,
         child: Text("Продукты"),
       ),
       body: state.whenOrNull(

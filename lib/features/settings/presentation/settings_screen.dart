@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 
 import '../../../app/router.dart';
+import '../../../core/constants/kaze_icons.dart';
 import '../../../core/style/colors.dart';
 import '../../../core/widgets/app_button.dart';
 import '../../../core/widgets/appbar.dart';
@@ -19,9 +20,20 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
     return Scaffold(
-      appBar: const AppBarWidget(
+      appBar:  AppBarWidget(
         preferredSize: Size.fromHeight(60),
-        centerTitle: true,
+        showLeading: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: IconButton.filled(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(context.cardColor),
+            ),
+            onPressed: router.popForced,
+            icon: const Icon(KazeIcons.arrowLeftOutline),
+          ),
+        ),
+        leadingWidth: 58,
         child: Text('Настройки'),
       ),
       body: Column(
