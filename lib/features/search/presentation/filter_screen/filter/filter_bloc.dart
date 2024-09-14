@@ -23,6 +23,7 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     on<_ChooseBrands>(_onChooseBrands);
     on<_SetBaseView>(_onSetBaseView);
     on<_AddFilter>(_onAddFilter);
+    on<_OrderBy>(_orderBy);
   }
 
   void _onInit(_Init event, Emitter<FilterState> emit) async {
@@ -54,5 +55,20 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
   void _onAddFilter(_AddFilter event, Emitter<FilterState> emit) {
     emit((state as _Ready).copyWith(search: event.searchData));
+  }
+
+  void _orderBy(_OrderBy event, Emitter<FilterState> emit) async {
+    final curr = (state as _Ready);
+    emit(curr.copyWith(
+        search: curr.search.copyWith(
+            orderBy: event.orderBy == "Новинки"
+                ? "created_at"
+                : event.orderBy == "По Алфавиту"
+                ? "alfabetic"
+                : event.orderBy == "Подороже"
+                ? "price"
+                : event.orderBy == "Подешевле"
+                ? "-price"
+                : event.orderBy)));
   }
 }

@@ -13,4 +13,6 @@ class SearchEvent with _$SearchEvent {
   const factory SearchEvent.chooseBrands() = _ChooseBrands;
   const factory SearchEvent.setBaseView() = _SetBaseView;
   const factory SearchEvent.addFilter(SearchEntity searchData) = _AddFilter;
+  const factory SearchEvent.orderBy(String orderBy) =
+  _OrderBy;
 }

@@ -12,6 +12,7 @@ import '../../../../../app/di.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/constants/spaces.dart';
+import '../../../../../core/widgets/appbar.dart';
 import '../../../../../core/widgets/keyboard_escape.dart';
 import '../../../data/models/register/address_request.dart';
 import 'bloc/register_bloc.dart';
@@ -37,36 +38,36 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     return KeyboardEscape(
       child: Scaffold(
-        body: SizedBox(
-          width: context.isMobile ? context.width : context.width * .33,
-          child: Stack(
-            children: [
-              Positioned(top: 60, child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: IconButton.filled(
-                  style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(context.cardColor),
-                  ),
-                  onPressed: router.popForced,
-                  icon: const Icon(KazeIcons.arrowLeftOutline),
-                ),
-              ),),
-              Center(
-                child: SizedBox(
-                  width: context.isMobile ? context.width * .9 : context.width * .33,
-                  child: ListView(
-                    children: const [
-                      verticalSpace60,
-                      RegisterHeaderWidget(),
-                      verticalSpace35,
-                      RegisterFormWidget(),
-                      verticalSpace12,
-                      RegisterActionWidget(),
-                    ],
-                  ),
-                ),
+        appBar: AppBarWidget(
+          showLeading: true,
+          leading: Padding(
+            padding: const EdgeInsets.all(8),
+            child: IconButton.filled(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(context.cardColor),
               ),
-            ],
+              onPressed: router.popForced,
+              icon: const Icon(KazeIcons.arrowLeftOutline),
+            ),
+          ),
+          leadingWidth: 58,
+          preferredSize: const Size.fromHeight(60), child: const SizedBox(),
+        ),
+        body: Center(
+          child: SizedBox(
+            width: context.isSmall ? context.width * .9 : context.width * .33,
+            child: ListView(
+              children:  [
+                verticalSpace35,
+                SizedBox(
+                    width: context.isSmall ? context.width * .7 : context.width * .2,
+                    child: RegisterHeaderWidget()),
+                verticalSpace12,
+                RegisterFormWidget(),
+                verticalSpace12,
+                RegisterActionWidget(),
+              ],
+            ),
           ),
         ),
       ),

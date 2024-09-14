@@ -8,6 +8,8 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import 'package:kansler/features/product/presentation/widgets/product_card.dart';
 import '../../../../app/di.dart';
+import '../../../../app/router.dart';
+import '../../../../core/constants/kaze_icons.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_card.dart';
@@ -34,10 +36,21 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
     final cartState = useBlocBuilder(cartBloc);
 
     return Scaffold(
-      appBar: const AppBarWidget(
-        preferredSize: Size.fromHeight(60),
-        centerTitle: true,
-        child: Text('Оформление'),
+      appBar: AppBarWidget(
+        showLeading: true,
+        leading: Padding(
+          padding: const EdgeInsets.all(8),
+          child: IconButton.filled(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(context.cardColor),
+            ),
+            onPressed: router.popForced,
+            icon: const Icon(KazeIcons.arrowLeftOutline),
+          ),
+        ),
+        leadingWidth: 58,
+        preferredSize: const Size.fromHeight(60),
+        child: const Text('Оформление'),
       ),
       body: ListView(
         children: [
@@ -79,11 +92,16 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                                     padding: EdgeInsets.all(8.0),
                                     child: Text("Выберите тип оплаты"),
                                   ),
-                                  value: paymentType,
+                                  value: paymentType == "byTransfer"
+                                      ? "Перечислением" :
+                                  paymentType == "byCash"
+                                      ? "Наличными" :
+                                  paymentType == "byCard"
+                                      ? "Картой" : paymentType,
                                   items: <String>[
-                                    "byTransfer",
-                                    "byCash",
-                                    "byCard"
+                                    "Перечислением",
+                                    "Наличными",
+                                    "Картой"
                                   ].map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
@@ -134,11 +152,11 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                                     padding: EdgeInsets.all(8.0),
                                     child: Text("Выберите способ получение"),
                                   ),
-                                  value: deliveryType,
-                                  items: <String>[
-                                    "pickup",
-                                    "delivery",
-                                  ].map((String value) {
+                                  value: deliveryType == "pickup"
+                                      ? "Самовывоз" :
+                                  deliveryType == "delivery"
+                                      ? "Доставка" : deliveryType,
+                                  items: <String>["Самовывоз", "Доставка",].map((String value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
                                       child: Padding(

@@ -2,9 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/appbar.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/appbar_bottom.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/body.dart';
+import '../../../../../app/router.dart';
+import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/widgets/appbar.dart';
 import '../../../../../core/widgets/keyboard_escape.dart';
 import '../../../domain/entities/category.entitity.dart';
@@ -32,6 +35,18 @@ class SubcategoryScreen extends HookWidget {
       onUnFocus: bloc.onUnfocus,
       child: Scaffold(
         appBar: AppBarWidget(
+          showLeading: true,
+          leading: Padding(
+            padding: const EdgeInsets.all(8),
+            child: IconButton.filled(
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(context.cardColor),
+              ),
+              onPressed:()=> Navigator.pop(context),
+              icon: const Icon(KazeIcons.arrowLeftOutline),
+            ),
+          ),
+          leadingWidth: 58,
           preferredSize: Size.fromHeight(category.hasChildren ? 110 : 60),
           bottomChild: category.hasChildren ? const SubcategoryAppBarBottom() : null,
           bottomSize: const Size(double.maxFinite, 40),

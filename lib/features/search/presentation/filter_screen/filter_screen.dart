@@ -8,11 +8,11 @@ import 'package:kansler/features/search/presentation/filter_screen/widgets/brand
 import 'package:kansler/features/search/presentation/filter_screen/widgets/brands_view.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/categories_section.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/categories_view.dart';
-
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../domain/entities/search.entity.dart';
 import 'filter/filter_bloc.dart';
@@ -61,12 +61,172 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                       return Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: ListView(
-                          children: const [
-                            CategoriesSection(),
+                          children: [
+                            const CategoriesSection(),
                             verticalSpace12,
-                            BrandsSection(),
-                            // verticalSpace12,
+                            const BrandsSection(),
+                            verticalSpace12,
                             // OrganizationSection(),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text(
+                                        'Цена от:',
+                                        style:
+                                        context.titleMedium,
+                                      ),
+                                      verticalSpace12,
+                                      SizedBox(
+                                        height: 50,
+                                        child: AppTextField(
+                                          radius: 4,
+                                          enabledBorderColor:
+                                          Colors.grey,
+                                          fillColor: context
+                                              .cardColor,
+                                          hint: '...',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                horizontalSpace16,
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment
+                                        .start,
+                                    children: [
+                                      Text(
+                                        'Цена до:',
+                                        style:
+                                        context.titleMedium,
+                                      ),
+                                      verticalSpace12,
+                                      SizedBox(
+                                        height: 50,
+                                        child: AppTextField(
+                                          radius: 4,
+                                          enabledBorderColor:
+                                          Colors.grey,
+                                          fillColor: context
+                                              .cardColor,
+                                          hint: '...',
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                            verticalSpace12,
+                            Column(
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Сортировать по:',
+                                  style: context.titleMedium,
+                                ),
+                                verticalSpace12,
+                                 Container(
+                                  decoration: BoxDecoration(
+                                      color: context.cardColor,
+                                      border: Border.all(
+                                          color: Colors.grey),
+                                      borderRadius:
+                                      const BorderRadius
+                                          .all(
+                                          Radius.circular(
+                                              4))),
+                                  child: Center(
+                                    child: Padding(
+                                      padding:
+                                      const EdgeInsets.all(
+                                          2),
+                                      child: Theme(
+                                        data: Theme.of(context)
+                                            .copyWith(
+                                          focusColor: context
+                                              .background,
+                                        ),
+                                        child: DropdownButton<
+                                            String>(
+                                          dropdownColor:
+                                          context.cardColor,
+                                          underline:
+                                          const SizedBox(),
+                                          autofocus: true,
+                                          focusColor: context
+                                              .background,
+                                          elevation: 0,
+                                          hint: const Padding(
+                                            padding:
+                                            EdgeInsets.all(
+                                                8.0),
+                                            child: Text(
+                                                "Выберите способ получение"),
+                                          ),
+                                          value: search.orderBy ==
+                                              "created_at"
+                                              ? "Новинки"
+                                              : search.orderBy ==
+                                              "alfabetic"
+                                              ? "По Алфавиту"
+                                              : search.orderBy ==
+                                              "price"
+                                              ? "Подороже"
+                                              : search.orderBy ==
+                                              "-price"
+                                              ? "Подешевле"
+                                              : search.orderBy,
+                                          items: <String>[
+                                            "Новинки",
+                                            "По Алфавиту",
+                                            "Подороже",
+                                            "Подешевле",
+                                          ].map((String value) {
+                                            return DropdownMenuItem<
+                                                String>(
+                                              value: value,
+                                              child: Padding(
+                                                padding:
+                                                const EdgeInsets
+                                                    .all(
+                                                    8.0),
+                                                child: SizedBox(
+                                                  width: context.width * .7,
+                                                  child: Text(
+                                                    value,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }).toList(),
+                                          onChanged: (value) {
+                                            bloc.add(FilterEvent
+                                                .orderBy(
+                                                value!));
+                                          },
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            verticalSpace24,
                           ],
                         ),
                       );

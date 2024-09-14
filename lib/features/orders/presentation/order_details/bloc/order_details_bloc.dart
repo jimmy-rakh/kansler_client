@@ -25,7 +25,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
       if (scrollController.position.pixels >=
           scrollController.position.maxScrollExtent - 200 &&
           hasNext &&
-          !((state as _Success).isMoreLoading ?? false)) {
+          !((state as _Ready).isMoreLoading ?? false)) {
         add(const OrderDetailsEvent.fetch(isMore: true));
       }
     });
@@ -40,7 +40,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
 
   _onFetchData(_FetchData event, Emitter<OrderDetailsState> emit) async {
     final res = await _ordersRepository.getOrderProducts(
-        event.id ?? (state as _Success).id!, page);
+        event.id ?? (state as _Ready).id!, page);
 
     res.fold((l) => null, (r) {
       if (state is! _Ready) {
