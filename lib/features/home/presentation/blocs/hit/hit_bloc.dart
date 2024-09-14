@@ -17,6 +17,8 @@ class HitBloc extends Bloc<HitEvent, HitState> {
 
   HitBloc(this._useCase) : super(const HitState.loadInProgress()) {
     on<_Fetch>(_onFetch);
+    on<_AddToCart>(_onAddToCart);
+
 
     add(const HitEvent.fetch());
   }
@@ -25,5 +27,18 @@ class HitBloc extends Bloc<HitEvent, HitState> {
     final res = await _useCase.call((pageNumber: 1, pageSize: 30));
 
     res.fold(log.e, (r) => emit(HitState.success(r.products)));
+  }
+
+  void _onAddToCart(_AddToCart event, Emitter<HitState> emit) {
+    final curr = state as _Success;
+
+    List<ProductEntity> products = curr.products.map((e) {
+      if (e.id == event.id) {
+        return e.copyWith(inCart: !e.inCart!);
+      }
+      return e;
+    }).toList();
+
+    emit(HitState.success(products));
   }
 }

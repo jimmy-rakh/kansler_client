@@ -1,16 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_network/image_network.dart';
 import 'package:kansler/core/constants/kaze_icons.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/product/domain/entities/product.entity.dart';
-import 'package:kansler/shared/services/logger/logger_service.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/constants/spaces.dart';

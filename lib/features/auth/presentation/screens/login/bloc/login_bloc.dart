@@ -250,15 +250,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<AddressRequest?> _showMap() async {
-    // final granted = await Permission.location.isGranted;
-    //
-    // print(granted);
-    //
-    // if (!granted) {
-    //   final res = await Permission.locationWhenInUse.request();
-    //
-    //   if (res != PermissionStatus.granted) return null;
-    // }
+    final granted = await Permission.location.isGranted;
+
+    print(granted);
+
+    if (!granted) {
+      final res = await Permission.locationWhenInUse.request();
+
+      if (res != PermissionStatus.granted) return null;
+    }
 
     final res = await router.push(const MapRoute()) as AddressRequest?;
 

@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/home/presentation/blocs/hit/hit_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -19,6 +20,7 @@ class DiscountsWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DiscountsBloc>();
+    final hit = context.read<HitBloc>();
     final state = useBlocBuilder(bloc);
 
     return Column(
