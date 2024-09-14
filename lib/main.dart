@@ -41,8 +41,7 @@ void main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-     NotificationService.init();
-
+    NotificationService.init();
   } catch (e) {
     log.e(e.toString());
   } finally {
