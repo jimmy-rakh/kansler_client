@@ -599,6 +599,7 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
             id: id,
             organization: organization,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 

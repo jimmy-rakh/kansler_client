@@ -9,7 +9,6 @@ import 'package:kansler/features/categories/presentation/screens/category/widget
 import 'package:kansler/features/categories/presentation/screens/subcategory/bloc/subcategory_bloc.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/appbar.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/appbar_bottom.dart';
-
 import '../../../../../core/widgets/appbar.dart';
 import '../subcategory/widgets/body.dart';
 

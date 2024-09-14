@@ -35,7 +35,7 @@ class LoginScreen extends StatelessWidget implements AutoRouteWrapper {
             ),),
             Center(
               child: SizedBox(
-                width: context.isMobile ? context.width * .9 : context.width * .33,
+                width: context.isMobile ? context.width * .9 : context.width * .5,
                 child: ListView(
                   children: const [
                     verticalSpace35,
