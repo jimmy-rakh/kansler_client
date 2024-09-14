@@ -6,4 +6,6 @@ class OrderRemoteKeys {
       '${NetworkConstants.apiUrl}/organization-orders/id/products';
 
   static const preorderApi = '${NetworkConstants.apiUrl}/pre-order';
+  static const preorderProducts =
+      '${NetworkConstants.apiUrl}/organization-pre-orders/id/products';
 }

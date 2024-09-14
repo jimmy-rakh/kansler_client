@@ -6,7 +6,6 @@ import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../product/domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch_popular_products.usecase.dart';
 
-
 part 'popular_state.dart';
 part 'popular_event.dart';
 part 'popular_bloc.freezed.dart';
@@ -16,7 +15,7 @@ class PopularBloc extends Bloc<PopularEvent, PopularState> {
   final FetchPopularProductUseCase _useCase;
   PopularBloc(this._useCase) : super(const PopularState.loadInProgress()) {
     on<_Fetch>(_onFetch);
-    on<_ChangeCartState>(_onChangeCartState);
+    on<_AddToCart>(_onAddToCart);
 
     add(const PopularEvent.fetch());
   }
@@ -27,16 +26,16 @@ class PopularBloc extends Bloc<PopularEvent, PopularState> {
     res.fold(log.e, (r) => emit(PopularState.success(r.products)));
   }
 
-  void _onChangeCartState(_ChangeCartState event, Emitter<PopularState> emit) {
-    final currentState = state as _Success;
+  void _onAddToCart(_AddToCart event, Emitter<PopularState> emit) {
+    final curr = state as _Success;
 
-    final products = currentState.products.map((e) {
-      if (e.id == event.product.id) {
-        return event.product.copyWith(inCart: !event.product.inCart!);
+    List<ProductEntity> products = curr.products.map((e) {
+      if (e.id == event.id) {
+        return e.copyWith(inCart: !e.inCart!);
       }
       return e;
     }).toList();
 
-    emit(currentState.copyWith(products: products));
+    emit(PopularState.success(products));
   }
 }

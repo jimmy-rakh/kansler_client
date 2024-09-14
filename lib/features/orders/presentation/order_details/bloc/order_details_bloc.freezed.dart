@@ -396,23 +396,23 @@ mixin _$OrderDetailsEvent {
   int? get id => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) fetchOrder,
+    required TResult Function(int id, CheckoutType type) fetchOrder,
     required TResult Function(int id, OrganizationDto organization) toDetails,
-    required TResult Function(int? id, bool isMore) fetch,
+    required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? fetchOrder,
+    TResult? Function(int id, CheckoutType type)? fetchOrder,
     TResult? Function(int id, OrganizationDto organization)? toDetails,
-    TResult? Function(int? id, bool isMore)? fetch,
+    TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? fetchOrder,
+    TResult Function(int id, CheckoutType type)? fetchOrder,
     TResult Function(int id, OrganizationDto organization)? toDetails,
-    TResult Function(int? id, bool isMore)? fetch,
+    TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -485,7 +485,7 @@ abstract class _$$FetchOrderImplCopyWith<$Res>
       __$$FetchOrderImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id});
+  $Res call({int id, CheckoutType type});
 }
 
 /// @nodoc
@@ -500,12 +500,17 @@ class __$$FetchOrderImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? type = null,
   }) {
     return _then(_$FetchOrderImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CheckoutType,
     ));
   }
 }
@@ -513,14 +518,16 @@ class __$$FetchOrderImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FetchOrderImpl implements _FetchOrder {
-  const _$FetchOrderImpl(this.id);
+  const _$FetchOrderImpl(this.id, this.type);
 
   @override
   final int id;
+  @override
+  final CheckoutType type;
 
   @override
   String toString() {
-    return 'OrderDetailsEvent.fetchOrder(id: $id)';
+    return 'OrderDetailsEvent.fetchOrder(id: $id, type: $type)';
   }
 
   @override
@@ -528,11 +535,12 @@ class _$FetchOrderImpl implements _FetchOrder {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchOrderImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode => Object.hash(runtimeType, id, type);
 
   @JsonKey(ignore: true)
   @override
@@ -543,33 +551,33 @@ class _$FetchOrderImpl implements _FetchOrder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) fetchOrder,
+    required TResult Function(int id, CheckoutType type) fetchOrder,
     required TResult Function(int id, OrganizationDto organization) toDetails,
-    required TResult Function(int? id, bool isMore) fetch,
+    required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
   }) {
-    return fetchOrder(id);
+    return fetchOrder(id, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? fetchOrder,
+    TResult? Function(int id, CheckoutType type)? fetchOrder,
     TResult? Function(int id, OrganizationDto organization)? toDetails,
-    TResult? Function(int? id, bool isMore)? fetch,
+    TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
   }) {
-    return fetchOrder?.call(id);
+    return fetchOrder?.call(id, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? fetchOrder,
+    TResult Function(int id, CheckoutType type)? fetchOrder,
     TResult Function(int id, OrganizationDto organization)? toDetails,
-    TResult Function(int? id, bool isMore)? fetch,
+    TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
     required TResult orElse(),
   }) {
     if (fetchOrder != null) {
-      return fetchOrder(id);
+      return fetchOrder(id, type);
     }
     return orElse();
   }
@@ -610,10 +618,12 @@ class _$FetchOrderImpl implements _FetchOrder {
 }
 
 abstract class _FetchOrder implements OrderDetailsEvent {
-  const factory _FetchOrder(final int id) = _$FetchOrderImpl;
+  const factory _FetchOrder(final int id, final CheckoutType type) =
+      _$FetchOrderImpl;
 
   @override
   int get id;
+  CheckoutType get type;
   @override
   @JsonKey(ignore: true)
   _$$FetchOrderImplCopyWith<_$FetchOrderImpl> get copyWith =>
@@ -705,9 +715,9 @@ class _$ToDetailsImpl implements _ToDetails {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) fetchOrder,
+    required TResult Function(int id, CheckoutType type) fetchOrder,
     required TResult Function(int id, OrganizationDto organization) toDetails,
-    required TResult Function(int? id, bool isMore) fetch,
+    required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
   }) {
     return toDetails(id, organization);
   }
@@ -715,9 +725,9 @@ class _$ToDetailsImpl implements _ToDetails {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? fetchOrder,
+    TResult? Function(int id, CheckoutType type)? fetchOrder,
     TResult? Function(int id, OrganizationDto organization)? toDetails,
-    TResult? Function(int? id, bool isMore)? fetch,
+    TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
   }) {
     return toDetails?.call(id, organization);
   }
@@ -725,9 +735,9 @@ class _$ToDetailsImpl implements _ToDetails {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? fetchOrder,
+    TResult Function(int id, CheckoutType type)? fetchOrder,
     TResult Function(int id, OrganizationDto organization)? toDetails,
-    TResult Function(int? id, bool isMore)? fetch,
+    TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
     required TResult orElse(),
   }) {
     if (toDetails != null) {
@@ -792,7 +802,7 @@ abstract class _$$FetchDataImplCopyWith<$Res>
       __$$FetchDataImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, bool isMore});
+  $Res call({int? id, bool isMore, CheckoutType type});
 }
 
 /// @nodoc
@@ -808,6 +818,7 @@ class __$$FetchDataImplCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? isMore = null,
+    Object? type = null,
   }) {
     return _then(_$FetchDataImpl(
       id: freezed == id
@@ -818,6 +829,10 @@ class __$$FetchDataImplCopyWithImpl<$Res>
           ? _value.isMore
           : isMore // ignore: cast_nullable_to_non_nullable
               as bool,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CheckoutType,
     ));
   }
 }
@@ -825,17 +840,21 @@ class __$$FetchDataImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FetchDataImpl implements _FetchData {
-  const _$FetchDataImpl({this.id, this.isMore = false});
+  const _$FetchDataImpl(
+      {this.id, this.isMore = false, this.type = CheckoutType.order});
 
   @override
   final int? id;
   @override
   @JsonKey()
   final bool isMore;
+  @override
+  @JsonKey()
+  final CheckoutType type;
 
   @override
   String toString() {
-    return 'OrderDetailsEvent.fetch(id: $id, isMore: $isMore)';
+    return 'OrderDetailsEvent.fetch(id: $id, isMore: $isMore, type: $type)';
   }
 
   @override
@@ -844,11 +863,12 @@ class _$FetchDataImpl implements _FetchData {
         (other.runtimeType == runtimeType &&
             other is _$FetchDataImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.isMore, isMore) || other.isMore == isMore));
+            (identical(other.isMore, isMore) || other.isMore == isMore) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, isMore);
+  int get hashCode => Object.hash(runtimeType, id, isMore, type);
 
   @JsonKey(ignore: true)
   @override
@@ -859,33 +879,33 @@ class _$FetchDataImpl implements _FetchData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int id) fetchOrder,
+    required TResult Function(int id, CheckoutType type) fetchOrder,
     required TResult Function(int id, OrganizationDto organization) toDetails,
-    required TResult Function(int? id, bool isMore) fetch,
+    required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
   }) {
-    return fetch(id, isMore);
+    return fetch(id, isMore, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int id)? fetchOrder,
+    TResult? Function(int id, CheckoutType type)? fetchOrder,
     TResult? Function(int id, OrganizationDto organization)? toDetails,
-    TResult? Function(int? id, bool isMore)? fetch,
+    TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
   }) {
-    return fetch?.call(id, isMore);
+    return fetch?.call(id, isMore, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int id)? fetchOrder,
+    TResult Function(int id, CheckoutType type)? fetchOrder,
     TResult Function(int id, OrganizationDto organization)? toDetails,
-    TResult Function(int? id, bool isMore)? fetch,
+    TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
     required TResult orElse(),
   }) {
     if (fetch != null) {
-      return fetch(id, isMore);
+      return fetch(id, isMore, type);
     }
     return orElse();
   }
@@ -926,12 +946,15 @@ class _$FetchDataImpl implements _FetchData {
 }
 
 abstract class _FetchData implements OrderDetailsEvent {
-  const factory _FetchData({final int? id, final bool isMore}) =
-      _$FetchDataImpl;
+  const factory _FetchData(
+      {final int? id,
+      final bool isMore,
+      final CheckoutType type}) = _$FetchDataImpl;
 
   @override
   int? get id;
   bool get isMore;
+  CheckoutType get type;
   @override
   @JsonKey(ignore: true)
   _$$FetchDataImplCopyWith<_$FetchDataImpl> get copyWith =>

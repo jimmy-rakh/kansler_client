@@ -19,7 +19,7 @@ import 'bloc/checkout_bloc.dart';
 class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
   const CheckoutScreen({
     super.key,
-    this.type = CheckoutType.cart,
+    this.type = CheckoutType.order,
   });
 
   final CheckoutType type;
@@ -174,11 +174,11 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
             child: ListView.separated(
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(16),
-              controller: type == CheckoutType.cart
+              controller: type == CheckoutType.order
                   ? preordersBloc.checkoutController
                   : cartBloc.checkoutController,
               itemBuilder: (context, index) => ProductCard.list(
-                cartProduct: type == CheckoutType.cart
+                cartProduct: type == CheckoutType.order
                     ? cartState.whenOrNull(
                         ready: (products, price, isMoreLoading) =>
                             products[index],
@@ -190,7 +190,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                 onCart: () {},
               ),
               separatorBuilder: (context, index) => verticalSpace12,
-              itemCount: type == CheckoutType.cart
+              itemCount: type == CheckoutType.order
                   ? cartState.whenOrNull(
                           ready: (products, price, isMoreLoading) =>
                               products.length) ??

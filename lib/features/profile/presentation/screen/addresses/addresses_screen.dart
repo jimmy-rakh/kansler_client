@@ -11,7 +11,6 @@ import '../../../../../app/router.dart';
 import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../../core/widgets/app_card.dart';
-import '../../../../../core/widgets/appbar.dart';
 import 'addresses/addresses_bloc.dart';
 
 @RoutePage()

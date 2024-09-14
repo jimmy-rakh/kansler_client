@@ -137,7 +137,7 @@ class CategoriesWrapperRoute extends PageRouteInfo<void> {
 class CheckoutRoute extends PageRouteInfo<CheckoutRouteArgs> {
   CheckoutRoute({
     Key? key,
-    CheckoutType type = CheckoutType.cart,
+    CheckoutType type = CheckoutType.order,
     List<PageRouteInfo>? children,
   }) : super(
           CheckoutRoute.name,
@@ -167,7 +167,7 @@ class CheckoutRoute extends PageRouteInfo<CheckoutRouteArgs> {
 class CheckoutRouteArgs {
   const CheckoutRouteArgs({
     this.key,
-    this.type = CheckoutType.cart,
+    this.type = CheckoutType.order,
   });
 
   final Key? key;
@@ -422,12 +422,14 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
     Key? key,
     int? id,
+    CheckoutType type = CheckoutType.order,
     List<PageRouteInfo>? children,
   }) : super(
           OrderDetailsRoute.name,
           args: OrderDetailsRouteArgs(
             key: key,
             id: id,
+            type: type,
           ),
           rawPathParams: {'id': id},
           initialChildren: children,
@@ -445,6 +447,7 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
           child: OrderDetailsScreen(
         key: args.key,
         id: args.id,
+        type: args.type,
       ));
     },
   );
@@ -454,15 +457,18 @@ class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({
     this.key,
     this.id,
+    this.type = CheckoutType.order,
   });
 
   final Key? key;
 
   final int? id;
 
+  final CheckoutType type;
+
   @override
   String toString() {
-    return 'OrderDetailsRouteArgs{key: $key, id: $id}';
+    return 'OrderDetailsRouteArgs{key: $key, id: $id, type: $type}';
   }
 }
 

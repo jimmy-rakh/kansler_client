@@ -1,32 +1,20 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/app/router.dart';
+import 'package:kansler/features/settings/presentation/theme/theme_bloc.dart';
 
 import '../core/style/theme.dart';
 
-class KanslerApp extends StatelessWidget {
+class KanslerApp extends HookWidget {
   const KanslerApp({super.key});
-
-  ThemeData _getTheme(ThemeMode themeMode) {
-    switch (themeMode) {
-      case ThemeMode.system:
-        final brightness =
-            SchedulerBinding.instance.platformDispatcher.platformBrightness;
-        return brightness == Brightness.light
-            ? ThemeData.light()
-            : ThemeData.dark();
-
-      case ThemeMode.light:
-        return ThemeData.light();
-
-      case ThemeMode.dark:
-        return ThemeData.dark();
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
+    final themeState = useBlocBuilder(context.read<ThemeBloc>());
+
     return MaterialApp.router(
       title: 'Kansler - Все для офиса',
       localizationsDelegates: context.localizationDelegates,
@@ -35,6 +23,7 @@ class KanslerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
+      themeMode: themeState.mode,
       routerConfig: router.config(),
       builder: (context, child) {
         return MediaQuery(

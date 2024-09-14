@@ -52,7 +52,7 @@ class CartSumWidget extends HookWidget {
                               borderRadius: 0,
                               fillColor: context.primary,
                               onPressed: () => context.isSmall ?
-                                  cartBloc.add(const CartEvent.toCheckout()) : bloc.add( CheckoutEvent.checkOut(CheckoutType.cart)),
+                                  cartBloc.add(const CartEvent.toCheckout()) : bloc.add( const CheckoutEvent.checkOut(CheckoutType.order)),
                             )
                           ],
                         ),

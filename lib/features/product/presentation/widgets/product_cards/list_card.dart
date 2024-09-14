@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,7 +58,9 @@ class ProductListCard extends HookWidget implements ProductCard {
       onTap: () {
         // competeEditing();
         // onPressed();
-        router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id));
+        router.push(ProductRoute(
+            product: product ?? cartProduct!.product!,
+            id: product?.id ?? cartProduct!.product!.id));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,30 +68,11 @@ class ProductListCard extends HookWidget implements ProductCard {
           if (product != null || cartProduct?.product != null)
             Stack(
               children: [
-                //  context.isSmall
-                //      ? ColoredBox(
-                //   color: context.cardColor,
-                //   child: CachedNetworkImage(
-                //     fit: BoxFit.fitHeight,
-                //     height: 120,
-                //     width: 100,
-                //     memCacheHeight: 180,
-                //     memCacheWidth: 180,
-                //     errorListener: (value) => log.e(
-                //         '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
-                //     imageUrl: NetworkConstants.apiBaseUrl +
-                //         (product?.imageUrl ??
-                //             cartProduct?.product!.imageUrl ??
-                //             ''),
-                //     errorWidget: (context, url, error) =>
-                //         Image.asset(AppImages.noPhoto),
-                //   ),
-                // )
-                //      :
                 (product ?? cartProduct?.product)?.imageUrl == null
                     ? GestureDetector(
                         onTap: () => router.push(ProductRoute(
-                            product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
+                            product: product ?? cartProduct!.product!,
+                            id: product?.id ?? cartProduct!.product!.id)),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(3),
                           child: Image.asset(
@@ -100,21 +85,38 @@ class ProductListCard extends HookWidget implements ProductCard {
                       )
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(3),
-                        child: ImageNetwork(
-                            onTap: () => router.push(ProductRoute(
-                                product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
-                            fitWeb: BoxFitWeb.fill,
-                            fitAndroidIos: BoxFit.fill,
-                            onLoading: const SizedBox(),
-                            duration: 0,
-                            image: NetworkConstants.apiBaseUrl +
-                                (product ?? cartProduct?.product)!.imageUrl!,
-                            height: context.isSmall ? 120 : 100,
-                            width: 100,
-                            onError: Image.asset(
-                              AppImages.noPhoto,
-                              height: 120,
-                            )),
+                        child: kIsWeb
+                            ? CachedNetworkImage(
+                                fit: BoxFit.fitHeight,
+                                height: 120,
+                                width: 100,
+                                memCacheHeight: 180,
+                                memCacheWidth: 180,
+                                imageUrl: NetworkConstants.apiBaseUrl +
+                                    (product?.imageUrl ??
+                                        cartProduct?.product!.imageUrl ??
+                                        ''),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset(AppImages.noPhoto),
+                              )
+                            : ImageNetwork(
+                                onTap: () => router.push(ProductRoute(
+                                    product: product ?? cartProduct!.product!,
+                                    id: product?.id ??
+                                        cartProduct!.product!.id)),
+                                fitWeb: BoxFitWeb.fill,
+                                fitAndroidIos: BoxFit.fill,
+                                onLoading: const SizedBox(),
+                                duration: 0,
+                                image: NetworkConstants.apiBaseUrl +
+                                    (product ?? cartProduct?.product)!
+                                        .imageUrl!,
+                                height: context.isSmall ? 120 : 100,
+                                width: 100,
+                                onError: Image.asset(
+                                  AppImages.noPhoto,
+                                  height: 120,
+                                )),
                       ),
                 (product ?? cartProduct?.product)?.brand?.name == null
                     ? const SizedBox()
@@ -418,15 +420,24 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               fillColor: context.background,
                                               width: 60,
                                               radius: 0,
-                                              contentPadding: const EdgeInsets.all(4),
+                                              contentPadding:
+                                                  const EdgeInsets.all(4),
                                               textAlign: TextAlign.center,
                                               fieldController: fieldController,
                                               onChange: submit,
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
-                                                if ((product ?? cartProduct!.product)!.leftQuantity >=
-                                                    int.parse(fieldController.text)) {
-                                                  if ((product ?? cartProduct?.product)?.leftQuantity != 0) {
+                                                if ((product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                        .leftQuantity >=
+                                                    int.parse(
+                                                        fieldController.text)) {
+                                                  if ((product ??
+                                                              cartProduct
+                                                                  ?.product)
+                                                          ?.leftQuantity !=
+                                                      0) {
                                                     onCart();
                                                     FocusScope.of(context)
                                                         .unfocus();
@@ -462,7 +473,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                       .unfocus();
                                                 }
                                               },
-                                              textInputType: TextInputType.number,
+                                              textInputType:
+                                                  TextInputType.number,
                                               textInputFormatter: [
                                                 FilteringTextInputFormatter
                                                     .digitsOnly

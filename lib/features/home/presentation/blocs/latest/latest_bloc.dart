@@ -6,7 +6,6 @@ import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../product/domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch_latest_products.usecase.dart';
 
-
 part 'latest_state.dart';
 
 part 'latest_event.dart';
@@ -21,6 +20,7 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
     on<_Fetch>(_onFetch);
     on<_ChangeCartState>(_onChangeCartState);
     on<_CardType>(_onCardType);
+    on<_AddToCart>(_onAddToCart);
     add(const LatestEvent.fetch());
   }
 
@@ -55,5 +55,18 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
     }).toList();
 
     emit(currentState.copyWith(products: products));
+  }
+
+  void _onAddToCart(_AddToCart event, Emitter<LatestState> emit) {
+    final curr = state as _Success;
+
+    List<ProductEntity> products = curr.products.map((e) {
+      if (e.id == event.id) {
+        return e.copyWith(inCart: !e.inCart!);
+      }
+      return e;
+    }).toList();
+
+    emit(LatestState.success(products: products));
   }
 }

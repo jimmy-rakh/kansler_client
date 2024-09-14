@@ -38,7 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _onCheckStatus(_CheckStatus event, Emitter<AuthState> emit) async {
     final status = _getAuthStatusUseCase.call(NoParams());
     final discountBloc =
-    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
     final popularBloc =
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final hitBloc =
@@ -74,6 +74,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onLogOut(_LogOut event, Emitter<AuthState> emit) async {
+    final discountBloc =
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hitBloc =
+        BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     final popularBloc =
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
@@ -90,5 +94,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     popularBloc.add(const PopularEvent.fetch());
     latestBloc.add(const LatestEvent.fetch());
     profileBloc.add(const ProfileEvent.setInit());
+    discountBloc.add(const DiscountsEvent.fetch());
+    hitBloc.add(const HitEvent.fetch());
   }
 }

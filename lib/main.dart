@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import 'package:kansler/features/settings/presentation/theme/theme_bloc.dart';
 import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:kansler/shared/services/logger/logger_service.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -100,13 +101,15 @@ void main() async {
             BlocProvider(
               create: (context) => getIt<CheckoutBloc>(),
             ),
+            BlocProvider(
+              create: (context) => getIt<ThemeBloc>(),
+            ),
           ],
           child: HookedBlocConfigProvider(
             injector: () => getIt.get,
             builderCondition: (state) => state != null,
             listenerCondition: (state) => state != null,
             child: const KanslerApp(),
-            //
           ),
         ),
       ),
