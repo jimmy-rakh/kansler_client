@@ -28,9 +28,10 @@ import '../widgets/details_widget.dart';
 class ProductScreen extends HookWidget implements AutoRouteWrapper {
   const ProductScreen({
     super.key,
+    @PathParam('id') required this.id,
     required this.product,
   });
-
+  final int id;
   final ProductEntity product;
 
   @override
@@ -110,9 +111,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                 (product.imageUrl ?? ''),
                             onLoading: const SizedBox(),
                             fitAndroidIos: BoxFit.contain,
-                            fitWeb: context.isSmall
-                                ? BoxFitWeb.contain
-                                : BoxFitWeb.contain,
+                            fitWeb:  BoxFitWeb.contain,
                             height: context.isSmall
                                 ? context.height * .4
                                 : context.height * .5,

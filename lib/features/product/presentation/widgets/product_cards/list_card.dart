@@ -56,7 +56,7 @@ class ProductListCard extends HookWidget implements ProductCard {
       onTap: () {
         // competeEditing();
         // onPressed();
-        router.push(ProductRoute(product: product ?? cartProduct!.product!));
+        router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +87,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                 (product ?? cartProduct?.product)?.imageUrl == null
                     ? GestureDetector(
                         onTap: () => router.push(ProductRoute(
-                            product: product ?? cartProduct!.product!)),
+                            product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(3),
                           child: Image.asset(
@@ -102,7 +102,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                         borderRadius: BorderRadius.circular(3),
                         child: ImageNetwork(
                             onTap: () => router.push(ProductRoute(
-                                product: product ?? cartProduct!.product!)),
+                                product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
                             fitWeb: BoxFitWeb.fill,
                             fitAndroidIos: BoxFit.fill,
                             onLoading: const SizedBox(),

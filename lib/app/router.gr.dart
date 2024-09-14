@@ -126,7 +126,9 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     OrderDetailsRoute.name: (routeData) {
-      final args = routeData.argsAs<OrderDetailsRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<OrderDetailsRouteArgs>(
+          orElse: () => OrderDetailsRouteArgs(id: pathParams.optInt('id')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: WrappedRoute(
@@ -161,6 +163,7 @@ abstract class _$AppRouter extends RootStackRouter {
         child: WrappedRoute(
             child: ProductScreen(
           key: args.key,
+          id: args.id,
           product: args.product,
         )),
       );
@@ -547,7 +550,7 @@ class MapRoute extends PageRouteInfo<void> {
 class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
     Key? key,
-    required int id,
+    int? id,
     List<PageRouteInfo>? children,
   }) : super(
           OrderDetailsRoute.name,
@@ -555,6 +558,7 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
             key: key,
             id: id,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -567,12 +571,12 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
 class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({
     this.key,
-    required this.id,
+    this.id,
   });
 
   final Key? key;
 
-  final int id;
+  final int? id;
 
   @override
   String toString() {
@@ -642,14 +646,17 @@ class OrdersRoute extends PageRouteInfo<void> {
 class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
     Key? key,
+    required int id,
     required ProductEntity product,
     List<PageRouteInfo>? children,
   }) : super(
           ProductRoute.name,
           args: ProductRouteArgs(
             key: key,
+            id: id,
             product: product,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -662,16 +669,19 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
 class ProductRouteArgs {
   const ProductRouteArgs({
     this.key,
+    required this.id,
     required this.product,
   });
 
   final Key? key;
 
+  final int id;
+
   final ProductEntity product;
 
   @override
   String toString() {
-    return 'ProductRouteArgs{key: $key, product: $product}';
+    return 'ProductRouteArgs{key: $key, id: $id, product: $product}';
   }
 }
 

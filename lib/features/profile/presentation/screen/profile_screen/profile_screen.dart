@@ -169,7 +169,7 @@ class ProfileScreen extends HookWidget {
               [],
           verticalSpace12,
           if (authBloc.state == const AuthState.authenticated()) ...[
-            if (Platform.isIOS) ...[
+
               AppCard(
                 margin: const EdgeInsets.symmetric(horizontal: 16),
                 width: double.maxFinite,
@@ -189,7 +189,6 @@ class ProfileScreen extends HookWidget {
                 ),
               ),
               verticalSpace16,
-            ],
             AppButton(
               text: 'Выйти из аккаунта',
               textStyle: context.theme.textTheme.bodyLarge!,

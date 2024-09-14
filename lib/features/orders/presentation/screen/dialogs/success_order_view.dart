@@ -21,7 +21,7 @@ class SuccessOrderView extends StatelessWidget {
         padding: EdgeInsets.fromLTRB(32, context.height * .2, 32, 42),
         child: Center(
           child: SizedBox(
-            width: context.width * .5,
+            width:context.isSmall ? context.width * .9 : context.width * .5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,

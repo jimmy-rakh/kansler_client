@@ -18,10 +18,10 @@ import 'bloc/order_details_bloc.dart';
 class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
   const OrderDetailsScreen({
     super.key,
-    required this.id,
+    @PathParam('id') this.id,
   });
 
-  final int id;
+  final int? id;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
         create: (context) =>
-            getIt<OrderDetailsBloc>()..add(OrderDetailsEvent.fetchOrder(id)),
+            getIt<OrderDetailsBloc>()..add(OrderDetailsEvent.fetchOrder(id!)),
         child: this,
       );
 }

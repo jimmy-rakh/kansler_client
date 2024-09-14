@@ -73,7 +73,7 @@ class AppRouter extends _$AppRouter {
             AutoRoute(path:"register/",page: RegisterRoute.page)
           ],
         ),
-        AutoRoute(path:"/",page: ProductRoute.page),
+        AutoRoute( path: '/product/:id/',page: ProductRoute.page),
         CustomRoute(
             path:"/",
             page: SearchRoute.page,
@@ -87,8 +87,8 @@ class AppRouter extends _$AppRouter {
         AutoRoute(path:"/companies/",page: CompaniesRoute.page),
         AutoRoute(path:"/addresses/",page: AddressesRoute.page),
         AutoRoute(path:"/checkout/",page: CheckoutRoute.page),
-        AutoRoute(page: OrderDetailsRoute.page),
-        AutoRoute(page: OrderOrganizationRoute.page),
+        AutoRoute(path: '/order/:id/',page: OrderDetailsRoute.page),
+        AutoRoute( path: '/order/:id/products',page: OrderOrganizationRoute.page),
         AutoRoute(path:"/settings/",page: SettingsRoute.page),
         AutoRoute(page: LimitsRoute.page),
         AutoRoute(page: DebtRoute.page),

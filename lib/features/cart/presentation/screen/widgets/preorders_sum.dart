@@ -40,7 +40,8 @@ class PreordersSumWidget extends HookWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 24, vertical: 12),
                       borderRadius: 0,
-                      fillColor: context.primary,
+                      fillColor: const Color.fromARGB(
+                          255, 0, 73, 208),
                       onPressed: () =>
                           bloc.add(const PreordersEvent.toCheckout()),
                     )

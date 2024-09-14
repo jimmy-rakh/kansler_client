@@ -29,12 +29,10 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
     final state = useBlocBuilder(bloc);
 
     return Scaffold(
-      appBar: AppBarWidget(
-        preferredSize: const Size.fromHeight(60),
+      appBar: const AppBarWidget(
+        preferredSize: Size.fromHeight(60),
         centerTitle: true,
-        child: Text(
-          organization.name!,
-        ),
+        child: Text("Продукты"),
       ),
       body: state.whenOrNull(
             ready: (orders, isMoring, id) => ListView.separated(

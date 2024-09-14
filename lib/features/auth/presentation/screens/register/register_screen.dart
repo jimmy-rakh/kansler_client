@@ -1,15 +1,19 @@
+
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
-import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/auth/presentation/screens/register/widgets/actions.dart';
 import 'package:kansler/features/auth/presentation/screens/register/widgets/form.dart';
 import 'package:kansler/features/auth/presentation/screens/register/widgets/header.dart';
 
 import '../../../../../app/di.dart';
+import '../../../../../app/router.dart';
+import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../../core/widgets/keyboard_escape.dart';
+import '../../../data/models/register/address_request.dart';
 import 'bloc/register_bloc.dart';
 
 @RoutePage()
@@ -37,13 +41,21 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
           width: context.isMobile ? context.width : context.width * .33,
           child: Stack(
             children: [
-              const Positioned(top: 60, child: AutoLeadingButton()),
+              Positioned(top: 60, child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: IconButton.filled(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                  ),
+                  onPressed: router.popForced,
+                  icon: const Icon(KazeIcons.arrowLeftOutline),
+                ),
+              ),),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
                 child: ListView(
                   children: const [
                     verticalSpace60,
-                    verticalSpace35,
                     RegisterHeaderWidget(),
                     verticalSpace35,
                     RegisterFormWidget(),
