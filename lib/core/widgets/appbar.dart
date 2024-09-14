@@ -12,6 +12,7 @@ class AppBarWidget extends PreferredSize {
     this.actions = const [],
     this.centerTitle = false,
     this.leadingWidth,
+    this.leading,
   });
 
   final bool showLeading;
@@ -20,13 +21,14 @@ class AppBarWidget extends PreferredSize {
   final List<Widget> actions;
   final bool centerTitle;
   final double? leadingWidth;
+  final Widget? leading;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       centerTitle: centerTitle,
       title: child,
-      leading: showLeading ? const AutoLeadingButton() : null,
+      leading: showLeading ? leading : null,
       leadingWidth: leadingWidth ?? 46,
       automaticallyImplyLeading: false,
       actions: actions,
