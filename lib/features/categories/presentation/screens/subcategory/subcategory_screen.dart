@@ -6,7 +6,6 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/appbar.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/appbar_bottom.dart';
 import 'package:kansler/features/categories/presentation/screens/subcategory/widgets/body.dart';
-import '../../../../../app/router.dart';
 import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/widgets/appbar.dart';
 import '../../../../../core/widgets/keyboard_escape.dart';

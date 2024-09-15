@@ -7,5 +7,6 @@ class OrdersEvent with _$OrdersEvent {
   const factory OrdersEvent.fetchPreorders({@Default(false) bool isMore}) =
       _FetchPreorders;
 
-  const factory OrdersEvent.toOrder(int id) = _ToOrder;
+  const factory OrdersEvent.toOrder(int id,
+      {@Default(CheckoutType.order) CheckoutType type}) = _ToOrder;
 }

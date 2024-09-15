@@ -1,4 +1,4 @@
 export 'active_theme.dart';
 export '../../shared/services/hive/main_box_keys.dart';
 
-enum CheckoutType { cart, preorder }
+enum CheckoutType { order, preorder }

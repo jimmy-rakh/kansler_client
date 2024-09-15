@@ -469,6 +469,7 @@ mixin _$LatestEvent {
     required TResult Function() fetch,
     required TResult Function(ProductEntity product) changeCartState,
     required TResult Function() cardType,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -476,6 +477,7 @@ mixin _$LatestEvent {
     TResult? Function()? fetch,
     TResult? Function(ProductEntity product)? changeCartState,
     TResult? Function()? cardType,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -483,6 +485,7 @@ mixin _$LatestEvent {
     TResult Function()? fetch,
     TResult Function(ProductEntity product)? changeCartState,
     TResult Function()? cardType,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -491,6 +494,7 @@ mixin _$LatestEvent {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_ChangeCartState value) changeCartState,
     required TResult Function(_CardType value) cardType,
+    required TResult Function(_AddToCart value) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -498,6 +502,7 @@ mixin _$LatestEvent {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_ChangeCartState value)? changeCartState,
     TResult? Function(_CardType value)? cardType,
+    TResult? Function(_AddToCart value)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -505,6 +510,7 @@ mixin _$LatestEvent {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_ChangeCartState value)? changeCartState,
     TResult Function(_CardType value)? cardType,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -569,6 +575,7 @@ class _$FetchImpl implements _Fetch {
     required TResult Function() fetch,
     required TResult Function(ProductEntity product) changeCartState,
     required TResult Function() cardType,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return fetch();
   }
@@ -579,6 +586,7 @@ class _$FetchImpl implements _Fetch {
     TResult? Function()? fetch,
     TResult? Function(ProductEntity product)? changeCartState,
     TResult? Function()? cardType,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return fetch?.call();
   }
@@ -589,6 +597,7 @@ class _$FetchImpl implements _Fetch {
     TResult Function()? fetch,
     TResult Function(ProductEntity product)? changeCartState,
     TResult Function()? cardType,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -603,6 +612,7 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_ChangeCartState value) changeCartState,
     required TResult Function(_CardType value) cardType,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return fetch(this);
   }
@@ -613,6 +623,7 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_ChangeCartState value)? changeCartState,
     TResult? Function(_CardType value)? cardType,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return fetch?.call(this);
   }
@@ -623,6 +634,7 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_ChangeCartState value)? changeCartState,
     TResult Function(_CardType value)? cardType,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -714,6 +726,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     required TResult Function() fetch,
     required TResult Function(ProductEntity product) changeCartState,
     required TResult Function() cardType,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return changeCartState(product);
   }
@@ -724,6 +737,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult? Function()? fetch,
     TResult? Function(ProductEntity product)? changeCartState,
     TResult? Function()? cardType,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return changeCartState?.call(product);
   }
@@ -734,6 +748,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult Function()? fetch,
     TResult Function(ProductEntity product)? changeCartState,
     TResult Function()? cardType,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (changeCartState != null) {
@@ -748,6 +763,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_ChangeCartState value) changeCartState,
     required TResult Function(_CardType value) cardType,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return changeCartState(this);
   }
@@ -758,6 +774,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_ChangeCartState value)? changeCartState,
     TResult? Function(_CardType value)? cardType,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return changeCartState?.call(this);
   }
@@ -768,6 +785,7 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_ChangeCartState value)? changeCartState,
     TResult Function(_CardType value)? cardType,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (changeCartState != null) {
@@ -828,6 +846,7 @@ class _$CardTypeImpl implements _CardType {
     required TResult Function() fetch,
     required TResult Function(ProductEntity product) changeCartState,
     required TResult Function() cardType,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return cardType();
   }
@@ -838,6 +857,7 @@ class _$CardTypeImpl implements _CardType {
     TResult? Function()? fetch,
     TResult? Function(ProductEntity product)? changeCartState,
     TResult? Function()? cardType,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return cardType?.call();
   }
@@ -848,6 +868,7 @@ class _$CardTypeImpl implements _CardType {
     TResult Function()? fetch,
     TResult Function(ProductEntity product)? changeCartState,
     TResult Function()? cardType,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (cardType != null) {
@@ -862,6 +883,7 @@ class _$CardTypeImpl implements _CardType {
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_ChangeCartState value) changeCartState,
     required TResult Function(_CardType value) cardType,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return cardType(this);
   }
@@ -872,6 +894,7 @@ class _$CardTypeImpl implements _CardType {
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_ChangeCartState value)? changeCartState,
     TResult? Function(_CardType value)? cardType,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return cardType?.call(this);
   }
@@ -882,6 +905,7 @@ class _$CardTypeImpl implements _CardType {
     TResult Function(_Fetch value)? fetch,
     TResult Function(_ChangeCartState value)? changeCartState,
     TResult Function(_CardType value)? cardType,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (cardType != null) {
@@ -893,4 +917,159 @@ class _$CardTypeImpl implements _CardType {
 
 abstract class _CardType implements LatestEvent {
   const factory _CardType() = _$CardTypeImpl;
+}
+
+/// @nodoc
+abstract class _$$AddToCartImplCopyWith<$Res> {
+  factory _$$AddToCartImplCopyWith(
+          _$AddToCartImpl value, $Res Function(_$AddToCartImpl) then) =
+      __$$AddToCartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, CheckoutType type});
+}
+
+/// @nodoc
+class __$$AddToCartImplCopyWithImpl<$Res>
+    extends _$LatestEventCopyWithImpl<$Res, _$AddToCartImpl>
+    implements _$$AddToCartImplCopyWith<$Res> {
+  __$$AddToCartImplCopyWithImpl(
+      _$AddToCartImpl _value, $Res Function(_$AddToCartImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+  }) {
+    return _then(_$AddToCartImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CheckoutType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToCartImpl implements _AddToCart {
+  const _$AddToCartImpl(this.id, this.type);
+
+  @override
+  final int id;
+  @override
+  final CheckoutType type;
+
+  @override
+  String toString() {
+    return 'LatestEvent.addToCart(id: $id, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToCartImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
+      __$$AddToCartImplCopyWithImpl<_$AddToCartImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(ProductEntity product) changeCartState,
+    required TResult Function() cardType,
+    required TResult Function(int id, CheckoutType type) addToCart,
+  }) {
+    return addToCart(id, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(ProductEntity product)? changeCartState,
+    TResult? Function()? cardType,
+    TResult? Function(int id, CheckoutType type)? addToCart,
+  }) {
+    return addToCart?.call(id, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(ProductEntity product)? changeCartState,
+    TResult Function()? cardType,
+    TResult Function(int id, CheckoutType type)? addToCart,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(id, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_ChangeCartState value) changeCartState,
+    required TResult Function(_CardType value) cardType,
+    required TResult Function(_AddToCart value) addToCart,
+  }) {
+    return addToCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_ChangeCartState value)? changeCartState,
+    TResult? Function(_CardType value)? cardType,
+    TResult? Function(_AddToCart value)? addToCart,
+  }) {
+    return addToCart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_ChangeCartState value)? changeCartState,
+    TResult Function(_CardType value)? cardType,
+    TResult Function(_AddToCart value)? addToCart,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddToCart implements LatestEvent {
+  const factory _AddToCart(final int id, final CheckoutType type) =
+      _$AddToCartImpl;
+
+  int get id;
+  CheckoutType get type;
+  @JsonKey(ignore: true)
+  _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

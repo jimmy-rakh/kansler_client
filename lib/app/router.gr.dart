@@ -9,229 +9,6 @@
 
 part of 'router.dart';
 
-abstract class _$AppRouter extends RootStackRouter {
-  // ignore: unused_element
-  _$AppRouter({super.navigatorKey});
-
-  @override
-  final Map<String, PageFactory> pagesMap = {
-    AddressesRoute.name: (routeData) {
-      final args = routeData.argsAs<AddressesRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: AddressesScreen(
-          key: args.key,
-          companyId: args.companyId,
-        )),
-      );
-    },
-    AuthRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const AuthScreen(),
-      );
-    },
-    CartRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CartScreen(),
-      );
-    },
-    CategoriesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CategoriesScreen(),
-      );
-    },
-    CategoriesWrapperRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CategoriesWrapperScreen(),
-      );
-    },
-    CheckoutRoute.name: (routeData) {
-      final args = routeData.argsAs<CheckoutRouteArgs>(
-          orElse: () => const CheckoutRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: CheckoutScreen(
-          key: args.key,
-          type: args.type,
-        )),
-      );
-    },
-    CompaniesRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const CompaniesScreen(),
-      );
-    },
-    DebtRoute.name: (routeData) {
-      final args = routeData.argsAs<DebtRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: DebtScreen(
-          key: args.key,
-          id: args.id,
-        )),
-      );
-    },
-    FilterRoute.name: (routeData) {
-      final args = routeData.argsAs<FilterRouteArgs>();
-      return AutoRoutePage<SearchEntity>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: FilterScreen(
-          key: args.key,
-          searchData: args.searchData,
-        )),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
-    LimitsRoute.name: (routeData) {
-      final args = routeData.argsAs<LimitsRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: LimitsScreen(
-          key: args.key,
-          id: args.id,
-        )),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const LoginScreen()),
-      );
-    },
-    MainRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MainScreen(),
-      );
-    },
-    MapRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MapScreen(),
-      );
-    },
-    OrderDetailsRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final args = routeData.argsAs<OrderDetailsRouteArgs>(
-          orElse: () => OrderDetailsRouteArgs(id: pathParams.optInt('id')));
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: OrderDetailsScreen(
-          key: args.key,
-          id: args.id,
-        )),
-      );
-    },
-    OrderOrganizationRoute.name: (routeData) {
-      final args = routeData.argsAs<OrderOrganizationRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: OrderOrganizationScreen(
-          key: args.key,
-          id: args.id,
-          organization: args.organization,
-        )),
-      );
-    },
-    OrdersRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const OrdersScreen()),
-      );
-    },
-    ProductRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: ProductScreen(
-          key: args.key,
-          id: args.id,
-          product: args.product,
-        )),
-      );
-    },
-    ProfileRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ProfileScreen(),
-      );
-    },
-    RegisterRoute.name: (routeData) {
-      final args = routeData.argsAs<RegisterRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: RegisterScreen(
-          key: args.key,
-          requestId: args.requestId,
-          phone: args.phone,
-          inn: args.inn,
-          address: args.address,
-          addressId: args.addressId,
-        )),
-      );
-    },
-    ScannerRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ScannerScreen(),
-      );
-    },
-    SearchRoute.name: (routeData) {
-      final args = routeData.argsAs<SearchRouteArgs>(
-          orElse: () => const SearchRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(
-            child: SearchScreen(
-          key: args.key,
-          title: args.title,
-        )),
-      );
-    },
-    SettingsRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const SettingsScreen(),
-      );
-    },
-    SplashRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: WrappedRoute(child: const SplashScreen()),
-      );
-    },
-    SubcategoryRoute.name: (routeData) {
-      final args = routeData.argsAs<SubcategoryRouteArgs>();
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: SubcategoryScreen(
-          key: args.key,
-          category: args.category,
-        ),
-      );
-    },
-  };
-}
-
 /// generated route for
 /// [AddressesScreen]
 class AddressesRoute extends PageRouteInfo<AddressesRouteArgs> {
@@ -250,8 +27,17 @@ class AddressesRoute extends PageRouteInfo<AddressesRouteArgs> {
 
   static const String name = 'AddressesRoute';
 
-  static const PageInfo<AddressesRouteArgs> page =
-      PageInfo<AddressesRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<AddressesRouteArgs>();
+      return WrappedRoute(
+          child: AddressesScreen(
+        key: args.key,
+        companyId: args.companyId,
+      ));
+    },
+  );
 }
 
 class AddressesRouteArgs {
@@ -281,7 +67,12 @@ class AuthRoute extends PageRouteInfo<void> {
 
   static const String name = 'AuthRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AuthScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -295,7 +86,12 @@ class CartRoute extends PageRouteInfo<void> {
 
   static const String name = 'CartRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CartScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -309,7 +105,12 @@ class CategoriesRoute extends PageRouteInfo<void> {
 
   static const String name = 'CategoriesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CategoriesScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -323,7 +124,12 @@ class CategoriesWrapperRoute extends PageRouteInfo<void> {
 
   static const String name = 'CategoriesWrapperRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CategoriesWrapperScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -331,7 +137,7 @@ class CategoriesWrapperRoute extends PageRouteInfo<void> {
 class CheckoutRoute extends PageRouteInfo<CheckoutRouteArgs> {
   CheckoutRoute({
     Key? key,
-    CheckoutType type = CheckoutType.cart,
+    CheckoutType type = CheckoutType.order,
     List<PageRouteInfo>? children,
   }) : super(
           CheckoutRoute.name,
@@ -344,14 +150,24 @@ class CheckoutRoute extends PageRouteInfo<CheckoutRouteArgs> {
 
   static const String name = 'CheckoutRoute';
 
-  static const PageInfo<CheckoutRouteArgs> page =
-      PageInfo<CheckoutRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<CheckoutRouteArgs>(
+          orElse: () => const CheckoutRouteArgs());
+      return WrappedRoute(
+          child: CheckoutScreen(
+        key: args.key,
+        type: args.type,
+      ));
+    },
+  );
 }
 
 class CheckoutRouteArgs {
   const CheckoutRouteArgs({
     this.key,
-    this.type = CheckoutType.cart,
+    this.type = CheckoutType.order,
   });
 
   final Key? key;
@@ -375,7 +191,12 @@ class CompaniesRoute extends PageRouteInfo<void> {
 
   static const String name = 'CompaniesRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CompaniesScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -396,7 +217,17 @@ class DebtRoute extends PageRouteInfo<DebtRouteArgs> {
 
   static const String name = 'DebtRoute';
 
-  static const PageInfo<DebtRouteArgs> page = PageInfo<DebtRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DebtRouteArgs>();
+      return WrappedRoute(
+          child: DebtScreen(
+        key: args.key,
+        id: args.id,
+      ));
+    },
+  );
 }
 
 class DebtRouteArgs {
@@ -433,7 +264,17 @@ class FilterRoute extends PageRouteInfo<FilterRouteArgs> {
 
   static const String name = 'FilterRoute';
 
-  static const PageInfo<FilterRouteArgs> page = PageInfo<FilterRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<FilterRouteArgs>();
+      return WrappedRoute(
+          child: FilterScreen(
+        key: args.key,
+        searchData: args.searchData,
+      ));
+    },
+  );
 }
 
 class FilterRouteArgs {
@@ -463,7 +304,12 @@ class HomeRoute extends PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const HomeScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -484,7 +330,17 @@ class LimitsRoute extends PageRouteInfo<LimitsRouteArgs> {
 
   static const String name = 'LimitsRoute';
 
-  static const PageInfo<LimitsRouteArgs> page = PageInfo<LimitsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<LimitsRouteArgs>();
+      return WrappedRoute(
+          child: LimitsScreen(
+        key: args.key,
+        id: args.id,
+      ));
+    },
+  );
 }
 
 class LimitsRouteArgs {
@@ -514,7 +370,12 @@ class LoginRoute extends PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const LoginScreen());
+    },
+  );
 }
 
 /// generated route for
@@ -528,7 +389,12 @@ class MainRoute extends PageRouteInfo<void> {
 
   static const String name = 'MainRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MainScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -542,7 +408,12 @@ class MapRoute extends PageRouteInfo<void> {
 
   static const String name = 'MapRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const MapScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -551,12 +422,14 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
     Key? key,
     int? id,
+    CheckoutType type = CheckoutType.order,
     List<PageRouteInfo>? children,
   }) : super(
           OrderDetailsRoute.name,
           args: OrderDetailsRouteArgs(
             key: key,
             id: id,
+            type: type,
           ),
           rawPathParams: {'id': id},
           initialChildren: children,
@@ -564,23 +437,38 @@ class OrderDetailsRoute extends PageRouteInfo<OrderDetailsRouteArgs> {
 
   static const String name = 'OrderDetailsRoute';
 
-  static const PageInfo<OrderDetailsRouteArgs> page =
-      PageInfo<OrderDetailsRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<OrderDetailsRouteArgs>(
+          orElse: () => OrderDetailsRouteArgs(id: pathParams.optInt('id')));
+      return WrappedRoute(
+          child: OrderDetailsScreen(
+        key: args.key,
+        id: args.id,
+        type: args.type,
+      ));
+    },
+  );
 }
 
 class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({
     this.key,
     this.id,
+    this.type = CheckoutType.order,
   });
 
   final Key? key;
 
   final int? id;
 
+  final CheckoutType type;
+
   @override
   String toString() {
-    return 'OrderDetailsRouteArgs{key: $key, id: $id}';
+    return 'OrderDetailsRouteArgs{key: $key, id: $id, type: $type}';
   }
 }
 
@@ -591,6 +479,7 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
     Key? key,
     required int id,
     required OrganizationDto organization,
+    CheckoutType type = CheckoutType.order,
     List<PageRouteInfo>? children,
   }) : super(
           OrderOrganizationRoute.name,
@@ -598,6 +487,7 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
             key: key,
             id: id,
             organization: organization,
+            type: type,
           ),
           rawPathParams: {'id': id},
           initialChildren: children,
@@ -605,8 +495,19 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
 
   static const String name = 'OrderOrganizationRoute';
 
-  static const PageInfo<OrderOrganizationRouteArgs> page =
-      PageInfo<OrderOrganizationRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OrderOrganizationRouteArgs>();
+      return WrappedRoute(
+          child: OrderOrganizationScreen(
+        key: args.key,
+        id: args.id,
+        organization: args.organization,
+        type: args.type,
+      ));
+    },
+  );
 }
 
 class OrderOrganizationRouteArgs {
@@ -614,6 +515,7 @@ class OrderOrganizationRouteArgs {
     this.key,
     required this.id,
     required this.organization,
+    this.type = CheckoutType.order,
   });
 
   final Key? key;
@@ -622,9 +524,11 @@ class OrderOrganizationRouteArgs {
 
   final OrganizationDto organization;
 
+  final CheckoutType type;
+
   @override
   String toString() {
-    return 'OrderOrganizationRouteArgs{key: $key, id: $id, organization: $organization}';
+    return 'OrderOrganizationRouteArgs{key: $key, id: $id, organization: $organization, type: $type}';
   }
 }
 
@@ -639,7 +543,12 @@ class OrdersRoute extends PageRouteInfo<void> {
 
   static const String name = 'OrdersRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const OrdersScreen());
+    },
+  );
 }
 
 /// generated route for
@@ -663,8 +572,18 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
 
   static const String name = 'ProductRoute';
 
-  static const PageInfo<ProductRouteArgs> page =
-      PageInfo<ProductRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ProductRouteArgs>();
+      return WrappedRoute(
+          child: ProductScreen(
+        key: args.key,
+        id: args.id,
+        product: args.product,
+      ));
+    },
+  );
 }
 
 class ProductRouteArgs {
@@ -697,7 +616,12 @@ class ProfileRoute extends PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ProfileScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -726,8 +650,21 @@ class RegisterRoute extends PageRouteInfo<RegisterRouteArgs> {
 
   static const String name = 'RegisterRoute';
 
-  static const PageInfo<RegisterRouteArgs> page =
-      PageInfo<RegisterRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<RegisterRouteArgs>();
+      return WrappedRoute(
+          child: RegisterScreen(
+        key: args.key,
+        requestId: args.requestId,
+        phone: args.phone,
+        inn: args.inn,
+        address: args.address,
+        addressId: args.addressId,
+      ));
+    },
+  );
 }
 
 class RegisterRouteArgs {
@@ -769,7 +706,12 @@ class ScannerRoute extends PageRouteInfo<void> {
 
   static const String name = 'ScannerRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const ScannerScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -790,7 +732,18 @@ class SearchRoute extends PageRouteInfo<SearchRouteArgs> {
 
   static const String name = 'SearchRoute';
 
-  static const PageInfo<SearchRouteArgs> page = PageInfo<SearchRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args =
+          data.argsAs<SearchRouteArgs>(orElse: () => const SearchRouteArgs());
+      return WrappedRoute(
+          child: SearchScreen(
+        key: args.key,
+        title: args.title,
+      ));
+    },
+  );
 }
 
 class SearchRouteArgs {
@@ -820,7 +773,12 @@ class SettingsRoute extends PageRouteInfo<void> {
 
   static const String name = 'SettingsRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const SettingsScreen();
+    },
+  );
 }
 
 /// generated route for
@@ -834,7 +792,12 @@ class SplashRoute extends PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return WrappedRoute(child: const SplashScreen());
+    },
+  );
 }
 
 /// generated route for
@@ -855,8 +818,16 @@ class SubcategoryRoute extends PageRouteInfo<SubcategoryRouteArgs> {
 
   static const String name = 'SubcategoryRoute';
 
-  static const PageInfo<SubcategoryRouteArgs> page =
-      PageInfo<SubcategoryRouteArgs>(name);
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<SubcategoryRouteArgs>();
+      return SubcategoryScreen(
+        key: args.key,
+        category: args.category,
+      );
+    },
+  );
 }
 
 class SubcategoryRouteArgs {

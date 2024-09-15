@@ -33,7 +33,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     final request = CreateOrderRequest(
         paymentType: currentState.paymentType,
         deliveryType: currentState.deliveryType);
-    final res = event.type == CheckoutType.cart
+    final res = event.type == CheckoutType.order
         ? await _checkoutRepository.createOrder(request)
         : await _checkoutRepository.createPreorder(request);
 

@@ -6,4 +6,5 @@ class LatestEvent with _$LatestEvent {
   const factory LatestEvent.changeCartState(ProductEntity product) =
       _ChangeCartState;
   const factory LatestEvent.cardType() = _CardType;
+  const factory LatestEvent.addToCart(int id,CheckoutType type) = _AddToCart;
 }

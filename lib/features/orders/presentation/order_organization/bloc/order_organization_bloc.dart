@@ -1,7 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/enums.dart';
+import 'package:kansler/core/error/failure.dart';
 
 import '../../../../cart/domain/entities/cart_product.dart';
 import '../../../domain/repositories/order.repository.dart';
@@ -33,8 +36,18 @@ class OrderOrganizationBloc
   final scrollController = ScrollController();
 
   _onFetchData(_FetchData event, Emitter<OrderOrganizationState> emit) async {
-    final res = await _ordersRepository.getOrderProducts(
-        event.id ?? (state as _Ready).id!, page);
+    late Either<Failure, ({List<CartProduct> cartProducts, bool hasNext})> res;
+
+    switch (event.type) {
+      case CheckoutType.order:
+        res = await _ordersRepository.getOrderProducts(
+            event.id ?? (state as _Ready).id!, page);
+        break;
+      case CheckoutType.preorder:
+        res = await _ordersRepository.getPreorderProducts(
+            event.id ?? (state as _Ready).id!, page);
+        break;
+    }
 
     res.fold((l) => null, (r) {
       if (state is! _Ready) {

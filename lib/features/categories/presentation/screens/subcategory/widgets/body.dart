@@ -76,7 +76,7 @@ class SubcategoryBody extends HookWidget {
                         onPressed: () {
                           log.e(products[index]);
                         },
-                        onCart: () => bloc.add(
+                        onCart: (type) => bloc.add(
                             SubcategoryEvent.changeCartState(products[index])),
                         fieldController: bloc.quantityControllers[index],
                       ),
@@ -111,7 +111,7 @@ class SubcategoryBody extends HookWidget {
                       height: 200,
                       width: 200,
                       product: products[index],
-                      onCart: () => bloc.add(
+                      onCart: (type) => bloc.add(
                           SubcategoryEvent.changeCartState(products[index])),
                       fieldController: bloc.quantityControllers[index],
                     ),

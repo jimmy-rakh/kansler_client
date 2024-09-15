@@ -1,11 +1,13 @@
 import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import 'package:kansler/features/settings/presentation/theme/theme_bloc.dart';
 import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:kansler/shared/services/logger/logger_service.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -28,7 +30,7 @@ import 'features/orders/presentation/screen/bloc/orders_bloc.dart';
 import 'features/profile/presentation/screen/companies/companies/companies_bloc.dart';
 import 'features/profile/presentation/screen/profile/profile_bloc.dart';
 import 'features/search/presentation/search_screen/blocs/brands/brands_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -99,13 +101,15 @@ void main() async {
             BlocProvider(
               create: (context) => getIt<CheckoutBloc>(),
             ),
+            BlocProvider(
+              create: (context) => getIt<ThemeBloc>(),
+            ),
           ],
           child: HookedBlocConfigProvider(
             injector: () => getIt.get,
             builderCondition: (state) => state != null,
             listenerCondition: (state) => state != null,
             child: const KanslerApp(),
-            //
           ),
         ),
       ),

@@ -5,6 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/home/presentation/blocs/hit/hit_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/latest/latest_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/popular/popular_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -19,6 +22,9 @@ class DiscountsWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<DiscountsBloc>();
+    final hit = context.read<HitBloc>();
+    final popular = context.read<PopularBloc>();
+    final latest = context.read<LatestBloc>();
     final state = useBlocBuilder(bloc);
 
     return Column(
@@ -42,7 +48,7 @@ class DiscountsWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: ProductEntity(id: 0, title: '', barcode: []),
-                  onCart: () {},
+                  onCart: (type) {},
                 ),
               ),
             ),
@@ -60,7 +66,12 @@ class DiscountsWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: products[index],
-                  onCart: () {},
+                  onCart: (type) {
+                    bloc.add(DiscountsEvent.addToCart(products[index].id,type));
+                    hit.add(HitEvent.addToCart(products[index].id,type));
+                    popular.add(PopularEvent.addToCart(products[index].id,type));
+                    latest.add(LatestEvent.addToCart(products[index].id,type));
+                  },
                 ),
               );
             },

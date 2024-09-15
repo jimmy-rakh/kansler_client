@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 
 import '../../../../app/di.dart';
@@ -21,10 +22,12 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
     super.key,
     @PathParam('id') required this.id,
     required this.organization,
+    this.type = CheckoutType.order,
   });
 
   final int id;
   final OrganizationDto organization;
+  final CheckoutType type;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
     final state = useBlocBuilder(bloc);
 
     return Scaffold(
-      appBar:  AppBarWidget(
+      appBar: AppBarWidget(
         preferredSize: Size.fromHeight(60),
         showLeading: true,
         leading: Padding(
@@ -57,7 +60,7 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
                   fieldController: TextEditingController(),
                   showActions: false,
                   onPressed: () {},
-                  onCart: () {}),
+                  onCart: (type) {}),
               separatorBuilder: (context, index) => verticalSpace12,
               itemCount: orders.length,
             ),
@@ -71,7 +74,7 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
         create: (context) => getIt<OrderOrganizationBloc>()
-          ..add(OrderOrganizationEvent.fetch(id: id)),
+          ..add(OrderOrganizationEvent.fetch(id: id, type: type)),
         child: this,
       );
 }

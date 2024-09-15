@@ -5,5 +5,6 @@ class OrderOrganizationEvent with _$OrderOrganizationEvent {
   const factory OrderOrganizationEvent.fetch({
     int? id,
     @Default(false) bool isMore,
+    @Default(CheckoutType.order) CheckoutType type,
   }) = _FetchData;
 }

@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_network/image_network.dart';
 import 'package:kansler/core/constants/kaze_icons.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
+import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import 'package:kansler/features/product/domain/entities/product.entity.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
@@ -35,7 +37,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
   final ProductEntity? product;
   final CartProduct? cartProduct;
   final VoidCallback? onPressed;
-  final VoidCallback onCart;
+  final ValueChanged<CheckoutType> onCart;
   final TextEditingController? fieldController;
   final bool isBusy;
   final double width;
@@ -44,13 +46,15 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
   @override
   Widget build(BuildContext context) {
     final cartBloc = context.read<CartBloc>();
+    final preorderBloc = context.read<PreordersBloc>();
     final authBloc = context.read<AuthBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       borderRadius: 4,
       width: width,
-      onTap: () =>
-          router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
+      onTap: () => router.push(ProductRoute(
+          product: product ?? cartProduct!.product!,
+          id: product?.id ?? cartProduct!.product!.id)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -60,37 +64,50 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
             child: Stack(children: [
               (product ?? cartProduct?.product)?.imageUrl == null
                   ? GestureDetector(
-                onTap: () =>
-                    router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(3),
-                      child: Image.asset(
+                      onTap: () => router.push(ProductRoute(
+                          product: product ?? cartProduct!.product!,
+                          id: product?.id ?? cartProduct!.product!.id)),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: Image.asset(
                           AppImages.noPhoto,
                           height: height,
                           width: width,
-                          fit:  BoxFit.fill,
+                          fit: BoxFit.fill,
                         ),
-                    ),
-                  )
+                      ),
+                    )
                   : ClipRRect(
-                borderRadius: BorderRadius.circular(3),
-                    child: ImageNetwork(
-                    onTap: () =>
-                        router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
-                        fitWeb:  BoxFitWeb.fill,
-                        fitAndroidIos:  BoxFit.fill,
-                        onLoading: const SizedBox(),
-                        duration: 0,
-                        image: NetworkConstants.apiBaseUrl +
-                            (product ?? cartProduct?.product)!.imageUrl!,
-                        height: height,
-                        width: width,
-
-                        onError: Image.asset(
-                          AppImages.noPhoto,
-                          height: 50,
-                        )),
-                  ),
+                      borderRadius: BorderRadius.circular(3),
+                      child: kIsWeb
+                          ? ImageNetwork(
+                              onTap: () => router.push(ProductRoute(
+                                  product: product ?? cartProduct!.product!,
+                                  id: product?.id ?? cartProduct!.product!.id)),
+                              fitWeb: BoxFitWeb.fill,
+                              fitAndroidIos: BoxFit.fill,
+                              onLoading: const SizedBox(),
+                              duration: 0,
+                              image: NetworkConstants.apiBaseUrl +
+                                  (product ?? cartProduct?.product)!.imageUrl!,
+                              height: height,
+                              width: width,
+                              onError: Image.asset(
+                                AppImages.noPhoto,
+                                height: 50,
+                              ))
+                          : CachedNetworkImage(
+                              fit: BoxFit.fitHeight,
+                              height: height,
+                              width: width,
+                              memCacheHeight: 200,
+                              memCacheWidth: 200,
+                              imageUrl: NetworkConstants.apiBaseUrl +
+                                  (product ?? cartProduct?.product)!.imageUrl!,
+                              errorWidget: (context, url, error) =>
+                                  Image.asset(AppImages.noPhoto),
+                            ),
+                    ),
               (product ?? cartProduct?.product)?.brand?.name == null
                   ? const SizedBox()
                   : Positioned(
@@ -165,9 +182,12 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                   ? const SizedBox()
                   : AppButton(
                       width: context.isMobile ? context.width * .12 : 50,
-                      isActive: product?.leftQuantity != 0,
-                      fillColor:
-                          (product ?? cartProduct!.product)!.inCart ?? false
+                      fillColor: product?.leftQuantity == 0
+                          ? (product ?? cartProduct!.product)!.inPreorder ??
+                                  false
+                              ? const Color.fromARGB(255, 69, 114, 199)
+                              : const Color.fromARGB(255, 0, 73, 208)
+                          : (product ?? cartProduct!.product)!.inCart ?? false
                               ? AppColors.red
                               : context.primary,
                       text: const Icon(
@@ -178,7 +198,14 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                       onPressed: authBloc.state ==
                               const AuthState.authenticated()
                           ? () {
-                              onCart();
+                              onCart.call(product?.leftQuantity == 0
+                                  ? CheckoutType.preorder
+                                  : CheckoutType.order);
+                              if (product?.leftQuantity == 0) {
+                                preorderBloc.add(PreordersEvent.addToPreorders(
+                                    (product ?? cartProduct!.product)!.id, 1));
+                                return;
+                              }
                               if (!((product ?? cartProduct?.product)?.inCart ??
                                   true)) {
                                 cartBloc.add(CartEvent.addToCart(

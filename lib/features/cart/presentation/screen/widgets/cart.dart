@@ -39,7 +39,7 @@ class CartTabWidget extends HookWidget {
               cartProduct: product,
               fieldController: bloc.quantityControllers[index],
               onPressed: () {},
-              onCart: () {},
+              onCart: (type) {},
             );
           },
           separatorBuilder: (context, index) => verticalSpace12,

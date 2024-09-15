@@ -51,7 +51,7 @@ class OrderRepositoryImpl implements OrdersRepository {
 
   @override
   Future<Either<Failure, OrdersDto>> getPreorderById(int id) async {
-    final res = await _ordersRemoteSource.getOrderById(id);
+    final res = await _ordersRemoteSource.getPreorderById(id);
 
     return res;
   }

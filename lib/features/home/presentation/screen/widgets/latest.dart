@@ -5,6 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/home/presentation/blocs/discounts/discounts_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/hit/hit_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/popular/popular_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -19,6 +22,9 @@ class LatestWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<LatestBloc>();
+    final hit = context.read<HitBloc>();
+    final discount = context.read<DiscountsBloc>();
+    final popular = context.read<PopularBloc>();
     final state = useBlocBuilder(bloc);
     // final currentWidth = MediaQuery.of(context).size.width;
     // final crossCount = (currentWidth / 300).floor();
@@ -44,7 +50,7 @@ class LatestWidget extends HookWidget {
                   width: context.isMobile ? context.width * .44 : 200,
                   product:
                       ProductEntity(id: 0, title: '', barcode: [], price: 0),
-                  onCart: () {},
+                  onCart: (type) {},
                 ),
               ),
             ),
@@ -63,7 +69,12 @@ class LatestWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: products[index],
-                  onCart: () {},
+                  onCart: (type) {
+                    discount.add(DiscountsEvent.addToCart(products[index].id,type));
+                    hit.add(HitEvent.addToCart(products[index].id,type));
+                    popular.add(PopularEvent.addToCart(products[index].id,type));
+                    bloc.add(LatestEvent.addToCart(products[index].id,type));
+                  },
                 ),
               );
             },

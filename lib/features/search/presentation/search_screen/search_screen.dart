@@ -297,8 +297,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       'Цена от:',
@@ -312,8 +311,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                         radius: 4,
                                                         enabledBorderColor:
                                                             Colors.grey,
-                                                        fillColor: context
-                                                            .background,
+                                                        fillColor:
+                                                            context.background,
                                                         hint: '...',
                                                       ),
                                                     ),
@@ -326,8 +325,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   crossAxisAlignment:
-                                                      CrossAxisAlignment
-                                                          .start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       'Цена до:',
@@ -341,8 +339,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                         radius: 4,
                                                         enabledBorderColor:
                                                             Colors.grey,
-                                                        fillColor: context
-                                                            .background,
+                                                        fillColor:
+                                                            context.background,
                                                         hint: '...',
                                                       ),
                                                     ),
@@ -370,20 +368,18 @@ class _SearchScreenState extends State<SearchScreen> {
                                                     border: Border.all(
                                                         color: Colors.grey),
                                                     borderRadius:
-                                                        const BorderRadius
-                                                            .all(
+                                                        const BorderRadius.all(
                                                             Radius.circular(
                                                                 4))),
                                                 child: Center(
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(
-                                                            2),
+                                                        const EdgeInsets.all(2),
                                                     child: Theme(
                                                       data: Theme.of(context)
                                                           .copyWith(
-                                                        focusColor: context
-                                                            .cardColor,
+                                                        focusColor:
+                                                            context.cardColor,
                                                       ),
                                                       child: DropdownButton<
                                                           String>(
@@ -392,8 +388,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                         underline:
                                                             const SizedBox(),
                                                         autofocus: true,
-                                                        focusColor: context
-                                                            .background,
+                                                        focusColor:
+                                                            context.background,
                                                         elevation: 0,
                                                         hint: const Padding(
                                                           padding:
@@ -429,8 +425,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                             child: Padding(
                                                               padding:
                                                                   const EdgeInsets
-                                                                      .all(
-                                                                      8.0),
+                                                                      .all(8.0),
                                                               child: SizedBox(
                                                                 width: context
                                                                         .width *
@@ -444,8 +439,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                         }).toList(),
                                                         onChanged: (value) {
                                                           bloc.add(SearchEvent
-                                                              .orderBy(
-                                                                  value!));
+                                                              .orderBy(value!));
                                                         },
                                                       ),
                                                     ),
@@ -538,7 +532,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 verticalSpace12,
                             itemBuilder: (context, index) => ProductCard.list(
                               product: products[index],
-                              onCart: () => bloc.add(
+                              onCart: (type) => bloc.add(
                                   SearchEvent.changeCartState(products[index])),
                               fieldController: authBloc.state ==
                                       const AuthState.authenticated()
@@ -571,7 +565,7 @@ class _SearchScreenState extends State<SearchScreen> {
                               height: 200,
                               width: 200,
                               product: products[index],
-                              onCart: () => bloc.add(
+                              onCart: (type) => bloc.add(
                                   SearchEvent.changeCartState(products[index])),
                               fieldController: authBloc.state ==
                                       const AuthState.authenticated()

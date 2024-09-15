@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
@@ -12,7 +13,7 @@ import '../../../../core/constants/kaze_icons.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/app_card.dart';
-import '../../../../core/widgets/appbar.dart';
+
 import '../../../product/presentation/widgets/product_card.dart';
 import 'bloc/order_details_bloc.dart';
 
@@ -21,9 +22,11 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
   const OrderDetailsScreen({
     super.key,
     @PathParam('id') this.id,
+    this.type = CheckoutType.order,
   });
 
   final int? id;
+  final CheckoutType type;
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +99,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                 onTap: () {
                                   bloc.add(OrderDetailsEvent.toDetails(
                                       order!.organizationOrders![index].id,
-                                      order!.organizationOrders![index]
-                                          .organization));
+                                      order.organizationOrders![index]
+                                          .organization,type));
                                 },
                                 borderRadius: 8,
                                 child: Column(
@@ -221,13 +224,15 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                         order
                                                             .organizationOrders![
                                                                 index]
-                                                            .organization))
+                                                            .organization,
+                                                        type))
                                                 : bloc.add(
                                                     OrderDetailsEvent.fetch(
                                                     id: order
                                                         .organizationOrders![
                                                             index]
                                                         .id,
+                                                    type: type,
                                                   ));
                                           },
                                           borderRadius: 4,
@@ -290,7 +295,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                             .spaceBetween,
                                                     children: [
                                                       Text("Продукты"),
-                                                      Icon(Icons.arrow_forward_ios),
+                                                      Icon(Icons
+                                                          .arrow_forward_ios),
                                                     ],
                                                   ),
                                                 ),
@@ -317,7 +323,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                 fieldController: TextEditingController(),
                                 showActions: false,
                                 onPressed: () {},
-                                onCart: () {}),
+                                onCart: (type) {}),
                             separatorBuilder: (context, index) =>
                                 verticalSpace12,
                             itemCount: orders?.length ?? 0,
@@ -333,8 +339,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (context) =>
-            getIt<OrderDetailsBloc>()..add(OrderDetailsEvent.fetchOrder(id!)),
+        create: (context) => getIt<OrderDetailsBloc>()
+          ..add(OrderDetailsEvent.fetchOrder(id!, type)),
         child: this,
       );
 }

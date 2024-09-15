@@ -1,10 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:image_network/image_network.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/constants/kaze_icons.dart';
@@ -36,7 +40,7 @@ class ProductListCard extends HookWidget implements ProductCard {
   final ProductEntity? product;
   final CartProduct? cartProduct;
   final VoidCallback onPressed;
-  final VoidCallback onCart;
+  final ValueChanged<CheckoutType> onCart;
   final TextEditingController fieldController;
   final bool isBusy;
   final bool showActions;
@@ -45,6 +49,7 @@ class ProductListCard extends HookWidget implements ProductCard {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
     final cartBloc = context.read<CartBloc>();
+    final preorderBloc = context.read<PreordersBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       height: context.isSmall ? 130 : 100,
@@ -56,7 +61,9 @@ class ProductListCard extends HookWidget implements ProductCard {
       onTap: () {
         // competeEditing();
         // onPressed();
-        router.push(ProductRoute(product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id));
+        router.push(ProductRoute(
+            product: product ?? cartProduct!.product!,
+            id: product?.id ?? cartProduct!.product!.id));
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,30 +71,11 @@ class ProductListCard extends HookWidget implements ProductCard {
           if (product != null || cartProduct?.product != null)
             Stack(
               children: [
-                //  context.isSmall
-                //      ? ColoredBox(
-                //   color: context.cardColor,
-                //   child: CachedNetworkImage(
-                //     fit: BoxFit.fitHeight,
-                //     height: 120,
-                //     width: 100,
-                //     memCacheHeight: 180,
-                //     memCacheWidth: 180,
-                //     errorListener: (value) => log.e(
-                //         '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
-                //     imageUrl: NetworkConstants.apiBaseUrl +
-                //         (product?.imageUrl ??
-                //             cartProduct?.product!.imageUrl ??
-                //             ''),
-                //     errorWidget: (context, url, error) =>
-                //         Image.asset(AppImages.noPhoto),
-                //   ),
-                // )
-                //      :
                 (product ?? cartProduct?.product)?.imageUrl == null
                     ? GestureDetector(
                         onTap: () => router.push(ProductRoute(
-                            product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
+                            product: product ?? cartProduct!.product!,
+                            id: product?.id ?? cartProduct!.product!.id)),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(3),
                           child: Image.asset(
@@ -100,21 +88,38 @@ class ProductListCard extends HookWidget implements ProductCard {
                       )
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(3),
-                        child: ImageNetwork(
-                            onTap: () => router.push(ProductRoute(
-                                product: product ?? cartProduct!.product!,id: product?.id ?? cartProduct!.product!.id)),
-                            fitWeb: BoxFitWeb.fill,
-                            fitAndroidIos: BoxFit.fill,
-                            onLoading: const SizedBox(),
-                            duration: 0,
-                            image: NetworkConstants.apiBaseUrl +
-                                (product ?? cartProduct?.product)!.imageUrl!,
-                            height: context.isSmall ? 120 : 100,
-                            width: 100,
-                            onError: Image.asset(
-                              AppImages.noPhoto,
-                              height: 120,
-                            )),
+                        child: kIsWeb
+                            ? CachedNetworkImage(
+                                fit: BoxFit.fitHeight,
+                                height: 120,
+                                width: 100,
+                                memCacheHeight: 180,
+                                memCacheWidth: 180,
+                                imageUrl: NetworkConstants.apiBaseUrl +
+                                    (product?.imageUrl ??
+                                        cartProduct?.product!.imageUrl ??
+                                        ''),
+                                errorWidget: (context, url, error) =>
+                                    Image.asset(AppImages.noPhoto),
+                              )
+                            : ImageNetwork(
+                                onTap: () => router.push(ProductRoute(
+                                    product: product ?? cartProduct!.product!,
+                                    id: product?.id ??
+                                        cartProduct!.product!.id)),
+                                fitWeb: BoxFitWeb.fill,
+                                fitAndroidIos: BoxFit.fill,
+                                onLoading: const SizedBox(),
+                                duration: 0,
+                                image: NetworkConstants.apiBaseUrl +
+                                    (product ?? cartProduct?.product)!
+                                        .imageUrl!,
+                                height: context.isSmall ? 120 : 100,
+                                width: 100,
+                                onError: Image.asset(
+                                  AppImages.noPhoto,
+                                  height: 120,
+                                )),
                       ),
                 (product ?? cartProduct?.product)?.brand?.name == null
                     ? const SizedBox()
@@ -247,6 +252,24 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                   onEditingComplete:
                                                       competeEditing,
                                                   onFieldSubmitted: (value) {
+                                                    onCart.call(
+                                                        product?.leftQuantity ==
+                                                                0
+                                                            ? CheckoutType
+                                                                .preorder
+                                                            : CheckoutType
+                                                                .order);
+                                                    if (product?.leftQuantity ==
+                                                        0) {
+                                                      preorderBloc.add(PreordersEvent
+                                                          .addToPreorders(
+                                                              (product ??
+                                                                      cartProduct!
+                                                                          .product)!
+                                                                  .id,
+                                                              1));
+                                                      return;
+                                                    }
                                                     if ((product ??
                                                                 cartProduct!
                                                                     .product)!
@@ -259,7 +282,6 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                                       ?.product)
                                                               ?.leftQuantity !=
                                                           0) {
-                                                        onCart();
                                                         if (!((product ??
                                                                     cartProduct
                                                                         ?.product)
@@ -342,7 +364,19 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   onPressed: authBloc.state ==
                                           const AuthState.authenticated()
                                       ? () {
-                                          onCart();
+                                          onCart.call(product?.leftQuantity == 0
+                                              ? CheckoutType.preorder
+                                              : CheckoutType.order);
+                                          if (product?.leftQuantity == 0) {
+                                            preorderBloc.add(
+                                                PreordersEvent.addToPreorders(
+                                                    (product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                        .id,
+                                                    1));
+                                            return;
+                                          }
                                           if (!((product ??
                                                       cartProduct?.product)
                                                   ?.inCart ??
@@ -418,16 +452,39 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               fillColor: context.background,
                                               width: 60,
                                               radius: 0,
-                                              contentPadding: const EdgeInsets.all(4),
+                                              contentPadding:
+                                                  const EdgeInsets.all(4),
                                               textAlign: TextAlign.center,
                                               fieldController: fieldController,
                                               onChange: submit,
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
-                                                if ((product ?? cartProduct!.product)!.leftQuantity >=
-                                                    int.parse(fieldController.text)) {
-                                                  if ((product ?? cartProduct?.product)?.leftQuantity != 0) {
-                                                    onCart();
+                                                onCart.call(
+                                                    product?.leftQuantity == 0
+                                                        ? CheckoutType.preorder
+                                                        : CheckoutType.order);
+                                                if (product?.leftQuantity ==
+                                                    0) {
+                                                  preorderBloc.add(PreordersEvent
+                                                      .addToPreorders(
+                                                          (product ??
+                                                                  cartProduct!
+                                                                      .product)!
+                                                              .id,
+                                                          1));
+                                                  return;
+                                                }
+                                                if ((product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                        .leftQuantity >=
+                                                    int.parse(
+                                                        fieldController.text)) {
+                                                  if ((product ??
+                                                              cartProduct
+                                                                  ?.product)
+                                                          ?.leftQuantity !=
+                                                      0) {
                                                     FocusScope.of(context)
                                                         .unfocus();
                                                     if (!((product ??
@@ -462,7 +519,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                       .unfocus();
                                                 }
                                               },
-                                              textInputType: TextInputType.number,
+                                              textInputType:
+                                                  TextInputType.number,
                                               textInputFormatter: [
                                                 FilteringTextInputFormatter
                                                     .digitsOnly
@@ -510,7 +568,17 @@ class ProductListCard extends HookWidget implements ProductCard {
                             onPressed: authBloc.state ==
                                     const AuthState.authenticated()
                                 ? () {
-                                    onCart();
+                                    onCart.call(product?.leftQuantity == 0
+                                        ? CheckoutType.preorder
+                                        : CheckoutType.order);
+                                    if (product?.leftQuantity == 0) {
+                                      preorderBloc.add(
+                                          PreordersEvent.addToPreorders(
+                                              (product ?? cartProduct!.product)!
+                                                  .id,
+                                              1));
+                                      return;
+                                    }
                                     if (!((product ?? cartProduct?.product)
                                             ?.inCart ??
                                         true)) {

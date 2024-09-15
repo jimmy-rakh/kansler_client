@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/enums.dart';
 import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../product/domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch_latest_products.usecase.dart';
-
 
 part 'latest_state.dart';
 
@@ -21,6 +21,7 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
     on<_Fetch>(_onFetch);
     on<_ChangeCartState>(_onChangeCartState);
     on<_CardType>(_onCardType);
+    on<_AddToCart>(_onAddToCart);
     add(const LatestEvent.fetch());
   }
 
@@ -55,5 +56,24 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
     }).toList();
 
     emit(currentState.copyWith(products: products));
+  }
+
+  void _onAddToCart(_AddToCart event, Emitter<LatestState> emit) {
+    final curr = state as _Success;
+
+    List<ProductEntity> products = curr.products.map((e) {
+      if (e.id == event.id) {
+       switch (event.type) {
+          case CheckoutType.order:
+            return e.copyWith(inCart: !e.inCart!);
+
+          case CheckoutType.preorder:
+            return e.copyWith(inPreorder: !e.inPreorder!);
+        }
+      }
+      return e;
+    }).toList();
+
+    emit(LatestState.success(products: products));
   }
 }

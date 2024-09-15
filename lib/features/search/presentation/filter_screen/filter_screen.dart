@@ -17,7 +17,7 @@ import '../../../../core/widgets/appbar.dart';
 import '../../domain/entities/search.entity.dart';
 import 'filter/filter_bloc.dart';
 
-@RoutePage<SearchEntity>()
+@RoutePage()
 class FilterScreen extends HookWidget implements AutoRouteWrapper {
   const FilterScreen({
     super.key,

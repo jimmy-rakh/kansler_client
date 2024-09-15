@@ -5,6 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/home/presentation/blocs/discounts/discounts_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/hit/hit_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/latest/latest_bloc.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
@@ -19,6 +22,9 @@ class PopularWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<PopularBloc>();
+    final latest = context.read<LatestBloc>();
+    final hit = context.read<HitBloc>();
+    final discount = context.read<DiscountsBloc>();
     final state = useBlocBuilder(bloc);
 
     return Column(
@@ -41,7 +47,7 @@ class PopularWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: ProductEntity(id: 0, title: '', barcode: []),
-                  onCart: () {},
+                  onCart: (type) {},
                 ),
               ),
             ),
@@ -57,12 +63,16 @@ class PopularWidget extends HookWidget {
                 cacheExtent: 10,
                 separatorBuilder: (context, index) => horizontalSpace12,
                 itemBuilder: (context, index) => ProductCard.grid(
-                  height: context.isMobile ? context.height * .2 : 200,
-                  width: context.isMobile ? context.width * .44 : 200,
-                  product: products[index],
-                  onCart: () =>
-                      bloc.add(PopularEvent.changeCartState(products[index])),
-                ),
+                    height: context.isMobile ? context.height * .2 : 200,
+                    width: context.isMobile ? context.width * .44 : 200,
+                    product: products[index],
+                    onCart: (type) {
+                      discount
+                          .add(DiscountsEvent.addToCart(products[index].id,type));
+                      hit.add(HitEvent.addToCart(products[index].id,type));
+                      bloc.add(PopularEvent.addToCart(products[index].id,type));
+                      latest.add(LatestEvent.addToCart(products[index].id,type));
+                    }),
               );
             },
             failure: () => const SizedBox(),

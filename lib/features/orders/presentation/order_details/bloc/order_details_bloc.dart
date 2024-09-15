@@ -1,8 +1,10 @@
-import 'dart:async';
+import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/enums.dart';
+import 'package:kansler/core/error/failure.dart';
 import '../../../../../app/router.dart';
 import '../../../../cart/domain/entities/cart_product.dart';
 import '../../../../profile/data/models/address_dto.dart';
@@ -23,14 +25,13 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
 
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
-          scrollController.position.maxScrollExtent - 200 &&
+              scrollController.position.maxScrollExtent - 200 &&
           hasNext &&
           !((state as _Ready).isMoreLoading ?? false)) {
         add(const OrderDetailsEvent.fetch(isMore: true));
       }
     });
     on<_FetchOrder>(_onFetchOrder);
-
     on<_ToDetails>(_onToDetails);
   }
 
@@ -44,7 +45,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
 
     res.fold((l) => null, (r) {
       if (state is! _Ready) {
-        emit(OrderDetailsState.ready(orders:r.cartProducts, id: event.id));
+        emit(OrderDetailsState.ready(orders: r.cartProducts, id: event.id));
         return;
       }
 
@@ -60,17 +61,31 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
     });
   }
 
-  FutureOr<void> _onFetchOrder(
-      _FetchOrder event, Emitter<OrderDetailsState> emit) async {
-    final res = await _ordersRepository.getOrderById(event.id);
+  void _onFetchOrder(_FetchOrder event, Emitter<OrderDetailsState> emit) async {
+    Either<Failure, OrdersDto> res;
 
-    res.fold((l) => null, (r) => emit(OrderDetailsState.ready(order: r,)));
+    print(event.type);
+
+    switch (event.type) {
+      case CheckoutType.order:
+        res = await _ordersRepository.getOrderById(event.id);
+        break;
+      case CheckoutType.preorder:
+        res = await _ordersRepository.getPreorderById(event.id);
+    }
+
+    res.fold(
+        (l) => null,
+        (r) => emit(OrderDetailsState.ready(
+              order: r,
+            )));
   }
 
   void _onToDetails(_ToDetails event, Emitter<OrderDetailsState> emit) {
     router.push(OrderOrganizationRoute(
       id: event.id,
       organization: event.organization,
+      type: event.type,
     ));
   }
 }

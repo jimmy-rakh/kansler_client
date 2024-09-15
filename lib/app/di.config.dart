@@ -194,6 +194,8 @@ import 'package:kansler/features/search/presentation/search_screen/blocs/brands/
     as _i373;
 import 'package:kansler/features/search/presentation/search_screen/blocs/search_bloc/search_bloc.dart'
     as _i685;
+import 'package:kansler/features/settings/presentation/theme/theme_bloc.dart'
+    as _i1033;
 import 'package:kansler/features/splash/presentation/bloc/splash_bloc.dart'
     as _i357;
 import 'package:kansler/shared/services/device/device_info_service.dart'
@@ -219,6 +221,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i923.NavbarBloc>(() => _i923.NavbarBloc());
     gh.singleton<_i357.SplashBloc>(() => _i357.SplashBloc());
     gh.lazySingleton<_i284.AppRouter>(() => _i284.AppRouter());
+    gh.lazySingleton<_i1033.ThemeBloc>(() => _i1033.ThemeBloc());
     gh.factory<_i34.DeviceInfoService>(() => _i897.DeviceInfoServiceImpl());
     gh.singleton<_i766.AuthLocalDataSource>(
         () => _i405.AuthLocalDataSourceImpl());
