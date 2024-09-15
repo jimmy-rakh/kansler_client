@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -8,9 +7,6 @@ import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
-import '../../../../../core/constants/spaces.dart';
-import '../../../../product/domain/entities/product.entity.dart';
-import '../../../../product/presentation/widgets/product_card.dart';
 import '../../../data/models/posters_dto.dart';
 import '../../blocs/banner/banner_bloc.dart';
 import 'default_image_container.dart';
@@ -24,13 +20,13 @@ class BannerWidget extends HookWidget {
     final state = useBlocBuilder(bloc);
 
     return SizedBox(
-      height: context.isSmall ?  context.height * .33 : context.height * .5,
+      height: context.isSmall ?  context.height * .35 : context.height * .55,
       child: state.when(
         loadInProgress: () => Skeletonizer(
           enabled: true,
           child: DefaultImageContainer(
-            width: context.width * .95,
-            height:context.isSmall ?  context.height * .33 : context.height * .5,
+            width: context.width * .9,
+            height:context.isSmall ?  context.height * .3 : context.height * .55,
             margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
             radius: 4,
             imageUrl: "",
@@ -57,8 +53,8 @@ class BannerWidget extends HookWidget {
                 return GestureDetector(
                   onTap: () {},
                   child: DefaultImageContainer(
-                    width: context.width * .95,
-                    height: context.isSmall ?  context.height * .33 : context.height * .5,
+                    width: context.width * .9,
+                    height: context.isSmall ?  context.height * .3 : context.height * .55,
                     margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
                     radius: 4,
                     imageUrl:context.isSmall ? poster.imgMobile : poster.imgWeb,
