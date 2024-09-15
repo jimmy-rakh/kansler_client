@@ -116,8 +116,8 @@ class _SearchScreenState extends State<SearchScreen> {
           prefix: const Icon(KazeIcons.searchOutline),
           prefixPadding: const EdgeInsets.symmetric(horizontal: 8),
           contentPadding: EdgeInsets.symmetric(
-              horizontal: context.isSmall ? 7 : 12,
-              vertical: context.isSmall ? 9 : 14),
+              horizontal: context.isSmall ? 8 : 12,
+              vertical: context.isSmall ? 10 : 14),
           hint: 'common.search'.tr(),
           autoFocus: true,
           hintStyle: context.theme.textTheme.bodyMedium,
@@ -398,26 +398,25 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           child: Text(
                                                               "Выберите способ получение"),
                                                         ),
-                                                        value: filterData
+                                                        value: search
                                                                     ?.orderBy ==
                                                                 "created_at"
                                                             ? "Новинки"
-                                                            : filterData?.orderBy ==
+                                                            : search?.orderBy ==
                                                                     "alfabetic"
                                                                 ? "По Алфавиту"
-                                                                : filterData?.orderBy ==
-                                                                        "price"
-                                                                    ? "Подороже"
-                                                                    : filterData?.orderBy ==
-                                                                            "-price"
-                                                                        ? "Подешевле"
-                                                                        : filterData
-                                                                            ?.orderBy,
+                                                                : search?.orderBy ==
+                                                            "price"
+                                                            ? "Подешевле"
+                                                            : search?.orderBy ==
+                                                            "-price"
+                                                            ? "Подороже"
+                                                            : search?.orderBy,
                                                         items: <String>[
                                                           "Новинки",
                                                           "По Алфавиту",
-                                                          "Подороже",
                                                           "Подешевле",
+                                                          "Подороже",
                                                         ].map((String value) {
                                                           return DropdownMenuItem<
                                                               String>(

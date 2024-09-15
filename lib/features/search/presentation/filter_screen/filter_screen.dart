@@ -10,6 +10,7 @@ import 'package:kansler/features/search/presentation/filter_screen/widgets/categ
 import 'package:kansler/features/search/presentation/filter_screen/widgets/categories_view.dart';
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
+import '../../../../core/constants/kaze_icons.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/app_button.dart';
 import '../../../../core/widgets/app_text_field.dart';
@@ -42,11 +43,24 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
       child: SafeArea(
         minimum: context.isSmall
             ? EdgeInsets.zero
-            : const EdgeInsets.fromLTRB(300, 150, 300, 150),
+            : const EdgeInsets.fromLTRB(150, 150, 150, 150),
         child: Scaffold(
-          appBar: const AppBarWidget(
-            preferredSize: Size.fromHeight(60),
-            child: Text('Фильтр'),
+          appBar: AppBarWidget(
+            showLeading: true,
+            leading: Padding(
+              padding: const EdgeInsets.all(8),
+              child: IconButton.filled(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                ),
+                onPressed:()=> Navigator.pop(context),
+                icon: const Icon(KazeIcons.arrowLeftOutline),
+              ),
+            ),
+            leadingWidth: 58,
+            preferredSize: const Size.fromHeight( 60),
+            bottomSize: const Size(double.maxFinite, 40),
+            child: const Text('Фильтр'),
           ),
           body: AnimatedSwitcher(
               duration: Durations.medium2,
@@ -141,6 +155,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                 ),
                                 verticalSpace12,
                                  Container(
+                                   width:context.isSmall ?  context.width : context.width * .7,
                                   decoration: BoxDecoration(
                                       color: context.cardColor,
                                       border: Border.all(
@@ -186,16 +201,16 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                               ? "По Алфавиту"
                                               : search.orderBy ==
                                               "price"
-                                              ? "Подороже"
+                                              ? "Подешевле"
                                               : search.orderBy ==
                                               "-price"
-                                              ? "Подешевле"
+                                              ? "Подороже"
                                               : search.orderBy,
                                           items: <String>[
                                             "Новинки",
                                             "По Алфавиту",
-                                            "Подороже",
                                             "Подешевле",
+                                            "Подороже",
                                           ].map((String value) {
                                             return DropdownMenuItem<
                                                 String>(
@@ -206,7 +221,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                                     .all(
                                                     8.0),
                                                 child: SizedBox(
-                                                  width: context.width * .7,
+                                                  width: context.isSmall ?  context.width * .75 : context.width * .6,
                                                   child: Text(
                                                     value,
                                                   ),

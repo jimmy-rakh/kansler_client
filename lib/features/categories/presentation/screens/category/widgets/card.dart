@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_network/image_network.dart';
@@ -105,14 +107,23 @@ class _CategoryCardState extends State<CategoryCard>
                                   width: 35,
                                   fit: BoxFit.cover,
                                 )
-                              : ImageNetwork(
-                                  height: 40,
-                                  width: 35,
-                                  onLoading: const SizedBox(),
-                                  fitWeb: BoxFitWeb.cover,
-                                  fitAndroidIos: BoxFit.cover,
-                                  image: NetworkConstants.apiBaseUrl +
-                                      widget.category.imageUrl!),
+                              : kIsWeb
+                                  ? ImageNetwork(
+                                      height: 40,
+                                      width: 35,
+                                      onLoading: const SizedBox(),
+                                      fitWeb: BoxFitWeb.cover,
+                                      fitAndroidIos: BoxFit.cover,
+                                      image: NetworkConstants.apiBaseUrl +
+                                          widget.category.imageUrl!)
+                                  : CachedNetworkImage(
+                                      height: 40,
+                                      width: 35,
+                                      fit: BoxFit.cover,
+                                      memCacheHeight: 100,
+                                      memCacheWidth: 100,
+                                      imageUrl: NetworkConstants.apiBaseUrl +
+                                          widget.category.imageUrl!),
                         ),
                       ),
                     SizedBox(

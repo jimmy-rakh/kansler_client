@@ -66,7 +66,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Padding(
-                          padding: EdgeInsets.only(left: 20, bottom: 12),
+                          padding: EdgeInsets.only(left: 12, bottom: 12),
                           child: Text("Выберите тип оплаты"),
                         ),
                         Container(
@@ -126,7 +126,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                         ),
                         verticalSpace12,
                         const Padding(
-                          padding: EdgeInsets.only(left: 20, bottom: 12),
+                          padding: EdgeInsets.only(left: 12, bottom: 12),
                           child: Text("Выберите способ получение"),
                         ),
                         Container(
@@ -185,36 +185,34 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                 ),
               ) ??
               const SizedBox(
-                child: Text("data"),
+                child: Text(""),
               ),
-          SizedBox(
-            height: context.height * .9,
-            child: ListView.separated(
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(16),
-              controller: type == CheckoutType.order
-                  ? preordersBloc.checkoutController
-                  : cartBloc.checkoutController,
-              itemBuilder: (context, index) => ProductCard.list(
-                cartProduct: type == CheckoutType.order
-                    ? cartState.whenOrNull(
-                        ready: (products, price, isMoreLoading) =>
-                            products[index],
-                      )
-                    : preordersState.products[index],
-                fieldController: TextEditingController(),
-                showActions: false,
-                onPressed: () {},
-                onCart: (type) {},
-              ),
-              separatorBuilder: (context, index) => verticalSpace12,
-              itemCount: type == CheckoutType.order
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.fromLTRB(16, 16, 16, 50),
+            controller: type == CheckoutType.order
+                ? preordersBloc.checkoutController
+                : cartBloc.checkoutController,
+            itemBuilder: (context, index) => ProductCard.list(
+              cartProduct: type == CheckoutType.order
                   ? cartState.whenOrNull(
-                          ready: (products, price, isMoreLoading) =>
-                              products.length) ??
-                      0
-                  : preordersState.products.length,
+                      ready: (products, price, isMoreLoading) =>
+                          products[index],
+                    )
+                  : preordersState.products[index],
+              fieldController: TextEditingController(),
+              showActions: false,
+              onPressed: () {},
+              onCart: (type) {},
             ),
+            separatorBuilder: (context, index) => verticalSpace12,
+            itemCount: type == CheckoutType.order
+                ? cartState.whenOrNull(
+                        ready: (products, price, isMoreLoading) =>
+                            products.length) ??
+                    0
+                : preordersState.products.length,
           ),
         ],
       ),

@@ -19,6 +19,7 @@ import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_card.dart';
 import '../../../../../core/widgets/app_icon.dart';
 import '../../../../../core/widgets/app_text_field.dart';
+import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/domain/entities/cart_product.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
@@ -89,37 +90,41 @@ class ProductListCard extends HookWidget implements ProductCard {
                     : ClipRRect(
                         borderRadius: BorderRadius.circular(3),
                         child: kIsWeb
-                            ? CachedNetworkImage(
-                                fit: BoxFit.fitHeight,
-                                height: 120,
-                                width: 100,
-                                memCacheHeight: 180,
-                                memCacheWidth: 180,
-                                imageUrl: NetworkConstants.apiBaseUrl +
-                                    (product?.imageUrl ??
-                                        cartProduct?.product!.imageUrl ??
-                                        ''),
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(AppImages.noPhoto),
-                              )
-                            : ImageNetwork(
-                                onTap: () => router.push(ProductRoute(
-                                    product: product ?? cartProduct!.product!,
-                                    id: product?.id ??
-                                        cartProduct!.product!.id)),
-                                fitWeb: BoxFitWeb.fill,
-                                fitAndroidIos: BoxFit.fill,
-                                onLoading: const SizedBox(),
-                                duration: 0,
-                                image: NetworkConstants.apiBaseUrl +
-                                    (product ?? cartProduct?.product)!
-                                        .imageUrl!,
-                                height: context.isSmall ? 120 : 100,
-                                width: 100,
-                                onError: Image.asset(
-                                  AppImages.noPhoto,
-                                  height: 120,
-                                )),
+                            ? ImageNetwork(
+                            onTap: () => router.push(ProductRoute(
+                                product: product ?? cartProduct!.product!,
+                                id: product?.id ??
+                                    cartProduct!.product!.id)),
+                            fitWeb: BoxFitWeb.fill,
+                            fitAndroidIos: BoxFit.fill,
+                            onLoading: const SizedBox(),
+                            duration: 0,
+                            image: NetworkConstants.apiBaseUrl +
+                                (product ?? cartProduct?.product)!
+                                    .imageUrl!,
+                            height: context.isSmall ? 120 : 100,
+                            width: 100,
+                            onError: Image.asset(
+                              AppImages.noPhoto,
+                              height: 120,
+                            )) : ColoredBox(
+                          color: context.cardColor,
+                          child: CachedNetworkImage(
+                            fit: BoxFit.fitHeight,
+                            height: 120,
+                            width: 100,
+                            memCacheHeight: 180,
+                            memCacheWidth: 180,
+                            errorListener: (value) => log.e(
+                                '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
+                            imageUrl: NetworkConstants.apiBaseUrl +
+                                (product?.imageUrl ??
+                                    cartProduct?.product!.imageUrl ??
+                                    ''),
+                            errorWidget: (context, url, error) =>
+                                Image.asset(AppImages.noPhoto),
+                          ),
+                        ),
                       ),
                 (product ?? cartProduct?.product)?.brand?.name == null
                     ? const SizedBox()

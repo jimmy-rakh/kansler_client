@@ -36,7 +36,7 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
 
     return Scaffold(
       appBar: AppBarWidget(
-        preferredSize: Size.fromHeight(60),
+        preferredSize: const Size.fromHeight(60),
         showLeading: true,
         leading: Padding(
           padding: const EdgeInsets.all(8),
@@ -49,7 +49,7 @@ class OrderOrganizationScreen extends HookWidget implements AutoRouteWrapper {
           ),
         ),
         leadingWidth: 58,
-        child: Text("Продукты"),
+        child: const Text("Продукты"),
       ),
       body: state.whenOrNull(
             ready: (orders, isMoring, id) => ListView.separated(

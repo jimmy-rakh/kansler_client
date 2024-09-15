@@ -56,7 +56,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                     children: [
                       AppCard(
                         width: double.maxFinite,
-                        borderRadius: 12,
+                        borderRadius: 4,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 24, vertical: 12),
                         fillColor: context.cardColor,
@@ -102,7 +102,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                       order.organizationOrders![index]
                                           .organization,type));
                                 },
-                                borderRadius: 8,
+                                borderRadius: 4,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

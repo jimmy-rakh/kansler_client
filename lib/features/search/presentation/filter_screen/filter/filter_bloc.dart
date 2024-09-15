@@ -65,9 +65,9 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
                 ? "created_at"
                 : event.orderBy == "По Алфавиту"
                 ? "alfabetic"
-                : event.orderBy == "Подороже"
-                ? "price"
                 : event.orderBy == "Подешевле"
+                ? "price"
+                : event.orderBy == "Подороже"
                 ? "-price"
                 : event.orderBy)));
   }

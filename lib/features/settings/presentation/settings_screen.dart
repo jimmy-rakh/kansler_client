@@ -45,45 +45,6 @@ class SettingsScreen extends HookWidget {
       ),
       body: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: AppCard(
-                  padding: const EdgeInsets.all(12),
-                  onTap: () => themeBloc
-                      .add(const ThemeEvent.changeTheme(ThemeMode.light)),
-                  fillColor: themeState.mode == ThemeMode.light
-                      ? const Color.fromARGB(255, 181, 229, 176)
-                      : context.cardColor,
-                  child: const Text('Светлая'),
-                ),
-              ),
-              horizontalSpace12,
-              Expanded(
-                child: AppCard(
-                  padding: const EdgeInsets.all(12),
-                  onTap: () => themeBloc
-                      .add(const ThemeEvent.changeTheme(ThemeMode.system)),
-                  fillColor: themeState.mode == ThemeMode.system
-                      ? const Color.fromARGB(255, 181, 229, 176)
-                      : context.cardColor,
-                  child: const Text('Системная'),
-                ),
-              ),
-              horizontalSpace12,
-              Expanded(
-                child: AppCard(
-                  padding: const EdgeInsets.all(12),
-                  onTap: () => themeBloc
-                      .add(const ThemeEvent.changeTheme(ThemeMode.dark)),
-                  fillColor: themeState.mode == ThemeMode.dark
-                      ? const Color.fromARGB(255, 181, 229, 176)
-                      : context.cardColor,
-                  child: const Text('Темная'),
-                ),
-              ),
-            ],
-          ),
           AppButton(
               text: 'Удалить аккаунт',
               textStyle: context.theme.textTheme.bodyLarge!,

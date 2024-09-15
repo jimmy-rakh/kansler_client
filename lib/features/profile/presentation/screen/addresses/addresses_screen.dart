@@ -39,35 +39,35 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
               icon: const Icon(KazeIcons.arrowLeftOutline),
             ),
           ),
-          leadingWidth: 58, title: Text('Адреса')),
+          leadingWidth: 58, title: const Text('Адреса')),
       body: SizedBox(
-        width: context.isSmall ? context.width * .9 : context.width * .33,
+        width: context.isSmall ? context.width : context.width * .4,
         child: state.when(
             ready: (entities) => ListView.separated(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
                   itemBuilder: (context, index) => AppCard(
                     width: double.maxFinite,
                     padding: const EdgeInsets.all(16),
-                    borderRadius: 12,
+                    borderRadius: 4,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(entities[index].name!),
                         verticalSpace8,
-                        Text('Регион:\n${entities[index].region}'),
+                        Text('Регион:\n${entities[index].region ?? ""}'),
                         verticalSpace8,
                         Text(
-                            'Телефон для связи:\n${entities[index].phoneNumber}'),
+                            'Телефон для связи:\n${entities[index].phoneNumber ?? ""}'),
                         verticalSpace8,
                         Text(
-                            'Организация:\n${entities[index].organization?.name}'),
+                            'Организация:\n${entities[index].organization?.name ?? ""}'),
                         verticalSpace12,
                         AppCard(
                           fillColor: context.background,
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 10),
                           width: double.maxFinite,
-                          borderRadius: 8,
+                          borderRadius: 4,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,7 +85,7 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 10),
                           width: double.maxFinite,
-                          borderRadius: 8,
+                          borderRadius: 4,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,

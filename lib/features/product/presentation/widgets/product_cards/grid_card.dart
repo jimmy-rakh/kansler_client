@@ -17,6 +17,7 @@ import '../../../../../core/network/constants.dart';
 import '../../../../../core/style/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_card.dart';
+import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../product_card.dart';
@@ -97,16 +98,18 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                 height: 50,
                               ))
                           : CachedNetworkImage(
-                              fit: BoxFit.fitHeight,
-                              height: height,
-                              width: width,
-                              memCacheHeight: 200,
-                              memCacheWidth: 200,
-                              imageUrl: NetworkConstants.apiBaseUrl +
-                                  (product ?? cartProduct?.product)!.imageUrl!,
-                              errorWidget: (context, url, error) =>
-                                  Image.asset(AppImages.noPhoto),
-                            ),
+                        fit: BoxFit.fitHeight,
+                        height: height,
+                        width: width,
+                        memCacheHeight: 200,
+                        memCacheWidth: 200,
+                        errorListener: (value) => log.e(
+                            '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
+                        imageUrl: NetworkConstants.apiBaseUrl +
+                            (product ?? cartProduct?.product)!.imageUrl!,
+                        errorWidget: (context, url, error) =>
+                            Image.asset(AppImages.noPhoto),
+                      ),
                     ),
               (product ?? cartProduct?.product)?.brand?.name == null
                   ? const SizedBox()

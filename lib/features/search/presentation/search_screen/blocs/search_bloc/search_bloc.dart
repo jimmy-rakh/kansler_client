@@ -171,14 +171,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   void _orderBy(_OrderBy event, Emitter<SearchState> emit) async {
     final curr = (state as _Success);
     emit(curr.copyWith(
-        filterData: curr.filterData?.copyWith(
+        search: curr.search?.copyWith(
             orderBy: event.orderBy == "Новинки"
                 ? "created_at"
                 : event.orderBy == "По Алфавиту"
                     ? "alfabetic"
-                    : event.orderBy == "Подороже"
+                    : event.orderBy == "Подешевле"
                         ? "price"
-                        : event.orderBy == "Подешевле"
+                        : event.orderBy == "Подороже"
                             ? "-price"
                             : event.orderBy)));
   }
