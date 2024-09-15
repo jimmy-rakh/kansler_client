@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:image_network/image_network.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/app_images.dart';
 import '../../../../../core/constants/kaze_icons.dart';
@@ -38,7 +40,7 @@ class ProductListCard extends HookWidget implements ProductCard {
   final ProductEntity? product;
   final CartProduct? cartProduct;
   final VoidCallback onPressed;
-  final VoidCallback onCart;
+  final ValueChanged<CheckoutType> onCart;
   final TextEditingController fieldController;
   final bool isBusy;
   final bool showActions;
@@ -47,6 +49,7 @@ class ProductListCard extends HookWidget implements ProductCard {
   Widget build(BuildContext context) {
     final authBloc = context.read<AuthBloc>();
     final cartBloc = context.read<CartBloc>();
+    final preorderBloc = context.read<PreordersBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       height: context.isSmall ? 130 : 100,
@@ -249,6 +252,24 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                   onEditingComplete:
                                                       competeEditing,
                                                   onFieldSubmitted: (value) {
+                                                    onCart.call(
+                                                        product?.leftQuantity ==
+                                                                0
+                                                            ? CheckoutType
+                                                                .preorder
+                                                            : CheckoutType
+                                                                .order);
+                                                    if (product?.leftQuantity ==
+                                                        0) {
+                                                      preorderBloc.add(PreordersEvent
+                                                          .addToPreorders(
+                                                              (product ??
+                                                                      cartProduct!
+                                                                          .product)!
+                                                                  .id,
+                                                              1));
+                                                      return;
+                                                    }
                                                     if ((product ??
                                                                 cartProduct!
                                                                     .product)!
@@ -261,7 +282,6 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                                       ?.product)
                                                               ?.leftQuantity !=
                                                           0) {
-                                                        onCart();
                                                         if (!((product ??
                                                                     cartProduct
                                                                         ?.product)
@@ -344,7 +364,19 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   onPressed: authBloc.state ==
                                           const AuthState.authenticated()
                                       ? () {
-                                          onCart();
+                                          onCart.call(product?.leftQuantity == 0
+                                              ? CheckoutType.preorder
+                                              : CheckoutType.order);
+                                          if (product?.leftQuantity == 0) {
+                                            preorderBloc.add(
+                                                PreordersEvent.addToPreorders(
+                                                    (product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                        .id,
+                                                    1));
+                                            return;
+                                          }
                                           if (!((product ??
                                                       cartProduct?.product)
                                                   ?.inCart ??
@@ -427,6 +459,21 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               onChange: submit,
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
+                                                onCart.call(
+                                                    product?.leftQuantity == 0
+                                                        ? CheckoutType.preorder
+                                                        : CheckoutType.order);
+                                                if (product?.leftQuantity ==
+                                                    0) {
+                                                  preorderBloc.add(PreordersEvent
+                                                      .addToPreorders(
+                                                          (product ??
+                                                                  cartProduct!
+                                                                      .product)!
+                                                              .id,
+                                                          1));
+                                                  return;
+                                                }
                                                 if ((product ??
                                                             cartProduct!
                                                                 .product)!
@@ -438,7 +485,6 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                                   ?.product)
                                                           ?.leftQuantity !=
                                                       0) {
-                                                    onCart();
                                                     FocusScope.of(context)
                                                         .unfocus();
                                                     if (!((product ??
@@ -522,7 +568,17 @@ class ProductListCard extends HookWidget implements ProductCard {
                             onPressed: authBloc.state ==
                                     const AuthState.authenticated()
                                 ? () {
-                                    onCart();
+                                    onCart.call(product?.leftQuantity == 0
+                                        ? CheckoutType.preorder
+                                        : CheckoutType.order);
+                                    if (product?.leftQuantity == 0) {
+                                      preorderBloc.add(
+                                          PreordersEvent.addToPreorders(
+                                              (product ?? cartProduct!.product)!
+                                                  .id,
+                                              1));
+                                      return;
+                                    }
                                     if (!((product ?? cartProduct?.product)
                                             ?.inCart ??
                                         true)) {

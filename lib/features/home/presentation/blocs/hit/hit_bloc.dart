@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/core/enums/enums.dart';
 
 import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../product/domain/entities/product.entity.dart';
@@ -34,7 +35,13 @@ class HitBloc extends Bloc<HitEvent, HitState> {
 
     List<ProductEntity> products = curr.products.map((e) {
       if (e.id == event.id) {
-        return e.copyWith(inCart: !e.inCart!);
+        switch (event.type) {
+          case CheckoutType.order:
+            return e.copyWith(inCart: !e.inCart!);
+
+          case CheckoutType.preorder:
+            return e.copyWith(inPreorder: !e.inPreorder!);
+        }
       }
       return e;
     }).toList();

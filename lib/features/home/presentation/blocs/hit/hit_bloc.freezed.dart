@@ -446,19 +446,19 @@ mixin _$HitEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(int id) addToCart,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
-    TResult? Function(int id)? addToCart,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(int id)? addToCart,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -539,7 +539,7 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(int id) addToCart,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return fetch();
   }
@@ -548,7 +548,7 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
-    TResult? Function(int id)? addToCart,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return fetch?.call();
   }
@@ -557,7 +557,7 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(int id)? addToCart,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -608,7 +608,7 @@ abstract class _$$AddToCartImplCopyWith<$Res> {
           _$AddToCartImpl value, $Res Function(_$AddToCartImpl) then) =
       __$$AddToCartImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int id});
+  $Res call({int id, CheckoutType type});
 }
 
 /// @nodoc
@@ -623,12 +623,17 @@ class __$$AddToCartImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? type = freezed,
   }) {
     return _then(_$AddToCartImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      freezed == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CheckoutType,
     ));
   }
 }
@@ -636,14 +641,16 @@ class __$$AddToCartImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$AddToCartImpl implements _AddToCart {
-  const _$AddToCartImpl(this.id);
+  const _$AddToCartImpl(this.id, this.type);
 
   @override
   final int id;
+  @override
+  final CheckoutType type;
 
   @override
   String toString() {
-    return 'HitEvent.addToCart(id: $id)';
+    return 'HitEvent.addToCart(id: $id, type: $type)';
   }
 
   @override
@@ -651,11 +658,13 @@ class _$AddToCartImpl implements _AddToCart {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AddToCartImpl &&
-            (identical(other.id, id) || other.id == id));
+            (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other.type, type));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id);
+  int get hashCode =>
+      Object.hash(runtimeType, id, const DeepCollectionEquality().hash(type));
 
   @JsonKey(ignore: true)
   @override
@@ -667,29 +676,29 @@ class _$AddToCartImpl implements _AddToCart {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
-    required TResult Function(int id) addToCart,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
-    return addToCart(id);
+    return addToCart(id, type);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
-    TResult? Function(int id)? addToCart,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
-    return addToCart?.call(id);
+    return addToCart?.call(id, type);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
-    TResult Function(int id)? addToCart,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
-      return addToCart(id);
+      return addToCart(id, type);
     }
     return orElse();
   }
@@ -727,9 +736,11 @@ class _$AddToCartImpl implements _AddToCart {
 }
 
 abstract class _AddToCart implements HitEvent {
-  const factory _AddToCart(final int id) = _$AddToCartImpl;
+  const factory _AddToCart(final int id, final CheckoutType type) =
+      _$AddToCartImpl;
 
   int get id;
+  CheckoutType get type;
   @JsonKey(ignore: true)
   _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
       throw _privateConstructorUsedError;

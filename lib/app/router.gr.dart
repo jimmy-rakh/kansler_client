@@ -479,6 +479,7 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
     Key? key,
     required int id,
     required OrganizationDto organization,
+    CheckoutType type = CheckoutType.order,
     List<PageRouteInfo>? children,
   }) : super(
           OrderOrganizationRoute.name,
@@ -486,6 +487,7 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
             key: key,
             id: id,
             organization: organization,
+            type: type,
           ),
           rawPathParams: {'id': id},
           initialChildren: children,
@@ -502,6 +504,7 @@ class OrderOrganizationRoute extends PageRouteInfo<OrderOrganizationRouteArgs> {
         key: args.key,
         id: args.id,
         organization: args.organization,
+        type: args.type,
       ));
     },
   );
@@ -512,6 +515,7 @@ class OrderOrganizationRouteArgs {
     this.key,
     required this.id,
     required this.organization,
+    this.type = CheckoutType.order,
   });
 
   final Key? key;
@@ -520,9 +524,11 @@ class OrderOrganizationRouteArgs {
 
   final OrganizationDto organization;
 
+  final CheckoutType type;
+
   @override
   String toString() {
-    return 'OrderOrganizationRouteArgs{key: $key, id: $id, organization: $organization}';
+    return 'OrderOrganizationRouteArgs{key: $key, id: $id, organization: $organization, type: $type}';
   }
 }
 

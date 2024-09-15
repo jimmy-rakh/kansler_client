@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/features/product/domain/entities/product.entity.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/product/domain/domain.dart';
@@ -11,7 +12,7 @@ abstract class ProductCard implements Widget {
     CartProduct? cartProduct,
     required TextEditingController fieldController,
     required VoidCallback onPressed,
-    required VoidCallback onCart,
+    required ValueChanged<CheckoutType> onCart,
     bool isBusy,
     bool showActions,
   }) = ProductListCard;
@@ -21,7 +22,7 @@ abstract class ProductCard implements Widget {
     CartProduct? cartProduct,
     TextEditingController? fieldController,
     VoidCallback? onPressed,
-    required VoidCallback onCart,
+    required ValueChanged<CheckoutType> onCart,
     double width,
     double height,
     bool isBusy,

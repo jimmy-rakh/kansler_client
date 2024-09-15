@@ -47,7 +47,7 @@ class HitsWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: ProductEntity(id: 0, title: '', barcode: []),
-                  onCart: () {},
+                  onCart: (type) {},
                 ),
               ),
             ),
@@ -66,11 +66,11 @@ class HitsWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: products[index],
-                  onCart: () {
-                    discount.add(DiscountsEvent.addToCart(products[index].id));
-                    bloc.add(HitEvent.addToCart(products[index].id));
-                    popular.add(PopularEvent.addToCart(products[index].id));
-                    latest.add(LatestEvent.addToCart(products[index].id));
+                  onCart: (type) {
+                    discount.add(DiscountsEvent.addToCart(products[index].id,type));
+                    bloc.add(HitEvent.addToCart(products[index].id,type));
+                    popular.add(PopularEvent.addToCart(products[index].id,type));
+                    latest.add(LatestEvent.addToCart(products[index].id,type));
                   },
                 ),
               );

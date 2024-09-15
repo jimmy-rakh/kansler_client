@@ -50,7 +50,7 @@ class LatestWidget extends HookWidget {
                   width: context.isMobile ? context.width * .44 : 200,
                   product:
                       ProductEntity(id: 0, title: '', barcode: [], price: 0),
-                  onCart: () {},
+                  onCart: (type) {},
                 ),
               ),
             ),
@@ -69,11 +69,11 @@ class LatestWidget extends HookWidget {
                   height: context.isMobile ? context.height * .2 : 200,
                   width: context.isMobile ? context.width * .44 : 200,
                   product: products[index],
-                  onCart: () {
-                    discount.add(DiscountsEvent.addToCart(products[index].id));
-                    hit.add(HitEvent.addToCart(products[index].id));
-                    popular.add(PopularEvent.addToCart(products[index].id));
-                    bloc.add(LatestEvent.addToCart(products[index].id));
+                  onCart: (type) {
+                    discount.add(DiscountsEvent.addToCart(products[index].id,type));
+                    hit.add(HitEvent.addToCart(products[index].id,type));
+                    popular.add(PopularEvent.addToCart(products[index].id,type));
+                    bloc.add(LatestEvent.addToCart(products[index].id,type));
                   },
                 ),
               );

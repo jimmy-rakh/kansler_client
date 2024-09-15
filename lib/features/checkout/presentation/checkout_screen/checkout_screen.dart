@@ -205,7 +205,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                 fieldController: TextEditingController(),
                 showActions: false,
                 onPressed: () {},
-                onCart: () {},
+                onCart: (type) {},
               ),
               separatorBuilder: (context, index) => verticalSpace12,
               itemCount: type == CheckoutType.order

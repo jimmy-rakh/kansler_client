@@ -4,5 +4,5 @@ part of 'discounts_bloc.dart';
 class DiscountsEvent with _$DiscountsEvent {
   const factory DiscountsEvent.fetch() = _Fetch;
 
-  const factory DiscountsEvent.addToCart(int id) = _AddToCart;
+  const factory DiscountsEvent.addToCart(int id,CheckoutType type) = _AddToCart;
 }

@@ -100,7 +100,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                   bloc.add(OrderDetailsEvent.toDetails(
                                       order!.organizationOrders![index].id,
                                       order.organizationOrders![index]
-                                          .organization));
+                                          .organization,type));
                                 },
                                 borderRadius: 8,
                                 child: Column(
@@ -224,7 +224,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                         order
                                                             .organizationOrders![
                                                                 index]
-                                                            .organization))
+                                                            .organization,
+                                                        type))
                                                 : bloc.add(
                                                     OrderDetailsEvent.fetch(
                                                     id: order
@@ -322,7 +323,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                 fieldController: TextEditingController(),
                                 showActions: false,
                                 onPressed: () {},
-                                onCart: () {}),
+                                onCart: (type) {}),
                             separatorBuilder: (context, index) =>
                                 verticalSpace12,
                             itemCount: orders?.length ?? 0,

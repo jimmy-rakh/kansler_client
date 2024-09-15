@@ -4,5 +4,5 @@ part of 'hit_bloc.dart';
 class HitEvent with _$HitEvent {
   const factory HitEvent.fetch() = _Fetch;
 
-  const factory HitEvent.addToCart(int id) = _AddToCart;
+  const factory HitEvent.addToCart(int id,CheckoutType type) = _AddToCart;
 }

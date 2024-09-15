@@ -85,6 +85,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
     router.push(OrderOrganizationRoute(
       id: event.id,
       organization: event.organization,
+      type: event.type,
     ));
   }
 }
