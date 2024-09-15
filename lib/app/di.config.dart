@@ -217,7 +217,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i767.RecsBloc>(() => _i767.RecsBloc());
     gh.factory<_i1027.LastViewedBloc>(() => _i1027.LastViewedBloc());
     gh.factory<_i843.TemplatesBloc>(() => _i843.TemplatesBloc());
-    gh.factory<_i533.BannerBloc>(() => _i533.BannerBloc());
     gh.factory<_i923.NavbarBloc>(() => _i923.NavbarBloc());
     gh.singleton<_i357.SplashBloc>(() => _i357.SplashBloc());
     gh.lazySingleton<_i284.AppRouter>(() => _i284.AppRouter());
@@ -326,6 +325,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i585.DetailsBloc(gh<_i166.FetchProductUseCase>()));
     gh.factory<_i869.LatestBloc>(
         () => _i869.LatestBloc(gh<_i253.FetchLatestProductUseCase>()));
+    gh.factory<_i533.BannerBloc>(
+        () => _i533.BannerBloc(gh<_i453.ProductsRepository>()));
     gh.factory<_i945.LimitsRepository>(
         () => _i29.LimitsRepositoryImpl(gh<_i770.LimitsRemoteSource>()));
     gh.factory<_i914.GetCategoriesUseCase>(

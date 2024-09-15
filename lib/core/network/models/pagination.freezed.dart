@@ -25,8 +25,12 @@ mixin _$PaginationResponse {
   String? get previous => throw _privateConstructorUsedError;
   List<dynamic> get results => throw _privateConstructorUsedError;
 
+  /// Serializes this PaginationResponse to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaginationResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaginationResponseCopyWith<PaginationResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$PaginationResponseCopyWithImpl<$Res, $Val extends PaginationResponse>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaginationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$PaginationResponseImplCopyWithImpl<$Res>
       $Res Function(_$PaginationResponseImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaginationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -171,12 +179,14 @@ class _$PaginationResponseImpl implements _PaginationResponse {
             const DeepCollectionEquality().equals(other._results, _results));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, count, next, previous,
       const DeepCollectionEquality().hash(_results));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaginationResponse
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaginationResponseImplCopyWith<_$PaginationResponseImpl> get copyWith =>
@@ -209,8 +219,11 @@ abstract class _PaginationResponse implements PaginationResponse {
   String? get previous;
   @override
   List<dynamic> get results;
+
+  /// Create a copy of PaginationResponse
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaginationResponseImplCopyWith<_$PaginationResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

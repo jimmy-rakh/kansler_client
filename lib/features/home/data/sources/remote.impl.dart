@@ -7,6 +7,7 @@ import '../../../../core/network/constants.dart';
 import '../../../../core/network/dio_client.dart';
 import '../../../../core/network/models/pagination.dart';
 import '../../../product/data/models/product_dto.dart';
+import '../models/posters_dto.dart';
 import 'remote.keys.dart';
 
 @Injectable(as: ProductRemoteSource)
@@ -14,6 +15,25 @@ class ProductRemoteSourceImpl implements ProductRemoteSource {
   final DioClient _dio;
 
   ProductRemoteSourceImpl(this._dio);
+
+  @override
+  Future<Either<Failure,List<PostersDto>>>
+  fetchPosters() async {
+    final result = await _dio.getRequest(
+      '${ProductRemoteKeys.posters}',
+      converter: (response) {
+        final res =
+        PaginationResponse.fromJson(response as Map<String, dynamic>);
+
+        final posters =
+        res.results.map((e) => PostersDto.fromJson(e)).toList();
+
+        return posters;
+      },
+    );
+
+    return result;
+  }
 
   @override
   Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>> fetchHit(

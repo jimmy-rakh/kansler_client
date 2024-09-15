@@ -72,6 +72,9 @@ class _$CategoriesStateCopyWithImpl<$Res, $Val extends CategoriesState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CategoriesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CategoriesState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CategoriesState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -239,7 +247,9 @@ class _$ReadyImpl implements _Ready {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_categories));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CategoriesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -312,7 +322,10 @@ abstract class _Ready implements CategoriesState {
   const factory _Ready(final List<CategoryEntitity> categories) = _$ReadyImpl;
 
   List<CategoryEntitity> get categories;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CategoriesState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -377,6 +390,9 @@ class _$CategoriesEventCopyWithImpl<$Res, $Val extends CategoriesEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CategoriesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -393,6 +409,9 @@ class __$$FetchCategoriesImplCopyWithImpl<$Res>
   __$$FetchCategoriesImplCopyWithImpl(
       _$FetchCategoriesImpl _value, $Res Function(_$FetchCategoriesImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CategoriesEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -501,6 +520,8 @@ class __$$FetchCategoryChildrenImplCopyWithImpl<$Res>
       $Res Function(_$FetchCategoryChildrenImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CategoriesEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -549,7 +570,9 @@ class _$FetchCategoryChildrenImpl implements _FetchCategoryChildren {
   @override
   int get hashCode => Object.hash(runtimeType, categoryId, isExpanded);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CategoriesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchCategoryChildrenImplCopyWith<_$FetchCategoryChildrenImpl>
@@ -628,7 +651,10 @@ abstract class _FetchCategoryChildren implements CategoriesEvent {
 
   int get categoryId;
   bool get isExpanded;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CategoriesEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FetchCategoryChildrenImplCopyWith<_$FetchCategoryChildrenImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

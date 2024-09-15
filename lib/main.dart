@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/banner/banner_bloc.dart';
 import 'package:kansler/features/settings/presentation/theme/theme_bloc.dart';
 import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:kansler/shared/services/logger/logger_service.dart';
@@ -67,6 +68,9 @@ void main() async {
             ),
             BlocProvider(
               create: (context) => getIt<SubcategoryBloc>(),
+            ),
+            BlocProvider(
+              create: (context) => getIt<BannerBloc>(),
             ),
             BlocProvider(
               create: (context) => getIt<HitBloc>(),

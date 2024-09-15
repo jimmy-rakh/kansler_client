@@ -24,7 +24,9 @@ mixin _$DebtState {
   List<PaymentDto>? get payments => throw _privateConstructorUsedError;
   bool get isMoreLoading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DebtState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DebtStateCopyWith<DebtState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,6 +56,8 @@ class _$DebtStateCopyWithImpl<$Res, $Val extends DebtState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DebtState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,6 +128,8 @@ class __$$DebtStateImplCopyWithImpl<$Res>
       _$DebtStateImpl _value, $Res Function(_$DebtStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DebtState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -257,7 +263,9 @@ class _$DebtStateImpl implements _DebtState {
       const DeepCollectionEquality().hash(_payments),
       isMoreLoading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DebtState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DebtStateImplCopyWith<_$DebtStateImpl> get copyWith =>
@@ -288,8 +296,11 @@ abstract class _DebtState implements DebtState {
   List<PaymentDto>? get payments;
   @override
   bool get isMoreLoading;
+
+  /// Create a copy of DebtState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DebtStateImplCopyWith<_$DebtStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

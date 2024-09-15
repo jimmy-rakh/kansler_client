@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/appbar.dart';
+import 'package:kansler/features/home/presentation/screen/widgets/banners.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/discounts.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/hits.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/latest.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/popular.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../../core/widgets/keyboard_escape.dart';
@@ -29,11 +31,12 @@ class HomeScreen extends StatelessWidget {
           body: CustomScrollView(
             slivers: [
               SliverList(
-                delegate: SliverChildListDelegate(const [
-                  DiscountsWidget(),
-                  HitsWidget(),
-                  PopularWidget(),
-                  LatestWidget(),
+                delegate: SliverChildListDelegate([
+                  const BannerWidget(),
+                  const DiscountsWidget(),
+                  const HitsWidget(),
+                  const PopularWidget(),
+                  const LatestWidget(),
                   verticalSpace120,
                 ]),
               ),

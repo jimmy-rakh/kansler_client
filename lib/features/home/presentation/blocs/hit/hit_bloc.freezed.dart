@@ -77,6 +77,9 @@ class _$HitStateCopyWithImpl<$Res, $Val extends HitState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of HitState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -93,6 +96,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of HitState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -204,6 +210,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -249,7 +257,9 @@ class _$SuccessImpl implements _Success {
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -328,7 +338,10 @@ abstract class _Success implements HitState {
   const factory _Success(final List<ProductEntity> products) = _$SuccessImpl;
 
   List<ProductEntity> get products;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -347,6 +360,9 @@ class __$$FailureImplCopyWithImpl<$Res>
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of HitState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -498,6 +514,9 @@ class _$HitEventCopyWithImpl<$Res, $Val extends HitEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of HitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -514,6 +533,9 @@ class __$$FetchImplCopyWithImpl<$Res>
   __$$FetchImplCopyWithImpl(
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of HitEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -619,18 +641,20 @@ class __$$AddToCartImplCopyWithImpl<$Res>
       _$AddToCartImpl _value, $Res Function(_$AddToCartImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of HitEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? type = freezed,
+    Object? type = null,
   }) {
     return _then(_$AddToCartImpl(
       null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      freezed == type
+      null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as CheckoutType,
@@ -659,14 +683,15 @@ class _$AddToCartImpl implements _AddToCart {
         (other.runtimeType == runtimeType &&
             other is _$AddToCartImpl &&
             (identical(other.id, id) || other.id == id) &&
-            const DeepCollectionEquality().equals(other.type, type));
+            (identical(other.type, type) || other.type == type));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, const DeepCollectionEquality().hash(type));
+  int get hashCode => Object.hash(runtimeType, id, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of HitEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
@@ -741,7 +766,10 @@ abstract class _AddToCart implements HitEvent {
 
   int get id;
   CheckoutType get type;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of HitEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

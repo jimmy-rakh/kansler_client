@@ -28,8 +28,12 @@ mixin _$PaymentDto {
   String get date => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
 
+  /// Serializes this PaymentDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PaymentDtoCopyWith<PaymentDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -64,6 +68,8 @@ class _$PaymentDtoCopyWithImpl<$Res, $Val extends PaymentDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -107,6 +113,8 @@ class _$PaymentDtoCopyWithImpl<$Res, $Val extends PaymentDto>
     ) as $Val);
   }
 
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -115,6 +123,8 @@ class _$PaymentDtoCopyWithImpl<$Res, $Val extends PaymentDto>
     });
   }
 
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyDtoCopyWith<$Res> get company {
@@ -123,6 +133,8 @@ class _$PaymentDtoCopyWithImpl<$Res, $Val extends PaymentDto>
     });
   }
 
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ContractDtoCopyWith<$Res> get contract {
@@ -165,6 +177,8 @@ class __$$PaymentDtoImplCopyWithImpl<$Res>
       _$PaymentDtoImpl _value, $Res Function(_$PaymentDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -260,12 +274,14 @@ class _$PaymentDtoImpl implements _PaymentDto {
             (identical(other.amount, amount) || other.amount == amount));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, organization, company, contract, number, date, amount);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentDtoImplCopyWith<_$PaymentDtoImpl> get copyWith =>
@@ -306,8 +322,11 @@ abstract class _PaymentDto implements PaymentDto {
   String get date;
   @override
   String get amount;
+
+  /// Create a copy of PaymentDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentDtoImplCopyWith<_$PaymentDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

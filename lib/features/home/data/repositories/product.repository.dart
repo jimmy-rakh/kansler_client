@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../../../core/error/failure.dart';
 import '../../../product/domain/entities/product.entity.dart';
 import '../../domain/repositories/products.repository.dart';
+import '../models/posters_dto.dart';
 import '../sources/remote.dart';
 
 @Injectable(as: ProductsRepository)
@@ -11,6 +12,12 @@ class ProductsRepositoryImpl implements ProductsRepository {
   final ProductRemoteSource _productRemoteSource;
 
   ProductsRepositoryImpl(this._productRemoteSource);
+
+  @override
+  Future<Either<Failure, List<PostersDto>>> fetchPosters() async {
+    final result = await _productRemoteSource.fetchPosters();
+    return result;
+  }
 
   @override
   Future<Either<Failure, ({bool hasNext, List<ProductEntity> products})>>

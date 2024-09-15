@@ -53,8 +53,12 @@ mixin _$ProductDto {
   bool? get hasComment => throw _privateConstructorUsedError;
   List<StocksDto>? get stocks => throw _privateConstructorUsedError;
 
+  /// Serializes this ProductDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductDtoCopyWith<ProductDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -115,6 +119,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -283,6 +289,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     ) as $Val);
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get organization {
@@ -295,6 +303,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     });
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get category {
@@ -307,6 +317,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     });
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get brand {
@@ -319,6 +331,8 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     });
   }
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataDtoCopyWith<$Res>? get madeIn {
@@ -392,6 +406,8 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
       _$ProductDtoImpl _value, $Res Function(_$ProductDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -745,7 +761,7 @@ class _$ProductDtoImpl extends _ProductDto {
             const DeepCollectionEquality().equals(other._stocks, _stocks));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -783,7 +799,9 @@ class _$ProductDtoImpl extends _ProductDto {
         const DeepCollectionEquality().hash(_stocks)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductDtoImplCopyWith<_$ProductDtoImpl> get copyWith =>
@@ -900,8 +918,11 @@ abstract class _ProductDto extends ProductDto {
   bool? get hasComment;
   @override
   List<StocksDto>? get stocks;
+
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductDtoImplCopyWith<_$ProductDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

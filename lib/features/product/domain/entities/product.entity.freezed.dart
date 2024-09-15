@@ -49,7 +49,9 @@ mixin _$ProductEntity {
   bool? get hasComment => throw _privateConstructorUsedError;
   List<StocksDto>? get stocks => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ProductEntityCopyWith<ProductEntity> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -110,6 +112,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -278,6 +282,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     ) as $Val);
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get organization {
@@ -290,6 +296,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     });
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get category {
@@ -302,6 +310,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     });
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get brand {
@@ -314,6 +324,8 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     });
   }
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductDataEntityCopyWith<$Res>? get madeIn {
@@ -387,6 +399,8 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
       _$ProductEntityImpl _value, $Res Function(_$ProductEntityImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -774,7 +788,9 @@ class _$ProductEntityImpl extends _ProductEntity {
         const DeepCollectionEquality().hash(_stocks)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
@@ -881,8 +897,11 @@ abstract class _ProductEntity extends ProductEntity {
   bool? get hasComment;
   @override
   List<StocksDto>? get stocks;
+
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ProductEntityImplCopyWith<_$ProductEntityImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -102,6 +102,9 @@ class _$SubcategoryStateCopyWithImpl<$Res, $Val extends SubcategoryState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -118,6 +121,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -265,6 +271,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -318,6 +326,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CategoryEntitityCopyWith<$Res> get category {
@@ -326,6 +336,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CategoryEntitityCopyWith<$Res>? get selectedCategory {
@@ -433,7 +445,9 @@ class _$ReadyImpl implements _Ready {
       isPaginationLoading,
       filterData);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -580,7 +594,10 @@ abstract class _Ready implements SubcategoryState {
   bool get isList;
   bool get isPaginationLoading;
   SearchEntity? get filterData;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubcategoryState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -673,6 +690,9 @@ class _$SubcategoryEventCopyWithImpl<$Res, $Val extends SubcategoryEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -693,6 +713,8 @@ class __$$InitImplCopyWithImpl<$Res>
   __$$InitImplCopyWithImpl(_$InitImpl _value, $Res Function(_$InitImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -706,6 +728,8 @@ class __$$InitImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CategoryEntitityCopyWith<$Res> get category {
@@ -740,7 +764,9 @@ class _$InitImpl implements _Init {
   @override
   int get hashCode => Object.hash(runtimeType, category);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
@@ -843,7 +869,10 @@ abstract class _Init implements SubcategoryEvent {
   const factory _Init(final CategoryEntitity category) = _$InitImpl;
 
   CategoryEntitity get category;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitImplCopyWith<_$InitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -865,6 +894,8 @@ class __$$LoadSubcategoriesImplCopyWithImpl<$Res>
       $Res Function(_$LoadSubcategoriesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -904,7 +935,9 @@ class _$LoadSubcategoriesImpl implements _LoadSubcategories {
   @override
   int get hashCode => Object.hash(runtimeType, categoryId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadSubcategoriesImplCopyWith<_$LoadSubcategoriesImpl> get copyWith =>
@@ -1009,7 +1042,10 @@ abstract class _LoadSubcategories implements SubcategoryEvent {
       _$LoadSubcategoriesImpl;
 
   int get categoryId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadSubcategoriesImplCopyWith<_$LoadSubcategoriesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1031,6 +1067,8 @@ class __$$LoadProductsImplCopyWithImpl<$Res>
       _$LoadProductsImpl _value, $Res Function(_$LoadProductsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1070,7 +1108,9 @@ class _$LoadProductsImpl implements _LoadProducts {
   @override
   int get hashCode => Object.hash(runtimeType, categoryId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadProductsImplCopyWith<_$LoadProductsImpl> get copyWith =>
@@ -1173,7 +1213,10 @@ abstract class _LoadProducts implements SubcategoryEvent {
   const factory _LoadProducts(final int? categoryId) = _$LoadProductsImpl;
 
   int? get categoryId;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadProductsImplCopyWith<_$LoadProductsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1197,6 +1240,8 @@ class __$$ChooseSubcategoryImplCopyWithImpl<$Res>
       $Res Function(_$ChooseSubcategoryImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1210,6 +1255,8 @@ class __$$ChooseSubcategoryImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CategoryEntitityCopyWith<$Res> get category {
@@ -1244,7 +1291,9 @@ class _$ChooseSubcategoryImpl implements _ChooseSubcategory {
   @override
   int get hashCode => Object.hash(runtimeType, category);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChooseSubcategoryImplCopyWith<_$ChooseSubcategoryImpl> get copyWith =>
@@ -1349,7 +1398,10 @@ abstract class _ChooseSubcategory implements SubcategoryEvent {
       _$ChooseSubcategoryImpl;
 
   CategoryEntitity get category;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChooseSubcategoryImplCopyWith<_$ChooseSubcategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1368,6 +1420,9 @@ class __$$ListTypeToggleImplCopyWithImpl<$Res>
   __$$ListTypeToggleImplCopyWithImpl(
       _$ListTypeToggleImpl _value, $Res Function(_$ListTypeToggleImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1505,6 +1560,8 @@ class __$$ChangeCartStateImplCopyWithImpl<$Res>
       _$ChangeCartStateImpl _value, $Res Function(_$ChangeCartStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1518,6 +1575,8 @@ class __$$ChangeCartStateImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductEntityCopyWith<$Res> get product {
@@ -1551,7 +1610,9 @@ class _$ChangeCartStateImpl implements _ChangeCartState {
   @override
   int get hashCode => Object.hash(runtimeType, product);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeCartStateImplCopyWith<_$ChangeCartStateImpl> get copyWith =>
@@ -1656,7 +1717,10 @@ abstract class _ChangeCartState implements SubcategoryEvent {
       _$ChangeCartStateImpl;
 
   ProductEntity get product;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeCartStateImplCopyWith<_$ChangeCartStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1675,6 +1739,9 @@ class __$$ShowFiltersImplCopyWithImpl<$Res>
   __$$ShowFiltersImplCopyWithImpl(
       _$ShowFiltersImpl _value, $Res Function(_$ShowFiltersImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of SubcategoryEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

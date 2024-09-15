@@ -60,7 +60,7 @@ class DiscountsWidget extends HookWidget {
               return ListView.separated(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: 10,
+                itemCount: products.length,
                 separatorBuilder: (context, index) => horizontalSpace12,
                 itemBuilder: (context, index) => ProductCard.grid(
                   height: context.isMobile ? context.height * .2 : 200,

@@ -22,8 +22,12 @@ DeteleCartProducts _$DeteleCartProductsFromJson(Map<String, dynamic> json) {
 mixin _$DeteleCartProducts {
   List<int> get ids => throw _privateConstructorUsedError;
 
+  /// Serializes this DeteleCartProducts to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DeteleCartProducts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DeteleCartProductsCopyWith<DeteleCartProducts> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$DeteleCartProductsCopyWithImpl<$Res, $Val extends DeteleCartProducts>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DeteleCartProducts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$DeteleCartProductsImplCopyWithImpl<$Res>
       $Res Function(_$DeteleCartProductsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DeteleCartProducts
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -123,12 +131,14 @@ class _$DeteleCartProductsImpl implements _DeteleCartProducts {
             const DeepCollectionEquality().equals(other._ids, _ids));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_ids));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DeteleCartProducts
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeteleCartProductsImplCopyWith<_$DeteleCartProductsImpl> get copyWith =>
@@ -152,8 +162,11 @@ abstract class _DeteleCartProducts implements DeteleCartProducts {
 
   @override
   List<int> get ids;
+
+  /// Create a copy of DeteleCartProducts
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeteleCartProductsImplCopyWith<_$DeteleCartProductsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

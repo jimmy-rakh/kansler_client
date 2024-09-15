@@ -72,6 +72,9 @@ class _$CheckoutStateCopyWithImpl<$Res, $Val extends CheckoutState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CheckoutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -88,6 +91,9 @@ class __$$InitialImplCopyWithImpl<$Res>
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CheckoutState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -193,6 +199,8 @@ class __$$ReadyImplCopyWithImpl<$Res>
       _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckoutState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -241,7 +249,9 @@ class _$ReadyImpl implements _Ready {
   @override
   int get hashCode => Object.hash(runtimeType, paymentType, deliveryType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckoutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
@@ -316,7 +326,10 @@ abstract class _Ready implements CheckoutState {
 
   String? get paymentType;
   String? get deliveryType;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckoutState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -385,6 +398,9 @@ class _$CheckoutEventCopyWithImpl<$Res, $Val extends CheckoutEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -404,6 +420,8 @@ class __$$CheckoutImplCopyWithImpl<$Res>
       _$CheckoutImpl _value, $Res Function(_$CheckoutImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -442,7 +460,9 @@ class _$CheckoutImpl implements _Checkout {
   @override
   int get hashCode => Object.hash(runtimeType, type);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CheckoutImplCopyWith<_$CheckoutImpl> get copyWith =>
@@ -521,7 +541,10 @@ abstract class _Checkout implements CheckoutEvent {
   const factory _Checkout(final CheckoutType type) = _$CheckoutImpl;
 
   CheckoutType get type;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CheckoutImplCopyWith<_$CheckoutImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -543,6 +566,8 @@ class __$$PaymentTypeImplCopyWithImpl<$Res>
       _$PaymentTypeImpl _value, $Res Function(_$PaymentTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -582,7 +607,9 @@ class _$PaymentTypeImpl implements _PaymentType {
   @override
   int get hashCode => Object.hash(runtimeType, paymentType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PaymentTypeImplCopyWith<_$PaymentTypeImpl> get copyWith =>
@@ -661,7 +688,10 @@ abstract class _PaymentType implements CheckoutEvent {
   const factory _PaymentType(final String paymentType) = _$PaymentTypeImpl;
 
   String get paymentType;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PaymentTypeImplCopyWith<_$PaymentTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -683,6 +713,8 @@ class __$$DeliveryTypeImplCopyWithImpl<$Res>
       _$DeliveryTypeImpl _value, $Res Function(_$DeliveryTypeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -722,7 +754,9 @@ class _$DeliveryTypeImpl implements _DeliveryType {
   @override
   int get hashCode => Object.hash(runtimeType, deliveryType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeliveryTypeImplCopyWith<_$DeliveryTypeImpl> get copyWith =>
@@ -801,7 +835,10 @@ abstract class _DeliveryType implements CheckoutEvent {
   const factory _DeliveryType(final String deliveryType) = _$DeliveryTypeImpl;
 
   String get deliveryType;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CheckoutEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeliveryTypeImplCopyWith<_$DeliveryTypeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

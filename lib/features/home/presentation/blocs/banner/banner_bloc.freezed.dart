@@ -19,21 +19,21 @@ mixin _$BannerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() success,
+    required TResult Function(List<PostersDto> posters) success,
     required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function()? success,
+    TResult? Function(List<PostersDto> posters)? success,
     TResult? Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? success,
+    TResult Function(List<PostersDto> posters)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) =>
@@ -78,6 +78,9 @@ class _$BannerStateCopyWithImpl<$Res, $Val extends BannerState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,6 +97,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -119,7 +125,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() success,
+    required TResult Function(List<PostersDto> posters) success,
     required TResult Function() failure,
   }) {
     return loadInProgress();
@@ -129,7 +135,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function()? success,
+    TResult? Function(List<PostersDto> posters)? success,
     TResult? Function()? failure,
   }) {
     return loadInProgress?.call();
@@ -139,7 +145,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? success,
+    TResult Function(List<PostersDto> posters)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -193,6 +199,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<PostersDto> posters});
 }
 
 /// @nodoc
@@ -202,57 +210,91 @@ class __$$SuccessImplCopyWithImpl<$Res>
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? posters = null,
+  }) {
+    return _then(_$SuccessImpl(
+      null == posters
+          ? _value._posters
+          : posters // ignore: cast_nullable_to_non_nullable
+              as List<PostersDto>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+  const _$SuccessImpl(final List<PostersDto> posters) : _posters = posters;
+
+  final List<PostersDto> _posters;
+  @override
+  List<PostersDto> get posters {
+    if (_posters is EqualUnmodifiableListView) return _posters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_posters);
+  }
 
   @override
   String toString() {
-    return 'BannerState.success()';
+    return 'BannerState.success(posters: $posters)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SuccessImpl &&
+            const DeepCollectionEquality().equals(other._posters, _posters));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_posters));
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() success,
+    required TResult Function(List<PostersDto> posters) success,
     required TResult Function() failure,
   }) {
-    return success();
+    return success(posters);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function()? success,
+    TResult? Function(List<PostersDto> posters)? success,
     TResult? Function()? failure,
   }) {
-    return success?.call();
+    return success?.call(posters);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? success,
+    TResult Function(List<PostersDto> posters)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(posters);
     }
     return orElse();
   }
@@ -293,7 +335,15 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements BannerState {
-  const factory _Success() = _$SuccessImpl;
+  const factory _Success(final List<PostersDto> posters) = _$SuccessImpl;
+
+  List<PostersDto> get posters;
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -310,6 +360,9 @@ class __$$FailureImplCopyWithImpl<$Res>
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -335,7 +388,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function() success,
+    required TResult Function(List<PostersDto> posters) success,
     required TResult Function() failure,
   }) {
     return failure();
@@ -345,7 +398,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function()? success,
+    TResult? Function(List<PostersDto> posters)? success,
     TResult? Function()? failure,
   }) {
     return failure?.call();
@@ -355,7 +408,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function()? success,
+    TResult Function(List<PostersDto> posters)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -456,6 +509,9 @@ class _$BannerEventCopyWithImpl<$Res, $Val extends BannerEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -472,6 +528,9 @@ class __$$FetchImplCopyWithImpl<$Res>
   __$$FetchImplCopyWithImpl(
       _$FetchImpl _value, $Res Function(_$FetchImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

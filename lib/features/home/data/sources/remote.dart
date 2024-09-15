@@ -1,8 +1,13 @@
 import 'package:dartz/dartz.dart';
+import 'package:kansler/features/home/data/models/models.dart';
 import '../../../../core/error/failure.dart';
 import '../../../product/data/models/product_dto.dart';
 
 abstract class ProductRemoteSource {
+
+  Future<Either<Failure,List<PostersDto>>>
+  fetchPosters();
+
   Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>>
       fetchLatest(
     int? pageNumber,

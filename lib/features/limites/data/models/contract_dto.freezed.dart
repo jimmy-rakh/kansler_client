@@ -27,8 +27,12 @@ mixin _$ContractDto {
   ManagerDto? get manager => throw _privateConstructorUsedError;
   ManagerDto? get agent => throw _privateConstructorUsedError;
 
+  /// Serializes this ContractDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ContractDtoCopyWith<ContractDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -63,6 +67,8 @@ class _$ContractDtoCopyWithImpl<$Res, $Val extends ContractDto>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +107,8 @@ class _$ContractDtoCopyWithImpl<$Res, $Val extends ContractDto>
     ) as $Val);
   }
 
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CompanyDtoCopyWith<$Res> get company {
@@ -109,6 +117,8 @@ class _$ContractDtoCopyWithImpl<$Res, $Val extends ContractDto>
     });
   }
 
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OrganizationDtoCopyWith<$Res> get organization {
@@ -117,6 +127,8 @@ class _$ContractDtoCopyWithImpl<$Res, $Val extends ContractDto>
     });
   }
 
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerDtoCopyWith<$Res>? get manager {
@@ -129,6 +141,8 @@ class _$ContractDtoCopyWithImpl<$Res, $Val extends ContractDto>
     });
   }
 
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ManagerDtoCopyWith<$Res>? get agent {
@@ -176,6 +190,8 @@ class __$$ContractDtoImplCopyWithImpl<$Res>
       _$ContractDtoImpl _value, $Res Function(_$ContractDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -261,12 +277,14 @@ class _$ContractDtoImpl implements _ContractDto {
             (identical(other.agent, agent) || other.agent == agent));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, name, company, organization, manager, agent);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ContractDtoImplCopyWith<_$ContractDtoImpl> get copyWith =>
@@ -304,8 +322,11 @@ abstract class _ContractDto implements ContractDto {
   ManagerDto? get manager;
   @override
   ManagerDto? get agent;
+
+  /// Create a copy of ContractDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ContractDtoImplCopyWith<_$ContractDtoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

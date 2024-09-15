@@ -2,9 +2,13 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../product/domain/entities/product.entity.dart';
+import '../../data/models/posters_dto.dart';
 
 
 abstract class ProductsRepository {
+  Future<Either<Failure,List<PostersDto>>>
+  fetchPosters();
+
   Future<Either<Failure, ({bool hasNext, List<ProductEntity> products})>>
       fetchLatest(
     int? pageNumber,

@@ -59,7 +59,7 @@ class PopularWidget extends HookWidget {
               return ListView.separated(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: 10,
+                itemCount: products.length,
                 cacheExtent: 10,
                 separatorBuilder: (context, index) => horizontalSpace12,
                 itemBuilder: (context, index) => ProductCard.grid(

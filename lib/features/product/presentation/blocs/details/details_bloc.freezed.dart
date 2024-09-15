@@ -78,6 +78,9 @@ class _$DetailsStateCopyWithImpl<$Res, $Val extends DetailsState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -94,6 +97,9 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
   __$$LoadInProgressImplCopyWithImpl(
       _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -207,6 +213,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -220,6 +228,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductEntityCopyWith<$Res> get product {
@@ -253,7 +263,9 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(runtimeType, product);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
@@ -332,7 +344,10 @@ abstract class _Success implements DetailsState {
   const factory _Success(final ProductEntity product) = _$SuccessImpl;
 
   ProductEntity get product;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -351,6 +366,9 @@ class __$$FailureImplCopyWithImpl<$Res>
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -521,6 +539,9 @@ class _$DetailsEventCopyWithImpl<$Res, $Val extends DetailsEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -542,6 +563,8 @@ class __$$SetDataImplCopyWithImpl<$Res>
       _$SetDataImpl _value, $Res Function(_$SetDataImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -555,6 +578,8 @@ class __$$SetDataImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ProductEntityCopyWith<$Res> get product {
@@ -588,7 +613,9 @@ class _$SetDataImpl implements _SetData {
   @override
   int get hashCode => Object.hash(runtimeType, product);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SetDataImplCopyWith<_$SetDataImpl> get copyWith =>
@@ -679,7 +706,10 @@ abstract class _SetData implements DetailsEvent {
   const factory _SetData(final ProductEntity product) = _$SetDataImpl;
 
   ProductEntity get product;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SetDataImplCopyWith<_$SetDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -701,6 +731,8 @@ class __$$FetchProductImplCopyWithImpl<$Res>
       _$FetchProductImpl _value, $Res Function(_$FetchProductImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -739,7 +771,9 @@ class _$FetchProductImpl implements _FetchProduct {
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FetchProductImplCopyWith<_$FetchProductImpl> get copyWith =>
@@ -830,7 +864,10 @@ abstract class _FetchProduct implements DetailsEvent {
   const factory _FetchProduct(final int id) = _$FetchProductImpl;
 
   int get id;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FetchProductImplCopyWith<_$FetchProductImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -849,6 +886,9 @@ class __$$AddToCartImplCopyWithImpl<$Res>
   __$$AddToCartImplCopyWithImpl(
       _$AddToCartImpl _value, $Res Function(_$AddToCartImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -969,6 +1009,9 @@ class __$$AddToPreorderImplCopyWithImpl<$Res>
   __$$AddToPreorderImplCopyWithImpl(
       _$AddToPreorderImpl _value, $Res Function(_$AddToPreorderImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1089,6 +1132,9 @@ class __$$UpdateViewImplCopyWithImpl<$Res>
   __$$UpdateViewImplCopyWithImpl(
       _$UpdateViewImpl _value, $Res Function(_$UpdateViewImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of DetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc

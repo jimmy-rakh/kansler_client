@@ -21,8 +21,12 @@ mixin _$AuthRequest {
   String get fcmToken => throw _privateConstructorUsedError;
   DeviceInfo get device => throw _privateConstructorUsedError;
 
+  /// Serializes this AuthRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AuthRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AuthRequestCopyWith<AuthRequest> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$AuthRequestCopyWithImpl<$Res, $Val extends AuthRequest>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AuthRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class _$AuthRequestCopyWithImpl<$Res, $Val extends AuthRequest>
     ) as $Val);
   }
 
+  /// Create a copy of AuthRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $DeviceInfoCopyWith<$Res> get device {
@@ -115,6 +123,8 @@ class __$$AuthRequestImplCopyWithImpl<$Res>
       _$AuthRequestImpl _value, $Res Function(_$AuthRequestImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AuthRequest
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -180,12 +190,14 @@ class _$AuthRequestImpl implements _AuthRequest {
             (identical(other.device, device) || other.device == device));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, value, clientType, fcmToken, device);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AuthRequest
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AuthRequestImplCopyWith<_$AuthRequestImpl> get copyWith =>
@@ -214,8 +226,11 @@ abstract class _AuthRequest implements AuthRequest {
   String get fcmToken;
   @override
   DeviceInfo get device;
+
+  /// Create a copy of AuthRequest
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthRequestImplCopyWith<_$AuthRequestImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
