@@ -20,18 +20,19 @@ class BannerWidget extends HookWidget {
     final state = useBlocBuilder(bloc);
 
     return SizedBox(
-      height: context.isSmall ?  context.height * .35 : context.height * .55,
+      height: context.isSmall ? context.height * .25 : context.height * .55,
       child: state.when(
         loadInProgress: () => Skeletonizer(
-          enabled: true,
-          child: DefaultImageContainer(
-            width: context.width * .9,
-            height:context.isSmall ?  context.height * .3 : context.height * .55,
-            margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
-            radius: 4,
-            imageUrl: "",
-          )
-        ),
+            enabled: true,
+            child: DefaultImageContainer(
+              fit: BoxFit.cover,
+              width: context.width * .9,
+              height:
+                  context.isSmall ? context.height * .2 : context.height * .55,
+              margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+              radius: 4,
+              imageUrl: "",
+            )),
         success: (posters) {
           if (posters.isEmpty) {
             return SvgPicture.asset(AppIllustrations.empty);
@@ -42,34 +43,35 @@ class BannerWidget extends HookWidget {
             child: posters.isEmpty
                 ? const SizedBox()
                 : CarouselSlider.builder(
-              itemCount:
-              posters.isEmpty ? 0 : posters.length,
-              itemBuilder: (context, index, page) {
-                final poster = posters.isEmpty
-                    ? PostersDto(
-                    id: 0,
-                    imgWeb: '')
-                    : posters[index];
-                return GestureDetector(
-                  onTap: () {},
-                  child: DefaultImageContainer(
-                    width: context.width * .9,
-                    height: context.isSmall ?  context.height * .3 : context.height * .55,
-                    margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
-                    radius: 4,
-                    imageUrl:context.isSmall ? poster.imgMobile : poster.imgWeb,
+                    itemCount: posters.isEmpty ? 0 : posters.length,
+                    itemBuilder: (context, index, page) {
+                      final poster = posters.isEmpty
+                          ? PostersDto(id: 0, imgWeb: '')
+                          : posters[index];
+                      return GestureDetector(
+                        onTap: () {},
+                        child: DefaultImageContainer(
+                          fit: BoxFit.fill,
+                          width: context.width * .9,
+                          height: context.isSmall
+                              ? context.height * .2
+                              : context.height * .55,
+                          margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                          radius: 4,
+                          imageUrl: context.isSmall
+                              ? poster.imgMobile
+                              : poster.imgWeb,
+                        ),
+                      );
+                    },
+                    options: CarouselOptions(
+                      autoPlay: posters.isNotEmpty && posters.length != 1,
+                      enlargeCenterPage: true,
+                      viewportFraction: 1,
+                      aspectRatio: 2.0,
+                      initialPage: 2,
+                    ),
                   ),
-                );
-              },
-              options: CarouselOptions(
-                autoPlay: posters.isNotEmpty &&
-                    posters.length != 1,
-                enlargeCenterPage: true,
-                viewportFraction: 1,
-                aspectRatio: 2.0,
-                initialPage: 2,
-              ),
-            ),
           );
         },
         failure: () => const SizedBox(),
