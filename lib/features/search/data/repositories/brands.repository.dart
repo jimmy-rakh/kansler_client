@@ -14,10 +14,10 @@ class BrandsRepositoryImpl implements BrandsRepository {
 
   @override
   Future<Either<Failure, ({bool hasNext, List<ProductDataEntity> products})>>
-      fetch(int page, {int? organizationId}) async {
+      fetch(int page, {int? categoryId}) async {
     final res = await _brendsRemoteSource.fetch(
       page,
-      organizationId: organizationId,
+      categoryId: categoryId,
     );
 
     return res.fold(

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -24,13 +25,19 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
     on<_SetBaseView>(_onSetBaseView);
     on<_AddFilter>(_onAddFilter);
     on<_OrderBy>(_orderBy);
+    on<_PriceFrom>(_priceFrom);
+    on<_PriceTo>(_priceTo);
   }
+  final priceFromController = TextEditingController();
+  final priceToController = TextEditingController();
 
   void _onInit(_Init event, Emitter<FilterState> emit) async {
     router.navigatorKey.currentContext!.read<BrandsBloc>();
     final res = await _organizationsUseCase.call(1);
 
     res.fold((l) => log.e(l), (r) {
+      priceFromController.text = event.searchData.priceFrom?.toString() ??'';
+      priceToController.text = event.searchData.priceTo?.toString() ?? '';
       emit(FilterState.ready(
         search: event.searchData,
         organizations: r.products,
@@ -40,10 +47,14 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
 
   void _onChooseCategories(_ChooseCategories event, Emitter<FilterState> emit) {
     emit((state as _Ready).copyWith(activePage: 1));
+
+
   }
 
   void _onChooseOrganizations(
-      _ChooseOrganizations event, Emitter<FilterState> emit) {}
+      _ChooseOrganizations event, Emitter<FilterState> emit) {
+
+  }
 
   void _onChooseBrands(_ChooseBrands event, Emitter<FilterState> emit) {
     emit((state as _Ready).copyWith(activePage: 2));
@@ -54,6 +65,8 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
   }
 
   void _onAddFilter(_AddFilter event, Emitter<FilterState> emit) {
+    priceFromController.text = event.searchData.priceFrom?.toString() ??'';
+    priceToController.text = event.searchData.priceTo?.toString() ?? '';
     emit((state as _Ready).copyWith(search: event.searchData));
   }
 
@@ -70,5 +83,20 @@ class FilterBloc extends Bloc<FilterEvent, FilterState> {
                 : event.orderBy == "Подороже"
                 ? "-price"
                 : event.orderBy)));
+  }
+
+  void _priceFrom(_PriceFrom event, Emitter<FilterState> emit) async {
+
+    final curr = (state as _Ready);
+    emit(curr.copyWith(
+        search: curr.search.copyWith(
+            priceFrom: event.priceFrom)));
+  }
+
+  void _priceTo(_PriceTo event, Emitter<FilterState> emit) async {
+    final curr = (state as _Ready);
+    emit(curr.copyWith(
+        search: curr.search.copyWith(
+            priceTo: event.priceTo)));
   }
 }

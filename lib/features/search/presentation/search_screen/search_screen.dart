@@ -7,6 +7,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/search/presentation/search_screen/widgets/brands_section.dart';
+import 'package:kansler/features/search/presentation/search_screen/widgets/brands_view.dart';
+import 'package:kansler/features/search/presentation/search_screen/widgets/categories_section.dart';
+import 'package:kansler/features/search/presentation/search_screen/widgets/categories_view.dart';
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
 import '../../../../core/constants/app_illustrations.dart';
@@ -19,8 +23,6 @@ import '../../../../core/widgets/appbar.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../product/presentation/widgets/product_card.dart';
 import '../../domain/entities/search.entity.dart';
-import '../filter_screen/widgets/brands_view.dart';
-import '../filter_screen/widgets/categories_view.dart';
 import 'blocs/search_bloc/search_bloc.dart';
 
 @RoutePage()
@@ -126,477 +128,373 @@ class _SearchScreenState extends State<SearchScreen> {
           onChange: (p0) => bloc.add(const SearchEvent.search()),
         ),
       ),
-      body: state.when(
-        loadInProgress: () => const Center(
-          child: CupertinoActivityIndicator(),
-        ),
-        success: (products, filterData, isList, isMoreLoading, activePage,
-            organizations, search) {
-          if (products!.isEmpty) {
-            return Center(child: SvgPicture.asset(AppIllustrations.empty));
-          }
-          return Row(
-            children: [
-              context.isSmall
-                  ? const SizedBox()
-                  : Container(
-                      width: context.width * .33,
-                      height: context.height,
-                      decoration: BoxDecoration(color: context.cardColor),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Text(
-                              'Фильтр',
-                              style: context.titleLarge,
-                            ),
-                          ),
-                          verticalSpace24,
-                          AnimatedSwitcher(
-                            duration: Durations.medium2,
-                            child: state.whenOrNull(
-                              success: (
-                                products,
-                                filterData,
-                                isList,
-                                isMoreLoading,
-                                activePage,
-                                organizations,
-                                search,
-                              ) {
-                                switch (activePage) {
-                                  case 1:
-                                    return const CategoriesView();
-                                  case 2:
-                                    return const BrandsView();
-                                  default:
-                                    return Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16),
+      body: Row(
+        children: [
+          context.isSmall
+              ? const SizedBox()
+              : Container(
+            width: context.width * .33,
+            height: context.height,
+            decoration: BoxDecoration(color: context.cardColor),
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Text(
+                    'Фильтр',
+                    style: context.titleLarge,
+                  ),
+                ),
+                verticalSpace24,
+                AnimatedSwitcher(
+                  duration: Durations.medium2,
+                  child: state.whenOrNull(
+                    success: (
+                        products,
+                        filterData,
+                        isList,
+                        isMoreLoading,
+                        activePage,
+                        organizations,
+                        search,
+                        ) {
+                      switch (activePage) {
+                        case 1:
+                          return const CategoriesView();
+                        case 2:
+                          return const BrandsView();
+                        default:
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16),
+                            child: Column(
+                              children: [
+                                const CategoriesSection(),
+                                verticalSpace12,
+                                const BrandsSection(),
+                                verticalSpace12,
+                                Row(
+                                  children: [
+                                    Expanded(
                                       child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Категории',
-                                                style: context.titleMedium,
-                                              ),
-                                              verticalSpace12,
-                                              AppCard(
-                                                width: double.maxFinite,
-                                                fillColor: context.background,
-                                                borderRadius: 4,
+                                          Text(
+                                            'Цена от:',
+                                            style:
+                                            context.titleMedium,
+                                          ),
+                                          verticalSpace12,
+                                          SizedBox(
+                                            height: 50,
+                                            child: AppTextField(
+                                                fieldController: bloc.priceFromController,
+                                                radius: 4,
+                                                enabledBorderColor:
+                                                Colors.grey,
+                                                fillColor:
+                                                context.background,
+                                                hint: '...',
+                                                onChange:  (value) => bloc.add(
+                                                    SearchEvent.priceFrom(int.parse(bloc.priceFromController.text))
+                                                )
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    horizontalSpace16,
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Цена до:',
+                                            style:
+                                            context.titleMedium,
+                                          ),
+                                          verticalSpace12,
+                                          SizedBox(
+                                            height: 50,
+                                            child: AppTextField(
+                                                fieldController: bloc.priceToController,
+                                                radius: 4,
+                                                enabledBorderColor:
+                                                Colors.grey,
+                                                fillColor:
+                                                context.background,
+                                                hint: '...',
+                                                onChange:  (value) => bloc.add(
+                                                    SearchEvent.priceTo(int.parse(bloc.priceToController.text))
+                                                )
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                verticalSpace12,
+                                Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Сортировать по:',
+                                      style: context.titleMedium,
+                                    ),
+                                    verticalSpace12,
+                                    Container(
+                                      width: context.width * .33,
+                                      decoration: BoxDecoration(
+                                          color: context.background,
+                                          border: Border.all(
+                                              color: Colors.grey),
+                                          borderRadius:
+                                          const BorderRadius.all(
+                                              Radius.circular(
+                                                  4))),
+                                      child: Center(
+                                        child: Padding(
+                                          padding:
+                                          const EdgeInsets.all(2),
+                                          child: Theme(
+                                            data: Theme.of(context)
+                                                .copyWith(
+                                              focusColor:
+                                              context.cardColor,
+                                            ),
+                                            child: DropdownButton<
+                                                String>(
+                                              dropdownColor:
+                                              context.background,
+                                              underline:
+                                              const SizedBox(),
+                                              autofocus: true,
+                                              focusColor:
+                                              context.background,
+                                              elevation: 0,
+                                              hint: const Padding(
                                                 padding:
-                                                    const EdgeInsets.all(12),
-                                                child: Column(
-                                                  children: [
-                                                    ...[
-                                                      // Wrap(
-                                                      //    direction: Axis.horizontal,
-                                                      //    spacing: 12,
-                                                      //    children: [
-                                                      //      for (final category in searchData.categories)
-                                                      //        Chip(
-                                                      //          label: Text(
-                                                      //            categoryState.whenOrNull(
-                                                      //              ready: (categories) => categories
-                                                      //                  .firstWhere(
-                                                      //                      (element) => element.id == category)
-                                                      //                  .name,
-                                                      //            ) ??
-                                                      //                '',
-                                                      //          ),
-                                                      //        )
-                                                      //    ],
-                                                      //  )
-                                                    ],
-                                                    verticalSpace8,
-                                                    AppButton(
-                                                      text: 'Выбрать',
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 12),
-                                                      borderRadius: 4,
-                                                      fillColor:
-                                                          context.cardColor,
-                                                      width: 120,
-                                                      onPressed: () => bloc.add(
-                                                          const SearchEvent
-                                                              .chooseCategories()),
-                                                    ),
-                                                  ],
-                                                ),
+                                                EdgeInsets.all(
+                                                    8.0),
+                                                child: Text(
+                                                    "Выберите способ получение"),
                                               ),
-                                            ],
-                                          ),
-                                          verticalSpace12,
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Бренды',
-                                                style: context.titleMedium,
-                                              ),
-                                              verticalSpace12,
-                                              AppCard(
-                                                width: double.maxFinite,
-                                                fillColor: context.background,
-                                                borderRadius: 4,
-                                                padding:
-                                                    const EdgeInsets.all(12),
-                                                child: Column(
-                                                  children: [
-                                                    ...[
-                                                      // Wrap(
-                                                      //       alignment: WrapAlignment.center,
-                                                      //       direction: Axis.horizontal,
-                                                      //       spacing: 12,
-                                                      //       children: [
-                                                      //         for (final brand in searchData.brands)
-                                                      //           Chip(
-                                                      //             label: Text(brandsState.when(
-                                                      //               initial: () => '',
-                                                      //               success: (brands) => brands
-                                                      //                   .firstWhere((element) => element.id == brand)
-                                                      //                   .name,
-                                                      //             )),
-                                                      //           )
-                                                      //       ],
-                                                      //     )
-                                                    ],
-                                                    verticalSpace8,
-                                                    AppButton(
-                                                      text: 'Выбрать',
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 12),
-                                                      borderRadius: 4,
-                                                      fillColor:
-                                                          context.cardColor,
-                                                      width: 120,
-                                                      onPressed: () => bloc.add(
-                                                          const SearchEvent
-                                                              .chooseBrands()),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          verticalSpace12,
-                                          // OrganizationSection(),
-                                          Row(
-                                            children: [
-                                              Expanded(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Цена от:',
-                                                      style:
-                                                          context.titleMedium,
-                                                    ),
-                                                    verticalSpace12,
-                                                    SizedBox(
-                                                      height: 50,
-                                                      child: AppTextField(
-                                                        radius: 4,
-                                                        enabledBorderColor:
-                                                            Colors.grey,
-                                                        fillColor:
-                                                            context.background,
-                                                        hint: '...',
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              horizontalSpace16,
-                                              Expanded(
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      'Цена до:',
-                                                      style:
-                                                          context.titleMedium,
-                                                    ),
-                                                    verticalSpace12,
-                                                    SizedBox(
-                                                      height: 50,
-                                                      child: AppTextField(
-                                                        radius: 4,
-                                                        enabledBorderColor:
-                                                            Colors.grey,
-                                                        fillColor:
-                                                            context.background,
-                                                        hint: '...',
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                          verticalSpace12,
-                                          Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'Сортировать по:',
-                                                style: context.titleMedium,
-                                              ),
-                                              verticalSpace12,
-                                              Container(
-                                                width: context.width * .33,
-                                                decoration: BoxDecoration(
-                                                    color: context.background,
-                                                    border: Border.all(
-                                                        color: Colors.grey),
-                                                    borderRadius:
-                                                        const BorderRadius.all(
-                                                            Radius.circular(
-                                                                4))),
-                                                child: Center(
+                                              value: filterData
+                                                  ?.orderBy ==
+                                                  "created_at"
+                                                  ? "Новинки"
+                                                  : filterData?.orderBy ==
+                                                  "alfabetic"
+                                                  ? "По Алфавиту"
+                                                  : filterData?.orderBy ==
+                                                  "price"
+                                                  ? "Подешевле"
+                                                  : filterData?.orderBy ==
+                                                  "-price"
+                                                  ? "Подороже"
+                                                  : filterData?.orderBy,
+                                              items: <String>[
+                                                "Новинки",
+                                                "По Алфавиту",
+                                                "Подешевле",
+                                                "Подороже",
+                                              ].map((String value) {
+                                                return DropdownMenuItem<
+                                                    String>(
+                                                  value: value,
                                                   child: Padding(
                                                     padding:
-                                                        const EdgeInsets.all(2),
-                                                    child: Theme(
-                                                      data: Theme.of(context)
-                                                          .copyWith(
-                                                        focusColor:
-                                                            context.cardColor,
-                                                      ),
-                                                      child: DropdownButton<
-                                                          String>(
-                                                        dropdownColor:
-                                                            context.background,
-                                                        underline:
-                                                            const SizedBox(),
-                                                        autofocus: true,
-                                                        focusColor:
-                                                            context.background,
-                                                        elevation: 0,
-                                                        hint: const Padding(
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  8.0),
-                                                          child: Text(
-                                                              "Выберите способ получение"),
-                                                        ),
-                                                        value: search
-                                                                    ?.orderBy ==
-                                                                "created_at"
-                                                            ? "Новинки"
-                                                            : search?.orderBy ==
-                                                                    "alfabetic"
-                                                                ? "По Алфавиту"
-                                                                : search?.orderBy ==
-                                                            "price"
-                                                            ? "Подешевле"
-                                                            : search?.orderBy ==
-                                                            "-price"
-                                                            ? "Подороже"
-                                                            : search?.orderBy,
-                                                        items: <String>[
-                                                          "Новинки",
-                                                          "По Алфавиту",
-                                                          "Подешевле",
-                                                          "Подороже",
-                                                        ].map((String value) {
-                                                          return DropdownMenuItem<
-                                                              String>(
-                                                            value: value,
-                                                            child: Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                              child: SizedBox(
-                                                                width: context
-                                                                        .width *
-                                                                    .25,
-                                                                child: Text(
-                                                                  value,
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }).toList(),
-                                                        onChanged: (value) {
-                                                          bloc.add(SearchEvent
-                                                              .orderBy(value!));
-                                                        },
+                                                    const EdgeInsets
+                                                        .all(8.0),
+                                                    child: SizedBox(
+                                                      width: context
+                                                          .width *
+                                                          .25,
+                                                      child: Text(
+                                                        value,
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              ),
-                                            ],
+                                                );
+                                              }).toList(),
+                                              onChanged: (value) {
+                                                bloc.add(SearchEvent
+                                                    .orderBy(value!));
+                                              },
+                                            ),
                                           ),
-                                          verticalSpace24,
-                                          SizedBox(
-                                              height: 100,
-                                              child: activePage == 0
-                                                  ? Padding(
-                                                      padding: const EdgeInsets
-                                                          .symmetric(
-                                                          vertical: 24,
-                                                          horizontal: 16),
-                                                      child: Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child: AppButton(
-                                                              text: 'Сбросить',
-                                                              onPressed: () =>
-                                                                  bloc.add(
-                                                                SearchEvent
-                                                                    .addFilter(
-                                                                  SearchEntity(
-                                                                    title: search
-                                                                        ?.title,
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              fillColor: context
-                                                                  .background,
-                                                              borderRadius: 4,
-                                                            ),
-                                                          ),
-                                                          horizontalSpace16,
-                                                          Expanded(
-                                                            child: AppButton(
-                                                              text: 'Поиск',
-                                                              onPressed: () =>
-                                                                  router.popForced(
-                                                                      search),
-                                                              textColor: context
-                                                                  .onPrimary,
-                                                              fillColor: context
-                                                                  .primary,
-                                                              borderRadius: 4,
-                                                            ),
-                                                          )
-                                                        ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                verticalSpace24,
+                                SizedBox(
+                                    height: 100,
+                                    child: activePage == 0
+                                        ? Padding(
+                                      padding: const EdgeInsets
+                                          .symmetric(
+                                          vertical: 24,
+                                          horizontal: 16),
+                                      child: Row(
+                                        children: [
+                                          Expanded(
+                                            child: AppButton(
+                                              text: 'Сбросить',
+                                              onPressed: () =>
+                                                  bloc.add(
+                                                    SearchEvent
+                                                        .addFilter(
+                                                      SearchEntity(
+                                                        title: search
+                                                            ?.title,
                                                       ),
-                                                    )
-                                                  : AppButton(
-                                                      margin:
-                                                          const EdgeInsets.all(
-                                                              24),
-                                                      text: 'Готово',
-                                                      onPressed: () => bloc.add(
-                                                          const SearchEvent
-                                                              .setBaseView()),
-                                                      textColor:
-                                                          context.onPrimary,
-                                                      fillColor:
-                                                          context.primary,
-                                                      borderRadius: 0,
-                                                    )),
+                                                    ),
+                                                  ),
+                                              fillColor: context
+                                                  .background,
+                                              borderRadius: 4,
+                                            ),
+                                          ),
+                                          horizontalSpace16,
+                                          Expanded(
+                                            child: AppButton(
+                                              text: 'Поиск',
+                                              onPressed:() =>
+                                                  bloc.add(const SearchEvent.search(),),
+                                              textColor: context
+                                                  .onPrimary,
+                                              fillColor: context
+                                                  .primary,
+                                              borderRadius: 4,
+                                            ),
+                                          )
                                         ],
                                       ),
-                                    );
-                                }
-                              },
+                                    )
+                                        : AppButton(
+                                      margin:
+                                      const EdgeInsets.all(
+                                          24),
+                                      text: 'Готово',
+                                      onPressed: () => bloc.add(
+                                          const SearchEvent
+                                              .setBaseView()),
+                                      textColor:
+                                      context.onPrimary,
+                                      fillColor:
+                                      context.primary,
+                                      borderRadius: 0,
+                                    )),
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                    ),
-              Expanded(
-                child: Stack(
-                  children: [
-                    isList
-                        ? ListView.separated(
-                            controller: bloc.scrollController,
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
-                            itemCount: products.length,
-                            separatorBuilder: (context, index) =>
-                                verticalSpace12,
-                            itemBuilder: (context, index) => ProductCard.list(
-                              product: products[index],
-                              onCart: (type) => bloc.add(
-                                  SearchEvent.changeCartState(products[index])),
-                              fieldController: authBloc.state ==
-                                      const AuthState.authenticated()
-                                  ? bloc.quantityControllers[index]
-                                  : TextEditingController(text: "1"),
-                              onPressed: () {},
-                            ),
-                          )
-                        : GridView.builder(
-                            controller: bloc.scrollController,
-                            padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
-                            shrinkWrap: true,
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: currentWidth < 1400 &&
-                                            currentWidth > 1200
-                                        ? 4
-                                        : currentWidth < 1300 &&
-                                                currentWidth > 700
-                                            ? 3
-                                            : currentWidth < 600
-                                                ? 2
-                                                : crossCount,
-                                    childAspectRatio:
-                                        currentWidth < 400 ? .5 : .6,
-                                    crossAxisSpacing: 10,
-                                    mainAxisSpacing: 1),
-                            itemCount: products.length,
-                            itemBuilder: (context, index) => ProductCard.grid(
-                              height: 200,
-                              width: 200,
-                              product: products[index],
-                              onCart: (type) => bloc.add(
-                                  SearchEvent.changeCartState(products[index])),
-                              fieldController: authBloc.state ==
-                                      const AuthState.authenticated()
-                                  ? bloc.quantityControllers[index]
-                                  : TextEditingController(),
-                              onPressed: () {},
-                            ),
-                          ),
-                    AnimatedPositioned(
-                      bottom: isMoreLoading ? 60 : -36,
-                      left: context.width * .46,
-                      right: context.width * .46,
-                      duration: Durations.medium2,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: SizedBox(
-                          height: 36,
-                          child: ColoredBox(
-                            color: context.cardColor,
-                            child: const CupertinoActivityIndicator(),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          );
-        },
-        notFound: () => const SizedBox(),
-        error: () => const SizedBox(),
+                          );
+                      }
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+         Expanded(child:  state.when(
+           loadInProgress: () =>  const Center(
+             child:  CupertinoActivityIndicator(),
+           ),
+           success: (products, filterData, isList, isMoreLoading, activePage,
+               organizations, search) {
+             if (products!.isEmpty) {
+               return Center(child: SvgPicture.asset(AppIllustrations.empty));
+             }
+             return Stack(
+               children: [
+                 isList
+                     ? ListView.separated(
+                   controller: bloc.scrollController,
+                   scrollDirection: Axis.vertical,
+                   shrinkWrap: true,
+                   padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
+                   itemCount: products.length,
+                   separatorBuilder: (context, index) =>
+                   verticalSpace12,
+                   itemBuilder: (context, index) => ProductCard.list(
+                     product: products[index],
+                     onCart: (type) => bloc.add(
+                         SearchEvent.changeCartState(products[index])),
+                     fieldController: authBloc.state ==
+                         const AuthState.authenticated()
+                         ? bloc.quantityControllers[index]
+                         : TextEditingController(text: "1"),
+                     onPressed: () {},
+                   ),
+                 )
+                     : GridView.builder(
+                   controller: bloc.scrollController,
+                   padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
+                   shrinkWrap: true,
+                   gridDelegate:
+                   SliverGridDelegateWithFixedCrossAxisCount(
+                       crossAxisCount: currentWidth < 1400 &&
+                           currentWidth > 1200
+                           ? 4
+                           : currentWidth < 1300 &&
+                           currentWidth > 700
+                           ? 3
+                           : currentWidth < 600
+                           ? 2
+                           : crossCount,
+                       childAspectRatio:
+                       currentWidth < 400 ? .5 : .6,
+                       crossAxisSpacing: 10,
+                       mainAxisSpacing: 1),
+                   itemCount: products.length,
+                   itemBuilder: (context, index) => ProductCard.grid(
+                     height: 200,
+                     width: 200,
+                     product: products[index],
+                     onCart: (type) => bloc.add(
+                         SearchEvent.changeCartState(products[index])),
+                     fieldController: authBloc.state ==
+                         const AuthState.authenticated()
+                         ? bloc.quantityControllers[index]
+                         : TextEditingController(),
+                     onPressed: () {},
+                   ),
+                 ),
+                 AnimatedPositioned(
+                   bottom: isMoreLoading ? 60 : -36,
+                   left: context.width * .46,
+                   right: context.width * .46,
+                   duration: Durations.medium2,
+                   child: ClipRRect(
+                     borderRadius: BorderRadius.circular(100),
+                     child: SizedBox(
+                       height: 36,
+                       child: ColoredBox(
+                         color: context.cardColor,
+                         child: const CupertinoActivityIndicator(),
+                       ),
+                     ),
+                   ),
+                 )
+               ],
+             );
+           },
+           notFound: () => const SizedBox(),
+           error: () => const SizedBox(),
+         ),)
+        ],
       ),
     );
   }

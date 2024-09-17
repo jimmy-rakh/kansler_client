@@ -8,9 +8,9 @@ import '../repositories/brands.repository.dart';
 
 class BrandsParams {
   final int page;
-  final int? organizationId;
+  final int? categoryId;
 
-  BrandsParams(this.page, this.organizationId);
+  BrandsParams(this.page, this.categoryId);
 }
 
 @lazySingleton
@@ -26,6 +26,6 @@ class BrandsUseCase
   Future<Either<Failure, ({bool hasNext, List<ProductDataEntity> products})>>
       call(BrandsParams params) => _repository.fetch(
             params.page,
-            organizationId: params.organizationId,
+            categoryId: params.categoryId,
           );
 }

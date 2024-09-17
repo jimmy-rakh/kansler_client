@@ -17,12 +17,10 @@ class BrandsRemoteSourceImpl implements BrendsRemoteSource {
 
   @override
   Future<Either<Failure, ({bool hasNext, List<ProductDataDto> products})>>
-      fetch(int page, {int? organizationId}) async {
+      fetch(int page, {int? categoryId}) async {
     final res = await _dio.getRequest(
-      "${SearchRemoteKeys.brands}?${NetworkConstants.pageNumber.replaceAll('num', '$page')}&page_size=200",
-      queryParameters: {
-        if (organizationId != null) 'organization_id': organizationId,
-      },
+      "${SearchRemoteKeys.brands}${categoryId == null ? "" : "/$categoryId"}?${NetworkConstants.pageNumber.replaceAll('num', '$page')}&page_size=200",
+
       converter: (response) {
         final result =
             PaginationResponse.fromJson(response as Map<String, dynamic>);

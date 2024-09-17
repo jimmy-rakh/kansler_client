@@ -390,6 +390,8 @@ mixin _$FilterEvent {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -401,6 +403,8 @@ mixin _$FilterEvent {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -412,6 +416,8 @@ mixin _$FilterEvent {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -424,6 +430,8 @@ mixin _$FilterEvent {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -435,6 +443,8 @@ mixin _$FilterEvent {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -446,6 +456,8 @@ mixin _$FilterEvent {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -547,6 +559,8 @@ class _$InitImpl implements _Init {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return init(searchData);
   }
@@ -561,6 +575,8 @@ class _$InitImpl implements _Init {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return init?.call(searchData);
   }
@@ -575,6 +591,8 @@ class _$InitImpl implements _Init {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -593,6 +611,8 @@ class _$InitImpl implements _Init {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return init(this);
   }
@@ -607,6 +627,8 @@ class _$InitImpl implements _Init {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return init?.call(this);
   }
@@ -621,6 +643,8 @@ class _$InitImpl implements _Init {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -690,6 +714,8 @@ class _$ChooseCategoriesImpl implements _ChooseCategories {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return chooseCategories();
   }
@@ -704,6 +730,8 @@ class _$ChooseCategoriesImpl implements _ChooseCategories {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return chooseCategories?.call();
   }
@@ -718,6 +746,8 @@ class _$ChooseCategoriesImpl implements _ChooseCategories {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (chooseCategories != null) {
@@ -736,6 +766,8 @@ class _$ChooseCategoriesImpl implements _ChooseCategories {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return chooseCategories(this);
   }
@@ -750,6 +782,8 @@ class _$ChooseCategoriesImpl implements _ChooseCategories {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return chooseCategories?.call(this);
   }
@@ -764,6 +798,8 @@ class _$ChooseCategoriesImpl implements _ChooseCategories {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (chooseCategories != null) {
@@ -853,6 +889,8 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return chooseOrganizations(id);
   }
@@ -867,6 +905,8 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return chooseOrganizations?.call(id);
   }
@@ -881,6 +921,8 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (chooseOrganizations != null) {
@@ -899,6 +941,8 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return chooseOrganizations(this);
   }
@@ -913,6 +957,8 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return chooseOrganizations?.call(this);
   }
@@ -927,6 +973,8 @@ class _$ChooseOrganizationsImpl implements _ChooseOrganizations {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (chooseOrganizations != null) {
@@ -996,6 +1044,8 @@ class _$ChooseBrandsImpl implements _ChooseBrands {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return chooseBrands();
   }
@@ -1010,6 +1060,8 @@ class _$ChooseBrandsImpl implements _ChooseBrands {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return chooseBrands?.call();
   }
@@ -1024,6 +1076,8 @@ class _$ChooseBrandsImpl implements _ChooseBrands {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (chooseBrands != null) {
@@ -1042,6 +1096,8 @@ class _$ChooseBrandsImpl implements _ChooseBrands {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return chooseBrands(this);
   }
@@ -1056,6 +1112,8 @@ class _$ChooseBrandsImpl implements _ChooseBrands {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return chooseBrands?.call(this);
   }
@@ -1070,6 +1128,8 @@ class _$ChooseBrandsImpl implements _ChooseBrands {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (chooseBrands != null) {
@@ -1131,6 +1191,8 @@ class _$SetBaseViewImpl implements _SetBaseView {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return setBaseView();
   }
@@ -1145,6 +1207,8 @@ class _$SetBaseViewImpl implements _SetBaseView {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return setBaseView?.call();
   }
@@ -1159,6 +1223,8 @@ class _$SetBaseViewImpl implements _SetBaseView {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (setBaseView != null) {
@@ -1177,6 +1243,8 @@ class _$SetBaseViewImpl implements _SetBaseView {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return setBaseView(this);
   }
@@ -1191,6 +1259,8 @@ class _$SetBaseViewImpl implements _SetBaseView {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return setBaseView?.call(this);
   }
@@ -1205,6 +1275,8 @@ class _$SetBaseViewImpl implements _SetBaseView {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (setBaseView != null) {
@@ -1294,6 +1366,8 @@ class _$AddFilterImpl implements _AddFilter {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return addFilter(searchData);
   }
@@ -1308,6 +1382,8 @@ class _$AddFilterImpl implements _AddFilter {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return addFilter?.call(searchData);
   }
@@ -1322,6 +1398,8 @@ class _$AddFilterImpl implements _AddFilter {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (addFilter != null) {
@@ -1340,6 +1418,8 @@ class _$AddFilterImpl implements _AddFilter {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return addFilter(this);
   }
@@ -1354,6 +1434,8 @@ class _$AddFilterImpl implements _AddFilter {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return addFilter?.call(this);
   }
@@ -1368,6 +1450,8 @@ class _$AddFilterImpl implements _AddFilter {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (addFilter != null) {
@@ -1464,6 +1548,8 @@ class _$OrderByImpl implements _OrderBy {
     required TResult Function() setBaseView,
     required TResult Function(SearchEntity searchData) addFilter,
     required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
   }) {
     return orderBy(this.orderBy);
   }
@@ -1478,6 +1564,8 @@ class _$OrderByImpl implements _OrderBy {
     TResult? Function()? setBaseView,
     TResult? Function(SearchEntity searchData)? addFilter,
     TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
   }) {
     return orderBy?.call(this.orderBy);
   }
@@ -1492,6 +1580,8 @@ class _$OrderByImpl implements _OrderBy {
     TResult Function()? setBaseView,
     TResult Function(SearchEntity searchData)? addFilter,
     TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
     required TResult orElse(),
   }) {
     if (orderBy != null) {
@@ -1510,6 +1600,8 @@ class _$OrderByImpl implements _OrderBy {
     required TResult Function(_SetBaseView value) setBaseView,
     required TResult Function(_AddFilter value) addFilter,
     required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
   }) {
     return orderBy(this);
   }
@@ -1524,6 +1616,8 @@ class _$OrderByImpl implements _OrderBy {
     TResult? Function(_SetBaseView value)? setBaseView,
     TResult? Function(_AddFilter value)? addFilter,
     TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
   }) {
     return orderBy?.call(this);
   }
@@ -1538,6 +1632,8 @@ class _$OrderByImpl implements _OrderBy {
     TResult Function(_SetBaseView value)? setBaseView,
     TResult Function(_AddFilter value)? addFilter,
     TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
     required TResult orElse(),
   }) {
     if (orderBy != null) {
@@ -1556,5 +1652,370 @@ abstract class _OrderBy implements FilterEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OrderByImplCopyWith<_$OrderByImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PriceFromImplCopyWith<$Res> {
+  factory _$$PriceFromImplCopyWith(
+          _$PriceFromImpl value, $Res Function(_$PriceFromImpl) then) =
+      __$$PriceFromImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? priceFrom});
+}
+
+/// @nodoc
+class __$$PriceFromImplCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res, _$PriceFromImpl>
+    implements _$$PriceFromImplCopyWith<$Res> {
+  __$$PriceFromImplCopyWithImpl(
+      _$PriceFromImpl _value, $Res Function(_$PriceFromImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FilterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? priceFrom = freezed,
+  }) {
+    return _then(_$PriceFromImpl(
+      freezed == priceFrom
+          ? _value.priceFrom
+          : priceFrom // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PriceFromImpl implements _PriceFrom {
+  const _$PriceFromImpl(this.priceFrom);
+
+  @override
+  final int? priceFrom;
+
+  @override
+  String toString() {
+    return 'FilterEvent.priceFrom(priceFrom: $priceFrom)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PriceFromImpl &&
+            (identical(other.priceFrom, priceFrom) ||
+                other.priceFrom == priceFrom));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, priceFrom);
+
+  /// Create a copy of FilterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PriceFromImplCopyWith<_$PriceFromImpl> get copyWith =>
+      __$$PriceFromImplCopyWithImpl<_$PriceFromImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+    required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
+  }) {
+    return priceFrom(this.priceFrom);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+    TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
+  }) {
+    return priceFrom?.call(this.priceFrom);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
+    required TResult orElse(),
+  }) {
+    if (priceFrom != null) {
+      return priceFrom(this.priceFrom);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+    required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
+  }) {
+    return priceFrom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+    TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
+  }) {
+    return priceFrom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
+    required TResult orElse(),
+  }) {
+    if (priceFrom != null) {
+      return priceFrom(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PriceFrom implements FilterEvent {
+  const factory _PriceFrom(final int? priceFrom) = _$PriceFromImpl;
+
+  int? get priceFrom;
+
+  /// Create a copy of FilterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PriceFromImplCopyWith<_$PriceFromImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PriceToImplCopyWith<$Res> {
+  factory _$$PriceToImplCopyWith(
+          _$PriceToImpl value, $Res Function(_$PriceToImpl) then) =
+      __$$PriceToImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? priceTo});
+}
+
+/// @nodoc
+class __$$PriceToImplCopyWithImpl<$Res>
+    extends _$FilterEventCopyWithImpl<$Res, _$PriceToImpl>
+    implements _$$PriceToImplCopyWith<$Res> {
+  __$$PriceToImplCopyWithImpl(
+      _$PriceToImpl _value, $Res Function(_$PriceToImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of FilterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? priceTo = freezed,
+  }) {
+    return _then(_$PriceToImpl(
+      freezed == priceTo
+          ? _value.priceTo
+          : priceTo // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PriceToImpl implements _PriceTo {
+  const _$PriceToImpl(this.priceTo);
+
+  @override
+  final int? priceTo;
+
+  @override
+  String toString() {
+    return 'FilterEvent.priceTo(priceTo: $priceTo)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PriceToImpl &&
+            (identical(other.priceTo, priceTo) || other.priceTo == priceTo));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, priceTo);
+
+  /// Create a copy of FilterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PriceToImplCopyWith<_$PriceToImpl> get copyWith =>
+      __$$PriceToImplCopyWithImpl<_$PriceToImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(SearchEntity searchData) init,
+    required TResult Function() chooseCategories,
+    required TResult Function(int id) chooseOrganizations,
+    required TResult Function() chooseBrands,
+    required TResult Function() setBaseView,
+    required TResult Function(SearchEntity searchData) addFilter,
+    required TResult Function(String orderBy) orderBy,
+    required TResult Function(int? priceFrom) priceFrom,
+    required TResult Function(int? priceTo) priceTo,
+  }) {
+    return priceTo(this.priceTo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(SearchEntity searchData)? init,
+    TResult? Function()? chooseCategories,
+    TResult? Function(int id)? chooseOrganizations,
+    TResult? Function()? chooseBrands,
+    TResult? Function()? setBaseView,
+    TResult? Function(SearchEntity searchData)? addFilter,
+    TResult? Function(String orderBy)? orderBy,
+    TResult? Function(int? priceFrom)? priceFrom,
+    TResult? Function(int? priceTo)? priceTo,
+  }) {
+    return priceTo?.call(this.priceTo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(SearchEntity searchData)? init,
+    TResult Function()? chooseCategories,
+    TResult Function(int id)? chooseOrganizations,
+    TResult Function()? chooseBrands,
+    TResult Function()? setBaseView,
+    TResult Function(SearchEntity searchData)? addFilter,
+    TResult Function(String orderBy)? orderBy,
+    TResult Function(int? priceFrom)? priceFrom,
+    TResult Function(int? priceTo)? priceTo,
+    required TResult orElse(),
+  }) {
+    if (priceTo != null) {
+      return priceTo(this.priceTo);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChooseCategories value) chooseCategories,
+    required TResult Function(_ChooseOrganizations value) chooseOrganizations,
+    required TResult Function(_ChooseBrands value) chooseBrands,
+    required TResult Function(_SetBaseView value) setBaseView,
+    required TResult Function(_AddFilter value) addFilter,
+    required TResult Function(_OrderBy value) orderBy,
+    required TResult Function(_PriceFrom value) priceFrom,
+    required TResult Function(_PriceTo value) priceTo,
+  }) {
+    return priceTo(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChooseCategories value)? chooseCategories,
+    TResult? Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult? Function(_ChooseBrands value)? chooseBrands,
+    TResult? Function(_SetBaseView value)? setBaseView,
+    TResult? Function(_AddFilter value)? addFilter,
+    TResult? Function(_OrderBy value)? orderBy,
+    TResult? Function(_PriceFrom value)? priceFrom,
+    TResult? Function(_PriceTo value)? priceTo,
+  }) {
+    return priceTo?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Init value)? init,
+    TResult Function(_ChooseCategories value)? chooseCategories,
+    TResult Function(_ChooseOrganizations value)? chooseOrganizations,
+    TResult Function(_ChooseBrands value)? chooseBrands,
+    TResult Function(_SetBaseView value)? setBaseView,
+    TResult Function(_AddFilter value)? addFilter,
+    TResult Function(_OrderBy value)? orderBy,
+    TResult Function(_PriceFrom value)? priceFrom,
+    TResult Function(_PriceTo value)? priceTo,
+    required TResult orElse(),
+  }) {
+    if (priceTo != null) {
+      return priceTo(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PriceTo implements FilterEvent {
+  const factory _PriceTo(final int? priceTo) = _$PriceToImpl;
+
+  int? get priceTo;
+
+  /// Create a copy of FilterEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PriceToImplCopyWith<_$PriceToImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

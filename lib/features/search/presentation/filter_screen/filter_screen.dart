@@ -53,12 +53,21 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(context.cardColor),
                 ),
-                onPressed:()=> Navigator.pop(context),
+                onPressed: () {
+                  if (state.whenOrNull(
+                          ready: (view, products, filter) => view != 0) ??
+                      false) {
+                    bloc.add(const FilterEvent.setBaseView());
+                    return;
+                  }
+
+                  Navigator.pop(context);
+                },
                 icon: const Icon(KazeIcons.arrowLeftOutline),
               ),
             ),
             leadingWidth: 58,
-            preferredSize: const Size.fromHeight( 60),
+            preferredSize: const Size.fromHeight(60),
             bottomSize: const Size(double.maxFinite, 40),
             child: const Text('Фильтр'),
           ),
@@ -85,28 +94,28 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                               children: [
                                 Expanded(
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment
-                                        .start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Цена от:',
-                                        style:
-                                        context.titleMedium,
+                                        style: context.titleMedium,
                                       ),
                                       verticalSpace12,
                                       SizedBox(
                                         height: 50,
                                         child: AppTextField(
-                                          radius: 4,
-                                          enabledBorderColor:
-                                          Colors.grey,
-                                          fillColor: context
-                                              .cardColor,
-                                          hint: '...',
-                                        ),
+                                            fieldController:
+                                                bloc.priceFromController,
+                                            radius: 4,
+                                            enabledBorderColor: Colors.grey,
+                                            fillColor: context.cardColor,
+                                            hint: '...',
+                                            onChange: (value) => bloc.add(
+                                                FilterEvent.priceFrom(int.parse(
+                                                    bloc.priceFromController
+                                                        .text)))),
                                       ),
                                     ],
                                   ),
@@ -114,28 +123,28 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                 horizontalSpace16,
                                 Expanded(
                                   child: Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment
-                                        .start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Цена до:',
-                                        style:
-                                        context.titleMedium,
+                                        style: context.titleMedium,
                                       ),
                                       verticalSpace12,
                                       SizedBox(
                                         height: 50,
                                         child: AppTextField(
-                                          radius: 4,
-                                          enabledBorderColor:
-                                          Colors.grey,
-                                          fillColor: context
-                                              .cardColor,
-                                          hint: '...',
-                                        ),
+                                            fieldController:
+                                                bloc.priceToController,
+                                            radius: 4,
+                                            enabledBorderColor: Colors.grey,
+                                            fillColor: context.cardColor,
+                                            hint: '...',
+                                            onChange: (value) => bloc.add(
+                                                FilterEvent.priceTo(int.parse(
+                                                    bloc.priceToController
+                                                        .text)))),
                                       ),
                                     ],
                                   ),
@@ -144,84 +153,66 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                             ),
                             verticalSpace12,
                             Column(
-                              mainAxisAlignment:
-                              MainAxisAlignment.start,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Сортировать по:',
                                   style: context.titleMedium,
                                 ),
                                 verticalSpace12,
-                                 Container(
-                                   width:context.isSmall ?  context.width : context.width * .7,
+                                Container(
+                                  width: context.isSmall
+                                      ? context.width
+                                      : context.width * .7,
                                   decoration: BoxDecoration(
                                       color: context.cardColor,
-                                      border: Border.all(
-                                          color: Colors.grey),
-                                      borderRadius:
-                                      const BorderRadius
-                                          .all(
-                                          Radius.circular(
-                                              4))),
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(4))),
                                   child: Center(
                                     child: Padding(
-                                      padding:
-                                      const EdgeInsets.all(
-                                          2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Theme(
-                                        data: Theme.of(context)
-                                            .copyWith(
-                                          focusColor: context
-                                              .background,
+                                        data: Theme.of(context).copyWith(
+                                          focusColor: context.background,
                                         ),
-                                        child: DropdownButton<
-                                            String>(
-                                          dropdownColor:
-                                          context.cardColor,
-                                          underline:
-                                          const SizedBox(),
+                                        child: DropdownButton<String>(
+                                          dropdownColor: context.cardColor,
+                                          underline: const SizedBox(),
                                           autofocus: true,
-                                          focusColor: context
-                                              .background,
+                                          focusColor: context.background,
                                           elevation: 0,
                                           hint: const Padding(
-                                            padding:
-                                            EdgeInsets.all(
-                                                8.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Text(
                                                 "Выберите способ получение"),
                                           ),
-                                          value: search.orderBy ==
-                                              "created_at"
+                                          value: search.orderBy == "created_at"
                                               ? "Новинки"
-                                              : search.orderBy ==
-                                              "alfabetic"
-                                              ? "По Алфавиту"
-                                              : search.orderBy ==
-                                              "price"
-                                              ? "Подешевле"
-                                              : search.orderBy ==
-                                              "-price"
-                                              ? "Подороже"
-                                              : search.orderBy,
+                                              : search.orderBy == "alfabetic"
+                                                  ? "По Алфавиту"
+                                                  : search.orderBy == "price"
+                                                      ? "Подешевле"
+                                                      : search.orderBy ==
+                                                              "-price"
+                                                          ? "Подороже"
+                                                          : search.orderBy,
                                           items: <String>[
                                             "Новинки",
                                             "По Алфавиту",
                                             "Подешевле",
                                             "Подороже",
                                           ].map((String value) {
-                                            return DropdownMenuItem<
-                                                String>(
+                                            return DropdownMenuItem<String>(
                                               value: value,
                                               child: Padding(
                                                 padding:
-                                                const EdgeInsets
-                                                    .all(
-                                                    8.0),
+                                                    const EdgeInsets.all(8.0),
                                                 child: SizedBox(
-                                                  width: context.isSmall ?  context.width * .75 : context.width * .6,
+                                                  width: context.isSmall
+                                                      ? context.width * .75
+                                                      : context.width * .6,
                                                   child: Text(
                                                     value,
                                                   ),
@@ -230,9 +221,8 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                             );
                                           }).toList(),
                                           onChanged: (value) {
-                                            bloc.add(FilterEvent
-                                                .orderBy(
-                                                value!));
+                                            bloc.add(
+                                                FilterEvent.orderBy(value!));
                                           },
                                         ),
                                       ),
@@ -263,9 +253,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                               text: 'Сбросить',
                               onPressed: () => bloc.add(
                                 FilterEvent.addFilter(
-                                  SearchEntity(
-                                    title: search.title,
-                                  ),
+                                  SearchEntity(title: search.title),
                                 ),
                               ),
                               fillColor: context.cardColor,

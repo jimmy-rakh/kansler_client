@@ -16,8 +16,6 @@ class BrandsBloc extends Bloc<BrandsEvent, BrandsState> {
 
   BrandsBloc(this._brandsUseCase) : super(const BrandsState.initial()) {
     on<_Fetch>(_onFetch);
-
-    add(const BrandsEvent.fetch(null));
   }
 
   void _onFetch(_Fetch event, Emitter<BrandsState> emit) async {
