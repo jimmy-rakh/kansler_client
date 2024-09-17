@@ -42,12 +42,12 @@ class CategoriesSection extends HookWidget {
                       isMoreLoading,
                       activePage,
                       organizations,
-                      search,) {
-                    return search?.categories == null ? const SizedBox() : Wrap(
+                      ) {
+                    return filterData?.categories == null ? const SizedBox() : Wrap(
                       direction: Axis.horizontal,
                       spacing: 12,
                       children: [
-                        for (final category in search!.categories)
+                        for (final category in filterData!.categories)
                           Chip(
                             label: Text(
                               categoryState.whenOrNull(

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/categories/domain/entities/category.entitity.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/brands_section.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/brands_view.dart';
 import 'package:kansler/features/search/presentation/filter_screen/widgets/categories_section.dart';
@@ -23,9 +24,11 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
   const FilterScreen({
     super.key,
     required this.searchData,
+    this.category,
   });
 
   final SearchEntity searchData;
+  final CategoryEntitity? category;
 
   @override
   Widget build(BuildContext context) {

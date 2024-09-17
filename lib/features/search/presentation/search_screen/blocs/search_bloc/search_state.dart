@@ -10,7 +10,6 @@ class SearchState with _$SearchState {
     @Default(false) bool isMoreLoading,
     @Default(0) int activePage,
     @Default([]) List<ProductDataEntity> organizations,
-     SearchEntity? search,
   }) = _Success;
   const factory SearchState.notFound() = _NotFound;
   const factory SearchState.error() = _Error;

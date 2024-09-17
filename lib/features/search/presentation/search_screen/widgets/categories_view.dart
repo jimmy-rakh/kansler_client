@@ -21,26 +21,32 @@ class CategoriesView extends HookWidget {
           ready: (categories) => ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) => searchState.when(
-              success: ( products,
-                  filterData,
-                  isList,
-                  isMoreLoading,
-                  activePage,
-                  organizations,
-                  search,) => CategoryCard(
+              success: (
+                products,
+                filterData,
+                isList,
+                isMoreLoading,
+                activePage,
+                organizations,
+              ) =>
+                  CategoryCard(
                 category: categories[index],
-                isSelected: search?.categories.contains(categories[index].id),
+                isSelected:
+                    filterData?.categories.contains(categories[index].id) ??
+                        false,
                 callback: (v) {
                   List<int> data = [];
-                  data.addAll(search!.categories);
+                  data.addAll(filterData?.categories ?? []);
                   data.contains(categories[index].id)
                       ? data.remove(categories[index].id)
                       : data.add(categories[index].id);
-                  searchBloc.add(
-                      SearchEvent.addFilter(search.copyWith(categories: data)));
+                  searchBloc.add(SearchEvent.addFilter(
+                      filterData!.copyWith(categories: data, brands: [])));
                 },
               ),
-              notFound: () => const SizedBox(), error: () => const SizedBox(),loadInProgress: () => const SizedBox(),
+              notFound: () => const SizedBox(),
+              error: () => const SizedBox(),
+              loadInProgress: () => const SizedBox(),
             ),
             separatorBuilder: (context, index) => verticalSpace12,
             itemCount: categories.length,

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -81,6 +82,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+
+    if (kIsWeb) {
+      emit(const CartState.loadInProgress());
+      emit(const CartState.ready(products: [], price: 0));
+    }
     final res = await _addProductToCartUseCase
         .call((productId: event.id, quantity: event.quantity));
 
@@ -100,6 +106,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    if (kIsWeb) {
+      emit(const CartState.loadInProgress());
+      emit(const CartState.ready(products: [], price: 0));
+    }
+
     if (state is _Ready) {
       final products = (state as _Ready).products.map((e) {
         if (e.product!.id == event.id) {
@@ -123,6 +134,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         // log.e(l.toString());
       },
       (r) {
+        _updateView();
         popularBloc.add(const PopularEvent.fetch());
         latestBloc.add(const LatestEvent.fetch());
         add(const CartEvent.getCartPrice());
@@ -187,6 +199,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       // log.e(l.toString());
       // emit(const CartState.error());
     }, (r) {
+      emit(const CartState.loadInProgress());
       pageNumber++;
       hasNext = r.hasNext;
 

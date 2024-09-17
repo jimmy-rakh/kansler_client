@@ -78,9 +78,11 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (!event.isMore) {
       pageNumber = 1;
       request = request.copyWith(pageNumber: 1);
+      emit(SearchState.loadInProgress());
     } else {
       emit((state as _Success).copyWith(isMoreLoading: true));
     }
+
     final result = await _useCase.call(request);
 
     result.fold((l) => log.e(l), (r) {
@@ -104,7 +106,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         return;
       }
 
-      emit(SearchState.success(products: r.products, filterData: request));
+      emit(SearchState.success(products: r.products, filterData: request!));
     });
   }
 
@@ -122,7 +124,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (res != null) {
       emit((state as _Success)
           .copyWith(filterData: res.copyWith(pageNumber: 1)));
-      priceFromController.text = res.priceFrom?.toString() ??'';
+      priceFromController.text = res.priceFrom?.toString() ?? '';
       priceToController.text = res.priceTo?.toString() ?? '';
       add(const SearchEvent.search());
     }
@@ -147,7 +149,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     res.fold((l) => log.e(l), (r) {
       emit(SearchState.success(
-        search: event.searchData,
         organizations: r.products,
         products: [],
       ));
@@ -170,7 +171,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   void _onAddFilter(_AddFilter event, Emitter<SearchState> emit) {
-    emit((state as _Success).copyWith(search: event.searchData));
+    emit((state as _Success).copyWith(filterData: event.searchData));
   }
 
   void _orderBy(_OrderBy event, Emitter<SearchState> emit) async {
@@ -191,14 +192,14 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   void _priceFrom(_PriceFrom event, Emitter<SearchState> emit) async {
     final curr = (state as _Success);
     emit(curr.copyWith(
-        filterData: curr.filterData?.copyWith(
-            priceFrom: int.parse(priceFromController.text))));
+        filterData: curr.filterData
+            ?.copyWith(priceFrom: int.parse(priceFromController.text))));
   }
 
   void _priceTo(_PriceTo event, Emitter<SearchState> emit) async {
     final curr = (state as _Success);
     emit(curr.copyWith(
-        filterData: curr.filterData?.copyWith(
-            priceTo: int.parse(priceToController.text))));
+        filterData: curr.filterData
+            ?.copyWith(priceTo: int.parse(priceToController.text))));
   }
 }

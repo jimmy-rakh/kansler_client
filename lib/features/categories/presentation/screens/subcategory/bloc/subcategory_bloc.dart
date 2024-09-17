@@ -181,6 +181,7 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
   void _onShowFilters(
       _ShowFilters event, Emitter<SubcategoryState> emit) async {
     final category = (state as _Ready).category;
+
     final res = await router
             .push(FilterRoute(searchData: (state as _Ready).filterData!))
         as SearchEntity?;

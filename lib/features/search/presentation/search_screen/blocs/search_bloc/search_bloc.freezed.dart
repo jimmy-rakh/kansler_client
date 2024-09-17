@@ -25,8 +25,7 @@ mixin _$SearchState {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)
+            List<ProductDataEntity> organizations)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -41,8 +40,7 @@ mixin _$SearchState {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -57,8 +55,7 @@ mixin _$SearchState {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -161,8 +158,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)
+            List<ProductDataEntity> organizations)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -180,8 +176,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -199,8 +194,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -266,8 +260,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       bool isList,
       bool isMoreLoading,
       int activePage,
-      List<ProductDataEntity> organizations,
-      SearchEntity? search});
+      List<ProductDataEntity> organizations});
 }
 
 /// @nodoc
@@ -289,7 +282,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
     Object? isMoreLoading = null,
     Object? activePage = null,
     Object? organizations = null,
-    Object? search = freezed,
   }) {
     return _then(_$SuccessImpl(
       products: freezed == products
@@ -316,10 +308,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
           ? _value._organizations
           : organizations // ignore: cast_nullable_to_non_nullable
               as List<ProductDataEntity>,
-      search: freezed == search
-          ? _value.search
-          : search // ignore: cast_nullable_to_non_nullable
-              as SearchEntity?,
     ));
   }
 }
@@ -333,8 +321,7 @@ class _$SuccessImpl implements _Success {
       this.isList = true,
       this.isMoreLoading = false,
       this.activePage = 0,
-      final List<ProductDataEntity> organizations = const [],
-      this.search})
+      final List<ProductDataEntity> organizations = const []})
       : _products = products,
         _organizations = organizations;
 
@@ -369,11 +356,8 @@ class _$SuccessImpl implements _Success {
   }
 
   @override
-  final SearchEntity? search;
-
-  @override
   String toString() {
-    return 'SearchState.success(products: $products, filterData: $filterData, isList: $isList, isMoreLoading: $isMoreLoading, activePage: $activePage, organizations: $organizations, search: $search)';
+    return 'SearchState.success(products: $products, filterData: $filterData, isList: $isList, isMoreLoading: $isMoreLoading, activePage: $activePage, organizations: $organizations)';
   }
 
   @override
@@ -390,8 +374,7 @@ class _$SuccessImpl implements _Success {
             (identical(other.activePage, activePage) ||
                 other.activePage == activePage) &&
             const DeepCollectionEquality()
-                .equals(other._organizations, _organizations) &&
-            (identical(other.search, search) || other.search == search));
+                .equals(other._organizations, _organizations));
   }
 
   @override
@@ -402,8 +385,7 @@ class _$SuccessImpl implements _Success {
       isList,
       isMoreLoading,
       activePage,
-      const DeepCollectionEquality().hash(_organizations),
-      search);
+      const DeepCollectionEquality().hash(_organizations));
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -423,14 +405,13 @@ class _$SuccessImpl implements _Success {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)
+            List<ProductDataEntity> organizations)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
   }) {
-    return success(products, filterData, isList, isMoreLoading, activePage,
-        organizations, search);
+    return success(
+        products, filterData, isList, isMoreLoading, activePage, organizations);
   }
 
   @override
@@ -443,14 +424,13 @@ class _$SuccessImpl implements _Success {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
   }) {
-    return success?.call(products, filterData, isList, isMoreLoading,
-        activePage, organizations, search);
+    return success?.call(
+        products, filterData, isList, isMoreLoading, activePage, organizations);
   }
 
   @override
@@ -463,8 +443,7 @@ class _$SuccessImpl implements _Success {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -472,7 +451,7 @@ class _$SuccessImpl implements _Success {
   }) {
     if (success != null) {
       return success(products, filterData, isList, isMoreLoading, activePage,
-          organizations, search);
+          organizations);
     }
     return orElse();
   }
@@ -522,8 +501,7 @@ abstract class _Success implements SearchState {
       final bool isList,
       final bool isMoreLoading,
       final int activePage,
-      final List<ProductDataEntity> organizations,
-      final SearchEntity? search}) = _$SuccessImpl;
+      final List<ProductDataEntity> organizations}) = _$SuccessImpl;
 
   List<ProductEntity>? get products;
   SearchEntity? get filterData;
@@ -531,7 +509,6 @@ abstract class _Success implements SearchState {
   bool get isMoreLoading;
   int get activePage;
   List<ProductDataEntity> get organizations;
-  SearchEntity? get search;
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -588,8 +565,7 @@ class _$NotFoundImpl implements _NotFound {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)
+            List<ProductDataEntity> organizations)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -607,8 +583,7 @@ class _$NotFoundImpl implements _NotFound {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -626,8 +601,7 @@ class _$NotFoundImpl implements _NotFound {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,
@@ -729,8 +703,7 @@ class _$ErrorImpl implements _Error {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)
+            List<ProductDataEntity> organizations)
         success,
     required TResult Function() notFound,
     required TResult Function() error,
@@ -748,8 +721,7 @@ class _$ErrorImpl implements _Error {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult? Function()? notFound,
     TResult? Function()? error,
@@ -767,8 +739,7 @@ class _$ErrorImpl implements _Error {
             bool isList,
             bool isMoreLoading,
             int activePage,
-            List<ProductDataEntity> organizations,
-            SearchEntity? search)?
+            List<ProductDataEntity> organizations)?
         success,
     TResult Function()? notFound,
     TResult Function()? error,

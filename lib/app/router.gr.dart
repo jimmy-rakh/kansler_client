@@ -252,12 +252,14 @@ class FilterRoute extends PageRouteInfo<FilterRouteArgs> {
   FilterRoute({
     Key? key,
     required SearchEntity searchData,
+    CategoryEntitity? category,
     List<PageRouteInfo>? children,
   }) : super(
           FilterRoute.name,
           args: FilterRouteArgs(
             key: key,
             searchData: searchData,
+            category: category,
           ),
           initialChildren: children,
         );
@@ -272,6 +274,7 @@ class FilterRoute extends PageRouteInfo<FilterRouteArgs> {
           child: FilterScreen(
         key: args.key,
         searchData: args.searchData,
+        category: args.category,
       ));
     },
   );
@@ -281,15 +284,18 @@ class FilterRouteArgs {
   const FilterRouteArgs({
     this.key,
     required this.searchData,
+    this.category,
   });
 
   final Key? key;
 
   final SearchEntity searchData;
 
+  final CategoryEntitity? category;
+
   @override
   String toString() {
-    return 'FilterRouteArgs{key: $key, searchData: $searchData}';
+    return 'FilterRouteArgs{key: $key, searchData: $searchData, category: $category}';
   }
 }
 

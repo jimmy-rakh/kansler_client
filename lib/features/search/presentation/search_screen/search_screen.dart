@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -72,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
               if (!context.isSmall &&
                   (state.whenOrNull(
                         success: (products, filterData, isList, isMoreLoading,
-                                activePage, organizations, search) =>
+                                activePage, organizations) =>
                             activePage != 0,
                       ) ??
                       false)) {
@@ -113,7 +114,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
               child: Icon(state.whenOrNull(
                 success: (products, filterData, isList, isMoreLoading,
-                        activePage, organizations, search) =>
+                        activePage, organizations) =>
                     isList
                         ? KazeIcons.grid2Outline
                         : KazeIcons.sliderVerticalOutline,
@@ -168,7 +169,6 @@ class _SearchScreenState extends State<SearchScreen> {
                             isMoreLoading,
                             activePage,
                             organizations,
-                            search,
                           ) {
                             switch (activePage) {
                               case 1:
@@ -371,8 +371,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                                             SearchEvent
                                                                 .addFilter(
                                                               SearchEntity(
-                                                                title: search
-                                                                    ?.title,
+                                                                title:
+                                                                    filterData
+                                                                        ?.title,
                                                               ),
                                                             ),
                                                           ),
@@ -427,18 +428,19 @@ class _SearchScreenState extends State<SearchScreen> {
                 child: CupertinoActivityIndicator(),
               ),
               success: (products, filterData, isList, isMoreLoading, activePage,
-                  organizations, search) {
+                  organizations) {
                 if (products!.isEmpty) {
                   return Center(
                       child: SvgPicture.asset(AppIllustrations.empty));
                 }
                 return Stack(
+                  alignment: AlignmentDirectional.topCenter,
                   children: [
                     isList
                         ? ListView.separated(
                             controller: bloc.scrollController,
                             scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
+                            shrinkWrap: !kIsWeb,
                             padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
                             itemCount: products.length,
                             separatorBuilder: (context, index) =>
@@ -457,7 +459,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         : GridView.builder(
                             controller: bloc.scrollController,
                             padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
-                            shrinkWrap: true,
+                            shrinkWrap: !kIsWeb,
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: currentWidth < 1400 &&

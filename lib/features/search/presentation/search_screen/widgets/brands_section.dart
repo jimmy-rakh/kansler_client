@@ -43,13 +43,13 @@ class BrandsSection extends HookWidget {
                       isMoreLoading,
                       activePage,
                       organizations,
-                      search,) {
-                    return search?.brands == null ? const SizedBox() : Wrap(
+                     ) {
+                    return filterData?.brands == null ? const SizedBox() : Wrap(
                       alignment: WrapAlignment.center,
                       direction: Axis.horizontal,
                       spacing: 12,
                       children: [
-                        for (final brand in search!.brands)
+                        for (final brand in filterData!.brands)
                           Chip(
                             label: Text(brandsState.when(
                               initial: () => '',
