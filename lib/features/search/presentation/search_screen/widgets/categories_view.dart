@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
+import 'package:kansler/app/router.dart';
+import 'package:kansler/core/extensions/context.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../categories/presentation/screens/category/bloc/categories_bloc.dart';
 import '../../../../categories/presentation/screens/category/widgets/card.dart';
@@ -30,6 +32,7 @@ class CategoriesView extends HookWidget {
                 organizations,
               ) =>
                   CategoryCard(
+                    color: context.background,
                 category: categories[index],
                 isSelected:
                     filterData?.categories.contains(categories[index].id) ??

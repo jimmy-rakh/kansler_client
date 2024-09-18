@@ -208,25 +208,25 @@ class ProfileScreen extends HookWidget {
                           ),
                         ),
                       verticalSpace24,
-                      if (current.company?.inn != null)
-                        AppCard(
-                          margin: const EdgeInsets.symmetric(horizontal: 16),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 12, horizontal: 16),
-                          width: double.maxFinite,
-                          borderRadius: 4,
-                          onTap: () => router.push(DebtRoute(id: current.company!.id)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text('Долг / История оплат'),
-                              Transform.rotate(
-                                  angle: 3.2,
-                                  child: const Icon(KazeIcons.arrowLeftOutline))
-                            ],
-                          ),
-                        ),
-                      verticalSpace12,
+                      // if (current.company?.inn != null)
+                      //   AppCard(
+                      //     margin: const EdgeInsets.symmetric(horizontal: 16),
+                      //     padding: const EdgeInsets.symmetric(
+                      //         vertical: 12, horizontal: 16),
+                      //     width: double.maxFinite,
+                      //     borderRadius: 4,
+                      //     onTap: () => router.push(DebtRoute(id: current.company!.id)),
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //       children: [
+                      //         const Text('Долг / История оплат'),
+                      //         Transform.rotate(
+                      //             angle: 3.2,
+                      //             child: const Icon(KazeIcons.arrowLeftOutline))
+                      //       ],
+                      //     ),
+                      //   ),
+                      // verticalSpace12,
                       AppCard(
                         margin: const EdgeInsets.symmetric(horizontal: 16),
                         padding: const EdgeInsets.symmetric(

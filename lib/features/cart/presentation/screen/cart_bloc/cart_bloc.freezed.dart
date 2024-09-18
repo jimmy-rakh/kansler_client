@@ -108,12 +108,20 @@ class __$$LoadInProgressImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadInProgressImpl implements _LoadInProgress {
+class _$LoadInProgressImpl
+    with DiagnosticableTreeMixin
+    implements _LoadInProgress {
   const _$LoadInProgressImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartState.loadInProgress()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'CartState.loadInProgress'));
   }
 
   @override
@@ -248,7 +256,7 @@ class __$$ReadyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ReadyImpl implements _Ready {
+class _$ReadyImpl with DiagnosticableTreeMixin implements _Ready {
   const _$ReadyImpl(
       {required final List<CartProduct> products,
       required this.price,
@@ -270,8 +278,18 @@ class _$ReadyImpl implements _Ready {
   final bool isMoreLoading;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartState.ready(products: $products, price: $price, isMoreLoading: $isMoreLoading)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CartState.ready'))
+      ..add(DiagnosticsProperty('products', products))
+      ..add(DiagnosticsProperty('price', price))
+      ..add(DiagnosticsProperty('isMoreLoading', isMoreLoading));
   }
 
   @override
@@ -409,12 +427,18 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
+class _$ErrorImpl with DiagnosticableTreeMixin implements _Error {
   const _$ErrorImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartState.error()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'CartState.error'));
   }
 
   @override
@@ -624,12 +648,18 @@ class __$$RetryImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RetryImpl implements _Retry {
+class _$RetryImpl with DiagnosticableTreeMixin implements _Retry {
   const _$RetryImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.retry()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'CartEvent.retry'));
   }
 
   @override
@@ -790,7 +820,7 @@ class __$$AddToCartImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddToCartImpl implements _AddToCart {
+class _$AddToCartImpl with DiagnosticableTreeMixin implements _AddToCart {
   const _$AddToCartImpl(this.id, this.quantity,
       {this.updateDependencies = false});
 
@@ -803,8 +833,18 @@ class _$AddToCartImpl implements _AddToCart {
   final bool updateDependencies;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.addToCart(id: $id, quantity: $quantity, updateDependencies: $updateDependencies)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CartEvent.addToCart'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('quantity', quantity))
+      ..add(DiagnosticsProperty('updateDependencies', updateDependencies));
   }
 
   @override
@@ -986,7 +1026,9 @@ class __$$UpdateProductInCartImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateProductInCartImpl implements _UpdateProductInCart {
+class _$UpdateProductInCartImpl
+    with DiagnosticableTreeMixin
+    implements _UpdateProductInCart {
   const _$UpdateProductInCartImpl(this.id, this.quantity);
 
   @override
@@ -995,8 +1037,17 @@ class _$UpdateProductInCartImpl implements _UpdateProductInCart {
   final int quantity;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.updateProductInCart(id: $id, quantity: $quantity)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CartEvent.updateProductInCart'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('quantity', quantity));
   }
 
   @override
@@ -1170,15 +1221,25 @@ class __$$DeleteProductInCartImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteProductInCartImpl implements _DeleteProductInCart {
+class _$DeleteProductInCartImpl
+    with DiagnosticableTreeMixin
+    implements _DeleteProductInCart {
   const _$DeleteProductInCartImpl(this.id);
 
   @override
   final int id;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.deleteProductInCart(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CartEvent.deleteProductInCart'))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -1348,7 +1409,9 @@ class __$$DeleteProductsInCartImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteProductsInCartImpl implements _DeleteProductsInCart {
+class _$DeleteProductsInCartImpl
+    with DiagnosticableTreeMixin
+    implements _DeleteProductsInCart {
   const _$DeleteProductsInCartImpl(final List<int> ids) : _ids = ids;
 
   final List<int> _ids;
@@ -1360,8 +1423,16 @@ class _$DeleteProductsInCartImpl implements _DeleteProductsInCart {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.deleteProductsInCart(ids: $ids)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CartEvent.deleteProductsInCart'))
+      ..add(DiagnosticsProperty('ids', ids));
   }
 
   @override
@@ -1520,12 +1591,18 @@ class __$$GetCartPriceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetCartPriceImpl implements _GetCartPrice {
+class _$GetCartPriceImpl with DiagnosticableTreeMixin implements _GetCartPrice {
   const _$GetCartPriceImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.getCartPrice()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'CartEvent.getCartPrice'));
   }
 
   @override
@@ -1676,7 +1753,9 @@ class __$$GetCartProductsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetCartProductsImpl implements _GetCartProducts {
+class _$GetCartProductsImpl
+    with DiagnosticableTreeMixin
+    implements _GetCartProducts {
   const _$GetCartProductsImpl({this.isMore = false});
 
   @override
@@ -1684,8 +1763,16 @@ class _$GetCartProductsImpl implements _GetCartProducts {
   final bool isMore;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.getCartProducts(isMore: $isMore)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'CartEvent.getCartProducts'))
+      ..add(DiagnosticsProperty('isMore', isMore));
   }
 
   @override
@@ -1841,12 +1928,18 @@ class __$$ToCheckoutImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ToCheckoutImpl implements _ToCheckout {
+class _$ToCheckoutImpl with DiagnosticableTreeMixin implements _ToCheckout {
   const _$ToCheckoutImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'CartEvent.toCheckout()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'CartEvent.toCheckout'));
   }
 
   @override

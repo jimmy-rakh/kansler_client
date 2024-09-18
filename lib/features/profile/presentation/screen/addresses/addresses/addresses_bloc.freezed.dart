@@ -19,21 +19,21 @@ mixin _$AddressesState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<AddressDto> entities) ready,
+    required TResult Function(AddressDto entities) ready,
     required TResult Function() notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<AddressDto> entities)? ready,
+    TResult? Function(AddressDto entities)? ready,
     TResult? Function()? notFound,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<AddressDto> entities)? ready,
+    TResult Function(AddressDto entities)? ready,
     TResult Function()? notFound,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<AddressDto> entities) ready,
+    required TResult Function(AddressDto entities) ready,
     required TResult Function() notFound,
   }) {
     return loadInProgress();
@@ -135,7 +135,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<AddressDto> entities)? ready,
+    TResult? Function(AddressDto entities)? ready,
     TResult? Function()? notFound,
   }) {
     return loadInProgress?.call();
@@ -145,7 +145,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<AddressDto> entities)? ready,
+    TResult Function(AddressDto entities)? ready,
     TResult Function()? notFound,
     required TResult orElse(),
   }) {
@@ -200,7 +200,9 @@ abstract class _$$ReadyImplCopyWith<$Res> {
           _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
       __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<AddressDto> entities});
+  $Res call({AddressDto entities});
+
+  $AddressDtoCopyWith<$Res> get entities;
 }
 
 /// @nodoc
@@ -220,25 +222,30 @@ class __$$ReadyImplCopyWithImpl<$Res>
   }) {
     return _then(_$ReadyImpl(
       null == entities
-          ? _value._entities
+          ? _value.entities
           : entities // ignore: cast_nullable_to_non_nullable
-              as List<AddressDto>,
+              as AddressDto,
     ));
+  }
+
+  /// Create a copy of AddressesState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressDtoCopyWith<$Res> get entities {
+    return $AddressDtoCopyWith<$Res>(_value.entities, (value) {
+      return _then(_value.copyWith(entities: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ReadyImpl implements _Ready {
-  const _$ReadyImpl(final List<AddressDto> entities) : _entities = entities;
+  const _$ReadyImpl(this.entities);
 
-  final List<AddressDto> _entities;
   @override
-  List<AddressDto> get entities {
-    if (_entities is EqualUnmodifiableListView) return _entities;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_entities);
-  }
+  final AddressDto entities;
 
   @override
   String toString() {
@@ -250,12 +257,12 @@ class _$ReadyImpl implements _Ready {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ReadyImpl &&
-            const DeepCollectionEquality().equals(other._entities, _entities));
+            (identical(other.entities, entities) ||
+                other.entities == entities));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_entities));
+  int get hashCode => Object.hash(runtimeType, entities);
 
   /// Create a copy of AddressesState
   /// with the given fields replaced by the non-null parameter values.
@@ -269,7 +276,7 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<AddressDto> entities) ready,
+    required TResult Function(AddressDto entities) ready,
     required TResult Function() notFound,
   }) {
     return ready(entities);
@@ -279,7 +286,7 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<AddressDto> entities)? ready,
+    TResult? Function(AddressDto entities)? ready,
     TResult? Function()? notFound,
   }) {
     return ready?.call(entities);
@@ -289,7 +296,7 @@ class _$ReadyImpl implements _Ready {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<AddressDto> entities)? ready,
+    TResult Function(AddressDto entities)? ready,
     TResult Function()? notFound,
     required TResult orElse(),
   }) {
@@ -335,9 +342,9 @@ class _$ReadyImpl implements _Ready {
 }
 
 abstract class _Ready implements AddressesState {
-  const factory _Ready(final List<AddressDto> entities) = _$ReadyImpl;
+  const factory _Ready(final AddressDto entities) = _$ReadyImpl;
 
-  List<AddressDto> get entities;
+  AddressDto get entities;
 
   /// Create a copy of AddressesState
   /// with the given fields replaced by the non-null parameter values.
@@ -388,7 +395,7 @@ class _$NotFoundImpl implements _NotFound {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<AddressDto> entities) ready,
+    required TResult Function(AddressDto entities) ready,
     required TResult Function() notFound,
   }) {
     return notFound();
@@ -398,7 +405,7 @@ class _$NotFoundImpl implements _NotFound {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<AddressDto> entities)? ready,
+    TResult? Function(AddressDto entities)? ready,
     TResult? Function()? notFound,
   }) {
     return notFound?.call();
@@ -408,7 +415,7 @@ class _$NotFoundImpl implements _NotFound {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<AddressDto> entities)? ready,
+    TResult Function(AddressDto entities)? ready,
     TResult Function()? notFound,
     required TResult orElse(),
   }) {

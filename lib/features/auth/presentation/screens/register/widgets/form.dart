@@ -31,6 +31,7 @@ class RegisterFormWidget extends HookWidget {
             key: bloc.formKey,
             child: Column(
               children: [
+                verticalSpace12,
                 AppTextField(
                   radius: 0,
                   label: 'Номер телефона',
@@ -59,16 +60,6 @@ class RegisterFormWidget extends HookWidget {
                   ),
                 ],
                 verticalSpace12,
-                AppTextField(
-                  radius: 0,
-                  floatingLabelStyle: context.bodyLarge,
-                  label: 'Логин',
-                  fieldController: bloc.usernameController,
-                  prefix: const Icon(KazeIcons.profileBold),
-                  hintStyle: context.bodyLarge!.copyWith(
-                    color: context.colorScheme.inverseSurface,
-                  ),
-                ),
                 if (bloc.innController.text.isNotEmpty) ...[
                   verticalSpace12,
                   AppTextField(
@@ -81,6 +72,17 @@ class RegisterFormWidget extends HookWidget {
                     readOnly: true,
                   ),
                 ],
+                verticalSpace12,
+                AppTextField(
+                  radius: 0,
+                  floatingLabelStyle: context.bodyLarge,
+                  label: 'Логин',
+                  fieldController: bloc.usernameController,
+                  prefix: const Icon(KazeIcons.profileBold),
+                  hintStyle: context.bodyLarge!.copyWith(
+                    color: context.colorScheme.inverseSurface,
+                  ),
+                ),
                 verticalSpace12,
                 AppTextField(
                   radius: 0,

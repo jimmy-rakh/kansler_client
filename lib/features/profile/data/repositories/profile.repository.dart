@@ -34,11 +34,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, ({List<AddressDto> addresses, bool hasNext})>>
-      getAddress(int id) async {
-    final res = await _profileRemoteSource.fetchCompanyAddresses(id);
+  Future<Either<Failure, AddressDto>> getAddress() async {
+    final res = await _profileRemoteSource.fetchCompanyAddresses();
 
-    return res.fold((l) => Left(l),
-        (r) => Right((hasNext: r.hasNext, addresses: r.addresses)));
+    return res.fold((l) => Left(l), (r) => Right(r));
   }
 }

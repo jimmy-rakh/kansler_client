@@ -52,15 +52,15 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(entities[index].name!),
+                        Text(entities.name!),
                         verticalSpace8,
-                        Text('Регион:\n${entities[index].region ?? ""}'),
-                        verticalSpace8,
-                        Text(
-                            'Телефон для связи:\n${entities[index].phoneNumber ?? ""}'),
+                        Text('Регион:\n${entities.region ?? ""}'),
                         verticalSpace8,
                         Text(
-                            'Организация:\n${entities[index].organization?.name ?? ""}'),
+                            'Телефон для связи:\n${entities.phoneNumber ?? ""}'),
+                        verticalSpace8,
+                        Text(
+                            'Организация:\n${entities.organization?.name ?? ""}'),
                         verticalSpace12,
                         AppCard(
                           fillColor: context.background,
@@ -73,9 +73,9 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                  'Менеджер:\n${entities[index].manager?.name ?? ''}'),
+                                  'Менеджер:\n${entities.manager?.name ?? ''}'),
                               Text(
-                                  'Телефон для связи:\n${entities[index].manager?.phone ?? ''}'),
+                                  'Телефон для связи:\n${entities.manager?.phone ?? ''}'),
                             ],
                           ),
                         ),
@@ -91,9 +91,9 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                  'Агент:\n${entities[index].agent?.name ?? ''}'),
+                                  'Агент:\n${entities.agent?.name ?? ''}'),
                               Text(
-                                'Телефон для связи:\n${entities[index].agent?.phone ?? ''}',
+                                'Телефон для связи:\n${entities.agent?.phone ?? ''}',
                               ),
                             ],
                           ),
@@ -102,7 +102,7 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
                     ),
                   ),
                   separatorBuilder: (context, index) => verticalSpace12,
-                  itemCount: entities.length,
+                  itemCount: 1,
                 ),
             loadInProgress: () => const Center(
                   child: CupertinoActivityIndicator(),

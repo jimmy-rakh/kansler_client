@@ -5,5 +5,5 @@ class ProfileRemoteKeys {
   static const clientsApi = '${NetworkConstants.apiUrl}/';
   static const mainCompany = '$companiesApi/main';
   static const childCompanies = '$companiesApi/children';
-  static const companyAddresses = '$companiesApi/{id}/addresses';
+  static const companyAddresses = '$companiesApi/addresses';
 }

@@ -30,7 +30,7 @@ class BrandsSection extends HookWidget {
         verticalSpace12,
         AppCard(
           width: double.maxFinite,
-          fillColor: context.cardColor,
+          fillColor: context.background,
           borderRadius: 0,
           padding: const EdgeInsets.all(12),
           child: Column(
@@ -68,7 +68,7 @@ class BrandsSection extends HookWidget {
                 text: 'Выбрать',
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 borderRadius: 0,
-                fillColor: context.background,
+                fillColor: context.cardColor,
                 width: 120,
                 onPressed: () => bloc.add(const SearchEvent.chooseBrands()),
               ),

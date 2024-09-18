@@ -43,7 +43,7 @@ class BrandsView extends HookWidget {
                       radius: 0,
                       value: data.brands.contains(brand.id),
                       activeColor: context.primary,
-                      disabledColor: context.cardColor,
+                      disabledColor: context.background,
                       onTap: () {
                         List<int> brnds = [];
 

@@ -19,10 +19,10 @@ class AddressesBloc extends Bloc<AddressesEvent, AddressesState> {
   }
 
   void _onFetch(_Fetch event, Emitter<AddressesState> emit) async {
-    final res = await _profileRepository.getAddress(event.companyId);
+    final res = await _profileRepository.getAddress();
 
     res.fold((l) => emit(const AddressesState.notFound()),
-        (r) => emit(AddressesState.ready(r.addresses)));
+        (r) => emit(AddressesState.ready(r)));
     // emit(AddressesState.ready(addresses));
   }
 }

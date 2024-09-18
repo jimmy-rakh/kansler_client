@@ -12,6 +12,5 @@ abstract class ProfileRemoteSource {
 
   Future<Either<Failure, CompanyDto>> fetchCompanyById(int id);
 
-  Future<Either<Failure, ({List<AddressDto> addresses, bool hasNext})>>
-      fetchCompanyAddresses(int id);
+  Future<Either<Failure, AddressDto>> fetchCompanyAddresses();
 }

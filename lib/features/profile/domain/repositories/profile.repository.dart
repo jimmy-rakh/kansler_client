@@ -10,6 +10,5 @@ abstract class ProfileRepository {
   Future<Either<Failure, ({List<CompanyEntity> companies, bool hasNext})>>
       getChildren();
 
-  Future<Either<Failure, ({List<AddressDto> addresses, bool hasNext})>>
-      getAddress(int id);
+  Future<Either<Failure,AddressDto>> getAddress();
 }

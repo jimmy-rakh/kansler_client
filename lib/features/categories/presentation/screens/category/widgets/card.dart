@@ -19,13 +19,15 @@ class CategoryCard extends StatefulWidget {
     required this.category,
     this.isSelected,
     this.showImage = true,
-    required this.callback,
+    required this.callback, this.color,
+
   });
 
   final CategoryEntitity category;
   final bool? isSelected;
   final bool showImage;
   final void Function(bool) callback;
+  final Color? color;
 
   @override
   State<CategoryCard> createState() => _CategoryCardState();
@@ -82,7 +84,7 @@ class _CategoryCardState extends State<CategoryCard>
           child: Container(
             height: 50,
             decoration: BoxDecoration(
-                color: context.cardColor,
+                color:widget.color ??  context.cardColor,
                 border: const Border(
                   bottom: BorderSide.none,
                 ),
