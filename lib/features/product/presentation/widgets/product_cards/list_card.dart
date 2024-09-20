@@ -55,10 +55,12 @@ class ProductListCard extends HookWidget implements ProductCard {
     return AppCard(
       height: context.isSmall ? 130 : 100,
       width: context.isSmall
-          ? context.width
+          ? context.width :
+      context.isDesktop
+          ? 900
           : context.isTablet
               ? context.width * .57
-              : context.width * .65,
+              : context.width * .70,
       onTap: () {
         // competeEditing();
         // onPressed();
@@ -177,9 +179,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                 ? context.width - 144
                 : context.isTablet
                     ? context.width * .43
-                    : context.isDesktopFull
-                        ? context.width * .55
-                        : context.width * .51,
+                    : context.isDesktop
+                        ? 770
+                        : context.width * .53,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

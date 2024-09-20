@@ -20,11 +20,15 @@ class PreordersSumWidget extends HookWidget {
     return state.products.isEmpty
         ? const SizedBox()
         : Padding(
-            padding: const EdgeInsets.fromLTRB(0, 5, 0, 5),
+            padding: const EdgeInsets.all(5),
             child: ColoredBox(
               color: context.background,
               child: AppCard(
-                width: context.isSmall ? context.width : context.width * .33,
+                width: context.isDesktop ? 370 : context.isSmall
+                    ? context.width
+                    : context.isTablet
+                    ? context.width * .38
+                    : context.width * .3,
                 padding: const EdgeInsets.all(10),
                 borderRadius: BorderRadius.circular(0),
                 child: Row(

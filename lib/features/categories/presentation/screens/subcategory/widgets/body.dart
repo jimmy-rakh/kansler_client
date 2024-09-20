@@ -89,17 +89,14 @@ class SubcategoryBody extends HookWidget {
                     padding: const EdgeInsets.fromLTRB(15, 0, 15, 120),
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount:
-                            currentWidth < 1400 && currentWidth > 1200
-                                ? 4
-                                : currentWidth < 1300 && currentWidth > 700
+                        crossAxisCount: currentWidth < 1300 && currentWidth > 700
                                     ? context.isTablet
                                         ? 2
                                         : 3
                                     : currentWidth < 600
                                         ? 2
-                                        : crossCount,
-                        childAspectRatio: currentWidth < 400
+                                        : 4,
+                        childAspectRatio:  currentWidth < 400
                             ? .5
                             : context.isTablet
                                 ? .7

@@ -25,59 +25,65 @@ class WebNavigation extends HookWidget {
       return null;
     }, [bloc]);
 
-    return AppCard(
+    return  AppCard(
       fillColor: context.theme.cardColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1400),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10,right: 20),
-                child: Image.asset("assets/images/logo.png",width: context.width * .08,),
-              ),
-              AppCard(
-                  fillColor: context.background,
-                  width: context.width * .38,
-                  borderRadius: 4,
-                  child: const Padding(
-                    padding: EdgeInsets.all(2),
-                    child: HomeAppBar(),
-                  )),
-            ],
-          ),
-          SizedBox(
-            width: context.width * .38,
-            child: BottomNavigationBar(
-              backgroundColor: context.theme.cardColor,
-              currentIndex: tabsRouter.activeIndex,
-              elevation: 0,
-              showSelectedLabels: true,
-              showUnselectedLabels: true,
-              enableFeedback: false,
-              selectedFontSize: 12,
-              unselectedFontSize: 12,
-              fixedColor: context.theme.iconTheme.color,
-              unselectedItemColor: context.theme.iconTheme.color,
-              type: BottomNavigationBarType.fixed,
-              items: List.generate(
-                bloc.navbarItems.length,
-                (index) => BottomNavigationBarItem(
-                  icon: Icon(
-                    tabsRouter.activeIndex == index
-                        ? bloc.navbarItems[index].activeIcon
-                        : bloc.navbarItems[index].icon,
-                    color: tabsRouter.activeIndex == index
-                        ? context.primary
-                        : context.theme.iconTheme.color,
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10,right: 20),
+                    child: Image.asset("assets/images/logo.png",width: context.width * .08,),
                   ),
-                  label: bloc.navbarItems[index].label,
+                  AppCard(
+                      fillColor: context.background,
+                      width:context.isDesktop ? 500: context.width * .38,
+                      borderRadius: 4,
+                      child: const Padding(
+                        padding: EdgeInsets.all(2),
+                        child: HomeAppBar(),
+                      )),
+                ],
+              ),
+              SizedBox(
+                width:context.isDesktop ? 500 : context.width * .38,
+                child: BottomNavigationBar(
+                  backgroundColor: context.theme.cardColor,
+                  currentIndex: tabsRouter.activeIndex,
+                  elevation: 0,
+                  showSelectedLabels: true,
+                  showUnselectedLabels: true,
+                  enableFeedback: false,
+                  selectedFontSize: 12,
+                  unselectedFontSize: 12,
+                  fixedColor: context.theme.iconTheme.color,
+                  unselectedItemColor: context.theme.iconTheme.color,
+                  type: BottomNavigationBarType.fixed,
+                  items: List.generate(
+                    bloc.navbarItems.length,
+                    (index) => BottomNavigationBarItem(
+                      icon: Icon(
+                        tabsRouter.activeIndex == index
+                            ? bloc.navbarItems[index].activeIcon
+                            : bloc.navbarItems[index].icon,
+                        color: tabsRouter.activeIndex == index
+                            ? context.primary
+                            : context.theme.iconTheme.color,
+                      ),
+                      label: bloc.navbarItems[index].label,
+                    ),
+                  ),
+                  onTap: (value) => bloc.add(NavbarEvent.changeIndex(value)),
                 ),
               ),
-              onTap: (value) => bloc.add(NavbarEvent.changeIndex(value)),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

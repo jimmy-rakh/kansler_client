@@ -20,16 +20,16 @@ class BannerWidget extends HookWidget {
     final state = useBlocBuilder(bloc);
 
     return SizedBox(
-      height: context.isSmall ? context.height * .25 : context.height * .55,
+      height: context.isTablet ? context.height * .4 : context.isSmall ? context.height * .27 :  context.height * .55,
       child: state.when(
         loadInProgress: () => Skeletonizer(
             enabled: true,
             child: DefaultImageContainer(
               fit: BoxFit.cover,
-              width: context.width * .9,
+              width: context.width,
               height:
-                  context.isSmall ? context.height * .2 : context.height * .55,
-              margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                  context.isTablet ? context.height * .4 : context.isSmall ? context.height * .27 :  context.height * .55,
+              margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
               radius: 4,
               imageUrl: "",
             )),
@@ -52,13 +52,12 @@ class BannerWidget extends HookWidget {
                         onTap: () {},
                         child: DefaultImageContainer(
                           fit: BoxFit.fill,
-                          width: context.width * .9,
-                          height: context.isSmall
-                              ? context.height * .2
-                              : context.height * .55,
-                          margin: const EdgeInsets.fromLTRB(24, 12, 24, 12),
+                          width:context.isDesktop ? 1280 : context.width,
+                          height: context.isTablet
+                              ? context.height * .4 : context.isSmall ? context.height * .27 :  context.height * .55,
+                          margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
                           radius: 4,
-                          imageUrl: context.isSmall
+                          imageUrl: context.isTablet
                               ? poster.imgMobile
                               : poster.imgWeb,
                         ),

@@ -129,7 +129,7 @@ class _CategoryCardState extends State<CategoryCard>
                         ),
                       ),
                     SizedBox(
-                      width: context.isSmall
+                      width:context.isDesktop ? 200 :  context.isSmall
                           ? context.width * .64
                           : context.width * .2,
                       child: Text(
