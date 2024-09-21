@@ -77,7 +77,8 @@ class SubcategoryBody extends HookWidget {
                           log.e(products[index]);
                         },
                         onCart: (type) => bloc.add(
-                            SubcategoryEvent.changeCartState(products[index])),
+                            SubcategoryEvent.changeCartState(
+                                products[index], type)),
                         fieldController: bloc.quantityControllers[index],
                       ),
                       separatorBuilder: (context, index) => verticalSpace10,
@@ -112,7 +113,8 @@ class SubcategoryBody extends HookWidget {
                       width: 200,
                       product: products[index],
                       onCart: (type) => bloc.add(
-                          SubcategoryEvent.changeCartState(products[index])),
+                          SubcategoryEvent.changeCartState(
+                              products[index], type)),
                       fieldController: bloc.quantityControllers[index],
                     ),
                   ),

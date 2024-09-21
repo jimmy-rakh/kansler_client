@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/app/router.dart';
+import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/features/search/domain/entities/search.entity.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
 import '../../../../../product/domain/entities/product.entity.dart';
@@ -170,7 +171,13 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
 
     final products = currentState.products.map((e) {
       if (e.id == event.product.id) {
-        return event.product.copyWith(inCart: !event.product.inCart!);
+        if (event.type == CheckoutType.order) {
+          return event.product.copyWith(inCart: !event.product.inCart!);
+        }
+
+        if (event.type == CheckoutType.preorder) {
+          return event.product.copyWith(inPreorder: !event.product.inPreorder!);
+        }
       }
       return e;
     }).toList();
@@ -182,9 +189,10 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
       _ShowFilters event, Emitter<SubcategoryState> emit) async {
     final category = (state as _Ready).category;
 
-    final res = await router
-            .push(FilterRoute(searchData: (state as _Ready).filterData!))
-        as SearchEntity?;
+    final res = await router.push(FilterRoute(
+      searchData: (state as _Ready).filterData!,
+      category: category,
+    )) as SearchEntity?;
 
     if (res != null) {
       emit((state as _Ready).copyWith(filterData: res.copyWith(pageNumber: 1)));

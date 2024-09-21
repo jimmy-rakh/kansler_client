@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:image_network/image_network.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/features/home/presentation/screen/widgets/hits.dart';
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
 import '../../../../core/constants/kaze_icons.dart';
@@ -19,7 +20,6 @@ import '../../../../core/widgets/app_icon.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/keyboard_escape.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
-import '../../../home/presentation/screen/widgets/discounts.dart';
 import '../../domain/entities/product.entity.dart';
 import '../blocs/details/details_bloc.dart';
 import '../widgets/details_widget.dart';
@@ -594,7 +594,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                       ),
                     )
                   : const SizedBox(),
-              const DiscountsWidget(),
+              const HitsWidget(),
               verticalSpace24,
             ],
           ),

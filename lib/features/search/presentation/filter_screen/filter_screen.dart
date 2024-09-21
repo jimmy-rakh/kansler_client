@@ -36,7 +36,9 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
     final state = useBlocBuilder(bloc);
 
     useEffect(() {
-      bloc.add(FilterEvent.init(searchData));
+      bloc.add(FilterEvent.init(searchData.copyWith(
+          categories:
+              category != null ? [category!.id] : searchData.categories)));
 
       return null;
     }, [bloc]);
@@ -80,7 +82,9 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                 ready: (activePage, organizations, search) {
                   switch (activePage) {
                     case 1:
-                      return const CategoriesView();
+                      return category != null
+                          ? const SizedBox.shrink()
+                          : const CategoriesView();
                     case 2:
                       return const BrandsView();
                     default:
@@ -88,7 +92,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: ListView(
                           children: [
-                            const CategoriesSection(),
+                            if (category == null) const CategoriesSection(),
                             verticalSpace12,
                             const BrandsSection(),
                             verticalSpace12,

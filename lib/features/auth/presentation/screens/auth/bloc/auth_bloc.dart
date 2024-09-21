@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
+import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import 'package:kansler/features/home/presentation/blocs/discounts/discounts_bloc.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/auth_status.dart';
@@ -51,6 +52,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);
     final ordersBloc =
         BlocProvider.of<OrdersBloc>(router.navigatorKey.currentContext!);
+    final preorderBloc =
+        BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!);
 
     switch (status) {
       case AuthStatus.authenticated:
@@ -63,6 +66,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         profileBloc.add(const ProfileEvent.getCompany());
         cartBloc.add(const CartEvent.retry());
         ordersBloc.add(const OrdersEvent.fetchOrders());
+        preorderBloc.add(const PreordersEvent.retry());
         break;
       case AuthStatus.guest:
         emit(const AuthState.guest());
@@ -86,6 +90,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         BlocProvider.of<ProfileBloc>(router.navigatorKey.currentContext!);
     final ordersBloc =
         BlocProvider.of<OrdersBloc>(router.navigatorKey.currentContext!);
+    final cartBloc =
+        BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);
+    final preorderBloc =
+        BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!);
 
     await _authRepository.logout();
     add(const AuthEvent.checkStatus());
@@ -96,5 +104,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     profileBloc.add(const ProfileEvent.setInit());
     discountBloc.add(const DiscountsEvent.fetch());
     hitBloc.add(const HitEvent.fetch());
+    cartBloc.add(const CartEvent.retry());
+    preorderBloc.add(const PreordersEvent.retry());
   }
 }
