@@ -7,7 +7,6 @@ import 'package:kansler/features/home/presentation/screen/widgets/discounts.dart
 import 'package:kansler/features/home/presentation/screen/widgets/hits.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/latest.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/popular.dart';
-import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../../core/widgets/keyboard_escape.dart';
@@ -19,29 +18,34 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Scaffold(
-          appBar: context.isSmall
-              ? const AppBarWidget(
-                  preferredSize: Size.fromHeight(60),
-                  showLeading: false,
-                  child: HomeAppBar(),
-                )
-              : const PreferredSize(
-                  preferredSize: Size.zero, child: SizedBox()),
-          body: CustomScrollView(
-            slivers: [
-              SliverList(
-                delegate: SliverChildListDelegate([
-                  const BannerWidget(),
-                  const DiscountsWidget(),
-                  const HitsWidget(),
-                  const PopularWidget(),
-                  const LatestWidget(),
-                  verticalSpace120,
-                ]),
-              ),
-            ],
-          )),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1300),
+          child: Scaffold(
+              appBar: context.isSmall
+                  ? const AppBarWidget(
+                      preferredSize: Size.fromHeight(60),
+                      showLeading: false,
+                      child: HomeAppBar(),
+                    )
+                  : const PreferredSize(
+                      preferredSize: Size.zero, child: SizedBox()),
+              body: CustomScrollView(
+                slivers: [
+                  SliverList(
+                    delegate: SliverChildListDelegate([
+                      const BannerWidget(),
+                      const DiscountsWidget(),
+                      const HitsWidget(),
+                      const PopularWidget(),
+                      const LatestWidget(),
+                      verticalSpace120,
+                    ]),
+                  ),
+                ],
+              )),
+        ),
+      ),
     );
   }
 }

@@ -28,55 +28,63 @@ class CategoriesScreen extends HookWidget {
               child: CategoriesAppBar(),
             )
           : const PreferredSize(preferredSize: Size.zero, child: SizedBox()),
-      body: Row(
-        children: [
-          SizedBox(
-              width: context.isSmall
-                  ? context.width
-                  : context.isTablet
-                      ? context.width * .4
-                      : context.width * .33,
-              height: context.height,
-              child: const CategoriesBody()),
-          context.isSmall
-              ? const SizedBox()
-              : SizedBox(
-                  width: context.isTablet
-                      ? context.width * .6
-                      : context.width * .67,
-                  height: context.height,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      state.whenOrNull(
-                            ready: (category,
-                                    categories,
-                                    products,
-                                    selectedCategory,
-                                    isCategoriesLoading,
-                                    isProductsLoading,
-                                    isList,
-                                    isPaginationLoading,
-                                    filterData) =>
-                                AppBarWidget(
-                              leadingWidth: 0,
-                              preferredSize: Size.fromHeight(
-                                  category.hasChildren ? 110 : 60),
-                              bottomChild: category.hasChildren
-                                  ? const SubcategoryAppBarBottom()
-                                  : null,
-                              bottomSize: const Size(double.maxFinite, 40),
-                              child: SubcategoryAppBar(category: category),
-                            ),
-                          ) ??
-                          const SizedBox(),
-                      SizedBox(
-                          height: context.height * .8,
-                          child: const SubcategoryBody()),
-                    ],
-                  )),
-        ],
+      body: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1300),
+          child: Row(
+            children: [
+              Padding(
+                padding:  EdgeInsets.all( context.isSmall ? 0 : 5),
+                child: SizedBox(
+                    width:context.isDesktop ? 370 : context.isSmall
+                        ? context.width
+                        : context.isTablet
+                            ? context.width * .38
+                            : context.width * .3,
+                    height: context.height,
+                    child: const CategoriesBody()),
+              ),
+              context.isSmall
+                  ? const SizedBox()
+                  : SizedBox(
+                      width:context.isDesktop ? 920 : context.isTablet
+                          ? context.width * .6
+                          : context.width * .67,
+                      height: context.height,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          state.whenOrNull(
+                                ready: (category,
+                                        categories,
+                                        products,
+                                        selectedCategory,
+                                        isCategoriesLoading,
+                                        isProductsLoading,
+                                        isList,
+                                        isPaginationLoading,
+                                        filterData) =>
+                                    AppBarWidget(
+                                  leadingWidth: 0,
+                                  preferredSize: Size.fromHeight(
+                                      category.hasChildren ? 110 : 60),
+                                  bottomChild: category.hasChildren
+                                      ? const SubcategoryAppBarBottom()
+                                      : null,
+                                  bottomSize: const Size(double.maxFinite, 40),
+                                  child: SubcategoryAppBar(category: category),
+                                ),
+                              ) ??
+                              const SizedBox(),
+                          SizedBox(
+                              height: context.height * .8,
+                              child: const SubcategoryBody()),
+                        ],
+                      )),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -7,7 +7,6 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_tabbar.dart';
 import 'package:kansler/features/orders/presentation/screen/widgets/orders_view.dart';
 import 'package:kansler/features/orders/presentation/screen/widgets/preorders_view.dart';
-
 import '../../../../app/di.dart';
 import '../../../../core/widgets/appbar.dart';
 import 'bloc/orders_bloc.dart';
@@ -22,97 +21,109 @@ class OrdersScreen extends HookWidget implements AutoRouteWrapper {
     final ordersState = useBlocBuilder(ordersBloc);
     final tabController = useTabController(initialLength: 2);
 
-    return Scaffold(
-        appBar: AppBarWidget(
-          preferredSize: context.isSmall
-              ? const Size.fromHeight(60)
-              : const Size.fromHeight(0),
-          showLeading: false,
-          child: context.isSmall
-              ? Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: AppTabBar(
-                    tabController: tabController,
-                    tabList: const ['Заказы', 'Предзаказы'],
-                  ),
-                )
-              : const SizedBox(),
-        ),
-        body:context.isSmall
-            ? TabBarView(
-          controller: tabController,
-          children: const [
-            OrdersView(),
-            PreordersView(),
-          ],
-        )
-            :Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Container(
-                width: context.width * .33,
-                height: context.height,
-                decoration: BoxDecoration(color: context.cardColor),
-                child: Column(
-                  children: [
-                    Container(
-                      width: context.width * .33,
-                      height: 70,
-                      decoration: BoxDecoration(color: context.cardColor),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: AppTabBar(
-                          labelPadding: const EdgeInsets.symmetric(vertical: 12),
-                          fillColor: context.background,
-                          tabController: tabController,
-                          tabList: const ['Заказы', 'Предзаказы'],
-                        ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1300),
+        child: Scaffold(
+            appBar: AppBarWidget(
+              preferredSize: context.isSmall
+                  ? const Size.fromHeight(60)
+                  : const Size.fromHeight(0),
+              showLeading: false,
+              child: context.isSmall
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: AppTabBar(
+                        tabController: tabController,
+                        tabList: const ['Заказы', 'Предзаказы'],
                       ),
-                    ),
-                    ordersState.whenOrNull(
-                      ready: (isMoreLoading,orders,preorders) {
-                        if (orders.isEmpty) {
-                          return const Center(
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
-                              child: Text("Список заказов пуст..."),
-                            ),
-                          );
-                        }
-
-                        return ordersState.whenOrNull(
-                          ready: (isMoreLoading,orders,preorders) => Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: SizedBox(
-                              width: context.width * .33,
-                              child: const Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-
-                                ],
-                              ),
+                    )
+                  : const SizedBox(),
+            ),
+            body:context.isSmall
+                ? TabBarView(
+              controller: tabController,
+              children: const [
+                OrdersView(),
+                PreordersView(),
+              ],
+            )
+                :Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Container(
+                    width: context.isDesktop ? 370 : context.isSmall
+                        ? context.width
+                        : context.isTablet
+                        ? context.width * .38
+                        : context.width * .3,
+                    height: context.height,
+                    decoration: BoxDecoration(color: context.cardColor),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: context.width * .33,
+                          height: 70,
+                          decoration: BoxDecoration(color: context.cardColor),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: AppTabBar(
+                              labelPadding: const EdgeInsets.symmetric(vertical: 12),
+                              fillColor: context.background,
+                              tabController: tabController,
+                              tabList: const ['Заказы', 'Предзаказы'],
                             ),
                           ),
-                        ) ?? const SizedBox();},) ?? const SizedBox()
-                  ],
+                        ),
+                        ordersState.whenOrNull(
+                          ready: (isMoreLoading,orders,preorders) {
+                            if (orders.isEmpty) {
+                              return const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(24),
+                                  child: Text("Список заказов пуст..."),
+                                ),
+                              );
+                            }
+
+                            return ordersState.whenOrNull(
+                              ready: (isMoreLoading,orders,preorders) => Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: SizedBox(
+                                  width: context.width * .33,
+                                  child: const Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ) ?? const SizedBox();},) ?? const SizedBox()
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                SizedBox(
+                    width:context.isDesktop ? 920 : context.isTablet
+                        ? context.width * .6
+                        : context.width * .67,
+                  child: TabBarView(
+                    controller: tabController,
+                    children: const [
+                      OrdersView(),
+                      PreordersView(),
+                    ],
+                  )
+                ),
+              ],
             ),
-            Expanded(
-              child: TabBarView(
-                controller: tabController,
-                children: const [
-                  OrdersView(),
-                  PreordersView(),
-                ],
-              )
-            ),
-          ],
         ),
+      ),
     );
   }
 
