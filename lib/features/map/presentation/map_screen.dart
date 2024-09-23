@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kansler/app/router.dart';
 import 'package:kansler/core/constants/spaces.dart';
@@ -17,6 +19,7 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  late GoogleMapController _controller;
   AddressRequest _address = AddressRequest(
     name: '',
     latitude: '41.2995',
@@ -46,6 +49,27 @@ class _MapScreenState extends State<MapScreen> {
                   initialCameraPosition: const CameraPosition(
                     target: LatLng(41.2995, 69.2401),
                     zoom: 15,
+                  ),
+                ),
+                if(kIsWeb) Positioned(
+                  right: 32,
+                  bottom: 32,
+                  child: AppIcon(
+                    Icons.my_location_rounded,
+                    padding: const EdgeInsets.all(12),
+                    bgColor: context.cardColor,
+                    onTap: () async {
+                      final position = await Geolocator.getCurrentPosition();
+
+                      _controller.animateCamera(
+                        CameraUpdate.newCameraPosition(
+                          CameraPosition(
+                            target: LatLng(position.latitude, position.longitude),
+                            zoom: 15,
+                          ),
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Align(
@@ -103,7 +127,10 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
-  void _createMap(GoogleMapController controller) {}
+  void _createMap(GoogleMapController controller) {
+    _controller = controller;
+    setState(() {});
+  }
 
   void _onMove(CameraPosition info) async {
     LatLng center = info.target;

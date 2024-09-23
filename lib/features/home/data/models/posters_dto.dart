@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import '../../../profile/data/models/address_dto.dart';
 
 part 'posters_dto.freezed.dart';
 
@@ -17,5 +16,3 @@ class PostersDto with _$PostersDto {
   factory PostersDto.fromJson(Map<String, dynamic> json) =>
       _$PostersDtoFromJson(json);
 }
-
-

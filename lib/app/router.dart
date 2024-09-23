@@ -40,7 +40,7 @@ final router = getIt<AppRouter>();
 
 @lazySingleton
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
-class AppRouter extends RootStackRouter {
+class AppRouter extends _$AppRouter {
   @override
   RouteType get defaultRouteType => const RouteType.adaptive();
 

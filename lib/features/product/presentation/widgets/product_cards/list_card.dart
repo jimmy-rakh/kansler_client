@@ -93,40 +93,41 @@ class ProductListCard extends HookWidget implements ProductCard {
                         borderRadius: BorderRadius.circular(3),
                         child: kIsWeb
                             ? ImageNetwork(
-                            onTap: () => router.push(ProductRoute(
-                                product: product ?? cartProduct!.product!,
-                                id: product?.id ??
-                                    cartProduct!.product!.id)),
-                            fitWeb: BoxFitWeb.fill,
-                            fitAndroidIos: BoxFit.fill,
-                            onLoading: const SizedBox(),
-                            duration: 0,
-                            image: NetworkConstants.apiBaseUrl +
-                                (product ?? cartProduct?.product)!
-                                    .imageUrl!,
-                            height: context.isSmall ? 120 : 100,
-                            width: 100,
-                            onError: Image.asset(
-                              AppImages.noPhoto,
-                              height: 120,
-                            )) : ColoredBox(
-                          color: context.cardColor,
-                          child: CachedNetworkImage(
-                            fit: BoxFit.fitHeight,
-                            height: 120,
-                            width: 100,
-                            memCacheHeight: 180,
-                            memCacheWidth: 180,
-                            errorListener: (value) => log.e(
-                                '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
-                            imageUrl: NetworkConstants.apiBaseUrl +
-                                (product?.imageUrl ??
-                                    cartProduct?.product!.imageUrl ??
-                                    ''),
-                            errorWidget: (context, url, error) =>
-                                Image.asset(AppImages.noPhoto),
-                          ),
-                        ),
+                                onTap: () => router.push(ProductRoute(
+                                    product: product ?? cartProduct!.product!,
+                                    id: product?.id ??
+                                        cartProduct!.product!.id)),
+                                fitWeb: BoxFitWeb.fill,
+                                fitAndroidIos: BoxFit.fill,
+                                onLoading: const SizedBox(),
+                                duration: 0,
+                                image: NetworkConstants.apiBaseUrl +
+                                    (product ?? cartProduct?.product)!
+                                        .imageUrl!,
+                                height: context.isSmall ? 120 : 100,
+                                width: 100,
+                                onError: Image.asset(
+                                  AppImages.noPhoto,
+                                  height: 120,
+                                ))
+                            : ColoredBox(
+                                color: context.cardColor,
+                                child: CachedNetworkImage(
+                                  fit: BoxFit.fitHeight,
+                                  height: 120,
+                                  width: 100,
+                                  memCacheHeight: 180,
+                                  memCacheWidth: 180,
+                                  errorListener: (value) => log.e(
+                                      '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.imageUrl}\n$value'),
+                                  imageUrl: NetworkConstants.apiBaseUrl +
+                                      (product?.imageUrl ??
+                                          cartProduct?.product!.imageUrl ??
+                                          ''),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(AppImages.noPhoto),
+                                ),
+                              ),
                       ),
                 (product ?? cartProduct?.product)?.brand?.name == null
                     ? const SizedBox()
@@ -259,15 +260,10 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                   onEditingComplete:
                                                       competeEditing,
                                                   onFieldSubmitted: (value) {
-                                                    onCart.call(
-                                                        product?.leftQuantity ==
-                                                                0
-                                                            ? CheckoutType
-                                                                .preorder
-                                                            : CheckoutType
-                                                                .order);
                                                     if (product?.leftQuantity ==
                                                         0) {
+                                                      onCart.call(CheckoutType
+                                                          .preorder);
                                                       preorderBloc.add(PreordersEvent
                                                           .addToPreorders(
                                                               (product ??
@@ -305,11 +301,11 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                           return;
                                                         }
                                                       }
-                                                    } else {
-                                                      router.navigatorKey
-                                                          .currentContext!
-                                                          .showToast(
-                                                              'Недостаточно кол-во в складе');
+                                                    } else if (product
+                                                            ?.leftQuantity ==
+                                                        0) {
+                                                      onCart.call(CheckoutType
+                                                          .preorder);
                                                       fieldController.text =
                                                           (product ??
                                                                   cartProduct!
@@ -357,12 +353,19 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   width: context.isMobile
                                       ? context.width * .12
                                       : 50,
-                                  isActive: product?.leftQuantity != 0,
-                                  fillColor: (product ?? cartProduct!.product)!
-                                              .inCart ??
-                                          false
-                                      ? AppColors.red
-                                      : context.primary,
+                                  fillColor: product?.leftQuantity == 0
+                                      ? (product ?? cartProduct!.product)!
+                                                  .inPreorder ??
+                                              false
+                                          ? const Color.fromARGB(
+                                              255, 69, 114, 199)
+                                          : const Color.fromARGB(
+                                              255, 0, 73, 208)
+                                      : (product ?? cartProduct!.product)!
+                                                  .inCart ??
+                                              false
+                                          ? AppColors.red
+                                          : context.primary,
                                   text: const Icon(
                                     KazeIcons.cartOutline,
                                     color: AppColors.white,
@@ -371,10 +374,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   onPressed: authBloc.state ==
                                           const AuthState.authenticated()
                                       ? () {
-                                          onCart.call(product?.leftQuantity == 0
-                                              ? CheckoutType.preorder
-                                              : CheckoutType.order);
                                           if (product?.leftQuantity == 0) {
+                                            onCart.call(CheckoutType.preorder);
                                             preorderBloc.add(
                                                 PreordersEvent.addToPreorders(
                                                     (product ??
@@ -384,10 +385,21 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                     1));
                                             return;
                                           }
+
+                                          if ((product ?? cartProduct!.product)!
+                                                  .leftQuantity <=
+                                              int.parse(fieldController.text)) {
+                                            router.navigatorKey.currentContext!
+                                                .showToast(
+                                                    'Недостаточно кол-во в складе');
+                                            return;
+                                          }
+
                                           if (!((product ??
                                                       cartProduct?.product)
                                                   ?.inCart ??
                                               true)) {
+                                            onCart.call(CheckoutType.order);
                                             cartBloc.add(CartEvent.addToCart(
                                                 (product ??
                                                         cartProduct!.product)!
@@ -466,12 +478,10 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               onChange: submit,
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
-                                                onCart.call(
-                                                    product?.leftQuantity == 0
-                                                        ? CheckoutType.preorder
-                                                        : CheckoutType.order);
                                                 if (product?.leftQuantity ==
                                                     0) {
+                                                  onCart.call(
+                                                      CheckoutType.preorder);
                                                   preorderBloc.add(PreordersEvent
                                                       .addToPreorders(
                                                           (product ??
@@ -492,8 +502,6 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                                   ?.product)
                                                           ?.leftQuantity !=
                                                       0) {
-                                                    FocusScope.of(context)
-                                                        .unfocus();
                                                     if (!((product ??
                                                                 cartProduct
                                                                     ?.product)
@@ -507,16 +515,14 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                           int.parse(
                                                               fieldController
                                                                   .text)));
-                                                      FocusScope.of(context)
-                                                          .unfocus();
                                                       return;
                                                     }
                                                   }
-                                                } else {
-                                                  router.navigatorKey
-                                                      .currentContext!
-                                                      .showToast(
-                                                          'Недостаточно кол-во в складе');
+                                                } else if (product
+                                                        ?.leftQuantity ==
+                                                    0) {
+                                                  onCart.call(
+                                                      CheckoutType.preorder);
                                                   fieldController
                                                       .text = (product ??
                                                           cartProduct!.product)!
@@ -561,9 +567,13 @@ class ProductListCard extends HookWidget implements ProductCard {
                             width: context.isMobile || context.isTablet
                                 ? context.width * .12
                                 : 50,
-                            isActive: product?.leftQuantity != 0,
-                            fillColor:
-                                (product ?? cartProduct!.product)!.inCart ??
+                            fillColor: product?.leftQuantity == 0
+                                ? (product ?? cartProduct!.product)!
+                                            .inPreorder ??
+                                        false
+                                    ? const Color.fromARGB(255, 69, 114, 199)
+                                    : const Color.fromARGB(255, 0, 73, 208)
+                                : (product ?? cartProduct!.product)!.inCart ??
                                         false
                                     ? AppColors.red
                                     : context.primary,
@@ -575,10 +585,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                             onPressed: authBloc.state ==
                                     const AuthState.authenticated()
                                 ? () {
-                                    onCart.call(product?.leftQuantity == 0
-                                        ? CheckoutType.preorder
-                                        : CheckoutType.order);
                                     if (product?.leftQuantity == 0) {
+                                      onCart.call(CheckoutType.preorder);
                                       preorderBloc.add(
                                           PreordersEvent.addToPreorders(
                                               (product ?? cartProduct!.product)!
@@ -586,9 +594,19 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               1));
                                       return;
                                     }
+
+                                    if ((product ?? cartProduct!.product)!
+                                            .leftQuantity <=
+                                        int.parse(fieldController.text)) {
+                                      router.navigatorKey.currentContext!
+                                          .showToast(
+                                              'Недостаточно кол-во в складе');
+                                      return;
+                                    }
                                     if (!((product ?? cartProduct?.product)
                                             ?.inCart ??
                                         true)) {
+                                      onCart.call(CheckoutType.order);
                                       cartBloc.add(CartEvent.addToCart(
                                           (product ?? cartProduct!.product)!.id,
                                           fieldController.text == ''

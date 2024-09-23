@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/enums/client_type.dart';
 import 'package:kansler/features/auth/data/models/auth/request.dart';
@@ -250,14 +251,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<AddressRequest?> _showMap() async {
-    final granted = await Permission.location.isGranted;
+    if (!kIsWeb) {
+      final granted = await Permission.location.isGranted;
 
-    print(granted);
+      if (!granted) {
+        final res = await Permission.locationWhenInUse.request();
 
-    if (!granted) {
-      final res = await Permission.locationWhenInUse.request();
+        if (res != PermissionStatus.granted) return null;
+      }
+    } else {
+      final permission = await Geolocator.requestPermission();
 
-      if (res != PermissionStatus.granted) return null;
+      if (![LocationPermission.always, LocationPermission.whileInUse]
+          .contains(permission)) {
+        return null;
+      }
     }
 
     final res = await router.push(const MapRoute()) as AddressRequest?;
