@@ -19,21 +19,21 @@ mixin _$BannerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters) success,
+    required TResult Function(List<PostersDto> posters, int? index) success,
     required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters)? success,
+    TResult? Function(List<PostersDto> posters, int? index)? success,
     TResult? Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters)? success,
+    TResult Function(List<PostersDto> posters, int? index)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters) success,
+    required TResult Function(List<PostersDto> posters, int? index) success,
     required TResult Function() failure,
   }) {
     return loadInProgress();
@@ -135,7 +135,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters)? success,
+    TResult? Function(List<PostersDto> posters, int? index)? success,
     TResult? Function()? failure,
   }) {
     return loadInProgress?.call();
@@ -145,7 +145,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters)? success,
+    TResult Function(List<PostersDto> posters, int? index)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -200,7 +200,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PostersDto> posters});
+  $Res call({List<PostersDto> posters, int? index});
 }
 
 /// @nodoc
@@ -217,12 +217,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? posters = null,
+    Object? index = freezed,
   }) {
     return _then(_$SuccessImpl(
       null == posters
           ? _value._posters
           : posters // ignore: cast_nullable_to_non_nullable
               as List<PostersDto>,
+      index: freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -230,7 +235,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<PostersDto> posters) : _posters = posters;
+  const _$SuccessImpl(final List<PostersDto> posters, {this.index = 0})
+      : _posters = posters;
 
   final List<PostersDto> _posters;
   @override
@@ -241,8 +247,12 @@ class _$SuccessImpl implements _Success {
   }
 
   @override
+  @JsonKey()
+  final int? index;
+
+  @override
   String toString() {
-    return 'BannerState.success(posters: $posters)';
+    return 'BannerState.success(posters: $posters, index: $index)';
   }
 
   @override
@@ -250,12 +260,13 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._posters, _posters));
+            const DeepCollectionEquality().equals(other._posters, _posters) &&
+            (identical(other.index, index) || other.index == index));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_posters));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_posters), index);
 
   /// Create a copy of BannerState
   /// with the given fields replaced by the non-null parameter values.
@@ -269,32 +280,32 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters) success,
+    required TResult Function(List<PostersDto> posters, int? index) success,
     required TResult Function() failure,
   }) {
-    return success(posters);
+    return success(posters, index);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters)? success,
+    TResult? Function(List<PostersDto> posters, int? index)? success,
     TResult? Function()? failure,
   }) {
-    return success?.call(posters);
+    return success?.call(posters, index);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters)? success,
+    TResult Function(List<PostersDto> posters, int? index)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(posters);
+      return success(posters, index);
     }
     return orElse();
   }
@@ -335,9 +346,11 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements BannerState {
-  const factory _Success(final List<PostersDto> posters) = _$SuccessImpl;
+  const factory _Success(final List<PostersDto> posters, {final int? index}) =
+      _$SuccessImpl;
 
   List<PostersDto> get posters;
+  int? get index;
 
   /// Create a copy of BannerState
   /// with the given fields replaced by the non-null parameter values.
@@ -388,7 +401,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters) success,
+    required TResult Function(List<PostersDto> posters, int? index) success,
     required TResult Function() failure,
   }) {
     return failure();
@@ -398,7 +411,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters)? success,
+    TResult? Function(List<PostersDto> posters, int? index)? success,
     TResult? Function()? failure,
   }) {
     return failure?.call();
@@ -408,7 +421,7 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters)? success,
+    TResult Function(List<PostersDto> posters, int? index)? success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -462,32 +475,50 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -556,6 +587,9 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
   }) {
     return fetch();
   }
@@ -564,6 +598,9 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
   }) {
     return fetch?.call();
   }
@@ -572,6 +609,9 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -584,6 +624,9 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
   }) {
     return fetch(this);
   }
@@ -592,6 +635,9 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
   }) {
     return fetch?.call(this);
   }
@@ -600,6 +646,9 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -611,4 +660,460 @@ class _$FetchImpl implements _Fetch {
 
 abstract class _Fetch implements BannerEvent {
   const factory _Fetch() = _$FetchImpl;
+}
+
+/// @nodoc
+abstract class _$$OnChangeImplCopyWith<$Res> {
+  factory _$$OnChangeImplCopyWith(
+          _$OnChangeImpl value, $Res Function(_$OnChangeImpl) then) =
+      __$$OnChangeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? index});
+}
+
+/// @nodoc
+class __$$OnChangeImplCopyWithImpl<$Res>
+    extends _$BannerEventCopyWithImpl<$Res, _$OnChangeImpl>
+    implements _$$OnChangeImplCopyWith<$Res> {
+  __$$OnChangeImplCopyWithImpl(
+      _$OnChangeImpl _value, $Res Function(_$OnChangeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_$OnChangeImpl(
+      freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnChangeImpl implements _OnChange {
+  const _$OnChangeImpl(this.index);
+
+  @override
+  final int? index;
+
+  @override
+  String toString() {
+    return 'BannerEvent.onChange(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnChangeImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnChangeImplCopyWith<_$OnChangeImpl> get copyWith =>
+      __$$OnChangeImplCopyWithImpl<_$OnChangeImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
+  }) {
+    return onChange(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
+  }) {
+    return onChange?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (onChange != null) {
+      return onChange(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
+  }) {
+    return onChange(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
+  }) {
+    return onChange?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (onChange != null) {
+      return onChange(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnChange implements BannerEvent {
+  const factory _OnChange(final int? index) = _$OnChangeImpl;
+
+  int? get index;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnChangeImplCopyWith<_$OnChangeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnNextImplCopyWith<$Res> {
+  factory _$$OnNextImplCopyWith(
+          _$OnNextImpl value, $Res Function(_$OnNextImpl) then) =
+      __$$OnNextImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? index});
+}
+
+/// @nodoc
+class __$$OnNextImplCopyWithImpl<$Res>
+    extends _$BannerEventCopyWithImpl<$Res, _$OnNextImpl>
+    implements _$$OnNextImplCopyWith<$Res> {
+  __$$OnNextImplCopyWithImpl(
+      _$OnNextImpl _value, $Res Function(_$OnNextImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_$OnNextImpl(
+      freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnNextImpl implements _OnNext {
+  const _$OnNextImpl(this.index);
+
+  @override
+  final int? index;
+
+  @override
+  String toString() {
+    return 'BannerEvent.onNext(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnNextImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnNextImplCopyWith<_$OnNextImpl> get copyWith =>
+      __$$OnNextImplCopyWithImpl<_$OnNextImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
+  }) {
+    return onNext(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
+  }) {
+    return onNext?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
+  }) {
+    return onNext(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
+  }) {
+    return onNext?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (onNext != null) {
+      return onNext(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnNext implements BannerEvent {
+  const factory _OnNext(final int? index) = _$OnNextImpl;
+
+  int? get index;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnNextImplCopyWith<_$OnNextImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnPreviousImplCopyWith<$Res> {
+  factory _$$OnPreviousImplCopyWith(
+          _$OnPreviousImpl value, $Res Function(_$OnPreviousImpl) then) =
+      __$$OnPreviousImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? index});
+}
+
+/// @nodoc
+class __$$OnPreviousImplCopyWithImpl<$Res>
+    extends _$BannerEventCopyWithImpl<$Res, _$OnPreviousImpl>
+    implements _$$OnPreviousImplCopyWith<$Res> {
+  __$$OnPreviousImplCopyWithImpl(
+      _$OnPreviousImpl _value, $Res Function(_$OnPreviousImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? index = freezed,
+  }) {
+    return _then(_$OnPreviousImpl(
+      freezed == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnPreviousImpl implements _OnPrevious {
+  const _$OnPreviousImpl(this.index);
+
+  @override
+  final int? index;
+
+  @override
+  String toString() {
+    return 'BannerEvent.onPrevious(index: $index)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnPreviousImpl &&
+            (identical(other.index, index) || other.index == index));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, index);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnPreviousImplCopyWith<_$OnPreviousImpl> get copyWith =>
+      __$$OnPreviousImplCopyWithImpl<_$OnPreviousImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
+  }) {
+    return onPrevious(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
+  }) {
+    return onPrevious?.call(index);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (onPrevious != null) {
+      return onPrevious(index);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
+  }) {
+    return onPrevious(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
+  }) {
+    return onPrevious?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (onPrevious != null) {
+      return onPrevious(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnPrevious implements BannerEvent {
+  const factory _OnPrevious(final int? index) = _$OnPreviousImpl;
+
+  int? get index;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnPreviousImplCopyWith<_$OnPreviousImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

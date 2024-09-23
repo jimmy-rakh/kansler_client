@@ -137,6 +137,7 @@ class _SearchScreenState extends State<SearchScreen> {
           hintStyle: context.theme.textTheme.bodyMedium,
           style: context.theme.textTheme.bodyMedium,
           textInputType: TextInputType.text,
+          onFieldSubmitted: (p0) => bloc.add(const SearchEvent.search()),
           onChange: (p0) => bloc.add(const SearchEvent.search()),
         ),
       ),

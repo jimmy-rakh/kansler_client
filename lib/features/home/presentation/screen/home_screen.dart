@@ -4,6 +4,7 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/appbar.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/banners.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/discounts.dart';
+import 'package:kansler/features/home/presentation/screen/widgets/footer.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/hits.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/latest.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/popular.dart';
@@ -40,6 +41,7 @@ class HomeScreen extends StatelessWidget {
                       const PopularWidget(),
                       const LatestWidget(),
                       verticalSpace120,
+                      context.isSmall ? const SizedBox() : const Footer(),
                     ]),
                   ),
                 ],

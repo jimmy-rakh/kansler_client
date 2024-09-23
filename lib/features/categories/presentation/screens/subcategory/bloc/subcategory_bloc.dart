@@ -11,7 +11,9 @@ import '../../../../domain/usecases/get_category_children.usecase.dart';
 import '../../../../domain/usecases/get_category_products.usecase.dart';
 
 part 'subcategory_state.dart';
+
 part 'subcategory_event.dart';
+
 part 'subcategory_bloc.freezed.dart';
 
 @lazySingleton
@@ -187,6 +189,7 @@ class SubcategoryBloc extends Bloc<SubcategoryEvent, SubcategoryState> {
         as SearchEntity?;
 
     if (res != null) {
+      pageNumber = 1;
       emit((state as _Ready).copyWith(filterData: res.copyWith(pageNumber: 1)));
       add(SubcategoryEvent.loadProducts(category.id));
     }

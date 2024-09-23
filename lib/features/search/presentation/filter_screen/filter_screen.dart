@@ -192,7 +192,7 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                                 "Выберите способ получение"),
                                           ),
                                           value: search.orderBy == "created_at"
-                                              ? "Новинки"
+                                              ? "По дате"
                                               : search.orderBy == "alfabetic"
                                                   ? "По Алфавиту"
                                                   : search.orderBy == "price"
@@ -200,12 +200,29 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
                                                       : search.orderBy ==
                                                               "-price"
                                                           ? "Подороже"
-                                                          : search.orderBy,
+                                                          : search.orderBy ==
+                                                                  "promotion"
+                                                              ? "Хиты дня"
+                                                              : search.orderBy ==
+                                                                      "discount"
+                                                                  ? "Акции"
+                                                                  : search.orderBy ==
+                                                                          "new"
+                                                                      ? "Новинки"
+                                                                      : search.orderBy ==
+                                                                              "bestseller"
+                                                                          ? "Популярные"
+                                                                          : search
+                                                                              .orderBy,
                                           items: <String>[
-                                            "Новинки",
+                                            "По дате",
                                             "По Алфавиту",
                                             "Подешевле",
                                             "Подороже",
+                                            "Хиты дня",
+                                            "Акции",
+                                            "Новинки",
+                                            "Популярные"
                                           ].map((String value) {
                                             return DropdownMenuItem<String>(
                                               value: value,
