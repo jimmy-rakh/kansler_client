@@ -11,6 +11,8 @@ import 'package:kansler/features/home/presentation/blocs/popular/popular_bloc.da
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
+import '../../../../../core/style/colors.dart';
+import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/title_section.dart';
 import '../../../../product/domain/entities/product.entity.dart';
 import '../../../../product/presentation/widgets/product_card.dart';
@@ -26,8 +28,7 @@ class LatestWidget extends HookWidget {
     final discount = context.read<DiscountsBloc>();
     final popular = context.read<PopularBloc>();
     final state = useBlocBuilder(bloc);
-    // final currentWidth = MediaQuery.of(context).size.width;
-    // final crossCount = (currentWidth / 300).floor();
+    final currentWidth = MediaQuery.of(context).size.width;
 
     return Column(
       children: [
@@ -35,51 +36,100 @@ class LatestWidget extends HookWidget {
           name: 'common.latest'.tr(),
           onTap: () {},
         ),
-        SizedBox(
-          height: 310,
-          child: state.when(
-            loadInProgress: () => Skeletonizer(
-              enabled: true,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: 10,
-                separatorBuilder: (context, index) => horizontalSpace12,
-                itemBuilder: (context, index) => ProductCard.grid(
-                  height: context.isMobile ? context.height * .2 : 200,
-                  width: context.isMobile ? context.width * .44 : 200,
-                  product:
-                      ProductEntity(id: 0, title: '', barcode: [], price: 0),
-                  onCart: (type) {},
+        Stack(
+          children: [
+            SizedBox(
+              height: 310,
+              child: state.when(
+                loadInProgress: () => Skeletonizer(
+                  enabled: true,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: 10,
+                    separatorBuilder: (context, index) => horizontalSpace12,
+                    itemBuilder: (context, index) => ProductCard.grid(
+                      height: context.isMobile ? context.height * .2 : 200,
+                      width: context.isMobile ? context.width * .44 : 200,
+                      product:
+                          ProductEntity(id: 0, title: '', barcode: [], price: 0),
+                      onCart: (type) {},
+                    ),
+                  ),
                 ),
+                success: (products, cardType) {
+                  if (products.isEmpty) {
+                    return SvgPicture.asset(AppIllustrations.empty);
+                  }
+
+                  return ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    controller: bloc.controllerProducts,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: products.length,
+                    cacheExtent: 10,
+                    separatorBuilder: (context, index) => horizontalSpace12,
+                    itemBuilder: (context, index) => ProductCard.grid(
+                      height: context.isMobile ? context.height * .2 : 200,
+                      width: context.isMobile ? context.width * .44 : 200,
+                      product: products[index],
+                      onCart: (type) {
+                        discount.add(DiscountsEvent.addToCart(products[index].id,type));
+                        hit.add(HitEvent.addToCart(products[index].id,type));
+                        popular.add(PopularEvent.addToCart(products[index].id,type));
+                        bloc.add(LatestEvent.addToCart(products[index].id,type));
+                      },
+                    ),
+                  );
+                },
+                failure: () => const SizedBox(),
               ),
             ),
-            success: (products, cardType) {
-              if (products.isEmpty) {
-                return SvgPicture.asset(AppIllustrations.empty);
-              }
-
-              return ListView.separated(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: products.length,
-                cacheExtent: 10,
-                separatorBuilder: (context, index) => horizontalSpace12,
-                itemBuilder: (context, index) => ProductCard.grid(
-                  height: context.isMobile ? context.height * .2 : 200,
-                  width: context.isMobile ? context.width * .44 : 200,
-                  product: products[index],
-                  onCart: (type) {
-                    discount.add(DiscountsEvent.addToCart(products[index].id,type));
-                    hit.add(HitEvent.addToCart(products[index].id,type));
-                    popular.add(PopularEvent.addToCart(products[index].id,type));
-                    bloc.add(LatestEvent.addToCart(products[index].id,type));
-                  },
+            context.isSmall ? const SizedBox() : Positioned(
+              top: 100,
+              right: 4,
+              child: AppButton(
+                height: 40,
+                width: 40,
+                animate: true,
+                text: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.black,
+                  size: 15,
                 ),
-              );
-            },
-            failure: () => const SizedBox(),
-          ),
+                textColor: Colors.black,
+                borderRadius: 50,
+                borderColor: AppColors.white,
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                fillColor: AppColors.bgLight,
+                onPressed: () {
+                  bloc.add(LatestEvent.positionNext(currentWidth));
+                },
+              ),
+            ),
+            context.isSmall ? const SizedBox() : Positioned(
+              top: 100,
+              left: 4,
+              child: AppButton(
+                height: 40,
+                width: 40,
+                animate: true,
+                text: const Icon(
+                  Icons.arrow_back_ios,
+                  color: Colors.black,
+                  size: 17,
+                ),
+                textColor: Colors.black,
+                borderRadius: 50,
+                borderColor: AppColors.white,
+                padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                fillColor: AppColors.bgLight,
+                onPressed: () {
+                  bloc.add(LatestEvent.position(currentWidth));
+                },
+              ),
+            )
+          ],
         )
       ],
     );

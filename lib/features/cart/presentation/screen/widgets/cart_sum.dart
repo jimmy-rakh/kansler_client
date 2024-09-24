@@ -8,7 +8,6 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_button.dart';
 import 'package:kansler/core/widgets/app_card.dart';
 import 'package:kansler/features/cart/presentation/screen/cart_bloc/cart_bloc.dart';
-
 import '../../../../checkout/presentation/checkout_screen/bloc/checkout_bloc.dart';
 
 class CartSumWidget extends HookWidget {

@@ -464,18 +464,24 @@ mixin _$PopularEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(int id, CheckoutType type) addToCart,
+    required TResult Function(dynamic position) position,
+    required TResult Function(dynamic position) positionNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(int id, CheckoutType type)? addToCart,
+    TResult? Function(dynamic position)? position,
+    TResult? Function(dynamic position)? positionNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(int id, CheckoutType type)? addToCart,
+    TResult Function(dynamic position)? position,
+    TResult Function(dynamic position)? positionNext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -483,18 +489,24 @@ mixin _$PopularEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_Position value) position,
+    required TResult Function(_PositionNext value) positionNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_Position value)? position,
+    TResult? Function(_PositionNext value)? positionNext,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_Position value)? position,
+    TResult Function(_PositionNext value)? positionNext,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -564,6 +576,8 @@ class _$FetchImpl implements _Fetch {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(int id, CheckoutType type) addToCart,
+    required TResult Function(dynamic position) position,
+    required TResult Function(dynamic position) positionNext,
   }) {
     return fetch();
   }
@@ -573,6 +587,8 @@ class _$FetchImpl implements _Fetch {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(int id, CheckoutType type)? addToCart,
+    TResult? Function(dynamic position)? position,
+    TResult? Function(dynamic position)? positionNext,
   }) {
     return fetch?.call();
   }
@@ -582,6 +598,8 @@ class _$FetchImpl implements _Fetch {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(int id, CheckoutType type)? addToCart,
+    TResult Function(dynamic position)? position,
+    TResult Function(dynamic position)? positionNext,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -595,6 +613,8 @@ class _$FetchImpl implements _Fetch {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_Position value) position,
+    required TResult Function(_PositionNext value) positionNext,
   }) {
     return fetch(this);
   }
@@ -604,6 +624,8 @@ class _$FetchImpl implements _Fetch {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_Position value)? position,
+    TResult? Function(_PositionNext value)? positionNext,
   }) {
     return fetch?.call(this);
   }
@@ -613,6 +635,8 @@ class _$FetchImpl implements _Fetch {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_Position value)? position,
+    TResult Function(_PositionNext value)? positionNext,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -704,6 +728,8 @@ class _$AddToCartImpl implements _AddToCart {
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
     required TResult Function(int id, CheckoutType type) addToCart,
+    required TResult Function(dynamic position) position,
+    required TResult Function(dynamic position) positionNext,
   }) {
     return addToCart(id, type);
   }
@@ -713,6 +739,8 @@ class _$AddToCartImpl implements _AddToCart {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
     TResult? Function(int id, CheckoutType type)? addToCart,
+    TResult? Function(dynamic position)? position,
+    TResult? Function(dynamic position)? positionNext,
   }) {
     return addToCart?.call(id, type);
   }
@@ -722,6 +750,8 @@ class _$AddToCartImpl implements _AddToCart {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
     TResult Function(int id, CheckoutType type)? addToCart,
+    TResult Function(dynamic position)? position,
+    TResult Function(dynamic position)? positionNext,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -735,6 +765,8 @@ class _$AddToCartImpl implements _AddToCart {
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
     required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_Position value) position,
+    required TResult Function(_PositionNext value) positionNext,
   }) {
     return addToCart(this);
   }
@@ -744,6 +776,8 @@ class _$AddToCartImpl implements _AddToCart {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
     TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_Position value)? position,
+    TResult? Function(_PositionNext value)? positionNext,
   }) {
     return addToCart?.call(this);
   }
@@ -753,6 +787,8 @@ class _$AddToCartImpl implements _AddToCart {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
     TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_Position value)? position,
+    TResult Function(_PositionNext value)? positionNext,
     required TResult orElse(),
   }) {
     if (addToCart != null) {
@@ -773,5 +809,311 @@ abstract class _AddToCart implements PopularEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PositionImplCopyWith<$Res> {
+  factory _$$PositionImplCopyWith(
+          _$PositionImpl value, $Res Function(_$PositionImpl) then) =
+      __$$PositionImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({dynamic position});
+}
+
+/// @nodoc
+class __$$PositionImplCopyWithImpl<$Res>
+    extends _$PopularEventCopyWithImpl<$Res, _$PositionImpl>
+    implements _$$PositionImplCopyWith<$Res> {
+  __$$PositionImplCopyWithImpl(
+      _$PositionImpl _value, $Res Function(_$PositionImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? position = freezed,
+  }) {
+    return _then(_$PositionImpl(
+      freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PositionImpl implements _Position {
+  const _$PositionImpl(this.position);
+
+  @override
+  final dynamic position;
+
+  @override
+  String toString() {
+    return 'PopularEvent.position(position: $position)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PositionImpl &&
+            const DeepCollectionEquality().equals(other.position, position));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(position));
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PositionImplCopyWith<_$PositionImpl> get copyWith =>
+      __$$PositionImplCopyWithImpl<_$PositionImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int id, CheckoutType type) addToCart,
+    required TResult Function(dynamic position) position,
+    required TResult Function(dynamic position) positionNext,
+  }) {
+    return position(this.position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int id, CheckoutType type)? addToCart,
+    TResult? Function(dynamic position)? position,
+    TResult? Function(dynamic position)? positionNext,
+  }) {
+    return position?.call(this.position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int id, CheckoutType type)? addToCart,
+    TResult Function(dynamic position)? position,
+    TResult Function(dynamic position)? positionNext,
+    required TResult orElse(),
+  }) {
+    if (position != null) {
+      return position(this.position);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_Position value) position,
+    required TResult Function(_PositionNext value) positionNext,
+  }) {
+    return position(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_Position value)? position,
+    TResult? Function(_PositionNext value)? positionNext,
+  }) {
+    return position?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_Position value)? position,
+    TResult Function(_PositionNext value)? positionNext,
+    required TResult orElse(),
+  }) {
+    if (position != null) {
+      return position(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Position implements PopularEvent {
+  const factory _Position(final dynamic position) = _$PositionImpl;
+
+  dynamic get position;
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PositionImplCopyWith<_$PositionImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PositionNextImplCopyWith<$Res> {
+  factory _$$PositionNextImplCopyWith(
+          _$PositionNextImpl value, $Res Function(_$PositionNextImpl) then) =
+      __$$PositionNextImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({dynamic position});
+}
+
+/// @nodoc
+class __$$PositionNextImplCopyWithImpl<$Res>
+    extends _$PopularEventCopyWithImpl<$Res, _$PositionNextImpl>
+    implements _$$PositionNextImplCopyWith<$Res> {
+  __$$PositionNextImplCopyWithImpl(
+      _$PositionNextImpl _value, $Res Function(_$PositionNextImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? position = freezed,
+  }) {
+    return _then(_$PositionNextImpl(
+      freezed == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PositionNextImpl implements _PositionNext {
+  const _$PositionNextImpl(this.position);
+
+  @override
+  final dynamic position;
+
+  @override
+  String toString() {
+    return 'PopularEvent.positionNext(position: $position)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PositionNextImpl &&
+            const DeepCollectionEquality().equals(other.position, position));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(position));
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PositionNextImplCopyWith<_$PositionNextImpl> get copyWith =>
+      __$$PositionNextImplCopyWithImpl<_$PositionNextImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int id, CheckoutType type) addToCart,
+    required TResult Function(dynamic position) position,
+    required TResult Function(dynamic position) positionNext,
+  }) {
+    return positionNext(this.position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int id, CheckoutType type)? addToCart,
+    TResult? Function(dynamic position)? position,
+    TResult? Function(dynamic position)? positionNext,
+  }) {
+    return positionNext?.call(this.position);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int id, CheckoutType type)? addToCart,
+    TResult Function(dynamic position)? position,
+    TResult Function(dynamic position)? positionNext,
+    required TResult orElse(),
+  }) {
+    if (positionNext != null) {
+      return positionNext(this.position);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_AddToCart value) addToCart,
+    required TResult Function(_Position value) position,
+    required TResult Function(_PositionNext value) positionNext,
+  }) {
+    return positionNext(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_AddToCart value)? addToCart,
+    TResult? Function(_Position value)? position,
+    TResult? Function(_PositionNext value)? positionNext,
+  }) {
+    return positionNext?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_AddToCart value)? addToCart,
+    TResult Function(_Position value)? position,
+    TResult Function(_PositionNext value)? positionNext,
+    required TResult orElse(),
+  }) {
+    if (positionNext != null) {
+      return positionNext(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PositionNext implements PopularEvent {
+  const factory _PositionNext(final dynamic position) = _$PositionNextImpl;
+
+  dynamic get position;
+
+  /// Create a copy of PopularEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$PositionNextImplCopyWith<_$PositionNextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

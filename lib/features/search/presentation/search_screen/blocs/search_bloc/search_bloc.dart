@@ -171,6 +171,8 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   void _onAddFilter(_AddFilter event, Emitter<SearchState> emit) {
+    priceFromController.text = event.searchData.priceFrom?.toString() ?? '';
+    priceToController.text = event.searchData.priceTo?.toString() ?? '';
     emit((state as _Success).copyWith(filterData: event.searchData));
   }
 
@@ -178,7 +180,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     final curr = (state as _Success);
     emit(curr.copyWith(
         filterData: curr.filterData?.copyWith(
-            orderBy: event.orderBy == "Новинки"
+            orderBy: event.orderBy == "По дате"
                 ? "created_at"
                 : event.orderBy == "По Алфавиту"
                     ? "alfabetic"
@@ -186,7 +188,15 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                         ? "price"
                         : event.orderBy == "Подороже"
                             ? "-price"
-                            : event.orderBy)));
+                            : event.orderBy == "Хиты дня"
+                                ? "promotion"
+                                : event.orderBy == "Акции"
+                                    ? "discount"
+                                    : event.orderBy == "Новинки"
+                                        ? "new"
+                                        : event.orderBy == "Популярные"
+                                            ? "bestseller"
+                                            : event.orderBy)));
   }
 
   void _priceFrom(_PriceFrom event, Emitter<SearchState> emit) async {

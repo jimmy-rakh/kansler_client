@@ -37,36 +37,41 @@ class RegisterScreen extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Scaffold(
-        appBar: AppBarWidget(
-          showLeading: true,
-          leading: Padding(
-            padding: const EdgeInsets.all(8),
-            child: IconButton.filled(
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(context.cardColor),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600,maxHeight: 900),
+          child: Scaffold(
+            appBar: AppBarWidget(
+              showLeading: true,
+              leading: Padding(
+                padding: const EdgeInsets.all(8),
+                child: IconButton.filled(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                  ),
+                  onPressed: router.popForced,
+                  icon: const Icon(KazeIcons.closeCircleOutline),
+                ),
               ),
-              onPressed: router.popForced,
-              icon: const Icon(KazeIcons.arrowLeftOutline),
+              leadingWidth: 58,
+              preferredSize: const Size.fromHeight(60), child: const SizedBox(),
             ),
-          ),
-          leadingWidth: 58,
-          preferredSize: const Size.fromHeight(60), child: const SizedBox(),
-        ),
-        body: Center(
-          child: SizedBox(
-            width: context.isSmall ? context.width * .9 : context.width * .33,
-            child: ListView(
-              children:  [
-                verticalSpace35,
-                SizedBox(
-                    width: context.isSmall ? context.width * .7 : context.width * .2,
-                    child: RegisterHeaderWidget()),
-                verticalSpace12,
-                RegisterFormWidget(),
-                verticalSpace12,
-                RegisterActionWidget(),
-              ],
+            body: Center(
+              child: SizedBox(
+                width: context.isSmall ? context.width * .9 : 600,
+                child: ListView(
+                  children:  [
+                    verticalSpace35,
+                    SizedBox(
+                        width: context.isSmall ? context.width * .7 : context.width * .2,
+                        child: const RegisterHeaderWidget()),
+                    verticalSpace12,
+                    const RegisterFormWidget(),
+                    verticalSpace12,
+                    const RegisterActionWidget(),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

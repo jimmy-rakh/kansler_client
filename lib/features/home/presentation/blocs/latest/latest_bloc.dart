@@ -22,9 +22,11 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
     on<_ChangeCartState>(_onChangeCartState);
     on<_CardType>(_onCardType);
     on<_AddToCart>(_onAddToCart);
+    on<_Position>(_position);
+    on<_PositionNext>(_positionHitNext);
     add(const LatestEvent.fetch());
   }
-
+  final ScrollController controllerProducts = ScrollController();
   List<TextEditingController> quantityControllers = [];
 
   void _onCardType(_CardType event, Emitter<LatestState> emit) async {
@@ -75,5 +77,21 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
     }).toList();
 
     emit(LatestState.success(products: products));
+  }
+
+  void _position(_Position event, Emitter<LatestState> emit) async {
+    controllerProducts.animateTo(
+      controllerProducts.position.pixels - (event.position - 80),
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
+
+  void _positionHitNext(_PositionNext event, Emitter<LatestState> emit) async {
+    controllerProducts.animateTo(
+      controllerProducts.position.pixels + (event.position - 80),
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
   }
 }

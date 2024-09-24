@@ -19,34 +19,47 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1300),
-          child: Scaffold(
-              appBar: context.isSmall
-                  ? const AppBarWidget(
-                      preferredSize: Size.fromHeight(60),
-                      showLeading: false,
-                      child: HomeAppBar(),
-                    )
-                  : const PreferredSize(
-                      preferredSize: Size.zero, child: SizedBox()),
-              body: CustomScrollView(
-                slivers: [
-                  SliverList(
-                    delegate: SliverChildListDelegate([
-                      const BannerWidget(),
-                      const DiscountsWidget(),
-                      const HitsWidget(),
-                      const PopularWidget(),
-                      const LatestWidget(),
-                      verticalSpace120,
-                      context.isSmall ? const SizedBox() : const Footer(),
-                    ]),
-                  ),
-                ],
-              )),
-        ),
+      child: SelectionArea(
+        child: Scaffold(
+            appBar: context.isSmall
+                ? const AppBarWidget(
+                    preferredSize: Size.fromHeight(60),
+                    showLeading: false,
+                    child: HomeAppBar(),
+                  )
+                : const PreferredSize(
+                    preferredSize: Size.zero, child: SizedBox()),
+            body: CustomScrollView(
+              slivers: [
+                SliverList(
+                  delegate: SliverChildListDelegate([
+                    const Center(
+                        child: BannerWidget()),
+                    Center(
+                        child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 1300),
+                            child: const DiscountsWidget())),
+                    Center(
+                        child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 1300),
+                            child: const HitsWidget())),
+                    Center(
+                        child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 1300),
+                            child: const PopularWidget())),
+                    Center(
+                        child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 1300),
+                            child: const LatestWidget())),
+                    verticalSpace80,
+                     Center(
+                            child: ConstrainedBox(
+                                constraints: const BoxConstraints(maxWidth: 1300),
+                                child: const Footer())),
+                  ]),
+                ),
+              ],
+            )),
       ),
     );
   }

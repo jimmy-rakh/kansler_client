@@ -14,7 +14,7 @@ class DetailsWidget extends StatelessWidget {
       child: Row(
         children: [
           SizedBox(
-            width: context.isSmall ? context.width * .47 : context.width * .19,
+            width: context.isSmall ? context.width * .47 : 200,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

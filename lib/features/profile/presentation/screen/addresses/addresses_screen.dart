@@ -26,93 +26,95 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     final bloc = context.read<AddressesBloc>();
     final state = useBlocBuilder(bloc);
-    return Scaffold(
-      appBar:  AppBar(
-          centerTitle: false,
-          leading: Padding(
-            padding: const EdgeInsets.all(8),
-            child: IconButton.filled(
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(context.cardColor),
+    return SelectionArea(
+      child: Scaffold(
+        appBar:  AppBar(
+            centerTitle: false,
+            leading: Padding(
+              padding: const EdgeInsets.all(8),
+              child: IconButton.filled(
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                ),
+                onPressed: router.popForced,
+                icon: const Icon(KazeIcons.arrowLeftOutline),
               ),
-              onPressed: router.popForced,
-              icon: const Icon(KazeIcons.arrowLeftOutline),
             ),
-          ),
-          leadingWidth: 58, title: const Text('Адреса')),
-      body: SizedBox(
-        width: context.isSmall ? context.width : context.width * .4,
-        child: state.when(
-            ready: (entities) => ListView.separated(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
-                  itemBuilder: (context, index) => AppCard(
-                    width: double.maxFinite,
-                    padding: const EdgeInsets.all(16),
-                    borderRadius: 4,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(entities.name!),
-                        verticalSpace8,
-                        Text('Регион:\n${entities.region ?? ""}'),
-                        verticalSpace8,
-                        Text(
-                            'Телефон для связи:\n${entities.phoneNumber ?? ""}'),
-                        verticalSpace8,
-                        Text(
-                            'Организация:\n${entities.organization?.name ?? ""}'),
-                        verticalSpace12,
-                        AppCard(
-                          fillColor: context.background,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 10),
-                          width: double.maxFinite,
-                          borderRadius: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  'Менеджер:\n${entities.manager?.name ?? ''}'),
-                              Text(
-                                  'Телефон для связи:\n${entities.manager?.phone ?? ''}'),
-                            ],
+            leadingWidth: 58, title: const Text('Адреса')),
+        body: SizedBox(
+          width: context.isSmall ? context.width : context.width * .4,
+          child: state.when(
+              ready: (entities) => ListView.separated(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 60),
+                    itemBuilder: (context, index) => AppCard(
+                      width: double.maxFinite,
+                      padding: const EdgeInsets.all(16),
+                      borderRadius: 4,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(entities.name!),
+                          verticalSpace8,
+                          Text('Регион:\n${entities.region ?? ""}'),
+                          verticalSpace8,
+                          Text(
+                              'Телефон для связи:\n${entities.phoneNumber ?? ""}'),
+                          verticalSpace8,
+                          Text(
+                              'Организация:\n${entities.organization?.name ?? ""}'),
+                          verticalSpace12,
+                          AppCard(
+                            fillColor: context.background,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 10),
+                            width: double.maxFinite,
+                            borderRadius: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    'Менеджер:\n${entities.manager?.name ?? ''}'),
+                                Text(
+                                    'Телефон для связи:\n${entities.manager?.phone ?? ''}'),
+                              ],
+                            ),
                           ),
-                        ),
-                        verticalSpace8,
-                        AppCard(
-                          fillColor: context.background,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 10),
-                          width: double.maxFinite,
-                          borderRadius: 4,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  'Агент:\n${entities.agent?.name ?? ''}'),
-                              Text(
-                                'Телефон для связи:\n${entities.agent?.phone ?? ''}',
-                              ),
-                            ],
+                          verticalSpace8,
+                          AppCard(
+                            fillColor: context.background,
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 10),
+                            width: double.maxFinite,
+                            borderRadius: 4,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                    'Агент:\n${entities.agent?.name ?? ''}'),
+                                Text(
+                                  'Телефон для связи:\n${entities.agent?.phone ?? ''}',
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
+                    separatorBuilder: (context, index) => verticalSpace12,
+                    itemCount: 1,
                   ),
-                  separatorBuilder: (context, index) => verticalSpace12,
-                  itemCount: 1,
-                ),
-            loadInProgress: () => const Center(
-                  child: CupertinoActivityIndicator(),
-                ),
-            notFound: () => Center(
-                  child: Text(
-                    'Адреса не найдены',
-                    style: context.headlineSmall,
+              loadInProgress: () => const Center(
+                    child: CupertinoActivityIndicator(),
                   ),
-                )),
+              notFound: () => Center(
+                    child: Text(
+                      'Адреса не найдены',
+                      style: context.headlineSmall,
+                    ),
+                  )),
+        ),
       ),
     );
   }

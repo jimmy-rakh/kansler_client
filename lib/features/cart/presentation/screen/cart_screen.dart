@@ -120,17 +120,16 @@ class CartScreen extends HookWidget {
                                               : 380,
                                           decoration: BoxDecoration(
                                               color: context.background,
-                                              border: Border.all(color: Colors.grey),
                                               borderRadius: const BorderRadius.all(Radius.circular(4))),
                                           child: Center(
                                             child: Padding(
                                               padding: const EdgeInsets.all(2),
                                               child: Theme(
                                                 data: Theme.of(context).copyWith(
-                                                  focusColor: context.background,
+                                                  focusColor: context.cardColor,
                                                 ),
                                                 child: DropdownButton<String>(
-                                                  dropdownColor: context.cardColor,
+                                                  dropdownColor: context.background,
                                                   underline: const SizedBox(),
                                                   autofocus: true,
                                                   focusColor: context.background,
@@ -184,17 +183,16 @@ class CartScreen extends HookWidget {
                                               : 380,
                                           decoration: BoxDecoration(
                                               color: context.background,
-                                              border: Border.all(color: Colors.grey),
                                               borderRadius: const BorderRadius.all(Radius.circular(4))),
                                           child: Center(
                                             child: Padding(
                                               padding: const EdgeInsets.all(2),
                                               child: Theme(
                                                 data: Theme.of(context).copyWith(
-                                                  focusColor: context.background,
+                                                  focusColor: context.cardColor,
                                                 ),
                                                 child: DropdownButton<String>(
-                                                  dropdownColor: context.cardColor,
+                                                  dropdownColor: context.background,
                                                   underline: const SizedBox(),
                                                   autofocus: true,
                                                   focusColor: context.background,
