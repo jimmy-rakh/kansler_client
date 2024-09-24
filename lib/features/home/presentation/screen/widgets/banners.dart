@@ -23,10 +23,11 @@ class BannerWidget extends HookWidget {
 
     return SizedBox(
       height: context.isTablet
-          ? context.height * .4
+          ? context.height * .44
           : context.isSmall
-              ? context.height * .27
-              : 500,
+              ? context.height * .24
+              : 420,
+      width: context.isDesktop ? 1280 : context.width,
       child: state.when(
         loadInProgress: () => Skeletonizer(
             enabled: true,
@@ -34,10 +35,10 @@ class BannerWidget extends HookWidget {
               fit: BoxFit.cover,
               width: context.width,
               height: context.isTablet
-                  ? context.height * .4
+                  ? context.height * .44
                   : context.isSmall
-                      ? context.height * .27
-                      : 500,
+                      ? context.height * .24
+                      : 420,
               margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
               radius: 4,
               imageUrl: "",
@@ -60,10 +61,10 @@ class BannerWidget extends HookWidget {
                             fit: BoxFit.fill,
                             width: context.isDesktop ? 1280 : context.width,
                             height: context.isTablet
-                                ? context.height * .4
+                                ? context.height * .44
                                 : context.isSmall
-                                    ? context.height * .27
-                                    : 500,
+                                    ? context.height * .24
+                                    : 420,
                             margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
                             radius: 4,
                             imageUrl: context.isTablet
@@ -94,10 +95,10 @@ class BannerWidget extends HookWidget {
                                   width:
                                       context.isDesktop ? 1280 : context.width,
                                   height: context.isTablet
-                                      ? context.height * .4
+                                      ? context.height * .44
                                       : context.isSmall
                                           ? context.height * .27
-                                          : 500,
+                                          : 420,
                                   margin:
                                       const EdgeInsets.fromLTRB(12, 12, 12, 0),
                                   radius: 4,
@@ -123,7 +124,7 @@ class BannerWidget extends HookWidget {
                           ),
                           Positioned(
                             left: 20,
-                            top: context.isTablet ? context.height * .2 : context.height * .27,
+                            top: context.isTablet ? context.height * .2 : 200,
                             child: SizedBox(
                               height: 50,
                               width: 50,
@@ -146,8 +147,8 @@ class BannerWidget extends HookWidget {
                             ),
                           ),
                           Positioned(
-                            right: context.isTablet ? 20 : 40,
-                            top: context.isTablet ? context.height * .2 : context.height * .27,
+                            right: 20,
+                            top: context.isTablet ? context.height * .2 : 200,
                             child: AppCard(
                                 fillColor: context.cardColor.withOpacity(0.5),
                                 borderRadius: 50,

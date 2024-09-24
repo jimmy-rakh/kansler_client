@@ -75,12 +75,12 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute( path: '/product/:id/',page: ProductRoute.page),
         CustomRoute(
-            path:"/",
+            path:"/search",
             page: SearchRoute.page,
             transitionsBuilder: TransitionsBuilders.fadeIn,
             durationInMilliseconds: 100),
         AutoRoute(
-          path:"/",
+          path:"/filter",
           page: FilterRoute.page,
           fullscreenDialog: true,
         ),

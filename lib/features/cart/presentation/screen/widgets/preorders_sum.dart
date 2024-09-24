@@ -7,6 +7,8 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_button.dart';
 import 'package:kansler/core/widgets/app_card.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import 'package:kansler/core/enums/enums.dart';
+import '../../../../checkout/presentation/checkout_screen/bloc/checkout_bloc.dart';
 
 class PreordersSumWidget extends HookWidget {
   const PreordersSumWidget({super.key});
@@ -14,8 +16,9 @@ class PreordersSumWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
-    final bloc = context.read<PreordersBloc>();
-    final state = useBlocBuilder(bloc);
+    final bloc = context.read<CheckoutBloc>();
+    final preOrderBloc = context.read<PreordersBloc>();
+    final state = useBlocBuilder(preOrderBloc);
 
     return state.products.isEmpty
         ? const SizedBox()
@@ -46,8 +49,8 @@ class PreordersSumWidget extends HookWidget {
                       borderRadius: 0,
                       fillColor: const Color.fromARGB(
                           255, 0, 73, 208),
-                      onPressed: () =>
-                          bloc.add(const PreordersEvent.toCheckout()),
+                      onPressed: () => context.isSmall ?
+                      preOrderBloc.add(const PreordersEvent.toCheckout()) : bloc.add( const CheckoutEvent.checkOut(CheckoutType.preorder)),
                     )
                   ],
                 ),

@@ -6,7 +6,6 @@ import 'package:kansler/core/widgets/appbar.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/actions.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/form.dart';
 import 'package:kansler/features/auth/presentation/screens/login/widgets/header.dart';
-
 import '../../../../../app/di.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/constants/kaze_icons.dart';
@@ -21,36 +20,41 @@ class LoginScreen extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     return KeyboardEscape(
-      child: Scaffold(
-        appBar: AppBarWidget(
-          showLeading: true,
-          leading: Padding(
-            padding: const EdgeInsets.all(8),
-            child: IconButton.filled(
-              style: ButtonStyle(
-                backgroundColor: WidgetStatePropertyAll(context.cardColor),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600,maxHeight: 900),
+          child: Scaffold(
+            appBar: AppBarWidget(
+              showLeading: true,
+              leading: Padding(
+                padding: const EdgeInsets.all(8),
+                child: IconButton.filled(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                  ),
+                  onPressed: router.popForced,
+                  icon: const Icon(KazeIcons.closeCircleOutline),
+                ),
               ),
-              onPressed: router.popForced,
-              icon: const Icon(KazeIcons.arrowLeftOutline),
+              leadingWidth: 58,
+              preferredSize: const Size.fromHeight(60), child: const SizedBox(),
             ),
-          ),
-          leadingWidth: 58,
-          preferredSize: const Size.fromHeight(60), child: const SizedBox(),
-        ),
-        body: Center(
-          child: SizedBox(
-            width: context.isSmall ? context.width * .9 : context.width * .35,
-            child: ListView(
-              children:  [
-                verticalSpace35,
-                SizedBox(
-                    width: context.isSmall ? context.width * .5 : context.width * .35,
-                    child: LoginHeaderWidget()),
-                verticalSpace12,
-                LoginFormWidget(),
-                verticalSpace12,
-                LoginActionWidget(),
-              ],
+            body: Center(
+              child: SizedBox(
+                width: context.isSmall ? context.width * .9 : context.width * .35,
+                child: ListView(
+                  children:  [
+                    verticalSpace35,
+                    SizedBox(
+                        width: context.isSmall ? context.width * .5 : context.width * .35,
+                        child: const LoginHeaderWidget()),
+                    verticalSpace12,
+                    const LoginFormWidget(),
+                    verticalSpace12,
+                    const LoginActionWidget(),
+                  ],
+                ),
+              ),
             ),
           ),
         ),

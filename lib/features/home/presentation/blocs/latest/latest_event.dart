@@ -7,4 +7,6 @@ class LatestEvent with _$LatestEvent {
       _ChangeCartState;
   const factory LatestEvent.cardType() = _CardType;
   const factory LatestEvent.addToCart(int id,CheckoutType type) = _AddToCart;
+  const factory LatestEvent.position(dynamic position) = _Position;
+  const factory LatestEvent.positionNext(dynamic position) = _PositionNext;
 }

@@ -46,270 +46,271 @@ class FilterScreen extends HookWidget implements AutoRouteWrapper {
     return Container(
       color: context.cardColor,
       child: SafeArea(
-        minimum: context.isSmall
-            ? EdgeInsets.zero
-            : const EdgeInsets.fromLTRB(150, 150, 150, 150),
-        child: Scaffold(
-          appBar: AppBarWidget(
-            showLeading: true,
-            leading: Padding(
-              padding: const EdgeInsets.all(8),
-              child: IconButton.filled(
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(context.cardColor),
-                ),
-                onPressed: () {
-                  if (state.whenOrNull(
-                          ready: (view, products, filter) => view != 0) ??
-                      false) {
-                    bloc.add(const FilterEvent.setBaseView());
-                    return;
-                  }
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 900,maxHeight: 900),
+            child: Scaffold(
+              appBar: AppBarWidget(
+                showLeading: true,
+                leading: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: IconButton.filled(
+                    style: ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                    ),
+                    onPressed: () {
+                      if (state.whenOrNull(
+                              ready: (view, products, filter) => view != 0) ??
+                          false) {
+                        bloc.add(const FilterEvent.setBaseView());
+                        return;
+                      }
 
-                  Navigator.pop(context);
-                },
-                icon: const Icon(KazeIcons.arrowLeftOutline),
+                      Navigator.pop(context);
+                    },
+                    icon:  Icon(context.isSmall ? KazeIcons.arrowLeftOutline : KazeIcons.closeCircleOutline),
+                  ),
+                ),
+                leadingWidth: 58,
+                preferredSize: const Size.fromHeight(60),
+                bottomSize: const Size(double.maxFinite, 40),
+                child: const Text('Фильтр'),
               ),
-            ),
-            leadingWidth: 58,
-            preferredSize: const Size.fromHeight(60),
-            bottomSize: const Size(double.maxFinite, 40),
-            child: const Text('Фильтр'),
-          ),
-          body: AnimatedSwitcher(
-              duration: Durations.medium2,
-              child: state.whenOrNull(
-                ready: (activePage, organizations, search) {
-                  switch (activePage) {
-                    case 1:
-                      return category != null
-                          ? const SizedBox.shrink()
-                          : const CategoriesView();
-                    case 2:
-                      return const BrandsView();
-                    default:
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: ListView(
-                          children: [
-                            if (category == null) const CategoriesSection(),
-                            verticalSpace12,
-                            const BrandsSection(),
-                            verticalSpace12,
-                            // OrganizationSection(),
-                            Row(
+              body: AnimatedSwitcher(
+                  duration: Durations.medium2,
+                  child: state.whenOrNull(
+                    ready: (activePage, organizations, search) {
+                      switch (activePage) {
+                        case 1:
+                          return category != null
+                              ? const SizedBox.shrink()
+                              : const CategoriesView();
+                        case 2:
+                          return const BrandsView();
+                        default:
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: ListView(
                               children: [
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Цена от:',
-                                        style: context.titleMedium,
+                                if (category == null) const CategoriesSection(),
+                                verticalSpace12,
+                                const BrandsSection(),
+                                verticalSpace12,
+                                // OrganizationSection(),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Цена от:',
+                                            style: context.titleMedium,
+                                          ),
+                                          verticalSpace12,
+                                          SizedBox(
+                                            height: 50,
+                                            child: AppTextField(
+                                                fieldController:
+                                                    bloc.priceFromController,
+                                                radius: 4,
+                                                enabledBorderColor: Colors.grey,
+                                                fillColor: context.cardColor,
+                                                hint: '...',
+                                                onChange: (value) => bloc.add(
+                                                    FilterEvent.priceFrom(int.parse(
+                                                        bloc.priceFromController
+                                                            .text)))),
+                                          ),
+                                        ],
                                       ),
-                                      verticalSpace12,
-                                      SizedBox(
-                                        height: 50,
-                                        child: AppTextField(
-                                            fieldController:
-                                                bloc.priceFromController,
-                                            radius: 4,
-                                            enabledBorderColor: Colors.grey,
-                                            fillColor: context.cardColor,
-                                            hint: '...',
-                                            onChange: (value) => bloc.add(
-                                                FilterEvent.priceFrom(int.parse(
-                                                    bloc.priceFromController
-                                                        .text)))),
+                                    ),
+                                    horizontalSpace16,
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Цена до:',
+                                            style: context.titleMedium,
+                                          ),
+                                          verticalSpace12,
+                                          SizedBox(
+                                            height: 50,
+                                            child: AppTextField(
+                                                fieldController:
+                                                    bloc.priceToController,
+                                                radius: 4,
+                                                enabledBorderColor: Colors.grey,
+                                                fillColor: context.cardColor,
+                                                hint: '...',
+                                                onChange: (value) => bloc.add(
+                                                    FilterEvent.priceTo(int.parse(
+                                                        bloc.priceToController
+                                                            .text)))),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                horizontalSpace16,
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Цена до:',
-                                        style: context.titleMedium,
-                                      ),
-                                      verticalSpace12,
-                                      SizedBox(
-                                        height: 50,
-                                        child: AppTextField(
-                                            fieldController:
-                                                bloc.priceToController,
-                                            radius: 4,
-                                            enabledBorderColor: Colors.grey,
-                                            fillColor: context.cardColor,
-                                            hint: '...',
-                                            onChange: (value) => bloc.add(
-                                                FilterEvent.priceTo(int.parse(
-                                                    bloc.priceToController
-                                                        .text)))),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            verticalSpace12,
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Сортировать по:',
-                                  style: context.titleMedium,
+                                    )
+                                  ],
                                 ),
                                 verticalSpace12,
-                                Container(
-                                  width: context.isSmall
-                                      ? context.width
-                                      : context.width * .7,
-                                  decoration: BoxDecoration(
-                                      color: context.cardColor,
-                                      border: Border.all(color: Colors.grey),
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(4))),
-                                  child: Center(
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(2),
-                                      child: Theme(
-                                        data: Theme.of(context).copyWith(
-                                          focusColor: context.background,
-                                        ),
-                                        child: DropdownButton<String>(
-                                          dropdownColor: context.cardColor,
-                                          underline: const SizedBox(),
-                                          autofocus: true,
-                                          focusColor: context.background,
-                                          elevation: 0,
-                                          hint: const Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text(
-                                                "Выберите способ получение"),
-                                          ),
-                                          value: search.orderBy == "created_at"
-                                              ? "По дате"
-                                              : search.orderBy == "alfabetic"
-                                                  ? "По Алфавиту"
-                                                  : search.orderBy == "price"
-                                                      ? "Подешевле"
-                                                      : search.orderBy ==
-                                                              "-price"
-                                                          ? "Подороже"
-                                                          : search.orderBy ==
-                                                                  "promotion"
-                                                              ? "Хиты дня"
-                                                              : search.orderBy ==
-                                                                      "discount"
-                                                                  ? "Акции"
-                                                                  : search.orderBy ==
-                                                                          "new"
-                                                                      ? "Новинки"
-                                                                      : search.orderBy ==
-                                                                              "bestseller"
-                                                                          ? "Популярные"
-                                                                          : search
-                                                                              .orderBy,
-                                          items: <String>[
-                                            "По дате",
-                                            "По Алфавиту",
-                                            "Подешевле",
-                                            "Подороже",
-                                            "Хиты дня",
-                                            "Акции",
-                                            "Новинки",
-                                            "Популярные"
-                                          ].map((String value) {
-                                            return DropdownMenuItem<String>(
-                                              value: value,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: SizedBox(
-                                                  width: context.isSmall
-                                                      ? context.width * .75
-                                                      : context.width * .6,
-                                                  child: Text(
-                                                    value,
-                                                  ),
-                                                ),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Сортировать по:',
+                                      style: context.titleMedium,
+                                    ),
+                                    verticalSpace12,
+                                    Container(
+                                      width: context.isSmall
+                                          ? context.width
+                                          : 880,
+                                      decoration: BoxDecoration(
+                                          color: context.cardColor,
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(4))),
+                                      child: Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(2),
+                                          child: Theme(
+                                            data: Theme.of(context).copyWith(
+                                              focusColor: context.background,
+                                            ),
+                                            child: DropdownButton<String>(
+                                              dropdownColor: context.cardColor,
+                                              underline: const SizedBox(),
+                                              autofocus: true,
+                                              focusColor: context.background,
+                                              elevation: 0,
+                                              hint: const Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Text(
+                                                    "Выберите способ получение"),
                                               ),
-                                            );
-                                          }).toList(),
-                                          onChanged: (value) {
-                                            bloc.add(
-                                                FilterEvent.orderBy(value!));
-                                          },
+                                              value: search.orderBy == "created_at"
+                                                  ? "По дате"
+                                                  : search.orderBy == "alfabetic"
+                                                      ? "По Алфавиту"
+                                                      : search.orderBy == "price"
+                                                          ? "Подешевле"
+                                                          : search.orderBy ==
+                                                                  "-price"
+                                                              ? "Подороже"
+                                                              : search.orderBy ==
+                                                                      "promotion"
+                                                                  ? "Хиты дня"
+                                                                  : search.orderBy ==
+                                                                          "discount"
+                                                                      ? "Акции"
+                                                                      : search.orderBy ==
+                                                                              "new"
+                                                                          ? "Новинки"
+                                                                          : search.orderBy ==
+                                                                                  "bestseller"
+                                                                              ? "Популярные"
+                                                                              : search
+                                                                                  .orderBy,
+                                              items: <String>[
+                                                "По дате",
+                                                "По Алфавиту",
+                                                "Подешевле",
+                                                "Подороже",
+                                                "Хиты дня",
+                                                "Акции",
+                                                "Новинки",
+                                                "Популярные"
+                                              ].map((String value) {
+                                                return DropdownMenuItem<String>(
+                                                  value: value,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8.0),
+                                                    child: SizedBox(
+                                                      width: context.isSmall
+                                                          ? context.width * .75
+                                                          : 750,
+                                                      child: Text(
+                                                        value,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              }).toList(),
+                                              onChanged: (value) {
+                                                bloc.add(
+                                                    FilterEvent.orderBy(value!));
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
+                                verticalSpace24,
                               ],
                             ),
-                            verticalSpace24,
-                          ],
-                        ),
-                      );
-                  }
-                },
-              )),
-          bottomNavigationBar: SizedBox(
-              height: 100,
-              child: state.whenOrNull(
-                ready: (activePage, organizations, search) {
-                  if (activePage == 0) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 24, horizontal: 16),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: AppButton(
-                              text: 'Сбросить',
-                              onPressed: () => bloc.add(
-                                FilterEvent.addFilter(
-                                  SearchEntity(title: search.title),
+                          );
+                      }
+                    },
+                  )),
+              bottomNavigationBar: SizedBox(
+                  height: 100,
+                  child: state.whenOrNull(
+                    ready: (activePage, organizations, search) {
+                      if (activePage == 0) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 24, horizontal: 16),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: AppButton(
+                                  text: 'Сбросить',
+                                  onPressed: () => bloc.add(
+                                    FilterEvent.addFilter(
+                                      SearchEntity(title: search.title),
+                                    ),
+                                  ),
+                                  fillColor: context.cardColor,
+                                  borderRadius: 0,
                                 ),
                               ),
-                              fillColor: context.cardColor,
-                              borderRadius: 0,
-                            ),
+                              horizontalSpace16,
+                              Expanded(
+                                child: AppButton(
+                                  text: 'Поиск',
+                                  onPressed: () => router.popForced(search),
+                                  textColor: context.onPrimary,
+                                  fillColor: context.primary,
+                                  borderRadius: 0,
+                                ),
+                              )
+                            ],
                           ),
-                          horizontalSpace16,
-                          Expanded(
-                            child: AppButton(
-                              text: 'Поиск',
-                              onPressed: () => router.popForced(search),
-                              textColor: context.onPrimary,
-                              fillColor: context.primary,
-                              borderRadius: 0,
-                            ),
-                          )
-                        ],
-                      ),
-                    );
-                  } else {
-                    return AppButton(
-                      margin: const EdgeInsets.all(24),
-                      text: 'Готово',
-                      onPressed: () =>
-                          bloc.add(const FilterEvent.setBaseView()),
-                      textColor: context.onPrimary,
-                      fillColor: context.primary,
-                      borderRadius: 0,
-                    );
-                  }
-                },
-              )),
+                        );
+                      } else {
+                        return AppButton(
+                          margin: const EdgeInsets.all(24),
+                          text: 'Готово',
+                          onPressed: () =>
+                              bloc.add(const FilterEvent.setBaseView()),
+                          textColor: context.onPrimary,
+                          fillColor: context.primary,
+                          borderRadius: 0,
+                        );
+                      }
+                    },
+                  )),
+            ),
+          ),
         ),
       ),
     );

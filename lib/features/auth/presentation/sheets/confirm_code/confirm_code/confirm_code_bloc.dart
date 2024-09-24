@@ -6,6 +6,7 @@ import 'package:kansler/features/auth/data/models/confirm_code/confirm_request.d
 import 'package:kansler/features/auth/domain/domain.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
+import '../../../../data/models/confirm_code/confirm_response.dart';
 
 part 'confirm_code_state.dart';
 part 'confirm_code_event.dart';

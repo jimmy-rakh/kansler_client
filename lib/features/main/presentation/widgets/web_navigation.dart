@@ -39,43 +39,45 @@ class WebNavigation extends HookWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 15),
-                    child: Image.asset("assets/images/logo.png",width: context.width * .09,),
+                    child: Image.asset("assets/images/logo.png",width: 150),
                   ),
                   AppCard(
                       fillColor: context.background,
                       width:context.isDesktop ? 500: context.width * .38,
                       borderRadius: 4,
-                      child: const Padding(
-                        padding: EdgeInsets.all(2),
-                        child: HomeAppBar(),
-                      )),
+                      padding: const EdgeInsets.all(2),
+                      margin: const EdgeInsets.only(top: 7,left: 7),
+                      child: const HomeAppBar()),
                 ],
               ),
-              SizedBox(
-                width:context.isDesktop ? 500 : context.width * .38,
-                child:  Theme(
-                  data: Theme.of(context).copyWith(
-                   hoverColor: Colors.transparent
+              Padding(
+                padding: const EdgeInsets.only(right: 50),
+                child: SizedBox(
+                  width:context.isDesktop ? 500 : context.width * .38,
+                  child:  Theme(
+                    data: Theme.of(context).copyWith(
+                     hoverColor: Colors.transparent
+                        ),
+                    child: BottomNavigationBar(
+                      backgroundColor: context.theme.cardColor,
+                      currentIndex: tabsRouter.activeIndex,
+                      elevation: 0,
+                      showSelectedLabels: true,
+                      showUnselectedLabels: true,
+                      enableFeedback: false,
+                      selectedFontSize:context.isTablet ? 14 : 16,
+                      unselectedFontSize: context.isTablet ? 14 : 16,
+                      selectedLabelStyle: const TextStyle(color: AppColors.primary),
+                      type: BottomNavigationBarType.fixed,
+                      items: List.generate(
+                        bloc.navbarItems.length,
+                        (index) => BottomNavigationBarItem(
+                          icon: const SizedBox(),
+                          label: bloc.navbarItems[index].label,
+                        ),
                       ),
-                  child: BottomNavigationBar(
-                    backgroundColor: context.theme.cardColor,
-                    currentIndex: tabsRouter.activeIndex,
-                    elevation: 0,
-                    showSelectedLabels: true,
-                    showUnselectedLabels: true,
-                    enableFeedback: false,
-                    selectedFontSize:context.isTablet ? 14 : 16,
-                    unselectedFontSize: context.isTablet ? 14 : 16,
-                    selectedLabelStyle: const TextStyle(color: AppColors.primary),
-                    type: BottomNavigationBarType.fixed,
-                    items: List.generate(
-                      bloc.navbarItems.length,
-                      (index) => BottomNavigationBarItem(
-                        icon: const SizedBox(),
-                        label: bloc.navbarItems[index].label,
-                      ),
+                      onTap: (value) => bloc.add(NavbarEvent.changeIndex(value)),
                     ),
-                    onTap: (value) => bloc.add(NavbarEvent.changeIndex(value)),
                   ),
                 ),
               ),
