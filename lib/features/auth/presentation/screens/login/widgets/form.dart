@@ -34,16 +34,24 @@ class LoginFormWidget extends HookWidget {
           mainRadius: 0,
         ),
         verticalSpace16,
-        AppTextField(
-          radius: 0,
-          hint: state.tabIndex == 0 ? 'Введите номер телефона' : 'Введите инн',
-          fieldController: bloc.valueController,
-          focusNode: bloc.loginFocus,
-          prefix: const Icon(KazeIcons.profileBold),
-          textInputType: TextInputType.number,
-          hintStyle: context.bodyLarge!.copyWith(
-            color: context.colorScheme.inverseSurface,
-          ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(state.tabIndex == 0 ? 'Введите номер телефона' : 'Введите инн/пнфл',),
+            verticalSpace10,
+            AppTextField(
+              radius: 0,
+              hint: state.tabIndex == 0 ? '998 ** *** ** **' : 'инн/пнфл',
+              fieldController: bloc.valueController,
+              focusNode: bloc.loginFocus,
+              prefix: const Icon(KazeIcons.profileBold),
+              textInputType: TextInputType.number,
+              hintStyle: context.bodyLarge!.copyWith(
+                color: context.colorScheme.inverseSurface,
+              ),
+            ),
+          ],
         ),
         if (state.tabIndex == 1 &&
             !state.hasPass &&

@@ -36,17 +36,6 @@ class SubcategoryAppBar extends HookWidget {
                 children: [
                   context.isSmall
                       ? GestureDetector(
-                          onTap: () => router.push(SearchRoute()),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(0),
-                                color: context.cardColor,
-                              ),
-                              child: const Padding(
-                                padding: EdgeInsets.all(5),
-                                child: Icon(KazeIcons.searchOutline),
-                              )))
-                      : GestureDetector(
                           onTap: () =>
                               bloc.add(const SubcategoryEvent.showFilters()),
                           child: Container(
@@ -59,7 +48,18 @@ class SubcategoryAppBar extends HookWidget {
                               KazeIcons.setting4outline,
                             ),
                           ),
-                        ),
+                        )
+                      : GestureDetector(
+                          onTap: () => router.push(SearchRoute()),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(0),
+                                color: context.cardColor,
+                              ),
+                              child: const Padding(
+                                padding: EdgeInsets.all(5),
+                                child: Icon(KazeIcons.searchOutline),
+                              ))),
                   horizontalSpace8,
                   GestureDetector(
                     onTap: () =>

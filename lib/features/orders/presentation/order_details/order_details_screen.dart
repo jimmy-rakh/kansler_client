@@ -4,9 +4,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/core/widgets/app_button.dart';
 import '../../../../app/di.dart';
 import '../../../../app/router.dart';
 import '../../../../core/constants/kaze_icons.dart';
@@ -44,7 +46,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                     padding: const EdgeInsets.all(8),
                     child: IconButton.filled(
                       style: ButtonStyle(
-                        backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                        backgroundColor:
+                            WidgetStatePropertyAll(context.cardColor),
                       ),
                       onPressed: router.popForced,
                       icon: const Icon(KazeIcons.arrowLeftOutline),
@@ -67,13 +70,15 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                 child: Column(
                                   children: [
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Text('Дата'),
                                         order?.createdAt == null
                                             ? const SizedBox()
                                             : Text(
-                                                DateFormat('dd.MM.yyyy, kk:mm').format(
+                                                DateFormat('dd.MM.yyyy, kk:mm')
+                                                    .format(
                                                 DateTime.parse(order!.createdAt)
                                                     .toLocal(),
                                               ))
@@ -81,7 +86,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                     ),
                                     verticalSpace12,
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         const Text('Сумма'),
                                         order?.price == null
@@ -100,29 +106,14 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                         margin: const EdgeInsets.only(top: 24),
                                         padding: const EdgeInsets.symmetric(
                                             vertical: 12, horizontal: 16),
-                                        onTap: () {
-                                          bloc.add(OrderDetailsEvent.toDetails(
-                                              order!.organizationOrders![index].id,
-                                              order.organizationOrders![index]
-                                                  .organization,type));
-                                        },
                                         borderRadius: 4,
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               'Организация: ${order?.organizationOrders![index].organization.name!}',
                                             ),
-                                            // verticalSpace12,
-                                            // Text(
-                                            //     'Торговая точка:\n${order.organizationOrders![index].address.name!}\n${order.organizationOrders![index].address.region}'),
-                                            // verticalSpace5,
-                                            // Text(
-                                            //     'Телефон для связи:\n${order.organizationOrders![index].address.phoneNumbers}'),
-                                            // verticalSpace5,
-                                            // const Divider(
-                                            //   color: Colors.grey,
-                                            // ),
                                             Text(
                                               'Сумма: ${currencyFormatter.format((order?.organizationOrders![index].price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                               style: const TextStyle(
@@ -152,6 +143,100 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                           ? AppColors.red
                                                           : AppColors.primary),
                                             ),
+                                            verticalSpace10,
+                                            AppCard(
+                                              onTap: () {
+                                                bloc.add(
+                                                    OrderDetailsEvent.toDetails(
+                                                        order!
+                                                            .organizationOrders![
+                                                                index]
+                                                            .id,
+                                                        order
+                                                            .organizationOrders![
+                                                                index]
+                                                            .organization,
+                                                        type));
+                                              },
+                                              borderRadius: 8,
+                                              fillColor: context.background,
+                                              child: const Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text("Продукты"),
+                                                    Icon(Icons
+                                                        .arrow_forward_ios),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            verticalSpace10,
+                                            AppCard(
+                                              borderRadius: 8,
+                                              width: double.maxFinite,
+                                              fillColor: context.background,
+                                              child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(12),
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      "Ваш менеджер:  ${order?.organizationOrders![index].address?.agent?.name ?? ""}",
+                                                      maxLines: 1,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                    ),
+                                                    verticalSpace10,
+                                                    const Text(
+                                                      "Оцените пожалуйста\nуровень обслуживание менеджера\nдля улучшения качества работы",
+                                                      style: TextStyle(
+                                                          fontWeight:
+                                                              FontWeight.w400),
+                                                    ),
+                                                    verticalSpace30,
+                                                    RatingBar.builder(
+                                                      initialRating: 2.5,
+                                                      minRating: 1,
+                                                      direction:
+                                                          Axis.horizontal,
+                                                      allowHalfRating: true,
+                                                      itemCount: 5,
+                                                      itemPadding:
+                                                          const EdgeInsets
+                                                              .symmetric(
+                                                              horizontal: 4.0),
+                                                      itemBuilder:
+                                                          (context, _) =>
+                                                              const Icon(
+                                                        Icons.star,
+                                                        color: Colors.amber,
+                                                      ),
+                                                      onRatingUpdate: (rating) {
+                                                        print(rating);
+                                                      },
+                                                    ),
+                                                    verticalSpace30,
+                                                    AppButton(
+                                                      animate: true,
+                                                      width: double.maxFinite,
+                                                      fillColor:
+                                                      context.primaryColorLight,
+                                                      borderRadius: 8,
+                                                      padding: const EdgeInsets.all(12),
+                                                      text: const Text("Отправить оценку"), onPressed: () {  },
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            )
                                           ],
                                         ),
                                       ))
@@ -168,15 +253,19 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                           Padding(
                             padding: const EdgeInsets.all(5),
                             child: Container(
-                              width: context.isDesktop ? 370 : context.isSmall
-                                  ? context.width
-                                  : context.isTablet
-                                  ? context.width * .38
-                                  : context.width * .3,
+                              width: context.isDesktop
+                                  ? 370
+                                  : context.isSmall
+                                      ? context.width
+                                      : context.isTablet
+                                          ? context.width * .38
+                                          : context.width * .3,
                               height: context.height,
-                              decoration: BoxDecoration(color: context.cardColor),
+                              decoration:
+                                  BoxDecoration(color: context.cardColor),
                               child: state.whenOrNull(
-                                    ready: (order, orders, isMoring, id) => ListView(
+                                    ready: (order, orders, isMoring, id) =>
+                                        ListView(
                                       padding: const EdgeInsets.all(16),
                                       children: [
                                         AppCard(
@@ -189,12 +278,15 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                             children: [
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   const Text('Дата'),
-                                                  Text(DateFormat('dd.MM.yyyy, kk:mm')
+                                                  Text(DateFormat(
+                                                          'dd.MM.yyyy, kk:mm')
                                                       .format(
-                                                    DateTime.parse(order!.createdAt)
+                                                    DateTime.parse(
+                                                            order!.createdAt)
                                                         .toLocal(),
                                                   ))
                                                 ],
@@ -202,7 +294,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                               verticalSpace12,
                                               Row(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   const Text('Сумма'),
                                                   Text(
@@ -213,58 +306,31 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                           ),
                                         ),
                                         ...List.generate(
-                                            order.organizationOrders?.length ?? 0,
+                                            order.organizationOrders?.length ??
+                                                0,
                                             (index) => AppCard(
                                                   width: double.maxFinite,
                                                   fillColor: context.background,
-                                                  margin:
-                                                      const EdgeInsets.only(top: 24),
-                                                  padding: const EdgeInsets.symmetric(
-                                                      vertical: 12, horizontal: 16),
-                                                  onTap: () {
-                                                    context.isSmall
-                                                        ? bloc.add(
-                                                            OrderDetailsEvent.toDetails(
-                                                                order
-                                                                    .organizationOrders![
-                                                                        index]
-                                                                    .id,
-                                                                order
-                                                                    .organizationOrders![
-                                                                        index]
-                                                                    .organization,
-                                                                type))
-                                                        : bloc.add(
-                                                            OrderDetailsEvent.fetch(
-                                                            id: order
-                                                                .organizationOrders![
-                                                                    index]
-                                                                .id,
-                                                            type: type,
-                                                          ));
-                                                  },
+                                                  margin: const EdgeInsets.only(
+                                                      top: 24),
+                                                  padding: const EdgeInsets
+                                                      .symmetric(
+                                                      vertical: 12,
+                                                      horizontal: 16),
                                                   borderRadius: 4,
                                                   child: Column(
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
+                                                        CrossAxisAlignment
+                                                            .start,
                                                     children: [
                                                       Text(
                                                         'Организация: ${order.organizationOrders![index].organization.name!}',
                                                       ),
-                                                      // verticalSpace12,
-                                                      // Text(
-                                                      //     'Торговая точка:\n${order.organizationOrders![index].address.name!}\n${order.organizationOrders![index].address.region}'),
-                                                      // verticalSpace5,
-                                                      // Text(
-                                                      //     'Телефон для связи:\n${order.organizationOrders![index].address.phoneNumbers}'),
-                                                      // verticalSpace5,
-                                                      // const Divider(
-                                                      //   color: Colors.grey,
-                                                      // ),
                                                       Text(
                                                         'Сумма: ${currencyFormatter.format((order.organizationOrders![index].price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                                         style: const TextStyle(
-                                                          fontWeight: FontWeight.bold,
+                                                          fontWeight:
+                                                              FontWeight.bold,
                                                           fontSize: 15,
                                                         ),
                                                       ),
@@ -281,22 +347,46 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                                             index]
                                                                         .status ==
                                                                     "Оформлен"
-                                                                ? AppColors.green
-                                                                : order
-                                                                            .organizationOrders![
-                                                                                index]
-                                                                            .status ==
+                                                                ? AppColors
+                                                                    .green
+                                                                : order.organizationOrders![index].status ==
                                                                         "Отклонен"
-                                                                    ? AppColors.red
+                                                                    ? AppColors
+                                                                        .red
                                                                     : AppColors
                                                                         .primary),
                                                       ),
                                                       verticalSpace10,
                                                       AppCard(
+                                                        onTap: () {
+                                                          context.isSmall
+                                                              ? bloc.add(OrderDetailsEvent.toDetails(
+                                                                  order
+                                                                      .organizationOrders![
+                                                                          index]
+                                                                      .id,
+                                                                  order
+                                                                      .organizationOrders![
+                                                                          index]
+                                                                      .organization,
+                                                                  type))
+                                                              : bloc.add(
+                                                                  OrderDetailsEvent
+                                                                      .fetch(
+                                                                  id: order
+                                                                      .organizationOrders![
+                                                                          index]
+                                                                      .id,
+                                                                  type: type,
+                                                                ));
+                                                        },
                                                         borderRadius: 4,
-                                                        fillColor: context.cardColor,
+                                                        fillColor:
+                                                            context.cardColor,
                                                         child: const Padding(
-                                                          padding: EdgeInsets.all(8.0),
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
                                                           child: Row(
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
@@ -305,6 +395,80 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                               Text("Продукты"),
                                                               Icon(Icons
                                                                   .arrow_forward_ios),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      verticalSpace10,
+                                                      AppCard(
+                                                        borderRadius: 4,
+                                                        width: double.maxFinite,
+                                                        fillColor:
+                                                            context.cardColor,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .all(8.0),
+                                                          child: Column(
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .start,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                "Ваш менеджер:  ${order.organizationOrders![index].address?.agent?.name ?? ""}",
+                                                                maxLines: 1,
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                              ),
+                                                              verticalSpace10,
+                                                              const Text(
+                                                                "Оцените пожалуйста\nуровень обслуживание менеджера\nдля улучшения качества работы",
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w400),
+                                                              ),
+                                                              verticalSpace30,
+                                                              RatingBar.builder(
+                                                                initialRating: 2.5,
+                                                                minRating: 1,
+                                                                direction: Axis
+                                                                    .horizontal,
+                                                                allowHalfRating:
+                                                                    true,
+                                                                itemCount: 5,
+                                                                itemPadding:
+                                                                    const EdgeInsets
+                                                                        .symmetric(
+                                                                        horizontal:
+                                                                            4.0),
+                                                                itemBuilder:
+                                                                    (context,
+                                                                            _) =>
+                                                                        const Icon(
+                                                                  Icons.star,
+                                                                  color: Colors
+                                                                      .amber,
+                                                                ),
+                                                                onRatingUpdate:
+                                                                    (rating) {
+                                                                  print(rating);
+                                                                },
+                                                              ),
+                                                              verticalSpace30,
+                                                              AppButton(
+                                                                animate: true,
+                                                                width: double.maxFinite,
+                                                                fillColor:
+                                                                context.primaryColorLight,
+                                                                borderRadius: 8,
+                                                                padding: const EdgeInsets.all(12),
+                                                                text: const Text("Отправить оценку"), onPressed: () {  },
+                                                              )
                                                             ],
                                                           ),
                                                         ),
@@ -321,20 +485,24 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                             ),
                           ),
                           SizedBox(
-                            width:context.isDesktop ? 920 : context.isTablet
-                                ? context.width * .6
-                                : context.width * .67,
+                            width: context.isDesktop
+                                ? 920
+                                : context.isTablet
+                                    ? context.width * .6
+                                    : context.width * .67,
                             child: state.whenOrNull(
                                   ready: (order, orders, isMoring, id) =>
                                       ListView.separated(
                                     controller: bloc.scrollController,
                                     padding: const EdgeInsets.all(16),
-                                    itemBuilder: (context, index) => ProductCard.list(
-                                        cartProduct: orders?[index],
-                                        fieldController: TextEditingController(),
-                                        showActions: false,
-                                        onPressed: () {},
-                                        onCart: (type) {}),
+                                    itemBuilder: (context, index) =>
+                                        ProductCard.list(
+                                            cartProduct: orders?[index],
+                                            fieldController:
+                                                TextEditingController(),
+                                            showActions: false,
+                                            onPressed: () {},
+                                            onCart: (type) {}),
                                     separatorBuilder: (context, index) =>
                                         verticalSpace12,
                                     itemCount: orders?.length ?? 0,
