@@ -15,6 +15,13 @@ _$OrdersDtoImpl _$$OrdersDtoImplFromJson(Map<String, dynamic> json) =>
       organizationOrders: (json['organization_orders'] as List<dynamic>?)
           ?.map((e) => OrganizationOrders.fromJson(e as Map<String, dynamic>))
           .toList(),
+      agent: json['agent'] == null
+          ? null
+          : ManagerDto.fromJson(json['agent'] as Map<String, dynamic>),
+      paymentType: json['payment_type'] as String?,
+      paymentStatus: json['payment_status'] as String?,
+      deliveryType: json['delivery_type'] as String?,
+      rating: json['rating'] as num?,
     );
 
 Map<String, dynamic> _$$OrdersDtoImplToJson(_$OrdersDtoImpl instance) =>
@@ -25,6 +32,11 @@ Map<String, dynamic> _$$OrdersDtoImplToJson(_$OrdersDtoImpl instance) =>
       'price': instance.price,
       'organization_orders':
           instance.organizationOrders?.map((e) => e.toJson()).toList(),
+      'agent': instance.agent?.toJson(),
+      'payment_type': instance.paymentType,
+      'payment_status': instance.paymentStatus,
+      'delivery_type': instance.deliveryType,
+      'rating': instance.rating,
     };
 
 _$OrganizationOrdersImpl _$$OrganizationOrdersImplFromJson(

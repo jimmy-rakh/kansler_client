@@ -409,7 +409,6 @@ abstract class _Ready implements OrderDetailsState {
 /// @nodoc
 mixin _$OrderDetailsEvent {
   int? get id => throw _privateConstructorUsedError;
-  CheckoutType get type => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id, CheckoutType type) fetchOrder,
@@ -417,6 +416,7 @@ mixin _$OrderDetailsEvent {
             int id, OrganizationDto organization, CheckoutType type)
         toDetails,
     required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
+    required TResult Function(num rating, int id) updateRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -425,6 +425,7 @@ mixin _$OrderDetailsEvent {
     TResult? Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult? Function(num rating, int id)? updateRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -433,6 +434,7 @@ mixin _$OrderDetailsEvent {
     TResult Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult Function(num rating, int id)? updateRating,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -441,6 +443,7 @@ mixin _$OrderDetailsEvent {
     required TResult Function(_FetchOrder value) fetchOrder,
     required TResult Function(_ToDetails value) toDetails,
     required TResult Function(_FetchData value) fetch,
+    required TResult Function(_UpdateRating value) updateRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -448,6 +451,7 @@ mixin _$OrderDetailsEvent {
     TResult? Function(_FetchOrder value)? fetchOrder,
     TResult? Function(_ToDetails value)? toDetails,
     TResult? Function(_FetchData value)? fetch,
+    TResult? Function(_UpdateRating value)? updateRating,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -455,6 +459,7 @@ mixin _$OrderDetailsEvent {
     TResult Function(_FetchOrder value)? fetchOrder,
     TResult Function(_ToDetails value)? toDetails,
     TResult Function(_FetchData value)? fetch,
+    TResult Function(_UpdateRating value)? updateRating,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -472,7 +477,7 @@ abstract class $OrderDetailsEventCopyWith<$Res> {
           OrderDetailsEvent value, $Res Function(OrderDetailsEvent) then) =
       _$OrderDetailsEventCopyWithImpl<$Res, OrderDetailsEvent>;
   @useResult
-  $Res call({int id, CheckoutType type});
+  $Res call({int id});
 }
 
 /// @nodoc
@@ -491,17 +496,12 @@ class _$OrderDetailsEventCopyWithImpl<$Res, $Val extends OrderDetailsEvent>
   @override
   $Res call({
     Object? id = null,
-    Object? type = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id!
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as CheckoutType,
     ) as $Val);
   }
 }
@@ -589,6 +589,7 @@ class _$FetchOrderImpl implements _FetchOrder {
             int id, OrganizationDto organization, CheckoutType type)
         toDetails,
     required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
+    required TResult Function(num rating, int id) updateRating,
   }) {
     return fetchOrder(id, type);
   }
@@ -600,6 +601,7 @@ class _$FetchOrderImpl implements _FetchOrder {
     TResult? Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult? Function(num rating, int id)? updateRating,
   }) {
     return fetchOrder?.call(id, type);
   }
@@ -611,6 +613,7 @@ class _$FetchOrderImpl implements _FetchOrder {
     TResult Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult Function(num rating, int id)? updateRating,
     required TResult orElse(),
   }) {
     if (fetchOrder != null) {
@@ -625,6 +628,7 @@ class _$FetchOrderImpl implements _FetchOrder {
     required TResult Function(_FetchOrder value) fetchOrder,
     required TResult Function(_ToDetails value) toDetails,
     required TResult Function(_FetchData value) fetch,
+    required TResult Function(_UpdateRating value) updateRating,
   }) {
     return fetchOrder(this);
   }
@@ -635,6 +639,7 @@ class _$FetchOrderImpl implements _FetchOrder {
     TResult? Function(_FetchOrder value)? fetchOrder,
     TResult? Function(_ToDetails value)? toDetails,
     TResult? Function(_FetchData value)? fetch,
+    TResult? Function(_UpdateRating value)? updateRating,
   }) {
     return fetchOrder?.call(this);
   }
@@ -645,6 +650,7 @@ class _$FetchOrderImpl implements _FetchOrder {
     TResult Function(_FetchOrder value)? fetchOrder,
     TResult Function(_ToDetails value)? toDetails,
     TResult Function(_FetchData value)? fetch,
+    TResult Function(_UpdateRating value)? updateRating,
     required TResult orElse(),
   }) {
     if (fetchOrder != null) {
@@ -660,7 +666,6 @@ abstract class _FetchOrder implements OrderDetailsEvent {
 
   @override
   int get id;
-  @override
   CheckoutType get type;
 
   /// Create a copy of OrderDetailsEvent
@@ -775,6 +780,7 @@ class _$ToDetailsImpl implements _ToDetails {
             int id, OrganizationDto organization, CheckoutType type)
         toDetails,
     required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
+    required TResult Function(num rating, int id) updateRating,
   }) {
     return toDetails(id, organization, type);
   }
@@ -786,6 +792,7 @@ class _$ToDetailsImpl implements _ToDetails {
     TResult? Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult? Function(num rating, int id)? updateRating,
   }) {
     return toDetails?.call(id, organization, type);
   }
@@ -797,6 +804,7 @@ class _$ToDetailsImpl implements _ToDetails {
     TResult Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult Function(num rating, int id)? updateRating,
     required TResult orElse(),
   }) {
     if (toDetails != null) {
@@ -811,6 +819,7 @@ class _$ToDetailsImpl implements _ToDetails {
     required TResult Function(_FetchOrder value) fetchOrder,
     required TResult Function(_ToDetails value) toDetails,
     required TResult Function(_FetchData value) fetch,
+    required TResult Function(_UpdateRating value) updateRating,
   }) {
     return toDetails(this);
   }
@@ -821,6 +830,7 @@ class _$ToDetailsImpl implements _ToDetails {
     TResult? Function(_FetchOrder value)? fetchOrder,
     TResult? Function(_ToDetails value)? toDetails,
     TResult? Function(_FetchData value)? fetch,
+    TResult? Function(_UpdateRating value)? updateRating,
   }) {
     return toDetails?.call(this);
   }
@@ -831,6 +841,7 @@ class _$ToDetailsImpl implements _ToDetails {
     TResult Function(_FetchOrder value)? fetchOrder,
     TResult Function(_ToDetails value)? toDetails,
     TResult Function(_FetchData value)? fetch,
+    TResult Function(_UpdateRating value)? updateRating,
     required TResult orElse(),
   }) {
     if (toDetails != null) {
@@ -847,7 +858,6 @@ abstract class _ToDetails implements OrderDetailsEvent {
   @override
   int get id;
   OrganizationDto get organization;
-  @override
   CheckoutType get type;
 
   /// Create a copy of OrderDetailsEvent
@@ -952,6 +962,7 @@ class _$FetchDataImpl implements _FetchData {
             int id, OrganizationDto organization, CheckoutType type)
         toDetails,
     required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
+    required TResult Function(num rating, int id) updateRating,
   }) {
     return fetch(id, isMore, type);
   }
@@ -963,6 +974,7 @@ class _$FetchDataImpl implements _FetchData {
     TResult? Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult? Function(num rating, int id)? updateRating,
   }) {
     return fetch?.call(id, isMore, type);
   }
@@ -974,6 +986,7 @@ class _$FetchDataImpl implements _FetchData {
     TResult Function(int id, OrganizationDto organization, CheckoutType type)?
         toDetails,
     TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult Function(num rating, int id)? updateRating,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -988,6 +1001,7 @@ class _$FetchDataImpl implements _FetchData {
     required TResult Function(_FetchOrder value) fetchOrder,
     required TResult Function(_ToDetails value) toDetails,
     required TResult Function(_FetchData value) fetch,
+    required TResult Function(_UpdateRating value) updateRating,
   }) {
     return fetch(this);
   }
@@ -998,6 +1012,7 @@ class _$FetchDataImpl implements _FetchData {
     TResult? Function(_FetchOrder value)? fetchOrder,
     TResult? Function(_ToDetails value)? toDetails,
     TResult? Function(_FetchData value)? fetch,
+    TResult? Function(_UpdateRating value)? updateRating,
   }) {
     return fetch?.call(this);
   }
@@ -1008,6 +1023,7 @@ class _$FetchDataImpl implements _FetchData {
     TResult Function(_FetchOrder value)? fetchOrder,
     TResult Function(_ToDetails value)? toDetails,
     TResult Function(_FetchData value)? fetch,
+    TResult Function(_UpdateRating value)? updateRating,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -1026,7 +1042,6 @@ abstract class _FetchData implements OrderDetailsEvent {
   @override
   int? get id;
   bool get isMore;
-  @override
   CheckoutType get type;
 
   /// Create a copy of OrderDetailsEvent
@@ -1034,5 +1049,175 @@ abstract class _FetchData implements OrderDetailsEvent {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FetchDataImplCopyWith<_$FetchDataImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateRatingImplCopyWith<$Res>
+    implements $OrderDetailsEventCopyWith<$Res> {
+  factory _$$UpdateRatingImplCopyWith(
+          _$UpdateRatingImpl value, $Res Function(_$UpdateRatingImpl) then) =
+      __$$UpdateRatingImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({num rating, int id});
+}
+
+/// @nodoc
+class __$$UpdateRatingImplCopyWithImpl<$Res>
+    extends _$OrderDetailsEventCopyWithImpl<$Res, _$UpdateRatingImpl>
+    implements _$$UpdateRatingImplCopyWith<$Res> {
+  __$$UpdateRatingImplCopyWithImpl(
+      _$UpdateRatingImpl _value, $Res Function(_$UpdateRatingImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rating = null,
+    Object? id = null,
+  }) {
+    return _then(_$UpdateRatingImpl(
+      null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as num,
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateRatingImpl implements _UpdateRating {
+  const _$UpdateRatingImpl(this.rating, this.id);
+
+  @override
+  final num rating;
+  @override
+  final int id;
+
+  @override
+  String toString() {
+    return 'OrderDetailsEvent.updateRating(rating: $rating, id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateRatingImpl &&
+            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, rating, id);
+
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateRatingImplCopyWith<_$UpdateRatingImpl> get copyWith =>
+      __$$UpdateRatingImplCopyWithImpl<_$UpdateRatingImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int id, CheckoutType type) fetchOrder,
+    required TResult Function(
+            int id, OrganizationDto organization, CheckoutType type)
+        toDetails,
+    required TResult Function(int? id, bool isMore, CheckoutType type) fetch,
+    required TResult Function(num rating, int id) updateRating,
+  }) {
+    return updateRating(rating, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int id, CheckoutType type)? fetchOrder,
+    TResult? Function(int id, OrganizationDto organization, CheckoutType type)?
+        toDetails,
+    TResult? Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult? Function(num rating, int id)? updateRating,
+  }) {
+    return updateRating?.call(rating, id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int id, CheckoutType type)? fetchOrder,
+    TResult Function(int id, OrganizationDto organization, CheckoutType type)?
+        toDetails,
+    TResult Function(int? id, bool isMore, CheckoutType type)? fetch,
+    TResult Function(num rating, int id)? updateRating,
+    required TResult orElse(),
+  }) {
+    if (updateRating != null) {
+      return updateRating(rating, id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FetchOrder value) fetchOrder,
+    required TResult Function(_ToDetails value) toDetails,
+    required TResult Function(_FetchData value) fetch,
+    required TResult Function(_UpdateRating value) updateRating,
+  }) {
+    return updateRating(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FetchOrder value)? fetchOrder,
+    TResult? Function(_ToDetails value)? toDetails,
+    TResult? Function(_FetchData value)? fetch,
+    TResult? Function(_UpdateRating value)? updateRating,
+  }) {
+    return updateRating?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FetchOrder value)? fetchOrder,
+    TResult Function(_ToDetails value)? toDetails,
+    TResult Function(_FetchData value)? fetch,
+    TResult Function(_UpdateRating value)? updateRating,
+    required TResult orElse(),
+  }) {
+    if (updateRating != null) {
+      return updateRating(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateRating implements OrderDetailsEvent {
+  const factory _UpdateRating(final num rating, final int id) =
+      _$UpdateRatingImpl;
+
+  num get rating;
+  @override
+  int get id;
+
+  /// Create a copy of OrderDetailsEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateRatingImplCopyWith<_$UpdateRatingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

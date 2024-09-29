@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/orders/data/models/rating.dart';
 import '../../../../core/error/failure.dart';
 import '../../../cart/domain/entities/cart_product.dart';
 import '../../domain/repositories/order.repository.dart';
@@ -22,6 +23,15 @@ class OrderRepositoryImpl implements OrdersRepository {
   @override
   Future<Either<Failure, OrdersDto>> getOrderById(int id) async {
     final res = await _ordersRemoteSource.getOrderById(id);
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, void>> updateRating(({num rating, int id}) data) async {
+    final request = RatingDto(rating: data.rating);
+
+    final res = await _ordersRemoteSource.updateRating(request, data.id);
 
     return res;
   }

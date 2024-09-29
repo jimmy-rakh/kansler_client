@@ -10,4 +10,6 @@ class OrderDetailsEvent with _$OrderDetailsEvent {
       {int? id,
       @Default(false) bool isMore,
       @Default(CheckoutType.order) CheckoutType type}) = _FetchData;
+  const factory OrderDetailsEvent.updateRating(num rating ,int id) =
+  _UpdateRating;
 }

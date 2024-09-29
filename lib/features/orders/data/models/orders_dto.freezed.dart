@@ -26,6 +26,11 @@ mixin _$OrdersDto {
   int get price => throw _privateConstructorUsedError;
   List<OrganizationOrders>? get organizationOrders =>
       throw _privateConstructorUsedError;
+  ManagerDto? get agent => throw _privateConstructorUsedError;
+  String? get paymentType => throw _privateConstructorUsedError;
+  String? get paymentStatus => throw _privateConstructorUsedError;
+  String? get deliveryType => throw _privateConstructorUsedError;
+  num? get rating => throw _privateConstructorUsedError;
 
   /// Serializes this OrdersDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,7 +52,14 @@ abstract class $OrdersDtoCopyWith<$Res> {
       String createdAt,
       String? status,
       int price,
-      List<OrganizationOrders>? organizationOrders});
+      List<OrganizationOrders>? organizationOrders,
+      ManagerDto? agent,
+      String? paymentType,
+      String? paymentStatus,
+      String? deliveryType,
+      num? rating});
+
+  $ManagerDtoCopyWith<$Res>? get agent;
 }
 
 /// @nodoc
@@ -70,6 +82,11 @@ class _$OrdersDtoCopyWithImpl<$Res, $Val extends OrdersDto>
     Object? status = freezed,
     Object? price = null,
     Object? organizationOrders = freezed,
+    Object? agent = freezed,
+    Object? paymentType = freezed,
+    Object? paymentStatus = freezed,
+    Object? deliveryType = freezed,
+    Object? rating = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -92,7 +109,41 @@ class _$OrdersDtoCopyWithImpl<$Res, $Val extends OrdersDto>
           ? _value.organizationOrders
           : organizationOrders // ignore: cast_nullable_to_non_nullable
               as List<OrganizationOrders>?,
+      agent: freezed == agent
+          ? _value.agent
+          : agent // ignore: cast_nullable_to_non_nullable
+              as ManagerDto?,
+      paymentType: freezed == paymentType
+          ? _value.paymentType
+          : paymentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentStatus: freezed == paymentStatus
+          ? _value.paymentStatus
+          : paymentStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryType: freezed == deliveryType
+          ? _value.deliveryType
+          : deliveryType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as num?,
     ) as $Val);
+  }
+
+  /// Create a copy of OrdersDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ManagerDtoCopyWith<$Res>? get agent {
+    if (_value.agent == null) {
+      return null;
+    }
+
+    return $ManagerDtoCopyWith<$Res>(_value.agent!, (value) {
+      return _then(_value.copyWith(agent: value) as $Val);
+    });
   }
 }
 
@@ -109,7 +160,15 @@ abstract class _$$OrdersDtoImplCopyWith<$Res>
       String createdAt,
       String? status,
       int price,
-      List<OrganizationOrders>? organizationOrders});
+      List<OrganizationOrders>? organizationOrders,
+      ManagerDto? agent,
+      String? paymentType,
+      String? paymentStatus,
+      String? deliveryType,
+      num? rating});
+
+  @override
+  $ManagerDtoCopyWith<$Res>? get agent;
 }
 
 /// @nodoc
@@ -130,6 +189,11 @@ class __$$OrdersDtoImplCopyWithImpl<$Res>
     Object? status = freezed,
     Object? price = null,
     Object? organizationOrders = freezed,
+    Object? agent = freezed,
+    Object? paymentType = freezed,
+    Object? paymentStatus = freezed,
+    Object? deliveryType = freezed,
+    Object? rating = freezed,
   }) {
     return _then(_$OrdersDtoImpl(
       id: null == id
@@ -152,6 +216,26 @@ class __$$OrdersDtoImplCopyWithImpl<$Res>
           ? _value._organizationOrders
           : organizationOrders // ignore: cast_nullable_to_non_nullable
               as List<OrganizationOrders>?,
+      agent: freezed == agent
+          ? _value.agent
+          : agent // ignore: cast_nullable_to_non_nullable
+              as ManagerDto?,
+      paymentType: freezed == paymentType
+          ? _value.paymentType
+          : paymentType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      paymentStatus: freezed == paymentStatus
+          ? _value.paymentStatus
+          : paymentStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
+      deliveryType: freezed == deliveryType
+          ? _value.deliveryType
+          : deliveryType // ignore: cast_nullable_to_non_nullable
+              as String?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as num?,
     ));
   }
 }
@@ -164,7 +248,12 @@ class _$OrdersDtoImpl implements _OrdersDto {
       required this.createdAt,
       this.status,
       required this.price,
-      final List<OrganizationOrders>? organizationOrders})
+      final List<OrganizationOrders>? organizationOrders,
+      this.agent,
+      this.paymentType,
+      this.paymentStatus,
+      this.deliveryType,
+      this.rating})
       : _organizationOrders = organizationOrders;
 
   factory _$OrdersDtoImpl.fromJson(Map<String, dynamic> json) =>
@@ -190,8 +279,19 @@ class _$OrdersDtoImpl implements _OrdersDto {
   }
 
   @override
+  final ManagerDto? agent;
+  @override
+  final String? paymentType;
+  @override
+  final String? paymentStatus;
+  @override
+  final String? deliveryType;
+  @override
+  final num? rating;
+
+  @override
   String toString() {
-    return 'OrdersDto(id: $id, createdAt: $createdAt, status: $status, price: $price, organizationOrders: $organizationOrders)';
+    return 'OrdersDto(id: $id, createdAt: $createdAt, status: $status, price: $price, organizationOrders: $organizationOrders, agent: $agent, paymentType: $paymentType, paymentStatus: $paymentStatus, deliveryType: $deliveryType, rating: $rating)';
   }
 
   @override
@@ -205,13 +305,31 @@ class _$OrdersDtoImpl implements _OrdersDto {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.price, price) || other.price == price) &&
             const DeepCollectionEquality()
-                .equals(other._organizationOrders, _organizationOrders));
+                .equals(other._organizationOrders, _organizationOrders) &&
+            (identical(other.agent, agent) || other.agent == agent) &&
+            (identical(other.paymentType, paymentType) ||
+                other.paymentType == paymentType) &&
+            (identical(other.paymentStatus, paymentStatus) ||
+                other.paymentStatus == paymentStatus) &&
+            (identical(other.deliveryType, deliveryType) ||
+                other.deliveryType == deliveryType) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, createdAt, status, price,
-      const DeepCollectionEquality().hash(_organizationOrders));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      createdAt,
+      status,
+      price,
+      const DeepCollectionEquality().hash(_organizationOrders),
+      agent,
+      paymentType,
+      paymentStatus,
+      deliveryType,
+      rating);
 
   /// Create a copy of OrdersDto
   /// with the given fields replaced by the non-null parameter values.
@@ -235,7 +353,12 @@ abstract class _OrdersDto implements OrdersDto {
       required final String createdAt,
       final String? status,
       required final int price,
-      final List<OrganizationOrders>? organizationOrders}) = _$OrdersDtoImpl;
+      final List<OrganizationOrders>? organizationOrders,
+      final ManagerDto? agent,
+      final String? paymentType,
+      final String? paymentStatus,
+      final String? deliveryType,
+      final num? rating}) = _$OrdersDtoImpl;
 
   factory _OrdersDto.fromJson(Map<String, dynamic> json) =
       _$OrdersDtoImpl.fromJson;
@@ -250,6 +373,16 @@ abstract class _OrdersDto implements OrdersDto {
   int get price;
   @override
   List<OrganizationOrders>? get organizationOrders;
+  @override
+  ManagerDto? get agent;
+  @override
+  String? get paymentType;
+  @override
+  String? get paymentStatus;
+  @override
+  String? get deliveryType;
+  @override
+  num? get rating;
 
   /// Create a copy of OrdersDto
   /// with the given fields replaced by the non-null parameter values.

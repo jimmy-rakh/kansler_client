@@ -32,6 +32,7 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
       }
     });
     on<_FetchOrder>(_onFetchOrder);
+    on<_UpdateRating>(_updateRating);
     on<_ToDetails>(_onToDetails);
   }
 
@@ -59,6 +60,16 @@ class OrderDetailsBloc extends Bloc<OrderDetailsEvent, OrderDetailsState> {
         ),
       );
     });
+  }
+
+  void _updateRating(_UpdateRating event, Emitter<OrderDetailsState> emit) async {
+
+    final res = await _ordersRepository.updateRating((id:event.id,rating:event.rating));
+
+    res.fold((l) => const _FetchData(), (r) {
+      add(OrderDetailsEvent.fetch(id: event.id));
+    });
+
   }
 
   void _onFetchOrder(_FetchOrder event, Emitter<OrderDetailsState> emit) async {

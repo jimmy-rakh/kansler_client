@@ -7,6 +7,7 @@ import '../../../../core/network/dio_client.dart';
 import '../../../../core/network/models/pagination.dart';
 import '../../../cart/data/models/cart_product_dto.dart';
 import '../models/orders_dto.dart';
+import '../models/rating.dart';
 
 @LazySingleton(as: OrdersRemoteSource)
 class OrdersSourceRemoteImpl implements OrdersRemoteSource {
@@ -37,6 +38,19 @@ class OrdersSourceRemoteImpl implements OrdersRemoteSource {
 
     return res;
   }
+
+  @override
+  Future<Either<Failure, void>> updateRating(
+      RatingDto data, int id) async {
+    final result = await _client.putRequest(
+      '${OrderRemoteKeys.orderApi}/$id',
+      data: data.toJson(),
+    );
+
+    return result;
+  }
+
+
 
   @override
   Future<Either<Failure, ({List<CartProductDto> cartProducts, bool hasNext})>>

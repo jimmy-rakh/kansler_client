@@ -111,8 +111,20 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
+                                            if (order?.agent != null)
+                                              Text(
+                                                'Заказ создан агентом\nАгент : ${order?.organizationOrders![index].address?.agent?.name!}',
+                                              ),
+                                            if (order?.agent != null)
+                                              verticalSpace12,
                                             Text(
-                                              'Организация: ${order?.organizationOrders![index].organization.name!}',
+                                                'Тип оплаты : ${order?.paymentType == "byTransfer" ? "Перечислением" : order?.paymentType == "byCash" ? "Наличными" : order?.paymentType == "byCard" ? "Картой" : ""}'),
+                                            verticalSpace5,
+                                            Text(
+                                                'Способ получение : ${order?.deliveryType == "pickup" ? "Самовывоз" : order?.deliveryType == "delivery" ? "Доставка" : ""}'),
+                                            verticalSpace5,
+                                            const Divider(
+                                              color: Colors.grey,
                                             ),
                                             Text(
                                               'Сумма: ${currencyFormatter.format((order?.organizationOrders![index].price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
@@ -175,68 +187,142 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                               ),
                                             ),
                                             verticalSpace10,
-                                            AppCard(
-                                              borderRadius: 8,
-                                              width: double.maxFinite,
-                                              fillColor: context.background,
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.all(12),
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.start,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      "Ваш менеджер:  ${order?.organizationOrders![index].address?.agent?.name ?? ""}",
-                                                      maxLines: 1,
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                    ),
-                                                    verticalSpace10,
-                                                    const Text(
-                                                      "Оцените пожалуйста\nуровень обслуживание менеджера\nдля улучшения качества работы",
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w400),
-                                                    ),
-                                                    verticalSpace30,
-                                                    RatingBar.builder(
-                                                      initialRating: 2.5,
-                                                      minRating: 1,
-                                                      direction:
-                                                          Axis.horizontal,
-                                                      allowHalfRating: true,
-                                                      itemCount: 5,
-                                                      itemPadding:
-                                                          const EdgeInsets
-                                                              .symmetric(
-                                                              horizontal: 4.0),
-                                                      itemBuilder:
-                                                          (context, _) =>
-                                                              const Icon(
-                                                        Icons.star,
-                                                        color: Colors.amber,
+                                            order?.rating == null
+                                                ? AppCard(
+                                                    borderRadius: 8,
+                                                    width: double.maxFinite,
+                                                    fillColor:
+                                                        context.background,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              12),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .start,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            "Ваш менеджер:  ${order?.organizationOrders![index].address?.agent?.name ?? ""}",
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                          ),
+                                                          verticalSpace10,
+                                                          const Text(
+                                                            "Оцените пожалуйста\nуровень обслуживание менеджера\nдля улучшения качества работы",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                          ),
+                                                          verticalSpace30,
+                                                          RatingBar.builder(
+                                                            initialRating: 2.5,
+                                                            minRating: 1,
+                                                            direction:
+                                                                Axis.horizontal,
+                                                            allowHalfRating:
+                                                                true,
+                                                            itemCount: 5,
+                                                            itemPadding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    horizontal:
+                                                                        4.0),
+                                                            itemBuilder:
+                                                                (context, _) =>
+                                                                    const Icon(
+                                                              Icons.star,
+                                                              color:
+                                                                  Colors.amber,
+                                                            ),
+                                                            onRatingUpdate:
+                                                                (rating) {
+                                                              bloc.add(OrderDetailsEvent
+                                                                  .updateRating(
+                                                                      rating,
+                                                                      order!
+                                                                          .id));
+                                                            },
+                                                          ),
+                                                          verticalSpace30,
+                                                          AppButton(
+                                                            animate: true,
+                                                            width: double
+                                                                .maxFinite,
+                                                            fillColor: context
+                                                                .primaryColorLight,
+                                                            borderRadius: 8,
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .all(12),
+                                                            text: const Text(
+                                                                "Отправить оценку"),
+                                                            onPressed: () {
+                                                              bloc.add(OrderDetailsEvent
+                                                                  .fetchOrder(
+                                                                      order!.id,
+                                                                      type));
+                                                            },
+                                                          )
+                                                        ],
                                                       ),
-                                                      onRatingUpdate: (rating) {
-                                                        print(rating);
-                                                      },
                                                     ),
-                                                    verticalSpace30,
-                                                    AppButton(
-                                                      animate: true,
-                                                      width: double.maxFinite,
-                                                      fillColor:
-                                                      context.primaryColorLight,
-                                                      borderRadius: 8,
-                                                      padding: const EdgeInsets.all(12),
-                                                      text: const Text("Отправить оценку"), onPressed: () {  },
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            )
+                                                  )
+                                                : AppCard(
+                                                    borderRadius: 8,
+                                                    width: double.maxFinite,
+                                                    fillColor:
+                                                        context.background,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              12),
+                                                      child: Column(
+                                                        children: [
+                                                          Text(
+                                                            "Ваш менеджер:  ${order?.organizationOrders![index].address?.agent?.name ?? ""}",
+                                                            maxLines: 1,
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
+                                                          ),
+                                                          verticalSpace10,
+                                                          const Text(
+                                                            "Ваша оценка",
+                                                            style: TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400),
+                                                          ),
+                                                          verticalSpace30,
+                                                          RatingBarIndicator(
+                                                            rating: double
+                                                                .parse(order!
+                                                                    .rating
+                                                                    .toString()),
+                                                            itemBuilder:
+                                                                (context,
+                                                                        index) =>
+                                                                    const Icon(
+                                                              Icons.star,
+                                                              color:
+                                                                  Colors.amber,
+                                                            ),
+                                                            itemCount: 5,
+                                                            itemSize: 50.0,
+                                                            direction:
+                                                                Axis.horizontal,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
                                           ],
                                         ),
                                       ))
@@ -434,7 +520,8 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                               ),
                                                               verticalSpace30,
                                                               RatingBar.builder(
-                                                                initialRating: 2.5,
+                                                                initialRating:
+                                                                    2.5,
                                                                 minRating: 1,
                                                                 direction: Axis
                                                                     .horizontal,
@@ -462,12 +549,19 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                               verticalSpace30,
                                                               AppButton(
                                                                 animate: true,
-                                                                width: double.maxFinite,
-                                                                fillColor:
-                                                                context.primaryColorLight,
+                                                                width: double
+                                                                    .maxFinite,
+                                                                fillColor: context
+                                                                    .primaryColorLight,
                                                                 borderRadius: 8,
-                                                                padding: const EdgeInsets.all(12),
-                                                                text: const Text("Отправить оценку"), onPressed: () {  },
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .all(
+                                                                        12),
+                                                                text: const Text(
+                                                                    "Отправить оценку"),
+                                                                onPressed:
+                                                                    () {},
                                                               )
                                                             ],
                                                           ),

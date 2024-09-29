@@ -17,7 +17,7 @@ class Footer extends HookWidget {
     return AppCard(
       borderRadius: 4,
       fillColor: context.theme.cardColor,
-      height: context.isSmall ? context.height * .5 : context.height * .18,
+      height: context.isSmall ? context.height * .6 : context.height * .18,
       width: context.width,
       child: Padding(
         padding: const EdgeInsets.all(20),
@@ -334,7 +334,6 @@ class Footer extends HookWidget {
                     const Text("График работы Пн-Пт: с 9:00 до 18:00\nСб: с 9:00 до 16:00 Вс: Выходной"),
                   ],
                 ),
-                context.isSmall ? verticalSpace60 : verticalSpace2,
               ],
             ),
           ],

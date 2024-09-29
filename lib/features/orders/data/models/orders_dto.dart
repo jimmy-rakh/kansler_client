@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../profile/data/models/address_dto.dart';
+import '../../../profile/data/models/company_dto.dart';
 
 part 'orders_dto.freezed.dart';
 
@@ -13,6 +14,11 @@ class OrdersDto with _$OrdersDto {
     String? status,
     required int price,
     List<OrganizationOrders>? organizationOrders,
+    ManagerDto? agent,
+    String? paymentType,
+    String? paymentStatus,
+    String? deliveryType,
+    num? rating,
   }) = _OrdersDto;
 
   factory OrdersDto.fromJson(Map<String, dynamic> json) =>

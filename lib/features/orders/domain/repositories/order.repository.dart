@@ -9,6 +9,8 @@ abstract class OrdersRepository {
 
   Future<Either<Failure, OrdersDto>> getOrderById(int id);
 
+  Future<Either<Failure, void>> updateRating(({num rating, int id}) data);
+
   Future<Either<Failure, ({bool hasNext, List<CartProduct> cartProducts})>>
       getOrderProducts(int id, int page);
 
