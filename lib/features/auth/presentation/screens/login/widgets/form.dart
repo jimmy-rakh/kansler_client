@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_multi_formatter/formatters/masked_input_formatter.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_tabbar.dart';
-
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import '../../../../../../core/constants/kaze_icons.dart';
 import '../../../../../../core/constants/spaces.dart';
 import '../../../../../../core/widgets/app_text_field.dart';
@@ -42,7 +43,12 @@ class LoginFormWidget extends HookWidget {
             verticalSpace10,
             AppTextField(
               radius: 0,
-              hint: state.tabIndex == 0 ? '998 ** *** ** **' : 'инн/пнфл',
+              textInputFormatter: [
+                state.tabIndex == 0 ?   MaskTextInputFormatter(
+                    mask: '+998 (##) ### ## ##', filter: {"#": RegExp(r'[0-9]')}) : MaskedInputFormatter('######################')
+
+              ],
+              hint: state.tabIndex == 0 ? '+998 ** *** ** **' : 'инн/пнфл',
               fieldController: bloc.valueController,
               focusNode: bloc.loginFocus,
               prefix: const Icon(KazeIcons.profileBold),

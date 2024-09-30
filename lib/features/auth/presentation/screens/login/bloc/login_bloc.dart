@@ -1,4 +1,5 @@
 import 'package:device_info_plus/device_info_plus.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -119,7 +120,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final token = kIsWeb ? 'web' : await NotificationService.getToken();
 
       final request = AuthRequest(
-        value: address?.cid.toString() ?? valueController.text,
+        value: address?.cid.toString() ?? valueController.text.replaceAll(RegExp(r'[^0-9]'), ''),
         clientType: ClientType.values[state.tabIndex],
         fcmToken: token ?? '',
         device: deviceInfo,
@@ -129,7 +130,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       res.fold(
         (l) => emit(state.copyWith(
           isBusy: false,
-          error: 'По вашему запросу ничего не найдено',
+          error: 'Неправильный формат!\nВведите корректно как указано выще',
         )),
         (r) async {
           try {
@@ -203,9 +204,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     AddressRequest? address;
 
     final request = SendCodeRequest(
-      phoneNumber: phoneController.text.isEmpty
+      phoneNumber: (phoneController.text.isEmpty
           ? valueController.text
-          : phoneController.text,
+          : phoneController.text).replaceAll(RegExp(r'[^0-9]'), ''),
     );
 
     final res = await _authRepository.sendCode(

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:pinput/pinput.dart';
 
+import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../../core/style/pin_theme.dart';
 import '../../../../../core/widgets/app_button.dart';
@@ -30,6 +31,21 @@ class ConfirmCodeSheet extends StatelessWidget {
         height:context.isSmall ? context.height * .3 : 500,
         child: Column(
           children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: IconButton.filled(
+                  style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                  ),
+                  onPressed:() => Navigator.of(context).pop(),
+                  icon: const Icon(KazeIcons.closeCircleOutline),
+                ),
+              ),
+            ),
+
+            verticalSpace60,
             Text(
               'Подтверждение',
               style: context.theme.textTheme.titleMedium,

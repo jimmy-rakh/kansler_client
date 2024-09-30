@@ -78,7 +78,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (!event.isMore) {
       pageNumber = 1;
       request = request.copyWith(pageNumber: 1);
-      emit(SearchState.loadInProgress());
+      emit(const SearchState.loadInProgress());
     } else {
       emit((state as _Success).copyWith(isMoreLoading: true));
     }

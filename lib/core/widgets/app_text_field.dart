@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kansler/core/constants/spaces.dart';
 import 'package:kansler/core/extensions/context.dart';
 
 class AppTextField extends StatelessWidget {
@@ -30,6 +31,7 @@ class AppTextField extends StatelessWidget {
   final EdgeInsets? contentPadding;
   final TextStyle? hintStyle;
   final String? hint;
+  final String? prefixText;
   final bool obscureText;
   final TextStyle? style;
   final TextStyle? labelStyle;
@@ -79,7 +81,7 @@ class AppTextField extends StatelessWidget {
     this.focusedBorderColor,
     this.textAlign = TextAlign.start,
     this.onEditingComplete,
-    this.floatingLabelStyle,
+    this.floatingLabelStyle, this.prefixText,
   });
 
   @override
@@ -117,7 +119,15 @@ class AppTextField extends StatelessWidget {
           prefixIcon: prefix != null
               ? Padding(
                   padding: prefixPadding ?? const EdgeInsets.all(16.0),
-                  child: prefix,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      prefix!,
+                      horizontalSpace10,
+                      Text(prefixText ?? ""),
+                    ],
+                  ),
                 )
               : null,
           suffixIcon: suffix,
