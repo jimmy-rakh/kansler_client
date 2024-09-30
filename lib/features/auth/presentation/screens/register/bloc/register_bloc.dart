@@ -8,15 +8,12 @@ import 'package:kansler/features/auth/data/models/register/address_request.dart'
 import 'package:kansler/features/auth/data/models/register/register_request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
 
-import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/register_step.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
 import '../../../../../home/presentation/blocs/latest/latest_bloc.dart';
 import '../../../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../../../domain/usecases/set_auth_token.usecase.dart';
-import '../../../sheets/confirm_code/confirm_code/confirm_code_bloc.dart';
-import '../../../sheets/confirm_code/confirm_code_sheet.dart';
 import '../../auth/bloc/auth_bloc.dart';
 
 part 'register_state.dart';
@@ -137,19 +134,19 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       // ));
       emit(state.copyWith(isLoading: false));
 
-      final res = await router.showSheet(
-        BlocProvider(
-          create: (context) => getIt<ConfirmCodeBloc>(),
-          child: ConfirmCodeSheet(
-            number: event.phone,
-            requestId: event.requestId,
-          ),
-        ),
-      ) as bool?;
+      // final res = await router.showSheet(
+      //   BlocProvider(
+      //     create: (context) => getIt<ConfirmCodeBloc>(),
+      //     child: ConfirmCodeSheet(
+      //       number: event.phone,
+      //       requestId: event.requestId,
+      //     ),
+      //   ),
+      // ) as bool?;
 
-      if (res != null) {
-        emit((state as _Ready).copyWith(step: RegisterStep.inputLogin));
-      }
+      // if (res != null) {
+      //   emit((state as _Ready).copyWith(step: RegisterStep.inputLogin));
+      // }
     } catch (e) {
       log.e(e.toString());
     }

@@ -1,7 +1,18 @@
 part of 'confirm_code_bloc.dart';
 
+enum ConfirmCodeStatus {
+  initial,
+  loading,
+  success,
+  error,
+}
+
 @freezed
 class ConfirmCodeState with _$ConfirmCodeState {
-  const factory ConfirmCodeState.ready() = _Ready;
-  const factory ConfirmCodeState.loadInProgress() = _LoadInProgress;
+  const factory ConfirmCodeState({
+    @Default(ConfirmCodeStatus.initial) status,
+    @Default(59) int leftSeconds,
+    String? requestId,
+    SendCodeRequest? request,
+  }) = _Initial;
 }
