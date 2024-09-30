@@ -91,6 +91,9 @@ class RegisterFormWidget extends HookWidget {
                   prefix: const Icon(KazeIcons.lockBold),
                   obscureText: showPass,
                   fieldController: bloc.passwordController,
+                  validator: (p0) => (p0?.length ?? 0) < 8
+                      ? 'Пароль должен быть больше 8 символов'
+                      : null,
                   suffix: IconButton(
                     onPressed: () =>
                         bloc.add(const RegisterEvent.showPassToggle()),
