@@ -78,39 +78,42 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         ),
                       ),
                     )
-                  : ClipRRect(
-                      borderRadius: BorderRadius.circular(3),
-                      child: kIsWeb
-                          ? ImageNetwork(
-                              onTap: () => router.push(ProductRoute(
-                                  product: product ?? cartProduct!.product!,
-                                  id: product?.id ?? cartProduct!.product!.id)),
-                              fitWeb: BoxFitWeb.fill,
-                              fitAndroidIos: BoxFit.fill,
-                              onLoading: const SizedBox(),
-                              duration: 0,
-                              image: NetworkConstants.apiBaseUrl +
-                                  (product ?? cartProduct?.product)!.imageUrl!,
-                              height: height,
-                              width: width,
-                              onError: Image.asset(
-                                AppImages.noPhoto,
-                                height: 50,
-                              ))
-                          : CachedNetworkImage(
-                        fit: BoxFit.fitHeight,
-                        height: height,
-                        width: width,
-                        memCacheHeight: 200,
-                        memCacheWidth: 200,
-                        errorListener: (value) => log.e(
-                            '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
-                        imageUrl: NetworkConstants.apiBaseUrl +
-                            (product ?? cartProduct?.product)!.imageUrl!,
-                        errorWidget: (context, url, error) =>
-                            Image.asset(AppImages.noPhoto),
+                  : SizedBox(
+                height: height,
+                    width: width,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(3),
+                        child: kIsWeb
+                            ? ImageNetwork(
+                                onTap: () => router.push(ProductRoute(
+                                    product: product ?? cartProduct!.product!,
+                                    id: product?.id ?? cartProduct!.product!.id)),
+                                onLoading: const SizedBox(),
+                                duration: 0,
+                                fitWeb: BoxFitWeb.scaleDown,
+                                image: NetworkConstants.apiBaseUrl +
+                                    (product ?? cartProduct?.product)!.imageUrl!,
+                                height: height,
+                                width: width,
+                                onError: Image.asset(
+                                  AppImages.noPhoto,
+                                  height: 50,
+                                ))
+                            : CachedNetworkImage(
+                                fit: BoxFit.fitHeight,
+                                height: height,
+                                width: width,
+                                memCacheHeight: 200,
+                                memCacheWidth: 200,
+                                errorListener: (value) => log.e(
+                                    '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
+                                imageUrl: NetworkConstants.apiBaseUrl +
+                                    (product ?? cartProduct?.product)!.imageUrl!,
+                                errorWidget: (context, url, error) =>
+                                    Image.asset(AppImages.noPhoto),
+                              ),
                       ),
-                    ),
+                  ),
               (product ?? cartProduct?.product)?.brand?.name == null
                   ? const SizedBox()
                   : Positioned(
@@ -120,34 +123,34 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          AppCard(
-                            fillColor: context.background,
-                            borderColor: AppColors.grey,
-                            borderRadius: 0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: Text(
-                                "${(product ?? cartProduct?.product)?.brand?.name} ",
-                                maxLines: 1,
-                                style: const TextStyle(fontSize: 10),
-                                overflow: TextOverflow.ellipsis,
+                          Row(
+                            children: [
+                              product?.leftQuantity == 0 ?  const AppCard(
+                                  fillColor: AppColors.red,
+                                  borderColor: AppColors.white,
+                                  borderRadius: 0,child: Padding(
+                                    padding: EdgeInsets.all(4),
+                                    child: Text( "Нет в наличии" ,    maxLines: 1,
+                                      style: TextStyle(fontSize: 10),
+                                      overflow: TextOverflow.ellipsis,),
+                                  )) : const SizedBox(),
+                              horizontalSpace5,
+                              AppCard(
+                                fillColor: context.background,
+                                borderColor: AppColors.grey,
+                                borderRadius: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: Text(
+                                    "${(product ?? cartProduct?.product)?.brand?.name} ",
+                                    maxLines: 1,
+                                    style: const TextStyle(fontSize: 10),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                          // verticalSpace2,
-                          // AppCard(
-                          //   padding: const EdgeInsets.all(6),
-                          //   fillColor: context.background,
-
-                          //   width: width,
-                          //   child: Text(
-                          //     textAlign: TextAlign.end,
-                          //     "${(product ?? cartProduct?.product)?.organization?.name ?? ''} ",
-                          //     maxLines: 1,
-                          //     style: const TextStyle(fontSize: 8),
-                          //     overflow: TextOverflow.ellipsis,
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),
@@ -169,69 +172,110 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
           ),
           verticalSpace8,
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: product?.leftQuantity == 0
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.spaceBetween,
             children: [
               if (product?.price != null)
-                Padding(
-                  padding: const EdgeInsets.only(left: 5),
-                  child: Text(
-                    '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: context.titleSmall,
-                  ),
-                ),
+                product?.leftQuantity == 0
+                    ? const SizedBox()
+                    : Padding(
+                        padding: const EdgeInsets.only(left: 5),
+                        child: Text(
+                          '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.titleSmall,
+                        ),
+                      ),
               (product ?? cartProduct!.product)!.inCart == null
                   ? const SizedBox()
-                  : AppButton(
-                      width: context.isMobile ? context.width * .12 : 50,
-                      fillColor: product?.leftQuantity == 0
-                          ? (product ?? cartProduct!.product)!.inPreorder ??
-                                  false
-                              ? const Color.fromARGB(255, 69, 114, 199)
-                              : const Color.fromARGB(255, 0, 73, 208)
-                          : (product ?? cartProduct!.product)!.inCart ?? false
-                              ? AppColors.red
-                              : context.primary,
-                      text: const Icon(
-                        KazeIcons.cartOutline,
-                        color: AppColors.white,
-                      ),
-                      textColor: AppColors.white,
-                      onPressed: authBloc.state ==
-                              const AuthState.authenticated()
-                          ? () {
-                              onCart.call(product?.leftQuantity == 0
-                                  ? CheckoutType.preorder
-                                  : CheckoutType.order);
-                              if (product?.leftQuantity == 0) {
-                                preorderBloc.add(PreordersEvent.addToPreorders(
-                                    (product ?? cartProduct!.product)!.id, 1));
-                                return;
-                              }
-                              if (!((product ?? cartProduct?.product)?.inCart ??
-                                  true)) {
-                                cartBloc.add(CartEvent.addToCart(
-                                    (product ?? cartProduct!.product)!.id,
-                                    fieldController?.text == null ||
-                                            fieldController?.text == ''
-                                        ? 1
-                                        : int.parse(fieldController!.text)));
-                                return;
-                              }
-                              fieldController?.text = '1';
-                              cartBloc.add(CartEvent.deleteProductInCart(
-                                  (product ?? cartProduct!.product)!.id));
-                            }
-                          : () => router.push(const AuthRoute()),
-                      size: MainAxisSize.min,
-                      margin: const EdgeInsets.only(
-                        right: 10,
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 8),
-                      borderRadius: 4,
-                    ),
+                  : product?.leftQuantity == 0
+                      ? Padding(
+                          padding: const EdgeInsets.only(left: 5,right: 5),
+                          child: AppButton(
+                            borderRadius: 4,
+                            animate: true,
+                            textStyle: const TextStyle(fontSize: 10),
+                            height: 40,
+                            width:context.isSmall ?  180 : 175,
+                            onPressed: authBloc.state ==
+                                    const AuthState.authenticated()
+                                ? () {
+                                    onCart.call(CheckoutType.preorder);
+                                    if (product?.leftQuantity == 0) {
+                                      if (!((product ?? cartProduct?.product)
+                                              ?.inPreorder ??
+                                          false)) {
+                                        preorderBloc.add(
+                                            PreordersEvent.addToPreorders(
+                                                (product ??
+                                                        cartProduct!.product)!
+                                                    .id,
+                                                1));
+                                        return;
+                                      }
+                                      preorderBloc.add(PreordersEvent
+                                          .deleteProductInPreorders(
+                                        (product ?? cartProduct!.product)!.id,
+                                      ));
+                                    }
+                                  }
+                                : () => router.push(const AuthRoute()),
+                            text:
+                                (product ?? cartProduct!.product)!.inPreorder ??
+                                        false
+                                    ? "Удалить с корзины Предзаказа"
+                                    : "Добавить в корзину Предзаказа",
+                            fillColor:
+                                (product ?? cartProduct!.product)!.inPreorder ??
+                                        false
+                                    ? AppColors.red
+                                    : const Color.fromARGB(255, 0, 73, 208),
+                          ),
+                        )
+                      : AppButton(
+                          animate: true,
+                          width: context.isMobile ? context.width * .12 : 50,
+                          fillColor:
+                              (product ?? cartProduct!.product)!.inCart ?? false
+                                  ? AppColors.red
+                                  : context.primary,
+                          text: const Icon(
+                            KazeIcons.cartOutline,
+                            color: AppColors.white,
+                          ),
+                          textColor: AppColors.white,
+                          onPressed: authBloc.state ==
+                                  const AuthState.authenticated()
+                              ? () {
+                                  onCart.call(CheckoutType.order);
+
+                                  if (!((product ?? cartProduct?.product)
+                                          ?.inCart ??
+                                      true)) {
+                                    cartBloc.add(CartEvent.addToCart(
+                                        (product ?? cartProduct!.product)!.id,
+                                        fieldController?.text == null ||
+                                                fieldController?.text == ''
+                                            ? 1
+                                            : int.parse(
+                                                fieldController!.text)));
+                                    return;
+                                  }
+                                  fieldController?.text = '1';
+                                  cartBloc.add(CartEvent.deleteProductInCart(
+                                      (product ?? cartProduct!.product)!.id));
+                                }
+                              : () => router.push(const AuthRoute()),
+                          size: MainAxisSize.min,
+                          margin: const EdgeInsets.only(
+                            right: 10,
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8),
+                          borderRadius: 4,
+                        ),
             ],
           ),
           verticalSpace8,

@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
-
 import '../../../../../app/router.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../domain/entities/product.entity.dart';

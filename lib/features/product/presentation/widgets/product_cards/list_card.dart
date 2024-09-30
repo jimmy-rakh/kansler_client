@@ -433,8 +433,14 @@ class ProductListCard extends HookWidget implements ProductCard {
                     : Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          product?.price == null && cartProduct?.price == null
-                              ? const SizedBox()
+                          product?.price == null && cartProduct?.price == null || product?.leftQuantity == 0
+                              ? const Center(
+                            child: Text(
+                              "Нет в наличии",
+                              style:
+                              TextStyle(color: AppColors.red),
+                            ),
+                          )
                               : Text(
                                   '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                   maxLines: 1,
@@ -554,16 +560,56 @@ class ProductListCard extends HookWidget implements ProductCard {
                                           ],
                                         ),
                                       )
-                                    : const Center(
-                                        child: Text(
-                                          "Нет в наличии",
-                                          style:
-                                              TextStyle(color: AppColors.red),
-                                        ),
-                                      ),
+                                    : const SizedBox(),
                               ),
                           const Spacer(),
-                          AppButton(
+                          (product ?? cartProduct!.product)!.inCart == null
+                              ? const SizedBox()
+                              : product?.leftQuantity == 0
+                              ? Padding(
+                            padding: const EdgeInsets.only(left: 5,right: 5),
+                            child: AppButton(
+                              borderRadius: 4,
+                              animate: true,
+                              textStyle: const TextStyle(fontSize: 10),
+                              height: 35,
+                              width:context.isSmall ?  180 : 175,
+                              onPressed: authBloc.state ==
+                                  const AuthState.authenticated()
+                                  ? () {
+                                onCart.call(CheckoutType.preorder);
+                                if (product?.leftQuantity == 0) {
+                                  if (!((product ?? cartProduct?.product)
+                                      ?.inPreorder ??
+                                      false)) {
+                                    preorderBloc.add(
+                                        PreordersEvent.addToPreorders(
+                                            (product ??
+                                                cartProduct!.product)!
+                                                .id,
+                                            1));
+                                    return;
+                                  }
+                                  preorderBloc.add(PreordersEvent
+                                      .deleteProductInPreorders(
+                                    (product ?? cartProduct!.product)!.id,
+                                  ));
+                                }
+                              }
+                                  : () => router.push(const AuthRoute()),
+                              text:
+                              (product ?? cartProduct!.product)!.inPreorder ??
+                                  false
+                                  ? "Удалить с корзины Предзаказа"
+                                  : "Добавить в корзину Предзаказа",
+                              fillColor:
+                              (product ?? cartProduct!.product)!.inPreorder ??
+                                  false
+                                  ? AppColors.red
+                                  : const Color.fromARGB(255, 0, 73, 208),
+                            ),
+                          )
+                              : AppButton(
                             width: context.isMobile || context.isTablet
                                 ? context.width * .12
                                 : 50,
