@@ -6,4 +6,6 @@ class LoginEvent with _$LoginEvent {
   const factory LoginEvent.showPassToggle() = _ShowPassToggle;
   const factory LoginEvent.init(TabController tabController) = _Init;
   const factory LoginEvent.changeTabIndex(int index) = _ChangeTabIndex;
+  const factory LoginEvent.updateCountdown(int seconds) =
+      _UpdateCountdown;
 }

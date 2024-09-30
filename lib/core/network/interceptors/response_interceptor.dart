@@ -55,7 +55,7 @@ class ResponseInterceptor extends Interceptor {
 
     final exception = ApiException(
       code: err.response?.statusCode,
-      message: err.response?.data['error_code'],
+      message: err.response?.data['error_code'][0],
       requestOptions: err.requestOptions,
     );
 

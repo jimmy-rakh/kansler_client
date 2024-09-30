@@ -1,5 +1,6 @@
+import 'dart:async';
+
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,6 +44,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<_Login>(_onLogIn);
     on<_ShowPassToggle>(_onShowPassToggle);
     on<_ChangeTabIndex>(_onChangeTabIndex);
+    on<_UpdateCountdown>(_onUpdateCountdown);
   }
 
   TextEditingController valueController = TextEditingController();
@@ -53,6 +55,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   final authBloc =
       BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
+
+  Timer? _timer;
 
   void _onLogIn(_Login event, Emitter<LoginState> emit) async {
     emit(state.copyWith(isBusy: true, error: null));
@@ -120,7 +124,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final token = kIsWeb ? 'web' : await NotificationService.getToken();
 
       final request = AuthRequest(
-        value: address?.cid.toString() ?? valueController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+        value: address?.cid.toString() ??
+            valueController.text.replaceAll(RegExp(r'[^0-9]'), ''),
         clientType: ClientType.values[state.tabIndex],
         fcmToken: token ?? '',
         device: deviceInfo,
@@ -205,8 +210,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     final request = SendCodeRequest(
       phoneNumber: (phoneController.text.isEmpty
-          ? valueController.text
-          : phoneController.text).replaceAll(RegExp(r'[^0-9]'), ''),
+              ? valueController.text
+              : phoneController.text)
+          .replaceAll(RegExp(r'[^0-9]'), ''),
     );
 
     final res = await _authRepository.sendCode(
@@ -223,10 +229,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
                     ? phoneController.text
                     : valueController.text,
                 requestId: state.requestId!,
+                request: request,
               ),
             ),
           ) ??
           false;
+
+      _initTimer();
 
       if (confirmed) {
         if (state.addressCid == null) {
@@ -272,5 +281,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final res = await router.push(const MapRoute()) as AddressRequest?;
 
     return res;
+  }
+
+  void _onUpdateCountdown(_UpdateCountdown event, Emitter<LoginState> emit) {
+    emit(state.copyWith(
+        leftSeconds: event.seconds, status: LoginStatus.initial));
+  }
+
+  void _initTimer() {
+    // if (state.leftSeconds != 59) return;
+    int leftSeconds = 59;
+    _timer = Timer.periodic(const Duration(seconds: 1), (tick) {
+      leftSeconds--;
+      if (!isClosed) add(LoginEvent.updateCountdown(leftSeconds));
+
+      if (leftSeconds == 0 || isClosed) {
+        _timer?.cancel();
+        return;
+      }
+    });
   }
 }

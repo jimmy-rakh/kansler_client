@@ -27,6 +27,7 @@ mixin _$LoginState {
   int? get addressId => throw _privateConstructorUsedError;
   String? get requestId => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
+  int get leftSeconds => throw _privateConstructorUsedError;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -52,7 +53,8 @@ abstract class $LoginStateCopyWith<$Res> {
       String? addressCid,
       int? addressId,
       String? requestId,
-      String? error});
+      String? error,
+      int leftSeconds});
 }
 
 /// @nodoc
@@ -81,6 +83,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? addressId = freezed,
     Object? requestId = freezed,
     Object? error = freezed,
+    Object? leftSeconds = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -127,6 +130,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      leftSeconds: null == leftSeconds
+          ? _value.leftSeconds
+          : leftSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -150,7 +157,8 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       String? addressCid,
       int? addressId,
       String? requestId,
-      String? error});
+      String? error,
+      int leftSeconds});
 }
 
 /// @nodoc
@@ -177,6 +185,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? addressId = freezed,
     Object? requestId = freezed,
     Object? error = freezed,
+    Object? leftSeconds = null,
   }) {
     return _then(_$LoginStateImpl(
       status: null == status
@@ -208,6 +217,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
+      leftSeconds: null == leftSeconds
+          ? _value.leftSeconds
+          : leftSeconds // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -226,7 +239,8 @@ class _$LoginStateImpl implements _LoginState {
       this.addressCid,
       this.addressId,
       this.requestId,
-      this.error});
+      this.error,
+      this.leftSeconds = 59});
 
   @override
   @JsonKey()
@@ -257,10 +271,13 @@ class _$LoginStateImpl implements _LoginState {
   final String? requestId;
   @override
   final String? error;
+  @override
+  @JsonKey()
+  final int leftSeconds;
 
   @override
   String toString() {
-    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, hasPass: $hasPass, isExist: $isExist, tabIndex: $tabIndex, addressCid: $addressCid, addressId: $addressId, requestId: $requestId, error: $error)';
+    return 'LoginState(status: $status, isBusy: $isBusy, validated: $validated, showPass: $showPass, hasPass: $hasPass, isExist: $isExist, tabIndex: $tabIndex, addressCid: $addressCid, addressId: $addressId, requestId: $requestId, error: $error, leftSeconds: $leftSeconds)';
   }
 
   @override
@@ -282,7 +299,9 @@ class _$LoginStateImpl implements _LoginState {
                 other.addressId == addressId) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.leftSeconds, leftSeconds) ||
+                other.leftSeconds == leftSeconds));
   }
 
   @override
@@ -298,7 +317,8 @@ class _$LoginStateImpl implements _LoginState {
       addressCid,
       addressId,
       requestId,
-      error);
+      error,
+      leftSeconds);
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -321,7 +341,8 @@ abstract class _LoginState implements LoginState {
       final String? addressCid,
       final int? addressId,
       final String? requestId,
-      final String? error}) = _$LoginStateImpl;
+      final String? error,
+      final int leftSeconds}) = _$LoginStateImpl;
 
   @override
   LoginStatus get status;
@@ -345,6 +366,8 @@ abstract class _LoginState implements LoginState {
   String? get requestId;
   @override
   String? get error;
+  @override
+  int get leftSeconds;
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
@@ -362,6 +385,7 @@ mixin _$LoginEvent {
     required TResult Function() showPassToggle,
     required TResult Function(TabController tabController) init,
     required TResult Function(int index) changeTabIndex,
+    required TResult Function(int seconds) updateCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -370,6 +394,7 @@ mixin _$LoginEvent {
     TResult? Function()? showPassToggle,
     TResult? Function(TabController tabController)? init,
     TResult? Function(int index)? changeTabIndex,
+    TResult? Function(int seconds)? updateCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -378,6 +403,7 @@ mixin _$LoginEvent {
     TResult Function()? showPassToggle,
     TResult Function(TabController tabController)? init,
     TResult Function(int index)? changeTabIndex,
+    TResult Function(int seconds)? updateCountdown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -387,6 +413,7 @@ mixin _$LoginEvent {
     required TResult Function(_ShowPassToggle value) showPassToggle,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTabIndex value) changeTabIndex,
+    required TResult Function(_UpdateCountdown value) updateCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -395,6 +422,7 @@ mixin _$LoginEvent {
     TResult? Function(_ShowPassToggle value)? showPassToggle,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult? Function(_UpdateCountdown value)? updateCountdown,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -403,6 +431,7 @@ mixin _$LoginEvent {
     TResult Function(_ShowPassToggle value)? showPassToggle,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult Function(_UpdateCountdown value)? updateCountdown,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -474,6 +503,7 @@ class _$LoginImpl implements _Login {
     required TResult Function() showPassToggle,
     required TResult Function(TabController tabController) init,
     required TResult Function(int index) changeTabIndex,
+    required TResult Function(int seconds) updateCountdown,
   }) {
     return login();
   }
@@ -485,6 +515,7 @@ class _$LoginImpl implements _Login {
     TResult? Function()? showPassToggle,
     TResult? Function(TabController tabController)? init,
     TResult? Function(int index)? changeTabIndex,
+    TResult? Function(int seconds)? updateCountdown,
   }) {
     return login?.call();
   }
@@ -496,6 +527,7 @@ class _$LoginImpl implements _Login {
     TResult Function()? showPassToggle,
     TResult Function(TabController tabController)? init,
     TResult Function(int index)? changeTabIndex,
+    TResult Function(int seconds)? updateCountdown,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -511,6 +543,7 @@ class _$LoginImpl implements _Login {
     required TResult Function(_ShowPassToggle value) showPassToggle,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTabIndex value) changeTabIndex,
+    required TResult Function(_UpdateCountdown value) updateCountdown,
   }) {
     return login(this);
   }
@@ -522,6 +555,7 @@ class _$LoginImpl implements _Login {
     TResult? Function(_ShowPassToggle value)? showPassToggle,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult? Function(_UpdateCountdown value)? updateCountdown,
   }) {
     return login?.call(this);
   }
@@ -533,6 +567,7 @@ class _$LoginImpl implements _Login {
     TResult Function(_ShowPassToggle value)? showPassToggle,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult Function(_UpdateCountdown value)? updateCountdown,
     required TResult orElse(),
   }) {
     if (login != null) {
@@ -591,6 +626,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
     required TResult Function() showPassToggle,
     required TResult Function(TabController tabController) init,
     required TResult Function(int index) changeTabIndex,
+    required TResult Function(int seconds) updateCountdown,
   }) {
     return showPassToggle();
   }
@@ -602,6 +638,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
     TResult? Function()? showPassToggle,
     TResult? Function(TabController tabController)? init,
     TResult? Function(int index)? changeTabIndex,
+    TResult? Function(int seconds)? updateCountdown,
   }) {
     return showPassToggle?.call();
   }
@@ -613,6 +650,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
     TResult Function()? showPassToggle,
     TResult Function(TabController tabController)? init,
     TResult Function(int index)? changeTabIndex,
+    TResult Function(int seconds)? updateCountdown,
     required TResult orElse(),
   }) {
     if (showPassToggle != null) {
@@ -628,6 +666,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
     required TResult Function(_ShowPassToggle value) showPassToggle,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTabIndex value) changeTabIndex,
+    required TResult Function(_UpdateCountdown value) updateCountdown,
   }) {
     return showPassToggle(this);
   }
@@ -639,6 +678,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
     TResult? Function(_ShowPassToggle value)? showPassToggle,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult? Function(_UpdateCountdown value)? updateCountdown,
   }) {
     return showPassToggle?.call(this);
   }
@@ -650,6 +690,7 @@ class _$ShowPassToggleImpl implements _ShowPassToggle {
     TResult Function(_ShowPassToggle value)? showPassToggle,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult Function(_UpdateCountdown value)? updateCountdown,
     required TResult orElse(),
   }) {
     if (showPassToggle != null) {
@@ -735,6 +776,7 @@ class _$InitImpl implements _Init {
     required TResult Function() showPassToggle,
     required TResult Function(TabController tabController) init,
     required TResult Function(int index) changeTabIndex,
+    required TResult Function(int seconds) updateCountdown,
   }) {
     return init(tabController);
   }
@@ -746,6 +788,7 @@ class _$InitImpl implements _Init {
     TResult? Function()? showPassToggle,
     TResult? Function(TabController tabController)? init,
     TResult? Function(int index)? changeTabIndex,
+    TResult? Function(int seconds)? updateCountdown,
   }) {
     return init?.call(tabController);
   }
@@ -757,6 +800,7 @@ class _$InitImpl implements _Init {
     TResult Function()? showPassToggle,
     TResult Function(TabController tabController)? init,
     TResult Function(int index)? changeTabIndex,
+    TResult Function(int seconds)? updateCountdown,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -772,6 +816,7 @@ class _$InitImpl implements _Init {
     required TResult Function(_ShowPassToggle value) showPassToggle,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTabIndex value) changeTabIndex,
+    required TResult Function(_UpdateCountdown value) updateCountdown,
   }) {
     return init(this);
   }
@@ -783,6 +828,7 @@ class _$InitImpl implements _Init {
     TResult? Function(_ShowPassToggle value)? showPassToggle,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult? Function(_UpdateCountdown value)? updateCountdown,
   }) {
     return init?.call(this);
   }
@@ -794,6 +840,7 @@ class _$InitImpl implements _Init {
     TResult Function(_ShowPassToggle value)? showPassToggle,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult Function(_UpdateCountdown value)? updateCountdown,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -888,6 +935,7 @@ class _$ChangeTabIndexImpl implements _ChangeTabIndex {
     required TResult Function() showPassToggle,
     required TResult Function(TabController tabController) init,
     required TResult Function(int index) changeTabIndex,
+    required TResult Function(int seconds) updateCountdown,
   }) {
     return changeTabIndex(index);
   }
@@ -899,6 +947,7 @@ class _$ChangeTabIndexImpl implements _ChangeTabIndex {
     TResult? Function()? showPassToggle,
     TResult? Function(TabController tabController)? init,
     TResult? Function(int index)? changeTabIndex,
+    TResult? Function(int seconds)? updateCountdown,
   }) {
     return changeTabIndex?.call(index);
   }
@@ -910,6 +959,7 @@ class _$ChangeTabIndexImpl implements _ChangeTabIndex {
     TResult Function()? showPassToggle,
     TResult Function(TabController tabController)? init,
     TResult Function(int index)? changeTabIndex,
+    TResult Function(int seconds)? updateCountdown,
     required TResult orElse(),
   }) {
     if (changeTabIndex != null) {
@@ -925,6 +975,7 @@ class _$ChangeTabIndexImpl implements _ChangeTabIndex {
     required TResult Function(_ShowPassToggle value) showPassToggle,
     required TResult Function(_Init value) init,
     required TResult Function(_ChangeTabIndex value) changeTabIndex,
+    required TResult Function(_UpdateCountdown value) updateCountdown,
   }) {
     return changeTabIndex(this);
   }
@@ -936,6 +987,7 @@ class _$ChangeTabIndexImpl implements _ChangeTabIndex {
     TResult? Function(_ShowPassToggle value)? showPassToggle,
     TResult? Function(_Init value)? init,
     TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult? Function(_UpdateCountdown value)? updateCountdown,
   }) {
     return changeTabIndex?.call(this);
   }
@@ -947,6 +999,7 @@ class _$ChangeTabIndexImpl implements _ChangeTabIndex {
     TResult Function(_ShowPassToggle value)? showPassToggle,
     TResult Function(_Init value)? init,
     TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult Function(_UpdateCountdown value)? updateCountdown,
     required TResult orElse(),
   }) {
     if (changeTabIndex != null) {
@@ -965,5 +1018,164 @@ abstract class _ChangeTabIndex implements LoginEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeTabIndexImplCopyWith<_$ChangeTabIndexImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateCountdownImplCopyWith<$Res> {
+  factory _$$UpdateCountdownImplCopyWith(_$UpdateCountdownImpl value,
+          $Res Function(_$UpdateCountdownImpl) then) =
+      __$$UpdateCountdownImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int seconds});
+}
+
+/// @nodoc
+class __$$UpdateCountdownImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$UpdateCountdownImpl>
+    implements _$$UpdateCountdownImplCopyWith<$Res> {
+  __$$UpdateCountdownImplCopyWithImpl(
+      _$UpdateCountdownImpl _value, $Res Function(_$UpdateCountdownImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? seconds = null,
+  }) {
+    return _then(_$UpdateCountdownImpl(
+      null == seconds
+          ? _value.seconds
+          : seconds // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateCountdownImpl implements _UpdateCountdown {
+  const _$UpdateCountdownImpl(this.seconds);
+
+  @override
+  final int seconds;
+
+  @override
+  String toString() {
+    return 'LoginEvent.updateCountdown(seconds: $seconds)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateCountdownImpl &&
+            (identical(other.seconds, seconds) || other.seconds == seconds));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, seconds);
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateCountdownImplCopyWith<_$UpdateCountdownImpl> get copyWith =>
+      __$$UpdateCountdownImplCopyWithImpl<_$UpdateCountdownImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() login,
+    required TResult Function() showPassToggle,
+    required TResult Function(TabController tabController) init,
+    required TResult Function(int index) changeTabIndex,
+    required TResult Function(int seconds) updateCountdown,
+  }) {
+    return updateCountdown(seconds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? login,
+    TResult? Function()? showPassToggle,
+    TResult? Function(TabController tabController)? init,
+    TResult? Function(int index)? changeTabIndex,
+    TResult? Function(int seconds)? updateCountdown,
+  }) {
+    return updateCountdown?.call(seconds);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? login,
+    TResult Function()? showPassToggle,
+    TResult Function(TabController tabController)? init,
+    TResult Function(int index)? changeTabIndex,
+    TResult Function(int seconds)? updateCountdown,
+    required TResult orElse(),
+  }) {
+    if (updateCountdown != null) {
+      return updateCountdown(seconds);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Login value) login,
+    required TResult Function(_ShowPassToggle value) showPassToggle,
+    required TResult Function(_Init value) init,
+    required TResult Function(_ChangeTabIndex value) changeTabIndex,
+    required TResult Function(_UpdateCountdown value) updateCountdown,
+  }) {
+    return updateCountdown(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Login value)? login,
+    TResult? Function(_ShowPassToggle value)? showPassToggle,
+    TResult? Function(_Init value)? init,
+    TResult? Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult? Function(_UpdateCountdown value)? updateCountdown,
+  }) {
+    return updateCountdown?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Login value)? login,
+    TResult Function(_ShowPassToggle value)? showPassToggle,
+    TResult Function(_Init value)? init,
+    TResult Function(_ChangeTabIndex value)? changeTabIndex,
+    TResult Function(_UpdateCountdown value)? updateCountdown,
+    required TResult orElse(),
+  }) {
+    if (updateCountdown != null) {
+      return updateCountdown(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCountdown implements LoginEvent {
+  const factory _UpdateCountdown(final int seconds) = _$UpdateCountdownImpl;
+
+  int get seconds;
+
+  /// Create a copy of LoginEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateCountdownImplCopyWith<_$UpdateCountdownImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
