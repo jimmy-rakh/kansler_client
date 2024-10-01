@@ -90,7 +90,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                     id: product?.id ?? cartProduct!.product!.id)),
                                 onLoading: const SizedBox(),
                                 duration: 0,
-                                fitWeb: BoxFitWeb.scaleDown,
+                                fitWeb: BoxFitWeb.contain,
                                 image: NetworkConstants.apiBaseUrl +
                                     (product ?? cartProduct?.product)!.imageUrl!,
                                 height: height,
@@ -100,11 +100,9 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                   height: 50,
                                 ))
                             : CachedNetworkImage(
-                                fit: BoxFit.fitHeight,
-                                height: height,
+                                fit: BoxFit.contain,
                                 width: width,
-                                memCacheHeight: 200,
-                                memCacheWidth: 200,
+                                memCacheWidth: 500,
                                 errorListener: (value) => log.e(
                                     '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
                                 imageUrl: NetworkConstants.apiBaseUrl +
@@ -192,13 +190,12 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                   ? const SizedBox()
                   : product?.leftQuantity == 0
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 5,right: 5),
+                          padding: const EdgeInsets.only(left: 4,right: 4),
                           child: AppButton(
                             borderRadius: 4,
                             animate: true,
-                            textStyle: const TextStyle(fontSize: 10),
+                            textStyle:  TextStyle(fontSize:context.isSmall ? 9.1 : 10),
                             height: 40,
-                            width:context.isSmall ?  180 : 175,
                             onPressed: authBloc.state ==
                                     const AuthState.authenticated()
                                 ? () {

@@ -32,9 +32,10 @@ extension BuildContextEntension<T> on BuildContext {
 
   bool get isMobile => mq.size.width <= 500.0;
 
-  bool get isTablet => mq.size.width <= 1024.0 && mq.size.width >= 850.0;
+  bool get isTablet => mq.size.width <= 1034.0 && mq.size.width >= 850.0;
 
   bool get isSmallTablet => mq.size.width < 650.0 && mq.size.width > 500.0;
+
 
   bool get isDesktop => mq.size.width >= 1300.0;
 

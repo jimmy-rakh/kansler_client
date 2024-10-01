@@ -64,6 +64,7 @@ class DiscountsWidget extends HookWidget {
                   }
 
                   return ListView.separated(
+                    physics: context.isSmall ? null : const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     controller: bloc.controllerProducts,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
