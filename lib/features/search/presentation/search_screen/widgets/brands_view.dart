@@ -53,6 +53,9 @@ class BrandsView extends HookWidget {
                             : brnds.add(brand.id);
                         searchBloc.add(SearchEvent.addFilter(
                             data.copyWith(brands: brnds)));
+                        searchBloc.add(
+                            const SearchEvent
+                                .setBaseView());
                       },
                     ),
                   ),

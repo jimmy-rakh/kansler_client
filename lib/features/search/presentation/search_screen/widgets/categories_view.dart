@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import '../../../../../app/router.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../categories/presentation/screens/category/bloc/categories_bloc.dart';
 import '../../../../categories/presentation/screens/category/widgets/card.dart';
@@ -44,6 +45,9 @@ class CategoriesView extends HookWidget {
                       : data.add(categories[index].id);
                   searchBloc.add(SearchEvent.addFilter(
                       filterData!.copyWith(categories: data, brands: [])));
+                  searchBloc.add(
+                      const SearchEvent
+                          .setBaseView());
                 },
               ),
               notFound: () => const SizedBox(),

@@ -59,7 +59,7 @@ class ConfirmCodeSheet extends HookWidget {
                 ),
               ),
             ),
-            verticalSpace60,
+            verticalSpace30,
             Text(
               'Подтверждение',
               style: context.theme.textTheme.titleMedium,
@@ -105,6 +105,11 @@ class ConfirmCodeSheet extends HookWidget {
               errorPinTheme: defaultPinTheme.copyBorderWith(
                 border: Border.all(color: Colors.redAccent),
               ),
+            ),
+            verticalSpace30,
+            Text(
+              '    Разрешите определить геолокацию\nИначе вы не сможете регистрироватся!',
+              style: context.theme.textTheme.titleSmall?.copyWith(color: Colors.orange),
             ),
             verticalSpace35,
             AppButton(

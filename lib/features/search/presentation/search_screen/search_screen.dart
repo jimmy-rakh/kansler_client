@@ -17,7 +17,9 @@ import '../../../../app/router.dart';
 import '../../../../core/constants/app_illustrations.dart';
 import '../../../../core/constants/kaze_icons.dart';
 import '../../../../core/constants/spaces.dart';
+import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/app_button.dart';
+import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
@@ -117,7 +119,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           )
                         : const SizedBox(),
                     context.isSmall ? horizontalSpace8 : const SizedBox(),
-                    GestureDetector(
+                    context.isSmall
+                        ? GestureDetector(
                       onTap: () => bloc.add(const SearchEvent.changeListType()),
                       child: Container(
                         padding: const EdgeInsets.all(5),
@@ -133,7 +136,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                   : KazeIcons.sliderVerticalOutline,
                         )),
                       ),
-                    ),
+                    )
+                        : const SizedBox(),
                     horizontalSpace12
                   ],
                   child: AppTextField(
@@ -176,13 +180,60 @@ class _SearchScreenState extends State<SearchScreen> {
                                 shrinkWrap: true,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(16),
+                                    padding: const EdgeInsets.only(left: 12,top: 12),
                                     child: Text(
                                       'Фильтр',
                                       style: context.titleLarge,
                                     ),
                                   ),
-                                  verticalSpace12,
+                                  Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Row(
+                                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                      children: [
+                                      Text(
+                                        'Стиль просмотра',
+                                        style: context.titleSmall,
+                                      ),
+                                      Row(
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () => bloc.add(const SearchEvent.changeListType()),
+                                            child: Container(
+                                              padding: const EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(4),
+                                                color: context.background,
+                                              ),
+                                              child: state.whenOrNull(
+                                                success: (products, filterData, isList, isMoreLoading,
+                                                    activePage, organizations) =>
+                                               Icon(KazeIcons.sliderVerticalOutline,color: isList ? context.primary : AppColors.white,)
+
+                                              ),
+                                            ),
+                                          ),
+                                          horizontalSpace5,
+                                          GestureDetector(
+                                            onTap: () => bloc.add(const SearchEvent.changeListType()),
+                                            child: Container(
+                                              padding: const EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(4),
+                                                color: context.background,
+                                              ),
+                                              child: state.whenOrNull(
+                                                  success: (products, filterData, isList, isMoreLoading,
+                                                      activePage, organizations) =>
+                                                      Icon(KazeIcons.grid2Outline,color: !isList ? context.primary : AppColors.white,)
+
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],),
+                                  ),
                                   AnimatedSwitcher(
                                     duration: Durations.medium2,
                                     child: state.whenOrNull(
@@ -418,14 +469,14 @@ class _SearchScreenState extends State<SearchScreen> {
                                                   ),
                                                   verticalSpace24,
                                                   SizedBox(
-                                                      height: 100,
+                                                      height: 80,
                                                       child: activePage == 0
                                                           ? Padding(
                                                               padding:
                                                                   const EdgeInsets
                                                                       .symmetric(
                                                                       vertical:
-                                                                          24,
+                                                                          12,
                                                                       horizontal:
                                                                           16),
                                                               child: Row(

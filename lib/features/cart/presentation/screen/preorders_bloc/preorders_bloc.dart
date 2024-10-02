@@ -23,7 +23,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
     on<_Retry>(_onRetry);
     on<_AddToPreorders>(_onAddToPreorders);
     on<_DeleteProductInPreorders>(_onDeleteProductInPreorders);
-    on<_DeleteProductsInPreorders>(_onDeleteProductsInPreorders);
     on<_UpdateProductInPreorders>(_onUpdateProductInPreorders);
     on<_GetPreordersPrice>(_onGetPreordersPrice);
     on<_GetPreordersProducts>(_onGetPreordersProducts);

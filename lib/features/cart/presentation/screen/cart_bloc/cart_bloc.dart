@@ -41,7 +41,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<_Retry>(_onRetry);
     on<_AddToCart>(_onAddToCart);
     on<_DeleteProductInCart>(_onDeleteProductInCart);
-    on<_DeleteProductsInCart>(_onDeleteProductsInCart);
     on<_UpdateProductInCart>(_onUpdateProductInCart);
     on<_GetCartPrice>(_onGetCartPrice);
     on<_GetCartProducts>(_onGetCartProducts);

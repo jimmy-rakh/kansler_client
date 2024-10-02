@@ -25,98 +25,132 @@ class LoginFormWidget extends HookWidget {
       return null;
     }, const []);
 
-    return Column(
-      children: [
-        AppTabBar(
-          tabController: tabController,
-          tabList: const ['Физ. лицо', 'Юр. лицо'],
-          indicatorPadding: EdgeInsets.zero,
-          labelPadding: const EdgeInsets.symmetric(vertical: 10),
-          mainRadius: 0,
-        ),
-        verticalSpace16,
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(state.tabIndex == 0 ? 'Введите номер телефона' : 'Введите инн/пнфл',),
-            verticalSpace10,
+    return Form(
+      key: bloc.formKey,
+      child: Column(
+        children: [
+          AppTabBar(
+            tabController: tabController,
+            tabList: const ['Физ. лицо', 'Юр. лицо'],
+            indicatorPadding: EdgeInsets.zero,
+            labelPadding: const EdgeInsets.symmetric(vertical: 10),
+            mainRadius: 0,
+          ),
+          verticalSpace16,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                state.tabIndex == 0
+                    ? 'Введите номер телефона'
+                    : 'Введите инн/пнфл',
+              ),
+              verticalSpace10,
+              AppTextField(
+                radius: 0,
+                textInputFormatter: [
+                  state.tabIndex == 0
+                      ? MaskTextInputFormatter(
+                      mask: '+998 (##) ### ## ##',
+                      filter: {"#": RegExp(r'[0-9]')})
+                      : MaskedInputFormatter('######################')
+                ],
+                validator: (v) {
+                  print(v!.length);
+                  return state.tabIndex == 0 ? v?.trim().isEmpty ?? true
+                      ? 'Поле не может быть пустым'
+                      : v!.length == 19
+                      ? null
+                      : 'Номер должен содержать не менее 12-ти цифр'
+                      : v?.trim().isEmpty ?? true
+                      ? 'Поле не может быть пустым'
+                      : v!.length == 9
+                      ? null
+                      : 'Номер должен содержать не менее 9-ти цифр';
+                },
+                hint: state.tabIndex == 0 ? '+998 ** *** ** **' : 'инн/пнфл',
+                fieldController: bloc.valueController,
+                focusNode: bloc.loginFocus,
+                prefix: const Icon(KazeIcons.profileBold),
+                textInputType: TextInputType.phone,
+                hintStyle: context.bodyLarge!.copyWith(
+                  color: context.colorScheme.inverseSurface,
+                ),
+              ),
+            ],
+          ),
+          if (state.tabIndex == 1 &&
+              !state.hasPass &&
+              state.requestId != null &&
+              bloc.valueController.text.isNotEmpty) ...[
+            verticalSpace12,
             AppTextField(
-              radius: 0,
-              textInputFormatter: [
-                state.tabIndex == 0 ?   MaskTextInputFormatter(
-                    mask: '+998 (##) ### ## ##', filter: {"#": RegExp(r'[0-9]')}) : MaskedInputFormatter('######################')
-
-              ],
-              hint: state.tabIndex == 0 ? '+998 ** *** ** **' : 'инн/пнфл',
-              fieldController: bloc.valueController,
-              focusNode: bloc.loginFocus,
-              prefix: const Icon(KazeIcons.profileBold),
+              validator: (v) {
+                return state.tabIndex == 0 ? v?.trim().isEmpty ?? true
+                    ? 'Поле не может быть пустым'
+                    : v!.length == 12
+                    ? null
+                    : 'Номер должен содержать не менее 12-ти цифр'
+                    : v?.trim().isEmpty ?? true
+                    ? 'Поле не может быть пустым'
+                    : v!.length == 9
+                    ? null
+                    : 'Номер должен содержать не менее 9-ти цифр';
+              },
+              hint: 'Введите номер',
+              fieldController: bloc.phoneController,
+              prefix: const Icon(Icons.phone),
               textInputType: TextInputType.number,
               hintStyle: context.bodyLarge!.copyWith(
                 color: context.colorScheme.inverseSurface,
               ),
             ),
           ],
-        ),
-        if (state.tabIndex == 1 &&
-            !state.hasPass &&
-            state.requestId != null &&
-            bloc.valueController.text.isNotEmpty) ...[
-          verticalSpace12,
-          AppTextField(
-            hint: 'Введите номер',
-            fieldController: bloc.phoneController,
-            prefix: const Icon(Icons.phone),
-            textInputType: TextInputType.number,
-            hintStyle: context.bodyLarge!.copyWith(
-              color: context.colorScheme.inverseSurface,
-            ),
-          ),
-        ],
-        if (state.hasPass) ...[
-          verticalSpace12,
-          AppTextField(
-            radius: 0,
-            hint: 'Введите логин',
-            fieldController: bloc.usernameController,
-            prefix: const Icon(KazeIcons.profileBold),
-            hintStyle: context.bodyLarge!.copyWith(
-              color: context.colorScheme.inverseSurface,
-            ),
-          ),
-          verticalSpace12,
-          AppTextField(
-            hint: 'Введите пароль',
-            fieldController: bloc.passController,
-            prefix: const Icon(KazeIcons.lockBold),
-            obscureText: state.showPass,
-            suffix: IconButton(
-              onPressed: () => bloc.add(const LoginEvent.showPassToggle()),
-              icon: Icon(
-                state.showPass
-                    ? KazeIcons.eyeSlashOutline
-                    : KazeIcons.eyeOutline,
+          if (state.hasPass) ...[
+            verticalSpace12,
+            AppTextField(
+              radius: 0,
+              hint: 'Введите логин',
+              fieldController: bloc.usernameController,
+              prefix: const Icon(KazeIcons.profileBold),
+              hintStyle: context.bodyLarge!.copyWith(
+                color: context.colorScheme.inverseSurface,
               ),
             ),
-            hintStyle: context.bodyLarge!.copyWith(
-              color: context.colorScheme.inverseSurface,
-            ),
-          ),
-        ],
-        if (state.status == LoginStatus.initial) ...[
-          verticalSpace12,
-          Visibility(
-            visible: state.error != null,
-            child: Text(
-              state.error ?? '',
-              style: context.theme.textTheme.bodyLarge!.copyWith(
-                color: Colors.red,
+            verticalSpace12,
+            AppTextField(
+              hint: 'Введите пароль',
+              fieldController: bloc.passController,
+              prefix: const Icon(KazeIcons.lockBold),
+              obscureText: state.showPass,
+              suffix: IconButton(
+                onPressed: () => bloc.add(const LoginEvent.showPassToggle()),
+                icon: Icon(
+                  state.showPass
+                      ? KazeIcons.eyeSlashOutline
+                      : KazeIcons.eyeOutline,
+                ),
+              ),
+              hintStyle: context.bodyLarge!.copyWith(
+                color: context.colorScheme.inverseSurface,
               ),
             ),
-          ),
+          ],
+          if (state.status == LoginStatus.initial) ...[
+            verticalSpace12,
+            Visibility(
+              visible: state.error != null,
+              child: Text(
+                state.error ?? '',
+                style: context.theme.textTheme.bodyLarge!.copyWith(
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ],
         ],
-      ],
+      ),
     );
   }
 }

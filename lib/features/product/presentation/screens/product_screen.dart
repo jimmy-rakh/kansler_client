@@ -378,18 +378,29 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                       textColor: AppColors.white,
                                                       onPressed: authBloc.state == const AuthState.authenticated()
                                                           ? () {
-                                                        if ((product).leftQuantity >=
+                                                        if ((product)
+                                                            .leftQuantity >=
                                                             int.parse(bloc
-                                                                .fieldController.text)) {
-                                                          bloc.add(const DetailsEvent
-                                                              .addToCart());
-                                                          FocusScope.of(context)
+                                                                .fieldController
+                                                                .text)) {
+                                                          bloc.add(
+                                                              const DetailsEvent
+                                                                  .addToCart());
+                                                          FocusScope.of(
+                                                              context)
                                                               .unfocus();
                                                         } else {
-                                                          bloc.add(const DetailsEvent
-                                                              .addToPreorder());
-
-                                                          FocusScope.of(context)
+                                                          router.navigatorKey
+                                                              .currentContext!
+                                                              .showToast(
+                                                              'Недостаточно кол-во в складе');
+                                                          bloc.fieldController
+                                                              .text =
+                                                              (product)
+                                                                  .leftQuantity
+                                                                  .toString();
+                                                          FocusScope.of(
+                                                              context)
                                                               .unfocus();
                                                         }
                                                       }

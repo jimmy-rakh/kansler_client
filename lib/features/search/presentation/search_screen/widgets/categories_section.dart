@@ -30,7 +30,7 @@ class CategoriesSection extends HookWidget {
         AppCard(
           width: double.maxFinite,
           fillColor: context.background,
-          borderRadius: 0,
+          borderRadius: 4,
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
@@ -68,8 +68,8 @@ class CategoriesSection extends HookWidget {
               verticalSpace8,
               AppButton(
                 text: 'Выбрать',
-                padding: const EdgeInsets.symmetric(vertical: 12),
-                borderRadius: 0,
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                borderRadius: 4,
                 fillColor: context.cardColor,
                 width: 120,
                 onPressed: () => bloc.add(const SearchEvent.chooseCategories()),
