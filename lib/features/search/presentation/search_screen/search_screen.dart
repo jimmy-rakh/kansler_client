@@ -329,6 +329,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                               child:
                                                                   DropdownButton<
                                                                       String>(
+                                                                    isExpanded:true,
                                                                 dropdownColor:
                                                                     context
                                                                         .background,
@@ -545,22 +546,21 @@ class _SearchScreenState extends State<SearchScreen> {
                                       padding: const EdgeInsets.fromLTRB(
                                           15, 0, 15, 120),
                                       shrinkWrap: !kIsWeb,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                              crossAxisCount:
-                                                  currentWidth < 1400 &&
-                                                          currentWidth > 1200
-                                                      ? 4
-                                                      : currentWidth < 1300 &&
-                                                              currentWidth > 700
-                                                          ? 3
-                                                          : currentWidth < 600
-                                                              ? 2
-                                                              : crossCount,
-                                              childAspectRatio:
-                                                  currentWidth < 400 ? .5 : .6,
-                                              crossAxisSpacing: 10,
-                                              mainAxisSpacing: 1),
+                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: currentWidth < 1300 && currentWidth > 700
+                                        ? context.isTablet
+                                        ? 2
+                                        : 3
+                                        : currentWidth < 600
+                                        ? 2
+                                        : 4,
+                                    childAspectRatio:  currentWidth < 400
+                                        ? .5
+                                        : context.isTablet
+                                        ? .7
+                                        : .6,
+                                    crossAxisSpacing: 5,
+                                    mainAxisSpacing: 1),
                                       itemCount: products.length,
                                       itemBuilder: (context, index) =>
                                           ProductCard.grid(

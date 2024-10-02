@@ -12,7 +12,7 @@ class SearchEntity {
     required this.title,
     this.organizationId,
     this.brands = const [],
-    this.categories = const [17],
+    this.categories = const [],
     this.priceFrom,
     this.priceTo,
     this.orderBy = 'created_at',

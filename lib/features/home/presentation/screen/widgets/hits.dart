@@ -62,7 +62,9 @@ class HitsWidget extends HookWidget {
                   }
 
                   return ListView.separated(
+                    physics: context.isSmall ? null : const NeverScrollableScrollPhysics(),
                     controller: bloc.controllerProducts,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
                     scrollDirection: Axis.horizontal,
                     itemCount: products.length,
                     separatorBuilder: (context, index) => horizontalSpace12,

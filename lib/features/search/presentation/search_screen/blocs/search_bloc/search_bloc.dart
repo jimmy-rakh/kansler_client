@@ -135,7 +135,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     final products = currentState.products!.map((e) {
       if (e.id == event.product.id) {
-        return event.product.copyWith(inCart: !event.product.inCart!);
+        return event.product.copyWith(inCart: !event.product.inCart!,inPreorder: !event.product.inPreorder!);
       }
       return e;
     }).toList();

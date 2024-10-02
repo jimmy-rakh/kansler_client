@@ -148,9 +148,12 @@ class _AppButtonState extends State<AppButton> with TickerProviderStateMixin {
                       ? CupertinoActivityIndicator(color: widget.loadingColor)
                       : widget.text is Widget
                           ? widget.text
-                          : Text(widget.text,
-                              style: widget.textStyle
-                                  .copyWith(color: widget.textColor)),
+                          : Padding(
+                            padding: const EdgeInsets.only(left: 8,right: 8),
+                            child: Text(widget.text,
+                                style: widget.textStyle
+                                    .copyWith(color: widget.textColor)),
+                          ),
                 ],
               )),
         ),

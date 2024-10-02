@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,7 +6,6 @@ import 'package:injectable/injectable.dart';
 import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/auth/data/models/register/register_request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
-
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/register_step.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
@@ -65,7 +63,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     final request = RegisterRequest(
       name: nameController.text.isEmpty ? null : nameController.text,
       password: passwordController.text,
-      phoneNumber: phoneNumberController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+      phoneNumber: (phoneNumberController.text)
+        .replaceAll(RegExp(r'[^0-9]'), ''),
       requestId: state.requestId!,
       username: usernameController.text,
       addresses: state.address,
