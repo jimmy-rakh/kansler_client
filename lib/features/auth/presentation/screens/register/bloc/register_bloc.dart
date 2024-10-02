@@ -65,7 +65,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     final request = RegisterRequest(
       name: nameController.text.isEmpty ? null : nameController.text,
       password: passwordController.text,
-      phoneNumber: phoneNumberController.text,
+      phoneNumber: phoneNumberController.text.replaceAll(RegExp(r'[^0-9]'), ''),
       requestId: state.requestId!,
       username: usernameController.text,
       addresses: state.address,

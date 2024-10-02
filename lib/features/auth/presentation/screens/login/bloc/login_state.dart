@@ -20,6 +20,6 @@ class LoginState with _$LoginState {
     int? addressId,
     String? requestId,
     String? error,
-    @Default(59) int leftSeconds,
+    @Default(0) int leftSeconds,
   }) = _LoginState;
 }

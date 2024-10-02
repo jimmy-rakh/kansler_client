@@ -7,7 +7,6 @@ import '../../../app/router.dart';
 import '../../../features/auth/data/sources/local.dart';
 import '../exceptions/network_exception.dart';
 
-
 class ResponseInterceptor extends Interceptor {
   final _authSource = getIt<AuthLocalDataSource>();
   String? _auth;
@@ -55,13 +54,15 @@ class ResponseInterceptor extends Interceptor {
 
     final exception = ApiException(
       code: err.response?.statusCode,
-      message: err.response?.data['error_code'][0],
+      message: err.response?.data['error_code'] != null
+          ? err.response?.data['error_code'][0]
+          : err.response?.data['value'][0],
       requestOptions: err.requestOptions,
     );
 
-    if(exception.message.isNotEmpty) {
+    if (exception.message.isNotEmpty) {
       router.navigatorKey.currentContext!
-        .showToast('errors.${exception.message}'.tr());
+          .showToast('errors.${exception.message}'.tr());
     }
 
     return handler.reject(exception);

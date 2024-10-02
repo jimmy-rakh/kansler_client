@@ -240,7 +240,7 @@ class _$LoginStateImpl implements _LoginState {
       this.addressId,
       this.requestId,
       this.error,
-      this.leftSeconds = 59});
+      this.leftSeconds = 0});
 
   @override
   @JsonKey()

@@ -92,10 +92,4 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
       },
     );
   }
-
-  @override
-  Future<void> close() {
-    // TODO: implement close
-    return super.close();
-  }
 }

@@ -284,13 +284,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   void _onUpdateCountdown(_UpdateCountdown event, Emitter<LoginState> emit) {
-    emit(state.copyWith(
-        leftSeconds: event.seconds, status: LoginStatus.initial));
+    emit(state.copyWith(leftSeconds: event.seconds));
   }
 
   void _initTimer() {
     // if (state.leftSeconds != 59) return;
-    int leftSeconds = 59;
+    int leftSeconds = 25;
     _timer = Timer.periodic(const Duration(seconds: 1), (tick) {
       leftSeconds--;
       if (!isClosed) add(LoginEvent.updateCountdown(leftSeconds));
