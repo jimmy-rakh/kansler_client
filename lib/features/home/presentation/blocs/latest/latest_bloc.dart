@@ -34,6 +34,7 @@ class LatestBloc extends Bloc<LatestEvent, LatestState> {
   }
 
   void _onFetch(_Fetch event, Emitter<LatestState> emit) async {
+    emit(const LatestState.loadInProgress());
     final res = await _useCase.call((pageNumber: 1, pageSize: 30));
     res.fold(log.e, (r) {
       quantityControllers.addAll(List.generate(

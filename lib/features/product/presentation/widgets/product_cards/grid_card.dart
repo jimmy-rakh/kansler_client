@@ -196,6 +196,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             animate: true,
                             textStyle:  TextStyle(fontSize:context.isSmall ? 9.1 : 10),
                             height: 40,
+                            textColor: context.onPrimary,
                             onPressed: authBloc.state ==
                                     const AuthState.authenticated()
                                 ? () {

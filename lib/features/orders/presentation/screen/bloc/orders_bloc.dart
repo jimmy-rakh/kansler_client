@@ -52,7 +52,7 @@ class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
 
       add(const OrdersEvent.fetchPreorders());
 
-      if (state is _Ready || event.isMore) {
+      if (state is _Ready && event.isMore) {
         List<OrdersDto> orders = [];
         orders.addAll((state as _Ready).orders);
         orders.addAll(r.orders);

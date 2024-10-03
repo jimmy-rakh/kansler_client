@@ -17,9 +17,7 @@ import '../../../../app/router.dart';
 import '../../../../core/constants/app_illustrations.dart';
 import '../../../../core/constants/kaze_icons.dart';
 import '../../../../core/constants/spaces.dart';
-import '../../../../core/style/colors.dart';
 import '../../../../core/widgets/app_button.dart';
-import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
@@ -60,7 +58,6 @@ class _SearchScreenState extends State<SearchScreen> {
     final state = useBlocBuilder(bloc);
     final authBloc = context.read<AuthBloc>();
     final currentWidth = MediaQuery.of(context).size.width;
-    final crossCount = (currentWidth / 300).floor();
 
     return SelectionArea(
       child: Container(

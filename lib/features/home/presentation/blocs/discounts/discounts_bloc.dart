@@ -24,6 +24,7 @@ class DiscountsBloc extends Bloc<DiscountsEvent, DiscountsState> {
   }
   final ScrollController controllerProducts = ScrollController();
   void _onFetch(_Fetch event, Emitter<DiscountsState> emit) async {
+    emit(const DiscountsState.loadInProgress());
     final res = await _useCase.call((pageNumber: 1, pageSize: 30));
 
     res.fold(log.e, (r) => emit(DiscountsState.success(r.products)));

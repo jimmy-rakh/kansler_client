@@ -57,7 +57,6 @@ class LoginFormWidget extends HookWidget {
                       : MaskedInputFormatter('######################')
                 ],
                 validator: (v) {
-                  print(v!.length);
                   return state.tabIndex == 0 ? v?.trim().isEmpty ?? true
                       ? 'Поле не может быть пустым'
                       : v!.length == 19

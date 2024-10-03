@@ -7,7 +7,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/enums/client_type.dart';
-import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/auth/data/models/auth/request.dart';
 import 'package:kansler/features/auth/data/models/client_info/client_adress_dto.dart';
 import 'package:kansler/features/auth/data/models/client_info/client_info_response.dart';
@@ -22,8 +21,6 @@ import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
-import '../../../../../../core/style/colors.dart';
-import '../../../../../../core/widgets/app_card.dart';
 import '../../../../../../shared/services/device/device_info.dart';
 import '../../../../../../shared/services/device/device_info_service.dart';
 import '../../../../domain/usecases/set_auth_token.usecase.dart';
@@ -62,7 +59,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Timer? _timer;
 
   void _onLogIn(_Login event, Emitter<LoginState> emit) async {
-    if(!formKey.currentState!.validate()) return;
+    if (!formKey.currentState!.validate()) return;
     emit(state.copyWith(isBusy: true, error: null));
     ClientAdressDto? address;
 
@@ -77,6 +74,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       res.fold((l) => emit(state.copyWith(isBusy: false)), (r) async {
         try {
+          emit(state.copyWith(requestId: null));
           await _setAuthTokenUseCase.call(r.deviceToken);
           authBloc.add(const AuthEvent.checkStatus());
           router.popUntilRoot();
@@ -272,12 +270,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         final res = await Permission.locationWhenInUse.request();
 
         if (res != PermissionStatus.granted) {
-
           return null;
         }
-
       }
-
     } else {
       final permission = await Geolocator.requestPermission();
 

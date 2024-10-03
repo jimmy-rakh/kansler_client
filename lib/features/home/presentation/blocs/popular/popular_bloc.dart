@@ -24,6 +24,7 @@ class PopularBloc extends Bloc<PopularEvent, PopularState> {
   }
   final ScrollController controllerProducts = ScrollController();
   void _onFetch(_Fetch event, Emitter<PopularState> emit) async {
+    emit(const PopularState.loadInProgress());
     final res = await _useCase.call((pageNumber: 1, pageSize: 30));
 
     res.fold(log.e, (r) => emit(PopularState.success(r.products)));

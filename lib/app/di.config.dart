@@ -266,6 +266,13 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1056.GetCartProductsUseCase(gh<_i49.CartRepository>()));
     gh.factory<_i153.GetCartPriceUseCase>(
         () => _i153.GetCartPriceUseCase(gh<_i49.CartRepository>()));
+    gh.factory<_i33.CartBloc>(() => _i33.CartBloc(
+          gh<_i859.AddProductToCartUseCase>(),
+          gh<_i735.DeleteProductInCartUsecase>(),
+          gh<_i327.UpdateProductInCartUseCase>(),
+          gh<_i153.GetCartPriceUseCase>(),
+          gh<_i1056.GetCartProductsUseCase>(),
+        ));
     gh.lazySingleton<_i43.OrdersBloc>(
         () => _i43.OrdersBloc(gh<_i423.OrdersRepository>()));
     gh.factory<_i574.OrderOrganizationBloc>(
@@ -309,14 +316,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i166.FetchProductUseCase(gh<_i716.ProductRepository>()));
     gh.factory<_i686.PreordersBloc>(
         () => _i686.PreordersBloc(gh<_i49.CartRepository>()));
-    gh.factory<_i33.CartBloc>(() => _i33.CartBloc(
-          gh<_i859.AddProductToCartUseCase>(),
-          gh<_i735.DeleteProductInCartUsecase>(),
-          gh<_i753.DeleteProductsInCartUsecase>(),
-          gh<_i327.UpdateProductInCartUseCase>(),
-          gh<_i153.GetCartPriceUseCase>(),
-          gh<_i1056.GetCartProductsUseCase>(),
-        ));
     gh.lazySingleton<_i304.BrandsRepository>(
         () => _i726.BrandsRepositoryImpl(gh<_i82.BrendsRemoteSource>()));
     gh.factory<_i1053.DiscountsBloc>(

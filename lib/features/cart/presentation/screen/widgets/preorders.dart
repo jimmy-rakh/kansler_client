@@ -5,8 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/constants/app_illustrations.dart';
 import 'package:kansler/core/constants/spaces.dart';
-import 'package:kansler/core/extensions/context.dart';
-import 'package:kansler/core/widgets/app_button.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import 'package:kansler/features/product/presentation/widgets/product_card.dart';
 

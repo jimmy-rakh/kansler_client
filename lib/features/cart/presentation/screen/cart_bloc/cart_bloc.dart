@@ -5,14 +5,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/usecase/usecase.dart';
-import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../home/presentation/blocs/latest/latest_bloc.dart';
 import '../../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../../domain/entities/cart_product.dart';
 import '../../../domain/usecases/add_product_to_cart.usecase.dart';
 import '../../../domain/usecases/delete_product_in_cart.usecase.dart';
-import '../../../domain/usecases/delete_products_in_cart.usecase.dart';
 import '../../../domain/usecases/get_cart_price.usecase.dart';
 import '../../../domain/usecases/get_cart_products.usecase.dart';
 import '../../../domain/usecases/update_product_in_cart.usecase.dart';
@@ -25,7 +23,6 @@ part 'cart_bloc.freezed.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final AddProductToCartUseCase _addProductToCartUseCase;
   final DeleteProductInCartUsecase _deleteProductInCartUsecase;
-  final DeleteProductsInCartUsecase _deleteProductsInCartUsecase;
   final UpdateProductInCartUseCase _updateProductInCartUseCase;
   final GetCartPriceUseCase _getCartPriceUseCase;
   final GetCartProductsUseCase _getCartProductsUseCase;
@@ -33,7 +30,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc(
     this._addProductToCartUseCase,
     this._deleteProductInCartUsecase,
-    this._deleteProductsInCartUsecase,
     this._updateProductInCartUseCase,
     this._getCartPriceUseCase,
     this._getCartProductsUseCase,

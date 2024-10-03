@@ -10,7 +10,6 @@ import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/cart/domain/repositories/cart.repository.dart';
 import 'package:kansler/features/home/presentation/blocs/latest/latest_bloc.dart';
 import 'package:kansler/features/home/presentation/blocs/popular/popular_bloc.dart';
-import 'package:kansler/shared/services/logger/logger_service.dart';
 
 part 'preorders_state.dart';
 part 'preorders_event.dart';
@@ -121,13 +120,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         add(const PreordersEvent.getPreordersPrice());
       },
     );
-  }
-
-  void _onDeleteProductsInPreorders(
-      _DeleteProductsInPreorders event, Emitter<PreordersState> emit) async {
-    final res = await _cartRepository.deleteProductsInPreorder(event.ids);
-
-    res.fold((l) => log.e(l.toString()), (r) => _updateView());
   }
 
   void _onUpdateProductInPreorders(

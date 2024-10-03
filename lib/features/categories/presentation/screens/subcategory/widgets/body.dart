@@ -40,7 +40,6 @@ class SubcategoryBody extends HookWidget {
         filter,
       ) {
         final currentWidth = MediaQuery.of(context).size.width;
-        final crossCount = (currentWidth / 300).floor();
 
         if (isProductsLoading) {
           return const Center(child: CupertinoActivityIndicator());

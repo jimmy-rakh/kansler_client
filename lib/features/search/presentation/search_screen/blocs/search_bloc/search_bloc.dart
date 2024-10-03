@@ -61,6 +61,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final scrollController = ScrollController();
 
   void _onSearch(_Search event, Emitter<SearchState> emit) async {
+    if (state is _Success) {
+      emit((state as _Success).copyWith(isMoreLoading: event.isMore));
+    }
+
+    await Future.delayed(const Duration(milliseconds: 500));
+
     if (event.title != null) {
       fieldController.text = event.title!;
     }
@@ -82,9 +88,10 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit((state as _Success)
           .copyWith(isMoreLoading: true, status: PreordersStatus.loaded));
     }
-    if (state is _Success) emit((state as _Success).copyWith(status:  PreordersStatus.loading));
+    if (state is _Success && !event.isMore) {
+      emit((state as _Success).copyWith(status: PreordersStatus.loading));
+    }
     final result = await _useCase.call(request);
-
 
     result.fold((l) => log.e(l), (r) {
       request = request!.copyWith(pageNumber: request!.pageNumber + 1);

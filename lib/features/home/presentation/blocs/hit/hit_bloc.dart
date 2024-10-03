@@ -27,6 +27,7 @@ class HitBloc extends Bloc<HitEvent, HitState> {
   final ScrollController controllerProducts = ScrollController();
 
   void _onFetch(_Fetch event, Emitter<HitState> emit) async {
+    emit(const HitState.loadInProgress());
     final res = await _useCase.call((pageNumber: 1, pageSize: 30));
 
     res.fold(log.e, (r) => emit(HitState.success(r.products)));

@@ -6,7 +6,6 @@ import '../../../../../core/constants/app_illustrations.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../../core/style/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
-import '../../../../../core/widgets/app_card.dart';
 import '../../../data/models/orders_dto.dart';
 
 class SuccessOrderView extends StatelessWidget {

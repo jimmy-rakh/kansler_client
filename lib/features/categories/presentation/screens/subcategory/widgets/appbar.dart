@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
-import '../../../../../../app/router.dart';
 import '../../../../../../core/constants/kaze_icons.dart';
 import '../../../../../../core/constants/spaces.dart';
 import '../../../../domain/entities/category.entitity.dart';
