@@ -2,10 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/features/cart/presentation/screen/cart_bloc/cart_bloc.dart';
 
 import '../../../../app/router.dart';
 import '../../../../core/constants/kaze_icons.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
+import '../../../cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import '../../domain/entities/navbar_item.entity.dart';
 
 part 'navbar_state.dart';
@@ -58,6 +60,12 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
         BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
 
     bool authenticated = authState.state == const AuthState.authenticated();
+
+    if(event.value==2) {
+      BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
+      BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
+    }
+
 
     if ([2, 3].contains(event.value) && !authenticated) {
       final res = await router.push(const AuthRoute());

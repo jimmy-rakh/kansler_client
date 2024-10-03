@@ -37,7 +37,7 @@ class BrandsSection extends HookWidget {
             children: [
               ...[
                 state.when(
-                  success: (   products,
+                  success: (status,   products,
                       filterData,
                       isList,
                       isMoreLoading,

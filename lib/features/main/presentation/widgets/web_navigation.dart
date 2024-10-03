@@ -38,12 +38,12 @@ class WebNavigation extends HookWidget {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(right: 15),
+                    padding: const EdgeInsets.only(right: 30,left: 20),
                     child: Image.asset("assets/images/logo.png",width: 150),
                   ),
                   AppCard(
                       fillColor: context.background,
-                      width:context.isDesktop ? 500: context.width * .38,
+                      width:context.isDesktop ? 600: context.width * .38,
                       borderRadius: 4,
                       padding: const EdgeInsets.all(2),
                       margin: const EdgeInsets.only(top: 7,left: 7),

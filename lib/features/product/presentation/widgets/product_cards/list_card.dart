@@ -266,61 +266,18 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                   onEditingComplete:
                                                       competeEditing,
                                                   onFieldSubmitted: (value) {
-                                                    if (product?.leftQuantity ==
-                                                        0) {
-                                                      onCart.call(CheckoutType
-                                                          .preorder);
-                                                      preorderBloc.add(PreordersEvent
-                                                          .addToPreorders(
-                                                              (product ??
-                                                                      cartProduct!
-                                                                          .product)!
-                                                                  .id,
-                                                              1));
-                                                      return;
-                                                    }
-                                                    if ((product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .leftQuantity >=
-                                                        int.parse(
-                                                            fieldController
-                                                                .text)) {
-                                                      if ((product ??
-                                                                  cartProduct
-                                                                      ?.product)
-                                                              ?.leftQuantity !=
-                                                          0) {
-                                                        if (!((product ??
-                                                                    cartProduct
-                                                                        ?.product)
-                                                                ?.inCart ??
-                                                            true)) {
-                                                          cartBloc.add(CartEvent.addToCart(
-                                                              (product ??
-                                                                      cartProduct!
-                                                                          .product)!
-                                                                  .id,
-                                                              int.parse(
-                                                                  fieldController
-                                                                      .text)));
-                                                          return;
-                                                        }
-                                                      }
-                                                    } else if (product
-                                                            ?.leftQuantity ==
-                                                        0) {
-                                                      onCart.call(CheckoutType
-                                                          .preorder);
-                                                      fieldController.text =
-                                                          (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .leftQuantity
-                                                              .toString();
-                                                      FocusScope.of(context)
-                                                          .unfocus();
-                                                    }
+                                                    cartBloc.add(CartEvent
+                                                        .updateProductInCart(
+                                                            (product ??
+                                                                    cartProduct!
+                                                                        .product)!
+                                                                .id,
+                                                            int.parse(
+                                                                fieldController
+                                                                    .text)));
+                                                    FocusScope.of(context)
+                                                        .unfocus();
+                                                    return;
                                                   },
                                                   textInputType:
                                                       TextInputType.number,
@@ -416,123 +373,126 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                       255, 0, 73, 208),
                                             ),
                                           )
-                                        : AppButton(
-                                            width: context.isMobile
-                                                ? context.width * .12
-                                                : 50,
-                                            fillColor: product?.leftQuantity ==
-                                                    0
-                                                ? (product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .inPreorder ??
-                                                        false
-                                                    ? const Color.fromARGB(
-                                                        255, 69, 114, 199)
-                                                    : const Color.fromARGB(
-                                                        255, 0, 73, 208)
-                                                : (product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .inCart ??
-                                                        false
-                                                    ? AppColors.red
-                                                    : context.primary,
-                                            text: const Icon(
-                                              KazeIcons.cartOutline,
-                                              color: AppColors.white,
-                                            ),
-                                            textColor: AppColors.white,
-                                            onPressed: authBloc.state ==
-                                                    const AuthState
-                                                        .authenticated()
-                                                ? () {
-                                                    onCart.call(
-                                                        CheckoutType.preorder);
-
-                                                    if (!((product ??
-                                                                    cartProduct
-                                                                        ?.product)
-                                                                ?.inPreorder ??
-                                                            false) &&
-                                                        product?.leftQuantity ==
-                                                            0) {
-                                                      preorderBloc.add(PreordersEvent
-                                                          .addToPreorders(
-                                                              (product ??
-                                                                      cartProduct!
-                                                                          .product)!
-                                                                  .id,
-                                                              0));
-                                                      return;
-                                                    }
-                                                    preorderBloc.add(PreordersEvent
-                                                        .deleteProductInPreorders(
-                                                      (product ??
-                                                              cartProduct!
-                                                                  .product)!
-                                                          .id,
-                                                    ));
-                                                    if ((product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .leftQuantity !=
-                                                        0) {
-                                                      if ((product ??
+                                        : Tooltip(
+                                            message: (product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                        .inCart ??
+                                                    false
+                                                ? "Удалить с корзины заказа"
+                                                : "Добавить в корзину заказа",
+                                            child: AppButton(
+                                              width: context.isMobile
+                                                  ? context.width * .12
+                                                  : 50,
+                                              fillColor: product
+                                                          ?.leftQuantity ==
+                                                      0
+                                                  ? (product ??
                                                                   cartProduct!
                                                                       .product)!
-                                                              .leftQuantity <
-                                                          int.parse(
-                                                              fieldController
-                                                                  .text)) {
-                                                        fieldController.text =
-                                                            "${(product ?? cartProduct!.product)!.leftQuantity}";
-                                                        router.navigatorKey
-                                                            .currentContext!
-                                                            .showToast(
-                                                                'Недостаточно кол-во в складе');
-                                                        return;
-                                                      }
-                                                      if (!((product ??
-                                                                  cartProduct
-                                                                      ?.product)
-                                                              ?.inCart ??
-                                                          true)) {
-                                                        onCart.call(
-                                                            CheckoutType.order);
-                                                        cartBloc.add(CartEvent.addToCart(
-                                                            (product ??
-                                                                    cartProduct!
-                                                                        .product)!
-                                                                .id,
-                                                            fieldController
-                                                                        .text ==
-                                                                    ''
-                                                                ? 1
-                                                                : int.parse(
-                                                                    fieldController
-                                                                        .text)));
-                                                        return;
-                                                      }
-                                                      fieldController.text =
-                                                          '1';
-                                                      cartBloc.add(CartEvent
-                                                          .deleteProductInCart(
-                                                              (product ??
-                                                                      cartProduct!
-                                                                          .product)!
-                                                                  .id));
-                                                    }
-                                                  }
-                                                : () => router
-                                                    .push(const AuthRoute()),
-                                            size: MainAxisSize.min,
-                                            margin: const EdgeInsets.only(
-                                              right: 4,
+                                                              .inPreorder ??
+                                                          false
+                                                      ? const Color.fromARGB(
+                                                          255, 69, 114, 199)
+                                                      : const Color.fromARGB(
+                                                          255, 0, 73, 208)
+                                                  : (product ??
+                                                                  cartProduct!
+                                                                      .product)!
+                                                              .inCart ??
+                                                          false
+                                                      ? AppColors.red
+                                                      : context.primary,
+                                              text: const Icon(
+                                                KazeIcons.cartOutline,
+                                                color: AppColors.white,
+                                              ),
+                                              textColor: AppColors.white,
+                                              onPressed:
+                                                  authBloc.state ==
+                                                          const AuthState
+                                                              .authenticated()
+                                                      ? product?.leftQuantity ==
+                                                              0
+                                                          ? () {
+                                                              onCart.call(
+                                                                  CheckoutType
+                                                                      .preorder);
+
+                                                              if (!((product ??
+                                                                          cartProduct
+                                                                              ?.product)
+                                                                      ?.inPreorder ??
+                                                                  false)) {
+                                                                preorderBloc.add(
+                                                                    PreordersEvent.addToPreorders(
+                                                                        (product ??
+                                                                                cartProduct!.product)!
+                                                                            .id,
+                                                                        0));
+                                                                return;
+                                                              }
+                                                              preorderBloc.add(
+                                                                  PreordersEvent
+                                                                      .deleteProductInPreorders(
+                                                                (product ??
+                                                                        cartProduct!
+                                                                            .product)!
+                                                                    .id,
+                                                              ));
+                                                            }
+                                                          : () {
+                                                              onCart.call(
+                                                                  CheckoutType
+                                                                      .order);
+                                                              if (!((product ??
+                                                                          cartProduct
+                                                                              ?.product)
+                                                                      ?.inCart ??
+                                                                  true)) {
+                                                                cartBloc.add(CartEvent.addToCart(
+                                                                    (product ??
+                                                                            cartProduct!
+                                                                                .product)!
+                                                                        .id,
+                                                                    int.parse(
+                                                                        fieldController
+                                                                            .text)));
+                                                                return;
+                                                              }
+                                                              cartBloc.add(CartEvent
+                                                                  .deleteProductInCart(
+                                                                      (product ??
+                                                                              cartProduct!.product)!
+                                                                          .id));
+                                                              if (((product ??
+                                                                          cartProduct
+                                                                              ?.product)
+                                                                      ?.inPreorder ??
+                                                                  false)) {
+                                                                preorderBloc.add(
+                                                                    PreordersEvent
+                                                                        .deleteProductInPreorders(
+                                                                  (product ??
+                                                                          cartProduct!
+                                                                              .product)!
+                                                                      .id,
+                                                                ));
+                                                              }
+                                                            }
+                                                      : () => router.push(
+                                                          const AuthRoute()),
+                                              size: MainAxisSize.min,
+                                              margin: const EdgeInsets.only(
+                                                right: 4,
+                                              ),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8,
+                                                      horizontal: 8),
+                                              borderRadius: 4,
                                             ),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 8, horizontal: 8),
-                                            borderRadius: 4,
                                           ),
                               ],
                             ),
@@ -552,7 +512,10 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   style: context.titleSmall,
                                 ),
                           if (cartProduct != null && !showActions)
-                            Text('${cartProduct?.quantity} штук'),
+                            Text(
+                              '  Заказано: ${cartProduct?.quantity} штук',
+                              style: const TextStyle(color: AppColors.primary),
+                            ),
                           horizontalSpace15,
                           if (showActions)
                             if (!(product?.inCart ?? false))
@@ -588,59 +551,18 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               onChange: submit,
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
-                                                if (product?.leftQuantity ==
-                                                    0) {
-                                                  onCart.call(
-                                                      CheckoutType.preorder);
-                                                  preorderBloc.add(PreordersEvent
-                                                      .addToPreorders(
-                                                          (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .id,
-                                                          1));
-                                                  return;
-                                                }
-                                                if ((product ??
-                                                            cartProduct!
-                                                                .product)!
-                                                        .leftQuantity >=
-                                                    int.parse(
-                                                        fieldController.text)) {
-                                                  if ((product ??
-                                                              cartProduct
-                                                                  ?.product)
-                                                          ?.leftQuantity !=
-                                                      0) {
-                                                    if (!((product ??
-                                                                cartProduct
-                                                                    ?.product)
-                                                            ?.inCart ??
-                                                        true)) {
-                                                      cartBloc.add(CartEvent.addToCart(
-                                                          (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .id,
-                                                          int.parse(
-                                                              fieldController
-                                                                  .text)));
-                                                      return;
-                                                    }
-                                                  }
-                                                } else if (product
-                                                        ?.leftQuantity ==
-                                                    0) {
-                                                  onCart.call(
-                                                      CheckoutType.preorder);
-                                                  fieldController
-                                                      .text = (product ??
-                                                          cartProduct!.product)!
-                                                      .leftQuantity
-                                                      .toString();
-                                                  FocusScope.of(context)
-                                                      .unfocus();
-                                                }
+                                                cartBloc.add(CartEvent
+                                                    .updateProductInCart(
+                                                        (product ??
+                                                                cartProduct!
+                                                                    .product)!
+                                                            .id,
+                                                        int.parse(
+                                                            fieldController
+                                                                .text)));
+                                                FocusScope.of(context)
+                                                    .unfocus();
+                                                return;
                                               },
                                               textInputType:
                                                   TextInputType.number,
@@ -727,120 +649,131 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                     255, 0, 73, 208),
                                       ),
                                     )
-                                  : AppButton(
-                                      animate: true,
-                                      width:
-                                          context.isMobile || context.isTablet
-                                              ? context.width * .12
-                                              : 50,
-                                      fillColor: product?.leftQuantity == 0
-                                          ? (product ?? cartProduct!.product)!
-                                                      .inPreorder ??
-                                                  false
-                                              ? const Color.fromARGB(
-                                                  255, 69, 114, 199)
-                                              : const Color.fromARGB(
-                                                  255, 0, 73, 208)
-                                          : (product ?? cartProduct!.product)!
+                                  : showActions
+                                      ? Tooltip(
+                                          message: (product ??
+                                                          cartProduct!.product)!
                                                       .inCart ??
                                                   false
-                                              ? AppColors.red
-                                              : context.primary,
-                                      text: const Icon(
-                                        KazeIcons.cartOutline,
-                                        color: AppColors.white,
-                                      ),
-                                      textColor: AppColors.white,
-                                      onPressed: authBloc.state ==
-                                              const AuthState.authenticated()
-                                          ? () {
-                                        onCart.call(
-                                            CheckoutType.preorder);
+                                              ? (product ??
+                                                              cartProduct!
+                                                                  .product)!
+                                                          .inPreorder ??
+                                                      false
+                                                  ? "Удалить с корзины Предзаказа"
+                                                  : "Удалить с корзины заказа"
+                                              : "Добавить в корзину заказа",
+                                          child: AppButton(
+                                            animate: true,
+                                            width: context.isMobile ||
+                                                    context.isTablet
+                                                ? context.width * .12
+                                                : 50,
+                                            fillColor: product?.leftQuantity ==
+                                                    0
+                                                ? (product ??
+                                                                cartProduct!
+                                                                    .product)!
+                                                            .inPreorder ??
+                                                        false
+                                                    ? const Color.fromARGB(
+                                                        255, 69, 114, 199)
+                                                    : const Color.fromARGB(
+                                                        255, 0, 73, 208)
+                                                : (product ??
+                                                                cartProduct!
+                                                                    .product)!
+                                                            .inCart ??
+                                                        false
+                                                    ? AppColors.red
+                                                    : context.primary,
+                                            text: const Icon(
+                                              KazeIcons.cartOutline,
+                                              color: AppColors.white,
+                                            ),
+                                            textColor: AppColors.white,
+                                            onPressed: authBloc.state ==
+                                                    const AuthState
+                                                        .authenticated()
+                                                ? product?.leftQuantity == 0
+                                                    ? () {
+                                                        onCart.call(CheckoutType
+                                                            .preorder);
 
-                                        if (!((product ??
-                                            cartProduct
-                                                ?.product)
-                                            ?.inPreorder ??
-                                            false) &&
-                                            product?.leftQuantity ==
-                                                0) {
-                                          preorderBloc.add(PreordersEvent
-                                              .addToPreorders(
-                                              (product ??
-                                                  cartProduct!
-                                                      .product)!
-                                                  .id,
-                                              0));
-                                          return;
-                                        }
-                                        preorderBloc.add(PreordersEvent
-                                            .deleteProductInPreorders(
-                                          (product ??
-                                              cartProduct!
-                                                  .product)!
-                                              .id,
-                                        ));
-                                        if ((product ??
-                                            cartProduct!
-                                                .product)!
-                                            .leftQuantity !=
-                                            0) {
-                                          if ((product ??
-                                              cartProduct!
-                                                  .product)!
-                                              .leftQuantity <
-                                              int.parse(
-                                                  fieldController
-                                                      .text)) {
-                                            fieldController.text =
-                                            "${(product ?? cartProduct!.product)!.leftQuantity}";
-                                            router.navigatorKey
-                                                .currentContext!
-                                                .showToast(
-                                                'Недостаточно кол-во в складе');
-                                            return;
-                                          }else{
-                                          if (!((product ??
-                                              cartProduct
-                                                  ?.product)
-                                              ?.inCart ??
-                                              true)) {
-                                            onCart.call(
-                                                CheckoutType.order);
-                                            cartBloc.add(CartEvent.addToCart(
-                                                (product ??
-                                                    cartProduct!
-                                                        .product)!
-                                                    .id,
-                                                fieldController
-                                                    .text ==
-                                                    ''
-                                                    ? 1
-                                                    : int.parse(
-                                                    fieldController
-                                                        .text)));
-                                            return;
-                                          }}
-                                          fieldController.text =
-                                          '1';
-                                          cartBloc.add(CartEvent
-                                              .deleteProductInCart(
-                                              (product ??
-                                                  cartProduct!
-                                                      .product)!
-                                                  .id));
-                                        }
-                                      }
-                                          : () =>
-                                              router.push(const AuthRoute()),
-                                      size: MainAxisSize.min,
-                                      margin: const EdgeInsets.only(
-                                        right: 4,
-                                      ),
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8, horizontal: 8),
-                                      borderRadius: 4,
-                                    ),
+                                                        if (!((product ??
+                                                                    cartProduct
+                                                                        ?.product)
+                                                                ?.inPreorder ??
+                                                            false)) {
+                                                          preorderBloc.add(
+                                                              PreordersEvent
+                                                                  .addToPreorders(
+                                                                      (product ??
+                                                                              cartProduct!.product)!
+                                                                          .id,
+                                                                      0));
+                                                          return;
+                                                        }
+                                                        preorderBloc.add(
+                                                            PreordersEvent
+                                                                .deleteProductInPreorders(
+                                                          (product ??
+                                                                  cartProduct!
+                                                                      .product)!
+                                                              .id,
+                                                        ));
+                                                      }
+                                                    : () {
+                                                        onCart.call(
+                                                            CheckoutType.order);
+                                                        if (!((product ??
+                                                                    cartProduct
+                                                                        ?.product)
+                                                                ?.inCart ??
+                                                            true)) {
+                                                          cartBloc.add(CartEvent.addToCart(
+                                                              (product ??
+                                                                      cartProduct!
+                                                                          .product)!
+                                                                  .id,
+                                                              int.parse(
+                                                                  fieldController
+                                                                      .text)));
+                                                          return;
+                                                        }
+                                                        cartBloc.add(CartEvent
+                                                            .deleteProductInCart(
+                                                                (product ??
+                                                                        cartProduct!
+                                                                            .product)!
+                                                                    .id));
+                                                        if (((product ??
+                                                                    cartProduct
+                                                                        ?.product)
+                                                                ?.inPreorder ??
+                                                            false)) {
+                                                          preorderBloc.add(
+                                                              PreordersEvent
+                                                                  .deleteProductInPreorders(
+                                                            (product ??
+                                                                    cartProduct!
+                                                                        .product)!
+                                                                .id,
+                                                          ));
+                                                        }
+                                                      }
+                                                : () => router
+                                                    .push(const AuthRoute()),
+                                            size: MainAxisSize.min,
+                                            margin: const EdgeInsets.only(
+                                              right: 4,
+                                            ),
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 8, horizontal: 8),
+                                            borderRadius: 4,
+                                          ),
+                                        )
+                                      : const SizedBox(),
                         ],
                       )
               ],
@@ -852,13 +785,6 @@ class ProductListCard extends HookWidget implements ProductCard {
   }
 
   void incremet() {
-    if ((product ?? cartProduct?.product)!.leftQuantity <=
-        int.parse(fieldController.text)) {
-      router.navigatorKey.currentContext!
-          .showToast('Недостаточно кол-во в складе');
-      return;
-    }
-
     fieldController.text = (int.parse(fieldController.text) + 1).toString();
     updateCount();
   }

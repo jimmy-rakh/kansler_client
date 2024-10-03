@@ -23,7 +23,7 @@ class CategoriesView extends HookWidget {
           ready: (categories) => ListView.separated(
             shrinkWrap: true,
             itemBuilder: (context, index) => searchState.when(
-              success: (
+              success: (status,
                 products,
                 filterData,
                 isList,

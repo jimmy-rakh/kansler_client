@@ -36,6 +36,39 @@ class OrderOrganizationBloc
   final scrollController = ScrollController();
 
   _onFetchData(_FetchData event, Emitter<OrderOrganizationState> emit) async {
+
+    late Either<Failure, ({List<CartProduct> cartProducts, bool hasNext})> res;
+
+    switch (event.type) {
+      case CheckoutType.order:
+        res = await _ordersRepository.getOrderProducts(
+            event.id ?? (state as _Ready).id!, page);
+        break;
+      case CheckoutType.preorder:
+        res = await _ordersRepository.getPreorderProducts(
+            event.id ?? (state as _Ready).id!, page);
+        break;
+    }
+
+    res.fold((l) => null, (r) {
+      if (state is! _Ready) {
+        emit(OrderOrganizationState.ready(r.cartProducts, id: event.id));
+        return;
+      }
+
+      emit(
+        (state as _Ready).copyWith(
+          orders: [
+            ...(state as _Ready).orders,
+            ...r.cartProducts,
+          ],
+          isMoreLoading: false,
+        ),
+      );
+    });
+  }
+
+  _onFetchPreorderData(_FetchData event, Emitter<OrderOrganizationState> emit) async {
     late Either<Failure, ({List<CartProduct> cartProducts, bool hasNext})> res;
 
     switch (event.type) {

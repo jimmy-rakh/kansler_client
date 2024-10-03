@@ -82,7 +82,8 @@ class _SearchScreenState extends State<SearchScreen> {
                       onPressed: () {
                         if (!context.isSmall &&
                             (state.whenOrNull(
-                                  success: (products,
+                                  success: (status,
+                                          products,
                                           filterData,
                                           isList,
                                           isMoreLoading,
@@ -121,22 +122,28 @@ class _SearchScreenState extends State<SearchScreen> {
                     context.isSmall ? horizontalSpace8 : const SizedBox(),
                     context.isSmall
                         ? GestureDetector(
-                      onTap: () => bloc.add(const SearchEvent.changeListType()),
-                      child: Container(
-                        padding: const EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(2),
-                          color: context.cardColor,
-                        ),
-                        child: Icon(state.whenOrNull(
-                          success: (products, filterData, isList, isMoreLoading,
-                                  activePage, organizations) =>
-                              isList
-                                  ? KazeIcons.grid2Outline
-                                  : KazeIcons.sliderVerticalOutline,
-                        )),
-                      ),
-                    )
+                            onTap: () =>
+                                bloc.add(const SearchEvent.changeListType()),
+                            child: Container(
+                              padding: const EdgeInsets.all(5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(2),
+                                color: context.cardColor,
+                              ),
+                              child: Icon(state.whenOrNull(
+                                success: (status,
+                                        products,
+                                        filterData,
+                                        isList,
+                                        isMoreLoading,
+                                        activePage,
+                                        organizations) =>
+                                    isList
+                                        ? KazeIcons.grid2Outline
+                                        : KazeIcons.sliderVerticalOutline,
+                              )),
+                            ),
+                          )
                         : const SizedBox(),
                     horizontalSpace12
                   ],
@@ -180,7 +187,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                 shrinkWrap: true,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 12,top: 12),
+                                    padding: const EdgeInsets.only(
+                                        left: 12, top: 12),
                                     child: Text(
                                       'Фильтр',
                                       style: context.titleLarge,
@@ -189,55 +197,84 @@ class _SearchScreenState extends State<SearchScreen> {
                                   Padding(
                                     padding: const EdgeInsets.all(12),
                                     child: Row(
-                                      mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                      Text(
-                                        'Стиль просмотра',
-                                        style: context.titleSmall,
-                                      ),
-                                      Row(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () => bloc.add(const SearchEvent.changeListType()),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(5),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(4),
-                                                color: context.background,
-                                              ),
-                                              child: state.whenOrNull(
-                                                success: (products, filterData, isList, isMoreLoading,
-                                                    activePage, organizations) =>
-                                               Icon(KazeIcons.sliderVerticalOutline,color: isList ? context.primary : AppColors.white,)
-
-                                              ),
-                                            ),
-                                          ),
-                                          horizontalSpace5,
-                                          GestureDetector(
-                                            onTap: () => bloc.add(const SearchEvent.changeListType()),
-                                            child: Container(
-                                              padding: const EdgeInsets.all(5),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(4),
-                                                color: context.background,
-                                              ),
-                                              child: state.whenOrNull(
-                                                  success: (products, filterData, isList, isMoreLoading,
-                                                      activePage, organizations) =>
-                                                      Icon(KazeIcons.grid2Outline,color: !isList ? context.primary : AppColors.white,)
-
+                                        Text(
+                                          'Стиль просмотра',
+                                          style: context.titleSmall,
+                                        ),
+                                        Row(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () => bloc.add(
+                                                  const SearchEvent
+                                                      .changeListType()),
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                  color: context.background,
+                                                ),
+                                                child: state.whenOrNull(
+                                                    success: (status,
+                                                            products,
+                                                            filterData,
+                                                            isList,
+                                                            isMoreLoading,
+                                                            activePage,
+                                                            organizations) =>
+                                                        Icon(
+                                                          KazeIcons
+                                                              .sliderVerticalOutline,
+                                                          color: isList
+                                                              ? context.primary
+                                                              : context.titleSmall?.color
+                                                        )),
                                               ),
                                             ),
-                                          )
-                                        ],
-                                      )
-                                    ],),
+                                            horizontalSpace5,
+                                            GestureDetector(
+                                              onTap: () => bloc.add(
+                                                  const SearchEvent
+                                                      .changeListType()),
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(4),
+                                                  color: context.background,
+                                                ),
+                                                child: state.whenOrNull(
+                                                    success: (status,
+                                                            products,
+                                                            filterData,
+                                                            isList,
+                                                            isMoreLoading,
+                                                            activePage,
+                                                            organizations) =>
+                                                        Icon(
+                                                          KazeIcons
+                                                              .grid2Outline,
+                                                          color: !isList
+                                                              ? context.primary
+                                                              : context.titleSmall?.color
+                                                        )),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   ),
                                   AnimatedSwitcher(
                                     duration: Durations.medium2,
                                     child: state.whenOrNull(
                                       success: (
+                                        status,
                                         products,
                                         filterData,
                                         isList,
@@ -380,7 +417,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                               child:
                                                                   DropdownButton<
                                                                       String>(
-                                                                    isExpanded:true,
+                                                                isExpanded:
+                                                                    true,
                                                                 dropdownColor:
                                                                     context
                                                                         .background,
@@ -487,16 +525,20 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                       text:
                                                                           'Сбросить',
                                                                       onPressed:
-                                                                          () =>
-                                                                              bloc.add(
-                                                                        SearchEvent
-                                                                            .addFilter(
-                                                                          SearchEntity(
-                                                                            title:
-                                                                                filterData?.title,
+                                                                          () {
+                                                                        bloc.add(
+                                                                          SearchEvent
+                                                                              .addFilter(
+                                                                            SearchEntity(
+                                                                              title: filterData?.title,
+                                                                            ),
                                                                           ),
-                                                                        ),
-                                                                      ),
+                                                                        );
+                                                                        bloc.add(
+                                                                          const SearchEvent
+                                                                              .search(),
+                                                                        );
+                                                                      },
                                                                       fillColor:
                                                                           context
                                                                               .background,
@@ -559,93 +601,110 @@ class _SearchScreenState extends State<SearchScreen> {
                         loadInProgress: () => const Center(
                           child: CupertinoActivityIndicator(),
                         ),
-                        success: (products, filterData, isList, isMoreLoading,
-                            activePage, organizations) {
+                        success: (status, products, filterData, isList,
+                            isMoreLoading, activePage, organizations) {
                           if (products!.isEmpty) {
                             return Center(
                                 child:
                                     SvgPicture.asset(AppIllustrations.empty));
                           }
-                          return Stack(
-                            alignment: AlignmentDirectional.topCenter,
-                            children: [
-                              isList
-                                  ? ListView.separated(
-                                      controller: bloc.scrollController,
-                                      scrollDirection: Axis.vertical,
-                                      shrinkWrap: !kIsWeb,
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 0, 15, 120),
-                                      itemCount: products.length,
-                                      separatorBuilder: (context, index) =>
-                                          verticalSpace12,
-                                      itemBuilder: (context, index) =>
-                                          ProductCard.list(
-                                        product: products[index],
-                                        onCart: (type) => bloc.add(
-                                            SearchEvent.changeCartState(
-                                                products[index])),
-                                        fieldController: authBloc.state ==
-                                                const AuthState.authenticated()
-                                            ? bloc.quantityControllers[index]
-                                            : TextEditingController(text: "1"),
-                                        onPressed: () {},
+                          return status == PreordersStatus.loading
+                              ? const Center(
+                                  child: CupertinoActivityIndicator(),
+                                )
+                              : Stack(
+                                  alignment: AlignmentDirectional.topCenter,
+                                  children: [
+                                    isList
+                                        ? ListView.separated(
+                                            controller: bloc.scrollController,
+                                            scrollDirection: Axis.vertical,
+                                            shrinkWrap: !kIsWeb,
+                                            padding: const EdgeInsets.fromLTRB(
+                                                15, 0, 15, 120),
+                                            itemCount: products.length,
+                                            separatorBuilder:
+                                                (context, index) =>
+                                                    verticalSpace12,
+                                            itemBuilder: (context, index) =>
+                                                ProductCard.list(
+                                              product: products[index],
+                                              onCart: (type) => bloc.add(
+                                                  SearchEvent.changeCartState(
+                                                      products[index])),
+                                              fieldController: authBloc.state ==
+                                                      const AuthState
+                                                          .authenticated()
+                                                  ? bloc.quantityControllers[
+                                                      index]
+                                                  : TextEditingController(
+                                                      text: "1"),
+                                              onPressed: () {},
+                                            ),
+                                          )
+                                        : GridView.builder(
+                                            controller: bloc.scrollController,
+                                            padding: const EdgeInsets.fromLTRB(
+                                                15, 0, 15, 120),
+                                            shrinkWrap: !kIsWeb,
+                                            gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount:
+                                                        currentWidth < 1300 &&
+                                                                currentWidth >
+                                                                    700
+                                                            ? context.isTablet
+                                                                ? 2
+                                                                : 3
+                                                            : currentWidth < 600
+                                                                ? 2
+                                                                : 4,
+                                                    childAspectRatio:
+                                                        currentWidth < 400
+                                                            ? .5
+                                                            : context.isTablet
+                                                                ? .7
+                                                                : .6,
+                                                    crossAxisSpacing: 5,
+                                                    mainAxisSpacing: 1),
+                                            itemCount: products.length,
+                                            itemBuilder: (context, index) =>
+                                                ProductCard.grid(
+                                              height: 200,
+                                              width: 200,
+                                              product: products[index],
+                                              onCart: (type) => bloc.add(
+                                                  SearchEvent.changeCartState(
+                                                      products[index])),
+                                              fieldController: authBloc.state ==
+                                                      const AuthState
+                                                          .authenticated()
+                                                  ? bloc.quantityControllers[
+                                                      index]
+                                                  : TextEditingController(),
+                                              onPressed: () {},
+                                            ),
+                                          ),
+                                    AnimatedPositioned(
+                                      bottom: isMoreLoading ? 60 : -36,
+                                      left: context.width * .46,
+                                      right: context.width * .46,
+                                      duration: Durations.medium2,
+                                      child: ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(100),
+                                        child: SizedBox(
+                                          height: 36,
+                                          child: ColoredBox(
+                                            color: context.cardColor,
+                                            child:
+                                                const CupertinoActivityIndicator(),
+                                          ),
+                                        ),
                                       ),
                                     )
-                                  : GridView.builder(
-                                      controller: bloc.scrollController,
-                                      padding: const EdgeInsets.fromLTRB(
-                                          15, 0, 15, 120),
-                                      shrinkWrap: !kIsWeb,
-                                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: currentWidth < 1300 && currentWidth > 700
-                                        ? context.isTablet
-                                        ? 2
-                                        : 3
-                                        : currentWidth < 600
-                                        ? 2
-                                        : 4,
-                                    childAspectRatio:  currentWidth < 400
-                                        ? .5
-                                        : context.isTablet
-                                        ? .7
-                                        : .6,
-                                    crossAxisSpacing: 5,
-                                    mainAxisSpacing: 1),
-                                      itemCount: products.length,
-                                      itemBuilder: (context, index) =>
-                                          ProductCard.grid(
-                                        height: 200,
-                                        width: 200,
-                                        product: products[index],
-                                        onCart: (type) => bloc.add(
-                                            SearchEvent.changeCartState(
-                                                products[index])),
-                                        fieldController: authBloc.state ==
-                                                const AuthState.authenticated()
-                                            ? bloc.quantityControllers[index]
-                                            : TextEditingController(),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                              AnimatedPositioned(
-                                bottom: isMoreLoading ? 60 : -36,
-                                left: context.width * .46,
-                                right: context.width * .46,
-                                duration: Durations.medium2,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: SizedBox(
-                                    height: 36,
-                                    child: ColoredBox(
-                                      color: context.cardColor,
-                                      child: const CupertinoActivityIndicator(),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          );
+                                  ],
+                                );
                         },
                         notFound: () => const SizedBox(),
                         error: () => const SizedBox(),

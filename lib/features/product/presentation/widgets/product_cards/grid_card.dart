@@ -231,48 +231,54 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                     : const Color.fromARGB(255, 0, 73, 208),
                           ),
                         )
-                      : AppButton(
-                          animate: true,
-                          width: context.isMobile ? context.width * .12 : 50,
-                          fillColor:
-                              (product ?? cartProduct!.product)!.inCart ?? false
-                                  ? AppColors.red
-                                  : context.primary,
-                          text: const Icon(
-                            KazeIcons.cartOutline,
-                            color: AppColors.white,
-                          ),
-                          textColor: AppColors.white,
-                          onPressed: authBloc.state ==
-                                  const AuthState.authenticated()
-                              ? () {
-                                  onCart.call(CheckoutType.order);
+                      : Tooltip(
+                message: (product ?? cartProduct!.product)!.inCart ??
+                    false
+                    ? "Удалить с корзины заказа"
+                    : "Добавить в корзину заказа",
+                        child: AppButton(
+                            animate: true,
+                            width: context.isMobile ? context.width * .12 : 50,
+                            fillColor:
+                                (product ?? cartProduct!.product)!.inCart ?? false
+                                    ? AppColors.red
+                                    : context.primary,
+                            text: const Icon(
+                              KazeIcons.cartOutline,
+                              color: AppColors.white,
+                            ),
+                            textColor: AppColors.white,
+                            onPressed: authBloc.state ==
+                                    const AuthState.authenticated()
+                                ? () {
+                                    onCart.call(CheckoutType.order);
 
-                                  if (!((product ?? cartProduct?.product)
-                                          ?.inCart ??
-                                      true)) {
-                                    cartBloc.add(CartEvent.addToCart(
-                                        (product ?? cartProduct!.product)!.id,
-                                        fieldController?.text == null ||
-                                                fieldController?.text == ''
-                                            ? 1
-                                            : int.parse(
-                                                fieldController!.text)));
-                                    return;
+                                    if (!((product ?? cartProduct?.product)
+                                            ?.inCart ??
+                                        true)) {
+                                      cartBloc.add(CartEvent.addToCart(
+                                          (product ?? cartProduct!.product)!.id,
+                                          fieldController?.text == null ||
+                                                  fieldController?.text == ''
+                                              ? 1
+                                              : int.parse(
+                                                  fieldController!.text)));
+                                      return;
+                                    }
+                                    fieldController?.text = '1';
+                                    cartBloc.add(CartEvent.deleteProductInCart(
+                                        (product ?? cartProduct!.product)!.id));
                                   }
-                                  fieldController?.text = '1';
-                                  cartBloc.add(CartEvent.deleteProductInCart(
-                                      (product ?? cartProduct!.product)!.id));
-                                }
-                              : () => router.push(const AuthRoute()),
-                          size: MainAxisSize.min,
-                          margin: const EdgeInsets.only(
-                            right: 10,
+                                : () => router.push(const AuthRoute()),
+                            size: MainAxisSize.min,
+                            margin: const EdgeInsets.only(
+                              right: 10,
+                            ),
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 8),
+                            borderRadius: 4,
                           ),
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 8),
-                          borderRadius: 4,
-                        ),
+                      ),
             ],
           ),
           verticalSpace8,

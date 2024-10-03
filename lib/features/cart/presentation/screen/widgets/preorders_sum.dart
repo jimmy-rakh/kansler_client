@@ -20,42 +20,62 @@ class PreordersSumWidget extends HookWidget {
     final preOrderBloc = context.read<PreordersBloc>();
     final state = useBlocBuilder(preOrderBloc);
 
-    return state.products.isEmpty
-        ? const SizedBox()
-        : Padding(
-            padding: const EdgeInsets.all(5),
-            child: ColoredBox(
-              color: context.background,
-              child: AppCard(
-                width: context.isDesktop ? 370 : context.isSmall
-                    ? context.width
-                    : context.isTablet
-                    ? context.width * .38
-                    : context.width * .3,
-                padding: const EdgeInsets.all(10),
-                borderRadius: BorderRadius.circular(0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      '${currencyFormatter.format((state.price)).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+    return  state.whenOrNull(
+      ready: (status,products, price, isMoreLoading) {
+        return  Padding(
+          padding: const EdgeInsets.all(5),
+          child: ColoredBox(
+            color: context.background,
+            child: AppCard(
+              width: context.isDesktop ? 370 : context.isSmall
+                  ? context.width
+                  : context.isTablet
+                  ? context.width * .38
+                  : context.width * .3,
+              padding: const EdgeInsets.all(10),
+              borderRadius: BorderRadius.circular(0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  state.whenOrNull(
+                    ready: (status,products, price, isMoreLoading) =>
+                    price == 0 ? const SizedBox() : Text(
+                      '${currencyFormatter.format((price)).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                       style: context.titleMedium,
                     ),
-                    AppButton(
-                      text: 'Оформить Предзаказ',
-                      textColor: context.onPrimary,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 12),
-                      borderRadius: 0,
-                      fillColor: const Color.fromARGB(
-                          255, 0, 73, 208),
-                      onPressed: () => context.isSmall ?
-                      preOrderBloc.add(const PreordersEvent.toCheckout()) : bloc.add( const CheckoutEvent.checkOut(CheckoutType.preorder)),
-                    )
-                  ],
-                ),
+                  ) ??
+                      const SizedBox(),
+                  products.isEmpty ? AppButton(
+                    isActive: false,
+                    height: 50,
+                    text: 'Оформить Предзаказ',
+                    textColor: context.onPrimary,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    borderRadius: 0,
+                    fillColor: const Color.fromARGB(
+                        255, 0, 73, 208).withOpacity(0.3),
+                    onPressed: () {},
+                  ) :  AppButton(
+                    height: 50,
+                    text: 'Оформить Предзаказ',
+                    textColor: context.onPrimary,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 12, vertical: 12),
+                    borderRadius: 0,
+                    fillColor: const Color.fromARGB(
+                        255, 0, 73, 208),
+                    onPressed: () => context.isSmall ?
+                    preOrderBloc.add(const PreordersEvent.toCheckout()) : bloc.add( const CheckoutEvent.checkOut(CheckoutType.preorder)),
+                  )
+                ],
               ),
             ),
-          );
+          ),
+        );
+      },
+    ) ??
+        const SizedBox();
+
   }
 }

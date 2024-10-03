@@ -86,14 +86,7 @@ class CartScreen extends HookWidget {
                               ),
                           cartState.whenOrNull(
                             ready: (products, price, isMoreLoading) {
-                              if (products.isEmpty) {
-                                return const Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(24),
-                                    child: Text("Ваша корзина пуста..."),
-                                  ),
-                                );
-                              }
+
 
                              return state.whenOrNull(
                                 ready: (paymentType, deliveryType,) => Padding(

@@ -57,7 +57,8 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
           children: [
             state.whenOrNull(
                   ready: (paymentType, deliveryType) => Padding(
-                    padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                    padding:
+                        const EdgeInsets.only(left: 16, right: 16, top: 16),
                     child: SizedBox(
                       width: context.isMobile
                           ? double.maxFinite
@@ -94,11 +95,12 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                                       child: Text("Выберите тип оплаты"),
                                     ),
                                     value: paymentType == "byTransfer"
-                                        ? "Перечислением" :
-                                    paymentType == "byCash"
-                                        ? "Наличными" :
-                                    paymentType == "byCard"
-                                        ? "Картой" : paymentType,
+                                        ? "Перечислением"
+                                        : paymentType == "byCash"
+                                            ? "Наличными"
+                                            : paymentType == "byCard"
+                                                ? "Картой"
+                                                : paymentType,
                                     items: <String>[
                                       "Перечислением",
                                       "Наличными",
@@ -118,7 +120,8 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                                       );
                                     }).toList(),
                                     onChanged: (value) {
-                                      bloc.add(CheckoutEvent.paymentType(value!));
+                                      bloc.add(
+                                          CheckoutEvent.paymentType(value!));
                                     },
                                   ),
                                 ),
@@ -154,10 +157,14 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                                       child: Text("Выберите способ получение"),
                                     ),
                                     value: deliveryType == "pickup"
-                                        ? "Самовывоз" :
-                                    deliveryType == "delivery"
-                                        ? "Доставка" : deliveryType,
-                                    items: <String>["Самовывоз", "Доставка",].map((String value) {
+                                        ? "Самовывоз"
+                                        : deliveryType == "delivery"
+                                            ? "Доставка"
+                                            : deliveryType,
+                                    items: <String>[
+                                      "Самовывоз",
+                                      "Доставка",
+                                    ].map((String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
                                         child: Padding(
@@ -189,32 +196,37 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                   child: Text(""),
                 ),
             ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(16, 16, 16, 50),
-              controller: type == CheckoutType.order
-                  ? preordersBloc.checkoutController
-                  : cartBloc.checkoutController,
-              itemBuilder: (context, index) => ProductCard.list(
-                cartProduct: type == CheckoutType.order
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 50),
+                controller: type == CheckoutType.order
+                    ? preordersBloc.checkoutController
+                    : cartBloc.checkoutController,
+                itemBuilder: (context, index) => ProductCard.list(
+                      cartProduct: type == CheckoutType.order
+                          ? cartState.whenOrNull(
+                              ready: (products, price, isMoreLoading) =>
+                                  products[index],
+                            )
+                          : preordersState.whenOrNull(
+                              ready: (status, products, price, isMoreLoading) =>
+                                  products[index],
+                            ),
+                      fieldController: TextEditingController(),
+                      showActions: false,
+                      onPressed: () {},
+                      onCart: (type) {},
+                    ),
+                separatorBuilder: (context, index) => verticalSpace12,
+                itemCount: type == CheckoutType.order
                     ? cartState.whenOrNull(
-                        ready: (products, price, isMoreLoading) =>
-                            products[index],
-                      )
-                    : preordersState.products[index],
-                fieldController: TextEditingController(),
-                showActions: false,
-                onPressed: () {},
-                onCart: (type) {},
-              ),
-              separatorBuilder: (context, index) => verticalSpace12,
-              itemCount: type == CheckoutType.order
-                  ? cartState.whenOrNull(
-                          ready: (products, price, isMoreLoading) =>
-                              products.length) ??
-                      0
-                  : preordersState.products.length,
-            ),
+                            ready: (products, price, isMoreLoading) =>
+                                products.length) ??
+                        0
+                    : preordersState.whenOrNull(
+                            ready: (status, products, price, isMoreLoading) =>
+                                products.length) ??
+                        0),
           ],
         ),
         bottomNavigationBar: AppCard(

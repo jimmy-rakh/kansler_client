@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -19,7 +20,7 @@ part 'preorders_bloc.freezed.dart';
 class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
   final CartRepository _cartRepository;
 
-  PreordersBloc(this._cartRepository) : super(const PreordersState()) {
+  PreordersBloc(this._cartRepository) : super(const PreordersState.loadInProgress()) {
     on<_Retry>(_onRetry);
     on<_AddToPreorders>(_onAddToPreorders);
     on<_DeleteProductInPreorders>(_onDeleteProductInPreorders);
@@ -35,7 +36,7 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       if (scrollController.position.pixels >=
               scrollController.position.maxScrollExtent - 200 &&
           hasNext &&
-          !state.isMoreLoading) {
+          !(state as _Ready).isMoreLoading) {
         add(const PreordersEvent.getPreordersProducts(isMore: true));
       }
     });
@@ -44,7 +45,7 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       if (checkoutController.position.pixels >=
               checkoutController.position.maxScrollExtent - 200 &&
           hasNext &&
-          !state.isMoreLoading) {
+          !(state as _Ready).isMoreLoading) {
         add(const PreordersEvent.getPreordersProducts(isMore: true));
       }
     });
@@ -63,6 +64,9 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    if (kIsWeb) {
+      emit((state as _Ready).copyWith(products: [],price: 0));
+    }
     final res = await _cartRepository.addProductToPreorder(
       (productId: event.id, quantity: event.quantity),
     );
@@ -83,19 +87,25 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
-    if (state.status == PreordersStatus.loaded) {
-      final products = state.products.map((e) {
+    if ((state as _Ready).status == PreordersStatus.loaded) {
+      final products = (state as _Ready).products.map((e) {
         if (e.product!.id == event.id) {
           return e.copyWith(quantity: 0);
         }
         return e;
       }).toList();
+      if (kIsWeb) {
+        emit((state as _Ready).copyWith(products: [],price: 0));
+        await Future.delayed(const Duration(milliseconds: 100));
+      }
+
+
 
       products.removeWhere(
         (element) => element.quantity == 0,
       );
 
-      emit(state.copyWith(products: products));
+      emit((state as _Ready).copyWith(products: products));
     }
 
     final res = await _cartRepository.deleteProductInPreorder(event.id);
@@ -122,7 +132,7 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
   void _onUpdateProductInPreorders(
       _UpdateProductInPreorders event, Emitter<PreordersState> emit) async {
-    if (!state.products.any((element) => element.product!.id == event.id)) {
+    if (!(state as _Ready).products.any((element) => element.product!.id == event.id)) {
       return;
     }
     final res = await _cartRepository.updateProductInPreorder(
@@ -146,7 +156,7 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       // emit(const PreordersState.error());
       // log.e(l.toString());
     }, (r) {
-      emit(state.copyWith(price: r));
+      emit((state as _Ready).copyWith(price: r));
     });
   }
 
@@ -154,8 +164,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       _GetPreordersProducts event, Emitter<PreordersState> emit) async {
     final authBloc =
         BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
-    if (state.status == PreordersStatus.loaded && event.isMore) {
-      emit(state.copyWith(isMoreLoading: true));
+    if ((state as _Ready).status == PreordersStatus.loaded && event.isMore) {
+      emit((state as _Ready).copyWith(isMoreLoading: true));
     }
 
     if (authBloc.state != const AuthState.authenticated()) return;
@@ -178,16 +188,16 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
           r.products.length,
           (index) => quantityControllers.add(TextEditingController(
               text: r.products[index].quantity.toString())));
-      if (state.status == PreordersStatus.loaded && event.isMore) {
+      if ((state as _Ready).status == PreordersStatus.loaded && event.isMore) {
         List<CartProduct> preordersProducts = [];
-        preordersProducts.addAll(state.products);
+        preordersProducts.addAll((state as _Ready).products);
         preordersProducts.addAll(r.products);
 
-        emit(state.copyWith(products: preordersProducts, isMoreLoading: false));
+        emit((state as _Ready).copyWith(products: preordersProducts, isMoreLoading: false));
         return;
       }
 
-      emit(PreordersState(
+      emit(PreordersState.ready(
         status: PreordersStatus.loaded,
         products: r.products,
         price: 0,
@@ -198,7 +208,7 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       // emit(const PreordersState.error());
       // log.e(l.toString());
     }, (r) {
-      emit(state.copyWith(price: r));
+      emit((state as _Ready).copyWith(price: r));
     });
   }
 
@@ -208,7 +218,7 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
   }
 
   void _onRetry(_Retry event, Emitter<PreordersState> emit) {
-    emit(const PreordersState(status: PreordersStatus.loading));
+    emit(const PreordersState.ready(status: PreordersStatus.loading));
     _updateView();
   }
 

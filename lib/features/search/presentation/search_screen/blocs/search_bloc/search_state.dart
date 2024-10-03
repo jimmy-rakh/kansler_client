@@ -1,9 +1,12 @@
 part of 'search_bloc.dart';
 
+enum PreordersStatus { loading, loaded, error }
+
 @freezed
 class SearchState with _$SearchState {
   const factory SearchState.loadInProgress() = _LoadInProgress;
   const factory SearchState.success({
+    @Default(PreordersStatus.loading) PreordersStatus status,
      List<ProductEntity>? products,
     SearchEntity? filterData,
     @Default(true) bool isList,

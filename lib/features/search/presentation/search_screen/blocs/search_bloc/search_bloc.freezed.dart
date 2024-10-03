@@ -20,6 +20,7 @@ mixin _$SearchState {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -35,6 +36,7 @@ mixin _$SearchState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -50,6 +52,7 @@ mixin _$SearchState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -153,6 +156,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -171,6 +175,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -189,6 +194,7 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -255,7 +261,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {List<ProductEntity>? products,
+      {PreordersStatus status,
+      List<ProductEntity>? products,
       SearchEntity? filterData,
       bool isList,
       bool isMoreLoading,
@@ -276,6 +283,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? status = null,
     Object? products = freezed,
     Object? filterData = freezed,
     Object? isList = null,
@@ -284,6 +292,10 @@ class __$$SuccessImplCopyWithImpl<$Res>
     Object? organizations = null,
   }) {
     return _then(_$SuccessImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as PreordersStatus,
       products: freezed == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -316,7 +328,8 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 class _$SuccessImpl implements _Success {
   const _$SuccessImpl(
-      {final List<ProductEntity>? products,
+      {this.status = PreordersStatus.loading,
+      final List<ProductEntity>? products,
       this.filterData,
       this.isList = true,
       this.isMoreLoading = false,
@@ -325,6 +338,9 @@ class _$SuccessImpl implements _Success {
       : _products = products,
         _organizations = organizations;
 
+  @override
+  @JsonKey()
+  final PreordersStatus status;
   final List<ProductEntity>? _products;
   @override
   List<ProductEntity>? get products {
@@ -357,7 +373,7 @@ class _$SuccessImpl implements _Success {
 
   @override
   String toString() {
-    return 'SearchState.success(products: $products, filterData: $filterData, isList: $isList, isMoreLoading: $isMoreLoading, activePage: $activePage, organizations: $organizations)';
+    return 'SearchState.success(status: $status, products: $products, filterData: $filterData, isList: $isList, isMoreLoading: $isMoreLoading, activePage: $activePage, organizations: $organizations)';
   }
 
   @override
@@ -365,6 +381,7 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
+            (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.filterData, filterData) ||
                 other.filterData == filterData) &&
@@ -380,6 +397,7 @@ class _$SuccessImpl implements _Success {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      status,
       const DeepCollectionEquality().hash(_products),
       filterData,
       isList,
@@ -400,6 +418,7 @@ class _$SuccessImpl implements _Success {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -410,8 +429,8 @@ class _$SuccessImpl implements _Success {
     required TResult Function() notFound,
     required TResult Function() error,
   }) {
-    return success(
-        products, filterData, isList, isMoreLoading, activePage, organizations);
+    return success(status, products, filterData, isList, isMoreLoading,
+        activePage, organizations);
   }
 
   @override
@@ -419,6 +438,7 @@ class _$SuccessImpl implements _Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -429,8 +449,8 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? notFound,
     TResult? Function()? error,
   }) {
-    return success?.call(
-        products, filterData, isList, isMoreLoading, activePage, organizations);
+    return success?.call(status, products, filterData, isList, isMoreLoading,
+        activePage, organizations);
   }
 
   @override
@@ -438,6 +458,7 @@ class _$SuccessImpl implements _Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -450,8 +471,8 @@ class _$SuccessImpl implements _Success {
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(products, filterData, isList, isMoreLoading, activePage,
-          organizations);
+      return success(status, products, filterData, isList, isMoreLoading,
+          activePage, organizations);
     }
     return orElse();
   }
@@ -496,13 +517,15 @@ class _$SuccessImpl implements _Success {
 
 abstract class _Success implements SearchState {
   const factory _Success(
-      {final List<ProductEntity>? products,
+      {final PreordersStatus status,
+      final List<ProductEntity>? products,
       final SearchEntity? filterData,
       final bool isList,
       final bool isMoreLoading,
       final int activePage,
       final List<ProductDataEntity> organizations}) = _$SuccessImpl;
 
+  PreordersStatus get status;
   List<ProductEntity>? get products;
   SearchEntity? get filterData;
   bool get isList;
@@ -560,6 +583,7 @@ class _$NotFoundImpl implements _NotFound {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -578,6 +602,7 @@ class _$NotFoundImpl implements _NotFound {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -596,6 +621,7 @@ class _$NotFoundImpl implements _NotFound {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -698,6 +724,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
     required TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -716,6 +743,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
     TResult? Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,
@@ -734,6 +762,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
     TResult Function(
+            PreordersStatus status,
             List<ProductEntity>? products,
             SearchEntity? filterData,
             bool isList,

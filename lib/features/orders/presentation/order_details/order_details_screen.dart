@@ -54,7 +54,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                     ),
                   ),
                   leadingWidth: 58,
-                  title: Text('Заказ № $id'),
+                  title: Text(type == CheckoutType.order ? 'Заказ № $id' : 'Предзаказ № $id'),
                 ),
                 body: context.isSmall
                     ? state.whenOrNull(
@@ -164,11 +164,7 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                             .organizationOrders![
                                                                 index]
                                                             .id,
-                                                        order
-                                                            .organizationOrders![
-                                                                index]
-                                                            .organization,
-                                                        type));
+                                                        order.organizationOrders![index].organization,type));
                                               },
                                               borderRadius: 8,
                                               fillColor: context.background,

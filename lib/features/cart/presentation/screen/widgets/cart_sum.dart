@@ -22,9 +22,7 @@ class CartSumWidget extends HookWidget {
 
     return cartState.whenOrNull(
           ready: (products, price, isMoreLoading) {
-            return products.isEmpty
-                ? const SizedBox()
-                : Padding(
+            return  Padding(
                     padding: const EdgeInsets.all(5),
                     child: ColoredBox(
                       color: context.background,
@@ -41,13 +39,24 @@ class CartSumWidget extends HookWidget {
                           children: [
                             cartState.whenOrNull(
                                   ready: (products, price, isMoreLoading) =>
-                                      Text(
+                          price == 0 ? const SizedBox() : Text(
                                     '${currencyFormatter.format((price)).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                     style: context.titleMedium,
                                   ),
                                 ) ??
                                 const SizedBox(),
-                            AppButton(
+                            products.isEmpty ? AppButton(
+                              isActive: false,
+                              height: 50,
+                              text: 'Оформить Заказ',
+                              textColor: context.onPrimary,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 12),
+                              borderRadius: 0,
+                              fillColor: context.primary,
+                              onPressed: () {},
+                            ) :  AppButton(
+                              height: 50,
                               text: 'Оформить Заказ',
                               textColor: context.onPrimary,
                               padding: const EdgeInsets.symmetric(

@@ -82,8 +82,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
 
     if (kIsWeb) {
-      emit(const CartState.loadInProgress());
-      emit(const CartState.ready(products: [], price: 0));
+      emit((state as _Ready).copyWith(products: []));
     }
     final res = await _addProductToCartUseCase
         .call((productId: event.id, quantity: event.quantity));
@@ -93,7 +92,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         popularBloc.add(const PopularEvent.fetch());
         latestBloc.add(const LatestEvent.fetch());
       }
-
+      emit(const CartState.loadInProgress());
       _updateView();
     });
   }
@@ -104,10 +103,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
-    if (kIsWeb) {
-      emit(const CartState.loadInProgress());
-      emit(const CartState.ready(products: [], price: 0));
-    }
 
     if (state is _Ready) {
       final products = (state as _Ready).products.map((e) {
@@ -116,6 +111,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         }
         return e;
       }).toList();
+      if (kIsWeb) {
+        emit((state as _Ready).copyWith(products: [],price: 0));
+        await Future.delayed(const Duration(milliseconds: 100));
+      }
 
       products.removeWhere(
         (element) => element.quantity == 0,
@@ -135,17 +134,11 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         _updateView();
         popularBloc.add(const PopularEvent.fetch());
         latestBloc.add(const LatestEvent.fetch());
-        add(const CartEvent.getCartPrice());
       },
     );
   }
 
-  void _onDeleteProductsInCart(
-      _DeleteProductsInCart event, Emitter<CartState> emit) async {
-    final res = await _deleteProductsInCartUsecase.call(event.ids);
 
-    res.fold((l) => log.e(l.toString()), (r) => _updateView());
-  }
 
   void _onUpdateProductInCart(
       _UpdateProductInCart event, Emitter<CartState> emit) async {
@@ -181,9 +174,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       _GetCartProducts event, Emitter<CartState> emit) async {
     final authBloc =
         BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
+
+
     if (state is _Ready && event.isMore) {
       emit((state as _Ready).copyWith(isMoreLoading: true));
     }
+
 
     if (authBloc.state != const AuthState.authenticated()) return;
 
@@ -196,7 +192,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       pageNumber = 1;
       // log.e(l.toString());
       // emit(const CartState.error());
-    }, (r) {
+    }, (r) async {
       emit(const CartState.loadInProgress());
       pageNumber++;
       hasNext = r.hasNext;
@@ -210,7 +206,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         List<CartProduct> cartProducts = [];
         cartProducts.addAll((state as _Ready).products);
         cartProducts.addAll(r.products);
-
+        if (kIsWeb) {
+          emit((state as _Ready).copyWith(products: []));
+          await Future.delayed(const Duration(milliseconds: 100));
+        }
         emit((state as _Ready)
             .copyWith(products: cartProducts, isMoreLoading: false));
         return;
@@ -228,8 +227,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   void _updateView() {
-    add(const CartEvent.getCartProducts());
     add(const CartEvent.getCartPrice());
+    add(const CartEvent.getCartProducts());
   }
 
   void _onRetry(_Retry event, Emitter<CartState> emit) {

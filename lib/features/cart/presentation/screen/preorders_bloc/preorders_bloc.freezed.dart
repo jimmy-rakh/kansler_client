@@ -16,15 +16,49 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$PreordersState {
-  PreordersStatus get status => throw _privateConstructorUsedError;
-  List<CartProduct> get products => throw _privateConstructorUsedError;
-  int? get price => throw _privateConstructorUsedError;
-  bool get isMoreLoading => throw _privateConstructorUsedError;
-
-  /// Create a copy of PreordersState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PreordersStateCopyWith<PreordersState> get copyWith =>
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(PreordersStatus status,
+            List<CartProduct> products, int? price, bool isMoreLoading)
+        ready,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInProgress,
+    TResult? Function(PreordersStatus status, List<CartProduct> products,
+            int? price, bool isMoreLoading)?
+        ready,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(PreordersStatus status, List<CartProduct> products,
+            int? price, bool isMoreLoading)?
+        ready,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_Ready value) ready,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_Ready value)? ready,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_Ready value)? ready,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
@@ -33,12 +67,6 @@ abstract class $PreordersStateCopyWith<$Res> {
   factory $PreordersStateCopyWith(
           PreordersState value, $Res Function(PreordersState) then) =
       _$PreordersStateCopyWithImpl<$Res, PreordersState>;
-  @useResult
-  $Res call(
-      {PreordersStatus status,
-      List<CartProduct> products,
-      int? price,
-      bool isMoreLoading});
 }
 
 /// @nodoc
@@ -53,42 +81,133 @@ class _$PreordersStateCopyWithImpl<$Res, $Val extends PreordersState>
 
   /// Create a copy of PreordersState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? status = null,
-    Object? products = null,
-    Object? price = freezed,
-    Object? isMoreLoading = null,
-  }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as PreordersStatus,
-      products: null == products
-          ? _value.products
-          : products // ignore: cast_nullable_to_non_nullable
-              as List<CartProduct>,
-      price: freezed == price
-          ? _value.price
-          : price // ignore: cast_nullable_to_non_nullable
-              as int?,
-      isMoreLoading: null == isMoreLoading
-          ? _value.isMoreLoading
-          : isMoreLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$LoginStateImplCopyWith<$Res>
-    implements $PreordersStateCopyWith<$Res> {
-  factory _$$LoginStateImplCopyWith(
-          _$LoginStateImpl value, $Res Function(_$LoginStateImpl) then) =
-      __$$LoginStateImplCopyWithImpl<$Res>;
+abstract class _$$LoadInProgressImplCopyWith<$Res> {
+  factory _$$LoadInProgressImplCopyWith(_$LoadInProgressImpl value,
+          $Res Function(_$LoadInProgressImpl) then) =
+      __$$LoadInProgressImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$LoadInProgressImplCopyWithImpl<$Res>
+    extends _$PreordersStateCopyWithImpl<$Res, _$LoadInProgressImpl>
+    implements _$$LoadInProgressImplCopyWith<$Res> {
+  __$$LoadInProgressImplCopyWithImpl(
+      _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of PreordersState
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$LoadInProgressImpl
+    with DiagnosticableTreeMixin
+    implements _LoadInProgress {
+  const _$LoadInProgressImpl();
+
   @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PreordersState.loadInProgress()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'PreordersState.loadInProgress'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$LoadInProgressImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(PreordersStatus status,
+            List<CartProduct> products, int? price, bool isMoreLoading)
+        ready,
+  }) {
+    return loadInProgress();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInProgress,
+    TResult? Function(PreordersStatus status, List<CartProduct> products,
+            int? price, bool isMoreLoading)?
+        ready,
+  }) {
+    return loadInProgress?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(PreordersStatus status, List<CartProduct> products,
+            int? price, bool isMoreLoading)?
+        ready,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_Ready value) ready,
+  }) {
+    return loadInProgress(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_Ready value)? ready,
+  }) {
+    return loadInProgress?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_Ready value)? ready,
+    required TResult orElse(),
+  }) {
+    if (loadInProgress != null) {
+      return loadInProgress(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadInProgress implements PreordersState {
+  const factory _LoadInProgress() = _$LoadInProgressImpl;
+}
+
+/// @nodoc
+abstract class _$$ReadyImplCopyWith<$Res> {
+  factory _$$ReadyImplCopyWith(
+          _$ReadyImpl value, $Res Function(_$ReadyImpl) then) =
+      __$$ReadyImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {PreordersStatus status,
@@ -98,11 +217,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$LoginStateImplCopyWithImpl<$Res>
-    extends _$PreordersStateCopyWithImpl<$Res, _$LoginStateImpl>
-    implements _$$LoginStateImplCopyWith<$Res> {
-  __$$LoginStateImplCopyWithImpl(
-      _$LoginStateImpl _value, $Res Function(_$LoginStateImpl) _then)
+class __$$ReadyImplCopyWithImpl<$Res>
+    extends _$PreordersStateCopyWithImpl<$Res, _$ReadyImpl>
+    implements _$$ReadyImplCopyWith<$Res> {
+  __$$ReadyImplCopyWithImpl(
+      _$ReadyImpl _value, $Res Function(_$ReadyImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of PreordersState
@@ -115,7 +234,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? price = freezed,
     Object? isMoreLoading = null,
   }) {
-    return _then(_$LoginStateImpl(
+    return _then(_$ReadyImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -138,8 +257,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoginStateImpl implements _LoginState {
-  const _$LoginStateImpl(
+class _$ReadyImpl with DiagnosticableTreeMixin implements _Ready {
+  const _$ReadyImpl(
       {this.status = PreordersStatus.loading,
       final List<CartProduct> products = const [],
       this.price,
@@ -165,15 +284,26 @@ class _$LoginStateImpl implements _LoginState {
   final bool isMoreLoading;
 
   @override
-  String toString() {
-    return 'PreordersState(status: $status, products: $products, price: $price, isMoreLoading: $isMoreLoading)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PreordersState.ready(status: $status, products: $products, price: $price, isMoreLoading: $isMoreLoading)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PreordersState.ready'))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('products', products))
+      ..add(DiagnosticsProperty('price', price))
+      ..add(DiagnosticsProperty('isMoreLoading', isMoreLoading));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoginStateImpl &&
+            other is _$ReadyImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.price, price) || other.price == price) &&
@@ -190,31 +320,94 @@ class _$LoginStateImpl implements _LoginState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
-      __$$LoginStateImplCopyWithImpl<_$LoginStateImpl>(this, _$identity);
+  _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
+      __$$ReadyImplCopyWithImpl<_$ReadyImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadInProgress,
+    required TResult Function(PreordersStatus status,
+            List<CartProduct> products, int? price, bool isMoreLoading)
+        ready,
+  }) {
+    return ready(status, products, price, isMoreLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadInProgress,
+    TResult? Function(PreordersStatus status, List<CartProduct> products,
+            int? price, bool isMoreLoading)?
+        ready,
+  }) {
+    return ready?.call(status, products, price, isMoreLoading);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadInProgress,
+    TResult Function(PreordersStatus status, List<CartProduct> products,
+            int? price, bool isMoreLoading)?
+        ready,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(status, products, price, isMoreLoading);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadInProgress value) loadInProgress,
+    required TResult Function(_Ready value) ready,
+  }) {
+    return ready(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadInProgress value)? loadInProgress,
+    TResult? Function(_Ready value)? ready,
+  }) {
+    return ready?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadInProgress value)? loadInProgress,
+    TResult Function(_Ready value)? ready,
+    required TResult orElse(),
+  }) {
+    if (ready != null) {
+      return ready(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _LoginState implements PreordersState {
-  const factory _LoginState(
+abstract class _Ready implements PreordersState {
+  const factory _Ready(
       {final PreordersStatus status,
       final List<CartProduct> products,
       final int? price,
-      final bool isMoreLoading}) = _$LoginStateImpl;
+      final bool isMoreLoading}) = _$ReadyImpl;
 
-  @override
   PreordersStatus get status;
-  @override
   List<CartProduct> get products;
-  @override
   int? get price;
-  @override
   bool get isMoreLoading;
 
   /// Create a copy of PreordersState
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>
+  _$$ReadyImplCopyWith<_$ReadyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -348,12 +541,18 @@ class __$$RetryImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RetryImpl implements _Retry {
+class _$RetryImpl with DiagnosticableTreeMixin implements _Retry {
   const _$RetryImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.retry()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'PreordersEvent.retry'));
   }
 
   @override
@@ -523,7 +722,9 @@ class __$$AddToPreordersImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AddToPreordersImpl implements _AddToPreorders {
+class _$AddToPreordersImpl
+    with DiagnosticableTreeMixin
+    implements _AddToPreorders {
   const _$AddToPreordersImpl(this.id, this.quantity,
       {this.updateDependencies = false});
 
@@ -536,8 +737,18 @@ class _$AddToPreordersImpl implements _AddToPreorders {
   final bool updateDependencies;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.addToPreorders(id: $id, quantity: $quantity, updateDependencies: $updateDependencies)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PreordersEvent.addToPreorders'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('quantity', quantity))
+      ..add(DiagnosticsProperty('updateDependencies', updateDependencies));
   }
 
   @override
@@ -731,7 +942,9 @@ class __$$UpdateProductInPreordersImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateProductInPreordersImpl implements _UpdateProductInPreorders {
+class _$UpdateProductInPreordersImpl
+    with DiagnosticableTreeMixin
+    implements _UpdateProductInPreorders {
   const _$UpdateProductInPreordersImpl(this.id, this.quantity);
 
   @override
@@ -740,8 +953,18 @@ class _$UpdateProductInPreordersImpl implements _UpdateProductInPreorders {
   final int quantity;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.updateProductInPreorders(id: $id, quantity: $quantity)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'PreordersEvent.updateProductInPreorders'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('quantity', quantity));
   }
 
   @override
@@ -926,15 +1149,26 @@ class __$$DeleteProductInPreordersImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteProductInPreordersImpl implements _DeleteProductInPreorders {
+class _$DeleteProductInPreordersImpl
+    with DiagnosticableTreeMixin
+    implements _DeleteProductInPreorders {
   const _$DeleteProductInPreordersImpl(this.id);
 
   @override
   final int id;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.deleteProductInPreorders(id: $id)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'PreordersEvent.deleteProductInPreorders'))
+      ..add(DiagnosticsProperty('id', id));
   }
 
   @override
@@ -1116,7 +1350,9 @@ class __$$DeleteProductsInPreordersImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeleteProductsInPreordersImpl implements _DeleteProductsInPreorders {
+class _$DeleteProductsInPreordersImpl
+    with DiagnosticableTreeMixin
+    implements _DeleteProductsInPreorders {
   const _$DeleteProductsInPreordersImpl(final List<int> ids) : _ids = ids;
 
   final List<int> _ids;
@@ -1128,8 +1364,17 @@ class _$DeleteProductsInPreordersImpl implements _DeleteProductsInPreorders {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.deleteProductsInPreorders(ids: $ids)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'PreordersEvent.deleteProductsInPreorders'))
+      ..add(DiagnosticsProperty('ids', ids));
   }
 
   @override
@@ -1296,12 +1541,21 @@ class __$$GetPreordersPriceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetPreordersPriceImpl implements _GetPreordersPrice {
+class _$GetPreordersPriceImpl
+    with DiagnosticableTreeMixin
+    implements _GetPreordersPrice {
   const _$GetPreordersPriceImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.getPreordersPrice()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'PreordersEvent.getPreordersPrice'));
   }
 
   @override
@@ -1461,7 +1715,9 @@ class __$$GetPreordersProductsImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$GetPreordersProductsImpl implements _GetPreordersProducts {
+class _$GetPreordersProductsImpl
+    with DiagnosticableTreeMixin
+    implements _GetPreordersProducts {
   const _$GetPreordersProductsImpl({this.isMore = false});
 
   @override
@@ -1469,8 +1725,16 @@ class _$GetPreordersProductsImpl implements _GetPreordersProducts {
   final bool isMore;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.getPreordersProducts(isMore: $isMore)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'PreordersEvent.getPreordersProducts'))
+      ..add(DiagnosticsProperty('isMore', isMore));
   }
 
   @override
@@ -1637,12 +1901,18 @@ class __$$ToCheckoutImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ToCheckoutImpl implements _ToCheckout {
+class _$ToCheckoutImpl with DiagnosticableTreeMixin implements _ToCheckout {
   const _$ToCheckoutImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'PreordersEvent.toCheckout()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'PreordersEvent.toCheckout'));
   }
 
   @override

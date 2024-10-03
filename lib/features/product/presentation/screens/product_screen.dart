@@ -354,64 +354,69 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                         ),
                                                       ),
                                                     ),
-                                                    AppButton(
-                                                      animate: true,
-                                                      width: 50,
-                                                      height: 50,
-                                                      fillColor: state.whenOrNull(
-                                                        success: (product) =>
-                                                        product.leftQuantity == 0
-                                                            ? (product.inPreorder ?? false)
-                                                            ? const Color.fromARGB(
-                                                            255, 69, 114, 199)
-                                                            : const Color.fromARGB(
-                                                            255, 0, 73, 208)
-                                                            : product.inCart!
-                                                            ? AppColors.red
-                                                            : context.primary,
-                                                      ),
-                                                      childAlignment: MainAxisAlignment.start,
-                                                      text: const Icon(
-                                                        KazeIcons.cartOutline,
-                                                        color: AppColors.white,
-                                                      ),
-                                                      textColor: AppColors.white,
-                                                      onPressed: authBloc.state == const AuthState.authenticated()
-                                                          ? () {
-                                                        if ((product)
-                                                            .leftQuantity >=
-                                                            int.parse(bloc
-                                                                .fieldController
-                                                                .text)) {
-                                                          bloc.add(
-                                                              const DetailsEvent
-                                                                  .addToCart());
-                                                          FocusScope.of(
-                                                              context)
-                                                              .unfocus();
-                                                        } else {
-                                                          router.navigatorKey
-                                                              .currentContext!
-                                                              .showToast(
-                                                              'Недостаточно кол-во в складе');
-                                                          bloc.fieldController
-                                                              .text =
-                                                              (product)
-                                                                  .leftQuantity
-                                                                  .toString();
-                                                          FocusScope.of(
-                                                              context)
-                                                              .unfocus();
+                                                    Tooltip(
+                                                      message: product.inCart!
+                                                          ? "Удалить с корзины заказа"
+                                                          : "Добавить в корзину заказа",
+                                                      child: AppButton(
+                                                        animate: true,
+                                                        width: 50,
+                                                        height: 50,
+                                                        fillColor: state.whenOrNull(
+                                                          success: (product) =>
+                                                          product.leftQuantity == 0
+                                                              ? (product.inPreorder ?? false)
+                                                              ? const Color.fromARGB(
+                                                              255, 69, 114, 199)
+                                                              : const Color.fromARGB(
+                                                              255, 0, 73, 208)
+                                                              : product.inCart!
+                                                              ? AppColors.red
+                                                              : context.primary,
+                                                        ),
+                                                        childAlignment: MainAxisAlignment.start,
+                                                        text: const Icon(
+                                                          KazeIcons.cartOutline,
+                                                          color: AppColors.white,
+                                                        ),
+                                                        textColor: AppColors.white,
+                                                        onPressed: authBloc.state == const AuthState.authenticated()
+                                                            ? () {
+                                                          if ((product)
+                                                              .leftQuantity >=
+                                                              int.parse(bloc
+                                                                  .fieldController
+                                                                  .text)) {
+                                                            bloc.add(
+                                                                const DetailsEvent
+                                                                    .addToCart());
+                                                            FocusScope.of(
+                                                                context)
+                                                                .unfocus();
+                                                          } else {
+                                                            router.navigatorKey
+                                                                .currentContext!
+                                                                .showToast(
+                                                                'Недостаточно кол-во в складе');
+                                                            bloc.fieldController
+                                                                .text =
+                                                                (product)
+                                                                    .leftQuantity
+                                                                    .toString();
+                                                            FocusScope.of(
+                                                                context)
+                                                                .unfocus();
+                                                          }
                                                         }
-                                                      }
-                                                          : () =>
-                                                          router.push(const AuthRoute()),
-                                                      size: MainAxisSize.min,
-                                                      padding: const EdgeInsets.symmetric(
-                                                          vertical: 12),
-                                                      margin:
-                                                      const EdgeInsets.fromLTRB(0, 5, 5, 5),
-                                                      borderRadius: 4,
+                                                            : () =>
+                                                            router.push(const AuthRoute()),
+                                                        size: MainAxisSize.min,
+                                                        padding: const EdgeInsets.symmetric(
+                                                            vertical: 12),
+                                                        margin:
+                                                        const EdgeInsets.fromLTRB(0, 5, 5, 5),
+                                                        borderRadius: 4,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),

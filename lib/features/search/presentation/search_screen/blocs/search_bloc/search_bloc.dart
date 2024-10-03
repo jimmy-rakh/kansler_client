@@ -78,12 +78,13 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     if (!event.isMore) {
       pageNumber = 1;
       request = request.copyWith(pageNumber: 1);
-      emit(const SearchState.loadInProgress());
     } else {
-      emit((state as _Success).copyWith(isMoreLoading: true));
+      emit((state as _Success)
+          .copyWith(isMoreLoading: true, status: PreordersStatus.loaded));
     }
-
+    if (state is _Success) emit((state as _Success).copyWith(status:  PreordersStatus.loading));
     final result = await _useCase.call(request);
+
 
     result.fold((l) => log.e(l), (r) {
       request = request!.copyWith(pageNumber: request!.pageNumber + 1);
@@ -99,21 +100,24 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         final currentState = (state as _Success);
 
         emit(currentState.copyWith(
-          products: currentState.products! + r.products,
-          filterData: request,
-          isMoreLoading: false,
-        ));
+            products: currentState.products! + r.products,
+            filterData: request,
+            isMoreLoading: false,
+            status: PreordersStatus.loaded));
         return;
       }
-
-      emit(SearchState.success(products: r.products, filterData: request!));
+      emit(SearchState.success(
+          products: r.products,
+          filterData: request!,
+          status: PreordersStatus.loaded));
     });
   }
 
   void _onChangeListType(event, Emitter<SearchState> emit) {
     if (state is! _Success) return;
 
-    emit((state as _Success).copyWith(isList: !(state as _Success).isList));
+    emit((state as _Success).copyWith(
+        isList: !(state as _Success).isList, status: PreordersStatus.loaded));
   }
 
   void _onShowFilters(_ShowFilters event, Emitter<SearchState> emit) async {
@@ -122,8 +126,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         as SearchEntity?;
 
     if (res != null) {
-      emit((state as _Success)
-          .copyWith(filterData: res.copyWith(pageNumber: 1)));
+      emit((state as _Success).copyWith(
+          filterData: res.copyWith(pageNumber: 1),
+          status: PreordersStatus.loaded));
       priceFromController.text = res.priceFrom?.toString() ?? '';
       priceToController.text = res.priceTo?.toString() ?? '';
       add(const SearchEvent.search());
@@ -135,12 +140,16 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     final products = currentState.products!.map((e) {
       if (e.id == event.product.id) {
-        return event.product.copyWith(inCart: !event.product.inCart!,inPreorder: !event.product.inPreorder!);
+        return event.product.copyWith(
+          inCart: !event.product.inCart!,
+          inPreorder: !event.product.inPreorder!,
+        );
       }
       return e;
     }).toList();
 
-    emit(currentState.copyWith(products: products));
+    emit(currentState.copyWith(
+        products: products, status: PreordersStatus.loaded));
   }
 
   void _onInit(_Init event, Emitter<SearchState> emit) async {
@@ -149,31 +158,35 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     res.fold((l) => log.e(l), (r) {
       emit(SearchState.success(
-        organizations: r.products,
-        products: [],
-      ));
+          organizations: r.products,
+          products: [],
+          status: PreordersStatus.loaded));
     });
   }
 
   void _onChooseCategories(_ChooseCategories event, Emitter<SearchState> emit) {
-    emit((state as _Success).copyWith(activePage: 1));
+    emit((state as _Success)
+        .copyWith(activePage: 1, status: PreordersStatus.loaded));
   }
 
   void _onChooseOrganizations(
       _ChooseOrganizations event, Emitter<SearchState> emit) {}
 
   void _onChooseBrands(_ChooseBrands event, Emitter<SearchState> emit) {
-    emit((state as _Success).copyWith(activePage: 2));
+    emit((state as _Success)
+        .copyWith(activePage: 2, status: PreordersStatus.loaded));
   }
 
   void _onSetBaseView(_SetBaseView event, Emitter<SearchState> emit) {
-    emit((state as _Success).copyWith(activePage: 0));
+    emit((state as _Success)
+        .copyWith(activePage: 0, status: PreordersStatus.loaded));
   }
 
   void _onAddFilter(_AddFilter event, Emitter<SearchState> emit) {
     priceFromController.text = event.searchData.priceFrom?.toString() ?? '';
     priceToController.text = event.searchData.priceTo?.toString() ?? '';
-    emit((state as _Success).copyWith(filterData: event.searchData));
+    emit((state as _Success).copyWith(
+        filterData: event.searchData, status: PreordersStatus.loaded));
   }
 
   void _orderBy(_OrderBy event, Emitter<SearchState> emit) async {
@@ -196,20 +209,25 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
                                         ? "new"
                                         : event.orderBy == "Популярные"
                                             ? "bestseller"
-                                            : event.orderBy)));
+                                            : event.orderBy),
+        status: PreordersStatus.loaded));
   }
 
   void _priceFrom(_PriceFrom event, Emitter<SearchState> emit) async {
     final curr = (state as _Success);
     emit(curr.copyWith(
         filterData: curr.filterData
-            ?.copyWith(priceFrom: int.parse(priceFromController.text))));
+            ?.copyWith(priceFrom: int.parse(priceFromController.text)),
+        status: PreordersStatus.loaded));
   }
 
   void _priceTo(_PriceTo event, Emitter<SearchState> emit) async {
     final curr = (state as _Success);
-    emit(curr.copyWith(
-        filterData: curr.filterData
-            ?.copyWith(priceTo: int.parse(priceToController.text))));
+    emit(
+      curr.copyWith(
+          filterData: curr.filterData
+              ?.copyWith(priceTo: int.parse(priceToController.text)),
+          status: PreordersStatus.loaded),
+    );
   }
 }

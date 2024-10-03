@@ -18,53 +18,34 @@ class PreordersTabWidget extends HookWidget {
     final bloc = context.read<PreordersBloc>();
     final state = useBlocBuilder(bloc);
 
-    if (state.status == PreordersStatus.loading) {
-      return const Center(
+
+    return state.when(
+      loadInProgress: () => const Center(
         child: CupertinoActivityIndicator(),
-      );
-    }
+      ),
+      ready: (status,products, price, isMoreLoading) {
+        if (products.isEmpty) {
+          return Center(
+            child: SvgPicture.asset(AppIllustrations.emptyCart),
+          );
+        }
 
-    if (state.status == PreordersStatus.error) {
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Text('Произошла ошибка'),
-            verticalSpace12,
-            AppButton(
-              text: 'Повторить попытку',
-              padding: const EdgeInsets.symmetric(vertical: 6),
-              margin: EdgeInsets.symmetric(horizontal: context.width / 4),
-              borderRadius: 4,
-              borderColor: context.colorScheme.onBackground,
-              size: MainAxisSize.min,
-              onPressed: () => bloc.add(const PreordersEvent.retry()),
-            )
-          ],
-        ),
-      );
-    }
-
-    if (state.products.isEmpty) {
-      return Center(
-        child: SvgPicture.asset(AppIllustrations.emptyCart),
-      );
-    }
-
-    return ListView.separated(
-      controller: bloc.scrollController,
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-      itemCount: state.products.length,
-      itemBuilder: (context, index) {
-        final product = state.products[index];
-        return ProductCard.list(
-          cartProduct: product,
-          fieldController: bloc.quantityControllers[index],
-          onPressed: () {},
-          onCart: (type) {},
+        return ListView.separated(
+          controller: bloc.scrollController,
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          itemCount: products.length,
+          itemBuilder: (context, index) {
+            final product = products[index];
+            return ProductCard.list(
+              cartProduct: product,
+              fieldController: bloc.quantityControllers[index],
+              onPressed: () {},
+              onCart: (type) {},
+            );
+          },
+          separatorBuilder: (context, index) => verticalSpace12,
         );
       },
-      separatorBuilder: (context, index) => verticalSpace12,
     );
   }
 }
