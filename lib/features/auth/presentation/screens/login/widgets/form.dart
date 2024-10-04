@@ -59,12 +59,12 @@ class LoginFormWidget extends HookWidget {
                 validator: (v) {
                   return state.tabIndex == 0 ? v?.trim().isEmpty ?? true
                       ? 'Поле не может быть пустым'
-                      : v!.length == 19
+                      : v!.length >= 19
                       ? null
                       : 'Номер должен содержать не менее 12-ти цифр'
                       : v?.trim().isEmpty ?? true
                       ? 'Поле не может быть пустым'
-                      : v!.length == 9
+                      : v!.length >= 9
                       ? null
                       : 'Номер должен содержать не менее 9-ти цифр';
                 },
@@ -86,18 +86,25 @@ class LoginFormWidget extends HookWidget {
             verticalSpace12,
             AppTextField(
               validator: (v) {
-                return state.tabIndex == 0 ? v?.trim().isEmpty ?? true
+                return state.tabIndex == 1 ? v?.trim().isEmpty ?? true
                     ? 'Поле не может быть пустым'
-                    : v!.length == 12
+                    : v!.length >= 19
                     ? null
                     : 'Номер должен содержать не менее 12-ти цифр'
                     : v?.trim().isEmpty ?? true
                     ? 'Поле не может быть пустым'
-                    : v!.length == 9
+                    : v!.length >= 9
                     ? null
                     : 'Номер должен содержать не менее 9-ти цифр';
               },
-              hint: 'Введите номер',
+              hint: '+998 ** *** ** **',
+              textInputFormatter: [
+                state.tabIndex == 1
+                    ? MaskTextInputFormatter(
+                    mask: '+998 (##) ### ## ##',
+                    filter: {"#": RegExp(r'[0-9]')})
+                    : MaskedInputFormatter('######################')
+              ],
               fieldController: bloc.phoneController,
               prefix: const Icon(Icons.phone),
               textInputType: TextInputType.number,

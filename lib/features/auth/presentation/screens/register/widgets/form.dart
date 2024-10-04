@@ -52,6 +52,9 @@ class RegisterFormWidget extends HookWidget {
                     label: bloc.innController.text.isEmpty
                         ? 'ФИО'
                         : 'Наименование компании',
+                    validator: (p0) => (p0?.length ?? 0) <=0
+                        ? 'Это поле не может быть пустым'
+                        : null,
                     fieldController: bloc.nameController,
                     prefix: const Icon(KazeIcons.profileBold),
                     hintStyle: context.bodyLarge!.copyWith(
@@ -77,6 +80,15 @@ class RegisterFormWidget extends HookWidget {
                   radius: 0,
                   floatingLabelStyle: context.bodyLarge,
                   label: 'Логин',
+                  validator: (value) {
+                    // add your custom validation here.
+                    if (value!.isEmpty) {
+                      return 'Это поле не может быть пустым';
+                    }
+                    if (value.length <=4) {
+                      return 'Логин должен быть больше 4 символов';
+                    }
+                  },
                   fieldController: bloc.usernameController,
                   prefix: const Icon(KazeIcons.profileBold),
                   hintStyle: context.bodyLarge!.copyWith(

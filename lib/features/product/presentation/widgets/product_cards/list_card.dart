@@ -157,7 +157,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                               ),
                               horizontalSpace5,
                               product?.leftQuantity == 0
-                                  ? const AppCard(
+                                  ?  AppCard(
                                       fillColor: AppColors.red,
                                       borderColor: AppColors.white,
                                       borderRadius: 0,
@@ -166,7 +166,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                         child: Text(
                                           "Нет в наличии",
                                           maxLines: 1,
-                                          style: TextStyle(fontSize: 10),
+                                          style: TextStyle(fontSize: 10,color: context.onPrimary,),
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ))
@@ -363,6 +363,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                       false
                                                   ? "Удалить с корзины Предзаказа"
                                                   : "Добавить в корзину Предзаказа",
+                                              textColor: context.onPrimary,
                                               fillColor: (product ??
                                                               cartProduct!
                                                                   .product)!
@@ -640,6 +641,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                 false
                                             ? "Удалить с корзины Предзаказа"
                                             : "Добавить в корзину Предзаказа",
+                                        textColor: context.onPrimary,
                                         fillColor:
                                             (product ?? cartProduct!.product)!
                                                         .inPreorder ??

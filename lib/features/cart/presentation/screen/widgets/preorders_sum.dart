@@ -39,7 +39,7 @@ class PreordersSumWidget extends HookWidget {
                 children: [
                   state.whenOrNull(
                     ready: (status,products, price, isMoreLoading) =>
-                    price == 0 ? const SizedBox() : Text(
+                    price == 0  || price == null ? const SizedBox() : Text(
                       '${currencyFormatter.format((price)).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                       style: context.titleMedium,
                     ),

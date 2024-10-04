@@ -123,13 +123,13 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         children: [
                           Row(
                             children: [
-                              product?.leftQuantity == 0 ?  const AppCard(
+                              product?.leftQuantity == 0 ?   AppCard(
                                   fillColor: AppColors.red,
                                   borderColor: AppColors.white,
                                   borderRadius: 0,child: Padding(
                                     padding: EdgeInsets.all(4),
                                     child: Text( "Нет в наличии" ,    maxLines: 1,
-                                      style: TextStyle(fontSize: 10),
+                                      style: TextStyle(fontSize: 10,color: context.onPrimary,),
                                       overflow: TextOverflow.ellipsis,),
                                   )) : const SizedBox(),
                               horizontalSpace5,
@@ -190,11 +190,11 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                   ? const SizedBox()
                   : product?.leftQuantity == 0
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 4,right: 4),
+                          padding: const EdgeInsets.only(left: 2,right: 2),
                           child: AppButton(
                             borderRadius: 4,
                             animate: true,
-                            textStyle:  TextStyle(fontSize:context.isSmall ? 9.1 : 10),
+                            textStyle:  TextStyle(fontSize:context.isSmall ? 9 : 10),
                             height: 40,
                             textColor: context.onPrimary,
                             onPressed: authBloc.state ==

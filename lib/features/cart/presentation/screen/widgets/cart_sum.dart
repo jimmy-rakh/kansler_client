@@ -39,7 +39,7 @@ class CartSumWidget extends HookWidget {
                           children: [
                             cartState.whenOrNull(
                                   ready: (products, price, isMoreLoading) =>
-                          price == 0 ? const SizedBox() : Text(
+                                  price == 0  ? const SizedBox() : Text(
                                     '${currencyFormatter.format((price)).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                     style: context.titleMedium,
                                   ),
