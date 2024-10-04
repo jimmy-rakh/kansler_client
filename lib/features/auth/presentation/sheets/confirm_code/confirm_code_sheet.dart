@@ -5,7 +5,6 @@ import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/features/auth/data/models/send_code/request.dart';
 import 'package:pinput/pinput.dart';
-
 import '../../../../../core/constants/kaze_icons.dart';
 import '../../../../../core/constants/spaces.dart';
 import '../../../../../core/style/pin_theme.dart';
@@ -43,13 +42,13 @@ class ConfirmCodeSheet extends HookWidget {
       isAcitveShadow: true,
       backgroundColor: context.background,
       child: SizedBox(
-        height: context.isSmall ? context.height * .5 : 500,
+        height: context.isSmall ? context.height * .55 : 500,
         child: Column(
           children: [
             Align(
               alignment: Alignment.topLeft,
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(2),
                 child: IconButton.filled(
                   style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(context.cardColor),

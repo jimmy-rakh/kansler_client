@@ -56,7 +56,9 @@ class ResponseInterceptor extends Interceptor {
       code: err.response?.statusCode,
       message: err.response?.data['error_code'] != null
           ? err.response?.data['error_code'][0]
-          : err.response?.data['value'][0],
+          : err.response?.data['value'] == null
+              ? null
+              : err.response?.data['value'][0],
       requestOptions: err.requestOptions,
     );
 

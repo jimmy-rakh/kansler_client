@@ -147,7 +147,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                 ),
                                                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
-                                                    const Padding(
+                                                     Padding(
                                                       padding: EdgeInsets.only(left: 20),
                                                       child: AppCard(
                                                           fillColor: AppColors.red,
@@ -155,7 +155,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                           borderRadius: 2,child: Padding(
                                                         padding: EdgeInsets.all(8),
                                                         child: Text( "Нет в наличии" , maxLines: 1,
-                                                          style: TextStyle(fontSize: 10),
+                                                          style: TextStyle(fontSize: 10,color: context.onPrimary,),
                                                           overflow: TextOverflow.ellipsis,),
                                                       )),
                                                     ),
@@ -192,6 +192,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                             false
                                                             ? "Удалить с корзины Предзаказа"
                                                             : "Добавить в корзину Предзаказа",
+                                                        textColor: context.onPrimary,
                                                         fillColor: (product).inPreorder ??
                                                             false
                                                             ? AppColors.red

@@ -19,8 +19,8 @@ class CategoryCard extends StatefulWidget {
     required this.category,
     this.isSelected,
     this.showImage = true,
-    required this.callback, this.color,
-
+    required this.callback,
+    this.color,
   });
 
   final CategoryEntitity category;
@@ -84,7 +84,7 @@ class _CategoryCardState extends State<CategoryCard>
           child: Container(
             height: 50,
             decoration: BoxDecoration(
-                color:widget.color ??  context.cardColor,
+                color: widget.color ?? context.cardColor,
                 border: const Border(
                   bottom: BorderSide.none,
                 ),
@@ -101,18 +101,18 @@ class _CategoryCardState extends State<CategoryCard>
                       Padding(
                         padding: const EdgeInsets.only(right: 10),
                         child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0),
+                          borderRadius: BorderRadius.circular(250),
                           child: widget.category.imageUrl == null
                               ? Image.asset(
                                   "assets/images/nophoto.png",
                                   height: 40,
-                                  width: 35,
+                                  width: 41,
                                   fit: BoxFit.cover,
                                 )
                               : kIsWeb
                                   ? ImageNetwork(
                                       height: 40,
-                                      width: 35,
+                                      width: 41,
                                       onLoading: const SizedBox(),
                                       fitWeb: BoxFitWeb.cover,
                                       fitAndroidIos: BoxFit.cover,
@@ -120,7 +120,7 @@ class _CategoryCardState extends State<CategoryCard>
                                           widget.category.imageUrl!)
                                   : CachedNetworkImage(
                                       height: 40,
-                                      width: 35,
+                                      width: 41,
                                       fit: BoxFit.cover,
                                       memCacheHeight: 100,
                                       memCacheWidth: 100,
@@ -129,9 +129,11 @@ class _CategoryCardState extends State<CategoryCard>
                         ),
                       ),
                     SizedBox(
-                      width:context.isDesktop ? 200 :  context.isSmall
-                          ? context.width * .64
-                          : context.width * .2,
+                      width: context.isDesktop
+                          ? 200
+                          : context.isSmall
+                              ? context.width * .64
+                              : context.width * .2,
                       child: Text(
                         widget.category.name,
                         style: const TextStyle(fontSize: 15),
