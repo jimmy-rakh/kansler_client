@@ -93,6 +93,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             as ClientAdressDto?;
 
         if (address == null) {
+
           emit(state.copyWith(
             isBusy: false,
           ));
