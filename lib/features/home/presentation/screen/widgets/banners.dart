@@ -65,9 +65,7 @@ class BannerWidget extends HookWidget {
                                     : 420,
                             margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
                             radius: 4,
-                            imageUrl: context.isTablet
-                                ? poster.imgMobile
-                                : poster.imgWeb,
+                            imageUrl:  poster.imgMobile,
                           );
                         },
                         carouselController: bloc.buttonCarouselController,

@@ -72,7 +72,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                       title: Row(
                         children: [
                           SizedBox(
-                            width:context.isSmall ? context.width * .7 : context.width * .6,
+                            width:context.isDesktop ? 1100 : context.isSmall ? context.width * .7 : context.width * .6,
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8),
                               child: Text(
