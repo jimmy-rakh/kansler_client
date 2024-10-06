@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:image_network/image_network.dart';
 import 'package:kansler/core/extensions/context.dart';
@@ -31,6 +32,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
     @PathParam('id') required this.id,
     required this.product,
   });
+
   final int id;
   final ProductEntity product;
 
@@ -62,7 +64,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                         padding: const EdgeInsets.all(8),
                         child: IconButton.filled(
                           style: ButtonStyle(
-                            backgroundColor: WidgetStatePropertyAll(context.cardColor),
+                            backgroundColor:
+                                WidgetStatePropertyAll(context.cardColor),
                           ),
                           onPressed: router.popForced,
                           icon: const Icon(KazeIcons.arrowLeftOutline),
@@ -72,7 +75,11 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                       title: Row(
                         children: [
                           SizedBox(
-                            width:context.isDesktop ? 1100 : context.isSmall ? context.width * .7 : context.width * .6,
+                            width: context.isDesktop
+                                ? 1100
+                                : context.isSmall
+                                    ? context.width * .7
+                                    : context.width * .6,
                             child: Padding(
                               padding: const EdgeInsets.only(top: 8),
                               child: Text(
@@ -102,7 +109,9 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                             Expanded(
                               child: AppCard(
                                 width: context.isSmall ? context.width : 600,
-                                height: context.isSmall ? context.height * .53 : 600,
+                                height: context.isSmall
+                                    ? context.height * .53
+                                    : 600,
                                 borderRadius: context.isSmall ? 0 : 4,
                                 margin: context.isSmall
                                     ? EdgeInsets.zero
@@ -113,13 +122,14 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                 child: Column(
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                                      padding:
+                                          const EdgeInsets.fromLTRB(8, 8, 8, 8),
                                       child: ImageNetwork(
                                         image: NetworkConstants.apiBaseUrl +
                                             (product.imageUrl ?? ''),
                                         onLoading: const SizedBox(),
                                         fitAndroidIos: BoxFit.contain,
-                                        fitWeb:  BoxFitWeb.contain,
+                                        fitWeb: BoxFitWeb.contain,
                                         height: context.isSmall
                                             ? context.height * .4
                                             : 500,
@@ -128,332 +138,399 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                             : 500,
                                       ),
                                     ),
-                                    state.whenOrNull(
-                                      success: (product) {
-                                        return product.leftQuantity == 0 ? Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                            height: 75,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(4),
-                                              color: context.background,
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(4),
-                                                  color: context.cardColor,
-                                                ),
-                                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                     Padding(
-                                                      padding: EdgeInsets.only(left: 20),
-                                                      child: AppCard(
-                                                          fillColor: AppColors.red,
-                                                          borderColor: AppColors.white,
-                                                          borderRadius: 2,child: Padding(
-                                                        padding: EdgeInsets.all(8),
-                                                        child: Text( "Нет в наличии" , maxLines: 1,
-                                                          style: TextStyle(fontSize: 10,color: context.onPrimary,),
-                                                          overflow: TextOverflow.ellipsis,),
-                                                      )),
+                                    state.whenOrNull(success: (product) {
+                                          return product.leftQuantity == 0
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(2),
+                                                  child: Container(
+                                                    height: 75,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      color: context.background,
                                                     ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(
-                                                          left: 5, right: 5),
-                                                      child: AppButton(
-                                                        borderRadius: 2,
-                                                        animate: true,
-                                                        textStyle:
-                                                        const TextStyle(fontSize: 11),
-                                                        height: 35,
-                                                        width:200 ,
-                                                        onPressed: authBloc.state == const AuthState.authenticated()
-                                                            ? () {
-                                                          if ((product).leftQuantity >=
-                                                              int.parse(bloc
-                                                                  .fieldController.text)) {
-                                                            bloc.add(const DetailsEvent
-                                                                .addToCart());
-                                                            FocusScope.of(context)
-                                                                .unfocus();
-                                                          } else {
-                                                            bloc.add(const DetailsEvent
-                                                                .addToPreorder());
-
-                                                            FocusScope.of(context)
-                                                                .unfocus();
-                                                          }
-                                                        }
-                                                            : () =>
-                                                            router.push(const AuthRoute()),
-                                                        text: (product).inPreorder ??
-                                                            false
-                                                            ? "Удалить с корзины Предзаказа"
-                                                            : "Добавить в корзину Предзаказа",
-                                                        textColor: context.onPrimary,
-                                                        fillColor: (product).inPreorder ??
-                                                            false
-                                                            ? AppColors.red
-                                                            : const Color.fromARGB(
-                                                            255, 0, 73, 208),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ) :
-                                        Padding(
-                                          padding: const EdgeInsets.all(2),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(4),
-                                              color: context.background,
-                                            ),
-                                            child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(4),
-                                                  color: context.cardColor,
-                                                ),
-                                                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  children: [
-                                                    Padding(
-                                                      padding: const EdgeInsets.fromLTRB(
-                                                          20, 5, 0, 5),
-                                                      child: SizedBox(
-                                                        height: 50,
-                                                        width: context.isSmall
-                                                            ? context.width * .72
-                                                            : 350,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                          color:
+                                                              context.cardColor,
+                                                        ),
                                                         child: Row(
                                                           mainAxisAlignment:
-                                                          MainAxisAlignment.spaceBetween,
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
                                                           children: [
-                                                            ...state.whenOrNull(
-                                                              success: (product) => [
-                                                                Text(
-                                                                    '${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
-                                                              ],
-                                                            ) ??
-                                                                [
-                                                                  Text(
-                                                                      '${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
-                                                                ],
-                                                            if (state.whenOrNull(
-                                                              success: (product) =>
-                                                              !product.inCart!,
-                                                            ) ??
-                                                                true)
-                                                              SizedBox(
-                                                                child: AppCard(
-                                                                  fillColor: context.background,
-                                                                  showShadow: false,
-                                                                  borderRadius: 0,
-                                                                  padding:
-                                                                  const EdgeInsets.all(2),
-                                                                  child: Row(
-                                                                    children: [
-                                                                      AppIcon(
-                                                                        KazeIcons.minusOutline,
-                                                                        bgColor:
-                                                                        context.cardColor,
-                                                                        radius:
-                                                                        const BorderRadius
-                                                                            .horizontal(
-                                                                          left: Radius.circular(
-                                                                              0),
-                                                                        ),
-                                                                        onTap: bloc.decrement,
-                                                                        borderColor:
-                                                                        context.background,
-                                                                        padding:
-                                                                        const EdgeInsets
-                                                                            .all(4),
+                                                            Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left: 20),
+                                                              child: AppCard(
+                                                                  fillColor:
+                                                                      AppColors
+                                                                          .red,
+                                                                  borderColor:
+                                                                      AppColors
+                                                                          .white,
+                                                                  borderRadius:
+                                                                      2,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .all(8),
+                                                                    child: Text(
+                                                                      "Нет в наличии",
+                                                                      maxLines:
+                                                                          1,
+                                                                      style:
+                                                                          TextStyle(
+                                                                        fontSize:
+                                                                            10,
+                                                                        color: context
+                                                                            .onPrimary,
                                                                       ),
-                                                                      Center(
-                                                                        child: AppTextField(
-                                                                          fillColor:
-                                                                          context.background,
-                                                                          width: context.isSmall
-                                                                              ? context.width * .2
-                                                                              : 100,
-                                                                          radius: 0,
-                                                                          contentPadding:
-                                                                          const EdgeInsets
-                                                                              .all(4),
-                                                                          textAlign:
-                                                                          TextAlign.center,
-                                                                          fieldController: bloc
-                                                                              .fieldController,
-                                                                          onEditingComplete: bloc
-                                                                              .completeEditing,
-                                                                          onFieldSubmitted:
-                                                                              (value) {
-                                                                            if ((product)
-                                                                                .leftQuantity >=
-                                                                                int.parse(bloc
-                                                                                    .fieldController
-                                                                                    .text)) {
-                                                                              bloc.add(
-                                                                                  const DetailsEvent
-                                                                                      .addToCart());
-                                                                              FocusScope.of(
-                                                                                  context)
-                                                                                  .unfocus();
-                                                                            } else {
-                                                                              router.navigatorKey
-                                                                                  .currentContext!
-                                                                                  .showToast(
-                                                                                  'Недостаточно кол-во в складе');
-                                                                              bloc.fieldController
-                                                                                  .text =
-                                                                                  (product)
-                                                                                      .leftQuantity
-                                                                                      .toString();
-                                                                              FocusScope.of(
-                                                                                  context)
-                                                                                  .unfocus();
-                                                                            }
-                                                                          },
-                                                                          textInputType:
-                                                                          TextInputType
-                                                                              .number,
-                                                                          textInputFormatter: [
-                                                                            FilteringTextInputFormatter
-                                                                                .digitsOnly
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                      AppIcon(
-                                                                        KazeIcons.addOutline,
-                                                                        bgColor:
-                                                                        context.cardColor,
-                                                                        radius:
-                                                                        const BorderRadius
-                                                                            .horizontal(
-                                                                          right:
-                                                                          Radius.circular(
-                                                                              0),
-                                                                        ),
-                                                                        onTap: bloc.increment,
-                                                                        borderColor:
-                                                                        context.background,
-                                                                        padding:
-                                                                        const EdgeInsets
-                                                                            .all(4),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
+                                                                      overflow:
+                                                                          TextOverflow
+                                                                              .ellipsis,
+                                                                    ),
+                                                                  )),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 5,
+                                                                      right: 5),
+                                                              child: AppButton(
+                                                                borderRadius: 2,
+                                                                animate: true,
+                                                                textStyle:
+                                                                    const TextStyle(
+                                                                        fontSize:
+                                                                            11),
+                                                                height: 35,
+                                                                width: 200,
+                                                                onPressed: authBloc
+                                                                            .state ==
+                                                                        const AuthState
+                                                                            .authenticated()
+                                                                    ? () {
+                                                                        if ((product).leftQuantity >=
+                                                                            int.parse(bloc.fieldController.text)) {
+                                                                          bloc.add(
+                                                                              const DetailsEvent.addToCart());
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                        } else {
+                                                                          bloc.add(
+                                                                              const DetailsEvent.addToPreorder());
+
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                        }
+                                                                      }
+                                                                    : () => router
+                                                                        .push(
+                                                                            const AuthRoute()),
+                                                                text: (product)
+                                                                            .inPreorder ??
+                                                                        false
+                                                                    ? "Удалить с корзины Предзаказа"
+                                                                    : "Добавить в корзину Предзаказа",
+                                                                textColor: context
+                                                                    .onPrimary,
+                                                                fillColor: (product)
+                                                                            .inPreorder ??
+                                                                        false
+                                                                    ? AppColors
+                                                                        .red
+                                                                    : const Color
+                                                                        .fromARGB(
+                                                                        255,
+                                                                        0,
+                                                                        73,
+                                                                        208),
                                                               ),
+                                                            )
                                                           ],
                                                         ),
                                                       ),
                                                     ),
-                                                    Tooltip(
-                                                      message: product.inCart!
-                                                          ? "Удалить с корзины заказа"
-                                                          : "Добавить в корзину заказа",
-                                                      child: AppButton(
-                                                        animate: true,
-                                                        width: 50,
-                                                        height: 50,
-                                                        fillColor: state.whenOrNull(
-                                                          success: (product) =>
-                                                          product.leftQuantity == 0
-                                                              ? (product.inPreorder ?? false)
-                                                              ? const Color.fromARGB(
-                                                              255, 69, 114, 199)
-                                                              : const Color.fromARGB(
-                                                              255, 0, 73, 208)
-                                                              : product.inCart!
-                                                              ? AppColors.red
-                                                              : context.primary,
+                                                  ),
+                                                )
+                                              : Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(2),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              4),
+                                                      color: context.background,
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              8.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4),
+                                                          color:
+                                                              context.cardColor,
                                                         ),
-                                                        childAlignment: MainAxisAlignment.start,
-                                                        text: const Icon(
-                                                          KazeIcons.cartOutline,
-                                                          color: AppColors.white,
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .fromLTRB(
+                                                                      20,
+                                                                      5,
+                                                                      0,
+                                                                      5),
+                                                              child: SizedBox(
+                                                                height: 50,
+                                                                width: context
+                                                                        .isSmall
+                                                                    ? context
+                                                                            .width *
+                                                                        .72
+                                                                    : 350,
+                                                                child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: [
+                                                                    ...state.whenOrNull(
+                                                                          success:
+                                                                              (product) => [
+                                                                            Text('${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
+                                                                          ],
+                                                                        ) ??
+                                                                        [
+                                                                          Text(
+                                                                              '${currencyFormatter.format(product.price ?? 0).replaceAll(".", " ")} ${'common.sum'.tr()}')
+                                                                        ],
+                                                                    if (state
+                                                                            .whenOrNull(
+                                                                          success: (product) =>
+                                                                              !product.inCart!,
+                                                                        ) ??
+                                                                        true)
+                                                                      SizedBox(
+                                                                        child:
+                                                                            AppCard(
+                                                                          fillColor:
+                                                                              context.background,
+                                                                          showShadow:
+                                                                              false,
+                                                                          borderRadius:
+                                                                              0,
+                                                                          padding: const EdgeInsets
+                                                                              .all(
+                                                                              2),
+                                                                          child:
+                                                                              Row(
+                                                                            children: [
+                                                                              AppIcon(
+                                                                                KazeIcons.minusOutline,
+                                                                                bgColor: context.cardColor,
+                                                                                radius: const BorderRadius.horizontal(
+                                                                                  left: Radius.circular(0),
+                                                                                ),
+                                                                                onTap: bloc.decrement,
+                                                                                borderColor: context.background,
+                                                                                padding: const EdgeInsets.all(4),
+                                                                              ),
+                                                                              Center(
+                                                                                child: AppTextField(
+                                                                                  fillColor: context.background,
+                                                                                  width: context.isSmall ? context.width * .2 : 100,
+                                                                                  radius: 0,
+                                                                                  contentPadding: const EdgeInsets.all(4),
+                                                                                  textAlign: TextAlign.center,
+                                                                                  fieldController: bloc.fieldController,
+                                                                                  onEditingComplete: bloc.completeEditing,
+                                                                                  onFieldSubmitted: (value) {
+                                                                                    if ((product).leftQuantity >= int.parse(bloc.fieldController.text)) {
+                                                                                      bloc.add(const DetailsEvent.addToCart());
+                                                                                      FocusScope.of(context).unfocus();
+                                                                                    } else {
+                                                                                      router.navigatorKey.currentContext!.showToast('Недостаточно кол-во в складе');
+                                                                                      bloc.fieldController.text = (product).leftQuantity.toString();
+                                                                                      FocusScope.of(context).unfocus();
+                                                                                    }
+                                                                                  },
+                                                                                  textInputType: TextInputType.number,
+                                                                                  textInputFormatter: [
+                                                                                    FilteringTextInputFormatter.digitsOnly
+                                                                                  ],
+                                                                                ),
+                                                                              ),
+                                                                              AppIcon(
+                                                                                KazeIcons.addOutline,
+                                                                                bgColor: context.cardColor,
+                                                                                radius: const BorderRadius.horizontal(
+                                                                                  right: Radius.circular(0),
+                                                                                ),
+                                                                                onTap: bloc.increment,
+                                                                                borderColor: context.background,
+                                                                                padding: const EdgeInsets.all(4),
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Tooltip(
+                                                              message: product
+                                                                      .inCart!
+                                                                  ? "Удалить с корзины заказа"
+                                                                  : "Добавить в корзину заказа",
+                                                              child: AppButton(
+                                                                animate: true,
+                                                                width: 50,
+                                                                height: 50,
+                                                                fillColor: state
+                                                                    .whenOrNull(
+                                                                  success: (product) => product
+                                                                              .leftQuantity ==
+                                                                          0
+                                                                      ? (product.inPreorder ??
+                                                                              false)
+                                                                          ? const Color
+                                                                              .fromARGB(
+                                                                              255,
+                                                                              69,
+                                                                              114,
+                                                                              199)
+                                                                          : const Color
+                                                                              .fromARGB(
+                                                                              255,
+                                                                              0,
+                                                                              73,
+                                                                              208)
+                                                                      : product
+                                                                              .inCart!
+                                                                          ? AppColors
+                                                                              .red
+                                                                          : context
+                                                                              .primary,
+                                                                ),
+                                                                childAlignment:
+                                                                    MainAxisAlignment
+                                                                        .start,
+                                                                text:
+                                                                    const Icon(
+                                                                  KazeIcons
+                                                                      .cartOutline,
+                                                                  color:
+                                                                      AppColors
+                                                                          .white,
+                                                                ),
+                                                                textColor:
+                                                                    AppColors
+                                                                        .white,
+                                                                onPressed: authBloc
+                                                                            .state ==
+                                                                        const AuthState
+                                                                            .authenticated()
+                                                                    ? () {
+                                                                        if ((product).leftQuantity >=
+                                                                            int.parse(bloc.fieldController.text)) {
+                                                                          bloc.add(
+                                                                              const DetailsEvent.addToCart());
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                        } else {
+                                                                          router
+                                                                              .navigatorKey
+                                                                              .currentContext!
+                                                                              .showToast('Недостаточно кол-во в складе');
+                                                                          bloc.fieldController.text = (product)
+                                                                              .leftQuantity
+                                                                              .toString();
+                                                                          FocusScope.of(context)
+                                                                              .unfocus();
+                                                                        }
+                                                                      }
+                                                                    : () => router
+                                                                        .push(
+                                                                            const AuthRoute()),
+                                                                size:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .symmetric(
+                                                                        vertical:
+                                                                            12),
+                                                                margin:
+                                                                    const EdgeInsets
+                                                                        .fromLTRB(
+                                                                        0,
+                                                                        5,
+                                                                        5,
+                                                                        5),
+                                                                borderRadius: 4,
+                                                              ),
+                                                            ),
+                                                          ],
                                                         ),
-                                                        textColor: AppColors.white,
-                                                        onPressed: authBloc.state == const AuthState.authenticated()
-                                                            ? () {
-                                                          if ((product)
-                                                              .leftQuantity >=
-                                                              int.parse(bloc
-                                                                  .fieldController
-                                                                  .text)) {
-                                                            bloc.add(
-                                                                const DetailsEvent
-                                                                    .addToCart());
-                                                            FocusScope.of(
-                                                                context)
-                                                                .unfocus();
-                                                          } else {
-                                                            router.navigatorKey
-                                                                .currentContext!
-                                                                .showToast(
-                                                                'Недостаточно кол-во в складе');
-                                                            bloc.fieldController
-                                                                .text =
-                                                                (product)
-                                                                    .leftQuantity
-                                                                    .toString();
-                                                            FocusScope.of(
-                                                                context)
-                                                                .unfocus();
-                                                          }
-                                                        }
-                                                            : () =>
-                                                            router.push(const AuthRoute()),
-                                                        size: MainAxisSize.min,
-                                                        padding: const EdgeInsets.symmetric(
-                                                            vertical: 12),
-                                                        margin:
-                                                        const EdgeInsets.fromLTRB(0, 5, 5, 5),
-                                                        borderRadius: 4,
                                                       ),
                                                     ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      }
-                                    ) ??  const SizedBox(),
+                                                  ),
+                                                );
+                                        }) ??
+                                        const SizedBox(),
                                   ],
                                 ),
                               ),
                             ),
-                            context.isSmall ? const SizedBox() : horizontalSpace10,
+                            context.isSmall
+                                ? const SizedBox()
+                                : horizontalSpace10,
                             context.isSmall
                                 ? const SizedBox()
                                 : Expanded(
-                                  child: AppCard(
-                                      width: context.isSmall
-                                          ? context.width
-                                          : 650,
+                                    child: AppCard(
+                                      width:
+                                          context.isSmall ? context.width : 650,
                                       height: context.isSmall
                                           ? context.height * .3
                                           : 600,
                                       fillColor: context.cardColor,
-                                      padding: const EdgeInsets.only(bottom: 24),
+                                      padding:
+                                          const EdgeInsets.only(bottom: 24),
                                       margin: context.isSmall
                                           ? const EdgeInsets.all(8)
-                                          : const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                          : const EdgeInsets.fromLTRB(
+                                              0, 10, 0, 0),
                                       borderRadius: 4,
                                       child: ListView(
                                         children: [
                                           verticalSpace12,
                                           Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(horizontal: 16),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16),
                                             child: Row(
                                               children: [
                                                 SizedBox(
@@ -462,7 +539,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                       : 200,
                                                   child: const Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment.spaceBetween,
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: [
                                                       Text("Бренд"),
                                                       Text(':'),
@@ -471,16 +549,21 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                 ),
                                                 Expanded(
                                                   child: AppCard(
-                                                    fillColor: context.background,
+                                                    fillColor:
+                                                        context.background,
                                                     borderColor: AppColors.grey,
                                                     borderRadius: 0,
-                                                    margin: const EdgeInsets.only(left: 5),
+                                                    margin:
+                                                        const EdgeInsets.only(
+                                                            left: 5),
                                                     child: Padding(
-                                                      padding: const EdgeInsets.all(4),
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              4),
                                                       child: Text(
                                                         "${product.brand?.name ?? ""} ",
-                                                        style:
-                                                            const TextStyle(fontSize: 12),
+                                                        style: const TextStyle(
+                                                            fontSize: 12),
                                                       ),
                                                     ),
                                                   ),
@@ -511,7 +594,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                           verticalSpace8,
                                           DetailsWidget(
                                             keyI: 'Классификатор',
-                                            value: product.classifierTitle ?? '',
+                                            value:
+                                                product.classifierTitle ?? '',
                                           ),
                                           verticalSpace8,
                                           DetailsWidget(
@@ -532,7 +616,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                               value: product.packagecode!,
                                             ),
                                           ],
-                                          if (product.quantityInBox != null) ...[
+                                          if (product.quantityInBox !=
+                                              null) ...[
                                             verticalSpace8,
                                             DetailsWidget(
                                               keyI: 'В упаковке',
@@ -556,20 +641,24 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                           if (product.description != null) ...[
                                             verticalSpace8,
                                             const Padding(
-                                              padding: EdgeInsets.symmetric(horizontal: 16),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 16),
                                               child: Text("Описание :"),
                                             ),
                                             verticalSpace8,
                                             Padding(
-                                              padding: const EdgeInsets.symmetric(
-                                                  horizontal: 16),
-                                              child: Text(product.description!,),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16),
+                                              child: Html(data: """
+                                              ${product.description}
+                                              """),
                                             )
                                           ],
                                         ],
                                       ),
                                     ),
-                                ),
+                                  ),
                           ],
                         ),
                         context.isSmall
@@ -584,14 +673,16 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                   children: [
                                     verticalSpace12,
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16),
                                       child: Row(
                                         children: [
                                           SizedBox(
                                             width: context.width * .47,
                                             child: const Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text("Бренд"),
                                                 Text(':'),
@@ -603,12 +694,15 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                               fillColor: context.background,
                                               borderColor: AppColors.grey,
                                               borderRadius: 0,
-                                              margin: const EdgeInsets.only(left: 5),
+                                              margin: const EdgeInsets.only(
+                                                  left: 5),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(4),
+                                                padding:
+                                                    const EdgeInsets.all(4),
                                                 child: Text(
                                                   "${product.brand?.name ?? ""} ",
-                                                  style: const TextStyle(fontSize: 12),
+                                                  style: const TextStyle(
+                                                      fontSize: 12),
                                                 ),
                                               ),
                                             ),
@@ -681,17 +775,21 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                         value: '${product.weight} т.',
                                       ),
                                     ],
-                                    if (product.description != null) ...[
+                                    if (state.whenOrNull(success: (product) => product.description) != null) ...[
                                       verticalSpace8,
                                       const Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 16),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16),
                                         child: Text("Описание :"),
                                       ),
                                       verticalSpace8,
                                       Padding(
                                         padding:
-                                            const EdgeInsets.symmetric(horizontal: 16),
-                                        child: Text(product.description!),
+                                        const EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        child: Html(data: """
+                                              ${state.whenOrNull(success: (product) => product.description)}
+                                            """),
                                       )
                                     ],
                                   ],
