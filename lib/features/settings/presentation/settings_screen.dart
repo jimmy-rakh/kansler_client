@@ -28,7 +28,7 @@ class SettingsScreen extends HookWidget {
         color: context.background,
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900, maxHeight: 900),
+            constraints: const BoxConstraints(maxWidth: 900,),
             child: Scaffold(
               appBar: AppBarWidget(
                 preferredSize: const Size.fromHeight(60),
@@ -140,7 +140,7 @@ class SettingsScreen extends HookWidget {
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              AppCard(
+                                              const AppCard(
                                                 borderRadius: 12,
                                                 fillColor:Colors.blueAccent,
                                                 child: Padding(
