@@ -114,16 +114,15 @@ class _CategoryCardState extends State<CategoryCard>
                                       height: 40,
                                       width: 41,
                                       onLoading: const SizedBox(),
-                                      fitWeb: BoxFitWeb.cover,
-                                      fitAndroidIos: BoxFit.cover,
+                                      fitWeb: BoxFitWeb.fill,
                                       image: NetworkConstants.apiBaseUrl +
                                           widget.category.imageUrl!)
                                   : CachedNetworkImage(
                                       height: 40,
                                       width: 41,
-                                      fit: BoxFit.cover,
-                                      memCacheHeight: 100,
-                                      memCacheWidth: 100,
+                                      fit: BoxFit.fill,
+                                      memCacheHeight: 60,
+                                      memCacheWidth: 60,
                                       imageUrl: NetworkConstants.apiBaseUrl +
                                           widget.category.imageUrl!),
                         ),

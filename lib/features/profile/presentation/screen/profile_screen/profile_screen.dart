@@ -128,6 +128,7 @@ class ProfileScreen extends HookWidget {
                                   children: [
                                     AppCard(
                                       padding: const EdgeInsets.all(8),
+                                      borderRadius: 4,
                                       onTap: () => themeBloc
                                           .add(const ThemeEvent.changeTheme(ThemeMode.light)),
                                       fillColor: themeState.mode == ThemeMode.light
@@ -145,6 +146,7 @@ class ProfileScreen extends HookWidget {
                                     ),
                                     AppCard(
                                       padding: const EdgeInsets.all(8),
+                                      borderRadius: 4,
                                       onTap: () => themeBloc
                                           .add(const ThemeEvent.changeTheme(ThemeMode.dark)),
                                       fillColor: themeState.mode == ThemeMode.dark
@@ -162,6 +164,7 @@ class ProfileScreen extends HookWidget {
                                     ),
                                     AppCard(
                                       padding: const EdgeInsets.all(8),
+                                      borderRadius: 4,
                                       onTap: () => themeBloc
                                           .add(const ThemeEvent.changeTheme(ThemeMode.system)),
                                       fillColor: themeState.mode == ThemeMode.system
@@ -249,7 +252,13 @@ class ProfileScreen extends HookWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  const Text('Адрес'),
+                                  const Row(
+                                    children: [
+                                      Icon(Icons.location_on),
+                                       horizontalSpace5,
+                                       Text('Адрес'),
+                                    ],
+                                  ),
                                   Transform.rotate(
                                       angle: 3.2,
                                       child: const Icon(KazeIcons.arrowLeftOutline))
@@ -260,27 +269,33 @@ class ProfileScreen extends HookWidget {
                         ) ??
                             [],
                         verticalSpace16,
-                        if (authBloc.state == const AuthState.authenticated()) ...[
-                          AppCard(
-                            margin:  EdgeInsets.symmetric(horizontal:context.isSmall ? 16 : 0),
-                            width: context.isSmall ? context.width : 500,
-                            height: 50,
-                            padding:
-                            const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-                            borderRadius: 4,
-                            onTap: () => router.push(const SettingsRoute()),
-                            fillColor: context.cardColor,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text('Настройки'),
-                                Transform.rotate(
-                                    angle: 3.2,
-                                    child: const Icon(KazeIcons.arrowLeftOutline))
-                              ],
-                            ),
+                        AppCard(
+                          margin:  EdgeInsets.symmetric(horizontal:context.isSmall ? 16 : 0),
+                          width: context.isSmall ? context.width : 500,
+                          height: 50,
+                          padding:
+                          const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                          borderRadius: 4,
+                          onTap: () => router.push(const SettingsRoute()),
+                          fillColor: context.cardColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Row(
+                                children: [
+                                  Icon(Icons.info_outline),
+                                  horizontalSpace5,
+                                  Text('Вопросы и ответы'),
+                                ],
+                              ),
+                              Transform.rotate(
+                                  angle: 3.2,
+                                  child: const Icon(KazeIcons.arrowLeftOutline))
+                            ],
                           ),
-                          verticalSpace16,
+                        ),
+                        verticalSpace16,
+                        if (authBloc.state == const AuthState.authenticated()) ...[
                           AppButton(
                             text: 'Выйти из аккаунта',
                             textStyle: context.theme.textTheme.bodyLarge!,
