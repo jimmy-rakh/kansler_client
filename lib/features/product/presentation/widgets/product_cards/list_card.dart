@@ -213,12 +213,12 @@ class ProductListCard extends HookWidget implements ProductCard {
                           verticalSpace5,
                           product?.price == null && cartProduct?.price == null
                               ? const SizedBox.shrink()
-                              : Text(
+                              : product?.leftQuantity != 0 ? Text(
                                   '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: context.titleSmall,
-                                ),
+                                ): SizedBox(height: 20,),
                           verticalSpace5,
                           if (cartProduct != null && !showActions)
                             Text('${cartProduct?.quantity} штук'),
