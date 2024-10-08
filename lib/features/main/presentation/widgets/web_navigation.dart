@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:kansler/app/router.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_card.dart';
 import '../../../../core/style/colors.dart';
@@ -44,10 +45,13 @@ class WebNavigation extends HookWidget {
                 children: [
                   Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 20, left: 20),
-                        child:
-                            Image.asset("assets/images/logo.png", width: 150),
+                      InkWell(
+                        onTap: ()=> router.push(const MainRoute()),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 20, left: 20),
+                          child:
+                              Image.asset("assets/images/logo.png", width: 150),
+                        ),
                       ),
                       AppCard(
                           fillColor: context.background,
