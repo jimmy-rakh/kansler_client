@@ -31,44 +31,24 @@ class InfoAppBar extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  AppCard(
-                    width: 20,
-                    height: 20,
-                    fillColor: AppColors.white,
-                    borderRadius: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Image.asset(
-                        "assets/images/cont1.png",
+                  Padding(
+                    padding: const EdgeInsets.only(top:6),
+                    child: AppCard(
+                      width: 20,
+                      height: 20,
+                      fillColor: AppColors.white,
+                      borderRadius: 4,
+                      child: Padding(
+                        padding: const EdgeInsets.all(4),
+                        child: Image.asset(
+                          "assets/images/cont1.png",
+                        ),
                       ),
                     ),
                   ),
                   horizontalSpace10,
                   const Text(
                     "+998 (78) 148-44-44",
-                    style: TextStyle(fontSize: 9),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  AppCard(
-                    width: 20,
-                    height: 20,
-                    fillColor: AppColors.white,
-                    borderRadius: 4,
-                    child: Padding(
-                      padding: const EdgeInsets.all(4),
-                      child: Image.asset(
-                        "assets/images/cont2.png",
-                      ),
-                    ),
-                  ),
-                  horizontalSpace10,
-                  const Text(
-                    "info@kansler.uz",
                     style: TextStyle(fontSize: 9),
                   ),
                 ],
@@ -83,7 +63,7 @@ class InfoAppBar extends HookWidget {
                         backgroundColor:
                             WidgetStateProperty.all(Colors.transparent),
                         foregroundColor:
-                            WidgetStateProperty.all(context.onPrimary),
+                            WidgetStateProperty.all(context.titleLarge?.color),
                         overlayColor:
                             WidgetStateProperty.all(Colors.transparent),
                       ),
@@ -163,33 +143,68 @@ class InfoAppBar extends HookWidget {
                   ),
                 ],
               ),
-              AppCard(
+              InkWell(
+                onTap: (){},
+                child: AppCard(
+                  width: 140,
+                  height: 30,
+                  borderRadius: 4,
+                  borderColor: Colors.grey.withOpacity(0.5),
+                  fillColor:  context.primary,
+                  child:  Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        horizontalSpace10,
+                        Icon(
+                          Icons.save_alt,
+                          size: 16,
+                          color: context.onPrimary,
+                        ),
+                        horizontalSpace10,
+                        Text(
+                          "Скачать прайс",
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: context.onPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              InkWell(
                 onTap: () => router.push(const SettingsRoute()),
-                width: 100,
-                height: 30,
-                borderRadius: 4,
-                borderColor: Colors.grey.withOpacity(0.5),
-                fillColor: AppColors.white,
-                child: const Padding(
-                  padding: EdgeInsets.all(4),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.info_outline,
-                        size: 16,
-                        color: Colors.black,
-                      ),
-                      horizontalSpace10,
-                      Text(
-                        "О Магазине",
-                        style: TextStyle(
-                          fontSize: 10,
+                child: AppCard(
+                  width: 100,
+                  height: 30,
+                  borderRadius: 4,
+                  borderColor: Colors.grey.withOpacity(0.5),
+                  fillColor: AppColors.white,
+                  child: const Padding(
+                    padding: EdgeInsets.all(4),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.info_outline,
+                          size: 16,
                           color: Colors.black,
                         ),
-                      ),
-                    ],
+                        horizontalSpace10,
+                        Text(
+                          "О Магазине",
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

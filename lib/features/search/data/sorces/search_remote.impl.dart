@@ -32,4 +32,23 @@ class SearchRemoteSourceImpl implements SearchRemoteSource {
     );
     return res;
   }
+
+  @override
+  Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>> price(
+      SearchRequest request, int page) async {
+    final res = _dio.postRequest(
+      '${SearchRemoteKeys.search}?page=$page',
+      data: request.toJson(),
+      converter: (response) {
+        final result =
+        PaginationResponse.fromJson(response as Map<String, dynamic>);
+
+        final products =
+        result.results.map((e) => ProductDto.fromJson(e)).toList();
+
+        return (hasNext: result.next != null, products: products);
+      },
+    );
+    return res;
+  }
 }

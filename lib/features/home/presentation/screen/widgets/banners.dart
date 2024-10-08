@@ -115,6 +115,7 @@ class BannerWidget extends HookWidget {
                                 viewportFraction: 1,
                                 aspectRatio: 2.0,
                                 initialPage: 2,
+                                scrollPhysics: const NeverScrollableScrollPhysics()
                               ),
                             ),
                           ),
