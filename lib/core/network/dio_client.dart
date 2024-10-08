@@ -29,7 +29,6 @@ class DioClient with MainBoxMixin {
 
     _dio = _createDio();
 
-    if (!_isUnitTest) _dio.interceptors.add(LoggerInterceptor());
   }
 
   Dio get dio {
@@ -45,7 +44,7 @@ class DioClient with MainBoxMixin {
       final dio = _createDio();
 
       if (!_isUnitTest) {
-        dio.interceptors.addAll([LoggerInterceptor(), ResponseInterceptor()]);
+        dio.interceptors.addAll([ ResponseInterceptor()]);
       }
 
       return dio;

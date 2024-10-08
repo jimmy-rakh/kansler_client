@@ -53,9 +53,12 @@ class InfoAppBar extends HookWidget {
                     ),
                   ),
                   horizontalSpace10,
-                  const Text(
-                    "+998 (78) 148-44-44",
-                    style: TextStyle(fontSize: 9),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: const Text(
+                      "+998 (78) 148-44-44",
+                      style: TextStyle(fontSize: 9),
+                    ),
                   ),
                 ],
               ),
@@ -93,7 +96,7 @@ class InfoAppBar extends HookWidget {
                               padding: EdgeInsets.all(4),
                               child: Icon(
                                 Icons.send,
-                                size: 9,
+                                size: 10,
                                 color: Colors.black,
                               ),
                             ),
@@ -166,7 +169,26 @@ class InfoAppBar extends HookWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(4),
                     child: state.status == PricesStatus.loading
-                        ? CupertinoActivityIndicator()
+                        ? Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                horizontalSpace10,
+                                const CupertinoActivityIndicator(
+                                  radius: 8,
+                                ),
+                                horizontalSpace10,
+                                Text(
+                                  "Загрузка",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: context.onPrimary,
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
                         : Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
@@ -193,7 +215,7 @@ class InfoAppBar extends HookWidget {
               InkWell(
                 onTap: () => router.push(const SettingsRoute()),
                 child: AppCard(
-                  width: 100,
+                  width: 110,
                   height: 30,
                   borderRadius: 4,
                   borderColor: Colors.grey.withOpacity(0.5),
