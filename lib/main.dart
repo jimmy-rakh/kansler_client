@@ -113,7 +113,7 @@ void main() async {
             injector: () => getIt.get,
             builderCondition: (state) => state != null,
             listenerCondition: (state) => state != null,
-            child: const KanslerApp(),
+            child:   KanslerApp(),
           ),
         ),
       ),

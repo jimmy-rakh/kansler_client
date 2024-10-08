@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -7,6 +8,7 @@ import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'dart:html' as html;
 import '../../../app/router.dart';
 import '../../../core/constants/kaze_icons.dart';
 import '../../../core/style/colors.dart';
@@ -93,7 +95,7 @@ class SettingsScreen extends HookWidget {
                                             mainAxisAlignment: MainAxisAlignment.start,
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              AppCard(
+                                              const AppCard(
                                                 borderRadius: 12,
                                                 fillColor: AppColors.green,
                                                 child: Padding(
@@ -129,7 +131,8 @@ class SettingsScreen extends HookWidget {
                                           foregroundColor: WidgetStateProperty.all(context.onPrimary),
                                           overlayColor: WidgetStateProperty.all(Colors.transparent),
                                         ),
-                                        onPressed: openLink,
+                                        onPressed:kIsWeb
+                                            ? () { html.window.open('https://t.me/kansler_support_bot', 'new tab');} : openLink,
                                         child: AppCard(
                                           fillColor: context.background,
                                           padding: const EdgeInsets.symmetric(

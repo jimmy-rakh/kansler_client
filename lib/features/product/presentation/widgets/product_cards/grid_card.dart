@@ -127,7 +127,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                   fillColor: AppColors.red,
                                   borderColor: AppColors.white,
                                   borderRadius: 0,child: Padding(
-                                    padding: EdgeInsets.all(4),
+                                    padding: const EdgeInsets.all(4),
                                     child: Text( "Нет в наличии" ,    maxLines: 1,
                                       style: TextStyle(fontSize: 10,color: context.onPrimary,),
                                       overflow: TextOverflow.ellipsis,),

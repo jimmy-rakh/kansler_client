@@ -8,6 +8,7 @@ import 'package:kansler/features/home/presentation/screen/widgets/footer.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/hits.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/latest.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/popular.dart';
+import 'package:kansler/features/home/presentation/screen/widgets/step.dart';
 import '../../../../core/constants/spaces.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../../core/widgets/keyboard_escape.dart';
@@ -35,10 +36,7 @@ class HomeScreen extends StatelessWidget {
                   delegate: SliverChildListDelegate([
                     const Center(
                         child: BannerWidget()),
-                    Center(
-                        child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 1300),
-                            child: const DiscountsWidget())),
+                    const Center(child: StepCard()),
                     Center(
                         child: ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 1300),
@@ -51,6 +49,10 @@ class HomeScreen extends StatelessWidget {
                         child: ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 1300),
                             child: const LatestWidget())),
+                    Center(
+                        child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 1300),
+                            child: const DiscountsWidget())),
                     verticalSpace80,
                      Center(
                             child: ConstrainedBox(

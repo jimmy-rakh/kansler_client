@@ -48,15 +48,14 @@ class AppRouter extends _$AppRouter {
   List<AutoRoute> get routes => [
         CustomRoute(
           page: SplashRoute.page,
-          initial: true,
           transitionsBuilder: TransitionsBuilders.noTransition,
         ),
         AutoRoute(
-          path:"/", page: MainRoute.page,
+          path:"/", page: MainRoute.page, initial: true,
           children: [
-            AutoRoute(path:"main/", page: HomeRoute.page, initial: true),
+            AutoRoute(path:"main/", page: HomeRoute.page, ),
             AutoRoute(path:"categories/",page: CategoriesWrapperRoute.page, children: [
-              AutoRoute(path:"",page: CategoriesRoute.page, initial: true),
+              AutoRoute(path:"",page: CategoriesRoute.page, ),
               AutoRoute(path:"subcategories/",page: SubcategoryRoute.page),
             ]),
             AutoRoute(path:"cart/",page: CartRoute.page, guards: [AuthGuard()]),

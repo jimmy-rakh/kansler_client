@@ -113,9 +113,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                             Expanded(
                               child: AppCard(
                                 width: context.isSmall ? context.width : 600,
-                                height: context.isSmall
-                                    ? context.height * .5
-                                    : 600,
+                                height:
+                                    context.isSmall ? context.isMobile ? context.height * .53 : context.height * .5 : 600,
                                 borderRadius: context.isSmall ? 0 : 4,
                                 margin: context.isSmall
                                     ? EdgeInsets.zero
@@ -126,64 +125,72 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                 child: Column(
                                   children: [
                                     product.imageUrl == null
-                  ? ClipRRect(
-                    borderRadius: BorderRadius.circular(3),
-                    child: Image.asset(
-                      AppImages.noPhoto,
-                    height: context.isSmall
-                                            ? context.height * .4
-                                            : 500,
-                                        width: context.isSmall
-                                            ? context.width
-                                            : 500,
-                      fit: BoxFit.fill,
-                    ),
-                  )
-                  : SizedBox(
-                height: context.isSmall
-                                            ? context.height * .4
-                                            : 500,
-                                        width: context.isSmall
-                                            ? context.width
-                                            : 500,
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(3),
-                        child: kIsWeb
-                            ? ImageNetwork(
-
-                                onLoading: const SizedBox(),
-                                duration: 0,
-                                fitWeb: BoxFitWeb.contain,
-                                image: NetworkConstants.apiBaseUrl +
-                                    product.imageUrl!,
-                               height: context.isSmall
-                                            ? context.height * .4
-                                            : 500,
-                                        width: context.isSmall
-                                            ? context.width
-                                            : 500,
-                                onError: Image.asset(
-                                  AppImages.noPhoto,
-                                  height: 50,
-                                ))
-                            : CachedNetworkImage(
-                                fit: BoxFit.contain,
-  height: context.isSmall
-                                            ? context.height * .4
-                                            : 500,
-                                        width: context.isSmall
-                                            ? context.width
-                                            : 500,
-                                memCacheWidth: 900,
-                                errorListener: (value) => log.e(
-                                    '${product?.id }:${product?.title }\n$value'),
-                                imageUrl: NetworkConstants.apiBaseUrl +
-                                    product!.imageUrl!,
-                                errorWidget: (context, url, error) =>
-                                    Image.asset(AppImages.noPhoto),
-                              ),
-                      ),
-                  ),state.whenOrNull(success: (product) {
+                                        ? ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(3),
+                                            child: Image.asset(
+                                              AppImages.noPhoto,
+                                              height: context.isSmall
+                                                  ? context.height * .4
+                                                  : 500,
+                                              width: context.isSmall
+                                                  ? context.width
+                                                  : 500,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          )
+                                        : SizedBox(
+                                            height: context.isSmall
+                                                ? context.height * .4
+                                                : 500,
+                                            width: context.isSmall
+                                                ? context.width
+                                                : 500,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(3),
+                                              child: kIsWeb
+                                                  ? ImageNetwork(
+                                                      onLoading:
+                                                          const SizedBox(),
+                                                      duration: 0,
+                                                      fitWeb: BoxFitWeb.contain,
+                                                      image: NetworkConstants
+                                                              .apiBaseUrl +
+                                                          product.imageUrl!,
+                                                      height: context.isSmall
+                                                          ? context.height * .4
+                                                          : 500,
+                                                      width: context.isSmall
+                                                          ? context.width
+                                                          : 500,
+                                                      onError: Image.asset(
+                                                        AppImages.noPhoto,
+                                                        height: 50,
+                                                      ))
+                                                  : CachedNetworkImage(
+                                                      fit: BoxFit.contain,
+                                                      height: context.isSmall
+                                                          ? context.height * .4
+                                                          : 500,
+                                                      width: context.isSmall
+                                                          ? context.width
+                                                          : 500,
+                                                      memCacheWidth: 900,
+                                                      errorListener: (value) =>
+                                                          log.e(
+                                                              '${product?.id}:${product?.title}\n$value'),
+                                                      imageUrl: NetworkConstants
+                                                              .apiBaseUrl +
+                                                          product!.imageUrl!,
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Image.asset(AppImages
+                                                              .noPhoto),
+                                                    ),
+                                            ),
+                                          ),
+                                    state.whenOrNull(success: (product) {
                                           return product.leftQuantity == 0
                                               ? Padding(
                                                   padding:
@@ -682,23 +689,26 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                               value: '${product.weight} т.',
                                             ),
                                           ],
-                                           if (state.whenOrNull(success: (product) => product.description) != null) ...[
-                                      verticalSpace8,
-                                      const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 16),
-                                        child: Text("Описание :"),
-                                      ),
-                                      verticalSpace8,
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(
-                                            horizontal: 16),
-                                        child: Html(data: """
+                                          if (state.whenOrNull(
+                                                  success: (product) =>
+                                                      product.description) !=
+                                              null) ...[
+                                            verticalSpace8,
+                                            const Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 16),
+                                              child: Text("Описание :"),
+                                            ),
+                                            verticalSpace8,
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16),
+                                              child: Html(data: """
                                               ${state.whenOrNull(success: (product) => product.description)}
                                             """),
-                                      )
-                                    ],
+                                            )
+                                          ],
                                         ],
                                       ),
                                     ),
@@ -819,7 +829,10 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                         value: '${product.weight} т.',
                                       ),
                                     ],
-                                    if (state.whenOrNull(success: (product) => product.description) != null) ...[
+                                    if (state.whenOrNull(
+                                            success: (product) =>
+                                                product.description) !=
+                                        null) ...[
                                       verticalSpace8,
                                       const Padding(
                                         padding: EdgeInsets.symmetric(
@@ -828,8 +841,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                       ),
                                       verticalSpace8,
                                       Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             horizontal: 16),
                                         child: Html(data: """
                                               ${state.whenOrNull(success: (product) => product.description)}

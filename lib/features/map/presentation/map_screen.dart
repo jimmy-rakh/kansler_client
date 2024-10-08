@@ -9,7 +9,6 @@ import 'package:kansler/core/extensions/extensions.dart';
 import 'package:kansler/core/widgets/app_card.dart';
 import 'package:kansler/core/widgets/widgets.dart';
 import 'package:kansler/features/auth/data/models/register/address_request.dart';
-
 import '../../../core/widgets/keyboard_escape.dart';
 
 @RoutePage()
