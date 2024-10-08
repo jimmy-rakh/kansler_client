@@ -16,13 +16,15 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AddressesRoute.name: (routeData) {
-      final args = routeData.argsAs<AddressesRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<AddressesRouteArgs>(
+          orElse: () => AddressesRouteArgs(id: pathParams.getInt('id')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: WrappedRoute(
             child: AddressesScreen(
           key: args.key,
-          companyId: args.companyId,
+          id: args.id,
         )),
       );
     },
@@ -160,7 +162,9 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     ProductRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductRouteArgs>();
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<ProductRouteArgs>(
+          orElse: () => ProductRouteArgs(id: pathParams.getInt('id')));
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: WrappedRoute(
@@ -240,14 +244,15 @@ abstract class _$AppRouter extends RootStackRouter {
 class AddressesRoute extends PageRouteInfo<AddressesRouteArgs> {
   AddressesRoute({
     Key? key,
-    required int companyId,
+    required int id,
     List<PageRouteInfo>? children,
   }) : super(
           AddressesRoute.name,
           args: AddressesRouteArgs(
             key: key,
-            companyId: companyId,
+            id: id,
           ),
+          rawPathParams: {'id': id},
           initialChildren: children,
         );
 
@@ -260,16 +265,16 @@ class AddressesRoute extends PageRouteInfo<AddressesRouteArgs> {
 class AddressesRouteArgs {
   const AddressesRouteArgs({
     this.key,
-    required this.companyId,
+    required this.id,
   });
 
   final Key? key;
 
-  final int companyId;
+  final int id;
 
   @override
   String toString() {
-    return 'AddressesRouteArgs{key: $key, companyId: $companyId}';
+    return 'AddressesRouteArgs{key: $key, id: $id}';
   }
 }
 
@@ -666,7 +671,7 @@ class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
     Key? key,
     required int id,
-    required ProductEntity product,
+    ProductEntity? product,
     List<PageRouteInfo>? children,
   }) : super(
           ProductRoute.name,
@@ -689,14 +694,14 @@ class ProductRouteArgs {
   const ProductRouteArgs({
     this.key,
     required this.id,
-    required this.product,
+    this.product,
   });
 
   final Key? key;
 
   final int id;
 
-  final ProductEntity product;
+  final ProductEntity? product;
 
   @override
   String toString() {

@@ -556,8 +556,12 @@ class OrderDetailsScreen extends HookWidget implements AutoRouteWrapper {
                                                                         12),
                                                                 text: const Text(
                                                                     "Отправить оценку"),
-                                                                onPressed:
-                                                                    () {},
+                                                              onPressed: () {
+                                                              bloc.add(OrderDetailsEvent
+                                                                  .fetchOrder(
+                                                                      order!.id,
+                                                                      type));
+                                                            },
                                                               )
                                                             ],
                                                           ),

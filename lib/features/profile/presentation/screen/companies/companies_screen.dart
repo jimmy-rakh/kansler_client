@@ -143,7 +143,7 @@ class CompanyCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
             width: double.maxFinite,
             borderRadius: 8,
-            onTap: () => router.push(AddressesRoute(companyId: company!.id)),
+            onTap: () => router.push(AddressesRoute(id: company!.id)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -248,7 +248,7 @@ class ProfileScreen extends HookWidget {
                               height: 50,
                               borderRadius: 4,
                               onTap: () =>
-                                  router.push(AddressesRoute(companyId: current.company!.id)),
+                                  router.push(AddressesRoute(id: current.company!.id)),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [

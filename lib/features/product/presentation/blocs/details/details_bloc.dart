@@ -18,8 +18,7 @@ part 'details_bloc.freezed.dart';
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final FetchProductUseCase _fetchProductUseCase;
 
-  DetailsBloc(this._fetchProductUseCase)
-      : super(const DetailsState.loadInProgress()) {
+  DetailsBloc(this._fetchProductUseCase) : super(const DetailsState()) {
     on<_SetData>(_onSetData);
     on<_FetchProduct>(_onFetchProduct);
     on<_AddToCart>(_onAddToCart);
@@ -31,22 +30,24 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   late int productPrice;
 
   void _onSetData(_SetData event, Emitter<DetailsState> emit) {
-    add(DetailsEvent.fetchProduct(event.product.id));
+    add(DetailsEvent.fetchProduct(event.id));
   }
 
   Future<void> _onFetchProduct(
       _FetchProduct event, Emitter<DetailsState> emit) async {
     final res = await _fetchProductUseCase.call(event.id);
 
-    res.fold((l) => emit(const DetailsState.failure()), (r) {
+    res.fold((l) => emit(state.copyWith(status: DetailsStatus.error)), (r) {
       productPrice = r.price!;
-      emit(DetailsState.success(r));
+      emit(state.copyWith(status: DetailsStatus.loaded, product: r));
     });
     fieldController.addListener(() => add(const DetailsEvent.updateView()));
   }
 
   void increment() {
-    final product = (state as _Success).product;
+    final product = state.product;
+
+    if (product == null) return;
 
     if (product.leftQuantity <= int.parse(fieldController.text)) {
       router.navigatorKey.currentContext!
@@ -70,13 +71,13 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   }
 
   void _onAddToCart(_AddToCart event, Emitter<DetailsState> emit) async {
-    if (state is! _Success) return;
+    if (state.product == null) return;
     final cartBloc =
         BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);
 
-    final product = (state as _Success).product;
+    final product = state.product;
 
-    if (product.leftQuantity < int.parse(fieldController.text)) {
+    if (product!.leftQuantity < int.parse(fieldController.text)) {
       router.navigatorKey.currentContext!
           .showToast('Недостаточно кол-во в складе');
       fieldController.text = '1';
@@ -89,22 +90,21 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
             updateDependencies: true))
         : cartBloc.add(CartEvent.deleteProductInCart(product.id));
 
-    emit((state as _Success)
-        .copyWith(product: product.copyWith(inCart: !product.inCart!)));
+    emit(state.copyWith(product: product.copyWith(inCart: !product.inCart!)));
   }
 
   void _onUpdateView(_UpdateView event, Emitter<DetailsState> emit) {
-    emit((state as _Success).copyWith(
-        product: (state as _Success).product.copyWith(
+    emit(state.copyWith(
+        product: state.product?.copyWith(
             price: productPrice * (int.tryParse(fieldController.text) ?? 0))));
   }
 
   void _onAddToPreorder(_AddToPreorder event, Emitter<DetailsState> emit) {
-    if (state is! _Success) return;
+    if (state.product == null) return;
     final preordersBloc =
         BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!);
 
-    final product = (state as _Success).product;
+    final product = state.product!;
 
     !product.inPreorder!
         ? preordersBloc.add(PreordersEvent.addToPreorders(
@@ -113,7 +113,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
         : preordersBloc
             .add(PreordersEvent.deleteProductInPreorders(product.id));
 
-    emit((state as _Success)
-        .copyWith(product: product.copyWith(inPreorder: !product.inPreorder!)));
+    emit(state.copyWith(
+        product: product.copyWith(inPreorder: !product.inPreorder!)));
   }
 }

@@ -64,7 +64,7 @@ class AppRouter extends _$AppRouter {
           ],
         ),
         AutoRoute(
-          path:"/",
+          path:"/auth",
           page: AuthRoute.page,
           fullscreenDialog: true,
           children: [
@@ -84,7 +84,7 @@ class AppRouter extends _$AppRouter {
           fullscreenDialog: true,
         ),
         AutoRoute(path:"/companies/",page: CompaniesRoute.page),
-        AutoRoute(path:"/addresses/",page: AddressesRoute.page),
+        AutoRoute(path:"/addresses/:id/",page: AddressesRoute.page),
         AutoRoute(path:"/checkout/",page: CheckoutRoute.page),
         AutoRoute(path: '/order/:id/',page: OrderDetailsRoute.page),
         AutoRoute( path: '/order/:id/products',page: OrderOrganizationRoute.page),

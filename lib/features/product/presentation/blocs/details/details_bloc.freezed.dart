@@ -16,49 +16,13 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DetailsState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgress,
-    required TResult Function(ProductEntity product) success,
-    required TResult Function() failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadInProgress,
-    TResult? Function(ProductEntity product)? success,
-    TResult? Function()? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgress,
-    TResult Function(ProductEntity product)? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) =>
+  DetailsStatus get status => throw _privateConstructorUsedError;
+  ProductEntity? get product => throw _privateConstructorUsedError;
+
+  /// Create a copy of DetailsState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $DetailsStateCopyWith<DetailsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -67,6 +31,10 @@ abstract class $DetailsStateCopyWith<$Res> {
   factory $DetailsStateCopyWith(
           DetailsState value, $Res Function(DetailsState) then) =
       _$DetailsStateCopyWithImpl<$Res, DetailsState>;
+  @useResult
+  $Res call({DetailsStatus status, ProductEntity? product});
+
+  $ProductEntityCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -81,136 +49,59 @@ class _$DetailsStateCopyWithImpl<$Res, $Val extends DetailsState>
 
   /// Create a copy of DetailsState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$LoadInProgressImplCopyWith<$Res> {
-  factory _$$LoadInProgressImplCopyWith(_$LoadInProgressImpl value,
-          $Res Function(_$LoadInProgressImpl) then) =
-      __$$LoadInProgressImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadInProgressImplCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$LoadInProgressImpl>
-    implements _$$LoadInProgressImplCopyWith<$Res> {
-  __$$LoadInProgressImplCopyWithImpl(
-      _$LoadInProgressImpl _value, $Res Function(_$LoadInProgressImpl) _then)
-      : super(_value, _then);
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? product = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DetailsStatus,
+      product: freezed == product
+          ? _value.product
+          : product // ignore: cast_nullable_to_non_nullable
+              as ProductEntity?,
+    ) as $Val);
+  }
 
   /// Create a copy of DetailsState
   /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductEntityCopyWith<$Res>? get product {
+    if (_value.product == null) {
+      return null;
+    }
+
+    return $ProductEntityCopyWith<$Res>(_value.product!, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-
-class _$LoadInProgressImpl implements _LoadInProgress {
-  const _$LoadInProgressImpl();
-
+abstract class _$$DetailsStateImplCopyWith<$Res>
+    implements $DetailsStateCopyWith<$Res> {
+  factory _$$DetailsStateImplCopyWith(
+          _$DetailsStateImpl value, $Res Function(_$DetailsStateImpl) then) =
+      __$$DetailsStateImplCopyWithImpl<$Res>;
   @override
-  String toString() {
-    return 'DetailsState.loadInProgress()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadInProgressImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgress,
-    required TResult Function(ProductEntity product) success,
-    required TResult Function() failure,
-  }) {
-    return loadInProgress();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadInProgress,
-    TResult? Function(ProductEntity product)? success,
-    TResult? Function()? failure,
-  }) {
-    return loadInProgress?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgress,
-    TResult Function(ProductEntity product)? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return loadInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return loadInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (loadInProgress != null) {
-      return loadInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadInProgress implements DetailsState {
-  const factory _LoadInProgress() = _$LoadInProgressImpl;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProductEntity product});
+  $Res call({DetailsStatus status, ProductEntity? product});
 
-  $ProductEntityCopyWith<$Res> get product;
+  @override
+  $ProductEntityCopyWith<$Res>? get product;
 }
 
 /// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
+class __$$DetailsStateImplCopyWithImpl<$Res>
+    extends _$DetailsStateCopyWithImpl<$Res, _$DetailsStateImpl>
+    implements _$$DetailsStateImplCopyWith<$Res> {
+  __$$DetailsStateImplCopyWithImpl(
+      _$DetailsStateImpl _value, $Res Function(_$DetailsStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DetailsState
@@ -218,256 +109,82 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
+    Object? status = null,
+    Object? product = freezed,
   }) {
-    return _then(_$SuccessImpl(
-      null == product
+    return _then(_$DetailsStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as DetailsStatus,
+      product: freezed == product
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as ProductEntity,
+              as ProductEntity?,
     ));
-  }
-
-  /// Create a copy of DetailsState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductEntityCopyWith<$Res> get product {
-    return $ProductEntityCopyWith<$Res>(_value.product, (value) {
-      return _then(_value.copyWith(product: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(this.product);
+class _$DetailsStateImpl implements _DetailsState {
+  const _$DetailsStateImpl({this.status = DetailsStatus.loading, this.product});
 
   @override
-  final ProductEntity product;
+  @JsonKey()
+  final DetailsStatus status;
+  @override
+  final ProductEntity? product;
 
   @override
   String toString() {
-    return 'DetailsState.success(product: $product)';
+    return 'DetailsState(status: $status, product: $product)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessImpl &&
+            other is _$DetailsStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
             (identical(other.product, product) || other.product == product));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product);
+  int get hashCode => Object.hash(runtimeType, status, product);
 
   /// Create a copy of DetailsState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
-      __$$SuccessImplCopyWithImpl<_$SuccessImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgress,
-    required TResult Function(ProductEntity product) success,
-    required TResult Function() failure,
-  }) {
-    return success(product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadInProgress,
-    TResult? Function(ProductEntity product)? success,
-    TResult? Function()? failure,
-  }) {
-    return success?.call(product);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgress,
-    TResult Function(ProductEntity product)? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(product);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
+  _$$DetailsStateImplCopyWith<_$DetailsStateImpl> get copyWith =>
+      __$$DetailsStateImplCopyWithImpl<_$DetailsStateImpl>(this, _$identity);
 }
 
-abstract class _Success implements DetailsState {
-  const factory _Success(final ProductEntity product) = _$SuccessImpl;
+abstract class _DetailsState implements DetailsState {
+  const factory _DetailsState(
+      {final DetailsStatus status,
+      final ProductEntity? product}) = _$DetailsStateImpl;
 
-  ProductEntity get product;
+  @override
+  DetailsStatus get status;
+  @override
+  ProductEntity? get product;
 
   /// Create a copy of DetailsState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+  _$$DetailsStateImplCopyWith<_$DetailsStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$FailureImplCopyWith<$Res> {
-  factory _$$FailureImplCopyWith(
-          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
-      __$$FailureImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FailureImplCopyWithImpl<$Res>
-    extends _$DetailsStateCopyWithImpl<$Res, _$FailureImpl>
-    implements _$$FailureImplCopyWith<$Res> {
-  __$$FailureImplCopyWithImpl(
-      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DetailsState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FailureImpl implements _Failure {
-  const _$FailureImpl();
-
-  @override
-  String toString() {
-    return 'DetailsState.failure()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FailureImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadInProgress,
-    required TResult Function(ProductEntity product) success,
-    required TResult Function() failure,
-  }) {
-    return failure();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadInProgress,
-    TResult? Function(ProductEntity product)? success,
-    TResult? Function()? failure,
-  }) {
-    return failure?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadInProgress,
-    TResult Function(ProductEntity product)? success,
-    TResult Function()? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadInProgress value) loadInProgress,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Failure value) failure,
-  }) {
-    return failure(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadInProgress value)? loadInProgress,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Failure value)? failure,
-  }) {
-    return failure?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadInProgress value)? loadInProgress,
-    TResult Function(_Success value)? success,
-    TResult Function(_Failure value)? failure,
-    required TResult orElse(),
-  }) {
-    if (failure != null) {
-      return failure(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Failure implements DetailsState {
-  const factory _Failure() = _$FailureImpl;
 }
 
 /// @nodoc
 mixin _$DetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
     required TResult Function() addToPreorder,
@@ -476,7 +193,7 @@ mixin _$DetailsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
     TResult? Function()? addToPreorder,
@@ -485,7 +202,7 @@ mixin _$DetailsEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
     TResult Function()? addToPreorder,
@@ -550,9 +267,7 @@ abstract class _$$SetDataImplCopyWith<$Res> {
           _$SetDataImpl value, $Res Function(_$SetDataImpl) then) =
       __$$SetDataImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ProductEntity product});
-
-  $ProductEntityCopyWith<$Res> get product;
+  $Res call({int id});
 }
 
 /// @nodoc
@@ -568,38 +283,28 @@ class __$$SetDataImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? product = null,
+    Object? id = null,
   }) {
     return _then(_$SetDataImpl(
-      null == product
-          ? _value.product
-          : product // ignore: cast_nullable_to_non_nullable
-              as ProductEntity,
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
-  }
-
-  /// Create a copy of DetailsEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductEntityCopyWith<$Res> get product {
-    return $ProductEntityCopyWith<$Res>(_value.product, (value) {
-      return _then(_value.copyWith(product: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$SetDataImpl implements _SetData {
-  const _$SetDataImpl(this.product);
+  const _$SetDataImpl(this.id);
 
   @override
-  final ProductEntity product;
+  final int id;
 
   @override
   String toString() {
-    return 'DetailsEvent.setData(product: $product)';
+    return 'DetailsEvent.setData(id: $id)';
   }
 
   @override
@@ -607,11 +312,11 @@ class _$SetDataImpl implements _SetData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SetDataImpl &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, product);
+  int get hashCode => Object.hash(runtimeType, id);
 
   /// Create a copy of DetailsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -624,31 +329,31 @@ class _$SetDataImpl implements _SetData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
     required TResult Function() addToPreorder,
     required TResult Function() updateView,
   }) {
-    return setData(product);
+    return setData(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
     TResult? Function()? addToPreorder,
     TResult? Function()? updateView,
   }) {
-    return setData?.call(product);
+    return setData?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
     TResult Function()? addToPreorder,
@@ -656,7 +361,7 @@ class _$SetDataImpl implements _SetData {
     required TResult orElse(),
   }) {
     if (setData != null) {
-      return setData(product);
+      return setData(id);
     }
     return orElse();
   }
@@ -703,9 +408,9 @@ class _$SetDataImpl implements _SetData {
 }
 
 abstract class _SetData implements DetailsEvent {
-  const factory _SetData(final ProductEntity product) = _$SetDataImpl;
+  const factory _SetData(final int id) = _$SetDataImpl;
 
-  ProductEntity get product;
+  int get id;
 
   /// Create a copy of DetailsEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -782,7 +487,7 @@ class _$FetchProductImpl implements _FetchProduct {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
     required TResult Function() addToPreorder,
@@ -794,7 +499,7 @@ class _$FetchProductImpl implements _FetchProduct {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
     TResult? Function()? addToPreorder,
@@ -806,7 +511,7 @@ class _$FetchProductImpl implements _FetchProduct {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
     TResult Function()? addToPreorder,
@@ -913,7 +618,7 @@ class _$AddToCartImpl implements _AddToCart {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
     required TResult Function() addToPreorder,
@@ -925,7 +630,7 @@ class _$AddToCartImpl implements _AddToCart {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
     TResult? Function()? addToPreorder,
@@ -937,7 +642,7 @@ class _$AddToCartImpl implements _AddToCart {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
     TResult Function()? addToPreorder,
@@ -1036,7 +741,7 @@ class _$AddToPreorderImpl implements _AddToPreorder {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
     required TResult Function() addToPreorder,
@@ -1048,7 +753,7 @@ class _$AddToPreorderImpl implements _AddToPreorder {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
     TResult? Function()? addToPreorder,
@@ -1060,7 +765,7 @@ class _$AddToPreorderImpl implements _AddToPreorder {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
     TResult Function()? addToPreorder,
@@ -1159,7 +864,7 @@ class _$UpdateViewImpl implements _UpdateView {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(ProductEntity product) setData,
+    required TResult Function(int id) setData,
     required TResult Function(int id) fetchProduct,
     required TResult Function() addToCart,
     required TResult Function() addToPreorder,
@@ -1171,7 +876,7 @@ class _$UpdateViewImpl implements _UpdateView {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(ProductEntity product)? setData,
+    TResult? Function(int id)? setData,
     TResult? Function(int id)? fetchProduct,
     TResult? Function()? addToCart,
     TResult? Function()? addToPreorder,
@@ -1183,7 +888,7 @@ class _$UpdateViewImpl implements _UpdateView {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(ProductEntity product)? setData,
+    TResult Function(int id)? setData,
     TResult Function(int id)? fetchProduct,
     TResult Function()? addToCart,
     TResult Function()? addToPreorder,

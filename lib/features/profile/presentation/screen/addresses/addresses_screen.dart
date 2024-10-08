@@ -17,10 +17,10 @@ import 'addresses/addresses_bloc.dart';
 class AddressesScreen extends HookWidget implements AutoRouteWrapper {
   const AddressesScreen({
     super.key,
-    required this.companyId,
+    @PathParam() required this.id,
   });
 
-  final int companyId;
+  final int id;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +130,7 @@ class AddressesScreen extends HookWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
         create: (context) =>
-            getIt<AddressesBloc>()..add(AddressesEvent.fetch(companyId)),
+            getIt<AddressesBloc>()..add(AddressesEvent.fetch(id)),
         child: this,
       );
 }

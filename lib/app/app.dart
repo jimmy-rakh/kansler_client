@@ -24,7 +24,12 @@ class KanslerApp extends HookWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeState.mode,
-      routerConfig: router.config(),
+      routerConfig: router.config(
+          deepLinkTransformer: (uri) async {
+            router.pushNamed(uri.path);
+            return uri;
+          },
+          navRestorationScopeId: 'mainRoute'),
       builder: (context, child) {
         return MediaQuery(
           data: MediaQuery.of(context).copyWith(
