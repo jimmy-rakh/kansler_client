@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_card.dart';
+import 'package:kansler/features/search/presentation/search_screen/blocs/prices/prices_bloc.dart';
 import 'package:url_launcher/link.dart';
 import 'dart:html' as html;
 import '../../../../../app/router.dart';
@@ -16,6 +20,8 @@ class InfoAppBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bloc = context.read<PricesBloc>();
+    final state = useBlocBuilder(bloc);
     return AppCard(
       showShadow: false,
       fillColor: context.background,
@@ -32,7 +38,7 @@ class InfoAppBar extends HookWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top:6),
+                    padding: const EdgeInsets.only(top: 6),
                     child: AppCard(
                       width: 20,
                       height: 20,
@@ -67,8 +73,13 @@ class InfoAppBar extends HookWidget {
                         overlayColor:
                             WidgetStateProperty.all(Colors.transparent),
                       ),
-                      onPressed:kIsWeb
-                       ? () { html.window.open('https://t.me/kansler_support_bot', 'new tab');} : openLink,
+                      onPressed: kIsWeb
+                          ? () {
+                              html.window.open(
+                                  'https://t.me/kansler_support_bot',
+                                  'new tab');
+                            }
+                          : openLink,
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -96,7 +107,6 @@ class InfoAppBar extends HookWidget {
                       ),
                     );
                   }),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -144,35 +154,39 @@ class InfoAppBar extends HookWidget {
                 ],
               ),
               InkWell(
-                onTap: (){},
+                onTap: () {
+                  bloc.add(const PricesEvent.getLink());
+                },
                 child: AppCard(
                   width: 140,
                   height: 30,
                   borderRadius: 4,
                   borderColor: Colors.grey.withOpacity(0.5),
-                  fillColor:  context.primary,
-                  child:  Padding(
+                  fillColor: context.primary,
+                  child: Padding(
                     padding: const EdgeInsets.all(4),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        horizontalSpace10,
-                        Icon(
-                          Icons.save_alt,
-                          size: 16,
-                          color: context.onPrimary,
-                        ),
-                        horizontalSpace10,
-                        Text(
-                          "Скачать прайс",
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: context.onPrimary,
+                    child: state.status == PricesStatus.loading
+                        ? CupertinoActivityIndicator()
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              horizontalSpace10,
+                              Icon(
+                                Icons.save_alt,
+                                size: 16,
+                                color: context.onPrimary,
+                              ),
+                              horizontalSpace10,
+                              Text(
+                                "Скачать прайс",
+                                style: TextStyle(
+                                  fontSize: 10,
+                                  color: context.onPrimary,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
                   ),
                 ),
               ),

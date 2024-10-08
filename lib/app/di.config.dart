@@ -192,6 +192,8 @@ import 'package:kansler/features/search/presentation/filter_screen/filter/filter
     as _i330;
 import 'package:kansler/features/search/presentation/search_screen/blocs/brands/brands_bloc.dart'
     as _i373;
+import 'package:kansler/features/search/presentation/search_screen/blocs/prices/prices_bloc.dart'
+    as _i935;
 import 'package:kansler/features/search/presentation/search_screen/blocs/search_bloc/search_bloc.dart'
     as _i685;
 import 'package:kansler/features/settings/presentation/theme/theme_bloc.dart'
@@ -308,6 +310,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i450.SearchRepositoryImpl(gh<_i71.SearchRemoteSource>()));
     gh.lazySingleton<_i1045.SearchUseCase>(
         () => _i1045.SearchUseCase(gh<_i848.SearchRepository>()));
+    gh.lazySingleton<_i935.PricesBloc>(
+        () => _i935.PricesBloc(gh<_i848.SearchRepository>()));
     gh.factory<_i188.PopularBloc>(
         () => _i188.PopularBloc(gh<_i229.FetchPopularProductUseCase>()));
     gh.factory<_i755.CheckoutRepository>(

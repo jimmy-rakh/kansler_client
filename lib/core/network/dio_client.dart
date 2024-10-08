@@ -112,9 +112,11 @@ class DioClient with MainBoxMixin {
     Map<String, dynamic>? data,
     ResponseConverter<T>? converter,
     bool isIsolate = true,
+    ResponseType responseType = ResponseType.json,
   }) async {
     try {
-      final response = await dio.post(url, data: data);
+      final response = await dio.post(url,
+          data: data, options: Options(responseType: responseType));
       if ((response.statusCode ?? 0) < 200 ||
           (response.statusCode ?? 0) > 205) {
         throw DioException(

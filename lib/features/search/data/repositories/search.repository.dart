@@ -29,4 +29,12 @@ class SearchRepositoryImpl implements SearchRepository {
       },
     );
   }
+
+  @override
+  Future<Either<Failure, String>> getFile(SearchEntity request) async {
+    final data = SearchRequest.fromEntity(request);
+    final res = await _searchRemoteSource.getFile(data);
+
+    return res;
+  }
 }

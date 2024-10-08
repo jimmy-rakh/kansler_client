@@ -6,4 +6,6 @@ import '../entities/search.entity.dart';
 abstract class SearchRepository {
   Future<Either<Failure, ({bool hasNext, List<ProductEntity> products})>>
       search(SearchEntity request);
+
+  Future<Either<Failure, String>> getFile(SearchEntity request);
 }

@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/search/data/sorces/remote.keys.dart';
 import 'package:kansler/features/search/data/sorces/search_remote.dart';
@@ -34,19 +37,15 @@ class SearchRemoteSourceImpl implements SearchRemoteSource {
   }
 
   @override
-  Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>> price(
-      SearchRequest request, int page) async {
+  Future<Either<Failure, String>> getFile(SearchRequest request) async {
     final res = _dio.postRequest(
-      '${SearchRemoteKeys.search}?page=$page',
+      '${SearchRemoteKeys.search}/download_xls',
       data: request.toJson(),
+      responseType: ResponseType.bytes,
       converter: (response) {
-        final result =
-        PaginationResponse.fromJson(response as Map<String, dynamic>);
+        final base64 = base64Encode(response);
 
-        final products =
-        result.results.map((e) => ProductDto.fromJson(e)).toList();
-
-        return (hasNext: result.next != null, products: products);
+        return base64;
       },
     );
     return res;
