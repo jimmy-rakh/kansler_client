@@ -105,11 +105,11 @@ class ConfirmCodeSheet extends HookWidget {
                 border: Border.all(color: Colors.redAccent),
               ),
             ),
-            verticalSpace30,
-            Text(
-              '    Разрешите определить геолокацию\nИначе вы не сможете регистрироватся!',
-              style: context.theme.textTheme.titleSmall?.copyWith(color: Colors.orange),
-            ),
+            // verticalSpace30,
+            // Text(
+            //   '    Разрешите определить геолокацию\nИначе вы не сможете регистрироватся!',
+            //   style: context.theme.textTheme.titleSmall?.copyWith(color: Colors.orange),
+            // ),
             verticalSpace35,
             AppButton(
               text:

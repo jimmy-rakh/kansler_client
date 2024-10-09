@@ -282,10 +282,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                         switch (activePage) {
                                           case 1:
                                             return const CategoriesView();
-                                          case 2:
-                                            return BrandsView(
-                                              data: filterData!,
-                                            );
+                                          // case 2:
+                                          //   return BrandsView(
+                                          //     data: filterData!,
+                                          //   );
                                           default:
                                             return Padding(
                                               padding:
@@ -295,8 +295,8 @@ class _SearchScreenState extends State<SearchScreen> {
                                                 children: [
                                                   const CategoriesSection(),
                                                   verticalSpace12,
-                                                  const BrandsSection(),
-                                                  verticalSpace12,
+                                                  // const BrandsSection(),
+                                                  // verticalSpace12,
                                                   Row(
                                                     children: [
                                                       Expanded(
