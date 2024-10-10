@@ -8,6 +8,8 @@ import 'package:kansler/core/widgets/app_button.dart';
 import 'package:kansler/core/widgets/app_card.dart';
 import 'package:kansler/features/cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
 import 'package:kansler/core/enums/enums.dart';
+import '../../../../../app/router.dart';
+import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../checkout/presentation/checkout_screen/bloc/checkout_bloc.dart';
 
 class PreordersSumWidget extends HookWidget {
@@ -15,14 +17,15 @@ class PreordersSumWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
+    final authBloc = context.read<AuthBloc>();
     final bloc = context.read<CheckoutBloc>();
     final preOrderBloc = context.read<PreordersBloc>();
     final state = useBlocBuilder(preOrderBloc);
+    final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
 
-    return  state.whenOrNull(
-      ready: (status,products, price, isMoreLoading) {
-        return  Padding(
+    return state.whenOrNull(
+      ready: (status, products, price, isMoreLoading) {
+        return Padding(
           padding: const EdgeInsets.all(5),
           child: ColoredBox(
             color: context.background,
@@ -38,9 +41,10 @@ class PreordersSumWidget extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   state.whenOrNull(
-                    ready: (status,products, price, isMoreLoading) =>
-                    price == 0  || price == null ? const SizedBox() : Text(
-                      '${currencyFormatter.format((price)).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                    ready: (status, products, price, isMoreLoading) =>
+                    price == 0 || price == null ? const SizedBox() : Text(
+                      '${currencyFormatter.format((price)).replaceAll(
+                          ".", " ")}  ${'common.sum'.tr()}',
                       style: context.titleMedium,
                     ),
                   ) ??
@@ -56,7 +60,7 @@ class PreordersSumWidget extends HookWidget {
                     fillColor: const Color.fromARGB(
                         255, 0, 73, 208).withOpacity(0.3),
                     onPressed: () {},
-                  ) :  AppButton(
+                  ) : AppButton(
                     height: 50,
                     text: 'Оформить Предзаказ',
                     textColor: context.onPrimary,
@@ -65,8 +69,18 @@ class PreordersSumWidget extends HookWidget {
                     borderRadius: 0,
                     fillColor: const Color.fromARGB(
                         255, 0, 73, 208),
-                    onPressed: () => context.isSmall ?
-                    preOrderBloc.add(const PreordersEvent.toCheckout()) : bloc.add( const CheckoutEvent.checkOut(CheckoutType.preorder)),
+                    onPressed: authBloc
+                        .state ==
+                        const AuthState
+                            .authenticated()
+                        ? () =>
+                    context.isSmall ?
+                    preOrderBloc.add(const PreordersEvent.toCheckout()) : bloc
+                        .add(const CheckoutEvent.checkOut(CheckoutType
+                        .preorder))
+                        : () => router
+                        .push(
+                        const AuthRoute()),
                   )
                 ],
               ),
@@ -76,6 +90,5 @@ class PreordersSumWidget extends HookWidget {
       },
     ) ??
         const SizedBox();
-
   }
 }
