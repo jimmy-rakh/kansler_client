@@ -78,10 +78,10 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
     res.fold((l) => {}, (r) {
       if (event.updateDependencies) {
-        popularBloc.add(const PopularEvent.fetch());
-        latestBloc.add(const LatestEvent.fetch());
-        hits.add(const HitEvent.fetch());
-        discount.add(const DiscountsEvent.fetch());
+        // popularBloc.add(const PopularEvent.fetch());
+        // latestBloc.add(const LatestEvent.fetch());
+        // hits.add(const HitEvent.fetch());
+        // discount.add(const DiscountsEvent.fetch());
       }
 
       _updateView();
