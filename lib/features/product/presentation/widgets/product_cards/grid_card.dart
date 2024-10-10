@@ -48,7 +48,6 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
   Widget build(BuildContext context) {
     final cartBloc = context.read<CartBloc>();
     final preorderBloc = context.read<PreordersBloc>();
-    final authBloc = context.read<AuthBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
       borderRadius: 4,
@@ -197,9 +196,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             textStyle:  TextStyle(fontSize:context.isSmall ? 9 : 10),
                             height: 40,
                             textColor: context.onPrimary,
-                            onPressed: authBloc.state ==
-                                    const AuthState.authenticated()
-                                ? () {
+                            onPressed: () {
                                     onCart.call(CheckoutType.preorder);
                                     if (product?.leftQuantity == 0) {
                                       if (!((product ?? cartProduct?.product)
@@ -218,8 +215,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                         (product ?? cartProduct!.product)!.id,
                                       ));
                                     }
-                                  }
-                                : () => router.push(const AuthRoute()),
+                                  },
                             text:
                                 (product ?? cartProduct!.product)!.inPreorder ??
                                         false
@@ -249,9 +245,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                               color: AppColors.white,
                             ),
                             textColor: AppColors.white,
-                            onPressed: authBloc.state ==
-                                    const AuthState.authenticated()
-                                ? () {
+                            onPressed: () {
                                     onCart.call(CheckoutType.order);
 
                                     if (!((product ?? cartProduct?.product)
@@ -269,8 +263,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                     fieldController?.text = '1';
                                     cartBloc.add(CartEvent.deleteProductInCart(
                                         (product ?? cartProduct!.product)!.id));
-                                  }
-                                : () => router.push(const AuthRoute()),
+                                  },
                             size: MainAxisSize.min,
                             margin: const EdgeInsets.only(
                               right: 10,

@@ -2,8 +2,10 @@ import 'package:dartz/dartz.dart';
 import 'package:kansler/features/home/data/models/models.dart';
 import '../../../../core/error/failure.dart';
 import '../../../product/data/models/product_dto.dart';
+import '../models/session_key.dart';
 
 abstract class ProductRemoteSource {
+  Future<Either<Failure, SessionKey>> session();
 
   Future<Either<Failure,List<PostersDto>>>
   fetchPosters();

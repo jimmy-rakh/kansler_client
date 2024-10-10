@@ -62,6 +62,9 @@ void main() async {
               create: (context) => getIt<AuthBloc>(),
             ),
             BlocProvider(
+              create: (context) => getIt<BannerBloc>(),
+            ),
+            BlocProvider(
               create: (context) => getIt<NavbarBloc>(),
             ),
             BlocProvider(
@@ -69,9 +72,6 @@ void main() async {
             ),
             BlocProvider(
               create: (context) => getIt<SubcategoryBloc>(),
-            ),
-            BlocProvider(
-              create: (context) => getIt<BannerBloc>(),
             ),
             BlocProvider(
               create: (context) => getIt<HitBloc>(),

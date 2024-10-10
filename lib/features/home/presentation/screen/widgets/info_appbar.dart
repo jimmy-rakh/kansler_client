@@ -53,9 +53,9 @@ class InfoAppBar extends HookWidget {
                     ),
                   ),
                   horizontalSpace10,
-                  Padding(
-                    padding: const EdgeInsets.only(top: 6),
-                    child: const Text(
+                  const Padding(
+                    padding: EdgeInsets.only(top: 6),
+                    child: Text(
                       "+998 (78) 148-44-44",
                       style: TextStyle(fontSize: 9),
                     ),
@@ -133,7 +133,7 @@ class InfoAppBar extends HookWidget {
                   ),
                 ],
               ),
-              Row(
+             context.isTablet ? const SizedBox() : Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

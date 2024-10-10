@@ -28,6 +28,10 @@ abstract class AuthRepository {
 
   String? getAuthToken();
 
+  String? getSessionKey();
+
+  Future<void> setSessionKey(String sessionKey);
+
   AuthStatus getAuthStatus();
 
   Future<Either<Failure, void>> logout();

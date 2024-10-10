@@ -17,6 +17,7 @@ typedef ResponseConverter<T> = T Function(dynamic response);
 class DioClient with MainBoxMixin {
   final AuthLocalDataSource _authSource;
   String? _auth;
+  String? _getSessionKey;
   bool _isUnitTest = false;
   late Dio _dio;
 
@@ -27,8 +28,11 @@ class DioClient with MainBoxMixin {
       _auth = _authSource.getAuthToken();
     } catch (_) {}
 
-    _dio = _createDio();
+    try {
+      _getSessionKey = _authSource.getSessionKey();
+    } catch (_) {}
 
+    _dio = _createDio();
   }
 
   Dio get dio {
@@ -44,7 +48,7 @@ class DioClient with MainBoxMixin {
       final dio = _createDio();
 
       if (!_isUnitTest) {
-        dio.interceptors.addAll([ ResponseInterceptor()]);
+        dio.interceptors.addAll([LoggerInterceptor(), ResponseInterceptor()]);
       }
 
       return dio;
@@ -56,6 +60,9 @@ class DioClient with MainBoxMixin {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
+            if (_getSessionKey != null) ...{
+              'SESSIONKEY': '$_getSessionKey',
+            },
             if (_auth != null) ...{
               'Device-Token': 'Kansler $_auth',
             },

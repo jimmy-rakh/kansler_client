@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,7 +25,6 @@ import '../../../../core/widgets/app_card.dart';
 import '../../../../core/widgets/app_icon.dart';
 import '../../../../core/widgets/app_text_field.dart';
 import '../../../../core/widgets/keyboard_escape.dart';
-import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../domain/entities/product.entity.dart';
 import '../blocs/details/details_bloc.dart';
 import '../widgets/details_widget.dart';
@@ -44,8 +44,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     final bloc = context.read<DetailsBloc>();
     final state = useBlocBuilder(bloc);
-    final authBloc = context.read<AuthBloc>();
-     useEffect(() {
+    useEffect(() {
       bloc.add(DetailsEvent.setData(id));
 
       return null;
@@ -53,7 +52,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
 
     return state.status == DetailsStatus.loading && product == null
-        ? CircularProgressIndicator.adaptive()
+        ? const CircularProgressIndicator.adaptive()
         : KeyboardEscape(
             onUnFocus: bloc.completeEditing,
             child: SelectionArea(
@@ -163,15 +162,18 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                           onLoading:
                                                               const SizedBox(),
                                                           duration: 0,
-                                                          fitWeb: BoxFitWeb.contain,
+                                                          fitWeb:
+                                                              BoxFitWeb.contain,
                                                           image: NetworkConstants
                                                                   .apiBaseUrl +
                                                               (product?.imageUrl ??
                                                                   state.product
                                                                       ?.imageUrl ??
                                                                   ''),
-                                                          height: context.isSmall
-                                                              ? context.height * .4
+                                                          height: context
+                                                                  .isSmall
+                                                              ? context.height *
+                                                                  .4
                                                               : 500,
                                                           width: context.isSmall
                                                               ? context.width
@@ -182,15 +184,17 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                           ))
                                                       : CachedNetworkImage(
                                                           fit: BoxFit.contain,
-                                                          height: context.isSmall
-                                                              ? context.height * .4
+                                                          height: context
+                                                                  .isSmall
+                                                              ? context.height *
+                                                                  .4
                                                               : 500,
                                                           width: context.isSmall
                                                               ? context.width
                                                               : 500,
                                                           memCacheWidth: 900,
-                                                          errorListener: (value) =>
-                                                              log.e(
+                                                          errorListener:
+                                                              (value) => log.e(
                                                                   '${product?.id}:${product?.title}\n$value'),
                                                           imageUrl: NetworkConstants
                                                                   .apiBaseUrl +
@@ -201,8 +205,9 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                                   ''),
                                                           errorWidget: (context,
                                                                   url, error) =>
-                                                              Image.asset(AppImages
-                                                                  .noPhoto),
+                                                              Image.asset(
+                                                                  AppImages
+                                                                      .noPhoto),
                                                         ),
                                                 ),
                                               ),
@@ -237,7 +242,8 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                         children: [
                                                           Padding(
                                                             padding:
-                                                                EdgeInsets.only(
+                                                                const EdgeInsets
+                                                                    .only(
                                                                     left: 20),
                                                             child: AppCard(
                                                                 fillColor:
@@ -249,9 +255,9 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                                 borderRadius: 2,
                                                                 child: Padding(
                                                                   padding:
-                                                                      EdgeInsets
+                                                                      const EdgeInsets
                                                                           .all(
-                                                                              8),
+                                                                          8),
                                                                   child: Text(
                                                                     "Нет в наличии",
                                                                     maxLines: 1,
@@ -282,31 +288,29 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                                       fontSize:
                                                                           11),
                                                               height: 35,
-                                                              onPressed: authBloc
-                                                                          .state ==
-                                                                      const AuthState
-                                                                          .authenticated()
-                                                                  ? () {
-                                                                      if (((product ?? state.product)?.leftQuantity ??
-                                                                              0) >=
-                                                                          int.parse(bloc
-                                                                              .fieldController
-                                                                              .text)) {
-                                                                        bloc.add(
-                                                                            const DetailsEvent.addToCart());
-                                                                        FocusScope.of(context)
-                                                                            .unfocus();
-                                                                      } else {
-                                                                        bloc.add(
-                                                                            const DetailsEvent.addToPreorder());
+                                                              onPressed: () {
+                                                                if (((product ?? state.product)
+                                                                            ?.leftQuantity ??
+                                                                        0) >=
+                                                                    int.parse(bloc
+                                                                        .fieldController
+                                                                        .text)) {
+                                                                  bloc.add(
+                                                                      const DetailsEvent
+                                                                          .addToCart());
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                } else {
+                                                                  bloc.add(
+                                                                      const DetailsEvent
+                                                                          .addToPreorder());
 
-                                                                        FocusScope.of(context)
-                                                                            .unfocus();
-                                                                      }
-                                                                    }
-                                                                  : () => router
-                                                                      .push(
-                                                                          const AuthRoute()),
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                }
+                                                              },
                                                               text: (product ??
                                                                               state.product)
                                                                           ?.inPreorder ??
@@ -506,37 +510,37 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                               textColor:
                                                                   AppColors
                                                                       .white,
-                                                              onPressed: authBloc
-                                                                          .state ==
-                                                                      const AuthState
-                                                                          .authenticated()
-                                                                  ? () {
-                                                                      if ((product ?? state.product)!
-                                                                              .leftQuantity >=
-                                                                          int.parse(bloc
-                                                                              .fieldController
-                                                                              .text)) {
-                                                                        bloc.add(
-                                                                            const DetailsEvent.addToCart());
-                                                                        FocusScope.of(context)
-                                                                            .unfocus();
-                                                                      } else {
-                                                                        router
-                                                                            .navigatorKey
-                                                                            .currentContext!
-                                                                            .showToast('Недостаточно кол-во в складе');
-                                                                        bloc.fieldController
-                                                                            .text = (product ??
-                                                                                state.product)!
-                                                                            .leftQuantity
-                                                                            .toString();
-                                                                        FocusScope.of(context)
-                                                                            .unfocus();
-                                                                      }
-                                                                    }
-                                                                  : () => router
-                                                                      .push(
-                                                                          const AuthRoute()),
+                                                              onPressed: () {
+                                                                if ((product ??
+                                                                            state
+                                                                                .product)!
+                                                                        .leftQuantity >=
+                                                                    int.parse(bloc
+                                                                        .fieldController
+                                                                        .text)) {
+                                                                  bloc.add(
+                                                                      const DetailsEvent
+                                                                          .addToCart());
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                } else {
+                                                                  router
+                                                                      .navigatorKey
+                                                                      .currentContext!
+                                                                      .showToast(
+                                                                          'Недостаточно кол-во в складе');
+                                                                  bloc.fieldController
+                                                                      .text = (product ??
+                                                                          state
+                                                                              .product)!
+                                                                      .leftQuantity
+                                                                      .toString();
+                                                                  FocusScope.of(
+                                                                          context)
+                                                                      .unfocus();
+                                                                }
+                                                              },
                                                               size: MainAxisSize
                                                                   .min,
                                                               padding:
@@ -738,7 +742,9 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                       '${(product ?? state.product)!.weight} т.',
                                                 ),
                                               ],
-                                              if ((product ?? state.product)
+                                              if (state.product?.description == null)
+                                                const SizedBox(height:200,child: CupertinoActivityIndicator()),
+                                              if ((state.product)
                                                       ?.description !=
                                                   null) ...[
                                                 verticalSpace8,
@@ -753,7 +759,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                       .symmetric(
                                                       horizontal: 16),
                                                   child: Html(data: """
-                                              ${(product ?? state.product)!.description}"""),
+                                              ${(state.product)!.description}"""),
                                                 )
                                               ],
                                             ],
@@ -905,8 +911,9 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                 '${(product ?? state.product)!.weight} т.',
                                           ),
                                         ],
-                                        if ((product ?? state.product)
-                                                ?.description !=
+                                        if (state.product?.description == null)
+                                          const SizedBox(height:200,child: CupertinoActivityIndicator()),
+                                        if ((state.product)?.description !=
                                             null) ...[
                                           verticalSpace8,
                                           const Padding(
@@ -919,7 +926,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                             padding: const EdgeInsets.symmetric(
                                                 horizontal: 16),
                                             child: Html(data: """
-                                              ${(product ?? state.product)!.description}
+                                              ${(state.product)!.description}
                                             """),
                                           )
                                         ],

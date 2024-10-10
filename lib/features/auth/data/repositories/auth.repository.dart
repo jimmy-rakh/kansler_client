@@ -36,6 +36,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  String? getSessionKey() {
+    return _authLocalDataSource.getSessionKey();
+  }
+
+  @override
+  Future<void> setSessionKey(String token) async {
+    try {
+      await _authLocalDataSource.setSessionKey(token);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   AuthStatus getAuthStatus() {
     return _authLocalDataSource.getAuthStatus();
   }

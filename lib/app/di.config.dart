@@ -328,8 +328,6 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i585.DetailsBloc(gh<_i166.FetchProductUseCase>()));
     gh.factory<_i869.LatestBloc>(
         () => _i869.LatestBloc(gh<_i253.FetchLatestProductUseCase>()));
-    gh.factory<_i533.BannerBloc>(
-        () => _i533.BannerBloc(gh<_i453.ProductsRepository>()));
     gh.factory<_i945.LimitsRepository>(
         () => _i29.LimitsRepositoryImpl(gh<_i770.LimitsRemoteSource>()));
     gh.factory<_i914.GetCategoriesUseCase>(
@@ -358,6 +356,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i407.CheckoutBloc(gh<_i755.CheckoutRepository>()));
     gh.factory<_i1018.SetAuthTokenUseCase>(
         () => _i1018.SetAuthTokenUseCase(gh<_i892.AuthRepository>()));
+    gh.factory<_i1018.SetSession>(
+        () => _i1018.SetSession(gh<_i892.AuthRepository>()));
     gh.factory<_i1070.GetAuthStatusUseCase>(
         () => _i1070.GetAuthStatusUseCase(gh<_i892.AuthRepository>()));
     gh.factory<_i881.LimitsCubit>(
@@ -373,6 +373,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i230.SubcategoryBloc>(() => _i230.SubcategoryBloc(
           gh<_i756.GetCategoryChildrenUseCase>(),
           gh<_i92.GetCategoryProducts>(),
+        ));
+    gh.factory<_i533.BannerBloc>(() => _i533.BannerBloc(
+          gh<_i453.ProductsRepository>(),
+          gh<_i1018.SetSession>(),
+          gh<_i766.AuthLocalDataSource>(),
         ));
     gh.lazySingleton<_i188.AuthBloc>(() => _i188.AuthBloc(
           gh<_i1070.GetAuthStatusUseCase>(),

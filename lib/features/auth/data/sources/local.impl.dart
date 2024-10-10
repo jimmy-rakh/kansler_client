@@ -37,6 +37,32 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }
 
   @override
+  Future<void> setDeviceToken(String token) async {
+    final box = Hive.box(AuthLocalKeys.authBox);
+    try {
+      await box.put(AuthLocalKeys.deviceToken, token);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
+  String? getSessionKey() {
+    final box = Hive.box(AuthLocalKeys.authBox);
+    return box.get(AuthLocalKeys.sessionKey, defaultValue: null);
+  }
+
+  @override
+  Future<void> setSessionKey(String sessionKey) async {
+    final box = Hive.box(AuthLocalKeys.authBox);
+    try {
+      await box.put(AuthLocalKeys.sessionKey, sessionKey);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  @override
   Future<void> setAuthToken(String? token) async {
     final box = Hive.box(AuthLocalKeys.authBox);
     try {
@@ -46,13 +72,4 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     }
   }
 
-  @override
-  Future<void> setDeviceToken(String token) async {
-    final box = Hive.box(AuthLocalKeys.authBox);
-    try {
-      await box.put(AuthLocalKeys.deviceToken, token);
-    } catch (e) {
-      rethrow;
-    }
-  }
 }

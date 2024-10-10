@@ -7,4 +7,5 @@ class ProductRemoteKeys {
   static const productsLatest = '$productsApi/latest';
   static const productsPopular = '$productsApi/popular';
   static const productsDiscount = '$productsApi/discount';
+  static const sessionKey = '${NetworkConstants.apiUrl}/session_key';
 }

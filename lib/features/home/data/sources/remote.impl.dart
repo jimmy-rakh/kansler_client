@@ -8,6 +8,7 @@ import '../../../../core/network/dio_client.dart';
 import '../../../../core/network/models/pagination.dart';
 import '../../../product/data/models/product_dto.dart';
 import '../models/posters_dto.dart';
+import '../models/session_key.dart';
 import 'remote.keys.dart';
 
 @Injectable(as: ProductRemoteSource)
@@ -16,11 +17,21 @@ class ProductRemoteSourceImpl implements ProductRemoteSource {
 
   ProductRemoteSourceImpl(this._dio);
 
+  Future<Either<Failure, SessionKey>> session() async {
+    final res = await _dio.getRequest<SessionKey>(
+      ProductRemoteKeys.sessionKey,
+      converter: (response) =>
+          SessionKey.fromJson(response),
+    );
+
+    return res;
+  }
+
   @override
   Future<Either<Failure,List<PostersDto>>>
   fetchPosters() async {
     final result = await _dio.getRequest(
-      '${ProductRemoteKeys.posters}',
+      ProductRemoteKeys.posters,
       converter: (response) {
         final res =
         PaginationResponse.fromJson(response as Map<String, dynamic>);

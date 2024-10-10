@@ -20,7 +20,6 @@ import '../../../../../core/widgets/app_card.dart';
 import '../../../../../core/widgets/app_icon.dart';
 import '../../../../../core/widgets/app_text_field.dart';
 import '../../../../../shared/services/logger/logger_service.dart';
-import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/domain/entities/cart_product.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../../../domain/entities/product.entity.dart';
@@ -48,7 +47,6 @@ class ProductListCard extends HookWidget implements ProductCard {
 
   @override
   Widget build(BuildContext context) {
-    final authBloc = context.read<AuthBloc>();
     final cartBloc = context.read<CartBloc>();
     final preorderBloc = context.read<PreordersBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
@@ -162,7 +160,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                       borderColor: AppColors.white,
                                       borderRadius: 0,
                                       child: Padding(
-                                        padding: EdgeInsets.all(4),
+                                        padding: const EdgeInsets.all(4),
                                         child: Text(
                                           "Нет в наличии",
                                           maxLines: 1,
@@ -218,7 +216,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: context.titleSmall,
-                                ): SizedBox(height: 20,),
+                                ): const SizedBox(height: 20,),
                           verticalSpace5,
                           if (cartProduct != null && !showActions)
                             Text('${cartProduct?.quantity} штук'),
@@ -321,10 +319,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               height: 35,
                                               padding: const EdgeInsets.only(
                                                   left: 5, right: 5),
-                                              onPressed: authBloc.state ==
-                                                      const AuthState
-                                                          .authenticated()
-                                                  ? () {
+                                              onPressed: () {
                                                       onCart.call(CheckoutType
                                                           .preorder);
                                                       if (product
@@ -353,9 +348,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                               .id,
                                                         ));
                                                       }
-                                                    }
-                                                  : () => router
-                                                      .push(const AuthRoute()),
+                                                    },
                                               text: (product ??
                                                               cartProduct!
                                                                   .product)!
@@ -410,11 +403,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                 color: AppColors.white,
                                               ),
                                               textColor: AppColors.white,
-                                              onPressed:
-                                                  authBloc.state ==
-                                                          const AuthState
-                                                              .authenticated()
-                                                      ? product?.leftQuantity ==
+                                              onPressed: product?.leftQuantity ==
                                                               0
                                                           ? () {
                                                               onCart.call(
@@ -481,9 +470,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                                       .id,
                                                                 ));
                                                               }
-                                                            }
-                                                      : () => router.push(
-                                                          const AuthRoute()),
+                                                            },
                                               size: MainAxisSize.min,
                                               margin: const EdgeInsets.only(
                                                 right: 4,
@@ -604,9 +591,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                         height: 35,
                                         padding: const EdgeInsets.only(
                                             left: 5, right: 5),
-                                        onPressed: authBloc.state ==
-                                                const AuthState.authenticated()
-                                            ? () {
+                                        onPressed:  () {
                                                 onCart.call(
                                                     CheckoutType.preorder);
                                                 if (product?.leftQuantity ==
@@ -633,9 +618,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                         .id,
                                                   ));
                                                 }
-                                              }
-                                            : () =>
-                                                router.push(const AuthRoute()),
+                                              },
                                         text: (product ?? cartProduct!.product)!
                                                     .inPreorder ??
                                                 false
@@ -694,10 +677,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               color: AppColors.white,
                                             ),
                                             textColor: AppColors.white,
-                                            onPressed: authBloc.state ==
-                                                    const AuthState
-                                                        .authenticated()
-                                                ? product?.leftQuantity == 0
+                                            onPressed:  product?.leftQuantity == 0
                                                     ? () {
                                                         onCart.call(CheckoutType
                                                             .preorder);
@@ -763,9 +743,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                                 .id,
                                                           ));
                                                         }
-                                                      }
-                                                : () => router
-                                                    .push(const AuthRoute()),
+                                                      },
                                             size: MainAxisSize.min,
                                             margin: const EdgeInsets.only(
                                               right: 4,

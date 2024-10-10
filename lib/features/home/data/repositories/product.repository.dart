@@ -5,6 +5,7 @@ import '../../../../core/error/failure.dart';
 import '../../../product/domain/entities/product.entity.dart';
 import '../../domain/repositories/products.repository.dart';
 import '../models/posters_dto.dart';
+import '../models/session_key.dart';
 import '../sources/remote.dart';
 
 @Injectable(as: ProductsRepository)
@@ -12,6 +13,12 @@ class ProductsRepositoryImpl implements ProductsRepository {
   final ProductRemoteSource _productRemoteSource;
 
   ProductsRepositoryImpl(this._productRemoteSource);
+
+
+  Future<Either<Failure, SessionKey>> session()async {
+    final result = await _productRemoteSource.session();
+    return result;
+  }
 
   @override
   Future<Either<Failure, List<PostersDto>>> fetchPosters() async {

@@ -8,6 +8,8 @@ import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/features/auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import 'package:kansler/features/cart/domain/entities/cart_product.dart';
 import 'package:kansler/features/cart/domain/repositories/cart.repository.dart';
+import 'package:kansler/features/home/presentation/blocs/discounts/discounts_bloc.dart';
+import 'package:kansler/features/home/presentation/blocs/hit/hit_bloc.dart';
 import 'package:kansler/features/home/presentation/blocs/latest/latest_bloc.dart';
 import 'package:kansler/features/home/presentation/blocs/popular/popular_bloc.dart';
 
@@ -63,6 +65,10 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    final discount =
+    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits =
+    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     if (kIsWeb) {
       emit((state as _Ready).copyWith(products: [],price: 0));
     }
@@ -74,6 +80,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       if (event.updateDependencies) {
         popularBloc.add(const PopularEvent.fetch());
         latestBloc.add(const LatestEvent.fetch());
+        hits.add(const HitEvent.fetch());
+        discount.add(const DiscountsEvent.fetch());
       }
 
       _updateView();
@@ -86,6 +94,10 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    final discount =
+    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits =
+    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     if ((state as _Ready).status == PreordersStatus.loaded) {
       final products = (state as _Ready).products.map((e) {
         if (e.product!.id == event.id) {
@@ -117,6 +129,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       (r) {
         popularBloc.add(const PopularEvent.fetch());
         latestBloc.add(const LatestEvent.fetch());
+        hits.add(const HitEvent.fetch());
+        discount.add(const DiscountsEvent.fetch());
         add(const PreordersEvent.getPreordersPrice());
       },
     );
@@ -137,10 +151,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
   void _onGetPreordersPrice(
       _GetPreordersPrice event, Emitter<PreordersState> emit) async {
-    final authBloc =
-        BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
-
-    if (authBloc.state != const AuthState.authenticated()) return;
 
     final res = await _cartRepository.getPreorderPrice();
 
@@ -154,13 +164,10 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
   void _onGetPreordersProducts(
       _GetPreordersProducts event, Emitter<PreordersState> emit) async {
-    final authBloc =
-        BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
+
     if ((state as _Ready).status == PreordersStatus.loaded && event.isMore) {
       emit((state as _Ready).copyWith(isMoreLoading: true));
     }
-
-    if (authBloc.state != const AuthState.authenticated()) return;
 
     if (!event.isMore) pageNumber = 1;
 

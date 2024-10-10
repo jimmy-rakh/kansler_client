@@ -67,7 +67,7 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
     }
 
 
-    if ([2, 3].contains(event.value) && !authenticated) {
+    if ([ 3].contains(event.value) && !authenticated) {
       final res = await router.push(const AuthRoute());
       if (res == null) return;
     }

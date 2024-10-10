@@ -4,4 +4,5 @@ import '../models/product_dto.dart';
 
 abstract class ProductRemoteDataSource {
   Future<Either<Failure, ProductDto>> fetchProduct(int id);
+
 }

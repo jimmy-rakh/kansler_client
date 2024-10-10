@@ -58,7 +58,7 @@ class AppRouter extends _$AppRouter {
               AutoRoute(path:"",page: CategoriesRoute.page, ),
               AutoRoute(path:"subcategories/",page: SubcategoryRoute.page),
             ]),
-            AutoRoute(path:"cart/",page: CartRoute.page, guards: [AuthGuard()]),
+            AutoRoute(path:"cart/",page: CartRoute.page,),
             AutoRoute(path:"orders/",page: OrdersRoute.page, guards: [AuthGuard()]),
             AutoRoute(path:"profile/",page: ProfileRoute.page, guards: [AuthGuard()]),
           ],

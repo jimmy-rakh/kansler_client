@@ -11,6 +11,10 @@ abstract class AuthLocalDataSource {
 
   String? getAuthToken();
 
+  String? getSessionKey();
+
+  Future<void> setSessionKey(String sessionKey);
+
   Future<void> setDeviceToken(String token);
 
   String? getDeviceToken();
