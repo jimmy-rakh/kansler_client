@@ -46,7 +46,7 @@ class DioClient with MainBoxMixin {
       } catch (_) {}
 
       try {
-        _auth = _authSource.getSessionKey();
+        _getSessionKey = _authSource.getSessionKey();
       } catch (_) {}
 
       final dio = _createDio();

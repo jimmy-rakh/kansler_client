@@ -93,7 +93,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             as ClientAdressDto?;
 
         if (address == null) {
-
           emit(state.copyWith(
             isBusy: false,
           ));
@@ -241,13 +240,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       _initTimer();
 
       if (confirmed) {
-        if (state.addressCid == null) {
-          address = await _showMap();
-
-          if (address == null) {
-            return;
-          }
-        }
         router.push(
           RegisterRoute(
             phone: state.tabIndex == 0
@@ -256,7 +248,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             requestId: state.requestId!,
             inn: state.tabIndex == 0 ? null : valueController.text,
             address: address,
-            addressId: state.addressId,
+            addressId: null,
           ),
         );
       }
