@@ -15,7 +15,12 @@ class ResponseInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (!options.headers.containsKey('Device-Token')) {
       _auth = _authSource.getAuthToken();
-      if (_auth != null) options.headers['Device-Token'] = 'Mirel $_auth';
+      if (_auth != null) options.headers['Device-Token'] = 'Kansler $_auth';
+    }
+
+    if (!options.headers.containsKey('SESSIONKEY') && !options.headers.containsKey('Device-Token')) {
+      final sessionKey = _authSource.getSessionKey();
+      if (sessionKey != null) options.headers['SESSIONKEY'] = sessionKey;
     }
 
     super.onRequest(options, handler);
