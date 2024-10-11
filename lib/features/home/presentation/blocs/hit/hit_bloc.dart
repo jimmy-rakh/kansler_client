@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
@@ -21,11 +21,9 @@ class HitBloc extends Bloc<HitEvent, HitState> {
     on<_AddToCart>(_onAddToCart);
     on<_Position>(_position);
     on<_PositionNext>(_positionHitNext);
-
     add(const HitEvent.fetch());
   }
   final ScrollController controllerProducts = ScrollController();
-
   void _onFetch(_Fetch event, Emitter<HitState> emit) async {
     emit(const HitState.loadInProgress());
     final res = await _useCase.call((pageNumber: 1, pageSize: 30));

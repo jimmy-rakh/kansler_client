@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/core/enums/enums.dart';
-
 import '../../../../../shared/services/logger/logger_service.dart';
 import '../../../../product/domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch_popular_products.usecase.dart';

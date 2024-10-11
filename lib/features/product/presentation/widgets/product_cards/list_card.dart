@@ -227,7 +227,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                               children: [
                                 if (!(product?.inCart ?? false))
                                   SizedBox(
-                                    child: product?.leftQuantity != 0
+                                    child:  (product ?? cartProduct?.product)?.leftQuantity != 0
                                         ? AppCard(
                                             fillColor: context.background,
                                             showShadow: false,
@@ -307,7 +307,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 (product ?? cartProduct!.product)!.inCart ==
                                         null
                                     ? const SizedBox()
-                                    : product?.leftQuantity == 0
+                                    : (product ?? cartProduct?.product)?.leftQuantity == 0
                                         ? Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 5, right: 5),
@@ -322,8 +322,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               onPressed: () {
                                                       onCart.call(CheckoutType
                                                           .preorder);
-                                                      if (product
-                                                              ?.leftQuantity ==
+                                                      if ((product ??
+                                                          cartProduct
+                                                              ?.product)?.leftQuantity ==
                                                           0) {
                                                         if (!((product ??
                                                                     cartProduct
@@ -508,7 +509,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                           if (showActions)
                             if (!(product?.inCart ?? false))
                               SizedBox(
-                                child: product?.leftQuantity != 0
+                                child: (product ?? cartProduct?.product)?.leftQuantity != 0
                                     ? AppCard(
                                         fillColor: context.background,
                                         showShadow: false,
@@ -579,7 +580,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                           const Spacer(),
                           (product ?? cartProduct!.product)!.inCart == null
                               ? const SizedBox()
-                              : product?.leftQuantity == 0
+                              : (product ?? cartProduct?.product)?.leftQuantity == 0
                                   ? Padding(
                                       padding: const EdgeInsets.only(
                                           left: 5, right: 5),
@@ -594,7 +595,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                                         onPressed:  () {
                                                 onCart.call(
                                                     CheckoutType.preorder);
-                                                if (product?.leftQuantity ==
+                                                if ((product ??
+                                                    cartProduct
+                                                        ?.product)?.leftQuantity ==
                                                     0) {
                                                   if (!((product ??
                                                               cartProduct

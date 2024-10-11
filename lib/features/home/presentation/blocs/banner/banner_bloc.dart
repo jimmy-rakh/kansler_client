@@ -46,18 +46,6 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> with MainBoxMixin {
 
   void _onFetch(_Fetch event, Emitter<BannerState> emit) async {
 
-    String? getSessionKey = _authSource.getSessionKey();
-
-    if(getSessionKey == null) {
-      final session = await _repository.session();
-      String key = session.fold((l) => '', (r) => r.sessionKey ?? '');
-
-      await _setSessionUseCase.call(key);
-    }
-
-
-    print("------------${getSessionKey}");
-
     final res = await _repository.fetchPosters();
 
     res.fold(log.e, (r) => emit(BannerState.success(r)));

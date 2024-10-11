@@ -77,7 +77,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(state.copyWith(requestId: null));
           await _setAuthTokenUseCase.call(r.deviceToken);
           authBloc.add(const AuthEvent.checkStatus());
-          router.popUntilRoot();
+          router.push(const MainRoute());
           return;
         } catch (e) {
           emit(state.copyWith(isBusy: false));

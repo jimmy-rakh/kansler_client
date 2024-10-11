@@ -24,10 +24,8 @@ class HitsWidget extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<HitBloc>();
-    final discount = context.read<DiscountsBloc>();
-    final popular = context.read<PopularBloc>();
-    final latest = context.read<LatestBloc>();
     final state = useBlocBuilder(bloc);
+    final latest = context.read<LatestBloc>();
     final currentWidth = MediaQuery.of(context).size.width;
 
     return Column(
@@ -63,25 +61,19 @@ class HitsWidget extends HookWidget {
 
                   return ListView.separated(
                     physics: context.isSmall ? null : const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
                     controller: bloc.controllerProducts,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    scrollDirection: Axis.horizontal,
                     itemCount: products.length,
+                    cacheExtent: 10,
                     separatorBuilder: (context, index) => horizontalSpace12,
                     itemBuilder: (context, index) => ProductCard.grid(
-                      height: context.isMobile ? context.height * .2 : 200,
-                      width: context.isMobile ? context.width * .44 : 200,
-                      product: products[index],
-                      onCart: (type) {
-                        discount.add(
-                            DiscountsEvent.addToCart(products[index].id, type));
-                        bloc.add(HitEvent.addToCart(products[index].id, type));
-                        popular.add(
-                            PopularEvent.addToCart(products[index].id, type));
-                        latest.add(
-                            LatestEvent.addToCart(products[index].id, type));
-                      },
-                    ),
+                        height: context.isMobile ? context.height * .2 : 200,
+                        width: context.isMobile ? context.width * .44 : 200,
+                        product: products[index],
+                        onCart: (type) {
+                          bloc.add(HitEvent.addToCart(products[index].id,type));
+                        }),
                   );
                 },
                 failure: () => const SizedBox(),

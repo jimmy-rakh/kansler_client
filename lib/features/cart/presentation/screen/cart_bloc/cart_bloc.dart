@@ -5,7 +5,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import '../../../../../app/router.dart';
 import '../../../../../core/usecase/usecase.dart';
-import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../home/presentation/blocs/discounts/discounts_bloc.dart';
 import '../../../../home/presentation/blocs/hit/hit_bloc.dart';
 import '../../../../home/presentation/blocs/latest/latest_bloc.dart';
@@ -85,9 +84,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final hits =
     BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
 
-    if (kIsWeb && state is _Ready) {
-      emit((state as _Ready).copyWith(products: []));
-    }
+    // if (kIsWeb && state is _Ready) {
+    //   emit((state as _Ready).copyWith(products: []));
+    // }
     final res = await _addProductToCartUseCase
         .call((productId: event.id, quantity: event.quantity));
 
@@ -98,7 +97,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         // hits.add(const HitEvent.fetch());
         // discount.add(const DiscountsEvent.fetch());
       }
-      emit(const CartState.loadInProgress());
+      // emit(const CartState.loadInProgress());
       _updateView();
     });
   }
@@ -141,10 +140,10 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       },
       (r) {
         _updateView();
-        popularBloc.add(const PopularEvent.fetch());
-        latestBloc.add(const LatestEvent.fetch());
-        hits.add(const HitEvent.fetch());
-        discount.add(const DiscountsEvent.fetch());
+        // popularBloc.add(const PopularEvent.fetch());
+        // latestBloc.add(const LatestEvent.fetch());
+        // hits.add(const HitEvent.fetch());
+        // discount.add(const DiscountsEvent.fetch());
       },
     );
   }
@@ -194,7 +193,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       // log.e(l.toString());
       // emit(const CartState.error());
     }, (r) async {
-      emit(const CartState.loadInProgress());
+      // emit(const CartState.loadInProgress());
       pageNumber++;
       hasNext = r.hasNext;
 

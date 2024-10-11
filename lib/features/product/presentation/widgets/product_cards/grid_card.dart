@@ -18,7 +18,6 @@ import '../../../../../core/style/colors.dart';
 import '../../../../../core/widgets/app_button.dart';
 import '../../../../../core/widgets/app_card.dart';
 import '../../../../../shared/services/logger/logger_service.dart';
-import '../../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../product_card.dart';
 

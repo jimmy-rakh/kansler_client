@@ -30,10 +30,8 @@ class HomeScreen extends StatelessWidget {
                   )
                 : const PreferredSize(
                     preferredSize: Size.zero, child: SizedBox()),
-            body: CustomScrollView(
-              slivers: [
-                SliverList(
-                  delegate: SliverChildListDelegate([
+            body: ListView(
+              children: [
                     const Center(
                         child: BannerWidget()),
                     const Center(child: StepCard()),
@@ -58,8 +56,6 @@ class HomeScreen extends StatelessWidget {
                             child: ConstrainedBox(
                                 constraints: const BoxConstraints(maxWidth: 1300),
                                 child: const Footer())),
-                  ]),
-                ),
               ],
             )),
       ),

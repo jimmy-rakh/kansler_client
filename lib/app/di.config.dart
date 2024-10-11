@@ -219,7 +219,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i767.RecsBloc>(() => _i767.RecsBloc());
     gh.factory<_i1027.LastViewedBloc>(() => _i1027.LastViewedBloc());
     gh.factory<_i843.TemplatesBloc>(() => _i843.TemplatesBloc());
-    gh.factory<_i923.NavbarBloc>(() => _i923.NavbarBloc());
     gh.singleton<_i357.SplashBloc>(() => _i357.SplashBloc());
     gh.lazySingleton<_i284.AppRouter>(() => _i284.AppRouter());
     gh.lazySingleton<_i1033.ThemeBloc>(() => _i1033.ThemeBloc());
@@ -364,6 +363,11 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i881.LimitsCubit(gh<_i945.LimitsRepository>()));
     gh.factory<_i0.DebtCubit>(
         () => _i0.DebtCubit(gh<_i945.LimitsRepository>()));
+    gh.factory<_i923.NavbarBloc>(() => _i923.NavbarBloc(
+          gh<_i453.ProductsRepository>(),
+          gh<_i1018.SetSession>(),
+          gh<_i766.AuthLocalDataSource>(),
+        ));
     gh.factory<_i330.FilterBloc>(
         () => _i330.FilterBloc(gh<_i835.OrganizationsUseCase>()));
     gh.factory<_i685.SearchBloc>(() => _i685.SearchBloc(

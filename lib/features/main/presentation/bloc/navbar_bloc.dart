@@ -6,8 +6,15 @@ import 'package:kansler/features/cart/presentation/screen/cart_bloc/cart_bloc.da
 
 import '../../../../app/router.dart';
 import '../../../../core/constants/kaze_icons.dart';
+import '../../../auth/data/sources/local.dart';
+import '../../../auth/domain/usecases/set_auth_token.usecase.dart';
 import '../../../auth/presentation/screens/auth/bloc/auth_bloc.dart';
 import '../../../cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import '../../../home/domain/repositories/products.repository.dart';
+import '../../../home/presentation/blocs/discounts/discounts_bloc.dart';
+import '../../../home/presentation/blocs/hit/hit_bloc.dart';
+import '../../../home/presentation/blocs/latest/latest_bloc.dart';
+import '../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../domain/entities/navbar_item.entity.dart';
 
 part 'navbar_state.dart';
@@ -16,7 +23,10 @@ part 'navbar_bloc.freezed.dart';
 
 @injectable
 class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
-  NavbarBloc() : super(const NavbarState.initial()) {
+  final ProductsRepository _repository;
+  final SetSession _setSessionUseCase;
+  final AuthLocalDataSource _authSource;
+  NavbarBloc(this._repository, this._setSessionUseCase, this._authSource) : super(const NavbarState.initial()) {
     on<_Init>(_onInit);
     on<_ChangeIndex>(_onChangeIndex);
   }
@@ -49,8 +59,16 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
     )
   ];
 
-  void _onInit(_Init event, Emitter<NavbarState> emit) {
+  void _onInit(_Init event, Emitter<NavbarState> emit) async{
     emit(NavbarState.ready(event.tabsRouter));
+    String? getSessionKey = _authSource.getSessionKey();
+
+    if(getSessionKey == null) {
+      final session = await _repository.session();
+      String key = session.fold((l) => '', (r) => r.sessionKey ?? '');
+
+      await _setSessionUseCase.call(key);
+    }
   }
 
   void _onChangeIndex(_ChangeIndex event, Emitter<NavbarState> emit) async {
@@ -60,6 +78,22 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
         BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
 
     bool authenticated = authState.state == const AuthState.authenticated();
+
+    final popularBloc =
+    BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
+    final latestBloc =
+    BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    final discount =
+    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits =
+    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
+
+    if(event.value==0) {
+      hits.add(const HitEvent.fetch());
+      popularBloc.add(const PopularEvent.fetch());
+      latestBloc.add(const LatestEvent.fetch());
+      discount.add(const DiscountsEvent.fetch());
+    }
 
     if(event.value==2) {
       BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
