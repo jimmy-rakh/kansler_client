@@ -49,7 +49,6 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
       return null;
     }, [bloc]);
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
-    final currentWidth = MediaQuery.of(context).size.width;
     return state.status == DetailsStatus.loading && product == null
         ? const CircularProgressIndicator.adaptive()
         : KeyboardEscape(
@@ -373,8 +372,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                       children: [
                                                         Text(
                                                             '${currencyFormatter
-                                                                .format(product
-                                                                ?.price ??
+                                                                .format(
                                                                 state.product
                                                                     ?.price ??
                                                                 0).replaceAll(

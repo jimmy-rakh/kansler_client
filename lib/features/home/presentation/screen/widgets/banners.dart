@@ -33,7 +33,7 @@ class BannerWidget extends HookWidget {
               width: context.width,
               height: context.isTablet
                   ? context.height * .38
-                  :context.isSmall ? context.height * .24 :context.isMobile ? context.height * .27
+                  :context.isSmall ? context.height * .27
                   : 420,
               margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
               radius: 4,
@@ -58,7 +58,7 @@ class BannerWidget extends HookWidget {
                             width: context.isDesktop ? 1280 : context.width,
                             height:context.isTablet
                                 ? context.height * .4
-                                 :context.isSmall ? context.height * .22
+                                 :context.isSmall ? context.height * .27
                                 : 420,
                             margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
                             radius: 4,

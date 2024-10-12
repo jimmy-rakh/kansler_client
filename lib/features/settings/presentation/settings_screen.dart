@@ -8,7 +8,7 @@ import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-import 'dart:html' as html;
+// import 'dart:html' as html;
 import '../../../app/router.dart';
 import '../../../core/constants/kaze_icons.dart';
 import '../../../core/style/colors.dart';
@@ -131,8 +131,10 @@ class SettingsScreen extends HookWidget {
                                           foregroundColor: WidgetStateProperty.all(context.onPrimary),
                                           overlayColor: WidgetStateProperty.all(Colors.transparent),
                                         ),
-                                        onPressed:kIsWeb
-                                            ? () { html.window.open('https://t.me/kansler_support_bot', 'new tab');} : openLink,
+                                        onPressed:
+                                        // kIsWeb
+                                        //     ? () { html.window.open('https://t.me/kansler_support_bot', 'new tab');} :
+                                        openLink,
                                         child: AppCard(
                                           fillColor: context.background,
                                           padding: const EdgeInsets.symmetric(

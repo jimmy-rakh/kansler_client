@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
+import '../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
 import '../bloc/navbar_bloc.dart';
 
 class BottomBar extends HookWidget {
@@ -16,6 +18,8 @@ class BottomBar extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = context.read<NavbarBloc>();
+    final cartBloc = context.read<CartBloc>();
+    final state = useBlocBuilder(cartBloc);
 
     useEffect(() {
       bloc.add(NavbarEvent.init(tabsRouter));
@@ -41,13 +45,72 @@ class BottomBar extends HookWidget {
             (index) => BottomNavigationBarItem(
               icon: Badge(
                 isLabelVisible: false,
-                child: Icon(
-                  tabsRouter.activeIndex == index
-                      ? bloc.navbarItems[index].activeIcon
-                      : bloc.navbarItems[index].icon,
-                  color: tabsRouter.activeIndex == index
-                      ? context.primary
-                      : context.theme.iconTheme.color,
+                child: SizedBox(
+                  width: 35,
+                  child: Stack(
+                    children: [
+                      Icon(
+                        tabsRouter.activeIndex == index
+                            ? bloc.navbarItems[index].activeIcon
+                            : bloc.navbarItems[index].icon,
+                        color: tabsRouter.activeIndex == index
+                            ? context.primary
+                            : context.theme.iconTheme.color,
+                      ),
+                      index == 2 ?
+                      state.whenOrNull(
+                          ready: (products, price,
+                              isMoreLoading) =>
+                          products.isEmpty
+                              ? const SizedBox(
+                            height: 17,
+                            width: 17,
+                          )
+                              : Positioned(
+                            top: 0,
+                                left: 15,
+                                child: Container(
+                                  height: 17,
+                                  width: 17,
+                                  decoration:
+                                  BoxDecoration(
+                                    color: Colors.red,
+                                    borderRadius:
+                                    BorderRadius
+                                        .circular(
+                                        25),
+                                  ),
+                                  constraints:
+                                  const BoxConstraints(
+                                    minWidth: 17,
+                                    minHeight: 17,
+                                  ),
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets
+                                        .all(0.5),
+                                    child: Text(
+                                      '${products.length == 0 ? "" : products.length}',
+                                      style:
+                                      const TextStyle(
+                                        color: Colors
+                                            .white,
+                                        fontSize: 11,
+                                      ),
+                                      textAlign:
+                                      TextAlign
+                                          .center,
+                                    ),
+                                  ),
+                                ),
+                              )) ??
+                          const SizedBox(
+                            height: 17,
+                            width: 17,
+                          )
+                          : const SizedBox()
+                    ],
+                  ),
                 ),
               ),
               label: '',

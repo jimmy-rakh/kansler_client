@@ -127,11 +127,11 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         // log.e(l.toString());
       },
       (r) {
-        popularBloc.add(const PopularEvent.fetch());
-        latestBloc.add(const LatestEvent.fetch());
-        hits.add(const HitEvent.fetch());
-        discount.add(const DiscountsEvent.fetch());
-        add(const PreordersEvent.getPreordersPrice());
+        // popularBloc.add(const PopularEvent.fetch());
+        // latestBloc.add(const LatestEvent.fetch());
+        // hits.add(const HitEvent.fetch());
+        // discount.add(const DiscountsEvent.fetch());
+        // add(const PreordersEvent.getPreordersPrice());
       },
     );
   }

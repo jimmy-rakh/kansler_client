@@ -95,10 +95,10 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
       discount.add(const DiscountsEvent.fetch());
     }
 
-    if(event.value==2) {
-      BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
-      BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
-    }
+    // if(event.value==2) {
+    //   BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
+    //   BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
+    // }
 
 
     if ([ 3].contains(event.value) && !authenticated) {

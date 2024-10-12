@@ -49,12 +49,12 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
 
     if (product == null) return;
 
-    if (product.leftQuantity <= int.parse(fieldController.text)) {
-      router.navigatorKey.currentContext!
-          .showToast('Недостаточно кол-во в складе');
-
-      return;
-    }
+    // if (product.leftQuantity <= int.parse(fieldController.text)) {
+    //   router.navigatorKey.currentContext!
+    //       .showToast('Недостаточно кол-во в складе');
+    //
+    //   return;
+    // }
     fieldController.text = (int.parse(fieldController.text) + 1).toString();
   }
 
@@ -62,6 +62,7 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
     if (int.parse(fieldController.text) == 1) return;
 
     fieldController.text = (int.parse(fieldController.text) - 1).toString();
+
   }
 
   void completeEditing() {
@@ -77,14 +78,14 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
 
     final product = state.product;
 
-    if (product!.leftQuantity < int.parse(fieldController.text)) {
-      router.navigatorKey.currentContext!
-          .showToast('Недостаточно кол-во в складе');
-      fieldController.text = '1';
-
-      return;
-    }
-    !product.inCart!
+    // if (product!.leftQuantity < int.parse(fieldController.text)) {
+    //   router.navigatorKey.currentContext!
+    //       .showToast('Недостаточно кол-во в складе');
+    //   fieldController.text = '1';
+    //
+    //   return;
+    // }
+    !product!.inCart!
         ? cartBloc.add(CartEvent.addToCart(
             product.id, int.parse(fieldController.text),
             updateDependencies: true))
