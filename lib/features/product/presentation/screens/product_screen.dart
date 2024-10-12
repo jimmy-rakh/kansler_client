@@ -370,12 +370,12 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                       MainAxisAlignment
                                                           .spaceBetween,
                                                       children: [
-                                                        Text(
+                                                        state.product
+                                                            ?.price == null ? const SizedBox() :  Text(
                                                             '${currencyFormatter
                                                                 .format(
                                                                 state.product
-                                                                    ?.price ??
-                                                                0).replaceAll(
+                                                                    ?.price).replaceAll(
                                                                 ".",
                                                                 " ")} ${'common.sum'
                                                                 .tr()}'),
@@ -944,7 +944,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                           ),
                         )
                             : const SizedBox(),
-                        const HitsWidget(),
+                        state.product == null ? const SizedBox() : const HitsWidget(),
                         verticalSpace24,
                       ],
                     ),

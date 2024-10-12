@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/cart/presentation/screen/cart_bloc/cart_bloc.dart';
-
 import '../../../../app/router.dart';
 import '../../../../core/constants/kaze_icons.dart';
 import '../../../auth/data/sources/local.dart';
@@ -99,11 +99,11 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
       latestBloc.add(const LatestEvent.fetch());
       discount.add(const DiscountsEvent.fetch());
     }
-
-    // if(event.value==2) {
-    //   BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
-    //   BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
-    // }
+    if(kIsWeb){
+    if(event.value==2) {
+      BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
+      BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
+    }}
 
     if ([3].contains(event.value) && !authenticated) {
       final res = await router.push(const AuthRoute());
