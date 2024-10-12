@@ -45,8 +45,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     on<_GetCartProducts>(_onGetCartProducts);
     on<_ToCheckout>(_onToCheckout);
 
-    add(const CartEvent.getCartProducts());
-    add(const CartEvent.getCartPrice());
+    // add(const CartEvent.getCartProducts());
+    // add(const CartEvent.getCartPrice());
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
               scrollController.position.maxScrollExtent - 200 &&

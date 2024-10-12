@@ -21,7 +21,8 @@ part 'preorders_bloc.freezed.dart';
 class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
   final CartRepository _cartRepository;
 
-  PreordersBloc(this._cartRepository) : super(const PreordersState.loadInProgress()) {
+  PreordersBloc(this._cartRepository)
+      : super(const PreordersState.loadInProgress()) {
     on<_Retry>(_onRetry);
     on<_AddToPreorders>(_onAddToPreorders);
     on<_DeleteProductInPreorders>(_onDeleteProductInPreorders);
@@ -30,8 +31,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
     on<_GetPreordersProducts>(_onGetPreordersProducts);
     on<_ToCheckout>(_onToCheckout);
 
-    add(const PreordersEvent.getPreordersProducts());
-    add(const PreordersEvent.getPreordersPrice());
+    // add(const PreordersEvent.getPreordersProducts());
+    // add(const PreordersEvent.getPreordersPrice());
 
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
@@ -66,11 +67,12 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
     final discount =
-    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
-    final hits =
-    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits = BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     if (kIsWeb) {
-      emit((state as _Ready).copyWith(products: [],price: 0));
+      emit(state is _Ready
+          ? (state as _Ready).copyWith(products: [], price: 0)
+          : const PreordersState.ready());
     }
     final res = await _cartRepository.addProductToPreorder(
       (productId: event.id, quantity: event.quantity),
@@ -95,9 +97,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
     final discount =
-    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
-    final hits =
-    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits = BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     if ((state as _Ready).status == PreordersStatus.loaded) {
       final products = (state as _Ready).products.map((e) {
         if (e.product!.id == event.id) {
@@ -106,11 +107,9 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         return e;
       }).toList();
       if (kIsWeb) {
-        emit((state as _Ready).copyWith(products: [],price: 0));
+        emit((state as _Ready).copyWith(products: [], price: 0));
         await Future.delayed(const Duration(milliseconds: 100));
       }
-
-
 
       products.removeWhere(
         (element) => element.quantity == 0,
@@ -138,7 +137,9 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
   void _onUpdateProductInPreorders(
       _UpdateProductInPreorders event, Emitter<PreordersState> emit) async {
-    if (!(state as _Ready).products.any((element) => element.product!.id == event.id)) {
+    if (!(state as _Ready)
+        .products
+        .any((element) => element.product!.id == event.id)) {
       return;
     }
     final res = await _cartRepository.updateProductInPreorder(
@@ -151,7 +152,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
   void _onGetPreordersPrice(
       _GetPreordersPrice event, Emitter<PreordersState> emit) async {
-
     final res = await _cartRepository.getPreorderPrice();
 
     res.fold((l) {
@@ -164,7 +164,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
 
   void _onGetPreordersProducts(
       _GetPreordersProducts event, Emitter<PreordersState> emit) async {
-
     if ((state as _Ready).status == PreordersStatus.loaded && event.isMore) {
       emit((state as _Ready).copyWith(isMoreLoading: true));
     }
@@ -192,7 +191,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
         preordersProducts.addAll((state as _Ready).products);
         preordersProducts.addAll(r.products);
 
-        emit((state as _Ready).copyWith(products: preordersProducts, isMoreLoading: false));
+        emit((state as _Ready)
+            .copyWith(products: preordersProducts, isMoreLoading: false));
         return;
       }
 
@@ -222,6 +222,6 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
   }
 
   void _onToCheckout(_ToCheckout event, Emitter<PreordersState> emit) {
-    router.push( CheckoutRoute(type: CheckoutType.preorder));
+    router.push(CheckoutRoute(type: CheckoutType.preorder));
   }
 }

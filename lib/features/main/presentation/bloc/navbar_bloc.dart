@@ -26,7 +26,8 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
   final ProductsRepository _repository;
   final SetSession _setSessionUseCase;
   final AuthLocalDataSource _authSource;
-  NavbarBloc(this._repository, this._setSessionUseCase, this._authSource) : super(const NavbarState.initial()) {
+  NavbarBloc(this._repository, this._setSessionUseCase, this._authSource)
+      : super(const NavbarState.initial()) {
     on<_Init>(_onInit);
     on<_ChangeIndex>(_onChangeIndex);
   }
@@ -59,16 +60,21 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
     )
   ];
 
-  void _onInit(_Init event, Emitter<NavbarState> emit) async{
+  void _onInit(_Init event, Emitter<NavbarState> emit) async {
     emit(NavbarState.ready(event.tabsRouter));
     String? getSessionKey = _authSource.getSessionKey();
 
-    if(getSessionKey == null) {
+    if (getSessionKey == null) {
       final session = await _repository.session();
       String key = session.fold((l) => '', (r) => r.sessionKey ?? '');
 
       await _setSessionUseCase.call(key);
     }
+
+    BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!)
+        .add(const CartEvent.getCartProducts());
+    BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!)
+        .add(const CartEvent.getCartPrice());
   }
 
   void _onChangeIndex(_ChangeIndex event, Emitter<NavbarState> emit) async {
@@ -80,15 +86,14 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
     bool authenticated = authState.state == const AuthState.authenticated();
 
     final popularBloc =
-    BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
-    BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
     final discount =
-    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
-    final hits =
-    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits = BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
 
-    if(event.value==0) {
+    if (event.value == 0) {
       hits.add(const HitEvent.fetch());
       popularBloc.add(const PopularEvent.fetch());
       latestBloc.add(const LatestEvent.fetch());
@@ -100,8 +105,7 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
     //   BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
     // }
 
-
-    if ([ 3].contains(event.value) && !authenticated) {
+    if ([3].contains(event.value) && !authenticated) {
       final res = await router.push(const AuthRoute());
       if (res == null) return;
     }
