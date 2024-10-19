@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -239,11 +241,12 @@ class SettingsScreen extends HookWidget {
                       ),
                     ),
                     verticalSpace20,
-                    if (authBloc.state == const AuthState.authenticated()) ...[
+                    if (authBloc.state == const AuthState.authenticated() && Platform.isIOS) ...[
                       verticalSpace20,
                       AppCard(
                           width: context.isSmall ? context.width : 300,
                           fillColor: AppColors.red,
+
                           margin: const EdgeInsets.symmetric(horizontal: 16),
                           padding: const EdgeInsets.symmetric(
                               vertical: 12, horizontal: 16),
@@ -281,8 +284,11 @@ class SettingsScreen extends HookWidget {
                                       ),
                                     ],
                                   )),
-                          child: const Text(
+                          child:  Text(
                             'Удалить аккаунт',
+                            style: context.theme.textTheme.bodyMedium?.copyWith(
+                              color: Colors.white,
+                            ),textAlign: TextAlign.center,
                           ))
                     ],
                     verticalSpace60,

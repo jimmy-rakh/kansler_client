@@ -80,9 +80,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
     final discount =
-    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
-    final hits =
-    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits = BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
 
     // if (kIsWeb && state is _Ready) {
     //   emit((state as _Ready).copyWith(products: []));
@@ -109,9 +108,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final latestBloc =
         BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
     final discount =
-    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
-    final hits =
-    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
+        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
+    final hits = BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     if (state is _Ready) {
       final products = (state as _Ready).products.map((e) {
         if (e.product!.id == event.id) {
@@ -163,25 +161,25 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   void _onGetCartPrice(_GetCartPrice event, Emitter<CartState> emit) async {
-
-
     final res = await _getCartPriceUseCase.call(NoParams());
 
     res.fold((l) {
       // emit(const CartState.error());
       // log.e(l.toString());
     }, (r) {
+      if (state is _LoadInProgress) {
+        emit(CartState.ready(price: r, products: []));
+        return;
+      }
       emit((state as _Ready).copyWith(price: r));
     });
   }
 
   void _onGetCartProducts(
       _GetCartProducts event, Emitter<CartState> emit) async {
-
     if (state is _Ready && event.isMore) {
       emit((state as _Ready).copyWith(isMoreLoading: true));
     }
-
 
     if (!event.isMore) pageNumber = 1;
 
@@ -232,7 +230,6 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   }
 
   void _onRetry(_Retry event, Emitter<CartState> emit) {
-
     emit(const CartState.loadInProgress());
     _updateView();
   }

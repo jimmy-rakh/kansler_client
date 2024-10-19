@@ -75,6 +75,11 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
         .add(const CartEvent.getCartProducts());
     BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!)
         .add(const CartEvent.getCartPrice());
+
+    BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!)
+        .add(const PreordersEvent.getPreordersProducts());
+    BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!)
+        .add(const PreordersEvent.getPreordersPrice());
   }
 
   void _onChangeIndex(_ChangeIndex event, Emitter<NavbarState> emit) async {
