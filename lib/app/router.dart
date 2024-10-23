@@ -30,7 +30,9 @@ import '../features/search/presentation/filter_screen/filter_screen.dart';
 import '../features/search/presentation/scanner/scanner_screen.dart';
 import '../features/search/presentation/search_screen/search_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
+import '../features/settings/presentation/settings_wrapper.dart';
 import '../features/splash/presentation/screen/splash_screen.dart';
+import '../features/vacancy/vacancy_screen.dart';
 import '../shared/utils/auth_guard.dart';
 import 'di.dart';
 
@@ -60,7 +62,11 @@ class AppRouter extends _$AppRouter {
             ]),
             AutoRoute(path:"cart/",page: CartRoute.page,),
             AutoRoute(path:"orders/",page: OrdersRoute.page, guards: [AuthGuard()]),
-            AutoRoute(path:"profile/",page: ProfileRoute.page, guards: [AuthGuard()]),
+            AutoRoute(path:"profile/",page: SettingsWrapperRoute.page, children: [
+              AutoRoute(path:"",page: ProfileRoute.page, ),
+              AutoRoute(path:"settings/",page: SettingsRoute.page),
+              AutoRoute(path:"vacancy/",page: VacancyRoute.page),
+            ]),
           ],
         ),
         AutoRoute(
@@ -88,7 +94,6 @@ class AppRouter extends _$AppRouter {
         AutoRoute(path:"/checkout/",page: CheckoutRoute.page),
         AutoRoute(path: '/order/:id/',page: OrderDetailsRoute.page),
         AutoRoute( path: '/order/:id/products',page: OrderOrganizationRoute.page),
-        AutoRoute(path:"/settings/",page: SettingsRoute.page),
         AutoRoute(page: LimitsRoute.page),
         AutoRoute(page: DebtRoute.page),
         AutoRoute(page: ScannerRoute.page),

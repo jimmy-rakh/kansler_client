@@ -295,6 +295,32 @@ class ProfileScreen extends HookWidget {
                           ),
                         ),
                         verticalSpace16,
+                        AppCard(
+                          margin:  EdgeInsets.symmetric(horizontal:context.isSmall ? 16 : 0),
+                          width: context.isSmall ? context.width : 500,
+                          height: 50,
+                          padding:
+                          const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                          borderRadius: 4,
+                          onTap: () => router.push(const VacancyRoute()),
+                          fillColor: context.cardColor,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Row(
+                                children: [
+                                  Icon(Icons.list_alt),
+                                  horizontalSpace5,
+                                  Text('Вакансии'),
+                                ],
+                              ),
+                              Transform.rotate(
+                                  angle: 3.2,
+                                  child: const Icon(KazeIcons.arrowLeftOutline))
+                            ],
+                          ),
+                        ),
+                        verticalSpace16,
                         if (authBloc.state == const AuthState.authenticated()) ...[
                           AppButton(
                             text: 'Выйти из аккаунта',

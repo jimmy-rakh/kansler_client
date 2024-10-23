@@ -98,12 +98,18 @@ class __$$InitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
+class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
   const _$InitialImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NavbarState.initial()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'NavbarState.initial'));
   }
 
   @override
@@ -217,15 +223,23 @@ class __$$ReadyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ReadyImpl implements _Ready {
+class _$ReadyImpl with DiagnosticableTreeMixin implements _Ready {
   const _$ReadyImpl(this.tabsRouter);
 
   @override
   final TabsRouter tabsRouter;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NavbarState.ready(tabsRouter: $tabsRouter)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NavbarState.ready'))
+      ..add(DiagnosticsProperty('tabsRouter', tabsRouter));
   }
 
   @override
@@ -420,15 +434,23 @@ class __$$InitImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitImpl implements _Init {
+class _$InitImpl with DiagnosticableTreeMixin implements _Init {
   const _$InitImpl(this.tabsRouter);
 
   @override
   final TabsRouter tabsRouter;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NavbarEvent.init(tabsRouter: $tabsRouter)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NavbarEvent.init'))
+      ..add(DiagnosticsProperty('tabsRouter', tabsRouter));
   }
 
   @override
@@ -561,15 +583,23 @@ class __$$ChangeIndexImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ChangeIndexImpl implements _ChangeIndex {
+class _$ChangeIndexImpl with DiagnosticableTreeMixin implements _ChangeIndex {
   const _$ChangeIndexImpl(this.value);
 
   @override
   final int value;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'NavbarEvent.changeIndex(value: $value)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NavbarEvent.changeIndex'))
+      ..add(DiagnosticsProperty('value', value));
   }
 
   @override

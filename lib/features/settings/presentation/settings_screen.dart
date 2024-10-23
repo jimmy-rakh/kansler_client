@@ -42,7 +42,9 @@ class SettingsScreen extends HookWidget {
                       backgroundColor:
                           WidgetStatePropertyAll(context.cardColor),
                     ),
-                    onPressed: router.popForced,
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
                     icon: const Icon(KazeIcons.arrowLeftOutline),
                   ),
                 ),

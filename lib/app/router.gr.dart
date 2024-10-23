@@ -220,6 +220,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const SettingsScreen(),
       );
     },
+    SettingsWrapperRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const SettingsWrapperScreen(),
+      );
+    },
     SplashRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -234,6 +240,12 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           category: args.category,
         ),
+      );
+    },
+    VacancyRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const VacancyScreen(),
       );
     },
   };
@@ -847,6 +859,20 @@ class SettingsRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [SettingsWrapperScreen]
+class SettingsWrapperRoute extends PageRouteInfo<void> {
+  const SettingsWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          SettingsWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SettingsWrapperRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [SplashScreen]
 class SplashRoute extends PageRouteInfo<void> {
   const SplashRoute({List<PageRouteInfo>? children})
@@ -896,4 +922,18 @@ class SubcategoryRouteArgs {
   String toString() {
     return 'SubcategoryRouteArgs{key: $key, category: $category}';
   }
+}
+
+/// generated route for
+/// [VacancyScreen]
+class VacancyRoute extends PageRouteInfo<void> {
+  const VacancyRoute({List<PageRouteInfo>? children})
+      : super(
+          VacancyRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'VacancyRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
