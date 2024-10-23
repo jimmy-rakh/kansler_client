@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -8,7 +10,7 @@ import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-import 'dart:html' as html;
+// import 'dart:html' as html if (kIsWeb) '';
 import '../../../app/router.dart';
 import '../../../core/constants/kaze_icons.dart';
 import '../../../core/style/colors.dart';
@@ -30,7 +32,9 @@ class SettingsScreen extends HookWidget {
         color: context.background,
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900,),
+            constraints: const BoxConstraints(
+              maxWidth: 900,
+            ),
             child: Scaffold(
               appBar: AppBarWidget(
                 preferredSize: const Size.fromHeight(60),
@@ -64,10 +68,12 @@ class SettingsScreen extends HookWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           verticalSpace10,
-                           Padding(
-                             padding: const EdgeInsets.only(left: 8),
-                             child: Text('Связаться с нами',style: context.titleMedium?.copyWith(color: Colors.green)),
-                           ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Text('Связаться с нами',
+                                style: context.titleMedium
+                                    ?.copyWith(color: Colors.green)),
+                          ),
                           verticalSpace10,
                           SizedBox(
                             width: context.isSmall ? context.width : 500,
@@ -78,41 +84,68 @@ class SettingsScreen extends HookWidget {
                                 Link(
                                     uri: Uri.parse('tel:+998935026545'),
                                     target: LinkTarget.blank,
-                                    builder: (BuildContext ctx, FollowLink? openLink) {
+                                    builder: (BuildContext ctx,
+                                        FollowLink? openLink) {
                                       return ElevatedButton(
                                         style: ButtonStyle(
                                           elevation: WidgetStateProperty.all(0),
-                                          backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                                          foregroundColor: WidgetStateProperty.all(context.onPrimary),
-                                          overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Colors.transparent),
+                                          foregroundColor:
+                                              WidgetStateProperty.all(
+                                                  context.onPrimary),
+                                          overlayColor: WidgetStateProperty.all(
+                                              Colors.transparent),
                                         ),
                                         onPressed: openLink,
                                         child: AppCard(
                                           fillColor: context.background,
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 10),
-                                          width: context.isSmall ? context.width : 500,
+                                          width: context.isSmall
+                                              ? context.width
+                                              : 500,
                                           borderRadius: 4,
-                                          child:  Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               const AppCard(
                                                 borderRadius: 12,
                                                 fillColor: AppColors.green,
                                                 child: Padding(
                                                   padding: EdgeInsets.all(8),
-                                                  child: Icon(Icons.phone,color: Colors.white,),
+                                                  child: Icon(
+                                                    Icons.phone,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                               horizontalSpace10,
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  Text('Менеджер:  Исломбек Маннанов',style: context.labelMedium?.copyWith(color: Colors.blueAccent),),
+                                                  Text(
+                                                    'Менеджер:  Исломбек Маннанов',
+                                                    style: context.labelMedium
+                                                        ?.copyWith(
+                                                            color: Colors
+                                                                .blueAccent),
+                                                  ),
                                                   verticalSpace5,
-                                                  Text('Телефон:  +998935026545',style: context.labelMedium?.copyWith(color: Colors.blueAccent),),
+                                                  Text(
+                                                    'Телефон:  +998935026545',
+                                                    style: context.labelMedium
+                                                        ?.copyWith(
+                                                            color: Colors
+                                                                .blueAccent),
+                                                  ),
                                                 ],
                                               ),
                                             ],
@@ -125,44 +158,68 @@ class SettingsScreen extends HookWidget {
                                     uri: Uri.parse(
                                         'https://t.me/kansler_support_bot'),
                                     target: LinkTarget.blank,
-                                    builder: (BuildContext ctx, FollowLink? openLink) {
+                                    builder: (BuildContext ctx,
+                                        FollowLink? openLink) {
                                       return ElevatedButton(
                                         style: ButtonStyle(
                                           elevation: WidgetStateProperty.all(0),
-                                          backgroundColor: WidgetStateProperty.all(Colors.transparent),
-                                          foregroundColor: WidgetStateProperty.all(context.onPrimary),
-                                          overlayColor: WidgetStateProperty.all(Colors.transparent),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Colors.transparent),
+                                          foregroundColor:
+                                              WidgetStateProperty.all(
+                                                  context.onPrimary),
+                                          overlayColor: WidgetStateProperty.all(
+                                              Colors.transparent),
                                         ),
-                                        onPressed:
-                                        kIsWeb
-                                            ? () { html.window.open('https://t.me/kansler_support_bot', 'new tab');} :
-                                        openLink,
+                                        onPressed: openLink,
                                         child: AppCard(
                                           fillColor: context.background,
                                           padding: const EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 10),
-                                          width: context.isSmall ? context.width : 500,
+                                          width: context.isSmall
+                                              ? context.width
+                                              : 500,
                                           borderRadius: 4,
-                                          child:  Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
                                             children: [
                                               const AppCard(
                                                 borderRadius: 12,
-                                                fillColor:Colors.blueAccent,
+                                                fillColor: Colors.blueAccent,
                                                 child: Padding(
                                                   padding: EdgeInsets.all(8),
-                                                  child: Icon(Icons.send,color: Colors.white,),
+                                                  child: Icon(
+                                                    Icons.send,
+                                                    color: Colors.white,
+                                                  ),
                                                 ),
                                               ),
                                               horizontalSpace10,
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
-                                                  Text('Telegram',style: context.labelMedium?.copyWith(color: Colors.blueAccent),),
+                                                  Text(
+                                                    'Telegram',
+                                                    style: context.labelMedium
+                                                        ?.copyWith(
+                                                            color: Colors
+                                                                .blueAccent),
+                                                  ),
                                                   verticalSpace5,
-                                                  Text('@kansler_support_bot',style: context.labelMedium?.copyWith(color: Colors.blueAccent),),
+                                                  Text(
+                                                    '@kansler_support_bot',
+                                                    style: context.labelMedium
+                                                        ?.copyWith(
+                                                            color: Colors
+                                                                .blueAccent),
+                                                  ),
                                                 ],
                                               ),
                                             ],
@@ -226,10 +283,14 @@ class SettingsScreen extends HookWidget {
           </p>
           </div> """,
                           ),
-                           Padding(
-                             padding: const EdgeInsets.only(left: 8),
-                             child: Text('О нас',style: context.titleMedium?.copyWith(color: Colors.green),),
-                           ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
+                            child: Text(
+                              'О нас',
+                              style: context.titleMedium
+                                  ?.copyWith(color: Colors.green),
+                            ),
+                          ),
                           ClipRRect(
                             borderRadius: BorderRadius.circular(4),
                             child: Image.asset(
@@ -241,7 +302,8 @@ class SettingsScreen extends HookWidget {
                       ),
                     ),
                     verticalSpace20,
-                    if (authBloc.state == const AuthState.authenticated()) ...[
+                    if (authBloc.state == const AuthState.authenticated() &&
+                        Platform.isIOS) ...[
                       verticalSpace20,
                       AppCard(
                           width: context.isSmall ? context.width : 300,
@@ -283,8 +345,12 @@ class SettingsScreen extends HookWidget {
                                       ),
                                     ],
                                   )),
-                          child: const Text(
+                          child: Text(
                             'Удалить аккаунт',
+                            style: context.theme.textTheme.bodyMedium?.copyWith(
+                              color: Colors.white,
+                            ),
+                            textAlign: TextAlign.center,
                           ))
                     ],
                     verticalSpace60,

@@ -158,12 +158,20 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
       // emit(const PreordersState.error());
       // log.e(l.toString());
     }, (r) {
+      if (state is _LoadInProgress) {
+        emit(PreordersState.ready(price: r));
+        return;
+      }
       emit((state as _Ready).copyWith(price: r));
     });
   }
 
   void _onGetPreordersProducts(
       _GetPreordersProducts event, Emitter<PreordersState> emit) async {
+    if (state is _LoadInProgress) {
+      emit(const PreordersState.ready(products: [], price: 0));
+      return;
+    }
     if ((state as _Ready).status == PreordersStatus.loaded && event.isMore) {
       emit((state as _Ready).copyWith(isMoreLoading: true));
     }
