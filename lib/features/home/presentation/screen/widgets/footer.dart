@@ -249,81 +249,79 @@ class Footer extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      kIsWeb
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Link(
-                                    uri: Uri.parse(
-                                        'https://apps.apple.com/us/app/kansler/id6670708652'),
-                                    target: LinkTarget.blank,
-                                    builder: (BuildContext ctx,
-                                        FollowLink? openLink) {
-                                      return ElevatedButton(
-                                        style: ButtonStyle(
-                                          padding: WidgetStateProperty.all(EdgeInsets.zero),
-                                          elevation: WidgetStateProperty.all(0),
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  Colors.transparent),
-                                          foregroundColor:
-                                              WidgetStateProperty.all(
-                                                  context.titleLarge?.color),
-                                          overlayColor: WidgetStateProperty.all(
-                                              Colors.transparent),
+                      if (kIsWeb)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Link(
+                                uri: Uri.parse(
+                                    'https://apps.apple.com/us/app/kansler/id6670708652'),
+                                target: LinkTarget.blank,
+                                builder:
+                                    (BuildContext ctx, FollowLink? openLink) {
+                                  return ElevatedButton(
+                                    style: ButtonStyle(
+                                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                                      elevation: WidgetStateProperty.all(0),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                      foregroundColor: WidgetStateProperty.all(
+                                          context.titleLarge?.color),
+                                      overlayColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                    ),
+                                    onPressed:kIsWeb
+                                        ? () { html.window.open('https://apps.apple.com/us/app/kansler/id6670708652', 'new tab');} : openLink,
+                                    child: AppCard(
+                                      height: 40,
+                                      width: 110,
+                                      fillColor: AppColors.white,
+                                      borderRadius: 4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(1),
+                                        child: Image.asset(
+                                          "assets/images/appstore.png",
                                         ),
-                                        onPressed: openLink,
-                                        child: AppCard(
-                                          height: 40,
-                                          width: 110,
-                                          fillColor: AppColors.white,
-                                          borderRadius: 4,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(1),
-                                            child: Image.asset(
-                                              "assets/images/appstore.png",
-                                            ),
-                                          ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                            horizontalSpace10,
+                            Link(
+                                uri: Uri.parse(
+                                    'https://play.google.com/store/apps/details?id=uz.kansler.app'),
+                                target: LinkTarget.blank,
+                                builder:
+                                    (BuildContext ctx, FollowLink? openLink) {
+                                  return ElevatedButton(
+                                    style: ButtonStyle(
+                                      elevation: WidgetStateProperty.all(0),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                      foregroundColor: WidgetStateProperty.all(
+                                          context.titleLarge?.color),
+                                      overlayColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                    ),
+                                    onPressed:kIsWeb
+                                        ? () { html.window.open('https://play.google.com/store/apps/details?id=uz.kansler.app', 'new tab');} : openLink,
+                                    child: AppCard(
+                                      height: 40,
+                                      width: 120,
+                                      fillColor: AppColors.white,
+                                      borderRadius: 4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(1),
+                                        child: Image.asset(
+                                          "assets/images/google.png",
                                         ),
-                                      );
-                                    }),
-                                Link(
-                                    uri: Uri.parse(
-                                        'https://play.google.com/store/apps/details?id=uz.kansler.app'),
-                                    target: LinkTarget.blank,
-                                    builder: (BuildContext ctx,
-                                        FollowLink? openLink) {
-                                      return ElevatedButton(
-                                        style: ButtonStyle(
-                                          elevation: WidgetStateProperty.all(0),
-                                          backgroundColor:
-                                              WidgetStateProperty.all(
-                                                  Colors.transparent),
-                                          foregroundColor:
-                                              WidgetStateProperty.all(
-                                                  context.titleLarge?.color),
-                                          overlayColor: WidgetStateProperty.all(
-                                              Colors.transparent),
-                                        ),
-                                        onPressed: openLink,
-                                        child: AppCard(
-                                          height: 40,
-                                          width: 120,
-                                          fillColor: AppColors.white,
-                                          borderRadius: 4,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(1),
-                                            child: Image.asset(
-                                              "assets/images/google.png",
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }),
-                              ],
-                            )
-                          : const SizedBox(),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ],
+                        ),
                       verticalSpace16,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,

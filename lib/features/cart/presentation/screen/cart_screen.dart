@@ -150,6 +150,7 @@ class CartScreen extends HookWidget {
                                                           width: context.isDesktop ? 280 : context.width * .24,
                                                           child: Text(
                                                             value,
+                                                            style: TextStyle(fontSize: 12),
                                                           ),
                                                         ),
                                                       ),
@@ -208,6 +209,7 @@ class CartScreen extends HookWidget {
                                                           width: context.isDesktop ? 280 : context.width * .24,
                                                           child: Text(
                                                             value,
+                                                            style: TextStyle(fontSize: 12),
                                                           ),
                                                         ),
                                                       ),
