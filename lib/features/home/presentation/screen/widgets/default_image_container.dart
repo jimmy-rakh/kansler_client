@@ -81,7 +81,7 @@ class DefaultImageContainer extends StatelessWidget {
                         height: height!,
                       )
                     : GestureDetector(
-                        onTap: () => onTap,
+                        onTap: onTap == null ? null : () => onTap!(),
                         child: CachedNetworkImage(
                           imageUrl: NetworkConstants.apiBaseUrl + imageUrl!,
                           fit: fit,

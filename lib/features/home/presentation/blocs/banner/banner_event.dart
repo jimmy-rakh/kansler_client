@@ -8,4 +8,5 @@ class BannerEvent with _$BannerEvent {
   const factory BannerEvent.onChange(int? index) = _OnChange;
   const factory BannerEvent.onNext(int? index) = _OnNext;
   const factory BannerEvent.onPrevious(int? index) = _OnPrevious;
+  const factory BannerEvent.addToCart(int id, CheckoutType type) = _AddToCart;
 }

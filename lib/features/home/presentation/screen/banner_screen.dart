@@ -30,10 +30,8 @@ class BannerScreen extends HookWidget {
     final state = useBlocBuilder(bloc);
     useEffect(() {
       bloc.add(BannerEvent.fetchById(id));
-      return null;
-    }, [bloc]);
-    useEffect(() {
       bloc.add(BannerEvent.fetchBannerProducts(id));
+
       return null;
     }, [bloc]);
     return SelectionArea(
@@ -92,22 +90,25 @@ class BannerScreen extends HookWidget {
                                   : poster?.imgWeb,
                             ),
                       verticalSpace20,
-                      products == null ? const SizedBox() : Wrap(
-                        alignment: WrapAlignment.center,
-                        runSpacing: 8,
-                        spacing: 8,
-                        children: List.generate(
-                          products!.length,
-                          (index) => ProductCard.grid(
-                            height: 200,
-                            width: 200,
-                            product: products![index],
-                            onCart: (type) {},
-                            fieldController: TextEditingController(),
-                            onPressed: () {},
-                          ),
-                        ),
-                      ),
+                      products == null
+                          ? const SizedBox()
+                          : Wrap(
+                              alignment: WrapAlignment.center,
+                              runSpacing: 8,
+                              spacing: 8,
+                              children: List.generate(
+                                products.length,
+                                (index) => ProductCard.grid(
+                                  height: 200,
+                                  width: 200,
+                                  product: products[index],
+                                  onCart: (type) =>
+                                      bloc.add(BannerEvent.addToCart(products[index].id, type)),
+                                  fieldController: TextEditingController(),
+                                  onPressed: () {},
+                                ),
+                              ),
+                            ),
                       verticalSpace60,
                     ],
                   ),

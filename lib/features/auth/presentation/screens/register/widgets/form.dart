@@ -10,7 +10,7 @@ import '../../../../../../core/style/colors.dart';
 import '../../../../../../core/widgets/app_card.dart';
 import '../../../../../../core/widgets/app_text_field.dart';
 import '../bloc/register_bloc.dart';
-import 'dart:html' as html;
+// import 'dart:html' as html;
 
 class RegisterFormWidget extends HookWidget {
   const RegisterFormWidget({super.key});

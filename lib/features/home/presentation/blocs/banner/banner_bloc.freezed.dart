@@ -563,6 +563,7 @@ mixin _$BannerEvent {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -573,6 +574,7 @@ mixin _$BannerEvent {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -583,6 +585,7 @@ mixin _$BannerEvent {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -594,6 +597,7 @@ mixin _$BannerEvent {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -604,6 +608,7 @@ mixin _$BannerEvent {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -614,6 +619,7 @@ mixin _$BannerEvent {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -687,6 +693,7 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return fetch();
   }
@@ -700,6 +707,7 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return fetch?.call();
   }
@@ -713,6 +721,7 @@ class _$FetchImpl implements _Fetch {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -730,6 +739,7 @@ class _$FetchImpl implements _Fetch {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return fetch(this);
   }
@@ -743,6 +753,7 @@ class _$FetchImpl implements _Fetch {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return fetch?.call(this);
   }
@@ -756,6 +767,7 @@ class _$FetchImpl implements _Fetch {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (fetch != null) {
@@ -843,6 +855,7 @@ class _$FetchByIdImpl implements _FetchById {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return fetchById(id);
   }
@@ -856,6 +869,7 @@ class _$FetchByIdImpl implements _FetchById {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return fetchById?.call(id);
   }
@@ -869,6 +883,7 @@ class _$FetchByIdImpl implements _FetchById {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (fetchById != null) {
@@ -886,6 +901,7 @@ class _$FetchByIdImpl implements _FetchById {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return fetchById(this);
   }
@@ -899,6 +915,7 @@ class _$FetchByIdImpl implements _FetchById {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return fetchById?.call(this);
   }
@@ -912,6 +929,7 @@ class _$FetchByIdImpl implements _FetchById {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (fetchById != null) {
@@ -1008,6 +1026,7 @@ class _$FetchBannerProductsImpl implements _FetchBannerProducts {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return fetchBannerProducts(id);
   }
@@ -1021,6 +1040,7 @@ class _$FetchBannerProductsImpl implements _FetchBannerProducts {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return fetchBannerProducts?.call(id);
   }
@@ -1034,6 +1054,7 @@ class _$FetchBannerProductsImpl implements _FetchBannerProducts {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (fetchBannerProducts != null) {
@@ -1051,6 +1072,7 @@ class _$FetchBannerProductsImpl implements _FetchBannerProducts {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return fetchBannerProducts(this);
   }
@@ -1064,6 +1086,7 @@ class _$FetchBannerProductsImpl implements _FetchBannerProducts {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return fetchBannerProducts?.call(this);
   }
@@ -1077,6 +1100,7 @@ class _$FetchBannerProductsImpl implements _FetchBannerProducts {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (fetchBannerProducts != null) {
@@ -1172,6 +1196,7 @@ class _$OnChangeImpl implements _OnChange {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return onChange(index);
   }
@@ -1185,6 +1210,7 @@ class _$OnChangeImpl implements _OnChange {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return onChange?.call(index);
   }
@@ -1198,6 +1224,7 @@ class _$OnChangeImpl implements _OnChange {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (onChange != null) {
@@ -1215,6 +1242,7 @@ class _$OnChangeImpl implements _OnChange {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return onChange(this);
   }
@@ -1228,6 +1256,7 @@ class _$OnChangeImpl implements _OnChange {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return onChange?.call(this);
   }
@@ -1241,6 +1270,7 @@ class _$OnChangeImpl implements _OnChange {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (onChange != null) {
@@ -1336,6 +1366,7 @@ class _$OnNextImpl implements _OnNext {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return onNext(index);
   }
@@ -1349,6 +1380,7 @@ class _$OnNextImpl implements _OnNext {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return onNext?.call(index);
   }
@@ -1362,6 +1394,7 @@ class _$OnNextImpl implements _OnNext {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (onNext != null) {
@@ -1379,6 +1412,7 @@ class _$OnNextImpl implements _OnNext {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return onNext(this);
   }
@@ -1392,6 +1426,7 @@ class _$OnNextImpl implements _OnNext {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return onNext?.call(this);
   }
@@ -1405,6 +1440,7 @@ class _$OnNextImpl implements _OnNext {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (onNext != null) {
@@ -1500,6 +1536,7 @@ class _$OnPreviousImpl implements _OnPrevious {
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
   }) {
     return onPrevious(index);
   }
@@ -1513,6 +1550,7 @@ class _$OnPreviousImpl implements _OnPrevious {
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
   }) {
     return onPrevious?.call(index);
   }
@@ -1526,6 +1564,7 @@ class _$OnPreviousImpl implements _OnPrevious {
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
     required TResult orElse(),
   }) {
     if (onPrevious != null) {
@@ -1543,6 +1582,7 @@ class _$OnPreviousImpl implements _OnPrevious {
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
   }) {
     return onPrevious(this);
   }
@@ -1556,6 +1596,7 @@ class _$OnPreviousImpl implements _OnPrevious {
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
   }) {
     return onPrevious?.call(this);
   }
@@ -1569,6 +1610,7 @@ class _$OnPreviousImpl implements _OnPrevious {
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
     required TResult orElse(),
   }) {
     if (onPrevious != null) {
@@ -1587,5 +1629,185 @@ abstract class _OnPrevious implements BannerEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OnPreviousImplCopyWith<_$OnPreviousImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AddToCartImplCopyWith<$Res> {
+  factory _$$AddToCartImplCopyWith(
+          _$AddToCartImpl value, $Res Function(_$AddToCartImpl) then) =
+      __$$AddToCartImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int id, CheckoutType type});
+}
+
+/// @nodoc
+class __$$AddToCartImplCopyWithImpl<$Res>
+    extends _$BannerEventCopyWithImpl<$Res, _$AddToCartImpl>
+    implements _$$AddToCartImplCopyWith<$Res> {
+  __$$AddToCartImplCopyWithImpl(
+      _$AddToCartImpl _value, $Res Function(_$AddToCartImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? type = null,
+  }) {
+    return _then(_$AddToCartImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CheckoutType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToCartImpl implements _AddToCart {
+  const _$AddToCartImpl(this.id, this.type);
+
+  @override
+  final int id;
+  @override
+  final CheckoutType type;
+
+  @override
+  String toString() {
+    return 'BannerEvent.addToCart(id: $id, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToCartImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, type);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
+      __$$AddToCartImplCopyWithImpl<_$AddToCartImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
+    required TResult Function(int id, CheckoutType type) addToCart,
+  }) {
+    return addToCart(id, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
+    TResult? Function(int id, CheckoutType type)? addToCart,
+  }) {
+    return addToCart?.call(id, type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
+    TResult Function(int id, CheckoutType type)? addToCart,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(id, type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
+    required TResult Function(_AddToCart value) addToCart,
+  }) {
+    return addToCart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
+    TResult? Function(_AddToCart value)? addToCart,
+  }) {
+    return addToCart?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
+    TResult Function(_AddToCart value)? addToCart,
+    required TResult orElse(),
+  }) {
+    if (addToCart != null) {
+      return addToCart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddToCart implements BannerEvent {
+  const factory _AddToCart(final int id, final CheckoutType type) =
+      _$AddToCartImpl;
+
+  int get id;
+  CheckoutType get type;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AddToCartImplCopyWith<_$AddToCartImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

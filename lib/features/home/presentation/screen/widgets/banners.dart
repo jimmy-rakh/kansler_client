@@ -67,7 +67,7 @@ class BannerWidget extends HookWidget {
                         itemBuilder: (context, index, page) {
                           final  poster = posters[index];
                           return DefaultImageContainer(
-                            onTap: (){ router.push(BannerRoute(poster: poster,id: poster.id));},
+                            onTap: (){ print('object'); router.push(BannerRoute(poster: poster,id: poster.id));},
                             fit: BoxFit.fill,
                             width: context.isDesktop ? 1280 : context.width,
                             height: context.isTablet
