@@ -4,7 +4,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_card.dart';
-
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'dart:html' as html;
 import '../../../../../core/style/colors.dart';
 
 class Footer extends HookWidget {
@@ -33,33 +35,74 @@ class Footer extends HookWidget {
                       if (kIsWeb)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            AppCard(
-                              height: 40,
-                              width: 110,
-                              fillColor: AppColors.white,
-                              borderRadius: 4,
-                              child: Padding(
-                                padding: const EdgeInsets.all(1),
-                                child: Image.asset(
-                                  "assets/images/appstore.png",
-                                ),
-                              ),
-                            ),
+                            Link(
+                                uri: Uri.parse(
+                                    'https://apps.apple.com/us/app/kansler/id6670708652'),
+                                target: LinkTarget.blank,
+                                builder:
+                                    (BuildContext ctx, FollowLink? openLink) {
+                                  return ElevatedButton(
+                                    style: ButtonStyle(
+                                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                                      elevation: WidgetStateProperty.all(0),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                      foregroundColor: WidgetStateProperty.all(
+                                          context.titleLarge?.color),
+                                      overlayColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                    ),
+                                    onPressed:kIsWeb
+                                        ? () { html.window.open('https://apps.apple.com/us/app/kansler/id6670708652', 'new tab');} : openLink,
+                                    child: AppCard(
+                                      height: 40,
+                                      width: 110,
+                                      fillColor: AppColors.white,
+                                      borderRadius: 4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(1),
+                                        child: Image.asset(
+                                          "assets/images/appstore.png",
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
                             horizontalSpace10,
-                            AppCard(
-                              height: 40,
-                              width: 120,
-                              fillColor: AppColors.white,
-                              borderRadius: 4,
-                              child: Padding(
-                                padding: const EdgeInsets.all(1),
-                                child: Image.asset(
-                                  "assets/images/google.png",
-                                ),
-                              ),
-                            ),
+                            Link(
+                                uri: Uri.parse(
+                                    'https://play.google.com/store/apps/details?id=uz.kansler.app'),
+                                target: LinkTarget.blank,
+                                builder:
+                                    (BuildContext ctx, FollowLink? openLink) {
+                                  return ElevatedButton(
+                                    style: ButtonStyle(
+                                      elevation: WidgetStateProperty.all(0),
+                                      backgroundColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                      foregroundColor: WidgetStateProperty.all(
+                                          context.titleLarge?.color),
+                                      overlayColor: WidgetStateProperty.all(
+                                          Colors.transparent),
+                                    ),
+                                    onPressed:kIsWeb
+                                        ? () { html.window.open('https://play.google.com/store/apps/details?id=uz.kansler.app', 'new tab');} : openLink,
+                                    child: AppCard(
+                                      height: 40,
+                                      width: 120,
+                                      fillColor: AppColors.white,
+                                      borderRadius: 4,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(1),
+                                        child: Image.asset(
+                                          "assets/images/google.png",
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
                           ],
                         ),
                       verticalSpace16,
@@ -81,7 +124,9 @@ class Footer extends HookWidget {
                           ),
                           horizontalSpace10,
                           const Text(
-                              "Copyright 2015-2024 © kansler.uz - Все для\nофиса в Ташкенте. Все права защищены."),
+                            "Copyright 2015-2024 © kansler.uz - Все для\nофиса в Ташкенте. Все права защищены.",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ],
@@ -108,7 +153,10 @@ class Footer extends HookWidget {
                             ),
                           ),
                           horizontalSpace10,
-                          const Text("+998 (78) 148-44-44"),
+                          const Text(
+                            "+998 (78) 148-44-44",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                       verticalSpace16,
@@ -129,7 +177,10 @@ class Footer extends HookWidget {
                             ),
                           ),
                           horizontalSpace10,
-                          const Text("info@kansler.uz"),
+                          const Text(
+                            "info@kansler.uz",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ],
@@ -157,7 +208,9 @@ class Footer extends HookWidget {
                           ),
                           horizontalSpace10,
                           const Text(
-                              "г. Ташкент, Мирабадский район,\nул. Авлиё ота, д. 7"),
+                            "г. Ташкент, Мирабадский район,\nул. Авлиё ота, д. 7",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                       verticalSpace16,
@@ -179,7 +232,9 @@ class Footer extends HookWidget {
                           ),
                           horizontalSpace10,
                           const Text(
-                              "График работы Пн-Пт: с 9:00 до 18:00\nСб: с 9:00 до 16:00 Вс: Выходной"),
+                            "График работы Пн-Пт: с 9:00 до 18:00\nСб: с 9:00 до 16:00 Вс: Выходной",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ],
@@ -197,33 +252,75 @@ class Footer extends HookWidget {
                       kIsWeb
                           ? Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                AppCard(
-                                  height: 40,
-                                  width: 110,
-                                  fillColor: AppColors.white,
-                                  borderRadius: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(1),
-                                    child: Image.asset(
-                                      "assets/images/appstore.png",
-                                    ),
-                                  ),
-                                ),
-                                horizontalSpace10,
-                                AppCard(
-                                  height: 40,
-                                  width: 120,
-                                  fillColor: AppColors.white,
-                                  borderRadius: 4,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(1),
-                                    child: Image.asset(
-                                      "assets/images/google.png",
-                                    ),
-                                  ),
-                                ),
+                                Link(
+                                    uri: Uri.parse(
+                                        'https://apps.apple.com/us/app/kansler/id6670708652'),
+                                    target: LinkTarget.blank,
+                                    builder: (BuildContext ctx,
+                                        FollowLink? openLink) {
+                                      return ElevatedButton(
+                                        style: ButtonStyle(
+                                          padding: WidgetStateProperty.all(EdgeInsets.zero),
+                                          elevation: WidgetStateProperty.all(0),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Colors.transparent),
+                                          foregroundColor:
+                                              WidgetStateProperty.all(
+                                                  context.titleLarge?.color),
+                                          overlayColor: WidgetStateProperty.all(
+                                              Colors.transparent),
+                                        ),
+                                        onPressed: openLink,
+                                        child: AppCard(
+                                          height: 40,
+                                          width: 110,
+                                          fillColor: AppColors.white,
+                                          borderRadius: 4,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(1),
+                                            child: Image.asset(
+                                              "assets/images/appstore.png",
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                Link(
+                                    uri: Uri.parse(
+                                        'https://play.google.com/store/apps/details?id=uz.kansler.app'),
+                                    target: LinkTarget.blank,
+                                    builder: (BuildContext ctx,
+                                        FollowLink? openLink) {
+                                      return ElevatedButton(
+                                        style: ButtonStyle(
+                                          elevation: WidgetStateProperty.all(0),
+                                          backgroundColor:
+                                              WidgetStateProperty.all(
+                                                  Colors.transparent),
+                                          foregroundColor:
+                                              WidgetStateProperty.all(
+                                                  context.titleLarge?.color),
+                                          overlayColor: WidgetStateProperty.all(
+                                              Colors.transparent),
+                                        ),
+                                        onPressed: openLink,
+                                        child: AppCard(
+                                          height: 40,
+                                          width: 120,
+                                          fillColor: AppColors.white,
+                                          borderRadius: 4,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(1),
+                                            child: Image.asset(
+                                              "assets/images/google.png",
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
                               ],
                             )
                           : const SizedBox(),
@@ -246,7 +343,9 @@ class Footer extends HookWidget {
                           ),
                           horizontalSpace10,
                           const Text(
-                              "Copyright 2015-2024 © kansler.uz - Все для\nофиса в Ташкенте. Все права защищены."),
+                            "Copyright 2015-2024 © kansler.uz - Все для\nофиса в Ташкенте. Все права защищены.",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ],
@@ -272,7 +371,10 @@ class Footer extends HookWidget {
                             ),
                           ),
                           horizontalSpace10,
-                          const Text("+998 (78) 148-44-44"),
+                          const Text(
+                            "+998 (78) 148-44-44",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                       verticalSpace16,
@@ -293,7 +395,10 @@ class Footer extends HookWidget {
                             ),
                           ),
                           horizontalSpace10,
-                          const Text("info@kansler.uz"),
+                          const Text(
+                            "info@kansler.uz",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ],
@@ -320,7 +425,9 @@ class Footer extends HookWidget {
                           ),
                           horizontalSpace10,
                           const Text(
-                              "г. Ташкент, Мирабадский район,\nул. Авлиё ота, д. 7"),
+                            "г. Ташкент, Мирабадский район,\nул. Авлиё ота, д. 7",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                       verticalSpace16,
@@ -342,7 +449,9 @@ class Footer extends HookWidget {
                           ),
                           horizontalSpace10,
                           const Text(
-                              "График работы Пн-Пт: с 9:00 до 18:00\nСб: с 9:00 до 16:00 Вс: Выходной"),
+                            "График работы Пн-Пт: с 9:00 до 18:00\nСб: с 9:00 до 16:00 Вс: Выходной",
+                            style: TextStyle(fontSize: 10),
+                          ),
                         ],
                       ),
                     ],

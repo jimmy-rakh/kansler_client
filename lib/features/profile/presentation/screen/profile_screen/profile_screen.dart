@@ -285,7 +285,7 @@ class ProfileScreen extends HookWidget {
                                 children: [
                                   Icon(Icons.info_outline),
                                   horizontalSpace5,
-                                  Text('Вопросы и ответы'),
+                                  Text('Условия оплаты и доставки'),
                                 ],
                               ),
                               Transform.rotate(
@@ -311,7 +311,7 @@ class ProfileScreen extends HookWidget {
                                 children: [
                                   Icon(Icons.list_alt),
                                   horizontalSpace5,
-                                  Text('Вакансии'),
+                                  Text('Актуальные вакансии'),
                                 ],
                               ),
                               Transform.rotate(

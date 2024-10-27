@@ -5,6 +5,7 @@ import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../core/widgets/app_card.dart';
 import '../../../core/widgets/appbar.dart';
+import '../../app/router.dart';
 
 @RoutePage()
 class VacancyScreen extends HookWidget {
@@ -12,13 +13,14 @@ class VacancyScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return SelectionArea(
       child: Container(
         color: context.background,
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 900,),
+            constraints: const BoxConstraints(
+              maxWidth: 900,
+            ),
             child: Scaffold(
               appBar: AppBarWidget(
                 preferredSize: const Size.fromHeight(60),
@@ -28,16 +30,16 @@ class VacancyScreen extends HookWidget {
                   child: IconButton.filled(
                     style: ButtonStyle(
                       backgroundColor:
-                      WidgetStatePropertyAll(context.cardColor),
+                          WidgetStatePropertyAll(context.cardColor),
                     ),
-                    onPressed: (){
-                      Navigator.pop(context);
+                    onPressed: () {
+                      router.push(const ProfileRoute());
                     },
                     icon: const Icon(KazeIcons.arrowLeftOutline),
                   ),
                 ),
                 leadingWidth: 58,
-                child: const Text('Ваканции в компании Канцлер'),
+                child: const Text('Актуальные вакансии'),
               ),
               body: SizedBox(
                 width: context.isSmall ? context.width : 900,
@@ -45,20 +47,15 @@ class VacancyScreen extends HookWidget {
                   shrinkWrap: true,
                   children: [
                     AppCard(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(24),
                       margin: const EdgeInsets.symmetric(horizontal: 12),
                       borderRadius: 4,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           verticalSpace10,
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8),
-                            child: Text('Связаться с нами : +998 (78) 148-44-44',style: context.titleMedium?.copyWith(color: Colors.green)),
-                          ),
-                          verticalSpace10,
                           SizedBox(
-                            width: context.isSmall ? context.width : 500,
+                            width: context.isSmall ? context.width : 1200,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -67,30 +64,19 @@ class VacancyScreen extends HookWidget {
                                   fillColor: context.background,
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 10, horizontal: 10),
-                                  width: context.isSmall ? context.width : 500,
+                                  width: context.isSmall ? context.width : 1200,
                                   borderRadius: 4,
-                                  child:  Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                       AppCard(
-                                        borderRadius: 12,
-                                        fillColor: context.cardColor,
-                                        child:  Padding(
-                                          padding: const EdgeInsets.all(8),
-                                          child: Icon(Icons.person,color: context.titleLarge?.color,),
-                                        ),
+                                      Text(
+                                        'Найдите свою идеальную работу в Kansler с высокой зарплатой. Откликнитесь прямо сейчас на открытые вакансии:\n\n* Региональный менеджер\n* Менеджер отдела снабжения\n\nРезюме направлять на info@kansler.uz\n\nСвязаться с нами : +998 (78)148 - 44 - 44',
+                                        style: context.labelLarge,
                                       ),
-                                      horizontalSpace10,
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text('1 Региональный Менеджер',style: context.labelMedium?.copyWith(color: Colors.blueAccent),),
-                                          verticalSpace5,
-                                          Text('2 Менеджер отдела Снабжения',style: context.labelMedium?.copyWith(color: Colors.blueAccent),),
-                                        ],
-                                      ),
+
                                     ],
                                   ),
                                 ),

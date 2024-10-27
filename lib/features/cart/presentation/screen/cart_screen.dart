@@ -103,7 +103,7 @@ class CartScreen extends HookWidget {
                                       children: [
                                         const Padding(
                                           padding: EdgeInsets.only(left: 6,bottom: 12),
-                                          child: Text("Выберите тип оплаты"),
+                                          child: Text("Выбрать способ оплаты"),
                                         ),
                                         Container(
                                           width: context.isDesktop ? 380 : context.isSmall
@@ -129,18 +129,18 @@ class CartScreen extends HookWidget {
                                                   elevation: 0,
                                                   hint: const Padding(
                                                     padding: EdgeInsets.all(8.0),
-                                                    child: Text("Выберите тип оплаты"),
+                                                    child: Text("Выбрать способ оплаты"),
                                                   ),
                                                   value: paymentType == "byTransfer"
-                                                      ? "Перечислением" :
+                                                      ? "Перечисление на расчетный счет" :
                                                   paymentType == "byCash"
-                                                      ? "Наличными" :
+                                                      ? "Оплатить через CLICK" :
                                                   paymentType == "byCard"
-                                                      ? "Картой" : paymentType,
+                                                      ? "Оплатить картой UzCard или HUMO" : paymentType,
                                                   items: <String>[
-                                                    "Перечислением",
-                                                    "Наличными",
-                                                    "Картой"
+                                                    "Перечисление на расчетный счет",
+                                                    "Оплатить через CLICK",
+                                                    "Оплатить картой UzCard или HUMO"
                                                   ].map((String value) {
                                                     return DropdownMenuItem<String>(
                                                       value: value,
@@ -166,7 +166,7 @@ class CartScreen extends HookWidget {
                                         verticalSpace12,
                                         const Padding(
                                           padding: EdgeInsets.only(left: 6,bottom: 12),
-                                          child: Text("Выберите способ получение"),
+                                          child: Text("Выбрать способ доставки"),
                                         ),
                                         Container(
                                           width: context.isDesktop ? 380 : context.isSmall
@@ -192,7 +192,7 @@ class CartScreen extends HookWidget {
                                                   elevation: 0,
                                                   hint: const Padding(
                                                     padding: EdgeInsets.all(8.0),
-                                                    child: Text("Выберите способ получение"),
+                                                    child: Text("Выбрать способ доставки"),
                                                   ),
                                                   value: deliveryType == "pickup"
                                                       ? "Самовывоз" :

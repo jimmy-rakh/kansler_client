@@ -35,7 +35,7 @@ class LoginFormWidget extends HookWidget {
         children: [
           AppTabBar(
             tabController: tabController,
-            tabList: const ['Физ. лицо', 'Юр. лицо'],
+            tabList: const ['Физическое лицо', 'Юридическое лицо'],
             indicatorPadding: EdgeInsets.zero,
             labelPadding: const EdgeInsets.symmetric(vertical: 10),
             mainRadius: 0,

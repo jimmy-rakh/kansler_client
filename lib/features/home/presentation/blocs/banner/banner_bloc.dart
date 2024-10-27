@@ -62,7 +62,6 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> with MainBoxMixin {
   }
 
   void _onFetchById(_FetchById event, Emitter<BannerState> emit) async {
-    emit(const BannerState.loadInProgress());
     final res = await _repository.fetchPosterById(event.id!);
 
     res.fold(log.e, (r) {

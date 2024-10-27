@@ -69,7 +69,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                         children: [
                           const Padding(
                             padding: EdgeInsets.only(left: 12, bottom: 12),
-                            child: Text("Выберите тип оплаты"),
+                            child: Text("Выбрать способ оплаты"),
                           ),
                           Container(
                             decoration: BoxDecoration(
@@ -92,19 +92,18 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                                     elevation: 0,
                                     hint: const Padding(
                                       padding: EdgeInsets.all(8.0),
-                                      child: Text("Выберите тип оплаты"),
+                                      child: Text("Выбрать способ оплаты"),
                                     ),
                                     value: paymentType == "byTransfer"
-                                        ? "Перечислением"
-                                        : paymentType == "byCash"
-                                            ? "Наличными"
-                                            : paymentType == "byCard"
-                                                ? "Картой"
-                                                : paymentType,
+                                        ? "Перечисление на расчетный счет" :
+                                    paymentType == "byCash"
+                                        ? "Оплатить через CLICK" :
+                                    paymentType == "byCard"
+                                        ? "Оплатить картой UzCard или HUMO" : paymentType,
                                     items: <String>[
-                                      "Перечислением",
-                                      "Наличными",
-                                      "Картой"
+                                      "Перечисление на расчетный счет",
+                                      "Оплатить через CLICK",
+                                      "Оплатить картой UzCard или HUMO"
                                     ].map((String value) {
                                       return DropdownMenuItem<String>(
                                         value: value,
@@ -131,7 +130,7 @@ class CheckoutScreen extends HookWidget implements AutoRouteWrapper {
                           verticalSpace12,
                           const Padding(
                             padding: EdgeInsets.only(left: 12, bottom: 12),
-                            child: Text("Выберите способ получение"),
+                            child: Text("Выбрать способ доставки"),
                           ),
                           Container(
                             decoration: BoxDecoration(

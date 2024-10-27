@@ -60,11 +60,11 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
 
   void _paymentType(_PaymentType event, Emitter<CheckoutState> emit) async {
     emit((state as _Ready).copyWith(paymentType:
-    event.paymentType == "Перечислением"
+    event.paymentType == "Перечисление на расчетный счет"
         ? "byTransfer" :
-    event.paymentType == "Наличными"
+    event.paymentType == "Оплатить через CLICK"
         ? "byCash" :
-    event.paymentType == "Картой"
+    event.paymentType == "Оплатить картой UzCard или HUMO"
         ? "byCard" : event.paymentType));
     print(event.paymentType);
   }

@@ -52,7 +52,7 @@ class DioClient with MainBoxMixin {
       final dio = _createDio();
 
       if (!_isUnitTest) {
-        dio.interceptors.addAll([LoggerInterceptor(), ResponseInterceptor()]);
+        dio.interceptors.addAll([ ResponseInterceptor()]);
       }
 
       return dio;

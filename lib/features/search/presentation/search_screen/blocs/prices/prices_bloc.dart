@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:kansler/features/search/domain/entities/search.entity.dart';
 import 'package:kansler/features/search/domain/repositories/search.repository.dart';
-// import 'dart:html' as html;
+import 'dart:html' as html;
 
 part 'prices_state.dart';
 part 'prices_event.dart';
@@ -30,19 +30,19 @@ class PricesBloc extends Bloc<PricesEvent, PricesState> {
     });
   }
   void downloadFile(String url) {
-    // final anchor =
-//         html.AnchorElement(href: 'data:application/octet-stream;base64,$url')
-//           ..target = 'blank';
+    final anchor =
+        html.AnchorElement(href: 'data:application/octet-stream;base64,$url')
+          ..target = 'blank';
 
-// // add the name and extension
-//     anchor.download = 'price.xlsx';
+// add the name and extension
+    anchor.download = 'price.xlsx';
 
-// // add the anchor to the document body
+// add the anchor to the document body
 
-//     html.document.body?.append(anchor);
+    html.document.body?.append(anchor);
 
 // trigger download
-    // anchor.click();
-    // anchor.remove();
+    anchor.click();
+    anchor.remove();
   }
 }
