@@ -19,21 +19,27 @@ mixin _$BannerState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters, int? index) success,
+    required TResult Function(int? index, List<PostersDto>? posters,
+            PostersDto? poster, List<ProductEntity>? products)
+        success,
     required TResult Function() failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters, int? index)? success,
+    TResult? Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult? Function()? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters, int? index)? success,
+    TResult Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult Function()? failure,
     required TResult orElse(),
   }) =>
@@ -125,7 +131,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters, int? index) success,
+    required TResult Function(int? index, List<PostersDto>? posters,
+            PostersDto? poster, List<ProductEntity>? products)
+        success,
     required TResult Function() failure,
   }) {
     return loadInProgress();
@@ -135,7 +143,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters, int? index)? success,
+    TResult? Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult? Function()? failure,
   }) {
     return loadInProgress?.call();
@@ -145,7 +155,9 @@ class _$LoadInProgressImpl implements _LoadInProgress {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters, int? index)? success,
+    TResult Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -200,7 +212,13 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<PostersDto> posters, int? index});
+  $Res call(
+      {int? index,
+      List<PostersDto>? posters,
+      PostersDto? poster,
+      List<ProductEntity>? products});
+
+  $PostersDtoCopyWith<$Res>? get poster;
 }
 
 /// @nodoc
@@ -216,43 +234,85 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? posters = null,
     Object? index = freezed,
+    Object? posters = freezed,
+    Object? poster = freezed,
+    Object? products = freezed,
   }) {
     return _then(_$SuccessImpl(
-      null == posters
-          ? _value._posters
-          : posters // ignore: cast_nullable_to_non_nullable
-              as List<PostersDto>,
       index: freezed == index
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int?,
+      posters: freezed == posters
+          ? _value._posters
+          : posters // ignore: cast_nullable_to_non_nullable
+              as List<PostersDto>?,
+      poster: freezed == poster
+          ? _value.poster
+          : poster // ignore: cast_nullable_to_non_nullable
+              as PostersDto?,
+      products: freezed == products
+          ? _value._products
+          : products // ignore: cast_nullable_to_non_nullable
+              as List<ProductEntity>?,
     ));
+  }
+
+  /// Create a copy of BannerState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $PostersDtoCopyWith<$Res>? get poster {
+    if (_value.poster == null) {
+      return null;
+    }
+
+    return $PostersDtoCopyWith<$Res>(_value.poster!, (value) {
+      return _then(_value.copyWith(poster: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$SuccessImpl implements _Success {
-  const _$SuccessImpl(final List<PostersDto> posters, {this.index = 0})
-      : _posters = posters;
-
-  final List<PostersDto> _posters;
-  @override
-  List<PostersDto> get posters {
-    if (_posters is EqualUnmodifiableListView) return _posters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_posters);
-  }
+  const _$SuccessImpl(
+      {this.index = 0,
+      final List<PostersDto>? posters,
+      this.poster,
+      final List<ProductEntity>? products})
+      : _posters = posters,
+        _products = products;
 
   @override
   @JsonKey()
   final int? index;
+  final List<PostersDto>? _posters;
+  @override
+  List<PostersDto>? get posters {
+    final value = _posters;
+    if (value == null) return null;
+    if (_posters is EqualUnmodifiableListView) return _posters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final PostersDto? poster;
+  final List<ProductEntity>? _products;
+  @override
+  List<ProductEntity>? get products {
+    final value = _products;
+    if (value == null) return null;
+    if (_products is EqualUnmodifiableListView) return _products;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'BannerState.success(posters: $posters, index: $index)';
+    return 'BannerState.success(index: $index, posters: $posters, poster: $poster, products: $products)';
   }
 
   @override
@@ -260,13 +320,19 @@ class _$SuccessImpl implements _Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
+            (identical(other.index, index) || other.index == index) &&
             const DeepCollectionEquality().equals(other._posters, _posters) &&
-            (identical(other.index, index) || other.index == index));
+            (identical(other.poster, poster) || other.poster == poster) &&
+            const DeepCollectionEquality().equals(other._products, _products));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_posters), index);
+      runtimeType,
+      index,
+      const DeepCollectionEquality().hash(_posters),
+      poster,
+      const DeepCollectionEquality().hash(_products));
 
   /// Create a copy of BannerState
   /// with the given fields replaced by the non-null parameter values.
@@ -280,32 +346,38 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters, int? index) success,
+    required TResult Function(int? index, List<PostersDto>? posters,
+            PostersDto? poster, List<ProductEntity>? products)
+        success,
     required TResult Function() failure,
   }) {
-    return success(posters, index);
+    return success(index, posters, poster, products);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters, int? index)? success,
+    TResult? Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult? Function()? failure,
   }) {
-    return success?.call(posters, index);
+    return success?.call(index, posters, poster, products);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters, int? index)? success,
+    TResult Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(posters, index);
+      return success(index, posters, poster, products);
     }
     return orElse();
   }
@@ -346,11 +418,16 @@ class _$SuccessImpl implements _Success {
 }
 
 abstract class _Success implements BannerState {
-  const factory _Success(final List<PostersDto> posters, {final int? index}) =
-      _$SuccessImpl;
+  const factory _Success(
+      {final int? index,
+      final List<PostersDto>? posters,
+      final PostersDto? poster,
+      final List<ProductEntity>? products}) = _$SuccessImpl;
 
-  List<PostersDto> get posters;
   int? get index;
+  List<PostersDto>? get posters;
+  PostersDto? get poster;
+  List<ProductEntity>? get products;
 
   /// Create a copy of BannerState
   /// with the given fields replaced by the non-null parameter values.
@@ -401,7 +478,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadInProgress,
-    required TResult Function(List<PostersDto> posters, int? index) success,
+    required TResult Function(int? index, List<PostersDto>? posters,
+            PostersDto? poster, List<ProductEntity>? products)
+        success,
     required TResult Function() failure,
   }) {
     return failure();
@@ -411,7 +490,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadInProgress,
-    TResult? Function(List<PostersDto> posters, int? index)? success,
+    TResult? Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult? Function()? failure,
   }) {
     return failure?.call();
@@ -421,7 +502,9 @@ class _$FailureImpl implements _Failure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadInProgress,
-    TResult Function(List<PostersDto> posters, int? index)? success,
+    TResult Function(int? index, List<PostersDto>? posters, PostersDto? poster,
+            List<ProductEntity>? products)?
+        success,
     TResult Function()? failure,
     required TResult orElse(),
   }) {
@@ -475,6 +558,8 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
@@ -483,6 +568,8 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
@@ -491,6 +578,8 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
@@ -500,6 +589,8 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
@@ -508,6 +599,8 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
@@ -516,6 +609,8 @@ mixin _$BannerEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
@@ -587,6 +682,8 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
@@ -598,6 +695,8 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
@@ -609,6 +708,8 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
@@ -624,6 +725,8 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
@@ -635,6 +738,8 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
@@ -646,6 +751,8 @@ class _$FetchImpl implements _Fetch {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
@@ -660,6 +767,335 @@ class _$FetchImpl implements _Fetch {
 
 abstract class _Fetch implements BannerEvent {
   const factory _Fetch() = _$FetchImpl;
+}
+
+/// @nodoc
+abstract class _$$FetchByIdImplCopyWith<$Res> {
+  factory _$$FetchByIdImplCopyWith(
+          _$FetchByIdImpl value, $Res Function(_$FetchByIdImpl) then) =
+      __$$FetchByIdImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? id});
+}
+
+/// @nodoc
+class __$$FetchByIdImplCopyWithImpl<$Res>
+    extends _$BannerEventCopyWithImpl<$Res, _$FetchByIdImpl>
+    implements _$$FetchByIdImplCopyWith<$Res> {
+  __$$FetchByIdImplCopyWithImpl(
+      _$FetchByIdImpl _value, $Res Function(_$FetchByIdImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_$FetchByIdImpl(
+      freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchByIdImpl implements _FetchById {
+  const _$FetchByIdImpl(this.id);
+
+  @override
+  final int? id;
+
+  @override
+  String toString() {
+    return 'BannerEvent.fetchById(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchByIdImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchByIdImplCopyWith<_$FetchByIdImpl> get copyWith =>
+      __$$FetchByIdImplCopyWithImpl<_$FetchByIdImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
+  }) {
+    return fetchById(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
+  }) {
+    return fetchById?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (fetchById != null) {
+      return fetchById(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
+  }) {
+    return fetchById(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
+  }) {
+    return fetchById?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (fetchById != null) {
+      return fetchById(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchById implements BannerEvent {
+  const factory _FetchById(final int? id) = _$FetchByIdImpl;
+
+  int? get id;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FetchByIdImplCopyWith<_$FetchByIdImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FetchBannerProductsImplCopyWith<$Res> {
+  factory _$$FetchBannerProductsImplCopyWith(_$FetchBannerProductsImpl value,
+          $Res Function(_$FetchBannerProductsImpl) then) =
+      __$$FetchBannerProductsImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int? id});
+}
+
+/// @nodoc
+class __$$FetchBannerProductsImplCopyWithImpl<$Res>
+    extends _$BannerEventCopyWithImpl<$Res, _$FetchBannerProductsImpl>
+    implements _$$FetchBannerProductsImplCopyWith<$Res> {
+  __$$FetchBannerProductsImplCopyWithImpl(_$FetchBannerProductsImpl _value,
+      $Res Function(_$FetchBannerProductsImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = freezed,
+  }) {
+    return _then(_$FetchBannerProductsImpl(
+      freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$FetchBannerProductsImpl implements _FetchBannerProducts {
+  const _$FetchBannerProductsImpl(this.id);
+
+  @override
+  final int? id;
+
+  @override
+  String toString() {
+    return 'BannerEvent.fetchBannerProducts(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FetchBannerProductsImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$FetchBannerProductsImplCopyWith<_$FetchBannerProductsImpl> get copyWith =>
+      __$$FetchBannerProductsImplCopyWithImpl<_$FetchBannerProductsImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
+    required TResult Function(int? index) onChange,
+    required TResult Function(int? index) onNext,
+    required TResult Function(int? index) onPrevious,
+  }) {
+    return fetchBannerProducts(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
+    TResult? Function(int? index)? onChange,
+    TResult? Function(int? index)? onNext,
+    TResult? Function(int? index)? onPrevious,
+  }) {
+    return fetchBannerProducts?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
+    TResult Function(int? index)? onChange,
+    TResult Function(int? index)? onNext,
+    TResult Function(int? index)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (fetchBannerProducts != null) {
+      return fetchBannerProducts(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
+    required TResult Function(_OnChange value) onChange,
+    required TResult Function(_OnNext value) onNext,
+    required TResult Function(_OnPrevious value) onPrevious,
+  }) {
+    return fetchBannerProducts(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
+    TResult? Function(_OnChange value)? onChange,
+    TResult? Function(_OnNext value)? onNext,
+    TResult? Function(_OnPrevious value)? onPrevious,
+  }) {
+    return fetchBannerProducts?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
+    TResult Function(_OnChange value)? onChange,
+    TResult Function(_OnNext value)? onNext,
+    TResult Function(_OnPrevious value)? onPrevious,
+    required TResult orElse(),
+  }) {
+    if (fetchBannerProducts != null) {
+      return fetchBannerProducts(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FetchBannerProducts implements BannerEvent {
+  const factory _FetchBannerProducts(final int? id) = _$FetchBannerProductsImpl;
+
+  int? get id;
+
+  /// Create a copy of BannerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$FetchBannerProductsImplCopyWith<_$FetchBannerProductsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -731,6 +1167,8 @@ class _$OnChangeImpl implements _OnChange {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
@@ -742,6 +1180,8 @@ class _$OnChangeImpl implements _OnChange {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
@@ -753,6 +1193,8 @@ class _$OnChangeImpl implements _OnChange {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
@@ -768,6 +1210,8 @@ class _$OnChangeImpl implements _OnChange {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
@@ -779,6 +1223,8 @@ class _$OnChangeImpl implements _OnChange {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
@@ -790,6 +1236,8 @@ class _$OnChangeImpl implements _OnChange {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
@@ -883,6 +1331,8 @@ class _$OnNextImpl implements _OnNext {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
@@ -894,6 +1344,8 @@ class _$OnNextImpl implements _OnNext {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
@@ -905,6 +1357,8 @@ class _$OnNextImpl implements _OnNext {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
@@ -920,6 +1374,8 @@ class _$OnNextImpl implements _OnNext {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
@@ -931,6 +1387,8 @@ class _$OnNextImpl implements _OnNext {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
@@ -942,6 +1400,8 @@ class _$OnNextImpl implements _OnNext {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,
@@ -1035,6 +1495,8 @@ class _$OnPreviousImpl implements _OnPrevious {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() fetch,
+    required TResult Function(int? id) fetchById,
+    required TResult Function(int? id) fetchBannerProducts,
     required TResult Function(int? index) onChange,
     required TResult Function(int? index) onNext,
     required TResult Function(int? index) onPrevious,
@@ -1046,6 +1508,8 @@ class _$OnPreviousImpl implements _OnPrevious {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? fetch,
+    TResult? Function(int? id)? fetchById,
+    TResult? Function(int? id)? fetchBannerProducts,
     TResult? Function(int? index)? onChange,
     TResult? Function(int? index)? onNext,
     TResult? Function(int? index)? onPrevious,
@@ -1057,6 +1521,8 @@ class _$OnPreviousImpl implements _OnPrevious {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? fetch,
+    TResult Function(int? id)? fetchById,
+    TResult Function(int? id)? fetchBannerProducts,
     TResult Function(int? index)? onChange,
     TResult Function(int? index)? onNext,
     TResult Function(int? index)? onPrevious,
@@ -1072,6 +1538,8 @@ class _$OnPreviousImpl implements _OnPrevious {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Fetch value) fetch,
+    required TResult Function(_FetchById value) fetchById,
+    required TResult Function(_FetchBannerProducts value) fetchBannerProducts,
     required TResult Function(_OnChange value) onChange,
     required TResult Function(_OnNext value) onNext,
     required TResult Function(_OnPrevious value) onPrevious,
@@ -1083,6 +1551,8 @@ class _$OnPreviousImpl implements _OnPrevious {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Fetch value)? fetch,
+    TResult? Function(_FetchById value)? fetchById,
+    TResult? Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult? Function(_OnChange value)? onChange,
     TResult? Function(_OnNext value)? onNext,
     TResult? Function(_OnPrevious value)? onPrevious,
@@ -1094,6 +1564,8 @@ class _$OnPreviousImpl implements _OnPrevious {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Fetch value)? fetch,
+    TResult Function(_FetchById value)? fetchById,
+    TResult Function(_FetchBannerProducts value)? fetchBannerProducts,
     TResult Function(_OnChange value)? onChange,
     TResult Function(_OnNext value)? onNext,
     TResult Function(_OnPrevious value)? onPrevious,

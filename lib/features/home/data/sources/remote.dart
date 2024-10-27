@@ -7,8 +7,12 @@ import '../models/session_key.dart';
 abstract class ProductRemoteSource {
   Future<Either<Failure, SessionKey>> session();
 
-  Future<Either<Failure,List<PostersDto>>>
-  fetchPosters();
+  Future<Either<Failure,List<PostersDto>>> fetchPosters();
+
+  Future<Either<Failure,PostersDto>> fetchPosterById(int id);
+
+  Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>> fetchPosterProducts(
+      int? pageNumber, int? pageSize,int id);
 
   Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>>
       fetchLatest(

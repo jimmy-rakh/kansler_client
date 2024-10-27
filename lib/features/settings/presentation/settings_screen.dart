@@ -10,7 +10,7 @@ import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-// import 'dart:html' as html if (kIsWeb) '';
+import 'dart:html' as html;
 import '../../../app/router.dart';
 import '../../../core/constants/kaze_icons.dart';
 import '../../../core/style/colors.dart';

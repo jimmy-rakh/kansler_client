@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../core/error/failure.dart';
+import '../../../product/data/models/product_dto.dart';
 import '../../../product/domain/entities/product.entity.dart';
 import '../../domain/repositories/products.repository.dart';
 import '../models/posters_dto.dart';
@@ -24,6 +25,28 @@ class ProductsRepositoryImpl implements ProductsRepository {
   Future<Either<Failure, List<PostersDto>>> fetchPosters() async {
     final result = await _productRemoteSource.fetchPosters();
     return result;
+  }
+  @override
+  Future<Either<Failure,PostersDto>> fetchPosterById(int id) async {
+    final result = await _productRemoteSource.fetchPosterById(id);
+    return result;
+  }
+
+  @override
+  Future<Either<Failure, ({bool hasNext, List<ProductEntity> products})>> fetchPosterProducts(
+      {int? id, int? pageNumber, int? pageSize,}) async {
+    final result = await _productRemoteSource.fetchPosterProducts(
+      pageNumber,
+      pageSize,
+      id!
+    );
+
+    return result.fold(
+          (l) => Left(l),
+          (r) => Right(
+        (hasNext: r.hasNext, products: r.products.map((e) => e.toEntity()).toList()),
+      ),
+    );
   }
 
   @override
@@ -84,16 +107,6 @@ class ProductsRepositoryImpl implements ProductsRepository {
   }
 
   @override
-  Future<Either<Failure, ProductEntity>> fetchProduct(int id) async {
-    final result = await _productRemoteSource.fetchProduct(id);
-
-    return result.fold(
-      (l) => Left(l),
-      (r) => Right(r.toEntity()),
-    );
-  }
-
-  @override
   Future<Either<Failure, ({bool hasNext, List<ProductEntity> products})>>
       fetchDiscount(int? pageNumber, int? pageSize) async {
     final result = await _productRemoteSource.fetchDiscount(
@@ -109,6 +122,16 @@ class ProductsRepositoryImpl implements ProductsRepository {
           products: r.products.map((e) => e.toEntity()).toList()
         ),
       ),
+    );
+  }
+
+  @override
+  Future<Either<Failure, ProductEntity>> fetchProduct(int id) async {
+    final result = await _productRemoteSource.fetchProduct(id);
+
+    return result.fold(
+          (l) => Left(l),
+          (r) => Right(r.toEntity()),
     );
   }
 }

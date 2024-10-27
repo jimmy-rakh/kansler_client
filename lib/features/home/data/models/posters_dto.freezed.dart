@@ -24,6 +24,7 @@ mixin _$PostersDto {
   String? get posterType => throw _privateConstructorUsedError;
   String? get imgMobile => throw _privateConstructorUsedError;
   String? get imgWeb => throw _privateConstructorUsedError;
+  Notification? get notification => throw _privateConstructorUsedError;
 
   /// Serializes this PostersDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,14 @@ abstract class $PostersDtoCopyWith<$Res> {
           PostersDto value, $Res Function(PostersDto) then) =
       _$PostersDtoCopyWithImpl<$Res, PostersDto>;
   @useResult
-  $Res call({int id, String? posterType, String? imgMobile, String? imgWeb});
+  $Res call(
+      {int id,
+      String? posterType,
+      String? imgMobile,
+      String? imgWeb,
+      Notification? notification});
+
+  $NotificationCopyWith<$Res>? get notification;
 }
 
 /// @nodoc
@@ -63,6 +71,7 @@ class _$PostersDtoCopyWithImpl<$Res, $Val extends PostersDto>
     Object? posterType = freezed,
     Object? imgMobile = freezed,
     Object? imgWeb = freezed,
+    Object? notification = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,7 +90,25 @@ class _$PostersDtoCopyWithImpl<$Res, $Val extends PostersDto>
           ? _value.imgWeb
           : imgWeb // ignore: cast_nullable_to_non_nullable
               as String?,
+      notification: freezed == notification
+          ? _value.notification
+          : notification // ignore: cast_nullable_to_non_nullable
+              as Notification?,
     ) as $Val);
+  }
+
+  /// Create a copy of PostersDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $NotificationCopyWith<$Res>? get notification {
+    if (_value.notification == null) {
+      return null;
+    }
+
+    return $NotificationCopyWith<$Res>(_value.notification!, (value) {
+      return _then(_value.copyWith(notification: value) as $Val);
+    });
   }
 }
 
@@ -93,7 +120,15 @@ abstract class _$$PostersDtoImplCopyWith<$Res>
       __$$PostersDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? posterType, String? imgMobile, String? imgWeb});
+  $Res call(
+      {int id,
+      String? posterType,
+      String? imgMobile,
+      String? imgWeb,
+      Notification? notification});
+
+  @override
+  $NotificationCopyWith<$Res>? get notification;
 }
 
 /// @nodoc
@@ -113,6 +148,7 @@ class __$$PostersDtoImplCopyWithImpl<$Res>
     Object? posterType = freezed,
     Object? imgMobile = freezed,
     Object? imgWeb = freezed,
+    Object? notification = freezed,
   }) {
     return _then(_$PostersDtoImpl(
       id: null == id
@@ -131,6 +167,10 @@ class __$$PostersDtoImplCopyWithImpl<$Res>
           ? _value.imgWeb
           : imgWeb // ignore: cast_nullable_to_non_nullable
               as String?,
+      notification: freezed == notification
+          ? _value.notification
+          : notification // ignore: cast_nullable_to_non_nullable
+              as Notification?,
     ));
   }
 }
@@ -139,7 +179,11 @@ class __$$PostersDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PostersDtoImpl implements _PostersDto {
   _$PostersDtoImpl(
-      {required this.id, this.posterType, this.imgMobile, this.imgWeb});
+      {required this.id,
+      this.posterType,
+      this.imgMobile,
+      this.imgWeb,
+      this.notification});
 
   factory _$PostersDtoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PostersDtoImplFromJson(json);
@@ -152,10 +196,12 @@ class _$PostersDtoImpl implements _PostersDto {
   final String? imgMobile;
   @override
   final String? imgWeb;
+  @override
+  final Notification? notification;
 
   @override
   String toString() {
-    return 'PostersDto(id: $id, posterType: $posterType, imgMobile: $imgMobile, imgWeb: $imgWeb)';
+    return 'PostersDto(id: $id, posterType: $posterType, imgMobile: $imgMobile, imgWeb: $imgWeb, notification: $notification)';
   }
 
   @override
@@ -168,13 +214,15 @@ class _$PostersDtoImpl implements _PostersDto {
                 other.posterType == posterType) &&
             (identical(other.imgMobile, imgMobile) ||
                 other.imgMobile == imgMobile) &&
-            (identical(other.imgWeb, imgWeb) || other.imgWeb == imgWeb));
+            (identical(other.imgWeb, imgWeb) || other.imgWeb == imgWeb) &&
+            (identical(other.notification, notification) ||
+                other.notification == notification));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, posterType, imgMobile, imgWeb);
+      Object.hash(runtimeType, id, posterType, imgMobile, imgWeb, notification);
 
   /// Create a copy of PostersDto
   /// with the given fields replaced by the non-null parameter values.
@@ -197,7 +245,8 @@ abstract class _PostersDto implements PostersDto {
       {required final int id,
       final String? posterType,
       final String? imgMobile,
-      final String? imgWeb}) = _$PostersDtoImpl;
+      final String? imgWeb,
+      final Notification? notification}) = _$PostersDtoImpl;
 
   factory _PostersDto.fromJson(Map<String, dynamic> json) =
       _$PostersDtoImpl.fromJson;
@@ -210,6 +259,8 @@ abstract class _PostersDto implements PostersDto {
   String? get imgMobile;
   @override
   String? get imgWeb;
+  @override
+  Notification? get notification;
 
   /// Create a copy of PostersDto
   /// with the given fields replaced by the non-null parameter values.

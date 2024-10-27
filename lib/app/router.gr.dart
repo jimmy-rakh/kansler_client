@@ -34,6 +34,19 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const AuthScreen(),
       );
     },
+    BannerRoute.name: (routeData) {
+      final pathParams = routeData.inheritedPathParams;
+      final args = routeData.argsAs<BannerRouteArgs>(
+          orElse: () => BannerRouteArgs(id: pathParams.getInt('id')));
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: BannerScreen(
+          key: args.key,
+          id: args.id,
+          poster: args.poster,
+        ),
+      );
+    },
     CartRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -97,6 +110,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
+      );
+    },
+    HomeWrapperRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const HomeWrapperScreen(),
       );
     },
     LimitsRoute.name: (routeData) {
@@ -305,6 +324,49 @@ class AuthRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [BannerScreen]
+class BannerRoute extends PageRouteInfo<BannerRouteArgs> {
+  BannerRoute({
+    Key? key,
+    required int id,
+    PostersDto? poster,
+    List<PageRouteInfo>? children,
+  }) : super(
+          BannerRoute.name,
+          args: BannerRouteArgs(
+            key: key,
+            id: id,
+            poster: poster,
+          ),
+          rawPathParams: {'id': id},
+          initialChildren: children,
+        );
+
+  static const String name = 'BannerRoute';
+
+  static const PageInfo<BannerRouteArgs> page = PageInfo<BannerRouteArgs>(name);
+}
+
+class BannerRouteArgs {
+  const BannerRouteArgs({
+    this.key,
+    required this.id,
+    this.poster,
+  });
+
+  final Key? key;
+
+  final int id;
+
+  final PostersDto? poster;
+
+  @override
+  String toString() {
+    return 'BannerRouteArgs{key: $key, id: $id, poster: $poster}';
+  }
+}
+
+/// generated route for
 /// [CartScreen]
 class CartRoute extends PageRouteInfo<void> {
   const CartRoute({List<PageRouteInfo>? children})
@@ -487,6 +549,20 @@ class HomeRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'HomeRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [HomeWrapperScreen]
+class HomeWrapperRoute extends PageRouteInfo<void> {
+  const HomeWrapperRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeWrapperRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeWrapperRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

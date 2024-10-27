@@ -8,8 +8,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/core/extensions/context.dart';
-import 'package:kansler/features/search/presentation/search_screen/widgets/brands_section.dart';
-import 'package:kansler/features/search/presentation/search_screen/widgets/brands_view.dart';
 import 'package:kansler/features/search/presentation/search_screen/widgets/categories_section.dart';
 import 'package:kansler/features/search/presentation/search_screen/widgets/categories_view.dart';
 import '../../../../app/di.dart';

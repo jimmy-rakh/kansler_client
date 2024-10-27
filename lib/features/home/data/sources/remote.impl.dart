@@ -47,6 +47,36 @@ class ProductRemoteSourceImpl implements ProductRemoteSource {
   }
 
   @override
+  Future<Either<Failure,PostersDto>> fetchPosterById(int id) async {
+    final res = await _dio.getRequest<PostersDto>(
+      "${ProductRemoteKeys.posters}/$id",
+      converter: (response) =>
+          PostersDto.fromJson(response as Map<String, dynamic>),
+    );
+
+    return res;
+  }
+
+  @override
+  Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>> fetchPosterProducts(
+      int? pageNumber, int? pageSize,int id) async {
+    final result = await _dio.getRequest(
+      '${ProductRemoteKeys.posters}/$id/products?${pageNumber == null ? '' : '${NetworkConstants.pageNumber.replaceAll('num', '$pageNumber')}&'}${NetworkConstants.pageSize.replaceAll('num', '${pageSize ?? 1}')}',
+      converter: (response) {
+        final res =
+        PaginationResponse.fromJson(response as Map<String, dynamic>);
+
+        final products =
+        res.results.map((e) => ProductDto.fromJson(e)).toList();
+
+        return (hasNext: res.next != null, products: products);
+      },
+    );
+
+    return result;
+  }
+
+  @override
   Future<Either<Failure, ({bool hasNext, List<ProductDto> products})>> fetchHit(
       int? pageNumber, int? pageSize) async {
     final result = await _dio.getRequest(

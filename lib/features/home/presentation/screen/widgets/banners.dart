@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
+import 'package:kansler/app/router.dart';
 import 'package:kansler/core/extensions/context.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 import '../../../../../core/constants/app_illustrations.dart';
@@ -18,12 +19,18 @@ class BannerWidget extends HookWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<BannerBloc>();
     final state = useBlocBuilder(bloc);
+    useEffect(() {
+      bloc.add(const BannerEvent.fetch());
+
+      return null;
+    }, [bloc]);
 
     return SizedBox(
       height: context.isTablet
           ? context.height * .38
-          :context.isSmall ? context.height * .27
-          : 425,
+          : context.isSmall
+              ? context.height * .27
+              : 425,
       width: context.isDesktop ? 1280 : context.width,
       child: state.when(
         loadInProgress: () => Skeletonizer(
@@ -33,33 +40,41 @@ class BannerWidget extends HookWidget {
               width: context.width,
               height: context.isTablet
                   ? context.height * .38
-                  :context.isSmall ? context.height * .27
-                  : 420,
+                  : context.isSmall
+                      ? context.height * .27
+                      : 420,
               margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
               radius: 4,
               imageUrl: "",
             )),
-        success: (posters, index) {
-          if (posters.isEmpty) {
-            return SvgPicture.asset(AppIllustrations.empty);
+        success: (index,posters,poster,products) {
+          if (posters==null) {
+            return const SizedBox();
           }
-
           return Skeletonizer(
             enabled: posters.isEmpty,
             child: posters.isEmpty
-                ? const SizedBox()
+                ?  SizedBox(
+              height: context.isTablet
+                  ? context.height * .4
+                  : context.isSmall
+                  ? context.height * .27
+                  : 420,
+            )
                 : context.isSmall
                     ? CarouselSlider.builder(
                         itemCount: posters.length,
                         itemBuilder: (context, index, page) {
-                          final poster = posters[index];
+                          final  poster = posters[index];
                           return DefaultImageContainer(
+                            onTap: (){ router.push(BannerRoute(poster: poster,id: poster.id));},
                             fit: BoxFit.fill,
                             width: context.isDesktop ? 1280 : context.width,
-                            height:context.isTablet
+                            height: context.isTablet
                                 ? context.height * .4
-                                 :context.isSmall ? context.height * .27
-                                : 420,
+                                : context.isSmall
+                                    ? context.height * .27
+                                    : 420,
                             margin: const EdgeInsets.fromLTRB(12, 12, 12, 0),
                             radius: 4,
                             imageUrl: poster.imgMobile,
@@ -84,16 +99,18 @@ class BannerWidget extends HookWidget {
                               itemBuilder: (context, index, page) {
                                 final poster = posters[index];
                                 return DefaultImageContainer(
+                                  onTap: (){ router.push(BannerRoute(poster: poster,id: poster.id));},
                                   fit: BoxFit.fill,
-                                  width:
-                                      context.isDesktop ? 1280 : context.width,
+                                  width: context.isDesktop
+                                      ? 1280
+                                      : context.width,
                                   height: context.isTablet
                                       ? context.height * .38
                                       : context.isSmall
                                           ? context.height * .27
                                           : 420,
-                                  margin:
-                                      const EdgeInsets.fromLTRB(12, 12, 12, 0),
+                                  margin: const EdgeInsets.fromLTRB(
+                                      12, 12, 12, 0),
                                   radius: 4,
                                   imageUrl: context.isTablet
                                       ? poster.imgMobile
@@ -102,18 +119,18 @@ class BannerWidget extends HookWidget {
                               },
                               carouselController: bloc.buttonCarouselController,
                               options: CarouselOptions(
-                                onPageChanged: (index, reason) {
-                                  bloc.add(BannerEvent.onChange(index));
-                                },
-                                autoPlay: true,
-                                enlargeCenterPage: true,
-                                enableInfiniteScroll: true,
-                                pauseAutoPlayOnManualNavigate:false,
-                                viewportFraction: 1,
-                                aspectRatio: 2.0,
-                                initialPage: 2,
-                                scrollPhysics: const NeverScrollableScrollPhysics()
-                              ),
+                                  onPageChanged: (index, reason) {
+                                    bloc.add(BannerEvent.onChange(index));
+                                  },
+                                  autoPlay: true,
+                                  enlargeCenterPage: true,
+                                  enableInfiniteScroll: true,
+                                  pauseAutoPlayOnManualNavigate: false,
+                                  viewportFraction: 1,
+                                  aspectRatio: 2.0,
+                                  initialPage: 2,
+                                  scrollPhysics:
+                                      const NeverScrollableScrollPhysics()),
                             ),
                           ),
                           Positioned(
@@ -166,7 +183,8 @@ class BannerWidget extends HookWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: posters.asMap().entries.map((entry) {
+                                  children:
+                                      posters.asMap().entries.map((entry) {
                                     return GestureDetector(
                                       onTap: () => bloc.buttonCarouselController
                                           .animateToPage(entry.key),
@@ -177,14 +195,14 @@ class BannerWidget extends HookWidget {
                                             vertical: 8.0, horizontal: 4.0),
                                         decoration: BoxDecoration(
                                             shape: BoxShape.circle,
-                                            color: (Theme.of(context).brightness ==
+                                            color: (Theme.of(context)
+                                                            .brightness ==
                                                         Brightness.dark
                                                     ? Colors.white
                                                     : Colors.black)
-                                                .withOpacity(
-                                                    index == entry.key
-                                                        ? 0.9
-                                                        : 0.4)),
+                                                .withOpacity(index == entry.key
+                                                    ? 0.9
+                                                    : 0.4)),
                                       ),
                                     );
                                   }).toList(),

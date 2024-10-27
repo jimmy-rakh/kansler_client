@@ -12,6 +12,9 @@ import '../features/categories/presentation/screens/categories_wrapper.dart';
 import '../features/categories/presentation/screens/category/categories_screen.dart';
 import '../features/categories/presentation/screens/subcategory/subcategory_screen.dart';
 import '../features/checkout/presentation/checkout_screen/checkout_screen.dart';
+import '../features/home/data/models/posters_dto.dart';
+import '../features/home/presentation/screen/banner_screen.dart';
+import '../features/home/presentation/screen/home.dart';
 import '../features/home/presentation/screen/home_screen.dart';
 import '../features/limites/presentation/debt/debt_screen.dart';
 import '../features/limites/presentation/limits_screen/limits_screen.dart';
@@ -55,7 +58,10 @@ class AppRouter extends _$AppRouter {
         AutoRoute(
           path:"/", page: MainRoute.page, initial: true,
           children: [
-            AutoRoute(path:"main/", page: HomeRoute.page, ),
+            AutoRoute(path:"main/",page: HomeWrapperRoute.page, children: [
+              AutoRoute(path:"", page: HomeRoute.page, ),
+              AutoRoute(path:"banner//:id/",page: BannerRoute.page),
+            ]),
             AutoRoute(path:"categories/",page: CategoriesWrapperRoute.page, children: [
               AutoRoute(path:"",page: CategoriesRoute.page, ),
               AutoRoute(path:"subcategories/",page: SubcategoryRoute.page),

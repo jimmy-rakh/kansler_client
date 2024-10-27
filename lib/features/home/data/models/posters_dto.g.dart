@@ -12,6 +12,9 @@ _$PostersDtoImpl _$$PostersDtoImplFromJson(Map<String, dynamic> json) =>
       posterType: json['poster_type'] as String?,
       imgMobile: json['img_mobile'] as String?,
       imgWeb: json['img_web'] as String?,
+      notification: json['notification'] == null
+          ? null
+          : Notification.fromJson(json['notification'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$PostersDtoImplToJson(_$PostersDtoImpl instance) =>
@@ -20,4 +23,5 @@ Map<String, dynamic> _$$PostersDtoImplToJson(_$PostersDtoImpl instance) =>
       'poster_type': instance.posterType,
       'img_mobile': instance.imgMobile,
       'img_web': instance.imgWeb,
+      'notification': instance.notification?.toJson(),
     };
