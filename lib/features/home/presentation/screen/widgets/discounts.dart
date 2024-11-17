@@ -33,7 +33,7 @@ class DiscountsWidget extends HookWidget {
         Stack(
           children: [
             SizedBox(
-              height: 310,
+              height: context.height * .38,
               child: state.when(
                 loadInProgress: () => Skeletonizer(
                   enabled: true,
@@ -57,7 +57,9 @@ class DiscountsWidget extends HookWidget {
                   }
 
                   return ListView.separated(
-                    physics: context.isSmall ? null : const NeverScrollableScrollPhysics(),
+                    physics: context.isSmall
+                        ? null
+                        : const NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     controller: bloc.controllerProducts,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -68,7 +70,8 @@ class DiscountsWidget extends HookWidget {
                       width: context.isMobile ? context.width * .44 : 200,
                       product: products[index],
                       onCart: (type) {
-                        bloc.add(DiscountsEvent.addToCart(products[index].id,type));
+                        bloc.add(
+                            DiscountsEvent.addToCart(products[index].id, type));
                       },
                     ),
                   );
@@ -76,50 +79,54 @@ class DiscountsWidget extends HookWidget {
                 failure: () => const SizedBox(),
               ),
             ),
-            context.isSmall ? const SizedBox() : Positioned(
-              top: 100,
-              right: 4,
-              child: AppButton(
-                height: 40,
-                width: 40,
-                animate: true,
-                text: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: Colors.black,
-                  size: 15,
-                ),
-                textColor: Colors.black,
-                borderRadius: 50,
-                borderColor: AppColors.white,
-                padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-                fillColor: AppColors.bgLight,
-                onPressed: () {
-                  bloc.add(DiscountsEvent.positionNext(currentWidth));
-                },
-              ),
-            ),
-            context.isSmall ? const SizedBox() : Positioned(
-              top: 100,
-              left: 4,
-              child: AppButton(
-                height: 40,
-                width: 40,
-                animate: true,
-                text: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.black,
-                  size: 17,
-                ),
-                textColor: Colors.black,
-                borderRadius: 50,
-                borderColor: AppColors.white,
-                padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
-                fillColor: AppColors.bgLight,
-                onPressed: () {
-                  bloc.add(DiscountsEvent.position(currentWidth));
-                },
-              ),
-            )
+            context.isSmall
+                ? const SizedBox()
+                : Positioned(
+                    top: 100,
+                    right: 4,
+                    child: AppButton(
+                      height: 40,
+                      width: 40,
+                      animate: true,
+                      text: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: Colors.black,
+                        size: 15,
+                      ),
+                      textColor: Colors.black,
+                      borderRadius: 50,
+                      borderColor: AppColors.white,
+                      padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                      fillColor: AppColors.bgLight,
+                      onPressed: () {
+                        bloc.add(DiscountsEvent.positionNext(currentWidth));
+                      },
+                    ),
+                  ),
+            context.isSmall
+                ? const SizedBox()
+                : Positioned(
+                    top: 100,
+                    left: 4,
+                    child: AppButton(
+                      height: 40,
+                      width: 40,
+                      animate: true,
+                      text: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.black,
+                        size: 17,
+                      ),
+                      textColor: Colors.black,
+                      borderRadius: 50,
+                      borderColor: AppColors.white,
+                      padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
+                      fillColor: AppColors.bgLight,
+                      onPressed: () {
+                        bloc.add(DiscountsEvent.position(currentWidth));
+                      },
+                    ),
+                  )
           ],
         )
       ],

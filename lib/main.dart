@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
@@ -38,6 +39,7 @@ import 'firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   configureDependencies(env: Environment.prod);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   try {
     await EasyLocalization.ensureInitialized();

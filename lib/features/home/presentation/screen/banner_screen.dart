@@ -6,6 +6,7 @@ import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:kansler/app/router.dart';
 import 'package:kansler/core/constants/constants.dart';
 import 'package:kansler/core/extensions/context.dart';
+import 'package:kansler/core/widgets/app_card.dart';
 import 'package:kansler/features/home/presentation/screen/widgets/default_image_container.dart';
 import '../../../../core/widgets/appbar.dart';
 import '../../../product/presentation/widgets/product_card.dart';
@@ -48,6 +49,29 @@ class BannerScreen extends HookWidget {
           ),
           success: (index, posters, poster, products) {
             return Scaffold(
+              appBar: AppBarWidget(
+                centerTitle: false,
+                leading: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: IconButton.filled(
+                    style: ButtonStyle(
+                      backgroundColor:
+                          WidgetStatePropertyAll(context.cardColor),
+                    ),
+                    onPressed: () {
+                      router.push(const MainRoute());
+                    },
+                    icon: const Icon(KazeIcons.arrowLeftOutline),
+                  ),
+                ),
+                leadingWidth: 58,
+                preferredSize: const Size.fromHeight(60),
+                child: Text(
+                  "${this.poster?.notification?.title ?? "${poster?.notification?.title ?? ""}"}",
+                  maxLines: 2,
+                  style: context.theme.textTheme.titleSmall,
+                ),
+              ),
               body: ListView(
                 children: [
                   poster?.imgWeb == null || poster?.imgMobile == null
@@ -59,27 +83,6 @@ class BannerScreen extends HookWidget {
                             ),
                             child: Column(
                               children: [
-                                Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8),
-                                      child: IconButton.filled(
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              WidgetStatePropertyAll(
-                                                  context.cardColor),
-                                        ),
-                                        onPressed: () {
-                                          router.push(const MainRoute());
-                                        },
-                                        icon: const Icon(
-                                            KazeIcons.arrowLeftOutline),
-                                      ),
-                                    ),
-                                    Text(
-                                        "${this.poster?.notification?.title ?? "${poster?.notification?.title ?? ""}"}"),
-                                  ],
-                                ),
                                 DefaultImageContainer(
                                   fit: BoxFit.fill,
                                   width:
@@ -100,7 +103,19 @@ class BannerScreen extends HookWidget {
                             ),
                           ),
                         ),
-                  verticalSpace60,
+                  verticalSpace12,
+                  AppCard(
+                    borderRadius: 6,
+                    width: context.width,
+                    margin: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
+                    child: Text(
+                      "${this.poster?.notification?.body ?? "${poster?.notification?.body ?? ""}"}",
+                      maxLines: 2,
+                      style: context.theme.textTheme.bodySmall,
+                    ),
+                  ),
+                  verticalSpace35,
                   products == null
                       ? const SizedBox()
                       : Center(
@@ -108,21 +123,24 @@ class BannerScreen extends HookWidget {
                             constraints: const BoxConstraints(
                               maxWidth: 1300,
                             ),
-                            child: Wrap(
-                              alignment: WrapAlignment.center,
-                              runSpacing: 24,
-                              spacing: 24,
-                              children: List.generate(
-                                products!.length,
-                                (index) => ProductCard.grid(
-                                  height: 200,
-                                  width: 200,
-                                  product: products![index],
-                                  onCart: (type) => bloc.add(
-                                      BannerEvent.addToCart(
-                                          products[index].id, type)),
-                                  fieldController: TextEditingController(),
-                                  onPressed: () {},
+                            child: Padding(
+                              padding: const EdgeInsets.all(6),
+                              child: Wrap(
+                                alignment: WrapAlignment.center,
+                                runSpacing: 10,
+                                spacing: 5,
+                                children: List.generate(
+                                  products.length,
+                                  (index) => ProductCard.grid(
+                                    height: 175,
+                                    width: 175,
+                                    product: products[index],
+                                    onCart: (type) => bloc.add(
+                                        BannerEvent.addToCart(
+                                            products[index].id, type)),
+                                    fieldController: TextEditingController(),
+                                    onPressed: () {},
+                                  ),
                                 ),
                               ),
                             ),

@@ -37,7 +37,7 @@ class HitsWidget extends HookWidget {
         Stack(
           children: [
             SizedBox(
-              height: 310,
+              height: context.height * .38,
               child: state.when(
                 loadInProgress: () => Skeletonizer(
                   enabled: true,
@@ -47,8 +47,8 @@ class HitsWidget extends HookWidget {
                     itemCount: 10,
                     separatorBuilder: (context, index) => horizontalSpace12,
                     itemBuilder: (context, index) => ProductCard.grid(
-                      height: context.isMobile ? context.height * .2 : 200,
-                      width: context.isMobile ? context.width * .44 : 200,
+                      height: context.isSmall ? context.height * .22 : 220,
+                      width: context.isSmall ? context.width * .44 : 200,
                       product: ProductEntity(id: 0, title: '', barcode: []),
                       onCart: (type) {},
                     ),

@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                     const Center(
                         child: BannerWidget()),
-                    const Center(child: StepCard()),
+                    // const Center(child: StepCard()),
                     Center(
                         child: ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 1300),

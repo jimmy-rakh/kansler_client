@@ -234,7 +234,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                     : "Добавить в корзину заказа",
                         child: AppButton(
                             animate: true,
-                            width: context.isMobile ? context.width * .12 : 50,
+                            width: context.isSmall ? context.width * .10 : 50,
                             fillColor:
                                 (product ?? cartProduct!.product)!.inCart ?? false
                                     ? AppColors.red
@@ -242,6 +242,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             text: const Icon(
                               KazeIcons.cartOutline,
                               color: AppColors.white,
+                              size: 22,
                             ),
                             textColor: AppColors.white,
                             onPressed: () {
