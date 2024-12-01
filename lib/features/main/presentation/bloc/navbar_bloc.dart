@@ -21,7 +21,7 @@ part 'navbar_state.dart';
 part 'navbar_event.dart';
 part 'navbar_bloc.freezed.dart';
 
-@injectable
+@lazySingleton
 class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
   final ProductsRepository _repository;
   final SetSession _setSessionUseCase;
@@ -104,16 +104,21 @@ class NavbarBloc extends Bloc<NavbarEvent, NavbarState> {
       latestBloc.add(const LatestEvent.fetch());
       discount.add(const DiscountsEvent.fetch());
     }
-    if(kIsWeb){
-    if(event.value==2) {
-      BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!).add(const CartEvent.retry());
-      BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!).add(const PreordersEvent.retry());
-    }}
+    if (kIsWeb) {
+      if (event.value == 2) {
+        BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!)
+            .add(const CartEvent.retry());
+        BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!)
+            .add(const PreordersEvent.retry());
+      }
+    }
 
     if ([3].contains(event.value) && !authenticated) {
       final res = await router.push(const AuthRoute());
       if (res == null) return;
     }
+
+    if (isClosed) return;
 
     currentState.tabsRouter.setActiveIndex(event.value);
   }

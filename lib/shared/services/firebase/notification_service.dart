@@ -61,8 +61,13 @@ class NotificationService {
 
   // Получение токена для уведомлений
   static Future<String?> getToken() async {
-    String? token = await _firebaseMessaging.getToken();
-    log.d("FCM Token: $token");
+    String? token;
+
+    try {
+      token = await _firebaseMessaging.getToken();
+    } catch (e) {
+      log.e('Ошибка при получении токена: $e');
+    }
     return token;
   }
 

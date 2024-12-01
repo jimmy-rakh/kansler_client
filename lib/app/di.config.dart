@@ -365,7 +365,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i881.LimitsCubit(gh<_i945.LimitsRepository>()));
     gh.factory<_i0.DebtCubit>(
         () => _i0.DebtCubit(gh<_i945.LimitsRepository>()));
-    gh.factory<_i923.NavbarBloc>(() => _i923.NavbarBloc(
+    gh.lazySingleton<_i923.NavbarBloc>(() => _i923.NavbarBloc(
           gh<_i453.ProductsRepository>(),
           gh<_i1018.SetSession>(),
           gh<_i766.AuthLocalDataSource>(),

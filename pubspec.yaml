@@ -19,7 +19,6 @@ dependencies:
   # Network
   dio: ^5.4.3+1
   dio_smart_retry: ^5.0.0
-  connectivity_plus: ^6.0.3
 
   # Logger
   logger: ^2.2.0

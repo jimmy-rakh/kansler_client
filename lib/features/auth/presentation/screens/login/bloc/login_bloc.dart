@@ -129,7 +129,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         value: address?.cid.toString() ??
             valueController.text.replaceAll(RegExp(r'[^0-9]'), ''),
         clientType: ClientType.values[state.tabIndex],
-        fcmToken: token ?? '',
+        fcmToken: token ?? 'none',
         device: deviceInfo,
       );
       final res = await _authRepository.authentification(request);
