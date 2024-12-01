@@ -12,7 +12,7 @@ class SplashScreen extends HookWidget implements AutoRouteWrapper {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(40),
@@ -24,7 +24,7 @@ class SplashScreen extends HookWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) => BlocProvider(
-        create: (ctx) => getIt<SplashBloc>(),
+        create: (ctx) => getIt<SplashBloc>()..add(const SplashEvent.init()),
         child: this,
       );
 }

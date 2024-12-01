@@ -54,7 +54,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
       latestBloc.add(const LatestEvent.fetch());
       ordersBloc.add(const OrdersEvent.fetchOrders());
 
-      router.replaceAll([const SplashRoute()]);
+      router.replaceAll([const MainRoute()]);
     });
   }
 

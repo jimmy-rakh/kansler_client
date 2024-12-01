@@ -21,12 +21,6 @@ class BottomBar extends HookWidget {
     final cartBloc = context.read<CartBloc>();
     final state = useBlocBuilder(cartBloc);
 
-    useEffect(() {
-      bloc.add(NavbarEvent.init(tabsRouter));
-
-      return null;
-    }, [bloc]);
-
     return Theme(
         data: ThemeData(
           splashColor: Colors.transparent,
@@ -57,57 +51,48 @@ class BottomBar extends HookWidget {
                             ? context.primary
                             : context.theme.iconTheme.color,
                       ),
-                      index == 2 ?
-                      state.whenOrNull(
-                          ready: (products, price,
-                              isMoreLoading) =>
-                          products.isEmpty
-                              ? const SizedBox(
-                            height: 17,
-                            width: 17,
-                          )
-                              : Positioned(
-                            top: 0,
-                                left: 15,
-                                child: Container(
-                                  height: 17,
-                                  width: 17,
-                                  decoration:
-                                  BoxDecoration(
-                                    color: Colors.red,
-                                    borderRadius:
-                                    BorderRadius
-                                        .circular(
-                                        25),
-                                  ),
-                                  constraints:
-                                  const BoxConstraints(
-                                    minWidth: 17,
-                                    minHeight: 17,
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                    const EdgeInsets
-                                        .all(0.5),
-                                    child: Text(
-                                      '${products.length == 0 ? "" : products.length}',
-                                      style:
-                                      const TextStyle(
-                                        color: Colors
-                                            .white,
-                                        fontSize: 11,
-                                      ),
-                                      textAlign:
-                                      TextAlign
-                                          .center,
-                                    ),
-                                  ),
-                                ),
-                              )) ??
-                          const SizedBox(
-                            height: 17,
-                            width: 17,
-                          )
+                      index == 2
+                          ? state.whenOrNull(
+                                  ready: (products, price, isMoreLoading) =>
+                                      products.isEmpty
+                                          ? const SizedBox(
+                                              height: 17,
+                                              width: 17,
+                                            )
+                                          : Positioned(
+                                              top: 0,
+                                              left: 15,
+                                              child: Container(
+                                                height: 17,
+                                                width: 17,
+                                                decoration: BoxDecoration(
+                                                  color: Colors.red,
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                ),
+                                                constraints:
+                                                    const BoxConstraints(
+                                                  minWidth: 17,
+                                                  minHeight: 17,
+                                                ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(0.5),
+                                                  child: Text(
+                                                    '${products.length == 0 ? "" : products.length}',
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 11,
+                                                    ),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                ),
+                                              ),
+                                            )) ??
+                              const SizedBox(
+                                height: 17,
+                                width: 17,
+                              )
                           : const SizedBox()
                     ],
                   ),
@@ -116,7 +101,9 @@ class BottomBar extends HookWidget {
               label: '',
             ),
           ),
-          onTap: (value) => bloc.add(NavbarEvent.changeIndex(value)),
+          onTap: (value) {
+            bloc.add(NavbarEvent.changeIndex(value));
+          },
         ));
   }
 }

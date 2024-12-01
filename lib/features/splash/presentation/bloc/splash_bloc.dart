@@ -8,17 +8,15 @@ part 'splash_state.dart';
 part 'splash_event.dart';
 part 'splash_bloc.freezed.dart';
 
-@singleton
+@injectable
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
   SplashBloc() : super(const SplashState.loadInProgress()) {
     on<_Init>(_onInit);
-
-    add(const SplashEvent.init());
   }
 
   void _onInit(_Init event, Emitter<SplashState> emit) {
     emit(const SplashState.ready());
 
-    router.push(const MainRoute());
+    router.replaceAll([const MainRoute()]);
   }
 }

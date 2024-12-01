@@ -219,7 +219,7 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i767.RecsBloc>(() => _i767.RecsBloc());
     gh.factory<_i1027.LastViewedBloc>(() => _i1027.LastViewedBloc());
     gh.factory<_i843.TemplatesBloc>(() => _i843.TemplatesBloc());
-    gh.singleton<_i357.SplashBloc>(() => _i357.SplashBloc());
+    gh.factory<_i357.SplashBloc>(() => _i357.SplashBloc());
     gh.lazySingleton<_i284.AppRouter>(() => _i284.AppRouter());
     gh.lazySingleton<_i1033.ThemeBloc>(() => _i1033.ThemeBloc());
     gh.factory<_i34.DeviceInfoService>(() => _i897.DeviceInfoServiceImpl());
