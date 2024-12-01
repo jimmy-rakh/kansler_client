@@ -6,7 +6,7 @@ import 'package:kansler/core/extensions/context.dart';
 import 'package:kansler/core/widgets/app_card.dart';
 import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
-import 'dart:html' as html;
+// import 'dart:html' as html;
 import '../../../../../core/style/colors.dart';
 
 class Footer extends HookWidget {
@@ -45,7 +45,8 @@ class Footer extends HookWidget {
                                     (BuildContext ctx, FollowLink? openLink) {
                                   return ElevatedButton(
                                     style: ButtonStyle(
-                                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                                      padding: WidgetStateProperty.all(
+                                          EdgeInsets.zero),
                                       elevation: WidgetStateProperty.all(0),
                                       backgroundColor: WidgetStateProperty.all(
                                           Colors.transparent),
@@ -54,11 +55,7 @@ class Footer extends HookWidget {
                                       overlayColor: WidgetStateProperty.all(
                                           Colors.transparent),
                                     ),
-                                    onPressed:
-                                    kIsWeb
-                                        ? () { html.window.open('https://apps.apple.com/us/app/kansler/id6670708652', 'new tab');} :
-
-                                    openLink,
+                                    onPressed: openLink,
                                     child: AppCard(
                                       height: 40,
                                       width: 110,
@@ -90,11 +87,7 @@ class Footer extends HookWidget {
                                       overlayColor: WidgetStateProperty.all(
                                           Colors.transparent),
                                     ),
-                                    onPressed:
-                                    kIsWeb
-                                        ? () { html.window.open('https://play.google.com/store/apps/details?id=uz.kansler.app', 'new tab');} :
-
-                                    openLink,
+                                    onPressed: openLink,
                                     child: AppCard(
                                       height: 40,
                                       width: 120,
@@ -268,7 +261,8 @@ class Footer extends HookWidget {
                                     (BuildContext ctx, FollowLink? openLink) {
                                   return ElevatedButton(
                                     style: ButtonStyle(
-                                      padding: WidgetStateProperty.all(EdgeInsets.zero),
+                                      padding: WidgetStateProperty.all(
+                                          EdgeInsets.zero),
                                       elevation: WidgetStateProperty.all(0),
                                       backgroundColor: WidgetStateProperty.all(
                                           Colors.transparent),
@@ -277,11 +271,7 @@ class Footer extends HookWidget {
                                       overlayColor: WidgetStateProperty.all(
                                           Colors.transparent),
                                     ),
-                                    onPressed:
-                                    kIsWeb
-                                        ? () { html.window.open('https://apps.apple.com/us/app/kansler/id6670708652', 'new tab');} :
-
-                                    openLink,
+                                    onPressed: openLink,
                                     child: AppCard(
                                       height: 40,
                                       width: 110,
@@ -313,11 +303,7 @@ class Footer extends HookWidget {
                                       overlayColor: WidgetStateProperty.all(
                                           Colors.transparent),
                                     ),
-                                    onPressed:
-                                    kIsWeb
-                                        ? () { html.window.open('https://play.google.com/store/apps/details?id=uz.kansler.app', 'new tab');} :
-
-                                    openLink,
+                                    onPressed: openLink,
                                     child: AppCard(
                                       height: 40,
                                       width: 120,
