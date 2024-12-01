@@ -100,7 +100,7 @@ class BannerWidget extends HookWidget {
                                             fillColor: context.primary,
                                             borderRadius: 4,
                                             padding:  const EdgeInsets.fromLTRB(15, 5, 15, 5),
-                                            child: const Text("Подробно"),),
+                                            child:  Text("Подробно",style: TextStyle(color: context.onPrimary),),),
                                         )
                                     ),
                                   ),

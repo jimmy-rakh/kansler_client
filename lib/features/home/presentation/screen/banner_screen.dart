@@ -104,15 +104,22 @@ class BannerScreen extends HookWidget {
                           ),
                         ),
                   verticalSpace12,
-                  AppCard(
-                    borderRadius: 6,
-                    width: context.width,
-                    margin: const EdgeInsets.all(12),
-                    padding: const EdgeInsets.all(12),
-                    child: Text(
-                      "${this.poster?.notification?.body ?? "${poster?.notification?.body ?? ""}"}",
-                      maxLines: 2,
-                      style: context.theme.textTheme.bodySmall,
+                  Center(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(
+                        maxWidth: 1300,
+                      ),
+                      child: AppCard(
+                        borderRadius: 6,
+                        width: context.width,
+                        margin: const EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
+                        child: Text(
+                          "${this.poster?.notification?.body ?? "${poster?.notification?.body ?? ""}"}",
+                          maxLines: 2,
+                          style: context.theme.textTheme.bodySmall,
+                        ),
+                      ),
                     ),
                   ),
                   verticalSpace35,
@@ -123,24 +130,21 @@ class BannerScreen extends HookWidget {
                             constraints: const BoxConstraints(
                               maxWidth: 1300,
                             ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(6),
-                              child: Wrap(
-                                alignment: WrapAlignment.center,
-                                runSpacing: 10,
-                                spacing: 5,
-                                children: List.generate(
-                                  products.length,
-                                  (index) => ProductCard.grid(
-                                    height: 175,
-                                    width: 175,
-                                    product: products[index],
-                                    onCart: (type) => bloc.add(
-                                        BannerEvent.addToCart(
-                                            products[index].id, type)),
-                                    fieldController: TextEditingController(),
-                                    onPressed: () {},
-                                  ),
+                            child: Wrap(
+                              alignment: WrapAlignment.center,
+                              runSpacing: 10,
+                              spacing: 5,
+                              children: List.generate(
+                                products.length,
+                                (index) => ProductCard.grid(
+                                  height: 175,
+                                  width: 185,
+                                  product: products[index],
+                                  onCart: (type) => bloc.add(
+                                      BannerEvent.addToCart(
+                                          products[index].id, type)),
+                                  fieldController: TextEditingController(),
+                                  onPressed: () {},
                                 ),
                               ),
                             ),

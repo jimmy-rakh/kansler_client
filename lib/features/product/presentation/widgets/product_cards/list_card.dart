@@ -155,19 +155,15 @@ class ProductListCard extends HookWidget implements ProductCard {
                               ),
                               horizontalSpace5,
                               product?.leftQuantity == 0
-                                  ?  AppCard(
-                                      fillColor: AppColors.red,
-                                      borderColor: AppColors.white,
-                                      borderRadius: 0,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4),
-                                        child: Text(
-                                          "Нет в наличии",
-                                          maxLines: 1,
-                                          style: TextStyle(fontSize: 10,color: context.onPrimary,),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
+                                  ?   AppCard(
+                                  fillColor: const Color.fromARGB(255, 0, 73, 208),
+                                  borderColor: AppColors.white,
+                                  borderRadius: 0,child: Padding(
+                                padding: const EdgeInsets.all(4),
+                                child: Text( "Под заказ" ,    maxLines: 1,
+                                  style: TextStyle(fontSize: 10,color: context.onPrimary,),
+                                  overflow: TextOverflow.ellipsis,),
+                              ))
                                   : const SizedBox(),
                             ],
                           ),

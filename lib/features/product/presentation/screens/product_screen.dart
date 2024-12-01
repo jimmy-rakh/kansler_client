@@ -250,9 +250,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                                         left:
                                                                             20),
                                                                 child: AppCard(
-                                                                    fillColor:
-                                                                        AppColors
-                                                                            .red,
+                                                                    fillColor:const Color.fromARGB(255, 0, 73, 208),
                                                                     borderColor:
                                                                         AppColors
                                                                             .white,
@@ -266,7 +264,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                                               8),
                                                                       child:
                                                                           Text(
-                                                                        "Нет в наличии",
+                                                                        "Под заказ",
                                                                         maxLines:
                                                                             1,
                                                                         style:
