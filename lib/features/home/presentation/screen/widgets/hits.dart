@@ -37,7 +37,7 @@ class HitsWidget extends HookWidget {
         Stack(
           children: [
             SizedBox(
-              height: context.height * .38,
+              height: context.height * .4,
               child: state.when(
                 loadInProgress: () => Skeletonizer(
                   enabled: true,

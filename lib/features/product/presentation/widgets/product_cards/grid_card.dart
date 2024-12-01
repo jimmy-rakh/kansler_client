@@ -122,11 +122,11 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                           Row(
                             children: [
                               product?.leftQuantity == 0 ?   AppCard(
-                                  fillColor: AppColors.red,
+                                  fillColor: const Color.fromARGB(255, 0, 73, 208),
                                   borderColor: AppColors.white,
                                   borderRadius: 0,child: Padding(
                                     padding: const EdgeInsets.all(4),
-                                    child: Text( "Нет в наличии" ,    maxLines: 1,
+                                    child: Text( "Под заказ" ,    maxLines: 1,
                                       style: TextStyle(fontSize: 10,color: context.onPrimary,),
                                       overflow: TextOverflow.ellipsis,),
                                   )) : const SizedBox(),
@@ -193,7 +193,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             borderRadius: 4,
                             animate: true,
                             textStyle:  TextStyle(fontSize:context.isSmall ? 9 : 10),
-                            height: 40,
+                            height: 30,
                             textColor: context.onPrimary,
                             onPressed: () {
                                     onCart.call(CheckoutType.preorder);
@@ -242,7 +242,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             text: const Icon(
                               KazeIcons.cartOutline,
                               color: AppColors.white,
-                              size: 22,
+                              size: 20,
                             ),
                             textColor: AppColors.white,
                             onPressed: () {
@@ -269,7 +269,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                               right: 10,
                             ),
                             padding: const EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 8),
+                                vertical: 6, horizontal: 6),
                             borderRadius: 4,
                           ),
                       ),
