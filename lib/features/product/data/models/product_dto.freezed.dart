@@ -33,6 +33,7 @@ mixin _$ProductDto {
   String? get vendorCode => throw _privateConstructorUsedError;
   String? get nds => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
+  int? get priceDiscount => throw _privateConstructorUsedError;
   String? get measure => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   bool? get actual => throw _privateConstructorUsedError;
@@ -52,6 +53,7 @@ mixin _$ProductDto {
   bool? get inPreorder => throw _privateConstructorUsedError;
   bool? get hasComment => throw _privateConstructorUsedError;
   List<StocksDto>? get stocks => throw _privateConstructorUsedError;
+  Contractor? get contractor => throw _privateConstructorUsedError;
 
   /// Serializes this ProductDto to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -83,6 +85,7 @@ abstract class $ProductDtoCopyWith<$Res> {
       String? vendorCode,
       String? nds,
       int? price,
+      int? priceDiscount,
       String? measure,
       String? description,
       bool? actual,
@@ -101,12 +104,14 @@ abstract class $ProductDtoCopyWith<$Res> {
       bool? inCart,
       bool? inPreorder,
       bool? hasComment,
-      List<StocksDto>? stocks});
+      List<StocksDto>? stocks,
+      Contractor? contractor});
 
   $ProductDataDtoCopyWith<$Res>? get organization;
   $ProductDataDtoCopyWith<$Res>? get category;
   $ProductDataDtoCopyWith<$Res>? get brand;
   $ProductDataDtoCopyWith<$Res>? get madeIn;
+  $ContractorCopyWith<$Res>? get contractor;
 }
 
 /// @nodoc
@@ -137,6 +142,7 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
+    Object? priceDiscount = freezed,
     Object? measure = freezed,
     Object? description = freezed,
     Object? actual = freezed,
@@ -156,6 +162,7 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
     Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
+    Object? contractor = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -209,6 +216,10 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int?,
+      priceDiscount: freezed == priceDiscount
+          ? _value.priceDiscount
+          : priceDiscount // ignore: cast_nullable_to_non_nullable
               as int?,
       measure: freezed == measure
           ? _value.measure
@@ -286,6 +297,10 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
           ? _value.stocks
           : stocks // ignore: cast_nullable_to_non_nullable
               as List<StocksDto>?,
+      contractor: freezed == contractor
+          ? _value.contractor
+          : contractor // ignore: cast_nullable_to_non_nullable
+              as Contractor?,
     ) as $Val);
   }
 
@@ -344,6 +359,20 @@ class _$ProductDtoCopyWithImpl<$Res, $Val extends ProductDto>
       return _then(_value.copyWith(madeIn: value) as $Val);
     });
   }
+
+  /// Create a copy of ProductDto
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContractorCopyWith<$Res>? get contractor {
+    if (_value.contractor == null) {
+      return null;
+    }
+
+    return $ContractorCopyWith<$Res>(_value.contractor!, (value) {
+      return _then(_value.copyWith(contractor: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -368,6 +397,7 @@ abstract class _$$ProductDtoImplCopyWith<$Res>
       String? vendorCode,
       String? nds,
       int? price,
+      int? priceDiscount,
       String? measure,
       String? description,
       bool? actual,
@@ -386,7 +416,8 @@ abstract class _$$ProductDtoImplCopyWith<$Res>
       bool? inCart,
       bool? inPreorder,
       bool? hasComment,
-      List<StocksDto>? stocks});
+      List<StocksDto>? stocks,
+      Contractor? contractor});
 
   @override
   $ProductDataDtoCopyWith<$Res>? get organization;
@@ -396,6 +427,8 @@ abstract class _$$ProductDtoImplCopyWith<$Res>
   $ProductDataDtoCopyWith<$Res>? get brand;
   @override
   $ProductDataDtoCopyWith<$Res>? get madeIn;
+  @override
+  $ContractorCopyWith<$Res>? get contractor;
 }
 
 /// @nodoc
@@ -424,6 +457,7 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
+    Object? priceDiscount = freezed,
     Object? measure = freezed,
     Object? description = freezed,
     Object? actual = freezed,
@@ -443,6 +477,7 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
     Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
+    Object? contractor = freezed,
   }) {
     return _then(_$ProductDtoImpl(
       id: null == id
@@ -496,6 +531,10 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int?,
+      priceDiscount: freezed == priceDiscount
+          ? _value.priceDiscount
+          : priceDiscount // ignore: cast_nullable_to_non_nullable
               as int?,
       measure: freezed == measure
           ? _value.measure
@@ -573,6 +612,10 @@ class __$$ProductDtoImplCopyWithImpl<$Res>
           ? _value._stocks
           : stocks // ignore: cast_nullable_to_non_nullable
               as List<StocksDto>?,
+      contractor: freezed == contractor
+          ? _value.contractor
+          : contractor // ignore: cast_nullable_to_non_nullable
+              as Contractor?,
     ));
   }
 }
@@ -594,6 +637,7 @@ class _$ProductDtoImpl extends _ProductDto {
       this.vendorCode,
       this.nds,
       this.price,
+      this.priceDiscount,
       this.measure,
       this.description,
       this.actual,
@@ -612,7 +656,8 @@ class _$ProductDtoImpl extends _ProductDto {
       this.inCart,
       this.inPreorder,
       this.hasComment,
-      final List<StocksDto>? stocks})
+      final List<StocksDto>? stocks,
+      this.contractor})
       : _barcode = barcode,
         _stocks = stocks,
         super._();
@@ -646,6 +691,8 @@ class _$ProductDtoImpl extends _ProductDto {
   final String? nds;
   @override
   final int? price;
+  @override
+  final int? priceDiscount;
   @override
   final String? measure;
   @override
@@ -701,8 +748,11 @@ class _$ProductDtoImpl extends _ProductDto {
   }
 
   @override
+  final Contractor? contractor;
+
+  @override
   String toString() {
-    return 'ProductDto(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, inPreorder: $inPreorder, hasComment: $hasComment, stocks: $stocks)';
+    return 'ProductDto(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, priceDiscount: $priceDiscount, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, inPreorder: $inPreorder, hasComment: $hasComment, stocks: $stocks, contractor: $contractor)';
   }
 
   @override
@@ -730,6 +780,8 @@ class _$ProductDtoImpl extends _ProductDto {
                 other.vendorCode == vendorCode) &&
             (identical(other.nds, nds) || other.nds == nds) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.priceDiscount, priceDiscount) ||
+                other.priceDiscount == priceDiscount) &&
             (identical(other.measure, measure) || other.measure == measure) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -758,7 +810,9 @@ class _$ProductDtoImpl extends _ProductDto {
                 other.inPreorder == inPreorder) &&
             (identical(other.hasComment, hasComment) ||
                 other.hasComment == hasComment) &&
-            const DeepCollectionEquality().equals(other._stocks, _stocks));
+            const DeepCollectionEquality().equals(other._stocks, _stocks) &&
+            (identical(other.contractor, contractor) ||
+                other.contractor == contractor));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -778,6 +832,7 @@ class _$ProductDtoImpl extends _ProductDto {
         vendorCode,
         nds,
         price,
+        priceDiscount,
         measure,
         description,
         actual,
@@ -796,7 +851,8 @@ class _$ProductDtoImpl extends _ProductDto {
         inCart,
         inPreorder,
         hasComment,
-        const DeepCollectionEquality().hash(_stocks)
+        const DeepCollectionEquality().hash(_stocks),
+        contractor
       ]);
 
   /// Create a copy of ProductDto
@@ -830,6 +886,7 @@ abstract class _ProductDto extends ProductDto {
       final String? vendorCode,
       final String? nds,
       final int? price,
+      final int? priceDiscount,
       final String? measure,
       final String? description,
       final bool? actual,
@@ -848,7 +905,8 @@ abstract class _ProductDto extends ProductDto {
       final bool? inCart,
       final bool? inPreorder,
       final bool? hasComment,
-      final List<StocksDto>? stocks}) = _$ProductDtoImpl;
+      final List<StocksDto>? stocks,
+      final Contractor? contractor}) = _$ProductDtoImpl;
   _ProductDto._() : super._();
 
   factory _ProductDto.fromJson(Map<String, dynamic> json) =
@@ -880,6 +938,8 @@ abstract class _ProductDto extends ProductDto {
   String? get nds;
   @override
   int? get price;
+  @override
+  int? get priceDiscount;
   @override
   String? get measure;
   @override
@@ -918,6 +978,8 @@ abstract class _ProductDto extends ProductDto {
   bool? get hasComment;
   @override
   List<StocksDto>? get stocks;
+  @override
+  Contractor? get contractor;
 
   /// Create a copy of ProductDto
   /// with the given fields replaced by the non-null parameter values.

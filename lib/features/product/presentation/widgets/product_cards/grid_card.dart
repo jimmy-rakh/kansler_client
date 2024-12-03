@@ -77,20 +77,22 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                       ),
                     )
                   : SizedBox(
-                height: height,
-                    width: width,
-                    child: ClipRRect(
+                      height: height,
+                      width: width,
+                      child: ClipRRect(
                         borderRadius: BorderRadius.circular(3),
                         child: kIsWeb
                             ? ImageNetwork(
                                 onTap: () => router.push(ProductRoute(
                                     product: product ?? cartProduct!.product!,
-                                    id: product?.id ?? cartProduct!.product!.id)),
+                                    id: product?.id ??
+                                        cartProduct!.product!.id)),
                                 onLoading: const SizedBox(),
                                 duration: 0,
                                 fitWeb: BoxFitWeb.contain,
                                 image: NetworkConstants.apiBaseUrl +
-                                    (product ?? cartProduct?.product)!.imageUrl!,
+                                    (product ?? cartProduct?.product)!
+                                        .imageUrl!,
                                 height: height,
                                 width: width,
                                 onError: Image.asset(
@@ -104,12 +106,13 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                 errorListener: (value) => log.e(
                                     '${product?.id ?? cartProduct?.product!.id}:${product?.title ?? cartProduct?.product!.title}\n$value'),
                                 imageUrl: NetworkConstants.apiBaseUrl +
-                                    (product ?? cartProduct?.product)!.imageUrl!,
+                                    (product ?? cartProduct?.product)!
+                                        .imageUrl!,
                                 errorWidget: (context, url, error) =>
                                     Image.asset(AppImages.noPhoto),
                               ),
                       ),
-                  ),
+                    ),
               (product ?? cartProduct?.product)?.brand?.name == null
                   ? const SizedBox()
                   : Positioned(
@@ -121,15 +124,25 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         children: [
                           Row(
                             children: [
-                              product?.leftQuantity == 0 ?   AppCard(
-                                  fillColor: const Color.fromARGB(255, 0, 73, 208),
-                                  borderColor: AppColors.white,
-                                  borderRadius: 0,child: Padding(
-                                    padding: const EdgeInsets.all(4),
-                                    child: Text( "Под заказ" ,    maxLines: 1,
-                                      style: TextStyle(fontSize: 10,color: context.onPrimary,),
-                                      overflow: TextOverflow.ellipsis,),
-                                  )) : const SizedBox(),
+                              product?.leftQuantity == 0 && product?.contractor?.stocks == null
+                                  ? AppCard(
+                                      fillColor:
+                                          const Color.fromARGB(255, 0, 73, 208),
+                                      borderColor: AppColors.white,
+                                      borderRadius: 0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4),
+                                        child: Text(
+                                          "Под заказ",
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: context.onPrimary,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
+                                  : const SizedBox(),
                               horizontalSpace5,
                               AppCard(
                                 fillColor: context.background,
@@ -168,53 +181,121 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
           ),
           verticalSpace8,
           Row(
-            mainAxisAlignment: product?.leftQuantity == 0
+            mainAxisAlignment: product?.leftQuantity == 0 && product?.contractor?.stocks == null
                 ? MainAxisAlignment.center
                 : MainAxisAlignment.spaceBetween,
             children: [
               if (product?.price != null)
-                product?.leftQuantity == 0
+                product?.leftQuantity == 0 &&
+                        product?.contractor?.stocks == null
                     ? const SizedBox()
-                    : Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          '${currencyFormatter.format(product?.price).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.titleSmall,
-                        ),
-                      ),
+                    : product?.contractor?.price == null
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 6),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                product?.priceDiscount != 0
+                                    ? Text(
+                                        "${currencyFormatter.format(product?.price).replaceAll('.', ' ')} сум",
+                                        style: const TextStyle(
+                                            color: AppColors.grey,
+                                            fontWeight: FontWeight.w500,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontSize: 10),
+                                      )
+                                    : const Text(
+                                        "",
+                                        style: TextStyle(
+                                            color: AppColors.grey,
+                                            fontWeight: FontWeight.w500,
+                                            decoration:
+                                                TextDecoration.lineThrough,
+                                            fontSize: 10),
+                                      ),
+                                horizontalSpace5,
+                                product?.priceDiscount != 0
+                                    ? Text(
+                                        "${currencyFormatter.format(product?.priceDiscount).replaceAll('.', ' ')} сум",
+                                        style: const TextStyle(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      )
+                                    : product?.leftQuantity == 0 &&
+                                            product?.contractor?.stocks == null
+                                        ? const Text(
+                                            "Нет в наличии",
+                                            style:
+                                                TextStyle(color: AppColors.red),
+                                          )
+                                        : Text(
+                                            '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: context.titleSmall,
+                                          ),
+                              ],
+                            ),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 6),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                product?.contractor?.price != null
+                                    ? Text(
+                                        "${currencyFormatter.format(product?.contractor?.price).replaceAll('.', ' ')} сум",
+                                        style: const TextStyle(
+                                            color: AppColors.primary,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      )
+                                    : Text(
+                                            '${currencyFormatter.format((product?.contractor?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                            maxLines: 1,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: context.titleSmall,
+                                          ),
+                              ],
+                            ),
+                          ),
               (product ?? cartProduct!.product)!.inCart == null
                   ? const SizedBox()
-                  : product?.leftQuantity == 0
+                  : product?.leftQuantity == 0 &&
+                          product?.contractor?.stocks == null
                       ? Padding(
-                          padding: const EdgeInsets.only(left: 2,right: 2),
+                          padding: const EdgeInsets.only(
+                            left: 2,
+                            right: 2,
+                          ),
                           child: AppButton(
                             borderRadius: 4,
                             animate: true,
-                            textStyle:  TextStyle(fontSize:context.isSmall ? 9 : 10),
-                            height: 30,
+                            textStyle: const TextStyle(fontSize: 9),
+                            height: 37,
                             textColor: context.onPrimary,
                             onPressed: () {
-                                    onCart.call(CheckoutType.preorder);
-                                    if (product?.leftQuantity == 0) {
-                                      if (!((product ?? cartProduct?.product)
-                                              ?.inPreorder ??
-                                          false)) {
-                                        preorderBloc.add(
-                                            PreordersEvent.addToPreorders(
-                                                (product ??
-                                                        cartProduct!.product)!
-                                                    .id,
-                                                1));
-                                        return;
-                                      }
-                                      preorderBloc.add(PreordersEvent
-                                          .deleteProductInPreorders(
-                                        (product ?? cartProduct!.product)!.id,
-                                      ));
-                                    }
-                                  },
+                              onCart.call(CheckoutType.preorder);
+                              if (product?.leftQuantity == 0) {
+                                if (!((product ?? cartProduct?.product)
+                                        ?.inPreorder ??
+                                    false)) {
+                                  preorderBloc.add(
+                                      PreordersEvent.addToPreorders(
+                                          (product ?? cartProduct!.product)!.id,
+                                          1));
+                                  return;
+                                }
+                                preorderBloc.add(
+                                    PreordersEvent.deleteProductInPreorders(
+                                  (product ?? cartProduct!.product)!.id,
+                                ));
+                              }
+                            },
                             text:
                                 (product ?? cartProduct!.product)!.inPreorder ??
                                         false
@@ -228,15 +309,16 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                           ),
                         )
                       : Tooltip(
-                message: (product ?? cartProduct!.product)!.inCart ??
-                    false
-                    ? "Удалить с корзины заказа"
-                    : "Добавить в корзину заказа",
-                        child: AppButton(
+                          message:
+                              (product ?? cartProduct!.product)!.inCart ?? false
+                                  ? "Удалить с корзины заказа"
+                                  : "Добавить в корзину заказа",
+                          child: AppButton(
                             animate: true,
                             width: context.isSmall ? context.width * .10 : 50,
                             fillColor:
-                                (product ?? cartProduct!.product)!.inCart ?? false
+                                (product ?? cartProduct!.product)!.inCart ??
+                                        false
                                     ? AppColors.red
                                     : context.primary,
                             text: const Icon(
@@ -246,33 +328,31 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                             ),
                             textColor: AppColors.white,
                             onPressed: () {
-                                    onCart.call(CheckoutType.order);
+                              onCart.call(CheckoutType.order);
 
-                                    if (!((product ?? cartProduct?.product)
-                                            ?.inCart ??
-                                        true)) {
-                                      cartBloc.add(CartEvent.addToCart(
-                                          (product ?? cartProduct!.product)!.id,
-                                          fieldController?.text == null ||
-                                                  fieldController?.text == ''
-                                              ? 1
-                                              : int.parse(
-                                                  fieldController!.text)));
-                                      return;
-                                    }
-                                    fieldController?.text = '1';
-                                    cartBloc.add(CartEvent.deleteProductInCart(
-                                        (product ?? cartProduct!.product)!.id));
-                                  },
+                              if (!((product ?? cartProduct?.product)?.inCart ??
+                                  true)) {
+                                cartBloc.add(CartEvent.addToCart(
+                                    (product ?? cartProduct!.product)!.id,
+                                    fieldController?.text == null ||
+                                            fieldController?.text == ''
+                                        ? 1
+                                        : int.parse(fieldController!.text)));
+                                return;
+                              }
+                              fieldController?.text = '1';
+                              cartBloc.add(CartEvent.deleteProductInCart(
+                                  (product ?? cartProduct!.product)!.id));
+                            },
                             size: MainAxisSize.min,
                             margin: const EdgeInsets.only(
                               right: 10,
                             ),
                             padding: const EdgeInsets.symmetric(
-                                vertical: 6, horizontal: 6),
+                                vertical: 8, horizontal: 6),
                             borderRadius: 4,
                           ),
-                      ),
+                        ),
             ],
           ),
           verticalSpace8,

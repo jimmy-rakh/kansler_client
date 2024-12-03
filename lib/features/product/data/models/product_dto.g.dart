@@ -30,6 +30,7 @@ _$ProductDtoImpl _$$ProductDtoImplFromJson(Map<String, dynamic> json) =>
       vendorCode: json['vendor_code'] as String?,
       nds: json['nds'] as String?,
       price: (json['price'] as num?)?.toInt(),
+      priceDiscount: (json['price_discount'] as num?)?.toInt(),
       measure: json['measure'] as String?,
       description: json['description'] as String?,
       actual: json['actual'] as bool?,
@@ -52,6 +53,9 @@ _$ProductDtoImpl _$$ProductDtoImplFromJson(Map<String, dynamic> json) =>
       stocks: (json['stocks'] as List<dynamic>?)
           ?.map((e) => StocksDto.fromJson(e as Map<String, dynamic>))
           .toList(),
+      contractor: json['contractor'] == null
+          ? null
+          : Contractor.fromJson(json['contractor'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ProductDtoImplToJson(_$ProductDtoImpl instance) =>
@@ -69,6 +73,7 @@ Map<String, dynamic> _$$ProductDtoImplToJson(_$ProductDtoImpl instance) =>
       'vendor_code': instance.vendorCode,
       'nds': instance.nds,
       'price': instance.price,
+      'price_discount': instance.priceDiscount,
       'measure': instance.measure,
       'description': instance.description,
       'actual': instance.actual,
@@ -88,4 +93,5 @@ Map<String, dynamic> _$$ProductDtoImplToJson(_$ProductDtoImpl instance) =>
       'in_preorder': instance.inPreorder,
       'has_comment': instance.hasComment,
       'stocks': instance.stocks?.map((e) => e.toJson()).toList(),
+      'contractor': instance.contractor?.toJson(),
     };

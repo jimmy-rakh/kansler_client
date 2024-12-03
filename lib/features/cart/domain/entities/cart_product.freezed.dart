@@ -20,6 +20,8 @@ mixin _$CartProduct {
   ProductEntity? get product => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
+  int? get priceDiscount => throw _privateConstructorUsedError;
+  ContractorEntity? get contractor => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
 
   /// Create a copy of CartProduct
@@ -36,9 +38,16 @@ abstract class $CartProductCopyWith<$Res> {
       _$CartProductCopyWithImpl<$Res, CartProduct>;
   @useResult
   $Res call(
-      {int id, ProductEntity? product, String? name, int quantity, int price});
+      {int id,
+      ProductEntity? product,
+      String? name,
+      int quantity,
+      int? priceDiscount,
+      ContractorEntity? contractor,
+      int price});
 
   $ProductEntityCopyWith<$Res>? get product;
+  $ContractorEntityCopyWith<$Res>? get contractor;
 }
 
 /// @nodoc
@@ -60,6 +69,8 @@ class _$CartProductCopyWithImpl<$Res, $Val extends CartProduct>
     Object? product = freezed,
     Object? name = freezed,
     Object? quantity = null,
+    Object? priceDiscount = freezed,
+    Object? contractor = freezed,
     Object? price = null,
   }) {
     return _then(_value.copyWith(
@@ -79,6 +90,14 @@ class _$CartProductCopyWithImpl<$Res, $Val extends CartProduct>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      priceDiscount: freezed == priceDiscount
+          ? _value.priceDiscount
+          : priceDiscount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contractor: freezed == contractor
+          ? _value.contractor
+          : contractor // ignore: cast_nullable_to_non_nullable
+              as ContractorEntity?,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -99,6 +118,20 @@ class _$CartProductCopyWithImpl<$Res, $Val extends CartProduct>
       return _then(_value.copyWith(product: value) as $Val);
     });
   }
+
+  /// Create a copy of CartProduct
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContractorEntityCopyWith<$Res>? get contractor {
+    if (_value.contractor == null) {
+      return null;
+    }
+
+    return $ContractorEntityCopyWith<$Res>(_value.contractor!, (value) {
+      return _then(_value.copyWith(contractor: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -110,10 +143,18 @@ abstract class _$$CartProductImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, ProductEntity? product, String? name, int quantity, int price});
+      {int id,
+      ProductEntity? product,
+      String? name,
+      int quantity,
+      int? priceDiscount,
+      ContractorEntity? contractor,
+      int price});
 
   @override
   $ProductEntityCopyWith<$Res>? get product;
+  @override
+  $ContractorEntityCopyWith<$Res>? get contractor;
 }
 
 /// @nodoc
@@ -133,6 +174,8 @@ class __$$CartProductImplCopyWithImpl<$Res>
     Object? product = freezed,
     Object? name = freezed,
     Object? quantity = null,
+    Object? priceDiscount = freezed,
+    Object? contractor = freezed,
     Object? price = null,
   }) {
     return _then(_$CartProductImpl(
@@ -152,6 +195,14 @@ class __$$CartProductImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      priceDiscount: freezed == priceDiscount
+          ? _value.priceDiscount
+          : priceDiscount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      contractor: freezed == contractor
+          ? _value.contractor
+          : contractor // ignore: cast_nullable_to_non_nullable
+              as ContractorEntity?,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
@@ -168,6 +219,8 @@ class _$CartProductImpl implements _CartProduct {
       this.product,
       this.name,
       required this.quantity,
+      this.priceDiscount,
+      this.contractor,
       required this.price});
 
   @override
@@ -179,11 +232,15 @@ class _$CartProductImpl implements _CartProduct {
   @override
   final int quantity;
   @override
+  final int? priceDiscount;
+  @override
+  final ContractorEntity? contractor;
+  @override
   final int price;
 
   @override
   String toString() {
-    return 'CartProduct(id: $id, product: $product, name: $name, quantity: $quantity, price: $price)';
+    return 'CartProduct(id: $id, product: $product, name: $name, quantity: $quantity, priceDiscount: $priceDiscount, contractor: $contractor, price: $price)';
   }
 
   @override
@@ -196,12 +253,16 @@ class _$CartProductImpl implements _CartProduct {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
+            (identical(other.priceDiscount, priceDiscount) ||
+                other.priceDiscount == priceDiscount) &&
+            (identical(other.contractor, contractor) ||
+                other.contractor == contractor) &&
             (identical(other.price, price) || other.price == price));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, product, name, quantity, price);
+  int get hashCode => Object.hash(runtimeType, id, product, name, quantity,
+      priceDiscount, contractor, price);
 
   /// Create a copy of CartProduct
   /// with the given fields replaced by the non-null parameter values.
@@ -218,6 +279,8 @@ abstract class _CartProduct implements CartProduct {
       final ProductEntity? product,
       final String? name,
       required final int quantity,
+      final int? priceDiscount,
+      final ContractorEntity? contractor,
       required final int price}) = _$CartProductImpl;
 
   @override
@@ -228,6 +291,10 @@ abstract class _CartProduct implements CartProduct {
   String? get name;
   @override
   int get quantity;
+  @override
+  int? get priceDiscount;
+  @override
+  ContractorEntity? get contractor;
   @override
   int get price;
 

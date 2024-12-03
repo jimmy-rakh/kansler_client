@@ -29,6 +29,7 @@ mixin _$ProductEntity {
   String? get vendorCode => throw _privateConstructorUsedError;
   String? get nds => throw _privateConstructorUsedError;
   int? get price => throw _privateConstructorUsedError;
+  int? get priceDiscount => throw _privateConstructorUsedError;
   String? get measure => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   bool? get actual => throw _privateConstructorUsedError;
@@ -48,6 +49,7 @@ mixin _$ProductEntity {
   bool? get inPreorder => throw _privateConstructorUsedError;
   bool? get hasComment => throw _privateConstructorUsedError;
   List<StocksDto>? get stocks => throw _privateConstructorUsedError;
+  ContractorEntity? get contractor => throw _privateConstructorUsedError;
 
   /// Create a copy of ProductEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -76,6 +78,7 @@ abstract class $ProductEntityCopyWith<$Res> {
       String? vendorCode,
       String? nds,
       int? price,
+      int? priceDiscount,
       String? measure,
       String? description,
       bool? actual,
@@ -94,12 +97,14 @@ abstract class $ProductEntityCopyWith<$Res> {
       bool? inCart,
       bool? inPreorder,
       bool? hasComment,
-      List<StocksDto>? stocks});
+      List<StocksDto>? stocks,
+      ContractorEntity? contractor});
 
   $ProductDataEntityCopyWith<$Res>? get organization;
   $ProductDataEntityCopyWith<$Res>? get category;
   $ProductDataEntityCopyWith<$Res>? get brand;
   $ProductDataEntityCopyWith<$Res>? get madeIn;
+  $ContractorEntityCopyWith<$Res>? get contractor;
 }
 
 /// @nodoc
@@ -130,6 +135,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
+    Object? priceDiscount = freezed,
     Object? measure = freezed,
     Object? description = freezed,
     Object? actual = freezed,
@@ -149,6 +155,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
     Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
+    Object? contractor = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -202,6 +209,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int?,
+      priceDiscount: freezed == priceDiscount
+          ? _value.priceDiscount
+          : priceDiscount // ignore: cast_nullable_to_non_nullable
               as int?,
       measure: freezed == measure
           ? _value.measure
@@ -279,6 +290,10 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
           ? _value.stocks
           : stocks // ignore: cast_nullable_to_non_nullable
               as List<StocksDto>?,
+      contractor: freezed == contractor
+          ? _value.contractor
+          : contractor // ignore: cast_nullable_to_non_nullable
+              as ContractorEntity?,
     ) as $Val);
   }
 
@@ -337,6 +352,20 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
       return _then(_value.copyWith(madeIn: value) as $Val);
     });
   }
+
+  /// Create a copy of ProductEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ContractorEntityCopyWith<$Res>? get contractor {
+    if (_value.contractor == null) {
+      return null;
+    }
+
+    return $ContractorEntityCopyWith<$Res>(_value.contractor!, (value) {
+      return _then(_value.copyWith(contractor: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -361,6 +390,7 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       String? vendorCode,
       String? nds,
       int? price,
+      int? priceDiscount,
       String? measure,
       String? description,
       bool? actual,
@@ -379,7 +409,8 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       bool? inCart,
       bool? inPreorder,
       bool? hasComment,
-      List<StocksDto>? stocks});
+      List<StocksDto>? stocks,
+      ContractorEntity? contractor});
 
   @override
   $ProductDataEntityCopyWith<$Res>? get organization;
@@ -389,6 +420,8 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
   $ProductDataEntityCopyWith<$Res>? get brand;
   @override
   $ProductDataEntityCopyWith<$Res>? get madeIn;
+  @override
+  $ContractorEntityCopyWith<$Res>? get contractor;
 }
 
 /// @nodoc
@@ -417,6 +450,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
     Object? vendorCode = freezed,
     Object? nds = freezed,
     Object? price = freezed,
+    Object? priceDiscount = freezed,
     Object? measure = freezed,
     Object? description = freezed,
     Object? actual = freezed,
@@ -436,6 +470,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
     Object? inPreorder = freezed,
     Object? hasComment = freezed,
     Object? stocks = freezed,
+    Object? contractor = freezed,
   }) {
     return _then(_$ProductEntityImpl(
       id: null == id
@@ -489,6 +524,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
+              as int?,
+      priceDiscount: freezed == priceDiscount
+          ? _value.priceDiscount
+          : priceDiscount // ignore: cast_nullable_to_non_nullable
               as int?,
       measure: freezed == measure
           ? _value.measure
@@ -566,6 +605,10 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
           ? _value._stocks
           : stocks // ignore: cast_nullable_to_non_nullable
               as List<StocksDto>?,
+      contractor: freezed == contractor
+          ? _value.contractor
+          : contractor // ignore: cast_nullable_to_non_nullable
+              as ContractorEntity?,
     ));
   }
 }
@@ -587,6 +630,7 @@ class _$ProductEntityImpl extends _ProductEntity {
       this.vendorCode,
       this.nds,
       this.price,
+      this.priceDiscount,
       this.measure,
       this.description,
       this.actual,
@@ -605,7 +649,8 @@ class _$ProductEntityImpl extends _ProductEntity {
       this.inCart,
       this.inPreorder,
       this.hasComment,
-      final List<StocksDto>? stocks})
+      final List<StocksDto>? stocks,
+      this.contractor})
       : _barcode = barcode,
         _stocks = stocks,
         super._();
@@ -636,6 +681,8 @@ class _$ProductEntityImpl extends _ProductEntity {
   final String? nds;
   @override
   final int? price;
+  @override
+  final int? priceDiscount;
   @override
   final String? measure;
   @override
@@ -691,8 +738,11 @@ class _$ProductEntityImpl extends _ProductEntity {
   }
 
   @override
+  final ContractorEntity? contractor;
+
+  @override
   String toString() {
-    return 'ProductEntity(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, inPreorder: $inPreorder, hasComment: $hasComment, stocks: $stocks)';
+    return 'ProductEntity(id: $id, organization: $organization, category: $category, brand: $brand, madeIn: $madeIn, classifierCode: $classifierCode, classifierTitle: $classifierTitle, packagename: $packagename, packagecode: $packagecode, title: $title, vendorCode: $vendorCode, nds: $nds, price: $price, priceDiscount: $priceDiscount, measure: $measure, description: $description, actual: $actual, bestseller: $bestseller, discount: $discount, promotion: $promotion, stopList: $stopList, quantityInBox: $quantityInBox, preOrder: $preOrder, barcode: $barcode, arrivalDate: $arrivalDate, weight: $weight, size: $size, imageUrl: $imageUrl, inFav: $inFav, inCart: $inCart, inPreorder: $inPreorder, hasComment: $hasComment, stocks: $stocks, contractor: $contractor)';
   }
 
   @override
@@ -720,6 +770,8 @@ class _$ProductEntityImpl extends _ProductEntity {
                 other.vendorCode == vendorCode) &&
             (identical(other.nds, nds) || other.nds == nds) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.priceDiscount, priceDiscount) ||
+                other.priceDiscount == priceDiscount) &&
             (identical(other.measure, measure) || other.measure == measure) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -748,7 +800,9 @@ class _$ProductEntityImpl extends _ProductEntity {
                 other.inPreorder == inPreorder) &&
             (identical(other.hasComment, hasComment) ||
                 other.hasComment == hasComment) &&
-            const DeepCollectionEquality().equals(other._stocks, _stocks));
+            const DeepCollectionEquality().equals(other._stocks, _stocks) &&
+            (identical(other.contractor, contractor) ||
+                other.contractor == contractor));
   }
 
   @override
@@ -767,6 +821,7 @@ class _$ProductEntityImpl extends _ProductEntity {
         vendorCode,
         nds,
         price,
+        priceDiscount,
         measure,
         description,
         actual,
@@ -785,7 +840,8 @@ class _$ProductEntityImpl extends _ProductEntity {
         inCart,
         inPreorder,
         hasComment,
-        const DeepCollectionEquality().hash(_stocks)
+        const DeepCollectionEquality().hash(_stocks),
+        contractor
       ]);
 
   /// Create a copy of ProductEntity
@@ -812,6 +868,7 @@ abstract class _ProductEntity extends ProductEntity {
       final String? vendorCode,
       final String? nds,
       final int? price,
+      final int? priceDiscount,
       final String? measure,
       final String? description,
       final bool? actual,
@@ -830,7 +887,8 @@ abstract class _ProductEntity extends ProductEntity {
       final bool? inCart,
       final bool? inPreorder,
       final bool? hasComment,
-      final List<StocksDto>? stocks}) = _$ProductEntityImpl;
+      final List<StocksDto>? stocks,
+      final ContractorEntity? contractor}) = _$ProductEntityImpl;
   _ProductEntity._() : super._();
 
   @override
@@ -859,6 +917,8 @@ abstract class _ProductEntity extends ProductEntity {
   String? get nds;
   @override
   int? get price;
+  @override
+  int? get priceDiscount;
   @override
   String? get measure;
   @override
@@ -897,6 +957,8 @@ abstract class _ProductEntity extends ProductEntity {
   bool? get hasComment;
   @override
   List<StocksDto>? get stocks;
+  @override
+  ContractorEntity? get contractor;
 
   /// Create a copy of ProductEntity
   /// with the given fields replaced by the non-null parameter values.

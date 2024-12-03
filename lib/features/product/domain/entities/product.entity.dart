@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kansler/features/product/domain/entities/contractor.entity.dart';
 import 'package:kansler/features/product/domain/entities/product_data.entity.dart';
 import '../../data/models/stocks_dto.dart';
 
@@ -22,6 +23,7 @@ class ProductEntity with _$ProductEntity {
     String? vendorCode,
     String? nds,
     int? price,
+    int? priceDiscount,
     String? measure,
     String? description,
     bool? actual,
@@ -41,6 +43,7 @@ class ProductEntity with _$ProductEntity {
     bool? inPreorder,
     bool? hasComment,
     List<StocksDto>? stocks,
+    ContractorEntity? contractor,
   }) = _ProductEntity;
 
   int get leftQuantity {

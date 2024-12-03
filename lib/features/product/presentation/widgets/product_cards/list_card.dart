@@ -154,16 +154,25 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 ),
                               ),
                               horizontalSpace5,
-                              product?.leftQuantity == 0
-                                  ?   AppCard(
-                                  fillColor: const Color.fromARGB(255, 0, 73, 208),
-                                  borderColor: AppColors.white,
-                                  borderRadius: 0,child: Padding(
-                                padding: const EdgeInsets.all(4),
-                                child: Text( "Под заказ" ,    maxLines: 1,
-                                  style: TextStyle(fontSize: 10,color: context.onPrimary,),
-                                  overflow: TextOverflow.ellipsis,),
-                              ))
+                              product?.leftQuantity == 0 &&
+                                      product?.contractor?.stocks == null
+                                  ? AppCard(
+                                      fillColor:
+                                          const Color.fromARGB(255, 0, 73, 208),
+                                      borderColor: AppColors.white,
+                                      borderRadius: 0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(4),
+                                        child: Text(
+                                          "Под заказ",
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: context.onPrimary,
+                                          ),
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ))
                                   : const SizedBox(),
                             ],
                           ),
@@ -200,313 +209,138 @@ class ProductListCard extends HookWidget implements ProductCard {
                   maxLines: 1,
                 ),
                 verticalSpace5,
-                context.isSmall
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          verticalSpace5,
-                          product?.price == null && cartProduct?.price == null
-                              ? const SizedBox.shrink()
-                              : product?.leftQuantity != 0 ? Text(
-                                  '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: context.titleSmall,
-                                ): const SizedBox(height: 20,),
-                          verticalSpace5,
-                          if (cartProduct != null && !showActions)
-                            Text('${cartProduct?.quantity} штук'),
-                          if (showActions)
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                if (!(product?.inCart ?? false))
-                                  SizedBox(
-                                    child:  (product ?? cartProduct?.product)?.leftQuantity != 0
-                                        ? AppCard(
-                                            fillColor: context.background,
-                                            showShadow: false,
-                                            borderRadius: 0,
-                                            padding: const EdgeInsets.all(2),
-                                            child: Row(
-                                              children: [
-                                                AppIcon(
-                                                  KazeIcons.minusOutline,
-                                                  bgColor: context.cardColor,
-                                                  height: 22,
-                                                  radius: const BorderRadius
-                                                      .horizontal(
-                                                    left: Radius.circular(0),
-                                                  ),
-                                                  onTap: decrement,
-                                                  borderColor:
-                                                      context.background,
-                                                  padding:
-                                                      const EdgeInsets.all(4),
-                                                ),
-                                                AppTextField(
-                                                  fillColor: context.background,
-                                                  width: 60,
-                                                  radius: 0,
-                                                  contentPadding:
-                                                      const EdgeInsets.all(4),
-                                                  textAlign: TextAlign.center,
-                                                  fieldController:
-                                                      fieldController,
-                                                  onChange: (value) {
-                                                    submit(value);
-                                                  },
-                                                  onEditingComplete:
-                                                      competeEditing,
-                                                  onFieldSubmitted: (value) {
-                                                    cartBloc.add(CartEvent
-                                                        .updateProductInCart(
-                                                            (product ??
-                                                                    cartProduct!
-                                                                        .product)!
-                                                                .id,
-                                                            int.parse(
-                                                                fieldController
-                                                                    .text)));
-                                                    FocusScope.of(context)
-                                                        .unfocus();
-                                                    return;
-                                                  },
-                                                  textInputType:
-                                                      TextInputType.number,
-                                                  textInputFormatter: [
-                                                    FilteringTextInputFormatter
-                                                        .digitsOnly
-                                                  ],
-                                                ),
-                                                AppIcon(
-                                                  KazeIcons.addOutline,
-                                                  bgColor: context.cardColor,
-                                                  height: 22,
-                                                  radius: const BorderRadius
-                                                      .horizontal(
-                                                    right: Radius.circular(0),
-                                                  ),
-                                                  onTap: incremet,
-                                                  borderColor:
-                                                      context.background,
-                                                  padding:
-                                                      const EdgeInsets.all(4),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        : const SizedBox(),
-                                  ),
-                                const Spacer(),
-                                (product ?? cartProduct!.product)!.inCart ==
-                                        null
-                                    ? const SizedBox()
-                                    : (product ?? cartProduct?.product)?.leftQuantity == 0
-                                        ? Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5, right: 5),
-                                            child: AppButton(
-                                              borderRadius: 4,
-                                              animate: true,
-                                              textStyle:
-                                                  const TextStyle(fontSize: 10),
-                                              height: 35,
-                                              padding: const EdgeInsets.only(
-                                                  left: 5, right: 5),
-                                              onPressed: () {
-                                                      onCart.call(CheckoutType
-                                                          .preorder);
-                                                      if ((product ??
-                                                          cartProduct
-                                                              ?.product)?.leftQuantity ==
-                                                          0) {
-                                                        if (!((product ??
-                                                                    cartProduct
-                                                                        ?.product)
-                                                                ?.inPreorder ??
-                                                            false)) {
-                                                          preorderBloc.add(
-                                                              PreordersEvent
-                                                                  .addToPreorders(
-                                                                      (product ??
-                                                                              cartProduct!.product)!
-                                                                          .id,
-                                                                      1));
-                                                          return;
-                                                        }
-                                                        preorderBloc.add(
-                                                            PreordersEvent
-                                                                .deleteProductInPreorders(
-                                                          (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .id,
-                                                        ));
-                                                      }
-                                                    },
-                                              text: (product ??
-                                                              cartProduct!
-                                                                  .product)!
-                                                          .inPreorder ??
-                                                      false
-                                                  ? "Удалить с корзины Предзаказа"
-                                                  : "Добавить в корзину Предзаказа",
-                                              textColor: context.onPrimary,
-                                              fillColor: (product ??
-                                                              cartProduct!
-                                                                  .product)!
-                                                          .inPreorder ??
-                                                      false
-                                                  ? AppColors.red
-                                                  : const Color.fromARGB(
-                                                      255, 0, 73, 208),
-                                            ),
-                                          )
-                                        : Tooltip(
-                                            message: (product ??
-                                                            cartProduct!
-                                                                .product)!
-                                                        .inCart ??
-                                                    false
-                                                ? "Удалить с корзины заказа"
-                                                : "Добавить в корзину заказа",
-                                            child: AppButton(
-                                              width: context.isMobile
-                                                  ? context.width * .12
-                                                  : 50,
-                                              fillColor: product
-                                                          ?.leftQuantity ==
-                                                      0
-                                                  ? (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .inPreorder ??
-                                                          false
-                                                      ? const Color.fromARGB(
-                                                          255, 69, 114, 199)
-                                                      : const Color.fromARGB(
-                                                          255, 0, 73, 208)
-                                                  : (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .inCart ??
-                                                          false
-                                                      ? AppColors.red
-                                                      : context.primary,
-                                              text: const Icon(
-                                                KazeIcons.cartOutline,
-                                                color: AppColors.white,
-                                              ),
-                                              textColor: AppColors.white,
-                                              onPressed: product?.leftQuantity ==
-                                                              0
-                                                          ? () {
-                                                              onCart.call(
-                                                                  CheckoutType
-                                                                      .preorder);
-
-                                                              if (!((product ??
-                                                                          cartProduct
-                                                                              ?.product)
-                                                                      ?.inPreorder ??
-                                                                  false)) {
-                                                                preorderBloc.add(
-                                                                    PreordersEvent.addToPreorders(
-                                                                        (product ??
-                                                                                cartProduct!.product)!
-                                                                            .id,
-                                                                        0));
-                                                                return;
-                                                              }
-                                                              preorderBloc.add(
-                                                                  PreordersEvent
-                                                                      .deleteProductInPreorders(
-                                                                (product ??
-                                                                        cartProduct!
-                                                                            .product)!
-                                                                    .id,
-                                                              ));
-                                                            }
-                                                          : () {
-                                                              onCart.call(
-                                                                  CheckoutType
-                                                                      .order);
-                                                              if (!((product ??
-                                                                          cartProduct
-                                                                              ?.product)
-                                                                      ?.inCart ??
-                                                                  true)) {
-                                                                cartBloc.add(CartEvent.addToCart(
-                                                                    (product ??
-                                                                            cartProduct!
-                                                                                .product)!
-                                                                        .id,
-                                                                    int.parse(
-                                                                        fieldController
-                                                                            .text)));
-                                                                return;
-                                                              }
-                                                              cartBloc.add(CartEvent
-                                                                  .deleteProductInCart(
-                                                                      (product ??
-                                                                              cartProduct!.product)!
-                                                                          .id));
-                                                              if (((product ??
-                                                                          cartProduct
-                                                                              ?.product)
-                                                                      ?.inPreorder ??
-                                                                  false)) {
-                                                                preorderBloc.add(
-                                                                    PreordersEvent
-                                                                        .deleteProductInPreorders(
-                                                                  (product ??
-                                                                          cartProduct!
-                                                                              .product)!
-                                                                      .id,
-                                                                ));
-                                                              }
-                                                            },
-                                              size: MainAxisSize.min,
-                                              margin: const EdgeInsets.only(
-                                                right: 4,
-                                              ),
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      vertical: 8,
-                                                      horizontal: 8),
-                                              borderRadius: 4,
-                                            ),
-                                          ),
-                              ],
-                            ),
-                        ],
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    verticalSpace5,
+                    if (cartProduct?.price != null)
+                      cartProduct?.product?.leftQuantity == 0 &&
+                          cartProduct?.product?.contractor?.stocks == null
+                          ? const SizedBox(
+                        height: 20,
                       )
-                    : Row(
+                          : Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          product?.price == null &&
-                                      cartProduct?.price == null ||
-                                  product?.leftQuantity == 0
-                              ? const Center(child: SizedBox())
-                              : Text(
+                          cartProduct?.product?.priceDiscount != 0  ?
+                          Text(
+                            "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.product?.priceDiscount ).replaceAll('.', ' ')} сум",
+                            style: const TextStyle(
+                                color: AppColors
+                                    .primary,
+                                fontWeight:
+                                FontWeight.bold,
+                                fontSize: 16),
+                          ) : cartProduct?.product?.leftQuantity == 0 &&
+                              cartProduct?.product?.contractor?.stocks == null ? Text(
+                            '',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.titleSmall,
+                          )
+                              : cartProduct?.product?.contractor?.stocks == null ? Text(
+                            '${currencyFormatter.format((cartProduct?.price ?? cartProduct?.product?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.titleSmall,
+                          ): Text(
+                            '${currencyFormatter.format((cartProduct?.product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: context.titleSmall,
+                          ),
+                          horizontalSpace5,
+                          if(cartProduct?.product?.priceDiscount != 0 )
+                            Text(
+                              "${currencyFormatter.format(product?.price ?? cartProduct?.product?.price).replaceAll('.', ' ')} сум",
+                              style: const TextStyle(
+                                  color: AppColors.grey,
+                                  fontWeight:
+                                  FontWeight.w500,
+                                  decoration: TextDecoration.lineThrough,
+                                  fontSize: 14),
+                            ),
+
+                        ],
+                      ),
+                    product?.price == null
+                        ? const SizedBox.shrink()
+                        : product?.leftQuantity == 0 &&
+                                product?.contractor?.stocks == null
+                            ? const SizedBox(
+                                height: 20,
+                              )
+                            : Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                product?.priceDiscount != 0  ?
+                                Text(
+                                  "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.priceDiscount).replaceAll('.', ' ')} сум",
+                                  style: const TextStyle(
+                                      color: AppColors
+                                          .primary,
+                                      fontWeight:
+                                      FontWeight.bold,
+                                      fontSize: 16),
+                                ) :
+                                product?.leftQuantity == 0 &&
+                                    product?.contractor?.stocks == null ? Text(
+                                  '',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: context.titleSmall,
+                                )
+                                    : product?.contractor?.stocks == null ? Text(
                                   '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                   style: context.titleSmall,
+                                ) : Text(
+                                  '${currencyFormatter.format((product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                      color: AppColors
+                                          .primary,
+                                      fontWeight:
+                                      FontWeight.bold,
+                                      fontSize: 16),
                                 ),
-                          if (cartProduct != null && !showActions)
-                            Text(
-                              '  Заказано: ${cartProduct?.quantity} штук',
-                              style: const TextStyle(color: AppColors.primary),
+                                horizontalSpace5,
+                                if(product?.priceDiscount != 0 )
+                                  Text(
+                                    "${currencyFormatter.format(product?.price ?? cartProduct?.price).replaceAll('.', ' ')} сум",
+                                    style: const TextStyle(
+                                        color: AppColors.grey,
+                                        fontWeight:
+                                        FontWeight.w500,
+                                        decoration: TextDecoration.lineThrough,
+                                        fontSize: 14),
+                                  ),
+
+                              ],
                             ),
-                          horizontalSpace15,
-                          if (showActions)
-                            if (!(product?.inCart ?? false))
-                              SizedBox(
-                                child: (product ?? cartProduct?.product)?.leftQuantity != 0
-                                    ? AppCard(
+                    verticalSpace5,
+                    if (cartProduct != null && !showActions)
+                      Text('${cartProduct?.quantity} штук'),
+                    if (showActions)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          if (!(product?.inCart ?? false))
+                            SizedBox(
+                                child: (product ?? cartProduct?.product)
+                                                ?.leftQuantity ==
+                                            0 &&
+                                        (product ?? cartProduct?.product)
+                                                ?.contractor
+                                                ?.stocks ==
+                                            null
+                                    ? const SizedBox()
+                                    : AppCard(
                                         fillColor: context.background,
                                         showShadow: false,
                                         borderRadius: 0,
@@ -533,7 +367,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                   const EdgeInsets.all(4),
                                               textAlign: TextAlign.center,
                                               fieldController: fieldController,
-                                              onChange: submit,
+                                              onChange: (value) {
+                                                submit(value);
+                                              },
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
                                                 cartBloc.add(CartEvent
@@ -570,13 +406,17 @@ class ProductListCard extends HookWidget implements ProductCard {
                                             ),
                                           ],
                                         ),
-                                      )
-                                    : const SizedBox(),
-                              ),
+                                      )),
                           const Spacer(),
                           (product ?? cartProduct!.product)!.inCart == null
                               ? const SizedBox()
-                              : (product ?? cartProduct?.product)?.leftQuantity == 0
+                              : (product ?? cartProduct?.product)
+                                              ?.leftQuantity ==
+                                          0 &&
+                                      (product ?? cartProduct?.product)
+                                              ?.contractor
+                                              ?.stocks ==
+                                          null
                                   ? Padding(
                                       padding: const EdgeInsets.only(
                                           left: 5, right: 5),
@@ -588,36 +428,31 @@ class ProductListCard extends HookWidget implements ProductCard {
                                         height: 35,
                                         padding: const EdgeInsets.only(
                                             left: 5, right: 5),
-                                        onPressed:  () {
-                                                onCart.call(
-                                                    CheckoutType.preorder);
-                                                if ((product ??
-                                                    cartProduct
-                                                        ?.product)?.leftQuantity ==
-                                                    0) {
-                                                  if (!((product ??
-                                                              cartProduct
-                                                                  ?.product)
-                                                          ?.inPreorder ??
-                                                      false)) {
-                                                    preorderBloc.add(PreordersEvent
-                                                        .addToPreorders(
-                                                            (product ??
-                                                                    cartProduct!
-                                                                        .product)!
-                                                                .id,
-                                                            1));
-                                                    return;
-                                                  }
-                                                  preorderBloc.add(PreordersEvent
-                                                      .deleteProductInPreorders(
-                                                    (product ??
-                                                            cartProduct!
-                                                                .product)!
-                                                        .id,
-                                                  ));
-                                                }
-                                              },
+                                        onPressed: () {
+                                          onCart.call(CheckoutType.preorder);
+                                          if ((product ?? cartProduct?.product)
+                                                  ?.leftQuantity ==
+                                              0) {
+                                            if (!((product ??
+                                                        cartProduct?.product)
+                                                    ?.inPreorder ??
+                                                false)) {
+                                              preorderBloc.add(
+                                                  PreordersEvent.addToPreorders(
+                                                      (product ??
+                                                              cartProduct!
+                                                                  .product)!
+                                                          .id,
+                                                      1));
+                                              return;
+                                            }
+                                            preorderBloc.add(PreordersEvent
+                                                .deleteProductInPreorders(
+                                              (product ?? cartProduct!.product)!
+                                                  .id,
+                                            ));
+                                          }
+                                        },
                                         text: (product ?? cartProduct!.product)!
                                                     .inPreorder ??
                                                 false
@@ -633,128 +468,79 @@ class ProductListCard extends HookWidget implements ProductCard {
                                                     255, 0, 73, 208),
                                       ),
                                     )
-                                  : showActions
-                                      ? Tooltip(
-                                          message: (product ??
-                                                          cartProduct!.product)!
+                                  : Tooltip(
+                                      message:
+                                          (product ?? cartProduct!.product)!
                                                       .inCart ??
                                                   false
-                                              ? (product ??
-                                                              cartProduct!
-                                                                  .product)!
-                                                          .inPreorder ??
-                                                      false
-                                                  ? "Удалить с корзины Предзаказа"
-                                                  : "Удалить с корзины заказа"
+                                              ? "Удалить с корзины заказа"
                                               : "Добавить в корзину заказа",
-                                          child: AppButton(
-                                            animate: true,
-                                            width: context.isMobile ||
-                                                    context.isTablet
-                                                ? context.width * .12
-                                                : 50,
-                                            fillColor: product?.leftQuantity ==
-                                                    0
-                                                ? (product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .inPreorder ??
-                                                        false
-                                                    ? const Color.fromARGB(
-                                                        255, 69, 114, 199)
-                                                    : const Color.fromARGB(
-                                                        255, 0, 73, 208)
-                                                : (product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .inCart ??
-                                                        false
-                                                    ? AppColors.red
-                                                    : context.primary,
-                                            text: const Icon(
-                                              KazeIcons.cartOutline,
-                                              color: AppColors.white,
-                                            ),
-                                            textColor: AppColors.white,
-                                            onPressed:  product?.leftQuantity == 0
-                                                    ? () {
-                                                        onCart.call(CheckoutType
-                                                            .preorder);
-
-                                                        if (!((product ??
-                                                                    cartProduct
-                                                                        ?.product)
-                                                                ?.inPreorder ??
-                                                            false)) {
-                                                          preorderBloc.add(
-                                                              PreordersEvent
-                                                                  .addToPreorders(
-                                                                      (product ??
-                                                                              cartProduct!.product)!
-                                                                          .id,
-                                                                      0));
-                                                          return;
-                                                        }
-                                                        preorderBloc.add(
-                                                            PreordersEvent
-                                                                .deleteProductInPreorders(
+                                      child: AppButton(
+                                        width: context.isMobile
+                                            ? context.width * .12
+                                            : 50,
+                                        fillColor:
+                                            (product ?? cartProduct!.product)!
+                                                        .inCart ??
+                                                    false
+                                                ? AppColors.red
+                                                : context.primary,
+                                        text: const Icon(
+                                          KazeIcons.cartOutline,
+                                          color: AppColors.white,
+                                        ),
+                                        textColor: AppColors.white,
+                                        onPressed: () {
+                                                onCart.call(CheckoutType.order);
+                                                if (!((product ??
+                                                            cartProduct
+                                                                ?.product)
+                                                        ?.inCart ??
+                                                    true)) {
+                                                  cartBloc.add(
+                                                      CartEvent.addToCart(
                                                           (product ??
                                                                   cartProduct!
                                                                       .product)!
                                                               .id,
-                                                        ));
-                                                      }
-                                                    : () {
-                                                        onCart.call(
-                                                            CheckoutType.order);
-                                                        if (!((product ??
-                                                                    cartProduct
-                                                                        ?.product)
-                                                                ?.inCart ??
-                                                            true)) {
-                                                          cartBloc.add(CartEvent.addToCart(
-                                                              (product ??
-                                                                      cartProduct!
-                                                                          .product)!
-                                                                  .id,
-                                                              int.parse(
-                                                                  fieldController
-                                                                      .text)));
-                                                          return;
-                                                        }
-                                                        cartBloc.add(CartEvent
-                                                            .deleteProductInCart(
-                                                                (product ??
-                                                                        cartProduct!
-                                                                            .product)!
-                                                                    .id));
-                                                        if (((product ??
-                                                                    cartProduct
-                                                                        ?.product)
-                                                                ?.inPreorder ??
-                                                            false)) {
-                                                          preorderBloc.add(
-                                                              PreordersEvent
-                                                                  .deleteProductInPreorders(
-                                                            (product ??
-                                                                    cartProduct!
-                                                                        .product)!
-                                                                .id,
-                                                          ));
-                                                        }
-                                                      },
-                                            size: MainAxisSize.min,
-                                            margin: const EdgeInsets.only(
-                                              right: 4,
-                                            ),
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 8, horizontal: 8),
-                                            borderRadius: 4,
-                                          ),
-                                        )
-                                      : const SizedBox(),
+                                                          int.parse(
+                                                              fieldController
+                                                                  .text)));
+                                                  return;
+                                                }
+                                                cartBloc.add(CartEvent
+                                                    .deleteProductInCart(
+                                                        (product ??
+                                                                cartProduct!
+                                                                    .product)!
+                                                            .id));
+                                                if (((product ??
+                                                            cartProduct
+                                                                ?.product)
+                                                        ?.inPreorder ??
+                                                    false)) {
+                                                  preorderBloc.add(PreordersEvent
+                                                      .deleteProductInPreorders(
+                                                    (product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                        .id,
+                                                  ));
+                                                }
+                                              },
+                                        size: MainAxisSize.min,
+                                        margin: const EdgeInsets.only(
+                                          right: 4,
+                                        ),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 8, horizontal: 8),
+                                        borderRadius: 4,
+                                      ),
+                                    ),
                         ],
-                      )
+                      ),
+                  ],
+                )
               ],
             ),
           )

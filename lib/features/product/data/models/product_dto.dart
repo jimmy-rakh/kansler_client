@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kansler/features/product/data/models/product_data_dto.dart';
 import 'package:kansler/features/product/data/models/stocks_dto.dart';
 import '../../domain/entities/product.entity.dart';
+import 'contractor.dart';
 
 part 'product_dto.freezed.dart';
 part 'product_dto.g.dart';
@@ -24,6 +25,7 @@ class ProductDto with _$ProductDto {
     String? vendorCode,
     String? nds,
     int? price,
+    int? priceDiscount,
     String? measure,
     String? description,
     bool? actual,
@@ -43,6 +45,7 @@ class ProductDto with _$ProductDto {
     bool? inPreorder,
     bool? hasComment,
     List<StocksDto>? stocks,
+    Contractor? contractor
   }) = _ProductDto;
 
   factory ProductDto.fromJson(Map<String, dynamic> json) =>
@@ -62,6 +65,7 @@ class ProductDto with _$ProductDto {
       vendorCode: vendorCode,
       nds: nds,
       price: price,
+      priceDiscount:priceDiscount,
       measure: measure,
       description: description,
       actual: actual,
@@ -80,5 +84,7 @@ class ProductDto with _$ProductDto {
       inCart: inCart,
       inPreorder: inPreorder,
       hasComment: hasComment,
-      stocks: stocks);
+      stocks: stocks,
+    contractor: contractor?.toEntity(),
+  );
 }
