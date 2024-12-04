@@ -105,7 +105,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             child: Container(
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(4),
                                 color: context.cardColor,
                               ),
                               child: const Icon(
@@ -122,7 +122,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             child: Container(
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(2),
+                                borderRadius: BorderRadius.circular(4),
                                 color: context.cardColor,
                               ),
                               child: Icon(state.whenOrNull(
@@ -146,8 +146,16 @@ class _SearchScreenState extends State<SearchScreen> {
                     fieldController: bloc.fieldController,
                     fillColor: context.cardColor,
                     radius: 4,
-                    prefix: const Icon(KazeIcons.searchOutline),
-                    prefixPadding: const EdgeInsets.symmetric(horizontal: 8),
+                    suffix:  Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: GestureDetector(
+                          onTap: () { bloc.add(const SearchEvent.search());
+                          FocusScope.of(context).unfocus();
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(color: context.primary,borderRadius: BorderRadius.circular(4)),
+                              child: Icon(KazeIcons.searchOutline,color: context.onPrimary,))),
+                    ),
                     contentPadding: EdgeInsets.symmetric(
                         horizontal: context.isSmall ? 8 : 12,
                         vertical: context.isSmall ? 10 : 14),
@@ -158,7 +166,6 @@ class _SearchScreenState extends State<SearchScreen> {
                     textInputType: TextInputType.text,
                     onFieldSubmitted: (p0) =>
                         bloc.add(const SearchEvent.search()),
-                    onChange: (p0) => bloc.add(const SearchEvent.search()),
                   ),
                 ),
                 body: Row(
