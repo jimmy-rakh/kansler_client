@@ -5,10 +5,14 @@ import 'package:kansler/core/enums/enums.dart';
 import 'package:kansler/core/extensions/context.dart';
 import '../../../../../app/router.dart';
 import '../../../../cart/presentation/screen/cart_bloc/cart_bloc.dart';
+import '../../../../cart/presentation/screen/preorders_bloc/preorders_bloc.dart';
+import '../../../../home/presentation/blocs/discounts/discounts_bloc.dart';
+import '../../../../home/presentation/blocs/hit/hit_bloc.dart';
 import '../../../../home/presentation/blocs/latest/latest_bloc.dart';
 import '../../../../home/presentation/blocs/popular/popular_bloc.dart';
 import '../../../../orders/presentation/screen/bloc/orders_bloc.dart';
 import '../../../../orders/presentation/screen/dialogs/success_order_view.dart';
+import '../../../../profile/presentation/screen/profile/profile_bloc.dart';
 import '../../../data/models/create_order_request.dart';
 import '../../../domain/repositories/checkout.repository.dart';
 
@@ -37,24 +41,37 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         ? await _checkoutRepository.createOrder(request)
         : await _checkoutRepository.createPreorder(request);
 
-    final cartBloc =
-        BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);
+
+    final discountBloc =
+    BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
     final popularBloc =
-        BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
+    BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
+    final hitBloc =
+    BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
     final latestBloc =
-        BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
+    final profileBloc =
+    BlocProvider.of<ProfileBloc>(router.navigatorKey.currentContext!);
+    final cartBloc =
+    BlocProvider.of<CartBloc>(router.navigatorKey.currentContext!);
     final ordersBloc =
-        BlocProvider.of<OrdersBloc>(router.navigatorKey.currentContext!);
+    BlocProvider.of<OrdersBloc>(router.navigatorKey.currentContext!);
+    final preorderBloc =
+    BlocProvider.of<PreordersBloc>(router.navigatorKey.currentContext!);
 
     res.fold((l) => null, (r) async {
       await router.navigatorKey.currentContext!
           .showCustomDialog(SuccessOrderView(ordersDto: r));
-      cartBloc.add(const CartEvent.retry());
+      discountBloc.add(const DiscountsEvent.fetch());
       popularBloc.add(const PopularEvent.fetch());
+      hitBloc.add(const HitEvent.fetch());
       latestBloc.add(const LatestEvent.fetch());
+      profileBloc.add(const ProfileEvent.getCompany());
+      cartBloc.add(const CartEvent.retry());
       ordersBloc.add(const OrdersEvent.fetchOrders());
+      preorderBloc.add(const PreordersEvent.retry());
 
-      router.replaceAll([const MainRoute()]);
+      router.replace(const MainRoute());
     });
   }
 
