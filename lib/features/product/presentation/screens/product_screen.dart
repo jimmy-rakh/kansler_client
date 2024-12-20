@@ -121,79 +121,101 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                               showShadow: false,
                               child: Column(
                                 children: [
-                                  (product?.imageUrl ??
-                                              state.product?.imageUrl) ==
-                                          null
-                                      ? ClipRRect(
+                                  Stack(
+                                    children: [
+                                      SizedBox(
+                                        height: context.isSmall
+                                            ? context.height * .4
+                                            : 500,
+                                        width: context.isSmall
+                                            ? context.width
+                                            : 500,
+                                        child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(3),
-                                          child: Image.asset(
-                                            AppImages.noPhoto,
-                                            height: context.isSmall
-                                                ? context.height * .4
-                                                : 500,
-                                            width: context.isSmall
-                                                ? context.width
-                                                : 500,
-                                            fit: BoxFit.fill,
-                                          ),
-                                        )
-                                      : SizedBox(
-                                          height: context.isSmall
-                                              ? context.height * .4
-                                              : 500,
-                                          width: context.isSmall
-                                              ? context.width
-                                              : 500,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(3),
-                                            child: kIsWeb
-                                                ? ImageNetwork(
-                                                    onLoading: const SizedBox(),
-                                                    duration: 0,
-                                                    fitWeb: BoxFitWeb.contain,
-                                                    image: NetworkConstants
-                                                            .apiBaseUrl +
-                                                        (product?.imageUrl ??
-                                                            state.product
-                                                                ?.imageUrl ??
-                                                            ''),
-                                                    height: context.isSmall
-                                                        ? context.height * .4
-                                                        : 500,
-                                                    width: context.isSmall
-                                                        ? context.width
-                                                        : 500,
-                                                    onError: Image.asset(
-                                                      AppImages.noPhoto,
-                                                      height: 50,
-                                                    ))
-                                                : CachedNetworkImage(
-                                                    fit: BoxFit.contain,
-                                                    height: context.isSmall
-                                                        ? context.height * .4
-                                                        : 500,
-                                                    width: context.isSmall
-                                                        ? context.width
-                                                        : 500,
-                                                    memCacheWidth: 900,
-                                                    errorListener: (value) => log
-                                                        .e('${product?.id}:${product?.title}\n$value'),
-                                                    imageUrl: NetworkConstants
-                                                            .apiBaseUrl +
-                                                        ((product ??
-                                                                    state
-                                                                        .product)
-                                                                ?.imageUrl ??
-                                                            ''),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        Image.asset(
-                                                            AppImages.noPhoto),
-                                                  ),
-                                          ),
+                                          child: kIsWeb
+                                              ? ImageNetwork(
+                                                  onLoading: const SizedBox(),
+                                                  duration: 0,
+                                                  fitWeb: BoxFitWeb.contain,
+                                                  image: NetworkConstants
+                                                          .apiBaseUrl +
+                                                      (product?.imageUrl ??
+                                                          state.product
+                                                              ?.imageUrl ??
+                                                          ''),
+                                                  height: context.isSmall
+                                                      ? context.height * .4
+                                                      : 500,
+                                                  width: context.isSmall
+                                                      ? context.width
+                                                      : 500,
+                                                  onError: Image.asset(
+                                                    AppImages.noPhoto,
+                                                    height: 50,
+                                                  ))
+                                              : CachedNetworkImage(
+                                                  fit: BoxFit.contain,
+                                                  height: context.isSmall
+                                                      ? context.height * .4
+                                                      : 500,
+                                                  width: context.isSmall
+                                                      ? context.width
+                                                      : 500,
+                                                  memCacheWidth: 900,
+                                                  errorListener: (value) => log.e(
+                                                      '${product?.id}:${product?.title}\n$value'),
+                                                  imageUrl: NetworkConstants
+                                                          .apiBaseUrl +
+                                                      ((product ??
+                                                                  state.product)
+                                                              ?.imageUrl ??
+                                                          ''),
+                                                  errorWidget: (context, url,
+                                                          error) =>
+                                                      Image.asset(
+                                                          AppImages.noPhoto),
+                                                ),
                                         ),
+                                      ),
+                                      Positioned(
+                                        bottom: 20,
+                                        right: 20,
+                                        child: product?.leftQuantity == 0 &&
+                                                product?.contractor?.stocks ==
+                                                    null
+                                            ? const SizedBox()
+                                            : AppCard(
+                                                fillColor: context.primary,
+                                                borderColor: AppColors.white,
+                                                borderRadius: 0,
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(4),
+                                                  child: Text(
+                                                    product!.leftQuantity >
+                                                                999 ||
+                                                            product!.contractor!
+                                                                    .leftQuantity >
+                                                                999
+                                                        ? "В наличии 999 шт."
+                                                        : product?.contractor
+                                                                    ?.leftQuantity ==
+                                                                0
+                                                            ? "В наличии ${product?.leftQuantity} шт."
+                                                            : "В наличии ${product?.contractor?.leftQuantity} шт.",
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: context.onPrimary,
+                                                    ),
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                )),
+                                      ),
+                                    ],
+                                  ),
                                   state.product?.leftQuantity == 0 &&
                                           state.product?.contractor?.stocks ==
                                               null
@@ -358,56 +380,41 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                                           ? const SizedBox()
                                                                           : state.product?.contractor?.price == null
                                                                               ? Column(
-                                                                                mainAxisAlignment: MainAxisAlignment.start,
-                                                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                children: [
-                                                                                  product?.priceDiscount != 0
-                                                                                      ? Text(
-                                                                                    "${currencyFormatter.format(product?.price).replaceAll('.', ' ')} сум",
-                                                                                    style: const TextStyle(
-                                                                                        color: AppColors.grey,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                        decoration:
-                                                                                        TextDecoration.lineThrough,
-                                                                                        fontSize: 12),
-                                                                                  )
-                                                                                      : const Text(
-                                                                                    "",
-                                                                                    style: TextStyle(
-                                                                                        color: AppColors.grey,
-                                                                                        fontWeight: FontWeight.w500,
-                                                                                        decoration:
-                                                                                        TextDecoration.lineThrough,
-                                                                                        fontSize: 10),
-                                                                                  ),
-                                                                                  horizontalSpace5,
-                                                                                  product?.priceDiscount != 0
-                                                                                      ? Text(
-                                                                                    "${currencyFormatter.format(product?.priceDiscount).replaceAll('.', ' ')} сум",
-                                                                                    style: const TextStyle(
-                                                                                        color: AppColors.primary,
-                                                                                        fontWeight: FontWeight.bold,
-                                                                                        fontSize: 18),
-                                                                                  )
-                                                                                      : product?.leftQuantity == 0 &&
-                                                                                      product?.contractor?.stocks == null
-                                                                                      ? const Text(
-                                                                                    "Нет в наличии",
-                                                                                    style:
-                                                                                    TextStyle(color: AppColors.red),
-                                                                                  )
-                                                                                      : Text(
-                                                                                    '${currencyFormatter.format((product?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                                                                                    maxLines: 1,
-                                                                                    overflow: TextOverflow.ellipsis,
-                                                                                    style: context.titleSmall,
-                                                                                  ),
-                                                                                ],
-                                                                              )
-                                                                              : Text('${currencyFormatter.format(state.product?.contractor?.price).replaceAll(".", " ")} ${'common.sum'.tr()}',  style: const TextStyle(
-                                                                          color: AppColors.primary,
-                                                                          fontWeight: FontWeight.bold,
-                                                                          fontSize: 18),),
+                                                                                  mainAxisAlignment: MainAxisAlignment.start,
+                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                  children: [
+                                                                                    product?.priceDiscount != 0
+                                                                                        ? Text(
+                                                                                            "${currencyFormatter.format(product?.price).replaceAll('.', ' ')} сум",
+                                                                                            style: const TextStyle(color: AppColors.grey, fontWeight: FontWeight.w500, decoration: TextDecoration.lineThrough, fontSize: 12),
+                                                                                          )
+                                                                                        : const Text(
+                                                                                            "",
+                                                                                            style: TextStyle(color: AppColors.grey, fontWeight: FontWeight.w500, decoration: TextDecoration.lineThrough, fontSize: 10),
+                                                                                          ),
+                                                                                    horizontalSpace5,
+                                                                                    product?.priceDiscount != 0
+                                                                                        ? Text(
+                                                                                            "${currencyFormatter.format(product?.priceDiscount).replaceAll('.', ' ')} сум",
+                                                                                            style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                                                                                          )
+                                                                                        : product?.leftQuantity == 0 && product?.contractor?.stocks == null
+                                                                                            ? const Text(
+                                                                                                "Нет в наличии",
+                                                                                                style: TextStyle(color: AppColors.red),
+                                                                                              )
+                                                                                            : Text(
+                                                                                                '${currencyFormatter.format((product?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                                                                                maxLines: 1,
+                                                                                                overflow: TextOverflow.ellipsis,
+                                                                                                style: context.titleSmall,
+                                                                                              ),
+                                                                                  ],
+                                                                                )
+                                                                              : Text(
+                                                                                  '${currencyFormatter.format(state.product?.contractor?.price).replaceAll(".", " ")} ${'common.sum'.tr()}',
+                                                                                  style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.bold, fontSize: 18),
+                                                                                ),
                                                                       if (!(state
                                                                               .product
                                                                               ?.inCart ??

@@ -122,9 +122,27 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Row(
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              product?.leftQuantity == 0 && product?.contractor?.stocks == null
+                              AppCard(
+                                fillColor: context.background,
+                                borderColor: AppColors.grey,
+                                borderRadius: 0,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: Text(
+                                    "${(product ?? cartProduct?.product)?.brand?.name} ",
+                                    maxLines: 1,
+                                    style: const TextStyle(fontSize: 10),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ),
+                              horizontalSpace5,
+                              product?.leftQuantity == 0 &&
+                                      product?.contractor?.stocks == null
                                   ? AppCard(
                                       fillColor:
                                           const Color.fromARGB(255, 0, 73, 208),
@@ -142,22 +160,34 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ))
-                                  : const SizedBox(),
-                              horizontalSpace5,
-                              AppCard(
-                                fillColor: context.background,
-                                borderColor: AppColors.grey,
-                                borderRadius: 0,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4),
-                                  child: Text(
-                                    "${(product ?? cartProduct?.product)?.brand?.name} ",
-                                    maxLines: 1,
-                                    style: const TextStyle(fontSize: 10),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                              ),
+                                  : AppCard(
+                                  fillColor: context.primary,
+                                  borderColor: AppColors.white,
+                                  borderRadius: 0,
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.all(4),
+                                    child: Text(
+                                      product!.leftQuantity >
+                                          999 ||
+                                          product!.contractor!
+                                              .leftQuantity >
+                                              999
+                                          ? "В наличии 999 шт."
+                                          : product?.contractor
+                                          ?.leftQuantity ==
+                                          0
+                                          ? "В наличии ${product?.leftQuantity} шт."
+                                          : "В наличии ${product?.contractor?.leftQuantity} шт.",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: context.onPrimary,
+                                      ),
+                                      overflow:
+                                      TextOverflow.ellipsis,
+                                    ),
+                                  )),
                             ],
                           ),
                         ],
@@ -181,7 +211,8 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
           ),
           verticalSpace8,
           Row(
-            mainAxisAlignment: product?.leftQuantity == 0 && product?.contractor?.stocks == null
+            mainAxisAlignment: product?.leftQuantity == 0 &&
+                    product?.contractor?.stocks == null
                 ? MainAxisAlignment.center
                 : MainAxisAlignment.spaceBetween,
             children: [
@@ -255,11 +286,11 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                             fontSize: 16),
                                       )
                                     : Text(
-                                            '${currencyFormatter.format((product?.contractor?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                                            maxLines: 1,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: context.titleSmall,
-                                          ),
+                                        '${currencyFormatter.format((product?.contractor?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: context.titleSmall,
+                                      ),
                               ],
                             ),
                           ),

@@ -74,29 +74,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   bool hasNext = true;
 
   void _onAddToCart(_AddToCart event, Emitter<CartState> emit) async {
-    print('object');
-    final popularBloc =
-        BlocProvider.of<PopularBloc>(router.navigatorKey.currentContext!);
-    final latestBloc =
-        BlocProvider.of<LatestBloc>(router.navigatorKey.currentContext!);
-    final discount =
-        BlocProvider.of<DiscountsBloc>(router.navigatorKey.currentContext!);
-    final hits = BlocProvider.of<HitBloc>(router.navigatorKey.currentContext!);
 
-    // if (kIsWeb && state is _Ready) {
-    //   emit((state as _Ready).copyWith(products: []));
-    // }
+
     final res = await _addProductToCartUseCase
         .call((productId: event.id, quantity: event.quantity));
 
     res.fold((l) => {}, (r) {
-      if (event.updateDependencies) {
-        // popularBloc.add(const PopularEvent.fetch());
-        // latestBloc.add(const LatestEvent.fetch());
-        // hits.add(const HitEvent.fetch());
-        // discount.add(const DiscountsEvent.fetch());
-      }
-      // emit(const CartState.loadInProgress());
+
       _updateView();
     });
   }

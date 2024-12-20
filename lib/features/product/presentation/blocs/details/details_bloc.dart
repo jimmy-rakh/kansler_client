@@ -11,7 +11,9 @@ import '../../../domain/entities/product.entity.dart';
 import '../../../domain/usecases/fetch.product.usecase.dart';
 
 part 'details_state.dart';
+
 part 'details_event.dart';
+
 part 'details_bloc.freezed.dart';
 
 @injectable
@@ -49,20 +51,27 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
 
     if (product == null) return;
 
-    // if (product.leftQuantity <= int.parse(fieldController.text)) {
-    //   router.navigatorKey.currentContext!
-    //       .showToast('Недостаточно кол-во в складе');
-    //
-    //   return;
-    // }
-    fieldController.text = (int.parse(fieldController.text) + 1).toString();
+    if (product.contractor?.leftQuantity != 0) {
+      if (product.contractor!.leftQuantity <= int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+      fieldController.text = (int.parse(fieldController.text) + 1).toString();
+    } else {
+      if (product.leftQuantity <= int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+      fieldController.text = (int.parse(fieldController.text) + 1).toString();
+    }
   }
 
   void decrement() {
     if (int.parse(fieldController.text) == 1) return;
 
     fieldController.text = (int.parse(fieldController.text) - 1).toString();
-
   }
 
   void completeEditing() {
@@ -78,18 +87,31 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
 
     final product = state.product;
 
-    // if (product!.leftQuantity < int.parse(fieldController.text)) {
-    //   router.navigatorKey.currentContext!
-    //       .showToast('Недостаточно кол-во в складе');
-    //   fieldController.text = '1';
-    //
-    //   return;
-    // }
-    !product!.inCart!
-        ? cartBloc.add(CartEvent.addToCart(
+
+
+    if (!product!.inCart!) {
+      if (product.contractor?.leftQuantity != 0) {
+        if (product.contractor!.leftQuantity < int.parse(fieldController.text)) {
+          router.navigatorKey.currentContext!
+              .showToast('Недостаточно кол-во в складе');
+          return;
+        }
+        cartBloc.add(CartEvent.addToCart(
             product.id, int.parse(fieldController.text),
-            updateDependencies: true))
-        : cartBloc.add(CartEvent.deleteProductInCart(product.id));
+            updateDependencies: true));
+      } else {
+        if (product.leftQuantity < int.parse(fieldController.text)) {
+          router.navigatorKey.currentContext!
+              .showToast('Недостаточно кол-во в складе');
+          return;
+        }
+        cartBloc.add(CartEvent.addToCart(
+            product.id, int.parse(fieldController.text),
+            updateDependencies: true));
+      }
+    } else {
+      cartBloc.add(CartEvent.deleteProductInCart(product.id));
+    }
 
     emit(state.copyWith(product: product.copyWith(inCart: !product.inCart!)));
   }

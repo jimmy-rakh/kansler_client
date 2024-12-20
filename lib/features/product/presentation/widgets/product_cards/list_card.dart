@@ -92,7 +92,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                         )
                       : SizedBox(
                           height: context.isSmall ? 120 : 100,
-                          width: 100,
+                          width: 120,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(3),
                             child: kIsWeb
@@ -154,26 +154,51 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 ),
                               ),
                               horizontalSpace5,
-                              product?.leftQuantity == 0 &&
-                                      product?.contractor?.stocks == null
+                              product?.leftQuantity == 0 && product?.contractor?.stocks == null
                                   ? AppCard(
-                                      fillColor:
-                                          const Color.fromARGB(255, 0, 73, 208),
-                                      borderColor: AppColors.white,
-                                      borderRadius: 0,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4),
-                                        child: Text(
-                                          "Под заказ",
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            fontSize: 10,
-                                            color: context.onPrimary,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ))
-                                  : const SizedBox(),
+                                  fillColor:
+                                  const Color.fromARGB(255, 0, 73, 208),
+                                  borderColor: AppColors.white,
+                                  borderRadius: 0,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(4),
+                                    child: Text(
+                                      "Под заказ",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: context.onPrimary,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ))
+                                  : AppCard(
+                                  fillColor: context.primary,
+                                  borderColor: AppColors.white,
+                                  borderRadius: 0,
+                                  child: Padding(
+                                    padding:
+                                    const EdgeInsets.all(4),
+                                    child: Text(
+                                      (product ?? cartProduct?.product)!.leftQuantity >
+                                          999 ||
+                                          (product?.contractor ?? cartProduct?.product?.contractor)!.leftQuantity >
+                                              999
+                                          ? "В наличии 999 шт."
+                                          : product?.contractor
+                                          ?.leftQuantity ==
+                                          0
+                                          ? "В наличии ${(product ?? cartProduct?.product)!.leftQuantity} шт."
+                                          : "В наличии ${(product?.contractor ?? cartProduct?.product?.contractor)!.leftQuantity} шт.",
+                                      maxLines: 1,
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: context.onPrimary,
+                                      ),
+                                      overflow:
+                                      TextOverflow.ellipsis,
+                                    ),
+                                  )),
                             ],
                           ),
                         )
@@ -182,16 +207,17 @@ class ProductListCard extends HookWidget implements ProductCard {
             ),
           horizontalSpace12,
           SizedBox(
-            width: context.isSmall
-                ? context.width - 144
-                : context.isTablet
-                    ? context.width * .43
-                    : context.isDesktop
-                        ? 770
-                        : context.width * .53,
+            width:  context.width * .58,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                verticalSpace5,
+                Text(
+                  (product ?? cartProduct?.product)?.title ??
+                      cartProduct?.name ??
+                      'Нет на сайте',
+                  maxLines: 1,
+                ),
                 verticalSpace5,
                 if (product != null || cartProduct?.product != null)
                   Text(
@@ -201,13 +227,6 @@ class ProductListCard extends HookWidget implements ProductCard {
                         fontWeight: FontWeight.w400, fontSize: 10),
                     overflow: TextOverflow.ellipsis,
                   ),
-                verticalSpace5,
-                Text(
-                  (product ?? cartProduct?.product)?.title ??
-                      cartProduct?.name ??
-                      'Нет на сайте',
-                  maxLines: 1,
-                ),
                 verticalSpace5,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -372,18 +391,37 @@ class ProductListCard extends HookWidget implements ProductCard {
                                               },
                                               onEditingComplete: competeEditing,
                                               onFieldSubmitted: (value) {
-                                                cartBloc.add(CartEvent
-                                                    .updateProductInCart(
-                                                        (product ??
-                                                                cartProduct!
-                                                                    .product)!
-                                                            .id,
-                                                        int.parse(
-                                                            fieldController
-                                                                .text)));
-                                                FocusScope.of(context)
-                                                    .unfocus();
-                                                return;
+                                                if ((product ?? cartProduct!.product)!.contractor?.leftQuantity != 0) {
+                                                  if ((product ?? cartProduct!.product)!.contractor!.leftQuantity < int.parse(fieldController.text)) {
+                                                    router.navigatorKey.currentContext!
+                                                        .showToast('Недостаточно кол-во в складе');
+                                                    return;
+                                                  }
+                                                  cartBloc.add(CartEvent
+                                                      .updateProductInCart(
+                                                      (product ??
+                                                          cartProduct!
+                                                              .product)!
+                                                          .id,
+                                                      int.parse(
+                                                          fieldController.text)));
+
+                                                } else {
+                                                  if ((product ?? cartProduct!.product)!.leftQuantity < int.parse(fieldController.text)) {
+                                                    router.navigatorKey.currentContext!
+                                                        .showToast('Недостаточно кол-во в складе');
+                                                    return;
+                                                  }
+                                                  cartBloc.add(CartEvent
+                                                      .updateProductInCart(
+                                                      (product ??
+                                                          cartProduct!
+                                                              .product)!
+                                                          .id,
+                                                      int.parse(fieldController.text)));
+
+                                                }
+
                                               },
                                               textInputType:
                                                   TextInputType.number,
@@ -491,23 +529,47 @@ class ProductListCard extends HookWidget implements ProductCard {
                                         ),
                                         textColor: AppColors.white,
                                         onPressed: () {
-                                                onCart.call(CheckoutType.order);
+
                                                 if (!((product ??
                                                             cartProduct
                                                                 ?.product)
                                                         ?.inCart ??
                                                     true)) {
-                                                  cartBloc.add(
-                                                      CartEvent.addToCart(
-                                                          (product ??
-                                                                  cartProduct!
-                                                                      .product)!
-                                                              .id,
-                                                          int.parse(
-                                                              fieldController
-                                                                  .text)));
+                                                  if ((product ??  cartProduct?.product)!.contractor?.leftQuantity != 0) {
+                                                    if ((product ??  cartProduct!.product)!.contractor!.leftQuantity < int.parse(fieldController.text)) {
+                                                      router.navigatorKey.currentContext!
+                                                          .showToast('Недостаточно кол-во в складе');
+                                                      return;
+                                                    }
+                                                    onCart.call(CheckoutType.order);
+                                                    cartBloc.add(CartEvent.addToCart(
+                                                        (product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                            .id,
+                                                        int.parse(
+                                                            fieldController
+                                                                .text)));
+                                                  } else {
+                                                    if ((product ??  cartProduct?.product)!.leftQuantity < int.parse(fieldController.text)) {
+                                                      router.navigatorKey.currentContext!
+                                                          .showToast('Недостаточно кол-во в складе');
+                                                      return;
+                                                    }
+                                                    onCart.call(CheckoutType.order);
+                                                    cartBloc.add(CartEvent.addToCart(
+                                                        (product ??
+                                                            cartProduct!
+                                                                .product)!
+                                                            .id,
+                                                        int.parse(
+                                                            fieldController
+                                                                .text)));
+                                                  }
+
                                                   return;
                                                 }
+                                                onCart.call(CheckoutType.order);
                                                 cartBloc.add(CartEvent
                                                     .deleteProductInCart(
                                                         (product ??
@@ -550,19 +612,75 @@ class ProductListCard extends HookWidget implements ProductCard {
   }
 
   void incremet() {
+    if((product ?? cartProduct?.product)!.contractor!.leftQuantity == 0){
+    if ((product ?? cartProduct?.product)!.leftQuantity <=
+        int.parse(fieldController.text)) {
+      router.navigatorKey.currentContext!
+          .showToast('Недостаточно кол-во в складе');
+      return;
+    }
+
     fieldController.text = (int.parse(fieldController.text) + 1).toString();
     updateCount();
+  }else{
+      if ((product ?? cartProduct?.product)!.contractor!.leftQuantity <=
+          int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+
+      fieldController.text = (int.parse(fieldController.text) + 1).toString();
+      updateCount();
+    }
   }
 
   void decrement() {
     if (int.parse(fieldController.text) == 1) return;
-
     fieldController.text = (int.parse(fieldController.text) - 1).toString();
-    updateCount();
+    if((product ?? cartProduct?.product)!.contractor!.leftQuantity == 0){
+      if ((product ?? cartProduct?.product)!.leftQuantity <=
+          int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+
+      updateCount();
+    }else{
+      if ((product ?? cartProduct?.product)!.contractor!.leftQuantity <=
+          int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+
+      updateCount();
+    }
+
   }
 
   void submit(String value) {
-    updateCount();
+
+    if((product ?? cartProduct?.product)!.contractor!.leftQuantity == 0){
+      if ((product ?? cartProduct?.product)!.leftQuantity <=
+          int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+
+      updateCount();
+    }else{
+      if ((product ?? cartProduct?.product)!.contractor!.leftQuantity <=
+          int.parse(fieldController.text)) {
+        router.navigatorKey.currentContext!
+            .showToast('Недостаточно кол-во в складе');
+        return;
+      }
+
+      updateCount();
+    }
 
     if (int.parse(value) >= 1) return;
 
