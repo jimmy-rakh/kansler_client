@@ -77,7 +77,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       try {
         await _setAuthTokenUseCase.call(r.deviceToken);
         authBloc.add(const AuthEvent.checkStatus());
-        router.popUntilRoot();
+        router.replace(const MainRoute());
       } catch (e) {
         log.e(e.toString());
       }

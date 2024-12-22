@@ -77,7 +77,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(state.copyWith(requestId: null));
           await _setAuthTokenUseCase.call(r.deviceToken);
           authBloc.add(const AuthEvent.checkStatus());
-          router.push(const MainRoute());
+          router.replace(const MainRoute());
           return;
         } catch (e) {
           emit(state.copyWith(isBusy: false));
@@ -107,63 +107,61 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     }
 
-    if (state.requestId == null) {
-      late DeviceInfo deviceInfo;
-      DeviceInfoPlugin infoPlugin = DeviceInfoPlugin();
-      if (kIsWeb) {
-        WebBrowserInfo webBrowserInfo = await infoPlugin.webBrowserInfo;
-        deviceInfo = DeviceInfo(
-          info: webBrowserInfo.userAgent.toString(),
-          imei: 'appId',
-          name: webBrowserInfo.browserName.name,
-          appVersion: webBrowserInfo.appVersion.toString(),
-          type: 3,
-        );
-      } else {
-        deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
-      }
-
-      final token = kIsWeb ? 'web' : await NotificationService.getToken();
-
-      final request = AuthRequest(
-        value: address?.cid.toString() ??
-            valueController.text.replaceAll(RegExp(r'[^0-9]'), ''),
-        clientType: ClientType.values[state.tabIndex],
-        fcmToken: token ?? 'none',
-        device: deviceInfo,
+    late DeviceInfo deviceInfo;
+    DeviceInfoPlugin infoPlugin = DeviceInfoPlugin();
+    if (kIsWeb) {
+      WebBrowserInfo webBrowserInfo = await infoPlugin.webBrowserInfo;
+      deviceInfo = DeviceInfo(
+        info: webBrowserInfo.userAgent.toString(),
+        imei: 'appId',
+        name: webBrowserInfo.browserName.name,
+        appVersion: webBrowserInfo.appVersion.toString(),
+        type: 3,
       );
-      final res = await _authRepository.authentification(request);
-
-      res.fold(
-        (l) => emit(state.copyWith(
-          isBusy: false,
-          error: 'Неправильный формат!\nВведите корректно как указано выще',
-        )),
-        (r) async {
-          try {
-            emit(state.copyWith(
-              isBusy: false,
-              requestId: r.requestId,
-              hasPass: r.hasPass,
-              isExist: r.isExists,
-            ));
-
-            if (!r.hasPass &&
-                state.tabIndex == 1 &&
-                phoneController.text.isEmpty) {
-              return;
-            }
-
-            if (r.hasPass) {
-              passController = TextEditingController();
-              return;
-            }
-          } catch (e) {
-            emit(state.copyWith(error: e.toString()));
-          }
-        },
-      );
+    } else {
+      deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
     }
+
+    final token = kIsWeb ? 'web' : await NotificationService.getToken();
+
+    final request = AuthRequest(
+      value: address?.cid.toString() ??
+          valueController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+      clientType: ClientType.values[state.tabIndex],
+      fcmToken: token ?? 'none',
+      device: deviceInfo,
+    );
+    final res = await _authRepository.authentification(request);
+
+    res.fold(
+      (l) => emit(state.copyWith(
+        isBusy: false,
+        error: 'Неправильный формат!\nВведите корректно как указано выще',
+      )),
+      (r) async {
+        try {
+          emit(state.copyWith(
+            isBusy: false,
+            requestId: r.requestId,
+            hasPass: r.hasPass,
+            isExist: r.isExists,
+          ));
+
+          if (!r.hasPass &&
+              state.tabIndex == 1 &&
+              phoneController.text.isEmpty) {
+            return;
+          }
+
+          if (r.hasPass) {
+            passController = TextEditingController();
+            return;
+          }
+        } catch (e) {
+          emit(state.copyWith(error: e.toString()));
+        }
+      },
+    );
 
     if ((phoneController.text.isNotEmpty || state.tabIndex == 0) &&
         !state.hasPass) _sendCode();
