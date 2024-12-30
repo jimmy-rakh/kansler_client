@@ -106,13 +106,9 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                         body: ListView(
                           children: [
                             AppCard(
-                              width: context.isSmall ? context.width : 600,
-                              height: context.isSmall
-                                  ? context.isMobile
-                                      ? context.height * .53
-                                      : context.height * .5
-                                  : 600,
-                              borderRadius: context.isSmall ? 0 : 4,
+                              width: context.width ,
+                              height: context.height * .55,
+                              borderRadius:4,
                               margin: context.isSmall
                                   ? EdgeInsets.zero
                                   : const EdgeInsets.fromLTRB(20, 10, 0, 10),
@@ -182,8 +178,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                         bottom: 20,
                                         right: 20,
                                         child: product?.leftQuantity == 0 &&
-                                                product?.contractor?.stocks ==
-                                                    null
+                                                product?.contractor?.leftQuantity == 0
                                             ? const SizedBox()
                                             : AppCard(
                                                 fillColor: context.primary,
@@ -217,8 +212,7 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                     ],
                                   ),
                                   state.product?.leftQuantity == 0 &&
-                                          state.product?.contractor?.stocks ==
-                                              null
+                                          state.product?.contractor?.leftQuantity == 0
                                       ? state.product == null
                                           ? const SizedBox()
                                           : Padding(
