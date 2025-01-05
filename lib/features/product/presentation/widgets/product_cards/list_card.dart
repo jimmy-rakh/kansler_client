@@ -51,14 +51,8 @@ class ProductListCard extends HookWidget implements ProductCard {
     final preorderBloc = context.read<PreordersBloc>();
     final currencyFormatter = NumberFormat.decimalPattern('vi_VN');
     return AppCard(
-      height: context.isSmall ? 130 : 100,
-      width: context.isSmall
-          ? context.width
-          : context.isDesktop
-              ? 900
-              : context.isTablet
-                  ? context.width * .57
-                  : context.width * .70,
+      height: 130,
+      width:  context.width,
       onTap: () {
         // competeEditing();
         // onPressed();
@@ -85,7 +79,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                             child: Image.asset(
                               AppImages.noPhoto,
                               height: context.isSmall ? 120 : 100,
-                              width: 100,
+                              width: 120,
                               fit: BoxFit.fill,
                             ),
                           ),
@@ -109,7 +103,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                         (product ?? cartProduct?.product)!
                                             .imageUrl!,
                                     height: context.isSmall ? 120 : 100,
-                                    width: 100,
+                                    width: 120,
                                     onError: Image.asset(
                                       AppImages.noPhoto,
                                       height: 120,
@@ -154,7 +148,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 ),
                               ),
                               horizontalSpace5,
-                              product?.leftQuantity == 0 && product?.contractor?.stocks == null
+                              product?.leftQuantity == 0 && product?.contractor?.leftQuantity == 0
                                   ? AppCard(
                                   fillColor:
                                   const Color.fromARGB(255, 0, 73, 208),
@@ -205,148 +199,150 @@ class ProductListCard extends HookWidget implements ProductCard {
                 ],
               ),
             ),
-          horizontalSpace12,
-          SizedBox(
-            width:  context.width * .58,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                verticalSpace5,
-                Text(
+          context.isMobile ? horizontalSpace8 : horizontalSpace12,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              verticalSpace5,
+              SizedBox(
+                width: context.width * .53,
+                child: Text(
                   (product ?? cartProduct?.product)?.title ??
                       cartProduct?.name ??
                       'Нет на сайте',
                   maxLines: 1,
                 ),
-                verticalSpace5,
-                if (product != null || cartProduct?.product != null)
-                  Text(
-                    "Артикул: ${(product ?? cartProduct?.product)?.vendorCode ?? ''}",
-                    maxLines: 1,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w400, fontSize: 10),
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                verticalSpace5,
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    verticalSpace5,
-                    if (cartProduct?.price != null)
-                      cartProduct?.product?.leftQuantity == 0 &&
-                          cartProduct?.product?.contractor?.stocks == null
-                          ? const SizedBox(
-                        height: 20,
-                      )
-                          : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          cartProduct?.product?.priceDiscount != 0  ?
-                          Text(
-                            "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.product?.priceDiscount ).replaceAll('.', ' ')} сум",
-                            style: const TextStyle(
-                                color: AppColors
-                                    .primary,
-                                fontWeight:
-                                FontWeight.bold,
-                                fontSize: 16),
-                          ) : cartProduct?.product?.leftQuantity == 0 &&
-                              cartProduct?.product?.contractor?.stocks == null ? Text(
-                            '',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.titleSmall,
-                          )
-                              : cartProduct?.product?.contractor?.stocks == null ? Text(
-                            '${currencyFormatter.format((cartProduct?.price ?? cartProduct?.product?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.titleSmall,
-                          ): Text(
-                            '${currencyFormatter.format((cartProduct?.product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: context.titleSmall,
-                          ),
-                          horizontalSpace5,
-                          if(cartProduct?.product?.priceDiscount != 0 )
-                            Text(
-                              "${currencyFormatter.format(product?.price ?? cartProduct?.product?.price).replaceAll('.', ' ')} сум",
-                              style: const TextStyle(
-                                  color: AppColors.grey,
-                                  fontWeight:
-                                  FontWeight.w500,
-                                  decoration: TextDecoration.lineThrough,
-                                  fontSize: 14),
-                            ),
-
-                        ],
-                      ),
-                    product?.price == null
-                        ? const SizedBox.shrink()
-                        : product?.leftQuantity == 0 &&
-                                product?.contractor?.stocks == null
-                            ? const SizedBox(
-                                height: 20,
-                              )
-                            : Row(
+              ),
+              verticalSpace5,
+              if (product != null || cartProduct?.product != null)
+                Text(
+                  "Артикул: ${(product ?? cartProduct?.product)?.vendorCode ?? ''}",
+                  maxLines: 1,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w400, fontSize: 10),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              verticalSpace5,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  verticalSpace5,
+                  if (cartProduct?.price != null)
+                    cartProduct?.product?.leftQuantity == 0 &&
+                        cartProduct?.product?.contractor?.leftQuantity == 0
+                        ? const SizedBox(
+                      height: 20,
+                    )
+                        : Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                product?.priceDiscount != 0  ?
-                                Text(
-                                  "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.priceDiscount).replaceAll('.', ' ')} сум",
-                                  style: const TextStyle(
-                                      color: AppColors
-                                          .primary,
-                                      fontWeight:
-                                      FontWeight.bold,
-                                      fontSize: 16),
-                                ) :
-                                product?.leftQuantity == 0 &&
-                                    product?.contractor?.stocks == null ? Text(
-                                  '',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: context.titleSmall,
-                                )
-                                    : product?.contractor?.stocks == null ? Text(
-                                  '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: context.titleSmall,
-                                ) : Text(
-                                  '${currencyFormatter.format((product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                      color: AppColors
-                                          .primary,
-                                      fontWeight:
-                                      FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                horizontalSpace5,
-                                if(product?.priceDiscount != 0 )
-                                  Text(
-                                    "${currencyFormatter.format(product?.price ?? cartProduct?.price).replaceAll('.', ' ')} сум",
-                                    style: const TextStyle(
-                                        color: AppColors.grey,
-                                        fontWeight:
-                                        FontWeight.w500,
-                                        decoration: TextDecoration.lineThrough,
-                                        fontSize: 14),
-                                  ),
+                      children: [
+                        cartProduct?.product?.priceDiscount != 0  ?
+                        Text(
+                          "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.product?.priceDiscount ).replaceAll('.', ' ')} сум",
+                          style: const TextStyle(
+                              color: AppColors
+                                  .primary,
+                              fontWeight:
+                              FontWeight.bold,
+                              fontSize: 16),
+                        ) : cartProduct?.product?.leftQuantity == 0 &&
+                            cartProduct?.product?.contractor?.leftQuantity == 0 ? Text(
+                          '',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.titleSmall,
+                        )
+                            : cartProduct?.product?.contractor?.stocks == null ? Text(
+                          '${currencyFormatter.format((cartProduct?.price ?? cartProduct?.product?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.titleSmall,
+                        ): Text(
+                          '${currencyFormatter.format((cartProduct?.product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: context.titleSmall,
+                        ),
+                        horizontalSpace5,
+                        if(cartProduct?.product?.priceDiscount != 0 )
+                          Text(
+                            "${currencyFormatter.format(product?.price ?? cartProduct?.product?.price).replaceAll('.', ' ')} сум",
+                            style: const TextStyle(
+                                color: AppColors.grey,
+                                fontWeight:
+                                FontWeight.w500,
+                                decoration: TextDecoration.lineThrough,
+                                fontSize: 14),
+                          ),
 
-                              ],
-                            ),
-                    verticalSpace5,
-                    if (cartProduct != null && !showActions)
-                      Text('${cartProduct?.quantity} штук'),
-                    if (showActions)
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                      ],
+                    ),
+                  product?.price == null
+                      ? const SizedBox.shrink()
+                      : product?.leftQuantity == 0 &&
+                              product?.contractor?.leftQuantity == 0
+                          ? const SizedBox(
+                              height: 20,
+                            )
+                          : Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              product?.priceDiscount != 0  ?
+                              Text(
+                                "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.priceDiscount).replaceAll('.', ' ')} сум",
+                                style: const TextStyle(
+                                    color: AppColors
+                                        .primary,
+                                    fontWeight:
+                                    FontWeight.bold,
+                                    fontSize: 16),
+                              ) :
+                              product?.leftQuantity == 0 &&
+                                  product?.contractor?.stocks == null ? Text(
+                                '',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: context.titleSmall,
+                              )
+                                  : product?.contractor?.stocks == null ? Text(
+                                '${currencyFormatter.format((product?.price ?? cartProduct?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: context.titleSmall,
+                              ) : Text(
+                                '${currencyFormatter.format((product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    color: AppColors
+                                        .primary,
+                                    fontWeight:
+                                    FontWeight.bold,
+                                    fontSize: 16),
+                              ),
+                              horizontalSpace5,
+                              if(product?.priceDiscount != 0 )
+                                Text(
+                                  "${currencyFormatter.format(product?.price ?? cartProduct?.price).replaceAll('.', ' ')} сум",
+                                  style: const TextStyle(
+                                      color: AppColors.grey,
+                                      fontWeight:
+                                      FontWeight.w500,
+                                      decoration: TextDecoration.lineThrough,
+                                      fontSize: 14),
+                                ),
+
+                            ],
+                          ),
+                  verticalSpace5,
+                  if (cartProduct != null && !showActions)
+                    Text('${cartProduct?.quantity} штук'),
+                  if (showActions)
+                    SizedBox(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           if (!(product?.inCart ?? false))
@@ -356,8 +352,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                                             0 &&
                                         (product ?? cartProduct?.product)
                                                 ?.contractor
-                                                ?.stocks ==
-                                            null
+                                                ?.leftQuantity ==
+                                            0
                                     ? const SizedBox()
                                     : AppCard(
                                         fillColor: context.background,
@@ -445,7 +441,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                           ],
                                         ),
                                       )),
-                          const Spacer(),
+                          horizontalSpace8,
                           (product ?? cartProduct!.product)!.inCart == null
                               ? const SizedBox()
                               : (product ?? cartProduct?.product)
@@ -453,59 +449,55 @@ class ProductListCard extends HookWidget implements ProductCard {
                                           0 &&
                                       (product ?? cartProduct?.product)
                                               ?.contractor
-                                              ?.stocks ==
-                                          null
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 5, right: 5),
-                                      child: AppButton(
-                                        borderRadius: 4,
-                                        animate: true,
-                                        textStyle:
-                                            const TextStyle(fontSize: 10),
-                                        height: 35,
-                                        padding: const EdgeInsets.only(
-                                            left: 5, right: 5),
-                                        onPressed: () {
-                                          onCart.call(CheckoutType.preorder);
-                                          if ((product ?? cartProduct?.product)
-                                                  ?.leftQuantity ==
-                                              0) {
-                                            if (!((product ??
-                                                        cartProduct?.product)
-                                                    ?.inPreorder ??
-                                                false)) {
-                                              preorderBloc.add(
-                                                  PreordersEvent.addToPreorders(
-                                                      (product ??
-                                                              cartProduct!
-                                                                  .product)!
-                                                          .id,
-                                                      1));
-                                              return;
-                                            }
-                                            preorderBloc.add(PreordersEvent
-                                                .deleteProductInPreorders(
-                                              (product ?? cartProduct!.product)!
-                                                  .id,
-                                            ));
-                                          }
-                                        },
-                                        text: (product ?? cartProduct!.product)!
+                                              ?.leftQuantity ==
+                                          0
+                                  ? AppButton(
+                                    borderRadius: 4,
+                                    animate: true,
+                                    textStyle:
+                                        const TextStyle(fontSize: 10),
+                                    height: 35,
+                                    padding: const EdgeInsets.only(
+                                        left: 5, right: 5),
+                                    onPressed: () {
+                                      onCart.call(CheckoutType.preorder);
+                                      if ((product ?? cartProduct?.product)
+                                              ?.leftQuantity ==
+                                          0) {
+                                        if (!((product ??
+                                                    cartProduct?.product)
+                                                ?.inPreorder ??
+                                            false)) {
+                                          preorderBloc.add(
+                                              PreordersEvent.addToPreorders(
+                                                  (product ??
+                                                          cartProduct!
+                                                              .product)!
+                                                      .id,
+                                                  1));
+                                          return;
+                                        }
+                                        preorderBloc.add(PreordersEvent
+                                            .deleteProductInPreorders(
+                                          (product ?? cartProduct!.product)!
+                                              .id,
+                                        ));
+                                      }
+                                    },
+                                    text: (product ?? cartProduct!.product)!
+                                                .inPreorder ??
+                                            false
+                                        ? "Удалить с корзины Предзаказа"
+                                        : "Добавить в корзину Предзаказа",
+                                    textColor: context.onPrimary,
+                                    fillColor:
+                                        (product ?? cartProduct!.product)!
                                                     .inPreorder ??
                                                 false
-                                            ? "Удалить с корзины Предзаказа"
-                                            : "Добавить в корзину Предзаказа",
-                                        textColor: context.onPrimary,
-                                        fillColor:
-                                            (product ?? cartProduct!.product)!
-                                                        .inPreorder ??
-                                                    false
-                                                ? AppColors.red
-                                                : const Color.fromARGB(
-                                                    255, 0, 73, 208),
-                                      ),
-                                    )
+                                            ? AppColors.red
+                                            : const Color.fromARGB(
+                                                255, 0, 73, 208),
+                                  )
                                   : Tooltip(
                                       message:
                                           (product ?? cartProduct!.product)!
@@ -601,10 +593,10 @@ class ProductListCard extends HookWidget implements ProductCard {
                                     ),
                         ],
                       ),
-                  ],
-                )
-              ],
-            ),
+                    ),
+                ],
+              )
+            ],
           )
         ],
       ),

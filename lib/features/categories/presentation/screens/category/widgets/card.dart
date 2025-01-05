@@ -171,13 +171,10 @@ class _CategoryCardState extends State<CategoryCard>
                     shrinkWrap: true,
                     itemBuilder: (context, index) => GestureDetector(
                       onTap: () {
-                        context.isSmall
-                            ? router.navigate(
+                        router.navigate(
                                 SubcategoryRoute(
                                     category: widget.category.children[index]),
-                              )
-                            : bloc.add(SubcategoryEvent.init(
-                                widget.category.children[index]));
+                              );
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(left: 8, right: 8),

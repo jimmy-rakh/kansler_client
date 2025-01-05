@@ -142,7 +142,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                               ),
                               horizontalSpace5,
                               product?.leftQuantity == 0 &&
-                                      product?.contractor?.stocks == null
+                                      product?.contractor?.leftQuantity == 0
                                   ? AppCard(
                                       fillColor:
                                           const Color.fromARGB(255, 0, 73, 208),
@@ -212,13 +212,13 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
           verticalSpace8,
           Row(
             mainAxisAlignment: product?.leftQuantity == 0 &&
-                    product?.contractor?.stocks == null
+                    product?.contractor?.leftQuantity == 0
                 ? MainAxisAlignment.center
                 : MainAxisAlignment.spaceBetween,
             children: [
               if (product?.price != null)
                 product?.leftQuantity == 0 &&
-                        product?.contractor?.stocks == null
+                        product?.contractor?.leftQuantity == 0
                     ? const SizedBox()
                     : product?.contractor?.price == null
                         ? Padding(
@@ -256,7 +256,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                             fontSize: 16),
                                       )
                                     : product?.leftQuantity == 0 &&
-                                            product?.contractor?.stocks == null
+                                            product?.contractor?.leftQuantity == 0
                                         ? const Text(
                                             "Нет в наличии",
                                             style:
@@ -297,11 +297,11 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
               (product ?? cartProduct!.product)!.inCart == null
                   ? const SizedBox()
                   : product?.leftQuantity == 0 &&
-                          product?.contractor?.stocks == null
+                          product?.contractor?.leftQuantity == 0
                       ? Padding(
                           padding: const EdgeInsets.only(
-                            left: 2,
-                            right: 2,
+                            left: 0.5,
+                            right: 0.5,
                           ),
                           child: AppButton(
                             borderRadius: 4,
