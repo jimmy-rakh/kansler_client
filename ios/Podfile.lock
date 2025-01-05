@@ -1,4 +1,6 @@
 PODS:
+  - alt_sms_autofill (0.0.1):
+    - Flutter
   - device_info_plus (0.0.1):
     - Flutter
   - Firebase/CoreOnly (10.29.0):
@@ -149,6 +151,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
+  - alt_sms_autofill (from `.symlinks/plugins/alt_sms_autofill/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
@@ -194,6 +197,8 @@ SPEC REPOS:
     - Toast
 
 EXTERNAL SOURCES:
+  alt_sms_autofill:
+    :path: ".symlinks/plugins/alt_sms_autofill/ios"
   device_info_plus:
     :path: ".symlinks/plugins/device_info_plus/ios"
   firebase_core:
@@ -236,6 +241,7 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/darwin"
 
 SPEC CHECKSUMS:
+  alt_sms_autofill: 6c623529a8de6a2a9297358bdb7dab3d8ad693e4
   device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
   Firebase: cec914dab6fd7b1bd8ab56ea07ce4e03dd251c2d
   firebase_core: 57aeb91680e5d5e6df6b888064be7c785f146efb

@@ -3,9 +3,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kansler/app/di.dart';
 import 'package:kansler/features/auth/data/models/register/address_request.dart';
 import 'package:kansler/features/auth/data/models/register/register_request.dart';
+import 'package:kansler/features/auth/data/models/send_code/request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
+import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code/confirm_code_bloc.dart';
+import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code_sheet.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/register_step.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
@@ -60,16 +64,21 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
     // final deviceInfo = await getIt<DeviceInfoService>().getDeviceData();
 
-    final request = RegisterRequest(
-      name: nameController.text.isEmpty ? null : nameController.text,
-      password: passwordController.text,
-      phoneNumber: (phoneNumberController.text)
-        .replaceAll(RegExp(r'[^0-9]'), ''),
-      requestId: state.requestId!,
-      username: usernameController.text,
-      addresses: state.address,
-      addressesId: state.addressId,
-    );
+    final request = passwordController.text.isEmpty
+        ? RegisterRequest(
+            requestId: state.requestId!,
+            companyName: nameController.text,
+          )
+        : RegisterRequest(
+            name: nameController.text.isEmpty ? null : nameController.text,
+            password: passwordController.text,
+            phoneNumber:
+                (phoneNumberController.text).replaceAll(RegExp(r'[^0-9]'), ''),
+            requestId: state.requestId!,
+            username: usernameController.text,
+            addresses: state.address,
+            addressesId: state.addressId,
+          );
 
     final res = await _authRepository.register(request);
 
@@ -124,31 +133,34 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
   void _onSendCode(_SendCode event, Emitter<RegisterState> emit) async {
-    try {
-      emit(state.copyWith(isLoading: true, error: null));
+    final request = SendCodeRequest(
+      phoneNumber: phoneNumberController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+    );
 
-      // await _sendCodeUseCase.call((
-      //   phoneNumber: event.phone,
-      //   requestId: event.requestId,
-      // ));
-      emit(state.copyWith(isLoading: false));
+    final res = await _authRepository.sendCode(
+      state.requestId!,
+      request,
+    );
 
-      // final res = await router.showSheet(
-      //   BlocProvider(
-      //     create: (context) => getIt<ConfirmCodeBloc>(),
-      //     child: ConfirmCodeSheet(
-      //       number: event.phone,
-      //       requestId: event.requestId,
-      //     ),
-      //   ),
-      // ) as bool?;
+    res.fold((l) => null, (r) async {
+      final confirmed = await router.showSheet(
+        BlocProvider(
+          create: (context) => getIt<ConfirmCodeBloc>(),
+          child: ConfirmCodeSheet(
+            number: phoneNumberController.text,
+            requestId: state.requestId!,
+            request: request,
+            username: nameController.text,
+          ),
+        ),
+      ) as String;
 
-      // if (res != null) {
-      //   emit((state as _Ready).copyWith(step: RegisterStep.inputLogin));
-      // }
-    } catch (e) {
-      log.e(e.toString());
-    }
+      if (confirmed.isEmpty) return;
+
+      await _setAuthTokenUseCase.call(confirmed);
+      authBloc.add(const AuthEvent.checkStatus());
+      router.replace(const MainRoute());
+    });
   }
 
   String? secondPasswordValidator(String? data) {

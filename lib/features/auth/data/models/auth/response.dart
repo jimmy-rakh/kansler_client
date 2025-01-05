@@ -8,7 +8,7 @@ class AuthResponse with _$AuthResponse {
   factory AuthResponse({
     required String requestId,
     required bool isExists,
-    required bool hasPass,
+    bool? hasPass,
   }) = _AuthResponse;
 
   factory AuthResponse.fromJson(Map<String, dynamic> json) =>

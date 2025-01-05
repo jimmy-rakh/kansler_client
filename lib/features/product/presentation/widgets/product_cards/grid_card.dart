@@ -30,7 +30,7 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
     this.fieldController,
     this.isBusy = false,
     this.cartProduct,
-    this.width = 130,
+    this.width = 131,
     this.height = 120,
   }) : assert(product != null || cartProduct != null);
 

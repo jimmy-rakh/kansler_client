@@ -22,7 +22,7 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 mixin _$AuthResponse {
   String get requestId => throw _privateConstructorUsedError;
   bool get isExists => throw _privateConstructorUsedError;
-  bool get hasPass => throw _privateConstructorUsedError;
+  bool? get hasPass => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.
@@ -37,7 +37,7 @@ abstract class $AuthResponseCopyWith<$Res> {
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
   @useResult
-  $Res call({String requestId, bool isExists, bool hasPass});
+  $Res call({String requestId, bool isExists, bool? hasPass});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
   $Res call({
     Object? requestId = null,
     Object? isExists = null,
-    Object? hasPass = null,
+    Object? hasPass = freezed,
   }) {
     return _then(_value.copyWith(
       requestId: null == requestId
@@ -68,10 +68,10 @@ class _$AuthResponseCopyWithImpl<$Res, $Val extends AuthResponse>
           ? _value.isExists
           : isExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasPass: null == hasPass
+      hasPass: freezed == hasPass
           ? _value.hasPass
           : hasPass // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ) as $Val);
   }
 }
@@ -84,7 +84,7 @@ abstract class _$$AuthResponseImplCopyWith<$Res>
       __$$AuthResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String requestId, bool isExists, bool hasPass});
+  $Res call({String requestId, bool isExists, bool? hasPass});
 }
 
 /// @nodoc
@@ -102,7 +102,7 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
   $Res call({
     Object? requestId = null,
     Object? isExists = null,
-    Object? hasPass = null,
+    Object? hasPass = freezed,
   }) {
     return _then(_$AuthResponseImpl(
       requestId: null == requestId
@@ -113,10 +113,10 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
           ? _value.isExists
           : isExists // ignore: cast_nullable_to_non_nullable
               as bool,
-      hasPass: null == hasPass
+      hasPass: freezed == hasPass
           ? _value.hasPass
           : hasPass // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
     ));
   }
 }
@@ -125,7 +125,7 @@ class __$$AuthResponseImplCopyWithImpl<$Res>
 @JsonSerializable(createToJson: false)
 class _$AuthResponseImpl implements _AuthResponse {
   _$AuthResponseImpl(
-      {required this.requestId, required this.isExists, required this.hasPass});
+      {required this.requestId, required this.isExists, this.hasPass});
 
   factory _$AuthResponseImpl.fromJson(Map<String, dynamic> json) =>
       _$$AuthResponseImplFromJson(json);
@@ -135,7 +135,7 @@ class _$AuthResponseImpl implements _AuthResponse {
   @override
   final bool isExists;
   @override
-  final bool hasPass;
+  final bool? hasPass;
 
   @override
   String toString() {
@@ -171,7 +171,7 @@ abstract class _AuthResponse implements AuthResponse {
   factory _AuthResponse(
       {required final String requestId,
       required final bool isExists,
-      required final bool hasPass}) = _$AuthResponseImpl;
+      final bool? hasPass}) = _$AuthResponseImpl;
 
   factory _AuthResponse.fromJson(Map<String, dynamic> json) =
       _$AuthResponseImpl.fromJson;
@@ -181,7 +181,7 @@ abstract class _AuthResponse implements AuthResponse {
   @override
   bool get isExists;
   @override
-  bool get hasPass;
+  bool? get hasPass;
 
   /// Create a copy of AuthResponse
   /// with the given fields replaced by the non-null parameter values.

@@ -117,7 +117,7 @@ class LoginFormWidget extends HookWidget {
               ),
             ),
           ],
-          if (state.hasPass) ...[
+          if (state.hasPass  && state.tabIndex == 1 ) ...[
             verticalSpace12,
             AppTextField(
               radius: 0,

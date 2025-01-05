@@ -14,5 +14,6 @@ class ConfirmCodeState with _$ConfirmCodeState {
     @Default(59) int leftSeconds,
     String? requestId,
     SendCodeRequest? request,
+    String? username,
   }) = _Initial;
 }

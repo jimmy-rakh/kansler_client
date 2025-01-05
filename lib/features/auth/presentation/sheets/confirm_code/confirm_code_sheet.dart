@@ -18,11 +18,13 @@ class ConfirmCodeSheet extends HookWidget {
     required this.number,
     required this.requestId,
     required this.request,
+    this.username,
   });
 
   final String number;
   final String requestId;
   final SendCodeRequest request;
+  final String? username;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class ConfirmCodeSheet extends HookWidget {
     final state = useBlocBuilder(bloc);
 
     useEffect(() {
-      bloc.add(ConfirmCodeEvent.init(requestId, request));
+      bloc.add(ConfirmCodeEvent.init(requestId, request, username));
 
       return null;
     }, const []);
@@ -87,8 +89,10 @@ class ConfirmCodeSheet extends HookWidget {
               autofocus: true,
               separatorBuilder: (index) => horizontalSpace20,
               onClipboardFound: bloc.pinController.setText,
-              onCompleted: (pin) =>
-                  bloc.add(ConfirmCodeEvent.confirm(number, requestId)),
+              onCompleted: (pin) => bloc.add(ConfirmCodeEvent.confirm(
+                number,
+                requestId,
+              )),
               cursor: const Text('*'),
               errorText: 'Неправильный код',
               forceErrorState: state.status == ConfirmCodeStatus.error,

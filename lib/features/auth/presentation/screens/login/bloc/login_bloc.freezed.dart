@@ -17,11 +17,11 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LoginState {
   LoginStatus get status => throw _privateConstructorUsedError;
-  dynamic get isBusy => throw _privateConstructorUsedError;
-  dynamic get validated => throw _privateConstructorUsedError;
-  dynamic get showPass => throw _privateConstructorUsedError;
-  dynamic get hasPass => throw _privateConstructorUsedError;
-  dynamic get isExist => throw _privateConstructorUsedError;
+  bool get isBusy => throw _privateConstructorUsedError;
+  bool get validated => throw _privateConstructorUsedError;
+  bool get showPass => throw _privateConstructorUsedError;
+  bool get hasPass => throw _privateConstructorUsedError;
+  bool get isExist => throw _privateConstructorUsedError;
   int get tabIndex => throw _privateConstructorUsedError;
   String? get addressCid => throw _privateConstructorUsedError;
   int? get addressId => throw _privateConstructorUsedError;
@@ -44,11 +44,11 @@ abstract class $LoginStateCopyWith<$Res> {
   @useResult
   $Res call(
       {LoginStatus status,
-      dynamic isBusy,
-      dynamic validated,
-      dynamic showPass,
-      dynamic hasPass,
-      dynamic isExist,
+      bool isBusy,
+      bool validated,
+      bool showPass,
+      bool hasPass,
+      bool isExist,
       int tabIndex,
       String? addressCid,
       int? addressId,
@@ -73,11 +73,11 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
   @override
   $Res call({
     Object? status = null,
-    Object? isBusy = freezed,
-    Object? validated = freezed,
-    Object? showPass = freezed,
-    Object? hasPass = freezed,
-    Object? isExist = freezed,
+    Object? isBusy = null,
+    Object? validated = null,
+    Object? showPass = null,
+    Object? hasPass = null,
+    Object? isExist = null,
     Object? tabIndex = null,
     Object? addressCid = freezed,
     Object? addressId = freezed,
@@ -90,26 +90,26 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
-      isBusy: freezed == isBusy
+      isBusy: null == isBusy
           ? _value.isBusy
           : isBusy // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      validated: freezed == validated
+              as bool,
+      validated: null == validated
           ? _value.validated
           : validated // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      showPass: freezed == showPass
+              as bool,
+      showPass: null == showPass
           ? _value.showPass
           : showPass // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      hasPass: freezed == hasPass
+              as bool,
+      hasPass: null == hasPass
           ? _value.hasPass
           : hasPass // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isExist: freezed == isExist
+              as bool,
+      isExist: null == isExist
           ? _value.isExist
           : isExist // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as bool,
       tabIndex: null == tabIndex
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
@@ -148,11 +148,11 @@ abstract class _$$LoginStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {LoginStatus status,
-      dynamic isBusy,
-      dynamic validated,
-      dynamic showPass,
-      dynamic hasPass,
-      dynamic isExist,
+      bool isBusy,
+      bool validated,
+      bool showPass,
+      bool hasPass,
+      bool isExist,
       int tabIndex,
       String? addressCid,
       int? addressId,
@@ -175,11 +175,11 @@ class __$$LoginStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? isBusy = freezed,
-    Object? validated = freezed,
-    Object? showPass = freezed,
-    Object? hasPass = freezed,
-    Object? isExist = freezed,
+    Object? isBusy = null,
+    Object? validated = null,
+    Object? showPass = null,
+    Object? hasPass = null,
+    Object? isExist = null,
     Object? tabIndex = null,
     Object? addressCid = freezed,
     Object? addressId = freezed,
@@ -192,11 +192,26 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as LoginStatus,
-      isBusy: freezed == isBusy ? _value.isBusy! : isBusy,
-      validated: freezed == validated ? _value.validated! : validated,
-      showPass: freezed == showPass ? _value.showPass! : showPass,
-      hasPass: freezed == hasPass ? _value.hasPass! : hasPass,
-      isExist: freezed == isExist ? _value.isExist! : isExist,
+      isBusy: null == isBusy
+          ? _value.isBusy
+          : isBusy // ignore: cast_nullable_to_non_nullable
+              as bool,
+      validated: null == validated
+          ? _value.validated
+          : validated // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showPass: null == showPass
+          ? _value.showPass
+          : showPass // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasPass: null == hasPass
+          ? _value.hasPass
+          : hasPass // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isExist: null == isExist
+          ? _value.isExist
+          : isExist // ignore: cast_nullable_to_non_nullable
+              as bool,
       tabIndex: null == tabIndex
           ? _value.tabIndex
           : tabIndex // ignore: cast_nullable_to_non_nullable
@@ -247,19 +262,19 @@ class _$LoginStateImpl implements _LoginState {
   final LoginStatus status;
   @override
   @JsonKey()
-  final dynamic isBusy;
+  final bool isBusy;
   @override
   @JsonKey()
-  final dynamic validated;
+  final bool validated;
   @override
   @JsonKey()
-  final dynamic showPass;
+  final bool showPass;
   @override
   @JsonKey()
-  final dynamic hasPass;
+  final bool hasPass;
   @override
   @JsonKey()
-  final dynamic isExist;
+  final bool isExist;
   @override
   @JsonKey()
   final int tabIndex;
@@ -286,11 +301,13 @@ class _$LoginStateImpl implements _LoginState {
         (other.runtimeType == runtimeType &&
             other is _$LoginStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other.isBusy, isBusy) &&
-            const DeepCollectionEquality().equals(other.validated, validated) &&
-            const DeepCollectionEquality().equals(other.showPass, showPass) &&
-            const DeepCollectionEquality().equals(other.hasPass, hasPass) &&
-            const DeepCollectionEquality().equals(other.isExist, isExist) &&
+            (identical(other.isBusy, isBusy) || other.isBusy == isBusy) &&
+            (identical(other.validated, validated) ||
+                other.validated == validated) &&
+            (identical(other.showPass, showPass) ||
+                other.showPass == showPass) &&
+            (identical(other.hasPass, hasPass) || other.hasPass == hasPass) &&
+            (identical(other.isExist, isExist) || other.isExist == isExist) &&
             (identical(other.tabIndex, tabIndex) ||
                 other.tabIndex == tabIndex) &&
             (identical(other.addressCid, addressCid) ||
@@ -308,11 +325,11 @@ class _$LoginStateImpl implements _LoginState {
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      const DeepCollectionEquality().hash(isBusy),
-      const DeepCollectionEquality().hash(validated),
-      const DeepCollectionEquality().hash(showPass),
-      const DeepCollectionEquality().hash(hasPass),
-      const DeepCollectionEquality().hash(isExist),
+      isBusy,
+      validated,
+      showPass,
+      hasPass,
+      isExist,
       tabIndex,
       addressCid,
       addressId,
@@ -332,11 +349,11 @@ class _$LoginStateImpl implements _LoginState {
 abstract class _LoginState implements LoginState {
   const factory _LoginState(
       {final LoginStatus status,
-      final dynamic isBusy,
-      final dynamic validated,
-      final dynamic showPass,
-      final dynamic hasPass,
-      final dynamic isExist,
+      final bool isBusy,
+      final bool validated,
+      final bool showPass,
+      final bool hasPass,
+      final bool isExist,
       final int tabIndex,
       final String? addressCid,
       final int? addressId,
@@ -347,15 +364,15 @@ abstract class _LoginState implements LoginState {
   @override
   LoginStatus get status;
   @override
-  dynamic get isBusy;
+  bool get isBusy;
   @override
-  dynamic get validated;
+  bool get validated;
   @override
-  dynamic get showPass;
+  bool get showPass;
   @override
-  dynamic get hasPass;
+  bool get hasPass;
   @override
-  dynamic get isExist;
+  bool get isExist;
   @override
   int get tabIndex;
   @override

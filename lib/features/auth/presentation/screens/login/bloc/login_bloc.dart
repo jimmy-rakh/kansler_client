@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -52,6 +53,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   late TextEditingController passController;
   final loginFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
+  final sms = AltSmsAutofill();
 
   final authBloc =
       BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
@@ -60,10 +62,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   void _onLogIn(_Login event, Emitter<LoginState> emit) async {
     if (!formKey.currentState!.validate()) return;
+
+    if (state.tabIndex == 1 && state.requestId != null && !state.isExist) {
+      _sendCode();
+      return;
+    }
+
     emit(state.copyWith(isBusy: true, error: null));
     ClientAdressDto? address;
 
-    if (state.hasPass) {
+    if (state.hasPass && state.tabIndex == 1) {
       final request = ConfirmRequest(
         value: passController.text,
         username: usernameController.text,
@@ -81,6 +89,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           return;
         } catch (e) {
           emit(state.copyWith(isBusy: false));
+          return;
         }
       });
     }
@@ -143,17 +152,22 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           emit(state.copyWith(
             isBusy: false,
             requestId: r.requestId,
-            hasPass: r.hasPass,
+            hasPass: r.hasPass ?? false,
             isExist: r.isExists,
           ));
 
-          if (!r.hasPass &&
+          if (state.tabIndex == 0) {
+            _sendCode();
+            return;
+          }
+
+          if (!(r.hasPass ?? false) &&
               state.tabIndex == 1 &&
               phoneController.text.isEmpty) {
             return;
           }
 
-          if (r.hasPass) {
+          if (r.hasPass ?? false) {
             passController = TextEditingController();
             return;
           }
@@ -162,9 +176,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }
       },
     );
-
-    if ((phoneController.text.isNotEmpty || state.tabIndex == 0) &&
-        !state.hasPass) _sendCode();
 
     emit(state.copyWith(isBusy: false));
   }
@@ -222,22 +233,21 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     res.fold((l) => null, (r) async {
       final confirmed = await router.showSheet(
-            BlocProvider(
-              create: (context) => getIt<ConfirmCodeBloc>(),
-              child: ConfirmCodeSheet(
-                number: state.tabIndex == 1
-                    ? phoneController.text
-                    : valueController.text,
-                requestId: state.requestId!,
-                request: request,
-              ),
-            ),
-          ) ??
-          false;
+        BlocProvider(
+          create: (context) => getIt<ConfirmCodeBloc>(),
+          child: ConfirmCodeSheet(
+            number: state.tabIndex == 1
+                ? phoneController.text
+                : valueController.text,
+            requestId: state.requestId!,
+            request: request,
+          ),
+        ),
+      ) as String?;
 
       _initTimer();
 
-      if (confirmed) {
+      if (confirmed?.isEmpty ?? true) {
         router.push(
           RegisterRoute(
             phone: state.tabIndex == 0
@@ -249,7 +259,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             addressId: null,
           ),
         );
+        return;
       }
+      await _setAuthTokenUseCase.call(confirmed!);
+      authBloc.add(const AuthEvent.checkStatus());
+      router.replace(const MainRoute());
     });
   }
 
@@ -289,7 +303,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       leftSeconds--;
       if (!isClosed) add(LoginEvent.updateCountdown(leftSeconds));
 
-      if (leftSeconds == 0 || isClosed) {
+      if (leftSeconds <= 0 || isClosed) {
         _timer?.cancel();
         return;
       }

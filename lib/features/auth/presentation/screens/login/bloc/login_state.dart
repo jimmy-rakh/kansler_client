@@ -10,11 +10,11 @@ enum LoginStatus {
 class LoginState with _$LoginState {
   const factory LoginState({
     @Default(LoginStatus.initial) LoginStatus status,
-    @Default(false) isBusy,
-    @Default(false) validated,
-    @Default(false) showPass,
-    @Default(false) hasPass,
-    @Default(true) isExist,
+    @Default(false) bool isBusy,
+    @Default(false) bool validated,
+    @Default(false) bool showPass,
+    @Default(false) bool hasPass,
+    @Default(true) bool isExist,
     @Default(0) int tabIndex,
     String? addressCid,
     int? addressId,

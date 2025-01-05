@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -25,8 +27,9 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
   }
 
   Timer? _timer;
+  final sms = AltSmsAutofill();
 
-  final pinController = TextEditingController();
+  TextEditingController pinController = TextEditingController();
 
   void _onInit(_Init event, Emitter<ConfirmCodeState> emit) {
     emit(state.copyWith(
@@ -35,7 +38,35 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
       request: event.request,
     ));
 
+    if (Platform.isAndroid) _listenForSms();
+
     _initTimer();
+  }
+
+  @override
+  close() async {
+    pinController.dispose();
+    sms.unregisterListener();
+    super.close();
+  }
+
+  void _listenForSms() async {
+    String commingSms;
+
+    commingSms = await sms.listenForSms ?? '';
+
+    if (commingSms.isEmpty) return;
+
+    String code = commingSms
+        .split(' ')
+        .map((e) => e.replaceAll(RegExp(r'[^0-9]'), ''))
+        .firstWhere((e) => e.isNotEmpty);
+
+    if ([4, 6].contains(code.length)) {
+      pinController.clear();
+      pinController = TextEditingController(text: code);
+      add(ConfirmCodeEvent.confirm('', state.requestId ?? ''));
+    }
   }
 
   void _onConfirm(_Confirm event, Emitter<ConfirmCodeState> emit) async {
@@ -47,11 +78,11 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
     final res = await _authRepository.confirmCode(request);
 
     res.fold((l) => emit(state.copyWith(status: ConfirmCodeStatus.error)),
-        (r) => _onSuccess());
+        (r) => _onSuccess(r.deviceToken));
   }
 
-  void _onSuccess() {
-    Navigator.pop(router.navigatorKey.currentContext!, true);
+  void _onSuccess(String deviceToken) {
+    Navigator.pop(router.navigatorKey.currentContext!, deviceToken);
   }
 
   void _onUpdateCountdown(

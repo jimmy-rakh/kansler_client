@@ -20,6 +20,7 @@ mixin _$ConfirmCodeState {
   int get leftSeconds => throw _privateConstructorUsedError;
   String? get requestId => throw _privateConstructorUsedError;
   SendCodeRequest? get request => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
 
   /// Create a copy of ConfirmCodeState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +39,8 @@ abstract class $ConfirmCodeStateCopyWith<$Res> {
       {dynamic status,
       int leftSeconds,
       String? requestId,
-      SendCodeRequest? request});
+      SendCodeRequest? request,
+      String? username});
 
   $SendCodeRequestCopyWith<$Res>? get request;
 }
@@ -62,6 +64,7 @@ class _$ConfirmCodeStateCopyWithImpl<$Res, $Val extends ConfirmCodeState>
     Object? leftSeconds = null,
     Object? requestId = freezed,
     Object? request = freezed,
+    Object? username = freezed,
   }) {
     return _then(_value.copyWith(
       status: freezed == status
@@ -80,6 +83,10 @@ class _$ConfirmCodeStateCopyWithImpl<$Res, $Val extends ConfirmCodeState>
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as SendCodeRequest?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -110,7 +117,8 @@ abstract class _$$InitialImplCopyWith<$Res>
       {dynamic status,
       int leftSeconds,
       String? requestId,
-      SendCodeRequest? request});
+      SendCodeRequest? request,
+      String? username});
 
   @override
   $SendCodeRequestCopyWith<$Res>? get request;
@@ -133,6 +141,7 @@ class __$$InitialImplCopyWithImpl<$Res>
     Object? leftSeconds = null,
     Object? requestId = freezed,
     Object? request = freezed,
+    Object? username = freezed,
   }) {
     return _then(_$InitialImpl(
       status: freezed == status ? _value.status! : status,
@@ -148,6 +157,10 @@ class __$$InitialImplCopyWithImpl<$Res>
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as SendCodeRequest?,
+      username: freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -159,7 +172,8 @@ class _$InitialImpl implements _Initial {
       {this.status = ConfirmCodeStatus.initial,
       this.leftSeconds = 59,
       this.requestId,
-      this.request});
+      this.request,
+      this.username});
 
   @override
   @JsonKey()
@@ -171,10 +185,12 @@ class _$InitialImpl implements _Initial {
   final String? requestId;
   @override
   final SendCodeRequest? request;
+  @override
+  final String? username;
 
   @override
   String toString() {
-    return 'ConfirmCodeState(status: $status, leftSeconds: $leftSeconds, requestId: $requestId, request: $request)';
+    return 'ConfirmCodeState(status: $status, leftSeconds: $leftSeconds, requestId: $requestId, request: $request, username: $username)';
   }
 
   @override
@@ -187,7 +203,9 @@ class _$InitialImpl implements _Initial {
                 other.leftSeconds == leftSeconds) &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
-            (identical(other.request, request) || other.request == request));
+            (identical(other.request, request) || other.request == request) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @override
@@ -196,7 +214,8 @@ class _$InitialImpl implements _Initial {
       const DeepCollectionEquality().hash(status),
       leftSeconds,
       requestId,
-      request);
+      request,
+      username);
 
   /// Create a copy of ConfirmCodeState
   /// with the given fields replaced by the non-null parameter values.
@@ -212,7 +231,8 @@ abstract class _Initial implements ConfirmCodeState {
       {final dynamic status,
       final int leftSeconds,
       final String? requestId,
-      final SendCodeRequest? request}) = _$InitialImpl;
+      final SendCodeRequest? request,
+      final String? username}) = _$InitialImpl;
 
   @override
   dynamic get status;
@@ -222,6 +242,8 @@ abstract class _Initial implements ConfirmCodeState {
   String? get requestId;
   @override
   SendCodeRequest? get request;
+  @override
+  String? get username;
 
   /// Create a copy of ConfirmCodeState
   /// with the given fields replaced by the non-null parameter values.
@@ -235,7 +257,9 @@ abstract class _Initial implements ConfirmCodeState {
 mixin _$ConfirmCodeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, SendCodeRequest request) init,
+    required TResult Function(
+            String requestId, SendCodeRequest request, String? username)
+        init,
     required TResult Function(String phone, String requestId) confirm,
     required TResult Function(int seconds) updateCountdown,
     required TResult Function() resend,
@@ -243,7 +267,9 @@ mixin _$ConfirmCodeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, SendCodeRequest request)? init,
+    TResult? Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult? Function(String phone, String requestId)? confirm,
     TResult? Function(int seconds)? updateCountdown,
     TResult? Function()? resend,
@@ -251,7 +277,9 @@ mixin _$ConfirmCodeEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, SendCodeRequest request)? init,
+    TResult Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult Function(String phone, String requestId)? confirm,
     TResult Function(int seconds)? updateCountdown,
     TResult Function()? resend,
@@ -312,7 +340,7 @@ abstract class _$$InitImplCopyWith<$Res> {
           _$InitImpl value, $Res Function(_$InitImpl) then) =
       __$$InitImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String requestId, SendCodeRequest request});
+  $Res call({String requestId, SendCodeRequest request, String? username});
 
   $SendCodeRequestCopyWith<$Res> get request;
 }
@@ -331,6 +359,7 @@ class __$$InitImplCopyWithImpl<$Res>
   $Res call({
     Object? requestId = null,
     Object? request = null,
+    Object? username = freezed,
   }) {
     return _then(_$InitImpl(
       null == requestId
@@ -341,6 +370,10 @@ class __$$InitImplCopyWithImpl<$Res>
           ? _value.request
           : request // ignore: cast_nullable_to_non_nullable
               as SendCodeRequest,
+      freezed == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
@@ -358,16 +391,18 @@ class __$$InitImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitImpl implements _Init {
-  const _$InitImpl(this.requestId, this.request);
+  const _$InitImpl(this.requestId, this.request, this.username);
 
   @override
   final String requestId;
   @override
   final SendCodeRequest request;
+  @override
+  final String? username;
 
   @override
   String toString() {
-    return 'ConfirmCodeEvent.init(requestId: $requestId, request: $request)';
+    return 'ConfirmCodeEvent.init(requestId: $requestId, request: $request, username: $username)';
   }
 
   @override
@@ -377,11 +412,13 @@ class _$InitImpl implements _Init {
             other is _$InitImpl &&
             (identical(other.requestId, requestId) ||
                 other.requestId == requestId) &&
-            (identical(other.request, request) || other.request == request));
+            (identical(other.request, request) || other.request == request) &&
+            (identical(other.username, username) ||
+                other.username == username));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, requestId, request);
+  int get hashCode => Object.hash(runtimeType, requestId, request, username);
 
   /// Create a copy of ConfirmCodeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -394,36 +431,42 @@ class _$InitImpl implements _Init {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, SendCodeRequest request) init,
+    required TResult Function(
+            String requestId, SendCodeRequest request, String? username)
+        init,
     required TResult Function(String phone, String requestId) confirm,
     required TResult Function(int seconds) updateCountdown,
     required TResult Function() resend,
   }) {
-    return init(requestId, request);
+    return init(requestId, request, username);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, SendCodeRequest request)? init,
+    TResult? Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult? Function(String phone, String requestId)? confirm,
     TResult? Function(int seconds)? updateCountdown,
     TResult? Function()? resend,
   }) {
-    return init?.call(requestId, request);
+    return init?.call(requestId, request, username);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, SendCodeRequest request)? init,
+    TResult Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult Function(String phone, String requestId)? confirm,
     TResult Function(int seconds)? updateCountdown,
     TResult Function()? resend,
     required TResult orElse(),
   }) {
     if (init != null) {
-      return init(requestId, request);
+      return init(requestId, request, username);
     }
     return orElse();
   }
@@ -467,11 +510,12 @@ class _$InitImpl implements _Init {
 }
 
 abstract class _Init implements ConfirmCodeEvent {
-  const factory _Init(final String requestId, final SendCodeRequest request) =
-      _$InitImpl;
+  const factory _Init(final String requestId, final SendCodeRequest request,
+      final String? username) = _$InitImpl;
 
   String get requestId;
   SendCodeRequest get request;
+  String? get username;
 
   /// Create a copy of ConfirmCodeEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -557,7 +601,9 @@ class _$ConfirmImpl implements _Confirm {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, SendCodeRequest request) init,
+    required TResult Function(
+            String requestId, SendCodeRequest request, String? username)
+        init,
     required TResult Function(String phone, String requestId) confirm,
     required TResult Function(int seconds) updateCountdown,
     required TResult Function() resend,
@@ -568,7 +614,9 @@ class _$ConfirmImpl implements _Confirm {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, SendCodeRequest request)? init,
+    TResult? Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult? Function(String phone, String requestId)? confirm,
     TResult? Function(int seconds)? updateCountdown,
     TResult? Function()? resend,
@@ -579,7 +627,9 @@ class _$ConfirmImpl implements _Confirm {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, SendCodeRequest request)? init,
+    TResult Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult Function(String phone, String requestId)? confirm,
     TResult Function(int seconds)? updateCountdown,
     TResult Function()? resend,
@@ -712,7 +762,9 @@ class _$UpdateCountdownImpl implements _UpdateCountdown {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, SendCodeRequest request) init,
+    required TResult Function(
+            String requestId, SendCodeRequest request, String? username)
+        init,
     required TResult Function(String phone, String requestId) confirm,
     required TResult Function(int seconds) updateCountdown,
     required TResult Function() resend,
@@ -723,7 +775,9 @@ class _$UpdateCountdownImpl implements _UpdateCountdown {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, SendCodeRequest request)? init,
+    TResult? Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult? Function(String phone, String requestId)? confirm,
     TResult? Function(int seconds)? updateCountdown,
     TResult? Function()? resend,
@@ -734,7 +788,9 @@ class _$UpdateCountdownImpl implements _UpdateCountdown {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, SendCodeRequest request)? init,
+    TResult Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult Function(String phone, String requestId)? confirm,
     TResult Function(int seconds)? updateCountdown,
     TResult Function()? resend,
@@ -837,7 +893,9 @@ class _$ResendImpl implements _Resend {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String requestId, SendCodeRequest request) init,
+    required TResult Function(
+            String requestId, SendCodeRequest request, String? username)
+        init,
     required TResult Function(String phone, String requestId) confirm,
     required TResult Function(int seconds) updateCountdown,
     required TResult Function() resend,
@@ -848,7 +906,9 @@ class _$ResendImpl implements _Resend {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String requestId, SendCodeRequest request)? init,
+    TResult? Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult? Function(String phone, String requestId)? confirm,
     TResult? Function(int seconds)? updateCountdown,
     TResult? Function()? resend,
@@ -859,7 +919,9 @@ class _$ResendImpl implements _Resend {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String requestId, SendCodeRequest request)? init,
+    TResult Function(
+            String requestId, SendCodeRequest request, String? username)?
+        init,
     TResult Function(String phone, String requestId)? confirm,
     TResult Function(int seconds)? updateCountdown,
     TResult Function()? resend,

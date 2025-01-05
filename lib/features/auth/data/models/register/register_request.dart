@@ -10,9 +10,10 @@ part 'register_request.g.dart';
 class RegisterRequest with _$RegisterRequest {
   factory RegisterRequest({
     @JsonKey(includeIfNull: false) String? name,
-    required String username,
-    required String password,
-    required String phoneNumber,
+    @JsonKey(includeIfNull: false) String? username,
+    @JsonKey(includeIfNull: false) String? password,
+    @JsonKey(includeIfNull: false) String? phoneNumber,
+    @JsonKey(includeIfNull: false) String? companyName,
     @JsonKey(includeIfNull: false) int? addressesId,
     @JsonKey(includeToJson: false) required String requestId,
     AddressRequest? addresses,

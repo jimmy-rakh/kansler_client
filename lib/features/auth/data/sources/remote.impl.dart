@@ -46,7 +46,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   Future<Either<Failure, ConfirmResponse>> confirmCode(
       ConfirmRequest request) async {
     final result = await _dio.postRequest(
-      '${AuthRemoteKeys.clientConfirmCode}/${request.requestId}',
+      '${request.username == null ? AuthRemoteKeys.clientConfirm : AuthRemoteKeys.clientConfirmCode}/${request.requestId}',
       data: request.toJson(),
       converter: (response) =>
           ConfirmResponse.fromJson(response as Map<String, dynamic>),
@@ -59,7 +59,7 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   Future<Either<Failure, ConfirmResponse>> register(
       RegisterRequest request) async {
     final result = await _dio.postRequest(
-        '${AuthRemoteKeys.clientRegister}/${request.requestId}',
+        '${request.password == null ? AuthRemoteKeys.clientRegister : AuthRemoteKeys.clientRegisterCompany}/${request.requestId}',
         data: request.toJson(),
         converter: (response) =>
             ConfirmResponse.fromJson(response as Map<String, dynamic>));
