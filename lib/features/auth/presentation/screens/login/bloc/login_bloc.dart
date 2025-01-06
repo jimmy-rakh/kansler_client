@@ -245,9 +245,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         ),
       ) as String?;
 
+      if (confirmed == null) return;
+
       _initTimer();
 
-      if (confirmed?.isEmpty ?? true) {
+      if (confirmed.isEmpty) {
         router.push(
           RegisterRoute(
             phone: state.tabIndex == 0
