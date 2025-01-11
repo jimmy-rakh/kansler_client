@@ -21,6 +21,7 @@ SendCodeRequest _$SendCodeRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SendCodeRequest {
   String get phoneNumber => throw _privateConstructorUsedError;
+  String? get hashedCode => throw _privateConstructorUsedError;
 
   /// Serializes this SendCodeRequest to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +39,7 @@ abstract class $SendCodeRequestCopyWith<$Res> {
           SendCodeRequest value, $Res Function(SendCodeRequest) then) =
       _$SendCodeRequestCopyWithImpl<$Res, SendCodeRequest>;
   @useResult
-  $Res call({String phoneNumber});
+  $Res call({String phoneNumber, String? hashedCode});
 }
 
 /// @nodoc
@@ -57,12 +58,17 @@ class _$SendCodeRequestCopyWithImpl<$Res, $Val extends SendCodeRequest>
   @override
   $Res call({
     Object? phoneNumber = null,
+    Object? hashedCode = freezed,
   }) {
     return _then(_value.copyWith(
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      hashedCode: freezed == hashedCode
+          ? _value.hashedCode
+          : hashedCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -75,7 +81,7 @@ abstract class _$$SendCodeRequestImplCopyWith<$Res>
       __$$SendCodeRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phoneNumber});
+  $Res call({String phoneNumber, String? hashedCode});
 }
 
 /// @nodoc
@@ -92,12 +98,17 @@ class __$$SendCodeRequestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? phoneNumber = null,
+    Object? hashedCode = freezed,
   }) {
     return _then(_$SendCodeRequestImpl(
       phoneNumber: null == phoneNumber
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      hashedCode: freezed == hashedCode
+          ? _value.hashedCode
+          : hashedCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -105,17 +116,19 @@ class __$$SendCodeRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SendCodeRequestImpl implements _SendCodeRequest {
-  _$SendCodeRequestImpl({required this.phoneNumber});
+  _$SendCodeRequestImpl({required this.phoneNumber, required this.hashedCode});
 
   factory _$SendCodeRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendCodeRequestImplFromJson(json);
 
   @override
   final String phoneNumber;
+  @override
+  final String? hashedCode;
 
   @override
   String toString() {
-    return 'SendCodeRequest(phoneNumber: $phoneNumber)';
+    return 'SendCodeRequest(phoneNumber: $phoneNumber, hashedCode: $hashedCode)';
   }
 
   @override
@@ -124,12 +137,14 @@ class _$SendCodeRequestImpl implements _SendCodeRequest {
         (other.runtimeType == runtimeType &&
             other is _$SendCodeRequestImpl &&
             (identical(other.phoneNumber, phoneNumber) ||
-                other.phoneNumber == phoneNumber));
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.hashedCode, hashedCode) ||
+                other.hashedCode == hashedCode));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, phoneNumber);
+  int get hashCode => Object.hash(runtimeType, phoneNumber, hashedCode);
 
   /// Create a copy of SendCodeRequest
   /// with the given fields replaced by the non-null parameter values.
@@ -149,14 +164,17 @@ class _$SendCodeRequestImpl implements _SendCodeRequest {
 }
 
 abstract class _SendCodeRequest implements SendCodeRequest {
-  factory _SendCodeRequest({required final String phoneNumber}) =
-      _$SendCodeRequestImpl;
+  factory _SendCodeRequest(
+      {required final String phoneNumber,
+      required final String? hashedCode}) = _$SendCodeRequestImpl;
 
   factory _SendCodeRequest.fromJson(Map<String, dynamic> json) =
       _$SendCodeRequestImpl.fromJson;
 
   @override
   String get phoneNumber;
+  @override
+  String? get hashedCode;
 
   /// Create a copy of SendCodeRequest
   /// with the given fields replaced by the non-null parameter values.

@@ -7,6 +7,7 @@ part 'request.g.dart';
 class SendCodeRequest with _$SendCodeRequest {
   factory SendCodeRequest({
     required String phoneNumber,
+    required String? hashedCode,
   }) = _SendCodeRequest;
 
   factory SendCodeRequest.fromJson(Map<String, dynamic> json) =>

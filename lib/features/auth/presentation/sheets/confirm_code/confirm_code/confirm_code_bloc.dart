@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -9,6 +8,7 @@ import 'package:injectable/injectable.dart';
 import 'package:kansler/features/auth/data/models/confirm_code/confirm_request.dart';
 import 'package:kansler/features/auth/data/models/send_code/request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
+import 'package:smart_auth/smart_auth.dart';
 import '../../../../../../app/router.dart';
 
 part 'confirm_code_state.dart';
@@ -27,9 +27,10 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
   }
 
   Timer? _timer;
-  final sms = AltSmsAutofill();
 
   TextEditingController pinController = TextEditingController();
+
+  final smartAuth = SmartAuth();
 
   void _onInit(_Init event, Emitter<ConfirmCodeState> emit) {
     emit(state.copyWith(
@@ -46,26 +47,29 @@ class ConfirmCodeBloc extends Bloc<ConfirmCodeEvent, ConfirmCodeState> {
   @override
   close() async {
     pinController.dispose();
-    sms.unregisterListener();
+    smartAuth.removeSmsListener();
     super.close();
   }
 
   void _listenForSms() async {
-    String commingSms;
+    final res = await smartAuth.getSmsCode();
+    if (res.sms == null) return;
 
-    commingSms = await sms.listenForSms ?? '';
+    if (res.sms!.isNotEmpty) {
+      final code = res.sms;
 
-    if (commingSms.isEmpty) return;
+      if (code == null) return;
 
-    String code = commingSms
-        .split(' ')
-        .map((e) => e.replaceAll(RegExp(r'[^0-9]'), ''))
-        .firstWhere((e) => e.isNotEmpty);
+      String result = code
+          .split(' ')
+          .map((e) => e.replaceAll(RegExp(r'[^0-9]'), ''))
+          .firstWhere((e) => e.isNotEmpty);
 
-    if ([4, 6].contains(code.length)) {
-      pinController.clear();
-      pinController = TextEditingController(text: code);
-      add(ConfirmCodeEvent.confirm('', state.requestId ?? ''));
+      if ([4, 6].contains(result.length)) {
+        pinController.clear();
+        pinController = TextEditingController(text: result);
+        add(ConfirmCodeEvent.confirm('', state.requestId ?? ''));
+      }
     }
   }
 

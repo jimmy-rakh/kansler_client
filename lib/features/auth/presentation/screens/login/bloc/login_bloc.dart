@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:alt_sms_autofill/alt_sms_autofill.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -20,6 +19,7 @@ import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_c
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code_sheet.dart';
 import 'package:kansler/shared/services/firebase/notification_service.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:smart_auth/smart_auth.dart';
 import '../../../../../../app/di.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../shared/services/device/device_info.dart';
@@ -53,7 +53,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   late TextEditingController passController;
   final loginFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
-  final sms = AltSmsAutofill();
 
   final authBloc =
       BlocProvider.of<AuthBloc>(router.navigatorKey.currentContext!);
@@ -224,6 +223,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               ? valueController.text
               : phoneController.text)
           .replaceAll(RegExp(r'[^0-9]'), ''),
+      hashedCode: (await SmartAuth().getAppSignature()),
     );
 
     final res = await _authRepository.sendCode(

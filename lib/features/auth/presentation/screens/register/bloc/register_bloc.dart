@@ -10,6 +10,7 @@ import 'package:kansler/features/auth/data/models/send_code/request.dart';
 import 'package:kansler/features/auth/domain/domain.dart';
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code/confirm_code_bloc.dart';
 import 'package:kansler/features/auth/presentation/sheets/confirm_code/confirm_code_sheet.dart';
+import 'package:smart_auth/smart_auth.dart';
 import '../../../../../../app/router.dart';
 import '../../../../../../core/enums/register_step.dart';
 import '../../../../../../shared/services/logger/logger_service.dart';
@@ -135,6 +136,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   void _onSendCode(_SendCode event, Emitter<RegisterState> emit) async {
     final request = SendCodeRequest(
       phoneNumber: phoneNumberController.text.replaceAll(RegExp(r'[^0-9]'), ''),
+      hashedCode: (await SmartAuth().getAppSignature()),
     );
 
     final res = await _authRepository.sendCode(
