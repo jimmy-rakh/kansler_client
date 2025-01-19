@@ -53,7 +53,7 @@ class ProfileScreen extends HookWidget {
                           margin:  EdgeInsets.symmetric(horizontal: context.isSmall ? 16 : 0),
                           padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
                           width: context.isSmall ? context.width : 500,
-                          height: 120,
+                          height: 125,
                           borderRadius: 4,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

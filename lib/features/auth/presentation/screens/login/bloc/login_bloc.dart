@@ -155,7 +155,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             isExist: r.isExists,
           ));
 
-          if (state.tabIndex == 0) {
+          if ((state.tabIndex == 0 || state.addressCid != null) &&
+              phoneController.text.isNotEmpty) {
             _sendCode();
             return;
           }
