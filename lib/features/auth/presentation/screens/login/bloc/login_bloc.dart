@@ -50,7 +50,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   TextEditingController valueController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController usernameController = TextEditingController();
-  late TextEditingController passController;
+  TextEditingController passController = TextEditingController();
   final loginFocus = FocusNode();
   final formKey = GlobalKey<FormState>();
 
@@ -155,8 +155,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             isExist: r.isExists,
           ));
 
-          if ((state.tabIndex == 0 || state.addressCid != null) &&
-              phoneController.text.isNotEmpty) {
+          print(phoneController.text.isNotEmpty);
+
+          if (state.tabIndex == 0 ||
+              (state.addressCid != null && phoneController.text.isNotEmpty)) {
             _sendCode();
             return;
           }
