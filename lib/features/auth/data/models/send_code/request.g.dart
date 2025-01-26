@@ -14,8 +14,17 @@ _$SendCodeRequestImpl _$$SendCodeRequestImplFromJson(
     );
 
 Map<String, dynamic> _$$SendCodeRequestImplToJson(
-        _$SendCodeRequestImpl instance) =>
-    <String, dynamic>{
-      'phone_number': instance.phoneNumber,
-      'hashed_code': instance.hashedCode,
-    };
+    _$SendCodeRequestImpl instance) {
+  final val = <String, dynamic>{
+    'phone_number': instance.phoneNumber,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('hashed_code', instance.hashedCode);
+  return val;
+}

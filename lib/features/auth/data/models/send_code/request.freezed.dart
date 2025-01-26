@@ -21,6 +21,7 @@ SendCodeRequest _$SendCodeRequestFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SendCodeRequest {
   String get phoneNumber => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
   String? get hashedCode => throw _privateConstructorUsedError;
 
   /// Serializes this SendCodeRequest to a JSON map.
@@ -39,7 +40,8 @@ abstract class $SendCodeRequestCopyWith<$Res> {
           SendCodeRequest value, $Res Function(SendCodeRequest) then) =
       _$SendCodeRequestCopyWithImpl<$Res, SendCodeRequest>;
   @useResult
-  $Res call({String phoneNumber, String? hashedCode});
+  $Res call(
+      {String phoneNumber, @JsonKey(includeIfNull: false) String? hashedCode});
 }
 
 /// @nodoc
@@ -81,7 +83,8 @@ abstract class _$$SendCodeRequestImplCopyWith<$Res>
       __$$SendCodeRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String phoneNumber, String? hashedCode});
+  $Res call(
+      {String phoneNumber, @JsonKey(includeIfNull: false) String? hashedCode});
 }
 
 /// @nodoc
@@ -116,7 +119,9 @@ class __$$SendCodeRequestImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$SendCodeRequestImpl implements _SendCodeRequest {
-  _$SendCodeRequestImpl({required this.phoneNumber, required this.hashedCode});
+  _$SendCodeRequestImpl(
+      {required this.phoneNumber,
+      @JsonKey(includeIfNull: false) required this.hashedCode});
 
   factory _$SendCodeRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$SendCodeRequestImplFromJson(json);
@@ -124,6 +129,7 @@ class _$SendCodeRequestImpl implements _SendCodeRequest {
   @override
   final String phoneNumber;
   @override
+  @JsonKey(includeIfNull: false)
   final String? hashedCode;
 
   @override
@@ -165,8 +171,9 @@ class _$SendCodeRequestImpl implements _SendCodeRequest {
 
 abstract class _SendCodeRequest implements SendCodeRequest {
   factory _SendCodeRequest(
-      {required final String phoneNumber,
-      required final String? hashedCode}) = _$SendCodeRequestImpl;
+          {required final String phoneNumber,
+          @JsonKey(includeIfNull: false) required final String? hashedCode}) =
+      _$SendCodeRequestImpl;
 
   factory _SendCodeRequest.fromJson(Map<String, dynamic> json) =
       _$SendCodeRequestImpl.fromJson;
@@ -174,6 +181,7 @@ abstract class _SendCodeRequest implements SendCodeRequest {
   @override
   String get phoneNumber;
   @override
+  @JsonKey(includeIfNull: false)
   String? get hashedCode;
 
   /// Create a copy of SendCodeRequest
