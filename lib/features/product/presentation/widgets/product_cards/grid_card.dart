@@ -247,8 +247,9 @@ class ProductGridCard extends StatelessWidget implements ProductCard {
                                             fontSize: 10),
                                       ),
                                 horizontalSpace5,
+
                                 product?.priceDiscount != 0
-                                    ? Text(
+                                    ? product?.priceDiscount == null ? const SizedBox() : Text(
                                         "${currencyFormatter.format(product?.priceDiscount).replaceAll('.', ' ')} сум",
                                         style: const TextStyle(
                                             color: AppColors.primary,

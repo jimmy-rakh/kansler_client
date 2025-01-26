@@ -148,8 +148,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                                 ),
                               ),
                               horizontalSpace5,
-                              product?.leftQuantity == 0 && product?.contractor?.leftQuantity == 0
-                                  ? AppCard(
+                              (product ?? cartProduct?.product)!.leftQuantity == 0 &&
+                                  (product?.contractor ?? cartProduct?.product?.contractor)!.leftQuantity == 0
+                                  ?  AppCard(
                                   fillColor:
                                   const Color.fromARGB(255, 0, 73, 208),
                                   borderColor: AppColors.white,
@@ -179,9 +180,7 @@ class ProductListCard extends HookWidget implements ProductCard {
                                           (product?.contractor ?? cartProduct?.product?.contractor)!.leftQuantity >
                                               999
                                           ? "В наличии 999 шт."
-                                          : product?.contractor
-                                          ?.leftQuantity ==
-                                          0
+                                          : (product?.contractor ?? cartProduct?.product?.contractor)!.leftQuantity == 0
                                           ? "В наличии ${(product ?? cartProduct?.product)!.leftQuantity} шт."
                                           : "В наличии ${(product?.contractor ?? cartProduct?.product?.contractor)!.leftQuantity} шт.",
                                       maxLines: 1,
@@ -237,6 +236,8 @@ class ProductListCard extends HookWidget implements ProductCard {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        if((product?.priceDiscount ?? cartProduct?.product?.priceDiscount) == null || (product?.priceDiscount ?? cartProduct?.product?.priceDiscount) == 0)
+                          const SizedBox(),
                         cartProduct?.product?.priceDiscount != 0  ?
                         Text(
                           "${currencyFormatter.format(product?.priceDiscount ?? cartProduct?.product?.priceDiscount ).replaceAll('.', ' ')} сум",
@@ -247,18 +248,14 @@ class ProductListCard extends HookWidget implements ProductCard {
                               FontWeight.bold,
                               fontSize: 16),
                         ) : cartProduct?.product?.leftQuantity == 0 &&
-                            cartProduct?.product?.contractor?.leftQuantity == 0 ? Text(
-                          '',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: context.titleSmall,
-                        )
+                            cartProduct?.product?.contractor?.leftQuantity == 0 ? const SizedBox()
                             : cartProduct?.product?.contractor?.stocks == null ? Text(
                           '${currencyFormatter.format((cartProduct?.price ?? cartProduct?.product?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: context.titleSmall,
-                        ): Text(
+                        )
+                            : Text(
                           '${currencyFormatter.format((cartProduct?.product?.contractor?.price ?? cartProduct?.product?.contractor?.price) ?? 0).replaceAll(".", " ")}  ${'common.sum'.tr()}',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -341,8 +338,9 @@ class ProductListCard extends HookWidget implements ProductCard {
                     Text('${cartProduct?.quantity} штук'),
                   if (showActions)
                     SizedBox(
+                      width: 220,
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           if (!(product?.inCart ?? false))

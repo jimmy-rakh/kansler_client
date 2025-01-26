@@ -116,13 +116,12 @@ class BannerScreen extends HookWidget {
                         padding: const EdgeInsets.all(12),
                         child: Text(
                           "${this.poster?.notification?.body ?? "${poster?.notification?.body ?? ""}"}",
-                          maxLines: 2,
                           style: context.theme.textTheme.bodySmall,
                         ),
                       ),
                     ),
                   ),
-                  verticalSpace35,
+                  verticalSpace12,
                   products == null
                       ? const SizedBox()
                       : Center(

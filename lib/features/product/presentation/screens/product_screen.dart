@@ -174,11 +174,11 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                 ),
                                         ),
                                       ),
-                                      Positioned(
+                                      state.product == null ? const SizedBox() : Positioned(
                                         bottom: 20,
                                         right: 20,
-                                        child: product?.leftQuantity == 0 &&
-                                                product?.contractor?.leftQuantity == 0
+                                        child: state.product?.leftQuantity == 0 &&
+                                            state.product?.contractor?.leftQuantity == 0
                                             ? const SizedBox()
                                             : AppCard(
                                                 fillColor: context.primary,
@@ -188,17 +188,17 @@ class ProductScreen extends HookWidget implements AutoRouteWrapper {
                                                   padding:
                                                       const EdgeInsets.all(4),
                                                   child: Text(
-                                                    product!.leftQuantity >
+                                                    state.product!.leftQuantity >
                                                                 999 ||
-                                                            product!.contractor!
+                                                        state.product!.contractor!
                                                                     .leftQuantity >
                                                                 999
                                                         ? "В наличии 999 шт."
-                                                        : product?.contractor
+                                                        : state.product?.contractor
                                                                     ?.leftQuantity ==
                                                                 0
-                                                            ? "В наличии ${product?.leftQuantity} шт."
-                                                            : "В наличии ${product?.contractor?.leftQuantity} шт.",
+                                                            ? "В наличии ${state.product?.leftQuantity} шт."
+                                                            : "В наличии ${state.product?.contractor?.leftQuantity} шт.",
                                                     maxLines: 1,
                                                     style: TextStyle(
                                                       fontSize: 10,

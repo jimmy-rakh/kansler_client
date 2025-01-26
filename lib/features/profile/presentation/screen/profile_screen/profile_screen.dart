@@ -338,7 +338,8 @@ class ProfileScreen extends HookWidget {
                     ),
                   ),
                   verticalSpace40,
-                  context.isSmall ? const Footer() : const SizedBox()
+                  context.isSmall ? const Footer() : const SizedBox(),
+                  verticalSpace40,
                 ],
               ),
             ),

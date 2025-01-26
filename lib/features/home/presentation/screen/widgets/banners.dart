@@ -65,7 +65,7 @@ class BannerWidget extends HookWidget {
                               children: [
                                 DefaultImageContainer(
                                   onTap: () {
-                                    router.push(
+                                    router.navigate(
                                         BannerRoute(poster: poster, id: poster.id));
                                   },
                                   fit: BoxFit.fill,
@@ -94,7 +94,7 @@ class BannerWidget extends HookWidget {
                                           padding:  const EdgeInsets.all(1),
                                           child: AppCard(
                                             onTap: () {
-                                              router.push(
+                                              router.navigate(
                                                   BannerRoute(poster: poster, id: poster.id));
                                             },
                                             fillColor: context.primary,

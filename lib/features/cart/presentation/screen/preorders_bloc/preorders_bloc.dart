@@ -31,8 +31,8 @@ class PreordersBloc extends Bloc<PreordersEvent, PreordersState> {
     on<_GetPreordersProducts>(_onGetPreordersProducts);
     on<_ToCheckout>(_onToCheckout);
 
-    // add(const PreordersEvent.getPreordersProducts());
-    // add(const PreordersEvent.getPreordersPrice());
+    add(const PreordersEvent.getPreordersProducts());
+    add(const PreordersEvent.getPreordersPrice());
 
     scrollController.addListener(() {
       if (scrollController.position.pixels >=

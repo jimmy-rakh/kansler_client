@@ -40,7 +40,7 @@ class PopularWidget extends HookWidget {
         Stack(
           children: [
             SizedBox(
-              height: context.height * .4,
+              height: context.height * .43,
               child: state.when(
                 loadInProgress: () => Skeletonizer(
                   enabled: true,
